@@ -1,6 +1,64 @@
 // HELPERS
 // -----------
 
+.textCenter() {
+  text-align: center;
+}
+
+.textRight() {
+  text-align: right;
+}
+
+.floatRight() {
+  float: right;
+}
+
+.edgeLeft() {
+  margin-left: 0;
+}
+
+section {
+  margin-bottom: @baseline;
+}
+
+.span-one-third     { width: 33%; }
+.span-two-thirds    { width: 66%; }
+.offset-one-third   { margin-left: 33%; }
+.offset-two-thirds  { margin-left: 66%; }
+
+// Sup
+// ---------
+.sup {
+  color: @grayLight;
+  font-size: @smallfont;
+}
+
+// Header
+// ---------
+
+.header {
+  .user_box {
+    
+    .user_name {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: @grayDark;
+      .textRight;
+      .floatRight;
+    }
+
+    .small, .small a {
+      font-weight: normal;
+      font-size: 0.9em;
+      color: @grayLight;
+    }
+
+  }
+}
+
+// Announce
+// ----------
+
 .announce {
   margin: 0 0 @baseline;
   padding: 10px 14px;
@@ -29,35 +87,8 @@
   }
 }
 
-.textCenter() {
-  text-align: center;
-}
-
-.textRight() {
-  text-align: right;
-}
-
-.floatRight() {
-  float: right;
-}
-
-.user_box {
-  
-  .user_name {
-    font-weight: bold;
-    font-size: 1.2em;
-    color: @grayDark;
-    .textRight;
-    .floatRight;
-  }
-
-  .small, .small a {
-    font-weight: normal;
-    font-size: 0.9em;
-    color: @grayLight;
-  }
-
-}
+// Label (overrides)
+// ---------
 
 .label {
   font-size: 10px;
@@ -68,3 +99,68 @@
   &.nearby     { background-color: @green; }
   &.notice     { background-color: lighten(@blue, 25%); }
 }
+
+// Item
+// ----------
+
+.item-detail {
+
+  .row {
+
+  }
+  .span2 {
+    // .edgeLeft();
+  }
+
+  h1 {
+    font-size: 26px;
+    line-height: 1em;
+    margin-bottom: 5px;
+  }
+
+  .environmental {    
+    .gray {
+      color: @grayLight;
+      margin-right: 5px;
+    }
+    .val {
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+  }
+
+  .description {
+  }
+
+  .prices {
+    .price {
+      .textRight();
+      .type {
+        color: @grayLight;
+        font-size: 11px;
+        font-style: italic;
+        font-weight: normal;
+      }
+      .amount {
+        font-weight: bold;
+        font-size: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.item-comments {
+  .comment {
+    width: 80%;
+    border: 2px dashed @blue;
+    .border-radius(6px);
+    padding: 15px 10px;
+    margin-bottom: @baseline;
+  }
+
+  .comment.right {
+    margin-left: 20%;
+    border-color: lighten(@red, 20%);
+  }
+} 

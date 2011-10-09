@@ -18,7 +18,7 @@
       
     :css
       body {
-        padding: 10px 0;
+        padding: 5px 0 10px;
       }
       /* Override some defaults */
       .container > footer p {
@@ -32,8 +32,8 @@
       /* The white background content wrapper */
       .content {
         background-color: #fff;
-        padding: 20px;
-        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+        padding: 20px 0;
+
       }
 
       /* Give a quick and non-cross-browser friendly divider */
@@ -110,6 +110,47 @@
               %span.label.warning= "warning"
               %span.label.important= "important"
               %span.label.notice= "notice"
+          
+            %section.item-detail.clearfix
+              %h2 Item
+              .row
+                .span2
+                  = placehold(100, 100)
+                .span8
+                  %h1 Awesome Playstation 3 with Controllers and superawesome game collection
+                  .labels
+                    %span.label.new= "like new"
+                    %span.label.nearby= "nearby"
+                  .environmental
+                    %span.gray= t(:co2)
+                    %span.val= "43,32 kg"
+                  %br.clearfix
+                  %p.description
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                  %p.small.sup
+                    added on 24 March 2011
+                .span2
+                  .prices
+                    .price
+                      .type= t(:selling_it_for)
+                      .amount
+                        = "$ 249"
+                    .price
+                      .type= t(:renting_it_for)
+                      .amount
+                        = "$ 11.49"
+
+
+
+            %br.clearfix
+            %section.item-comments
+              %h2 Comments
+              - 5.times do 
+                .comment.right
+                  Is this PS3 compatible with my TV?
+                .comment
+                  Yes if you have NTSC-J
+
           
           %aside.span4
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.

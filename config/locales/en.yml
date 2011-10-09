@@ -2,4 +2,9 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  hello: "Hello world"
+  app_name: Heypal
+  find_items: Find Items
+  my_heypal: My HeyPal
+  profile: Profile
+  notifications: Notifications
+  add_an_item: Add an Item

@@ -100,8 +100,6 @@
                 Primary Button
               %button.btn.secondary
                 Secondary Button
-              %button.btn.primary.small
-                Small Button
 
             %section.page-labels
               %h2 Labels
@@ -119,7 +117,8 @@
               %h2 Item
               .row
                 .span2
-                  = placehold(100, 100)
+                  .image
+                    = placehold(100, 100)
                 .span8
                   %h1 Awesome Playstation 3 with Controllers and superawesome game collection
                   .labels
@@ -150,7 +149,51 @@
 
             %br.clearfix
             %section.item-comments
-              %h2 Comments
+              %h2 Comments/Questions
+              .comment
+                .body.item
+                  .row
+                    .span2
+                      .image
+                        = placehold(100, 100)
+                    .span5
+                      %h3 Awesome Playstation 3 with Controllers and superawesome game collection
+                      .labels
+                        %span.label.new= "like new"
+                        %span.label.nearby= "nearby"
+                      .environmental
+                        %span.gray= t(:co2)
+                        %span.val= "43,32 kg"
+                        = placehold(24,24)
+                        = placehold(24,24)
+                      %br.clearfix
+                    .span2
+                      .prices
+                        .price
+                          .type= t(:selling_it_for)
+                          .amount
+                            = "$ 249"
+                        .price
+                          .type= t(:renting_it_for)
+                          .amount
+                            = "$ 11.49"
+                  .clearfix
+                    %p.description
+                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    %p.small.sup
+                      added on 24 March 2011                      
+                .created_at
+                  3 hours ago
+                .commenter
+                  .user_box
+                    .user_photo= placehold(40,40)
+                    .user_data
+                      .user_name= link_to 'Jonathan Green', '#'
+                      .user_rank
+                        = placehold(24,24)
+                        71
+                        = placehold(24,24)
+                        13              
               - 5.times do 
                 .comment.right
                   .body

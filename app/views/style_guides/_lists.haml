@@ -1,0 +1,27 @@
+.container
+  .content
+    .row
+      .span12
+        %h2 Lists
+        .items.clearfix
+          - 5.times do
+            .item.row
+              .span2
+                = placehold(90, 90)
+              .span5
+                %h4 Playstation 3
+                .categories.gray.sup
+                  Videogames &raquo; Consoles
+                %span.label.like_new Like New
+                %span.label.nearby Nearby
+            .clearfix
+      %aside.span4
+        %section
+          %button.btn.primary Buy            
+          %button.btn Get
+          %button.btn Rent
+          %button.btn Borrow
+        %section
+          %h4.section-header.dropdown-toggle
+            Categories
+      

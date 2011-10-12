@@ -1,5 +1,3 @@
-source 'http://rubygems.org'
-
 gem 'rails', '3.1.0'
 
 # Bundle edge Rails instead:
@@ -9,6 +7,7 @@ gem 'sqlite3'
 
 gem 'haml'
 
+gem 'rest-client', :require => 'rest_client'
 
 # Gems used only for assets and not required
 # in production environments by default.

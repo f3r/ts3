@@ -1,0 +1,14 @@
+%header.header
+  .container
+    .row
+      .span5
+        = link_to placehold(300, 60), root_path, :title => t(:app_name)
+      .span5.offset6.user_box
+        .row
+          .span3
+            .user_name
+              = link_to 'Some User', '#'
+              .small
+                = link_to t(:sign_out), '#'
+          .span2
+            = placehold(60,60)

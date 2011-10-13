@@ -66,6 +66,35 @@ a.sup {
   font-size: @smallfont;
 }
 
+// Layout
+
+body {
+  padding: 5px 0 10px;
+}
+/* Override some defaults */
+.container > footer p {
+  text-align: center; /* center align it with the container */
+}
+
+.header .pull-right {
+  float: right;
+}
+
+/* The white background content wrapper */
+.content {
+  background-color: #fff;
+  padding: 20px 0;
+}
+
+/* Give a quick and non-cross-browser friendly divider */
+.content aside, .content .aside {
+  margin-left: 5px;
+  padding-left: 14px;
+  border-left: 1px solid #eee;
+}
+
+
+
 // Header
 // ---------
 

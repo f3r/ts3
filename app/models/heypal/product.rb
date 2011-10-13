@@ -13,7 +13,7 @@ class Heypal::Product < Heypal::Base
 
     def find_one(id, options)
       options[:id] = id if options[:id].blank?
-      find_all(options)
+      find_all(options).first
     end
 
     def find_all(options = {})

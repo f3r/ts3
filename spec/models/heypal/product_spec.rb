@@ -4,7 +4,7 @@ describe Heypal::Product do
 
   it "should return a list of products" do 
     results = Heypal::Product.all
-    results.should be_instance_of(Hash)
+    results.should be_instance_of(Array)
   end
 
   it "should return a product" do 

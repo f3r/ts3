@@ -1,94 +1,86 @@
 {
-  id          : 122133,
-	name        : "Playstation",
-	photo       : "http://s3.amazon.com/heypal/photo.jpg",
-	description : "I'm selling my playstation 3 with all my games and three controllers. The Console is in great condition. One of the controllers is slightly wonky, but still completely usable. I'm including my collection of games, there's 12 of them. I'm also renting the Playstation on a weekly basis for those who are interested. blah blah",
-  permalink   : "http://heypal.com/A3FGA129",
-  co2         : 42.35, //kg
-	location : {
-		country : "United States",
-		city    : "Detroit",
-		zip     : "808288"
-	}
-
-	//Condition » 0=like new, 1=used, 2=worn
-	condition  : 1,
-	pick_up    : true,
-	deliver    : true,
-
-	//Not yet decided if it’s GMT or embedded timezone
-	added_on : "2011-10-12 14:55:30 0800",
-
-	// Electronics » VideoGames » Consoles
-	//    "name" is used to show categories
-	//    "id"   is used to query API, but url use category name
-	category_tree : {
-		{id = 31, name: "Consoles"     },
-		{id = 13, name: "VideoGames"   },
-		{id = 4,  name: "Electronics"  }
+  "id"          : 122133,
+	"name"        : "Playstation",
+	"photo"       : "http://s3.amazon.com/heypal/photo.jpg",
+	"description" : "I'm selling my playstation 3 with all my games and three controllers. The Console is in great condition. One of the controllers is slightly wonky, but still completely usable. I'm including my collection of games, there's 12 of them. I'm also renting the Playstation on a weekly basis for those who are interested. blah blah",
+  "permalink"   : "http://heypal.com/A3FGA129",
+  "co2"         : 42.35,
+	"location" : {
+		"country" : "United States",
+		"city"    : "Detroit",
+		"zip"     : "808288"
 	},
 
-	Transaction : {
-		for_lend           : false,
-		for_rent           : true,  // Rental price = daily
-		for_give           : true,
-		for_sell           : true,
-	
-		//Cents: i.e.  100=$1, 10243=$102.43
-		currency           : "USD"
-		for_rent_price     : "1243", 
-		for_sell_price     : "20000"
+	"condition"  : 1,
+	"pick_up"    : true,
+	"deliver"    : true,
+
+	"added_on" : "2011-10-12 14:55:30 0800",
+
+	"category_tree" : [
+		{"id" : 31, "name": "Consoles"     },
+		{"id" : 13, "name": "VideoGames"   },
+		{"id" : 4,  "name": "Electronics"  }
+	],
+
+	"Transaction" : {
+		"for_lend"       : false,
+		"for_rent"       : true,
+		"for_give"       : true,
+		"for_sell"       : true,
+		"currency"       : "USD",
+		"for_rent_price" : "1243", 
+		"for_sell_price" : "20000"
 	},
 
-	user : {
-		name    : "Fer Martin",
-		photo   : "http://s3.amazon.com/heypal/user/123/photo.png",
-		reviews : 13,
-		badges  : 4,
-  	location : {
-  		country : "United States",
-  		city    : "Detroit"
+	"user" : {
+		"name"    : "Fer Martin",
+		"photo"   : "http://s3.amazon.com/heypal/user/123/photo.png",
+		"reviews" : 13,
+		"badges"  : 4,
+  	"location" : {
+  		"country" : "United States",
+  		"city"    : "Detroit"
   	},
-		items   : {
+		"items"   : [
 		  {
-		    id    : 8282,
-        name  : "Muay Thay Boxing Gloves"
-		    photo : "http://s3.amazon.com/heypal/123/photo.png"
+		    "id"    : 8282,
+        "name"  : "Muay Thay Boxing Gloves",
+		    "photo" : "http://s3.amazon.com/heypal/123/photo.png"
 		  },
 		  {
-		    id    : 123123,
-        name  : "Prada Bag '11 Collection"
-		    photo : "http://s3.amazon.com/heypal/123/photo.png"
+		    "id"    : 123123,
+        "name"  : "Prada Bag '11 Collection",
+		    "photo" : "http://s3.amazon.com/heypal/123/photo.png"
 		  },
 		  {
-		    id    : 62527,
-        name  : "LG 32'' Flatron Monitor"
-		    photo : "http://s3.amazon.com/heypal/123/photo.png"
+		    "id"    : 62527,
+        "name"  : "LG 32'' Flatron Monitor",
+		    "photo" : "http://s3.amazon.com/heypal/123/photo.png"
 		  }		  
-		}
+		]
 	},
 	
-	questions : {
+	"questions" : [
 	  {
-      message   : "Is it compatible with my TV?",
-      timestamp : "2011-10-12 14:55:30 0800",
-	    user : {
-    		name    : "Fer Martin",
-    		photo   : "http://s3.amazon.com/heypal/user/123/photo.png",
-    		reviews : 13,
-    		badges  : 4
-    	},
+      "message"   : "Is it compatible with my TV?",
+      "timestamp" : "2011-10-12 14:55:30 0800",
+	    "user" : {
+    		"name"    : "Fer Martin",
+    		"photo"   : "http://s3.amazon.com/heypal/user/123/photo.png",
+    		"reviews" : 13,
+    		"badges"  : 4
+    	}
 	  },
 	  {
-	    message   : "Yeah, works with both NTSC and PAL",
-	    timestamp : "2011-10-12 14:55:30 0800",
-	    user : {
-    		name    : "Jeremy Snyder",
-    		photo   : "http://s3.amazon.com/heypal/user/11/photo.png",
-    		reviews : 23,
-    		badges  : 9
+	    "message"   : "Yeah, works with both NTSC and PAL",
+	    "timestamp" : "2011-10-12 14:55:30 0800",
+	    "user" : {
+    		"name"    : "Jeremy Snyder",
+    		"photo"   : "http://s3.amazon.com/heypal/user/11/photo.png",
+    		"reviews" : 23,
+    		"badges"  : 9
     	}
 	  }
-	}
+	]
 }
-

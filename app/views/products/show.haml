@@ -7,9 +7,14 @@
         = placehold(200,200)
       .name
         %h3= @product['user']['name']
-    
+      .location.sup
+        = "#{@product['user']['location']['city']}, #{@product['user']['location']['country']}"
+      .scores
+        = placehold(24,24)
+        = @product['user']['reviews']
+        = placehold(24,24)
+        = @product['user']['badges']
 
-= @product.inspect
 %section.item-detail.clearfix
   .row
     .span4
@@ -63,6 +68,9 @@
         added on
         = @product['added_on']
 
-
-
 = render 'comments'
+
+
+
+= @product.inspect
+

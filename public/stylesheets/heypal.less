@@ -48,6 +48,10 @@ section {
   margin-bottom: @baseline;
 }
 
+.center {
+  .textCenter();
+}
+
 .span-one-third     { width: 33%; }
 .span-two-thirds    { width: 66%; }
 .offset-one-third   { margin-left: 33%; }
@@ -207,12 +211,17 @@ body {
 }
 
 .pal {
+  .textCenter();
   .avatar {
-    .textCenter();
+
   }
 
   .name {
-    .textCenter();
+
+  }
+
+  .scores img {
+    vertical-align: bottom;
   }
 }
 
@@ -244,7 +253,7 @@ body {
     }
     .amount {
       font-weight: bold;
-      font-size: 20px;
+      font-size: 18px;
       cursor: pointer;
 
     }

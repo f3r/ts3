@@ -7,9 +7,29 @@ describe Heypal::Product do
     results.should be_instance_of(Array)
   end
 
-  it "should return a product" do 
-    result = Heypal::Product.find('test')
-    result.should be_instance_of(Hash)
+  
+  context 'Product' do
+
+    before do
+      @product = Heypal::Product.find('test')
+    end
+
+    it "should return a product" do 
+      @product.should be_instance_of(Heypal::Product)
+    end
+
+    it "should return valid location" do
+      @product['location']['city'] = 'somecity'
+      @product['location']['country'] = 'inthecountry'
+
+      @product.location.should == "somecity, inthecountry"
+    end
+
+    it "should return a value from the hash via method_missing" do
+      @product['name'] = 'Playstation 3'
+      @product.name.should == 'Playstation 3'
+    end
+
   end
 
 end

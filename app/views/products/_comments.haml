@@ -1,0 +1,20 @@
+%br.clearfix
+%section.item-comments
+  %h2.section-header Questions 
+  - @product['questions'].each do |question|
+    .comment.clearfix{:class => cycle('right', '')}
+      .body
+        = question['message']
+      .created_at
+        = question['timestamp']
+      .commenter
+        .user_box
+          .user_photo= placehold(40,40)
+          .user_data
+            .user_name= link_to question['user']['name'], '#'
+            .user_rank
+              = placehold(24,24)
+              = question['']
+              = placehold(24,24)
+              = question['']
+

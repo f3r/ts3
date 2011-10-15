@@ -14,6 +14,9 @@
         = @product['user']['reviews']
         = placehold(24,24)
         = @product['user']['badges']
+    %br.clearfix
+    .more-items
+      %h2.section-header=raw "#{@product['user']['name']}'s #{t(:items)}"
 
 %section.item-detail.clearfix
   .row

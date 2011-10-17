@@ -17,6 +17,8 @@
     %br.clearfix
     .more-items
       %h2.section-header=raw "#{@product['user']['name']}'s #{t(:items)}"
+      - @product['user']['items'].each do |item|
+        = link_to placehold(100, 100), product_path(item['id']), :title => item['name']
 
 %section.item-detail.clearfix
   .row
@@ -57,7 +59,6 @@
     = @product['description']
 .permalink
   .row
-
     .span6
       = label_tag :permalink, 'Permalink:', :class => 'reset-float reset-width align-right'
       = text_field_tag 'permalink', @product['permalink']
@@ -73,7 +74,7 @@
 
 = render 'comments'
 
-
+%br.clearfix
 
 = @product.inspect
 

@@ -17,4 +17,15 @@
               = question['user']['reviews']
               = placehold(24,24)
               = question['user']['badges']
+  
+  = form_for :questions do |f|
+    .row
+      .span8.offset2
+        = f.text_area :body, :class => 'span8 xxlarge', :rows => 4, :placehold => "Write a message to Anna"
+        .clearfix
+        .float-right
+          = f.submit 'Submit', :class => 'btn primary'      
+      .span2
+        = placehold(80, 80)
+
 

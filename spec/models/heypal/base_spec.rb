@@ -16,6 +16,14 @@ describe Heypal::Base do
 
   it "should have a delete method" do
     Heypal::Base.respond_to?(:delete).should be_true
-  end  
+  end
+
+  it "should have respond to resource path" do
+    Heypal::Base.respond_to?(:resource_path)
+  end
+
+  it "should have respond to resource url" do
+    Heypal::Base.respond_to?(:resource_url)
+  end
 
 end

@@ -1,5 +1,7 @@
 class Heypal::Product < Heypal::Base
 
+  set_resource_path '/products.json'
+
   def location
     "#{self['location']['city']}, #{self['location']['country']}"
   end

@@ -20,7 +20,7 @@ class Heypal::Base < Hash
       RestClient.delete(options)
     end
 
-    def find(type, options = {})
+    def find(type, options = {})      
       if type == :first
         find_all(options).first
       elsif type == :all
@@ -32,15 +32,28 @@ class Heypal::Base < Hash
 
     def find_one(id, options)
       options[:id] = id if options[:id].blank?
-      results = self.get(Heypal::PRODUCT_URL, options)
+      results = self.get(resource_url, options)
       JSON.parse(results)
     end
 
     def find_all(options = {})
-      results = self.get(Heypal::PRODUCTS_URL, options)
+      results = self.get(resource_url, options)
       JSON.parse(results)
     end
-    alias_method :all, :find_all    
+    alias_method :all, :find_all
+
+
+    def resource_url
+      Heypal.base_url + resource_path
+    end
+
+    def set_resource_path(path)
+      (class << self; self; end).instance_eval do
+        define_method :resource_path do
+          path 
+        end
+      end
+    end
 
   end
 

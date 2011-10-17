@@ -7,6 +7,9 @@ describe Heypal::Product do
     results.should be_instance_of(Array)
   end
 
+  it "should have a valid resource path" do
+    Heypal::Product.resource_url.should == 'http://localhost:3005/samples/products.json'
+  end
   
   context 'Product' do
 

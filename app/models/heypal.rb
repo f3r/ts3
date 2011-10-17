@@ -1,7 +1,7 @@
 module Heypal
   
-  BASE_URL = Rails.env.development? ? "http://localhost:3005" : "http://morecoffeeplease.s3.amazonaws.com"
+  def self.base_url
+    (Rails.env.development? || Rails.env.test?) ? "http://localhost:3005/samples" : "http://morecoffeeplease.s3.amazonaws.com/samples"
+  end
 
-  PRODUCTS_URL = BASE_URL + "/samples/products.json"
-  PRODUCT_URL = BASE_URL + "/samples/product.json"
 end

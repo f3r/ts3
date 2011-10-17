@@ -4,4 +4,8 @@ class ProductsController < ApplicationController
     @product = Heypal::Product.find('test', :resource_path => '/product.json')
   end
 
+  def index
+    render :layout => 'plain'
+  end
+
 end

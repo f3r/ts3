@@ -1,0 +1,14 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = render 'shared/meta'
+
+  %body
+    = render 'shared/header'
+    = render 'shared/menu'
+    .container
+      .content
+        = yield
+
+      %footer
+      %p &copy; Heypal.com 2011

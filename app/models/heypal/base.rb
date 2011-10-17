@@ -26,32 +26,33 @@ class Heypal::Base < Hash
       elsif type == :all
         find_all(options)
       else
-        self.new.merge(find_one(type, options = {}))
+        self.new.merge(find_one(type, options))
       end
     end
 
     def find_one(id, options)
       options[:id] = id if options[:id].blank?
-      results = self.get(resource_url, options)
+      results = self.get(resource_url(options), options)
       JSON.parse(results)
     end
 
     def find_all(options = {})
-      results = self.get(resource_url, options)
+      results = self.get(resource_url(options), options)
       JSON.parse(results)
     end
     alias_method :all, :find_all
 
-
-    def resource_url
-      Heypal.base_url + resource_path
+    def resource_url(options = {})
+      Heypal.base_url + (options[:resource_path].present? ? options[:resource_path] : resource_path)
     end
 
     def set_resource_path(path)
       (class << self; self; end).instance_eval do
+
         define_method :resource_path do
-          path 
+          path
         end
+
       end
     end
 

@@ -1,0 +1,8 @@
+= render :partial => "left_column"
+= render :partial => "info"
+.span8.borderTop
+  %h2
+    Your Badges
+  - (0..11).each do |m|
+    %span.user_badge
+      = placehold(100,100)

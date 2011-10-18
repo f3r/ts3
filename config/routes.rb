@@ -3,6 +3,9 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
 
+  match '/users/edit' => 'users#edit'
+  match '/users/show' => 'users#show'
+  match '/notifications' => 'notifications#index'
   resources :products
 
   # The priority is based upon order of creation:

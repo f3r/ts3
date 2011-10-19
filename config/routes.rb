@@ -5,6 +5,7 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/users/edit' => 'users#edit'
   match '/users/show' => 'users#show'
+  match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'
   resources :products
 

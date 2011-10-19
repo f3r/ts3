@@ -1,5 +1,7 @@
 HeyPalFrontEnd::Application.routes.draw do
 
+  get "publish/index"
+
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
 

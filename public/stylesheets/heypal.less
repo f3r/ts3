@@ -409,4 +409,140 @@ aside .section-header, .aside .section-header, .section-header {
   background: @grayLight;
 }
 
+// Wizard
+
+.coda-nav{
+  .clearfix();  
+  margin-bottom: 20px;
+  
+  &.nav-left{
+    float: left;
+    padding-top: 8px;
+  }  
+
+  &.nav-right{
+    float:right;
+    margin-top: -20px;
+  }  
+  
+
+  ul{
+    float: right;    
+  }
+  
+  ul li {
+    float:left;
+    font-size:16px;
+    line-height:16px;
+    font-weight: bold;
+    padding:0 15px 0 0;
+    margin: 0px 0 0 -13px;
+  }
+
+  ul li#preview-toggle {
+
+  }
+
+  ul li#preview-toggle a {
+    display:block;
+    position:relative;
+    padding: 8px 8px 8px 23px;
+    background:url(../images/nav-red-bg-left.png) no-repeat 0 0;
+  }
+
+  ul li#preview-toggle a span {
+    cursor:pointer;
+    background:url(../images/nav-red-bg-right.png) no-repeat 0 0;
+  }
+
+  ul li a {
+    display:block;
+    position:relative;
+    padding: 9px 56px 11px 77px;
+    background:url(../images/nav-bg-left.png) no-repeat 0 0;
+  }
+
+  ul li a span {
+    position:absolute;
+    top:0px;
+    right:-10px;
+    width:15px;
+    height:36px;
+    background:url(../images/nav-bg-right.png) no-repeat top right;
+    z-index:100;
+  }
+
+  ul li a:hover,
+  ul li a.current {
+    background:url(../images/nav-bg-left.png) no-repeat 0 -36px !important;
+    color:#fff;
+  }
+
+  ul li a:hover span,
+  ul li a.current span,
+  ul li a:hover + span,
+  ul li a.current + span {
+    background:url(../images/nav-bg-right.png) no-repeat right bottom;
+  }
+
+  ul li#contact-toggle a:hover,
+  ul li#contact-toggle a:hover.current {
+    background:url(../images/nav-bg-left.png) no-repeat 0 -36px !important;
+    color:#cc0000;
+  }
+
+  ul li#contact-toggle a:hover span,
+  ul li#contact-toggle a:hover.current span,
+  ul li#contact-toggle a:hover + span,
+  ul li#contact-toggle a:hover.current + span {
+    background:url(../images/nav-bg-right.png) no-repeat right -32px;
+  }
+
+  ul li#contact-toggle a:active,
+  ul li#contact-toggle a.current {
+    background:url(../images/nav-red-bg-left.png) no-repeat 0 0 !important;
+    color:#ffffff;
+  }
+
+  ul li#contact-toggle a:active span,
+  ul li#contact-toggle a.current span,
+  ul li#contact-toggle a:active + span,
+  ul li#contact-toggle a.current + span {
+    background:url(../images/nav-red-bg-right.png) no-repeat right bottom;
+  }
+  
+}
+
+#coda-slider-1{
+  /*height: auto !important;*/
+}
+
+.coda-slider{
+  background: #fff;
+  width: 940px;
+  
+  .panel{
+    width: 940px;
+  }
+  
+  .panel-wrapper{
+    padding: 10px;
+  }
+  
+}
+.arrows{
+  .clearfix();
+  padding: 10px;
+}
+
+.coda-nav-right{
+  float: right;
+}
+
+.coda-nav-left a,
+.coda-nav-right a{
+  background: #000;
+  color: #fff;
+}
+
 

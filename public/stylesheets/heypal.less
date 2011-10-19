@@ -184,6 +184,10 @@ body {
   .image {
     border:1px solid @grayLight;
     padding: 10px;
+    
+    img{ 
+      display: block; 
+    }
   }
 
   h1 {
@@ -413,7 +417,10 @@ aside .section-header, .aside .section-header, .section-header {
 
 .coda-nav{
   .clearfix();  
-  margin-bottom: 20px;
+  float: none;
+  padding-bottom: 10px;
+  margin: 10px 0;
+  border-bottom: 1px solid #eee;  
   
   &.nav-left{
     float: left;
@@ -458,7 +465,7 @@ aside .section-header, .aside .section-header, .section-header {
   ul li a {
     display:block;
     position:relative;
-    padding: 9px 56px 11px 77px;
+    padding: 9px 55px 11px 77px;
     background:url(../images/nav-bg-left.png) no-repeat 0 0;
   }
 
@@ -513,20 +520,24 @@ aside .section-header, .aside .section-header, .section-header {
   
 }
 
-#coda-slider-1{
-  /*height: auto !important;*/
+.coda-slider-wrapper {
+  padding: 0;
+  border: 1px solid #eee;
+  .border-radius();
+  
 }
 
 .coda-slider{
   background: #fff;
-  width: 940px;
+  width: 938px;
+  margin-bottom: 20px;  
   
   .panel{
-    width: 940px;
+    width: 938px;
   }
   
   .panel-wrapper{
-    padding: 10px;
+    padding: 0px 20px;
   }
   
 }
@@ -544,5 +555,7 @@ aside .section-header, .aside .section-header, .section-header {
   background: #000;
   color: #fff;
 }
+
+.media-grid.gallery{ margin-left: 0;}
 
 

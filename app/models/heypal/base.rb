@@ -1,6 +1,10 @@
 ##
 # Proxy class for Heypal REST client. It currently uses the RestClient gem for now.
 class Heypal::Base < Hash
+  include ActiveModel::AttributeMethods
+  include ActiveModel::Naming
+  include ActiveModel::Validations
+  include ActiveModel::Dirty
 
   class << self
 
@@ -46,7 +50,7 @@ class Heypal::Base < Hash
       elsif type == :all
         find_all(options)
       else
-        self.new.merge(find_one(type, options).first)
+        self.new.merge(find_one(type, options))
       end
     end
 

@@ -1,0 +1,30 @@
+.span12.offset2
+  .registration.row
+    %br
+    .section.span6.bored
+      %h2= t(:create_new_account)
+
+      = form_for :user, :url => users_path do |f|
+        .input
+          = f.text_field :name, :placeholder => 'Name'
+        .input
+          = f.text_field :email, :placeholder => 'E-Mail Address'
+        .input
+          = f.password_field :password, :placeholder => 'Confirm'
+        .input
+          = f.password_field :password_confirmation, :placeholder => 'Confirm Password'
+        .input
+          %label.reset-width
+            = f.check_box :terms
+            I accept the
+            = link_to 'terms and conditions', '/terms-and-conditions'
+        %button.btn.float-right{:type => 'submit primary'}
+          Create account
+
+      = @user.errors.inspect
+
+    .section.span5
+      %h2= t(:create_an_account_using)
+      = link_to image_tag('signin_facebook.png'), ""
+    %br.clearfix
+    %br

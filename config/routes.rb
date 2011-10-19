@@ -4,7 +4,10 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides/:action' => 'style_guides'
 
   resources :products
+  resources :users
 
+
+  match '/signup' => 'users#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

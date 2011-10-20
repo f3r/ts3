@@ -13,4 +13,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def confirm
+    if params['confirmation-token'].present?
+      if Heypal::User.confirm(params[:confirmation_token])
+        flash[:notice] = t(:user_confirmed) 
+        redirect_to '/login'
+      else
+        flash[:notice] = t(:invalid_confirmation_code)
+      end
+    end
+  end
+
 end

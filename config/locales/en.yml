@@ -11,5 +11,15 @@ en:
   
   item_history: Item History
 
+  create_new_account: Create New Account
+
   your_other_items: Your Other Items
   see_all: See All &raquo;
+  user_confirmed: Your account has been successfully confirmed!
+  invalid_confirmation_code: Invalid Confirmation Code
+
+  resend_confirmation: Resend Confirmation
+  enter_your_email: Enter your Email
+
+  reset_password: Reset Password
+  

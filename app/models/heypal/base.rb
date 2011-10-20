@@ -26,21 +26,21 @@ class Heypal::Base < Hash
 
     def request(path, method = :get, options = {})
   
-      # Since we're requesting from the backend
+      # Since we're requesting from a static page which doesn't support other http methods
       result = get(resource_url(path), options)
 
       #result = case method 
         #when :get
-          #get(url, options)
+          #get(resource_url(url), options)
         #when :put
-          #put(url, options)
+          #put(resource_url(url), options)
         #when :post
-          #post(url, options)
+          #post(resource_url(url), options)
         #when :delete
-          #delete(url, options)
+          #delete(resource_url(url), options)
       #end  
 
-      JSON.parse(result)
+      parse_json(result)
 
     end
 
@@ -57,12 +57,12 @@ class Heypal::Base < Hash
     def find_one(id, options)
       options[:id] = id if options[:id].blank?
       results = self.get(resource_url(options[:resource_path]), options)
-      JSON.parse results
+      parse_json(results)
     end
 
     def find_all(options = {})
       results = self.get(resource_url(options[:resource_path]), options)
-      JSON.parse results
+      parse_json(results)
     end
     alias_method :all, :find_all
 
@@ -78,6 +78,11 @@ class Heypal::Base < Hash
         end
 
       end
+    end
+
+    def parse_json(str)
+      JSON.parse str
+      #TODO: raise some Heypal::Error::InvalidResponseWhatever in here
     end
 
   end

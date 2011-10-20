@@ -46,7 +46,7 @@ class UsersController < ApplicationController
           flash[:error] = t(:password_reset_failed)
         end
       else
-          flash[:error] = t(:password_reset_failed)
+        flash[:error] = t(:password_reset_failed)
       end
     end
 

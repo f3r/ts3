@@ -10,7 +10,7 @@ describe Heypal::Product do
   it "should have a valid resource path" do
     Heypal::Product.resource_url.should == 'http://localhost:3006/samples/products.json'
   end
-  
+
   context 'Product' do
 
     before do

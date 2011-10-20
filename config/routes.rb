@@ -23,6 +23,8 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/login'        =>  'sessions#new', :as => :login
   match '/logout'       =>  'sessions#destroy', :as => :logout
 
+  match '/dashboard'    =>  'users#dashboard', :as => :dashboard
+
   root :to => 'home#index'
 
 end

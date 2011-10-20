@@ -13,7 +13,8 @@ class Heypal::User < Heypal::Base
 
   class << self
     def create(params = {})
-      self.new.merge(request('/users/sign_up.json', :post, params))
+      self.new.merge(request('/users/sign_up.json', :post, {:name => params[:name], :email => params[:email], :password => params[:password]}))
+      #self.new.merge(request('/users/sign_up.json', :post, params))
     end
 
     def confirm(params = {})

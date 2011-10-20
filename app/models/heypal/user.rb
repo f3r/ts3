@@ -14,7 +14,6 @@ class Heypal::User < Heypal::Base
   class << self
     def create(params = {})
       self.new.merge(request('/users/sign_up.json', :post, {:name => params[:name], :email => params[:email], :password => params[:password]}))
-      #self.new.merge(request('/users/sign_up.json', :post, params))
     end
 
     def confirm(params = {})
@@ -57,7 +56,8 @@ class Heypal::User < Heypal::Base
     if response['stat'] == 'ok'
       return true
     else
-      self.errors << {'error' => response['message']}
+      Rails.logger.info response.inspect
+      self.errors.add(:base, response['err'])
       return false
     end
   end

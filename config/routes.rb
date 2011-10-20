@@ -3,8 +3,10 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
 
-  resources :products
+  match '/users/confirmation/:confirmation_token'  => 'users#confirm'
+  match '/users/password/:token'  => 'users#confirm_reset_password'
 
+  resources :products
   resources :users do
 
     collection do

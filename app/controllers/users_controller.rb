@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    if params['confirmation-token']
+    if params['confirmation_token']
 
-      if params['confirmation-token'].present? && Heypal::User.confirm({'confirmation_token' => params['confirmation-token']})
+      if params['confirmation_token'].present? && Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
         flash[:notice] = t(:user_confirmed) 
         redirect_to login_path
       else
@@ -49,6 +49,10 @@ class UsersController < ApplicationController
         flash[:error] = t(:password_reset_failed)
       end
     end
+
+  end
+
+  def confirm_reset_password
 
   end
 

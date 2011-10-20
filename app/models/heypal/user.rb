@@ -9,7 +9,7 @@ class Heypal::User < Heypal::Base
 
   validates :name, :email, :password, :password_confirmation, :presence => true
   validates :password, :confirmation => true
-  #validates :terms, :acceptance => true
+  validates :terms, :acceptance => true
 
   class << self
     def create(params = {})
@@ -17,7 +17,7 @@ class Heypal::User < Heypal::Base
     end
 
     def confirm(params = {})
-      result = request('/users/confirmation.json', :post, params)
+      result = request('/users/confirmation.json', :get, params)
       result['stat'] == 'ok'
     end
 

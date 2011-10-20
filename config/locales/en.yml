@@ -31,6 +31,8 @@ en:
 
   confirmation_email_sent: Confirmation email sent
 
+  register: Register
+
   submit: Submit
   login: Login to Heypal
   login_using: Login using

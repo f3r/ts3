@@ -27,18 +27,18 @@ class Heypal::Base < Hash
     def request(path, method = :get, options = {})
   
       # Since we're requesting from a static page which doesn't support other http methods
-      result = get(resource_url(path), options)
+      #result = get(resource_url(path), options)
 
-      #result = case method 
-        #when :get
-          #get(resource_url(url), options)
-        #when :put
-          #put(resource_url(url), options)
-        #when :post
-          #post(resource_url(url), options)
-        #when :delete
-          #delete(resource_url(url), options)
-      #end  
+      result = case method 
+        when :get
+          get(resource_url(path), options)
+        when :put
+          put(resource_url(path), options)
+        when :post
+          post(resource_url(path), options)
+        when :delete
+          delete(resource_url(path), options)
+      end  
 
       parse_json(result)
 

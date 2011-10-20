@@ -5,6 +5,7 @@
       %h2= t(:create_new_account)
 
       = form_for :user, :url => users_path do |f|
+        = f.error_messages
         .input
           = f.text_field :name, :placeholder => 'Name'
         .input
@@ -20,8 +21,6 @@
             = link_to 'terms and conditions', '/terms-and-conditions'
         %button.btn.float-right{:type => 'submit primary'}
           Create account
-
-      = @user.errors.full_messages.join(",")
 
     .section.span5
       %h2= t(:create_an_account_using)

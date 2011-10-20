@@ -19,8 +19,9 @@ HeyPalFrontEnd::Application.routes.draw do
 
   resources :sessions
 
-  match '/signup'       =>  'users#new'
-  match '/login'        =>  'sessions#new'
+  match '/signup'       =>  'users#new', :as => :signup
+  match '/login'        =>  'sessions#new', :as => :login
+  match '/logout'       =>  'sessions#destroy', :as => :logout
 
   root :to => 'home#index'
 

@@ -14,7 +14,7 @@ describe Heypal::Product do
   context 'Product' do
 
     before do
-      @product = Heypal::Product.find('test')
+      @product = Heypal::Product.find('test', :resource_path => '/product.json')
     end
 
     it "should return a product" do 

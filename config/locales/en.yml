@@ -18,8 +18,28 @@ en:
   user_confirmed: Your account has been successfully confirmed!
   invalid_confirmation_code: Invalid Confirmation Code
 
+  enter_confirmation_code: Enter Confirmation Code
   resend_confirmation: Resend Confirmation
   enter_your_email: Enter your Email
 
   reset_password: Reset Password
   
+  confirmation_code: Confirmation code
+
+  email: email
+  invalid_email: Invalid Email
+
+  confirmation_email_sent: Confirmation email sent
+
+  submit: Submit
+  login: Login to Heypal
+  login_using: Login using
+  sign_in: Sign In
+  sign_out: Sign Out
+
+  invalid_login: Invalid Login
+
+  password_reset_instruction_sent: Password reset instruction has been sent to your email. 
+  
+  password_reset_failed: Password reset failed. 
+

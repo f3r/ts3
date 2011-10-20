@@ -14,14 +14,42 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    if params['confirmation-token'].present?
-      if Heypal::User.confirm(params[:confirmation_token])
+    if params['confirmation-token']
+
+      if params['confirmation-token'].present? && Heypal::User.confirm(params[:confirmation_token])
         flash[:notice] = t(:user_confirmed) 
-        redirect_to '/login'
+        redirect_to login_path
       else
-        flash[:notice] = t(:invalid_confirmation_code)
+        flash[:error] = t(:invalid_confirmation_code)
+      end
+
+    elsif params['email']
+
+      if params['email'].present? &&  Heypal::User.resend_confirmation({:email => params['email']})
+        flash[:notice] = t(:confirmation_email_sent)
+        redirect_to login_path
+      else
+        flash[:error] = t(:invalid_email)
+      end
+
+    end
+  end
+
+  def reset_password
+
+    if request.post?
+      if params['email']        
+        if params['email'].present? && Heypal::User.reset_password({:email => params[:email]})
+          flash[:notice] = t(:password_reset_instruction_sent)
+          redirect_to login_path
+        else
+          flash[:error] = t(:password_reset_failed)
+        end
+      else
+          flash[:error] = t(:password_reset_failed)
       end
     end
+
   end
 
 end

@@ -1,0 +1,21 @@
+.span12.offset2
+  .registration.row
+    %br
+    .section.span6.bored
+      %h2= t(:login)
+
+      = form_tag sessions_path do 
+        .input
+          = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
+        .input
+          = password_field_tag :password, '', :placeholder => 'Password'
+        %button.btn.float-right{:type => 'submit primary'}
+          Login
+
+      %br.clearfix
+      = link_to t(:forgot_password), reset_password_users_path
+    .section.span5
+      %h2= t(:login_using)
+      = link_to image_tag('signin_facebook.png'), ""
+    %br.clearfix
+    %br

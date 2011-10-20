@@ -1,9 +1,8 @@
 require 'acceptance/acceptance_helper'
 
 feature 'Users feature', %q{
-  In order to create a user
   As a user
-  I want ...
+  I should be able to 
 } do
 
   scenario 'signup' do
@@ -20,7 +19,6 @@ feature 'Users feature', %q{
 
     click_button 'Create account'
 
-    #page.current_url.should == 'dashboard'
   end
 
   scenario 'signup using my facebook account' do
@@ -36,7 +34,7 @@ feature 'Users feature', %q{
 
   end
 
-  scenario 'confirm my account with an invalid confirmation code' do
+  scenario 'reject invalid confirmation code' do
     Heypal::User.stub!(:confirm).and_return(false)
 
     visit '/users/confirm?confirmation-token=someinvalidconfirmationcode'
@@ -45,16 +43,19 @@ feature 'Users feature', %q{
   end
 
   scenario 'resend my confirmation code' do
+    Heypal::User.stub!(:resend_confirmation).and_return(true)
 
     visit '/users/confirm'
 
     page.should have_content(t(:resend_confirmation))
 
-    Heypal::User.stub!(:resend_confirmation).and_return(true)
+    fill_in 'email', :with => 'test@testemail.com'
 
+    click_button t(:resend_confirmation)
+
+    page.should have_content(t(:confirmation_email_sent))
     page.status_code.should == 200
   end
-
 
   scenario 'reset my password' do
 
@@ -64,7 +65,11 @@ feature 'Users feature', %q{
 
     Heypal::User.stub!(:reset_password).and_return(true)
 
+    click_button t(:submit)
 
+    save_and_open_page
+
+    page.should have_content(t(:password_reset_instruction_sent))
     page.status_code.should == 200
   end
 
@@ -72,5 +77,9 @@ feature 'Users feature', %q{
     pending
   end 
 
+  scenario 'see my dashboard' do
+    #visit '/dashboard'
+    pending
+  end
 
 end

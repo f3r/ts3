@@ -8,13 +8,13 @@ describe Heypal::Product do
   end
 
   it "should have a valid resource path" do
-    Heypal::Product.resource_url.should == 'http://localhost:3005/samples/products.json'
+    Heypal::Product.resource_url.should == 'http://localhost:3006/samples/products.json'
   end
-  
+
   context 'Product' do
 
     before do
-      @product = Heypal::Product.find('test')
+      @product = Heypal::Product.find('test', :resource_path => '/product.json')
     end
 
     it "should return a product" do 
@@ -26,11 +26,6 @@ describe Heypal::Product do
       @product['location']['country'] = 'inthecountry'
 
       @product.location.should == "somecity, inthecountry"
-    end
-
-    it "should return a value from the hash via method_missing" do
-      @product['name'] = 'Playstation 3'
-      @product.name.should == 'Playstation 3'
     end
 
   end

@@ -5,10 +5,17 @@
         = link_to image_tag('/images/logo.png'), root_path, :title => t(:app_name)
       .span5.offset6.user_box
         .row
-          .span3
-            .user_name
-              = link_to 'Some User', '#'
-              .small
-                = link_to t(:sign_out), '#'
-          .span2
-            = placehold(60,60)
+          - if logged_in?
+            .span3
+              .user_name
+                = link_to 'Some User', '#'
+                .small
+                  = link_to t(:sign_out), logout_path
+            .span2
+              = placehold(60,60)
+          - else
+            .span3
+              .links
+                = link_to t(:sign_in), login_path
+                |
+                = link_to t(:register), signup_path

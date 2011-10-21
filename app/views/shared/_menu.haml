@@ -1,20 +1,25 @@
 .topbar
   .fill
     .container
-      %ul.nav
-        %li.active
-          = link_to t(:find_items), '#'
-        %li
-          = link_to t(:my_heypal), '#'
-        %li
-          = link_to t(:profile), '#'
-      %ul.nav.secondary-nav
-        %li.add-item
-          = link_to t(:add_an_item), '#'
-        %li.notification
-          = link_to "5", '#', :class => 'dropdown-toggle'
-          %ul.dropdown-menu
-            %li
-              = link_to 'Notification 1', '#'
-            %li
-              = link_to 'Notification 2', '#'
+      - if logged_in?
+        %ul.nav
+          %li.active
+            = link_to t(:find_items), '#'
+          %li
+            = link_to t(:my_heypal), '#'
+          %li
+            = link_to t(:profile), '#'
+        %ul.nav.secondary-nav
+          %li.add-item
+            = link_to t(:add_an_item), '#'
+          %li.notification
+            = link_to "5", '#', :class => 'dropdown-toggle'
+            %ul.dropdown-menu
+              %li
+                = link_to 'Notification 1', '#'
+              %li
+                = link_to 'Notification 2', '#'
+      - else
+        %ul.nav
+          %li
+            = link_to raw('&nbsp;'), ''

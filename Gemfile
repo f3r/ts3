@@ -21,6 +21,10 @@ end
 
 gem 'jquery-rails'
 
+gem 'dynamic_form'
+
+gem 'airbrake'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -45,5 +49,7 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'steak'
+  gem 'launchy'
 end
 

@@ -3,6 +3,10 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
 
+  match '/users/edit' => 'users#edit'
+  match '/users/show' => 'users#show'
+  match '/users/item' => 'users#items'
+  match '/notifications' => 'notifications#index'
   resources :products
 
   resources :users do

@@ -7,7 +7,7 @@ module Heypal
     # 3005 being the webserver and 3006 as the API sample server
     #(Rails.env.development? || Rails.env.test?) ? "http://localhost:3006/samples" : "http://morecoffeeplease.s3.amazonaws.com/samples"
     #
-    (Rails.env.development? || Rails.env.test?) ? "https://backend-heypal.heroku.com" : "http://morecoffeeplease.s3.amazonaws.com/samples"
+    "https://backend-heypal.heroku.com"
   end
 
 end

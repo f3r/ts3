@@ -25,6 +25,8 @@ gem 'dynamic_form'
 
 gem 'airbrake'
 
+gem 'omniauth'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

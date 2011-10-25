@@ -33,6 +33,8 @@ class Heypal::User < Heypal::Base
 
     def confirm_reset_password(params = {})
       result = request('/users/password.json', :put, params)
+
+      Rails.logger.info result.inspect
       result['stat'] == 'ok'
     end
 

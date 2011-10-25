@@ -77,9 +77,4 @@ feature 'Users feature', %q{
     pending
   end 
 
-  scenario 'see my dashboard' do
-    #visit '/dashboard'
-    pending
-  end
-
 end

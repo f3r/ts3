@@ -28,3 +28,5 @@ HeyPalFrontEnd::Application.configure do
   # Expands the lines which load the assets
   config.assets.debug = true
 end
+
+Heypal::base_url = 'https://backend-heypal.heroku.com'

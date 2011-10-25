@@ -15,6 +15,7 @@ HeyPalFrontEnd::Application.routes.draw do
       post :reset_password
       get  :reset_password
       get  :confirm_reset_password
+      post :confirm_reset_password
     end
 
   end
@@ -22,6 +23,7 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :sessions
 
   match '/signup'       =>  'users#new', :as => :signup
+  match '/signup_complete'    => 'users#signup_complete', :as => :signup_complete
   match '/login'        =>  'sessions#new', :as => :login
   match '/logout'       =>  'sessions#destroy', :as => :logout
 

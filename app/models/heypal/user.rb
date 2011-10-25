@@ -39,12 +39,10 @@ class Heypal::User < Heypal::Base
   end
 
   def initialize(params = {})
-
     @@attributes.each do |attr|
       instance_variable_set("@#{attr}", params[attr])
       self[attr] = params[attr]
     end
-
   end
 
   def success?
@@ -57,9 +55,14 @@ class Heypal::User < Heypal::Base
       return true
     else
       Rails.logger.info response.inspect
+      # TODO: Standardize the error message
       self.errors.add(:base, response['err'])
       return false
     end
+  end
+
+  def fetch!
+    result = request("/users/#{self['user_id']}/info.json")
   end
 
 end

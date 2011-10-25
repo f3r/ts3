@@ -5,6 +5,8 @@ class Heypal::Session < Heypal::Base
   class << self
     def create(options = {})
       self.new.merge(request('/users/sign_in.json', :post, options))
+    rescue
+      self.new({'stat' => 'fail'})
     end
   end
 

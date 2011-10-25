@@ -13,7 +13,7 @@ class Heypal::User < Heypal::Base
 
   class << self
     def create(params = {})
-      self.new.merge(request('/users/sign_up.json', :post, params))
+      self.new.merge(request('/users/sign_up.json', :post, {:name => params[:name], :email => params[:email], :password => params[:password]}))
     end
 
     def confirm(params = {})
@@ -39,12 +39,10 @@ class Heypal::User < Heypal::Base
   end
 
   def initialize(params = {})
-
     @@attributes.each do |attr|
       instance_variable_set("@#{attr}", params[attr])
       self[attr] = params[attr]
     end
-
   end
 
   def success?
@@ -56,9 +54,15 @@ class Heypal::User < Heypal::Base
     if response['stat'] == 'ok'
       return true
     else
-      self.errors << {'error' => response['message']}
+      Rails.logger.info response.inspect
+      # TODO: Standardize the error message
+      self.errors.add(:base, response['err'])
       return false
     end
+  end
+
+  def fetch!
+    result = request("/users/#{self['user_id']}/info.json")
   end
 
 end

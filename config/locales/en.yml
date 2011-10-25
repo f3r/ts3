@@ -45,3 +45,9 @@ en:
   
   password_reset_failed: Password reset failed. 
 
+  signup_complete: Signup Complete
+  signup_complete_text: Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it.
+  
+  confirm_reset_password: Confirm your password reset
+  enter_your_new_password: Enter your new password
+  password_reset_success: Password reset successful

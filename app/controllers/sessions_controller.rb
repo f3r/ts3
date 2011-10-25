@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
         sign_in @heypal_session
         redirect_to '/dashboard'
       else
+        flash[:error] = t(:invalid_login)
         redirect_to login_path
       end
 
@@ -17,7 +18,7 @@ class SessionsController < ApplicationController
       flash[:error] = t(:invalid_login)
       redirect_to login_path
     end
-    
+
   end
 
   def destroy

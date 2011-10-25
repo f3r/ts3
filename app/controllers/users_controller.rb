@@ -7,16 +7,16 @@ class UsersController < ApplicationController
   def create
     @user = Heypal::User.new(params[:user])
     if @user.valid? && @user.save
-      redirect_to '/dashboard'
+      redirect_to signup_complete_path
     else
       render :action => :new
     end
   end
 
   def confirm
-    if params['confirmation-token']
+    if params['confirmation_token']
 
-      if params['confirmation-token'].present? && Heypal::User.confirm({'confirmation_token' => params['confirmation-token']})
+      if params['confirmation_token'].present? && Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
         flash[:notice] = t(:user_confirmed) 
         redirect_to login_path
       else
@@ -54,5 +54,22 @@ class UsersController < ApplicationController
   
   def items
     
+  end
+
+  def confirm_reset_password
+
+    if request.post?
+      if params['reset_password_token'].present? && Heypal::User.confirm_reset_password(params)
+        flash[:notice] = t(:password_reset_success)
+        redirect_to login_path
+      else
+        flash[:error] = t(:password_reset_failed)
+      end
+    end
+
+  end
+
+  def signup_complete
+
   end
 end

@@ -51,5 +51,8 @@ class UsersController < ApplicationController
     end
 
   end
-
+  
+  def items
+    
+  end
 end

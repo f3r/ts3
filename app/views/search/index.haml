@@ -1,0 +1,172 @@
+%section.clearfix
+  %h1 Search
+  
+  .row
+    .span12
+      .search-bar
+        %form.form-stacked
+          %fieldset.clearfix
+            .clearfix
+              .input.floatLeft
+                %input{:class => 'span6', :id => 'search-key', :type => 'text', :placeholder => "What are you looking for?" }          
+                %input{:class => 'btn primary', :value =>"Search", :type => 'submit' }          
+              .loc-filter  
+                %strong in Singapore
+                %br            
+                %a{:href => "#"} not where you are? 
+        .toggle
+          %a{:href => "#", :class => "disp-gallery"} 
+          %a{:href => "#", :class => "disp-list current" }       
+  
+      .results
+        .alert-message.info No Results Found.
+    .span4
+      .search-aside
+        .toggle
+          %button{ :class=>"btn primary" } Buy
+          %button{ :class=>"btn" } Get
+          %button{ :class=>"btn" } Rent
+          %button{ :class=>"btn" } Borrow    
+      
+        .accordion
+          %h4.header Categories
+          .content
+            %ul.cat-list
+              %li
+                %a{:href => "#"} 
+                  All
+                  %span (320)
+              %li
+                %a{:href => "#", :class => "current"} 
+                  Books
+                  %span (320)
+                %ul
+                  %li
+                    %a{:href => "#"} 
+                      Science Fiction
+                      %span (31)     
+                  %li
+                    %a{:href => "#"} 
+                      Romance
+                      %span (31)                                   
+              %li
+                %a{:href => "#"} 
+                  Software
+                  %span (823)
+
+                  
+          %h4.header Condition
+          .content
+            %ul{:class => "inputs-list"}
+              %li
+                %label
+                  %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                  %span Like New
+              %li
+                %label
+                  %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option2" }
+                  %span Used
+              %li
+                %label
+                  %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                  %span Worn
+
+
+
+          %h4.header But it for
+          .content
+            .clearfix
+              .input
+                .input-prepend
+                  %span.add-on Min
+                  %input{ :class => "small", :id => "prependedInput", :name => "prependedInput", :size => "16", :type => "text", :placeholder => "$100" }
+            .clearfix
+              .input
+                .input-prepend
+                  %span.add-on Max
+                  %input{ :class => "small", :id => "prependedInput", :name => "prependedInput", :size => "16", :type => "text", :placeholder => "$100" }
+                  
+          %h4.header Rent it for
+          .content Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+%section.clearfix        
+  .items-carousel
+    .header
+      %h3 Items Nearby
+    .row.show-grid
+      .span-one-third
+        .clearfix
+          .thumb
+            %a{:href => "#"}
+              %img{ :src => "http://placehold.it/160x160" }
+          .meta
+            %dl
+              %dt
+                Buy it for
+                %dd
+                  $249
+              %dt
+                Rent it for
+                %dd 
+                  $11.49 
+                  %span per day
+          
+            .label.new like new
+            .label.nearby nearby    
+          
+        .desc.clearfix    
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+      .span-one-third
+        .clearfix
+          .thumb
+            %a{:href => "#"}
+              %img{ :src => "http://placehold.it/160x160" }
+          .meta
+            %dl
+              %dt
+                Buy it for
+                %dd
+                  $249
+              %dt
+                Rent it for
+                %dd 
+                  $11.49 
+                  %span per day
+
+            .label.new like new
+            .label.nearby nearby    
+
+        .desc.clearfix    
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+
+      .span-one-third
+        .clearfix
+          .thumb
+            %a{:href => "#"}
+              %img{ :src => "http://placehold.it/160x160" }
+          .meta
+            %dl
+              %dt
+                Buy it for
+                %dd
+                  $249
+              %dt
+                Rent it for
+                %dd 
+                  $11.49 
+                  %span per day
+
+            .label.new like new
+            .label.nearby nearby    
+
+        .desc.clearfix    
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+        
+  
+        
+        

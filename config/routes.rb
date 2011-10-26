@@ -1,5 +1,7 @@
 HeyPalFrontEnd::Application.routes.draw do
 
+  match '/auth/:provider/callback', to: 'sessions#auth'
+
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
 
@@ -13,15 +15,20 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/users/password/:token'  => 'users#confirm_reset_password'
 
   resources :products
+
   resources :users do
 
     collection do
-      get  :confirm
-      post :resend_confirmation
+      get  :confirm # /users/confim
+      post :resend_confirmation # /users/resend_confirmation
       post :reset_password
       get  :reset_password
       get  :confirm_reset_password
       post :confirm_reset_password
+    end
+
+    member do
+      post :publish # /users/1/publish
     end
 
   end

@@ -8,6 +8,23 @@ class Heypal::Session < Heypal::Base
     rescue
       self.new({'stat' => 'fail'})
     end
+
+    def signin_via_facebook(options = {})
+      self.new.merge(request('/users/facebook/sign_in.json', :post, options))
+    end
+
+    def signin_via_twitter(options = {})
+      self.new.merge(request('/users/twitter/sign_in.json', :post, options))
+    end
+
+    def create_oauth(options = {})
+      self.new.merge(request('/authentications.json', :post, options))
+    end
+
+    def valid_oauth?(options = {})
+      request('/users/oauth/sign_in.json', :post, options)
+    end
+
   end
 
   def valid?

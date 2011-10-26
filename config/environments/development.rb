@@ -30,3 +30,8 @@ HeyPalFrontEnd::Application.configure do
 end
 
 Heypal::base_url = 'https://backend-heypal.heroku.com'
+
+Rails.application.config.middleware.use OmniAuth::Builder do
+  provider :facebook, '289917857692700', 'e21346334029581a59ea6d0ddcfb7dfe'
+  provider :twitter, '7IhUH1SkVKa7VNVDY5Bdw', 'iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc'
+end

@@ -622,6 +622,7 @@ aside .section-header, .aside .section-header, .section-header {
 // Search
 // ------------
 
+
 .search-bar{  
   background: #f8f8f8;
   border: 1px solid #eee;
@@ -685,6 +686,33 @@ aside .section-header, .aside .section-header, .section-header {
   
 }
 
+.results{
+  .header{
+    .clearfix();
+    overflow: hidden;
+    zoom: 1;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    
+    .title{
+      .floatLeft();
+      
+      
+      h4{
+        line-height: 1;
+        margin-top: 8px;
+      }
+    }    
+    .controls{
+      .floatRight();
+    }
+    
+    
+  }
+  
+}
+
 // Items Nearby
 
 .items-carousel{
@@ -719,7 +747,7 @@ aside .section-header, .aside .section-header, .section-header {
     dd{
       margin: 0 0 5px 0;
       font-size: 16px;
-      font-weight: bold;
+      font-weight: bold;      
       
       span{
         font-size: 11px;
@@ -730,6 +758,7 @@ aside .section-header, .aside .section-header, .section-header {
     
     .label{
       margin-top: 4px;
+      display: inline;      
     }
   }
   
@@ -757,10 +786,18 @@ aside .section-header, .aside .section-header, .section-header {
 }
 
 
+.panel-wrap{
+  ul{
+	  list-style-type: none;
+	  margin: 0;
+	}		
+}
 
-.accordion {
+
+.panel-expander {
 	border-bottom: solid 1px #c4c4c4;
-	margin-top: 3px;
+	margin-top: 3px;	
+	
   .header {
   	background: #e9e7e7 url(../images/arrow-square.gif) no-repeat right -47px;
   	padding: 10px 10px;
@@ -769,6 +806,7 @@ aside .section-header, .aside .section-header, .section-header {
   	border: solid 1px #c4c4c4;
   	border-bottom: none;
   	cursor: pointer;
+  	color: #353535;
   	
   	&:hover {
     	background-color: #e3e2e2;
@@ -781,7 +819,7 @@ aside .section-header, .aside .section-header, .section-header {
   .content {
   	background: #f7f7f7;
   	margin: 0;
-  	padding: 10px 15px 20px;
+  	padding: 10px 15px 15px;
   	border-left: solid 1px #c4c4c4;
   	border-right: solid 1px #c4c4c4;
   	font-size: 12px;
@@ -802,6 +840,25 @@ aside .section-header, .aside .section-header, .section-header {
       font-weight: bold;
     }
   }
+  
+  label{
+    width: 40px;
+    text-align: left;
+  }
+
+  .inputs-list label{
+    width: auto;
+  }
+  
+  .input{
+    margin-left:  60px;        
+  }
+  
+  input.full-width,
+  select.full-width{
+    width: 190px;
+  }
+    
 }
 
 

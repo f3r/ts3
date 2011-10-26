@@ -23,19 +23,28 @@
          dynamicArrows: false,
          dynamicTabs: false
       });   
-         
-    	$(".accordion .header:first").addClass("active");
-    	$(".accordion .content:not(:first)").hide();
+	
+      //hide content after the first one
+      $(".panel-expander > .content:gt(0)").hide();
+
+      //hide message li after the 5th
+      $(".panel-expander > li:gt(4)").hide();
 
 
-    	$(".accordion .header").click(function(){
+      //toggle content
+      $(".header").click(function(){
+        $(this).toggleClass("active");
+        $(this).siblings(".header").removeClass("active");      	        
+      	$(this).next(".content").slideToggle(500)
+      	return false;
+      });
 
-    	  $(this).next(".content").slideToggle("slow")
-    	  .siblings(".content:visible").slideUp("slow");
-    	  $(this).toggleClass("active");
-    	  $(this).siblings(".header").removeClass("active");
-
-    	});      
+      //collapse all messages
+      $(".collpase_all_message").click(function(){
+      	$(".content").slideUp(500)
+      	return false;
+      });
+    	
     });
 
 

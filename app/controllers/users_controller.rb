@@ -56,6 +56,10 @@ class UsersController < ApplicationController
     
   end
 
+  def received
+
+  end
+
   def confirm_reset_password
 
     if request.post?

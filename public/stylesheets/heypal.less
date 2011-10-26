@@ -48,6 +48,10 @@
   text-align: right;
 }
 
+.align-center {
+  .textCenter();
+}
+
 .float-right {
   .floatRight();
 }
@@ -334,6 +338,15 @@ label {
         }
       }
     }
+    
+    .info {
+      background: lighten(@green, 28%);
+      h3 {
+        line-height: 1em;
+        margin-bottom: 5px;
+      }
+      color: @white;
+    }
   }
 
   .comment.right {
@@ -366,6 +379,44 @@ label {
           float: right;
         }
       }
+    }
+    .info {
+      background: lighten(@green, 28%);
+      h3 {
+        line-height: 1em;
+        margin-bottom: 5px;
+      }
+      color: @white;
+    }
+  }
+  
+  .final_comment {
+    .clearfix();
+    width: 50%;
+    margin-bottom: @baseline;
+    align: center;
+    text-align: center;
+    margin-left: 25%;
+    margin-right: 25%;
+    
+    .body {
+      border: 1px dashed @gray;
+      .border-radius(6px);
+      padding: 15px 10px;
+      margin-bottom: 5px;
+    }    
+  }
+  
+  .rating {
+    .clearfix();
+    width: 100%;
+    margin-bottom: @baseline;
+    
+    .body {
+      border: 1px dashed @gray;
+      .border-radius(6px);
+      padding: 15px 10px;
+      margin-bottom: 5px;
     }
   }
 } 

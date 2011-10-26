@@ -51,3 +51,9 @@ en:
   confirm_reset_password: Confirm your password reset
   enter_your_new_password: Enter your new password
   password_reset_success: Password reset successful
+
+  facebook_connected: You have successfully connected your facebook account!
+  twitter_connected: You have successfully connected your twitter account!
+  authentication_fail: We are unable to authenticate you at the moment. Please try again.
+
+  signup_needed_to_connect: We need to connect the details to your heypal account, please provide us the following.

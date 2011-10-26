@@ -1,6 +1,7 @@
 HeyPalFrontEnd::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'sessions#auth'
+  match '/auth/failure', to: 'sessions#fail'
 
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
@@ -9,6 +10,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/users/show' => 'users#show'
   match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'
+
   resources :products
   
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'

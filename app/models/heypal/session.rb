@@ -17,14 +17,13 @@ class Heypal::Session < Heypal::Base
       self.new.merge(request('/users/twitter/sign_in.json', :post, options))
     end
 
+    def signin_via_oauth(provider, options = {})
+      request("/users/#{provider}/sign_in.json", :post, options)
+    end    
+
     def create_oauth(options = {})
       self.new.merge(request('/authentications.json', :post, options))
     end
-
-    def valid_oauth?(options = {})
-      request('/users/oauth/sign_in.json', :post, options)
-    end
-
   end
 
   def valid?

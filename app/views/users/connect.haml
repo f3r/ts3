@@ -1,0 +1,41 @@
+.span12.offset2
+  .registration.row
+    %br
+    .section.span6.bored
+      %h2= t(:create_new_account)
+
+      = form_for :user, :url => users_path do |f|
+        = f.hidden_field :oauth_provider, @oauth_provider
+        = f.hidden_field :oauth_token, @oauth_token
+        = f.error_messages
+        .input
+          = f.text_field :name, :placeholder => 'Name'
+        .input
+          = f.text_field :email, :placeholder => 'E-Mail Address'
+        .input
+          = f.password_field :password, :placeholder => 'Confirm'
+        .input
+          = f.password_field :password_confirmation, :placeholder => 'Confirm Password'
+        .input
+          %label.reset-width
+            = f.check_box :terms
+            I accept the
+            = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank
+        %button.btn.float-right{:type => 'submit primary'}
+          Create account
+
+    .section.span5
+      %h2= t(:login)
+      
+      = form_tag sessions_path do 
+        = f.hidden_field :oauth_provider, @oauth_provider        
+        = f.hidden_field :oauth_token, @oauth_token
+        .input
+          = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
+        .input
+          = password_field_tag :password, '', :placeholder => 'Password'
+        %button.btn.float-right{:type => 'submit primary'}
+          Login
+
+      %br.clearfix
+      = link_to t(:forgot_password), reset_password_users_path    

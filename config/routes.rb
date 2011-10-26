@@ -5,6 +5,12 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'
 
+  match '/users/edit' => 'users#edit'
+  match '/users/show' => 'users#show'
+  match '/users/item' => 'users#items'
+  match '/notifications' => 'notifications#index'
+  resources :products
+  
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'
   match '/users/password/:token'  => 'users#confirm_reset_password'
 

@@ -51,6 +51,10 @@ class UsersController < ApplicationController
     end
 
   end
+  
+  def items
+    
+  end
 
   def confirm_reset_password
 

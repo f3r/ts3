@@ -9,8 +9,16 @@
   text-align: right;
 }
 
+.textLeft() {
+  text-align: left;
+}
+
 .floatRight() {
   float: right;
+}
+
+.floatLeft() {
+  float: left;
 }
 
 .edgeLeft() {
@@ -42,6 +50,10 @@
 
 .float-right {
   .floatRight();
+}
+
+.float-left {
+  .floatLeft();
 }
 
 section {
@@ -271,6 +283,12 @@ label {
       cursor: pointer;
 
     }
+    .description {
+      .textLeft();
+    }
+    .image {
+      .floatLeft();
+    }
   }
 }
 
@@ -445,4 +463,20 @@ aside .section-header, .aside .section-header, .section-header {
   .btn {
     margin:15px 65px 25px 0 ;
   }
+}
+
+.borderBottom {
+  border-bottom: 1px solid #dfdfdf;
+}
+
+.borderTop {
+  border-top: 1px solid #dfdfdf;
+}
+
+.user_badge {
+  padding: 5px;
+}
+
+.small {
+  font-size: @smallfont;
 }

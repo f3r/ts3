@@ -707,15 +707,149 @@ aside .section-header, .aside .section-header, .section-header {
     .controls{
       .floatRight();
     }
-    
-    
   }
+  
+  ul{
+    list-style-type: none;    
+    margin: 0;
+    li{
+      .clearfix();
+      overflow: hidden;
+      zoom: 1;
+      padding: 10px 0;
+    }
+    &.list-display{
+      .data-block{
+        float: left;
+        margin-right: 10px;
+        &:last-child{
+          margin-right: 0;
+        }
+      }      
+      li{
+        border-bottom: 1px solid #eee;
+      }
+      .name{
+        width: 150px;
+        h4{ 
+          line-height: 1; 
+          a{
+            color: #353535;
+          }
+        }                
+        .category{
+          font-size: 11px;
+        }        
+      }/* name */
+
+      
+      .flags{
+        .location{
+          color: #353535;
+          /*font-size: 12px;*/
+        }        
+        .condition{
+          margin-top: 0;
+        }
+      }
+      
+      .figure{
+        .cost{
+          font-size: 16px;
+          font-weight: bold;
+          color: #353535;
+        }
+      }
+      
+      .people{
+        float: right;
+        .details,
+        .profile-pic{
+          float: left;
+        }
+        
+        .details{
+          margin-right: 7px;
+          width: 150px;
+          
+          .rating{
+            .clearfix();
+            overflow: hidden;
+            zoom: 1;
+            margin-top: 3px;
+            
+            .smile,
+            .star{
+              float: left;
+              font-weight: bold;
+              font-size: 12px;
+              padding-left: 20px;
+              margin-right: 5px;              
+              width: 30px;
+              
+              a{
+                color: #353535;
+              }
+            }            
+            .star{
+              background: transparent url(../images/icons/icon.star.png) no-repeat 0 0;
+              margin-right: 0;
+            }
+            .smile{
+              background: transparent url(../images/icons/icon.smile.png) no-repeat 0 0;
+              
+            }
+          }
+        }/*end .details*/
+        
+        .profile-pic{
+          padding: 3px;
+          border: 1px solid #eee;
+          .border-radius(3px);
+          img{ display: block;}
+        }
+        .time-stamp{
+          clear: both; 
+          padding-top: 10px;
+          text-align: right;            
+        }
+        
+      }/*end .people*/
+    } /*end list-display*/
+  }/*end list-display*/
+  
+  .micro{ 
+    font-size: 11px;
+    color: #888;
+  }
+  
+  .thumb{
+    border: 1px solid #eee;
+    padding: 4px;
+    margin-right: 5px;
+    .border-radius(3);    
+    img{
+      display: block;
+    }
+  }
+  
+  
+  
   
 }
 
-// Items Nearby
 
-.items-carousel{
+
+// Items Gallery
+
+.items-gallery{
+  &.results{
+    margin-top: 20px;
+    .desc{
+      padding: 10px 3px;
+    }
+  }
+  
   .header{
     padding: 20px 0 10px;
     border-top: 1px solid #eee;
@@ -734,9 +868,22 @@ aside .section-header, .aside .section-header, .section-header {
     img{ display: block; }
   }
   
+  h4.title{
+    line-height: 1.4em;
+    margin-bottom: 5px;
+    
+    a{
+      color: #353535;
+    }
+  }
+  
   .meta{
     .floatLeft();
     padding-left: 10px;
+    
+    dl{
+      margin: 0;
+    }
     
     dt{
       font-size: 12px;

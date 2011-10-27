@@ -43,6 +43,10 @@ class Heypal::User < Heypal::Base
       result['user']
     end
 
+    def update(params = {})
+      result = request("/users.json?access_token=#{params['access_token']}", :put, params)
+    end
+
   end
 
   def initialize(params = {})

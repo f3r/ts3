@@ -76,4 +76,18 @@ class UsersController < ApplicationController
   def signup_complete
 
   end
+
+  def show
+    @user = Heypal::User.show(params)
+    logger.info(@user)
+  end
+
+  def edit
+    @user = Heypal::User.show(params)
+    logger.info(@user)
+  end
+
+  def update
+    
+  end
 end

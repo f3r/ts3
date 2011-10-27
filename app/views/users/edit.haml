@@ -1,21 +1,17 @@
-- form_for @user do |f|
-
-  = render "user_left_column", :f => f
-  = render "user_info", :f => f
-  
-  %section.span8
-    .h4.section-header Password
-    %section
-      .p.center
-        = f.label :current_password
-        = f.password_field :current_password
-      .p.center
-        = f.label :password
-        = f.password_field :password
-      .p.center
-        = f.label :password_confirmation
-        = f.password_field :password_confirmation
-
+= render :partial => 'user_left_column'
+= render :partial => 'user_info'
+%section.span8
+  .h4.section-header Password
+  %section
+    .p.center
+      Current Password
+    .p.center
+      New Password
+    .p.center
+      Re-type Password
   %section.span8
     .h4.section-header Accounts
     %section
+      = form_tag user_path(:id => @user['id'], :access_token => current_token), :method => :put do
+        = text_field_tag 'user[first_name]', @user['first_name']
+        = submit_tag 'Save'

@@ -10,7 +10,11 @@
       = placehold(15,15)
       13
   .page-header
-    %h2 Jonathan Green
+    %h2
+      - unless @user['first_name'].blank?
+        = full_name @user
+      - else
+        Jonathan Green
   .clearfix
   .span3
     Email
@@ -25,8 +29,8 @@
   .span3
     Mobile Phone Number
   .span4
-    +6524345566
+    = @user['phone_mobile']
   .span3
     Birthdate
   .span4
-    14 April 1976
+    = @user['birthdate']

@@ -3,7 +3,7 @@
   %h2
     JGreen
   %span.gray
-    Jonathan Green
+    = full_name @user
   %p
   %p
     Singapore
@@ -27,3 +27,6 @@
     %span.gray= "Badges"
     %br
     13
+  %p
+    - unless request.fullpath.include?('edit')
+      = link_to 'edit', users_edit_path(:access_token => current_token)

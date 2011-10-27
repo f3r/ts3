@@ -38,6 +38,11 @@ class Heypal::User < Heypal::Base
       result['stat'] == 'ok'
     end
 
+    def show(params = {})
+      result = request("/users.json?access_token=#{params['access_token']}", :get, params)
+      result['user']
+    end
+
   end
 
   def initialize(params = {})

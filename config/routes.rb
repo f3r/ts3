@@ -9,6 +9,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides/:action' => 'style_guides'
 
   match '/users/edit' => 'users#edit'
+  match '/users/update' => 'users#update'
   match '/users/show' => 'users#show'
   match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'

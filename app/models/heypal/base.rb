@@ -25,6 +25,8 @@ class Heypal::Base < Hash
     end
 
     def request(path, method = :get, options = {})
+
+      Rails.logger.info "Sending to #{path} / #{method} / #{options}"
   
       # Since we're requesting from a static page which doesn't support other http methods
       #result = get(resource_url(path), options)

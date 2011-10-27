@@ -8,7 +8,11 @@ class SessionsController < ApplicationController
 
       if @heypal_session.valid?
         sign_in @heypal_session
-        redirect_to '/dashboard'
+
+        if params[:oauth_token].present?
+          connect
+        end
+        redirect_to '/dashboard'  
       else
         flash[:error] = t(:invalid_login)
         redirect_to login_path
@@ -22,37 +26,40 @@ class SessionsController < ApplicationController
   end
   
   def auth
-    omniauth = request.env['omniauth.auth']
-    
-    if omniauth['provider'] == 'twitter'
- 
+    unless logged_in?
+      @heypal_session = Heypal::Session.signin_via_oauth(oauth_provider, {:oauth_token => oauth_token})
 
-      # CHECK if the oauth is valid     
-      Heypal::Session.valid_oauth?({:oauth_token => omniauth['credentials']['token']})
+      if @heypal_session.valid?
+        sign_in @heypal_session
+        redirect_to '/dashboard'
+      else
+        flash[:notice] = t(:signup_needed_to_connect)
+        render :template => 'users/connect'
+      end
 
-      # CREATE the Record?
-      Heypal::Session.create_oauth({:access_token => omniauth['credentials']['secret'], :oauth_token => omniauth['credentials']['token']})
-
-      # 
-      @heypal_session = Heypal::Session.signin_via_twitter({:access_token => omniauth['credentials']['secret'], :oauth_token => omniauth['credentials']['token']})
-        
-
-    elsif omniauth['provider'] == 'facebook'
-      
-      @heypal_session = Heypal::Session.create_oauth({:oauth_token => omniauth['credentials']['token']}) 
-      @heypal_session = Heypal::Session.signin_via_facebook({:oauth_token => omniauth['credentials']['token']})
-
-    end
-
-    if @heypal_session.valid?
-      redirect_to '/'
     else
-
+      connect
+      redirect_to '/dashboard'      
+      return
     end
+  end
 
-      #render :text => {:provider => omniauth['provider'], :uid => omniauth['uid'], :token => omniauth['credentials']['token'], :secret => omniauth['credentials']['secret']}      
+  def connect
+    Heypal::Session.create_oauth({:access_token => current_token, :oauth_token => oauth_token}) 
+  end
 
+  def fail
+    flash[:error] = t(:authentication_fail)
+    redirect_to login_path
+  end
 
+  def oauth_token
+    omniauth = request.env['omniauth.auth']
+    @oauth_token = omniauth['credentials']['token']
+  end
+
+  def oauth_provider
+    @oauth_provider = request.env['omniauth.auth']['provider']
   end
 
   def destroy

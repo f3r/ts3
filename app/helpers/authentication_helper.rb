@@ -12,4 +12,8 @@ module AuthenticationHelper
     cookies['authentication_token'] = nil
   end
 
+  def current_token
+    cookies['authentication_token']
+  end
+
 end

@@ -13,3 +13,6 @@
 %section.span8
   .h4.section-header Accounts
   %section
+    = form_tag user_path(:id => @user['id'], :access_token => current_token), :method => :put do
+      = text_field_tag 'user[first_name]', @user['first_name']
+      = submit_tag 'Save'

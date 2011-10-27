@@ -82,6 +82,11 @@ class UsersController < ApplicationController
     logger.info(@user)
   end
 
+  def edit
+    @user = Heypal::User.show(params)
+    logger.info(@user)
+  end
+
   def update
     
   end

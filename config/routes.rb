@@ -1,7 +1,11 @@
 HeyPalFrontEnd::Application.routes.draw do
 
+
   match '/auth/:provider/callback', to: 'sessions#auth'
   match '/auth/failure', to: 'sessions#fail'
+
+  get "publish/index"
+
 
   match '/style_guides' => 'style_guides#index'
   match '/style_guides/:action' => 'style_guides'

@@ -1,0 +1,226 @@
+Step 1
+- Cities dropdown should be strict
+- Square meter auto convert to square foot
+
+Step 2 
+- Array autocomplete for city, state, country
+
+Step 3 Pictures
+
+Amenities
+
+Step 4
+
+Step 5
+- Currencies should pass the ISO code based on the money gem
+- Dollar sign goes to the beginning
+- Pricing: 
+
+  - Price per night should auto compute per week and per month
+
+  - Price per week on label NOT on the textbox : 0.85%
+  - Price per day * 7 for week. Price per day * 31 for month
+
+- Currency Policy
+
+- Cancellation Policy is a textbox
+- 
+
+Money::Currency::TABLE[:usd] = {
+  :priority        => 1,
+  :iso_code        => "USD",
+  :name            => "United States Dollar",
+  :symbol          => "$",
+  :subunit         => "Cent"
+  :subunit_to_unit => 100,
+  :separator       => ".",
+  :delimiter       => ","
+}
+
+def major_currencies(hash)
+  hash.inject([]) do |array, (id, attributes)|
+    priority = attributes[:priority]
+    if priority && priority < 10
+      array[priority] ||= []
+      array[priority] << id
+    end
+    array
+  end.compact.flatten
+end
+
+"php": {
+   "priority": 100,
+   "iso_code": "PHP",
+   "name": "Philippine Peso",
+   "symbol": "₱",
+   "subunit": "Centavo",
+   "subunit_to_unit": 100,
+   "symbol_first": false,
+   "html_entity": "&#x20B1;",
+   "decimal_mark": ".",
+   "thousands_separator": ","
+ },
+
+
+
+
+class Place < ActiveRecord::Migration
+ def change
+    add_column :places, :user_id,         :integer
+    add_column :places, :published,         :boolean
+
+    # Place Description
+    add_column :places, :title,             :string
+    add_column :places, :description,         :text
+    add_column :places, :place_type_id,     :integer    # Relates to place_type model
+    add_column :places, :num_bedrooms,     :integer
+    add_column :places, :num_beds,         :integer
+    add_column :places, :num_bathrooms,     :integer
+    add_column :places, :sqm,             :float        # Should be able to calculate sqf
+    add_column :places, :max_guests,         :integer
+
+    # Geographical stuff
+    # Province/Country updates automatically on insert/update
+    add_column :places, :city_id,         :integer    # Relates to cities model
+    add_column :places, :province_id,         :integer    # Relates to provinces model
+    add_column :places, :country_id,         :integer    # Relates to countries model
+    add_column :places, :address_1,         :string
+    add_column :places, :address_2,         :string
+    add_column :places, :zip,             :string
+    add_column :places, :lat,             :double        # updates on address change
+    add_column :places, :lon,             :double        # updates on address change
+    add_column :places, :directions,         :text
+
+    # Amenities included (A-Z)
+    add_column :places, :amenities_aircon,        :boolean,     :default => false
+    add_column :places, :amenities_breakfast,        :boolean,     :default => false
+    add_column :places, :amenities_buzzer_intercom,    :boolean,     :default => false
+    add_column :places, :amenities_cable_tv,        :boolean,     :default => false
+    add_column :places, :amenities_dryer,        :boolean,     :default => false
+    add_column :places, :amenities_doorman,        :boolean,     :default => false
+    add_column :places, :amenities_elevator,         :boolean,     :default => false
+    add_column :places, :amenities_family_friendly,    :boolean,     :default => false
+    add_column :places, :amenities_gym,        :boolean,     :default => false
+    add_column :places, :amenities_hot_tub,        :boolean,     :default => false
+    add_column :places, :amenities_kitchen,        :boolean,     :default => false
+    add_column :places, :amenities_handicap,        :boolean,     :default => false
+    add_column :places, :amenities_heating,        :boolean,     :default => false
+    add_column :places, :amenities_hot_water,        :boolean,     :default => false
+    add_column :places, :amenities_internet,        :boolean,     :default => false
+    add_column :places, :amenities_internet_wifi,    :boolean,     :default => false
+    add_column :places, :amenities_jacuzzi,        :boolean,     :default => false
+    add_column :places, :amenities_parking_included,    :boolean,     :default => false
+    add_column :places, :amenities_pets_allowed,     :boolean,     :default => false
+    add_column :places, :amenities_pool,        :boolean,     :default => false
+    add_column :places, :amenities_smoking_allowed,    :boolean,     :default => false
+    add_column :places, :amenities_suitable_events,    :boolean,     :default => false
+    add_column :places, :amenities_tennis,        :boolean,     :default => false
+    add_column :places, :amenities_tv,            :boolean,     :default => false
+    add_column :places, :amenities_washer,        :boolean,     :default => false
+
+    # Pricing of the offer
+    # Currency from: https://github.com/RubyMoney/money/blob/master/config/currency.json
+    add_column :places, :currency,             :string        # Currency_iso
+    add_column :places, :price_per_night,        :integer    # Currency Units, not cents 1=$1
+    add_column :places, :price_per_week,        :integer
+    add_column :places, :price_per_month,        :integer
+    add_column :places, :price_final_cleanup,        :integer
+    add_column :places, :price_security_deposit,    :integer
+    # Fields for price comparison, must be updated with currency exchange every couple of days
+    add_column :places, :price_per_night_usd,        :integer    # Dollar Cents
+    add_column :places, :price_per_week_usd,        :integer
+    add_column :places, :price_per_month_usd,        :integer
+
+    # Terms of the offer
+    add_column :places, :check_in_after,        :string        #11:00 / 11:30 / 13:30
+    add_column :places, :check_out_before,        :string        #11:00 / 11:30 / 13:30
+    add_column :places, :minimum_stay_days,        :integer    # 0 means no minimum
+    add_column :places, :maximum_stay_days,        :integer    # 0 means no maximum
+    add_column :places, :house_rules,            :text
+    add_column :places, :cancellation_policy,        :integer    # should align with frontend
+
+#  cancellation_policies
+
+#       1: flexible     # full refund 1 day prior to arrival, except fees
+
+#       2: moderate     # full refund 5 days prior to arrival, except fees
+
+#       3: strict       # 50% refund up until 1 week prior, except fees
+ end
+end
+
+class PlacePhoto < ActiveRecord::Migration
+ def change
+    add_column :place_photos, :place_id,            :integer
+    add_column :place_photos, :description,            :string
+    # Paperclip inherited fields
+    add_column :place_photos, :attachment_file_name,        :string
+    add_column :place_photos, :attachment_content_type,    :string
+    add_column :place_photos, :attachement_file_size,        :integer
+    add_column :place_photos, :attachement_updated_at,    :datetime
+ end
+end
+
+class PropertyType < ActiveRecord::Migration
+ def change
+    add_column :property_types, :name,    :string
+ end
+ PropertyType.create([“Apartment”, “House”, “Villa”,”Room”, “Shared Room”, “Dorm”, “Other space”])
+end
+
+class City < ActiveRecord::Migration
+ def change
+    add_column :cities,     :name,        :string
+    add_column :cities,     :province_id,    :string
+    add_column :cities,    :lat,        :double
+    add_column :cities,    :lon,        :double
+ end
+end
+class Province < ActiveRecord::Migration
+ def change
+    add_column :provinces,     :name,        :string
+    add_column :provinces,     :country_id,    :string
+    add_column :provinces,    :lat,        :double
+    add_column :provinces,    :lon,        :double
+ end
+end
+class Country < ActiveRecord::Migration
+ def change
+    add_column :countries,     :name,        :string
+    add_column :countries,     :country_id,    :string
+    add_column :countries,    :lat,        :double
+    add_column :countries,    :lon,        :double
+ end
+end
+
+TO-DO
+
+
+   #Calendar availability
+   apartment_availability : {[
+     date_start  : date
+     date_end    : date
+     price       : integer #inherits currency from apartment_offer['currency']
+     status   : {available, booked, not_available}
+     booked_by   : {airbnb}
+   ]}
+
+
+   # trusted_listings?
+   flagging: {
+     innapropiate/offensive
+     misleading
+     spam
+     other
+   }
+
+   apartment_reviews : { #1-5 stars
+     accuracy
+     cleanliness
+     check_in
+     communication
+     location
+     value
+   }
+
+aparment_comments

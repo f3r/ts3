@@ -18,7 +18,7 @@ class Heypal::Session < Heypal::Base
     end
 
     def signin_via_oauth(provider, options = {})
-      request("/users/#{provider}/sign_in.json", :post, options)
+      request("/users/oauth/sign_in.json", :post, options)
     end    
 
     def create_oauth(options = {})

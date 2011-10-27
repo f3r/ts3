@@ -27,7 +27,8 @@ class SessionsController < ApplicationController
   
   def auth
     unless logged_in?
-      @heypal_session = Heypal::Session.signin_via_oauth(oauth_provider, {:oauth_token => oauth_token})
+      
+      @heypal_session = Heypal::Session.signin_via_oauth(oauth_provider, omniauth)
 
       if @heypal_session.valid?
         sign_in @heypal_session
@@ -45,12 +46,16 @@ class SessionsController < ApplicationController
   end
 
   def connect
-    Heypal::Session.create_oauth({:access_token => current_token, :oauth_token => oauth_token}) 
+    Heypal::Session.create_oauth(omniauth.merge({:access_token => current_token}))
   end
 
   def fail
     flash[:error] = t(:authentication_fail)
     redirect_to login_path
+  end
+
+  def omniauth
+    @omniauth = request.env['omniauth.auth']    
   end
 
   def oauth_token

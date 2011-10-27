@@ -16,9 +16,11 @@
       = link_to t(:forgot_password), reset_password_users_path
     .section.span5
       %h2= t(:login_using)
-      %a{:href => ""}
+      %a{:href => "/auth/facebook"}
         %img{:src => '/images/signin_facebook.png'}      
       %br
+      %a{:href => "/auth/twitter"}
+        %img{:src => '/images/sign-in-with-twitter-l.png'}        
       %br
       %br
       %br

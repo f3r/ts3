@@ -1,0 +1,19 @@
+.user_photo.float-right
+  = placehold(30,30)
+.user_data.float-right
+  .user_name
+    - unless @user['first_name'].blank?
+      = full_name @user
+    - else
+      Jonathan Green
+    .user_rank
+    = placehold(15,15)
+    38
+    = placehold(15,15)
+    13
+.page-header
+  %h2
+    - unless @user['first_name'].blank?
+      = full_name @user
+    - else
+      Jonathan Green

@@ -56,6 +56,10 @@ class UsersController < ApplicationController
     
   end
 
+  def received
+
+  end
+
   def confirm_reset_password
 
     if request.post?
@@ -71,5 +75,25 @@ class UsersController < ApplicationController
 
   def signup_complete
 
+  end
+
+  def show
+    @user = Heypal::User.show(params)
+    logger.info(@user)
+  end
+
+  def edit
+    @user = Heypal::User.show(params)
+    logger.info(@user)
+  end
+
+  def update
+    @user = Heypal::User.update(params)
+    logger.info(@user)
+    if @user['stat'].eql?('ok')
+      redirect_to user_path(:access_token => params[:access_token])
+    else
+      redirect_to users_edit_path(:access_token => params[:access_token])
+    end
   end
 end

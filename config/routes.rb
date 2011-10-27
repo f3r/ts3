@@ -1,5 +1,6 @@
 HeyPalFrontEnd::Application.routes.draw do
 
+  get "items/index"
 
   match '/auth/:provider/callback', to: 'sessions#auth'
   match '/auth/failure', to: 'sessions#fail'
@@ -11,6 +12,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/style_guides/:action' => 'style_guides'
 
   match '/users/edit' => 'users#edit'
+  match '/users/update' => 'users#update'
   match '/users/show' => 'users#show'
   match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'
@@ -48,6 +50,7 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/dashboard'    =>  'users#dashboard', :as => :dashboard
 
+  match 'item/received' =>  'items#index'
   root :to => 'home#index'
 
 end

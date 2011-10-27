@@ -9,5 +9,26 @@
 //= require_tree .
 
 $(function() {
-  $('input#datepicker.hasDate').datepicker();
-})
+  $('input#hasDate.datepicker').datepicker({
+    minDate: -0,
+    maxDate: '3M'
+  });
+  $('input#hasAnotherDate.datepicker').datepicker({
+    minDate: -0,
+    maxDate: '3M'
+  });
+});
+
+$(function() {
+  $('span#date-input-1').calendar({
+    parentElement: 'div#date-input-1-container',
+    dateFormat: '%d %B %Y'
+  });
+});
+
+$(function() {
+  $('span#date-input-2').calendar({
+    parentElement: 'div#date-input-2-container',
+    dateFormat: '%d %B %Y'
+  });
+});

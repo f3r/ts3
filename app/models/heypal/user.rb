@@ -2,7 +2,7 @@ class Heypal::User < Heypal::Base
 
   set_resource_path '/users.json'
 
-  @@attributes = %w(name email password password_confirmation terms)
+  @@attributes = %w(name email password password_confirmation terms oauth_provider oauth_token oauth_uid)
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
   define_attribute_methods = @@attributes
@@ -13,7 +13,7 @@ class Heypal::User < Heypal::Base
 
   class << self
     def create(params = {})
-      self.new.merge(request('/users/sign_up.json', :post, {:name => params[:name], :email => params[:email], :password => params[:password]}))
+      self.new.merge(request('/users/sign_up.json', :post, params))
     end
 
     def confirm(params = {})

@@ -1,0 +1,50 @@
+.panel-wrapper
+  %h2.title Price &amp; Conditions
+  %fieldset
+    .input
+      = f.label :currency, 'Currency'
+      = f.select :currency, ['USD', 'SGD', 'PHP']
+  %h2.title Pricing
+  %fieldset      
+    .input
+      = f.label :price_per_night
+      = f.text_field :price_per_night, :class => "span2"
+    .input
+      = f.label :price_per_week
+      = f.text_field :price_per_week, :class => "span2"
+    .input
+      = f.label :price_per_month
+      = f.text_field :price_per_month, :class => "span2"
+  %h2.title Additional Costs
+  %fieldset
+    .input
+      = f.label :price_final_cleanup, 'Final Cleanup'
+      = f.text_field :price_final_cleanup, :class => "span2"
+    .input
+      = f.label :price_security_deposit, 'Security Deposit'
+      = f.text_field :price_security_deposit, :class => "span2"
+  %h2.title Terms
+  %fieldset
+    .input
+      = f.label :check_in_after, 'Check In After'
+      = f.select :check_in_after, [], :class => "span2"
+    .input
+      = f.label :check_out_before, 'Check Out Before'
+      = f.select :check_out_before, [], :class => "span2"
+    .input
+      = f.label :minimum_stay_days, 'Minimum Stay Days'
+      = f.text_field :minimum_stay_days, :class => "span2"
+    .input
+      = f.label :maximum_stay_days, 'Maximum Stay Days'
+      = f.text_field :maximum_stay_days, :class => "span2"      
+    .input
+      = f.label :house_rules
+      = f.text_area :house_rules, :class => "span8", :rows => 5       
+    .input
+      = f.label :cancellation_policy, 'Cancellation Policy'
+      = f.select :cancellation_policy, [['full refund 1 day prior to arrival, except fees', 'flexible'],['full refund 5 days prior to arrival, except fees', 'moderate'],['50% refund up until 1 week prior, except fees', 'strict']]
+
+.arrows.clearfix
+  .coda-nav-right
+    %a.btn.primary{:href => "#"} Preview &raquo;
+

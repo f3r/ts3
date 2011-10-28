@@ -16,7 +16,7 @@ var sliderCount = 1;
 $.fn.codaSlider = function(settings) {
 
 	settings = $.extend({
-		autoHeight: true,
+		autoHeight: false,
 		autoHeightEaseDuration: 1000,
 		autoHeightEaseFunction: "easeInOutExpo",
 		autoSlide: false,
@@ -77,18 +77,20 @@ $.fn.codaSlider = function(settings) {
 		};
 			
 		// Left arrow click
-		$("#coda-nav-left-" + sliderCount + " a").click(function(){
+		$("#coda-nav-left-" + sliderCount + " a, .coda-nav-left").click(function(){
 			navClicks++;
 			if (currentPanel == 1) {
 				offset = - (panelWidth*(panelCount - 1));
 				alterPanelHeight(panelCount - 1);
 				currentPanel = panelCount;
-				slider.siblings('.coda-nav').find('a.current').removeClass('current').parents('ul').find('li:last a').addClass('current');
+				//slider.siblings('.coda-nav').find('a.current').removeClass('current').parents('ul').find('li:last a').addClass('current');
+				$('.coda-nav').find('a.current').removeClass('current').parents('ul').find('li:last a').addClass('current');
 			} else {
 				currentPanel -= 1;
 				alterPanelHeight(currentPanel - 1);
 				offset = - (panelWidth*(currentPanel - 1));
-				slider.siblings('.coda-nav').find('a.current').removeClass('current').parent().prev().find('a').addClass('current');
+				//slider.siblings('.coda-nav').find('a.current').removeClass('current').parent().prev().find('a').addClass('current');
+				$('.coda-nav').find('a.current').removeClass('current').parent().prev().find('a').addClass('current');
 			};
 			$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
 			if (settings.crossLinking) { location.hash = currentPanel }; // Change the URL hash (cross-linking)
@@ -96,18 +98,20 @@ $.fn.codaSlider = function(settings) {
 		});
 			
 		// Right arrow click
-		$('#coda-nav-right-' + sliderCount + ' a').click(function(){
+		$('#coda-nav-right-' + sliderCount + ' a, .coda-nav-right').click(function(){
 			navClicks++;
 			if (currentPanel == panelCount) {
 				offset = 0;
 				currentPanel = 1;
 				alterPanelHeight(0);
-				slider.siblings('.coda-nav').find('a.current').removeClass('current').parents('ul').find('a:eq(0)').addClass('current');
+				//slider.siblings('.coda-nav').find('a.current').removeClass('current').parents('ul').find('a:eq(0)').addClass('current');
+				$('.coda-nav').find('a.current').removeClass('current').parents('ul').find('a:eq(0)').addClass('current');
 			} else {
 				offset = - (panelWidth*currentPanel);
 				alterPanelHeight(currentPanel);
 				currentPanel += 1;
-				slider.siblings('.coda-nav').find('a.current').removeClass('current').parent().next().find('a').addClass('current');
+				//slider.siblings('.coda-nav').find('a.current').removeClass('current').parent().next().find('a').addClass('current');
+				$('.coda-nav').find('a.current').removeClass('current').parent().next().find('a').addClass('current');
 			};
 			$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
 			if (settings.crossLinking) { location.hash = currentPanel }; // Change the URL hash (cross-linking)

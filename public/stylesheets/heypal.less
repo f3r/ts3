@@ -78,6 +78,10 @@ aside .row, aside .media-grid, .aside .row, .aside .media-grid {
   margin-left: 0
 }
 
+.help-inline {
+  color: @grayDark;
+}
+
 // Sup
 // ---------
 .sup{
@@ -199,6 +203,25 @@ label {
   color: @grayDark;
 }
 
+form .input {
+  display: block;
+  clear: left;
+  margin: 10px 10px; 
+}
+
+.input-append {
+  p {
+    float: left;
+    border: 1px solid #CCC;
+    .border-radius(0 3px 3px 0);
+    height: 28px;
+    line-height: 28px;
+    margin-right: -2px;
+    padding-left: 5px;
+    padding-right: 2px;
+    font-size: 12px;
+  }
+}
 // Item
 // ----------
 
@@ -525,8 +548,8 @@ aside .section-header, .aside .section-header, .section-header {
     font-size:16px;
     line-height:16px;
     font-weight: bold;
-    padding:0 15px 0 0;
-    margin: 0px 0 0 -13px;
+    //padding:0 15px 0 0;
+    //margin: 0px 0 0 -13px;
   }
 
   ul li#preview-toggle {
@@ -548,31 +571,35 @@ aside .section-header, .aside .section-header, .section-header {
   ul li a {
     display:block;
     position:relative;
-    padding: 9px 55px 11px 77px;
-    background:url(../images/nav-bg-left.png) no-repeat 0 0;
+    padding: 9px 55px 11px 25px;
+    // background: #46A546;
+    background: #FFF;
+    color: #444;
   }
 
   ul li a span {
     position:absolute;
     top:0px;
     right:-10px;
-    width:15px;
+    width:30px;
     height:36px;
-    background:url(../images/nav-bg-right.png) no-repeat top right;
+    //background:url(../images/nav-bg-right.png) no-repeat top right;
     z-index:100;
   }
 
-  ul li a:hover,
+  ul li a:hover {
+    color: #000;
+  }
+
   ul li a.current {
-    background:url(../images/nav-bg-left.png) no-repeat 0 -36px !important;
-    color:#fff;
+    color: #FFF;
   }
 
   ul li a:hover span,
   ul li a.current span,
   ul li a:hover + span,
   ul li a.current + span {
-    background:url(../images/nav-bg-right.png) no-repeat right bottom;
+    // background:url(../images/nav-bg-right.png) no-repeat right bottom;
   }
 
   ul li#contact-toggle a:hover,
@@ -605,22 +632,29 @@ aside .section-header, .aside .section-header, .section-header {
 
 .coda-slider-wrapper {
   padding: 0;
-  border: 1px solid #eee;
-  .border-radius();
+  //border: 1px solid #eee;
+  //.border-radius();
   
 }
 
 .coda-slider{
   background: #fff;
-  width: 938px;
+  width: 640px;
   margin-bottom: 20px;  
   
   .panel{
-    width: 938px;
+    width: 640px;
   }
   
   .panel-wrapper{
-    padding: 0px 20px;
+    padding: 20px 10px;
+
+    h2.title {
+      background: #444444;
+      width: 380px;
+      padding: 0px 15px;
+      color: #FFF;
+    }
   }
   
 }
@@ -635,10 +669,6 @@ aside .section-header, .aside .section-header, .section-header {
 
 .coda-nav-left a,
 .coda-nav-right a{
-  background: #2f6f2f;
-  color: #fff;
-  font-weight: bold;
-  width: 120px;
 }
 
 .media-grid.gallery{ margin-left: 0;}

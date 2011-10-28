@@ -1,0 +1,30 @@
+.panel-wrapper
+  %h2.title Photos
+  .clearfix
+    %br
+    %h3 To be replaced with multi uploader thingy
+    .input
+      %ul.media-grid.gallery
+        %li
+          %a{:href => "#"}
+            %img.thumbnail{:alt => "", :src => "http://placehold.it/90x90"}/
+        %li
+          %input#fileInput.input-file{:name => "fileInput", :type => "file"}/
+  .clearfix
+
+  %h3 Photos
+  %p
+    You can sort your photos by drag and drop
+  .row
+    .span12
+      %ul.media-grid.gallery
+        - 10.times do
+          %li
+            %a{:href => "#"}
+              %img.thumbnail{:alt => "", :src => "http://placehold.it/90x90"}/
+
+.arrows.clearfix
+  .coda-nav-left
+    %a.btn.primary{:href => "#"} &laquo; Previous Step
+  .coda-nav-right
+    %a.btn.primary{:href => "#"} Next Step &raquo;

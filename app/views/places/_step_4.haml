@@ -1,0 +1,24 @@
+.panel-wrapper
+  %h2.title Amenities
+  %fieldset
+    - amenities_group_1.each do |a|
+      .input-append
+        %p.span2=a[0]          
+        %label.add-on.active
+          = f.check_box a[1]
+  
+  %h2.title Furnishings
+  %fieldset
+    - amenities_group_2.each do |a|
+      .input-append
+        %p.span2=a[0]          
+        %label.add-on.active
+          = f.check_box a[1]
+
+  %h2.title Miscellaneous
+  %fieldset
+    - amenities_group_2.each do |a|
+      .input-append
+        %p.span2=a[0]          
+        %label.add-on.active
+          = f.check_box a[1]        

@@ -1,0 +1,56 @@
+.row
+  .span12
+    .coda-slider-wrapper
+      #coda-slider-1.coda-slider.preload
+        = form_for :place, :class => 'form-stacked' do |f|
+          / .description
+          .panel
+            = render 'step_2', :f => f
+          / .photos
+          .panel
+            = render 'step_3', :f => f
+          / .amenities
+          .panel
+            = render 'step_4', :f => f
+          / .calendar
+          .panel
+            = render 'step_5', :f => f
+          / .pricing
+          .panel
+            = render 'step_6', :f => f
+          / .preview
+          .panel
+            = render 'preview', :f => f
+  .span4
+    #coda-nav-1.coda-nav
+      %ul
+        %li.tab1
+          %a{:href => "#1"}
+            %span
+            General Info
+
+        %li.tab2
+          %a{:href => "#2"}
+            %span
+            Photos
+
+        %li.tab3
+          %a{:href => "#3"}
+            %span
+            Amenities
+
+        %li.tab4
+          %a{:href => "#4"}
+            %span
+            Calendar
+
+        %li.tab5
+          %a{:href => "#5"}
+            %span
+            Price and Conditions
+
+        %li.tab6
+          %a{:href => "#6"}
+            %span
+            Preview
+

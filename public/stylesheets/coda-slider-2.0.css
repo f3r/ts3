@@ -6,13 +6,10 @@
 
 /* Insignificant stuff, for demo purposes */
 
-	body { padding: 20px }
-	.panel h2.title { margin-bottom: 10px }
-	noscript div { background: #ccc; border: 1px solid #900; margin: 20px 0; padding: 15px }
 
 /* Most common stuff you'll need to change */
 
-	.coda-slider-wrapper { padding: 20px 0 }
+	.coda-slider-wrapper {  }
 	.coda-slider { background: #ebebeb }
 	
 	/* Use this to keep the slider content contained in a box even when JavaScript is disabled */
@@ -26,7 +23,7 @@
 	.coda-slider-wrapper.arrows .coda-slider { margin: 0 10px }
 	
 	/* Arrow styling */
-	.coda-nav-left a, .coda-nav-right a { background: #000; color: #fff; padding: 5px; width: 100px }
+	.coda-nav-left a, .coda-nav-right a { }
 	
 	/* Tab nav */
 	.coda-nav ul li a.current { background: #39c }

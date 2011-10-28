@@ -18,11 +18,17 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/notifications' => 'notifications#index'
 
   resources :products
+
+  resources :places do 
+
+    member do
+      get :wizard
+    end
+
+  end
   
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'
   match '/users/password/:token'  => 'users#confirm_reset_password'
-
-  resources :products
 
   resources :users do
 

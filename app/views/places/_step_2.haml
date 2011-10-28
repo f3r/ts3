@@ -1,0 +1,45 @@
+.panel-wrapper
+  %h2.title Description
+  %fieldset
+    .input
+      = f.label :description
+      = f.text_area :description, :class => "span8", :rows => 5                
+    .input
+      = f.label :max_guests, 'Max Guests'
+      = f.text_field :max_guests, :class => "span3"
+    .input
+      = f.label :num_bedrooms, 'Number of Bedrooms'
+      = f.text_field :num_bedrooms, :class => "span3"
+    .input
+      = f.label :num_beds, 'Number of Beds'
+      = f.text_field :num_beds, :class => "span3"
+  %h2.title Dimensions
+  %fieldset      
+    .input
+      = f.label :sqm
+      = f.text_field :sqm, :class => "span2"
+    .input
+      = f.label :sqf
+      = f.text_field :sqf, :class => "span2"
+  %h2.title Address
+  %fieldset
+    .input
+      = f.label :address_1
+      = f.text_field :address_1, :class => "span5"
+      %span.help-inline
+        Street Address, Company 
+    .input
+      = f.label :address_2
+      = f.text_field :address_2, :class => "span5"
+      %span.help-inline
+        Apartment / Unit Number / Suite
+    .input
+      = f.label :zip
+      = f.text_field :zip, :class => "span3"
+    .input
+      = f.label :directions
+      = f.text_area :directions, :class => "span8", :rows => 5       
+
+.arrows.clearfix
+  .coda-nav-right
+    %a.btn.primary{:href => "#"} Next Step &raquo;

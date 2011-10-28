@@ -1,0 +1,25 @@
+.panel-wrapper
+  %h2.title List your Place
+  %fieldset
+    .clearfix
+
+      .input
+        = f.label :title
+        = f.text_field :title, :class => "span6"
+
+      .input
+        = f.label :place_type_id, 'Type'
+        = f.select :place_type_id, [['Apartment', 1]]
+      .input
+        = f.label :num_bedrooms, 'Number of Bedrooms'
+        = f.text_field :num_bedrooms, :class => "span3"
+      .input
+        = f.label :max_guests, 'Number of Guests'
+        = f.text_field :max_guests, :class => "span3"
+      .input
+        = f.label :city_id, 'City'
+        = f.text_field :city_id, :class => "span6"              
+.arrows.clearfix
+  .coda-nav-right
+    %button.btn.primary{:type => "submit"}
+      Save and Continue &raquo;

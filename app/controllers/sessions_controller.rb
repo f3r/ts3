@@ -67,7 +67,7 @@ class SessionsController < ApplicationController
   def connect
 
     @create_response = Heypal::Session.create_oauth({
-                            :access_token => @heypal_session.authentication_token,
+                            :access_token => current_token,
                             :oauth_token => { 
                                 'provider' => oauth_provider, 
                                 'uid' => oauth_uid,

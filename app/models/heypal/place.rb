@@ -28,6 +28,7 @@ class Heypal::Place < Heypal::Base
 
   validates :title, :place_type_id, :num_bedrooms, :num_beds, :max_guests, :city_id, :presence => true
 
+  attr_accessor :photos
 
   class << self 
 
@@ -44,7 +45,7 @@ class Heypal::Place < Heypal::Base
   end
 
   def initialize(params = {})
-    @@attributes.each do |attr|
+    @@general_attributes.each do |attr|
       instance_variable_set("@#{attr}", params[attr])
       self[attr] = params[attr]
     end

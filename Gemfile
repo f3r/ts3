@@ -24,7 +24,7 @@ gem 'dynamic_form'
 gem 'airbrake'
 gem 'omniauth'
 
-#gem 'paperclip'
+gem 'paperclip'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

@@ -1,22 +1,19 @@
 %section.span8
-  .user_photo.float-right
-    = placehold(30,30)
-  .user_data.float-right
-    .user_name
-      Jonathan Green
-      .user_rank
-      = placehold(15,15)
-      38
-      = placehold(15,15)
-      13
-  .page-header
-    %h2
-      = full_name @user
-  .clearfix
+  = render :partial => 'user_header'
   .span3
-    Email
+    Fullname
   .span4
-    Jonathanator@gmail.com
+    - unless @user['first_name'].blank?
+      = full_name @user
+    - else
+      Jonathan Green
+  .span3
+    Gender
+  .span4
+    - unless @user['gender'].blank?
+      = @user['gender']
+    - else
+      Either Male or Female
   .span3
     Shipping Address
   .span4
@@ -27,6 +24,21 @@
     Mobile Phone Number
   .span4
     = @user['phone_mobile']
+  .span3
+    Home Phone Number
+  .span4
+    - unless @user['phone_home'].blank?
+      = @user['phone_home']
+    - else
+      Place Home Phone Number here
+  .span3
+    Work Phone Number
+  .span4
+    - unless @user['phone_work'].blank?
+      = @user['phone_work']
+    - else
+      Place Work Phone Number here
+
   .span3
     Birthdate
   .span4

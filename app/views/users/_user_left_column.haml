@@ -1,7 +1,7 @@
 %section.span3
   = link_to placehold(120, 90), "#"
   %h2
-    JGreen
+    = nickname @user
   %span.gray
     = full_name @user
   %p
@@ -28,4 +28,5 @@
     %br
     13
   %p
-    = link_to 'edit', users_edit_path(:access_token => current_token)
+    - unless request.fullpath.include?('edit')
+      = link_to 'edit', users_edit_path(:access_token => current_token)

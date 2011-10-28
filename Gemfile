@@ -20,18 +20,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'dynamic_form'
-
 gem 'airbrake'
-
 gem 'omniauth'
 
-# Use unicorn as the web server
-# gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
+gem 'paperclip'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

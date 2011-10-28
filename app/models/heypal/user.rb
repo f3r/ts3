@@ -2,12 +2,12 @@ class Heypal::User < Heypal::Base
 
   set_resource_path '/users.json'
 
-  @@attributes = %w(name email password password_confirmation terms oauth_provider oauth_token oauth_uid)
+  @@attributes = %w(first_name last_name email password password_confirmation terms oauth_provider oauth_token oauth_uid)
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
   define_attribute_methods = @@attributes
 
-  validates :name, :email, :password, :password_confirmation, :presence => true
+  validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true
   validates :password, :confirmation => true
   validates :terms, :acceptance => true
 

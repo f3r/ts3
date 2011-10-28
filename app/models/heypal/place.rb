@@ -3,7 +3,7 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id num_bedrooms num_beds sqm sqf max_guests  
+    title description place_type_id num_bedrooms num_beds sqm sqf max_guests access_token 
   )
 
   @@geo_attributes = %w(
@@ -30,32 +30,49 @@ class Heypal::Place < Heypal::Base
 
 
   class << self 
+
     def create(options)
-      self.new.merge(request('/places.json', :post, options))
+      result = request('/places.json', :post, options)
+      result['stat'] == 'ok'
     end
 
     def update(options)
-      self.new.merge(request('/places.json', :put, options))
+      result = request('/places.json', :put, options)
+      result['stat'] == 'ok'      
     end
 
   end
 
-  # MOCK them up for now
+  def initialize(params = {})
+    @@attributes.each do |attr|
+      instance_variable_set("@#{attr}", params[attr])
+      self[attr] = params[attr]
+    end
+  end  
+
   def save
-    return true
     if new_record?
-      self.class.create(self)
+      if self.class.create(self)
+        return true
+      else 
+        return false
+      end
     else
-      self.update(self.merge(:id => self.id))
+      if self.class.update(self)
+        return true
+      else
+        return false
+      end
     end
   end
 
   def id
-    return 1
+    self['id']
   end
 
   def new_record?
-    self['id'].present?
+    true
+    #self['id'].present?
   end
 
   def to_param

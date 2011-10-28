@@ -16,4 +16,11 @@ module AuthenticationHelper
     cookies['authentication_token']
   end
 
+  def current_user
+    @current_user ||= Heypal::User.show('access_token' => current_token)
+  end
+
+  def current_user=(user)
+    @current_user = user
+  end
 end

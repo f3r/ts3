@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = Heypal::User.show(params)
+    @user = current_user
     logger.info(@user)
   end
 

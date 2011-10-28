@@ -5,7 +5,7 @@ module UsersHelper
   end
   
   def nickname(user)
-    nick = "#{user['first_name'][0]}#{user['last_name']}"
-    nick unless nick.blank?
+    nick = 'no username yet'
+    nick = "#{user['first_name'][0]}#{user['last_name']}" unless user['first_name'].nil? && user['last_name'].nil?
   end
 end

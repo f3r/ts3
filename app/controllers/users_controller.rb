@@ -51,13 +51,11 @@ class UsersController < ApplicationController
     end
 
   end
-  
+
   def items
-    
   end
 
   def received
-
   end
 
   def confirm_reset_password
@@ -80,6 +78,8 @@ class UsersController < ApplicationController
   def show
     @user = Heypal::User.show(params)
     logger.info(@user)
+    @user_list = Heypal::User.list(params)
+    logger.info(@user_list)
   end
 
   def edit

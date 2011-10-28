@@ -47,6 +47,10 @@ class Heypal::User < Heypal::Base
       result = request("/users.json?access_token=#{params['access_token']}", :put, params)
     end
 
+    def list(params = {})
+      result = request("/authentications.json?access_token=#{params['access_token']}", :get, params)
+    end
+
   end
 
   def initialize(params = {})

@@ -5,8 +5,25 @@ class UsersController < ApplicationController
   end
 
   def create
-    @user = Heypal::User.new(params[:user])
+
+    post_params = params[:user]
+    
+    # IF OAUTH session, create the oauth token as well.
+    if params[:oauth_token].present?
+      post_params = post_params.merge({ 
+                                      'oauth_token' => { 
+                                      'provider' => params['oauth_provider'], 
+                                      'uid' => params[:oauth_uid], 
+                                      'credentials' => { 'token' => 
+                                          params[:oauth_token], 
+                                            'secret' => ''}
+                                    }})
+    end                                  
+
+    @user = Heypal::User.new(post_params)
+
     if @user.valid? && @user.save
+
       redirect_to signup_complete_path
     else
       render :action => :new

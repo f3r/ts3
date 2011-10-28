@@ -5,8 +5,10 @@
       %h2= t(:create_new_account)
 
       = form_for :user, :url => users_path do |f|
-        = f.hidden_field :oauth_provider, @oauth_provider
-        = f.hidden_field :oauth_token, @oauth_token
+        = f.hidden_field :oauth_provider, :value => @oauth_provider        
+        = f.hidden_field :oauth_token, :value => @oauth_token
+        = f.hidden_field :oauth_uid, :value => @oauth_uid
+        
         = f.error_messages
         .input
           = f.text_field :name, :placeholder => 'Name'
@@ -28,8 +30,9 @@
       %h2= t(:login)
       
       = form_tag sessions_path do 
-        = f.hidden_field :oauth_provider, @oauth_provider        
-        = f.hidden_field :oauth_token, @oauth_token
+        = hidden_field_tag :oauth_provider, @oauth_provider        
+        = hidden_field_tag :oauth_token, @oauth_token
+        = hidden_field_tag :oauth_uid, @oauth_uid
         .input
           = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
         .input

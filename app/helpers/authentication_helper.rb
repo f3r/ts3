@@ -1,19 +1,23 @@
 module AuthenticationHelper
 
   def logged_in?
-    cookies['authentication_token'].present?
+    session['authentication_token'].present?
   end
 
-  def sign_in(session)
-    cookies['authentication_token'] = session.authentication_token
+  def sign_in(_session)
+    session['authentication_token'] = _session.authentication_token
   end
 
   def sign_out
-    cookies['authentication_token'] = nil
+    session['authentication_token'] = nil
   end
 
   def current_token
-    cookies['authentication_token']
+    session['authentication_token']
+  end
+
+  def login_required
+    redirect_to login_path unless logged_in?
   end
 
   def current_user

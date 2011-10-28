@@ -2,13 +2,11 @@
 %section.span8
   = render :partial => 'user_header'
   = form_tag user_path(:id => @user['id'], :access_token => current_token), :method => :put do
-    .span3
+    .input
       = label_tag 'First name'
-    .span4
       = text_field_tag 'user[first_name]', @user['first_name']
-    .span3
+    .input
       = label_tag 'Last name'
-    .span4
       = text_field_tag 'user[last_name]', @user['last_name']
     .span3
       = label_tag 'Gender'

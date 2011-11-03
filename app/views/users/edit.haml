@@ -10,7 +10,7 @@
       = f.text_field :last_name
     .input
       = f.label :gender, "Gender"
-      = f.text_field :gender
+      = f.select :gender, [['', 'unknown'],['Male', 'male'], ['Female', 'female']]
     .input
       = f.label :phone_mobile, 'Mobile Phone Number'
       = f.text_field :phone_mobile

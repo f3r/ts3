@@ -7,9 +7,9 @@ class Heypal::User < Heypal::Base
 
   define_attribute_methods = @@attributes
 
-  validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true
-  validates :password, :confirmation => true
-  validates :terms, :acceptance => true
+  validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true, :on => :create
+  validates :password, :confirmation => true, :on => :create
+  validates :terms, :acceptance => true, :on => :create
 
   class << self
     def create(params = {})

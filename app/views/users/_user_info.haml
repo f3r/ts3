@@ -1,45 +1,32 @@
 %section.span8
   = render :partial => 'user_header'
-  .span3
-    Fullname
-  .span4
-    - unless @user['first_name'].blank?
+  .span8.edge-left
+    .span3
+      Fullname
+    .span4
       = full_name @user
-    - else
-      Jonathan Green
-  .span3
-    Gender
-  .span4
-    - unless @user['gender'].blank?
+  .span8.edge-left
+    .span3
+      Gender
+    .span4
       = @user['gender']
-    - else
-      Either Male or Female
-  .span3
-    Shipping Address
-  .span4
-    71 Ayer Rajah Cresent
-    139951, Singapore
-    Singapore
-  .span3
-    Mobile Phone Number
-  .span4
-    = @user['phone_mobile']
-  .span3
-    Home Phone Number
-  .span4
-    - unless @user['phone_home'].blank?
+  .span8.edge-left
+    .span3
+      Mobile Phone Number
+    .span4
+      = @user['phone_mobile']
+  .span8.edge-left
+    .span3
+      Home Phone Number
+    .span4
       = @user['phone_home']
-    - else
-      Place Home Phone Number here
-  .span3
-    Work Phone Number
-  .span4
-    - unless @user['phone_work'].blank?
+  .sapn8.edge-left
+    .span3
+      Work Phone Number
+    .span4
       = @user['phone_work']
-    - else
-      Place Work Phone Number here
-
-  .span3
-    Birthdate
-  .span4
-    = @user['birthdate']
+  .span8.edge-left
+    .span3
+      Birthdate
+    .span4
+      = date_convert @user['birthdate']

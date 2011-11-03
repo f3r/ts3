@@ -1,8 +1,10 @@
+= @place.inspect
 .row
   .span12
     .coda-slider-wrapper
       #coda-slider-1.coda-slider.preload
-        = form_for :place, :class => 'form-stacked' do |f|
+        = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+          = hidden_field_tag :place_id, params[:id]
           / .description
           .panel
             = render 'step_2', :f => f
@@ -54,3 +56,27 @@
             %span
             Preview
 
+:javascript
+
+  var place_id = $('#place_id').val();
+
+  // proof of concept - save on update feature
+  $('#wizard_form input').each(function() {
+
+    $(this).blur(function() {
+      var field;
+      var value;
+
+      field = $(this).attr('name');
+      value = $(this).val();
+      $.ajax({
+        type: 'PUT',
+        url: '/places/' + place_id,
+        data: $(this).serialize(),
+        success: function() {}
+      });
+
+
+    });
+
+  });

@@ -13,12 +13,22 @@ class PlacesController < ApplicationController
     @place = Heypal::Place.new(place_params)
 
     if @place.save
-      render :text => @place.inspect
       redirect_to wizard_place_path(@place)
     else
       render :action => :new
     end
 
+  end
+
+  def update
+    place_params = params[:place]
+    place_params[:access_token] = current_token
+
+    Heypal::Place.update(place_params)
+  end
+
+  def wizard
+    @place = Heypal::Place.find(params[:id])
   end
 
 end

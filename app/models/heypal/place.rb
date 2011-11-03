@@ -33,13 +33,20 @@ class Heypal::Place < Heypal::Base
   class << self 
 
     def create(options)
-      result = request('/places.json', :post, options)
-      result['stat'] == 'ok'
+      self.new.merge(request('/places.json', :post, options))
     end
 
     def update(options)
       result = request('/places.json', :put, options)
-      result['stat'] == 'ok'      
+      result['stat'] == 'ok'
+    end
+
+    def find(id)
+      result = request('/places/' + id + '.json' , :get)
+      if result['stat'] == 'ok'
+        self.new.merge(result['place'])
+      end
+
     end
 
   end
@@ -52,23 +59,29 @@ class Heypal::Place < Heypal::Base
   end  
 
   def save
-    if new_record?
-      if self.class.create(self)
-        return true
-      else 
-        return false
-      end
-    else
-      if self.class.update(self)
-        return true
-      else
-        return false
-      end
-    end
+    return self.class.create(self)
+    #if new_record?
+      #if self.class.create(self)
+        #return true
+      #else 
+        #return false
+      #end
+    #else
+      #if self.class.update(self)
+        #return true
+      #else
+        #return false
+      #end
+    #end
   end
 
   def id
-    self['id']
+    #self['id']
+    1
+  end
+
+  def valid?
+    self['stat'] == 'ok'
   end
 
   def new_record?

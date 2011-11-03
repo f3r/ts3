@@ -30,3 +30,14 @@
   .coda-nav-right
     %button.btn.primary{:type => "submit"}
       Save and Continue &raquo;
+
+:javascript
+  $(function() {
+
+    var validCities = [
+      "Manila", "Singapore"
+    ];
+
+    $('#place_city_id').autocompleteArray(validCities, {mustMatch:1});
+
+  });

@@ -17,11 +17,10 @@ class PlacesController < ApplicationController
     else
       render :action => :new
     end
-
   end
 
   def update
-    Heypal::Place.update(signed_params(:place))
+    Heypal::Place.update(params_with_token(:place))
   end
 
   def wizard

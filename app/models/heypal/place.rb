@@ -3,11 +3,11 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id city_id num_bedrooms num_beds sqm sqf max_guests access_token 
+    title description place_type_id city_id num_bedrooms num_beds num_bathrooms sqm sqf max_guests size_type access_token
   )
 
   @@geo_attributes = %w(
-    address_1 address_2 zip directions
+    address_1 address_2 zip directions state_id country_id 
   )
 
   @@amenities_attributes = %w(amenities_aircon amenities_breakfast amenities_buzzer_intercom amenities_cable_tv amenities_dryer amenities_doorman amenities_elevator amenities_family_friendly amenities_gym amenities_hot_tub amenities_kitchen amenities_handicap amenities_heating amenities_hot_water amenities_internet amenities_internet_wifi amenities_jacuzzi amenities_parking_included amenities_pets_allowed amenities_pool amenities_smoking_allowed amenities_suitable_events amenities_tennis amenities_tv amenities_washer)

@@ -16,14 +16,10 @@
     %span.gray= "Rating"
     %br
     +39 | -1
-  %p
-    = link_to placehold(10,10), "#"
-    %span.gray= "Badges"
-    %br
-    13
+
   %br
   = render :partial => "user_accounts"
   %p
     - unless request.fullpath.include?('edit')
-      = link_to 'Account settings', edit_user_path(current_token)
+      = link_to 'Account settings', edit_profile_path
 

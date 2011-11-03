@@ -21,10 +21,7 @@ class PlacesController < ApplicationController
   end
 
   def update
-    place_params = params[:place]
-    place_params[:access_token] = current_token
-
-    Heypal::Place.update(place_params)
+    Heypal::Place.update(signed_params(:place))
   end
 
   def wizard

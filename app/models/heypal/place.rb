@@ -40,7 +40,7 @@ class Heypal::Place < Heypal::Base
       #Result {"stat"=>"ok", "place"=>{"id"=>6, "details"=>{"title"=>"Eastwood", "num_bedrooms"=>1, "max_guests"=>1}, "location"=>{"country_id"=>177, "state_id"=>1661, "city_id"=>22186}, "user"=>{"id"=>22}, "place_type"=>{"id"=>1, "name"=>"Apartment"}}}
 
       if result['stat'] == 'ok'
-        return self.new(result)
+        return result
       else
         #TODO: display error here.
       end
@@ -60,20 +60,15 @@ class Heypal::Place < Heypal::Base
 
     end
 
-    def parse(hash)
-      new_place = self.new
-
-      new_place.id = hash['place']['id']
-    end
 
   end
 
-  #def initialize(params = {})
-    #@@general_attributes.each do |attr|
-      #instance_variable_set("@#{attr}", params[attr])
-      #self[attr] = params[attr]
-    #end
-  #end  
+  def initialize(params = {})
+    @@general_attributes.each do |attr|
+      instance_variable_set("@#{attr}", params[attr])
+      self[attr] = params[attr]
+    end
+  end  
 
   def save
     return self.class.create(self)

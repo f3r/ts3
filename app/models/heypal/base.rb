@@ -1,8 +1,6 @@
 ##
 # Proxy class for Heypal REST client. It currently uses the RestClient gem for now.
-#
-require 'ostruct'
-class Heypal::Base < OpenStruct
+class Heypal::Base < Hash
   include ActiveModel::AttributeMethods
   include ActiveModel::Naming
   include ActiveModel::Validations
@@ -10,8 +8,20 @@ class Heypal::Base < OpenStruct
 
   class << self
 
-    def merge(params)
-      self.marshal_load(params)
+    def get(url, options = {})
+      RestClient.get(url, options)
+    end
+
+    def put(url, options = {})
+      RestClient.put(url, options)
+    end
+
+    def post(url, options = {})
+      RestClient.post(url, options)
+    end
+
+    def delete(url, options = {})
+      RestClient.delete(url, options)
     end
 
     def request(path, method = :get, options = {})
@@ -23,13 +33,13 @@ class Heypal::Base < OpenStruct
 
       result = case method 
         when :get
-          Heypal::Rest.get(resource_url(path), options)
+          get(resource_url(path), options)
         when :put
-          Heypal::Rest.put(resource_url(path), options)
+          put(resource_url(path), options)
         when :post
-          Heypal::Rest.post(resource_url(path), options)
+          post(resource_url(path), options)
         when :delete
-          Heypal::Rest.delete(resource_url(path), options)
+          delete(resource_url(path), options)
       end  
 
       @results = parse_json(result)
@@ -82,31 +92,11 @@ class Heypal::Base < OpenStruct
 
   end
 
-  def merge(params)
-    self.marshal_load(params)
+  def deserialize(hash)
+    hash.each do |key, value|  
+      instance_variable_set("@#{key}", value)
+      self[key] = value
+    end
   end
 
-
-end
-
-class Heypal::Rest 
-  class << self
-
-    def get(url, options = {})
-      RestClient.get(url, options)
-    end
-
-    def put(url, options = {})
-      RestClient.put(url, options)
-    end
-
-    def delete(url, options = {})
-      RestClient.delete(url, options)
-    end    
-
-    def post(url, options = {})
-      RestClient.post(url, options)
-    end
-
-  end
 end

@@ -1,41 +1,41 @@
 = render :partial => 'user_left_column'
 %section.span8
-  = render :partial => 'user_header'
-  = form_tag @user, :method => :put do
+  = error_messages_for :user
+  = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
     .input
-      = label_tag @user['first_name'], "First Name"
-      = text_field_tag @user['first_name'], @user['first_name']
+      = f.label :first_name, "First Name"
+      = f.text_field :first_name
     .input
-      = label_tag @user['last_name'], "Last Name"
-      = text_field_tag @user['last_name'], @user['last_name']
+      = f.label :last_name, "Last Name"
+      = f.text_field :last_name
     .input
-      = label_tag @user['gender'], 'Gender'
-      = text_field_tag @user['gender'], @user['gender']
+      = f.label :gender, "Gender"
+      = f.text_field :gender
     .input
-      = label_tag @user['phone_mobile'], 'Mobile Phone Number'
-      = text_field_tag @user['phone_mobile'], @user['phone_mobile']
+      = f.label :phone_mobile, 'Mobile Phone Number'
+      = f.text_field :phone_mobile
     .input
-      = label_tag @user['phone_home'], 'Home Phone Number'
-      = text_field_tag @user['phone_home'], @user['phone_home']
+      = f.label :phone_home, 'Home Phone Number'
+      = f.text_field :phone_home
     .input
-      = label_tag @user['phone_work'], 'Work Phone Number'
-      = text_field_tag @user['phone_work'], @user['phone_work']
+      = f.label :phone_work, 'Work Phone Number'
+      = f.text_field :phone_work
     .input
-      = label_tag @user['birthdate'], "Birthdate"
-      = text_field_tag @user['birthdate'], @user['birthdate']
+      = f.label :birthdate, 'Birthdate'
+      = f.text_field :birthdate
     .clearfix
 
-    -#Password Section
-    .section-header Password
-    .input
-      = label_tag 'Current Password'
-      = text_field_tag 'current_password', 'current_password'
-    .input
-      = label_tag 'Password'
-      = text_field_tag 'password', 'password'
-    .input
-      = label_tag 'Re-type Password'
-      = text_field_tag 'password_confirmation', 'password_confirmation'
+    - if false
+      .section-header Password
+      .input
+        = label_tag 'Current Password'
+        = text_field_tag 'current_password', '', :placeholder => 'current password'
+      .input
+        = label_tag 'Password'
+        = text_field_tag 'password', ''
+      .input
+        = label_tag 'Re-type Password'
+        = text_field_tag 'password_confirmation', ''
     .clearfix
 
     -#Accounts Section

@@ -30,11 +30,15 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'
   match '/users/password/:token'  => 'users#confirm_reset_password'
 
+
+  match '/profile' => 'users#show', :as => :profile
+  match '/edit_profile' => 'users#edit', :as => :edit_profile
+
   resources :users do
 
     collection do
-      get  :confirm # /users/confim
-      post :resend_confirmation # /users/resend_confirmation
+      get  :confirm 
+      post :resend_confirmation 
       post :reset_password
       get  :reset_password
       get  :confirm_reset_password
@@ -42,7 +46,7 @@ HeyPalFrontEnd::Application.routes.draw do
     end
 
     member do
-      post :publish # /users/1/publish
+      post :publish 
     end
 
   end

@@ -77,7 +77,7 @@ class Heypal::User < Heypal::Base
     if @response['stat'] == 'ok'
       return true
     else
-      Rails.logger.info response.inspect
+      Rails.logger.info @response.inspect
       # TODO: Standardize the error message
       self.errors.add(:base, @response['err'])
       return false

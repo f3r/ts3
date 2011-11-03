@@ -96,10 +96,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = Heypal::User.show('access_token' => current_token)
-    logger.info(@user)
-    logger.info(@user.class)
     @user_auth = Heypal::User.list('access_token' => current_token)
-    logger.info(@user_auth)
   end
 
   def update
@@ -108,7 +105,6 @@ class UsersController < ApplicationController
     if @user.valid? && @user.save
       redirect_to profile_path
     else
-      #@user = Heypal::User.show('access_token' => current_token)
       @user_auth = Heypal::User.list('access_token' => current_token)
       render :action => :edit
     end

@@ -37,10 +37,8 @@ class Heypal::Place < Heypal::Base
     def create(options)
       result = request('/places.json', :post, options)
 
-      #Result {"stat"=>"ok", "place"=>{"id"=>6, "details"=>{"title"=>"Eastwood", "num_bedrooms"=>1, "max_guests"=>1}, "location"=>{"country_id"=>177, "state_id"=>1661, "city_id"=>22186}, "user"=>{"id"=>22}, "place_type"=>{"id"=>1, "name"=>"Apartment"}}}
-
-      if result['stat'] == 'ok'
-        return result
+      if result['stat'] == 'ok'    
+        return normalize_place(result)
       else
         #TODO: display error here.
       end
@@ -55,53 +53,69 @@ class Heypal::Place < Heypal::Base
     def find(id)
       result = request('/places/' + id + '.json' , :get)
       if result['stat'] == 'ok'
-        self.new(result['place'])
+        return self.new(normalize_place(result))
       end
-
     end
 
+    def normalize_place(result)
+      # merge the place hash for now
+      p = {}
+      p = p.merge(result['place']['amenities']) if result['place']['amenities'].present?
+      p = p.merge(result['place']['details']) if result['place']['details'].present?
+      p = p.merge(result['place']['location']) if result['place']['location'].present?
+      p = p.merge(result['place'])
+
+
+      # cleanup, messy but this should work for now
+      #
+      p.delete('details')
+      p.delete('location')
+      p.delete('place_type')
+
+      p['user_id'] = result['place']['user']['id']
+      p['place_type_id'] = result['place']['place_type']['id']
+      Rails.logger.info "Normalized Params #{p}"
+      p    
+    end
 
   end
 
   def initialize(params = {})
-    @@general_attributes.each do |attr|
-      instance_variable_set("@#{attr}", params[attr])
-      self[attr] = params[attr]
-    end
+    deserialize(params)
+    self
   end  
 
   def save
-    return self.class.create(self)
-    #if new_record?
-      #if self.class.create(self)
-        #return true
-      #else 
-        #return false
-      #end
-    #else
-      #if self.class.update(self)
-        #return true
-      #else
-        #return false
-      #end
-    #end
+    if new_record?
+      if response = self.class.create(self)
+        self.deserialize(response)
+        return true
+      else
+        return false
+      end
+    else
+      if self.class.update(self)
+        return true
+      else
+        return false
+      end
+    end
   end
 
-  def id
-    self['id']
-  end
+  #def id
+    #self['id']
+  #end
 
   def valid?
     self['stat'] == 'ok'
   end
 
   def new_record?
-    true
-    #self['id'].present?
+    self['id'].blank?
   end
 
   def to_param
-    id.to_s
+    self['id'].to_s
   end
 
 end

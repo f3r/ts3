@@ -2,23 +2,30 @@
   %h2.title List your Place
   %fieldset
     .clearfix
-
       .input
-        = f.label :title
+        = f.label :city_id, 'What city is your place in?'
+        = f.text_field :city_id, :class => "span6", :value => "22186"
+      .input
+        = f.label :title, 'Give us a descriptive title'
         = f.text_field :title, :class => "span6"
 
       .input
-        = f.label :place_type_id, 'Type'
-        = f.select :place_type_id, [['Apartment', 1]]
+        = f.label :place_type_id, 'What kind of place is it'
+        = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]
       .input
-        = f.label :num_bedrooms, 'Number of Bedrooms'
+        = f.label :num_bedrooms, 'How many bedrooms'
         = f.text_field :num_bedrooms, :class => "span3"
       .input
-        = f.label :max_guests, 'Number of Guests'
+        = f.label :max_guests, 'Max number of Guests'
         = f.text_field :max_guests, :class => "span3"
+      %br.clearfix
+      %br.clearfix
       .input
-        = f.label :city_id, 'City'
-        = f.text_field :city_id, :class => "span6"              
+        %label.reset-width
+          = f.check_box :terms
+          I agree to the
+          = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank        
+
 .arrows.clearfix
   .coda-nav-right
     %button.btn.primary{:type => "submit"}

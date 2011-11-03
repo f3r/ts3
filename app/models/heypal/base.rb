@@ -1,6 +1,8 @@
 ##
 # Proxy class for Heypal REST client. It currently uses the RestClient gem for now.
-class Heypal::Base < Hash
+#
+require 'ostruct'
+class Heypal::Base < OpenStruct
   include ActiveModel::AttributeMethods
   include ActiveModel::Naming
   include ActiveModel::Validations
@@ -8,20 +10,8 @@ class Heypal::Base < Hash
 
   class << self
 
-    def get(url, options = {})
-      RestClient.get(url, options)
-    end
-
-    def put(url, options = {})
-      RestClient.put(url, options)
-    end
-
-    def post(url, options = {})
-      RestClient.post(url, options)
-    end
-
-    def delete(url, options = {})
-      RestClient.delete(url, options)
+    def merge(params)
+      self.marshal_load(params)
     end
 
     def request(path, method = :get, options = {})
@@ -33,17 +23,20 @@ class Heypal::Base < Hash
 
       result = case method 
         when :get
-          get(resource_url(path), options)
+          Heypal::Rest.get(resource_url(path), options)
         when :put
-          put(resource_url(path), options)
+          Heypal::Rest.put(resource_url(path), options)
         when :post
-          post(resource_url(path), options)
+          Heypal::Rest.post(resource_url(path), options)
         when :delete
-          delete(resource_url(path), options)
+          Heypal::Rest.delete(resource_url(path), options)
       end  
 
-      parse_json(result)
+      @results = parse_json(result)
 
+      Rails.logger.info "Result #{@results}"
+
+      @results    
     end
 
     def find(type, options = {})      
@@ -89,6 +82,31 @@ class Heypal::Base < Hash
 
   end
 
+  def merge(params)
+    self.marshal_load(params)
+  end
 
 
+end
+
+class Heypal::Rest 
+  class << self
+
+    def get(url, options = {})
+      RestClient.get(url, options)
+    end
+
+    def put(url, options = {})
+      RestClient.put(url, options)
+    end
+
+    def delete(url, options = {})
+      RestClient.delete(url, options)
+    end    
+
+    def post(url, options = {})
+      RestClient.post(url, options)
+    end
+
+  end
 end

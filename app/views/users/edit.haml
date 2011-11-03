@@ -29,6 +29,8 @@
     .span4
       = text_field_tag 'user[birthdate]', @user['birthdate']
     .clearfix
+
+    -#Password Section
     .section-header Password
     .span3.center
       = label_tag 'Current Password'
@@ -42,6 +44,15 @@
       = label_tag 'Re-type Password'
     .span4.center
       = text_field_tag 'password_confirmation', 'password_confirmation'
+    .clearfix
+
+    -#Accounts Section
+    .section-header Accounts
+    .commenter
+      .user_box
+        .user_photo= placehold(40,40)
+        .user_data
+          .user_name= link_to "Jonathan Green", "#"
     .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'

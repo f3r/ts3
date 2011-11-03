@@ -45,11 +45,6 @@ class Heypal::Place < Heypal::Base
 
     end
 
-    def update(options)
-      result = request('/places.json', :put, options)
-      result['stat'] == 'ok'
-    end
-
     def find(id)
       result = request('/places/' + id + '.json' , :get)
       if result['stat'] == 'ok'

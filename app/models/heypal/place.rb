@@ -3,7 +3,7 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id city_id num_bedrooms num_beds num_bathrooms sqm sqf max_guests size_type access_token errors
+    title description place_type_id city_id num_bedrooms num_beds num_bathrooms sqm sqf max_guests size_type access_token
   )
 
   @@geo_attributes = %w(
@@ -81,7 +81,7 @@ class Heypal::Place < Heypal::Base
   end
 
   def initialize(params = {})
-    deserialize(params)
+    deserialize(params) if params
     self
   end  
 

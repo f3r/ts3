@@ -36,16 +36,19 @@
   %fieldset
 
     .input
+      = f.label :city_id, 'City'
+      = f.text_field :city_id, :class => "span6", :value => "22186"    
+    .input
       = f.label :city
-      = @place.city_id
+      = @city['name']
 
     .input
       = f.label :state
-      = @place.state_id
+      = @city['state']['name']
 
     .input
       = f.label :country
-      = @place.country_id 
+      = @city['country']['name']
 
     .input
       = f.label :address_1

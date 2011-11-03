@@ -6,21 +6,20 @@ class UsersController < ApplicationController
 
   def create
 
-    post_params = params[:user]
-    
-    # IF OAUTH session, create the oauth token as well.
-    if params[:oauth_token].present?
-      post_params = post_params.merge({ 
-                                      'oauth_token' => { 
-                                      'provider' => params['oauth_provider'], 
-                                      'uid' => params[:oauth_uid], 
-                                      'credentials' => { 'token' => 
-                                          params[:oauth_token], 
-                                            'secret' => ''}
-                                    }})
-    end                                  
 
-    @user = Heypal::User.new(post_params)
+    @user = Heypal::User.new(params[:user])
+
+    #if params[:user][:oauth_token].present?    
+      @user.oauth_token = {'provider' => params['oauth_provider'], 
+        'uid' => params[:oauth_uid], 
+        'credentials' => { 
+          'token' => params[:oauth_token], 
+          'secret' => ''
+        }
+      }
+    #end
+
+    #Rails.logger.info "POST PARAMS: #{@user.inspect}"    
 
     if @user.valid? && @user.save
 

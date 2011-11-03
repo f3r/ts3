@@ -1,58 +1,46 @@
 = render :partial => 'user_left_column'
 %section.span8
   = render :partial => 'user_header'
-  = form_tag user_path(:id => @user['id'], :access_token => current_token), :method => :put do
+  = form_tag @user, :method => :put do
     .input
-      = label_tag 'First name'
-      = text_field_tag 'user[first_name]', @user['first_name']
+      = label_tag @user['first_name'], "First Name"
+      = text_field_tag @user['first_name'], @user['first_name']
     .input
-      = label_tag 'Last name'
-      = text_field_tag 'user[last_name]', @user['last_name']
-    .span3
-      = label_tag 'Gender'
-    .span4
-      = text_field_tag 'user[gender]', @user['gender']
-    .span3
-      = label_tag 'Mobile Phone Number'
-    .span4
-      = text_field_tag 'user[phone_mobile]', @user['phone_mobile']
-    .span3
-      = label_tag 'Home Phone Number'
-    .span4
-      = text_field_tag 'user[phone_home]', @user['phone_home']
-    .span3
-      = label_tag 'Work Phone Number'
-    .span4
-      = text_field_tag 'user[phone_work]', @user['phone_work']
-    .span3
-      = label_tag 'Birthdate'
-    .span4
-      = text_field_tag 'user[birthdate]', @user['birthdate']
+      = label_tag @user['last_name'], "Last Name"
+      = text_field_tag @user['last_name'], @user['last_name']
+    .input
+      = label_tag @user['gender'], 'Gender'
+      = text_field_tag @user['gender'], @user['gender']
+    .input
+      = label_tag @user['phone_mobile'], 'Mobile Phone Number'
+      = text_field_tag @user['phone_mobile'], @user['phone_mobile']
+    .input
+      = label_tag @user['phone_home'], 'Home Phone Number'
+      = text_field_tag @user['phone_home'], @user['phone_home']
+    .input
+      = label_tag @user['phone_work'], 'Work Phone Number'
+      = text_field_tag @user['phone_work'], @user['phone_work']
+    .input
+      = label_tag @user['birthdate'], "Birthdate"
+      = text_field_tag @user['birthdate'], @user['birthdate']
     .clearfix
 
     -#Password Section
     .section-header Password
-    .span3.center
+    .input
       = label_tag 'Current Password'
-    .span4.center
       = text_field_tag 'current_password', 'current_password'
-    .span3.center
+    .input
       = label_tag 'Password'
-    .span4.center
       = text_field_tag 'password', 'password'
-    .span3.center
+    .input
       = label_tag 'Re-type Password'
-    .span4.center
       = text_field_tag 'password_confirmation', 'password_confirmation'
     .clearfix
 
     -#Accounts Section
-    .section-header Accounts
-    .commenter
-      .user_box
-        .user_photo= placehold(40,40)
-        .user_data
-          .user_name= link_to "Jonathan Green", "#"
+    .section-header Linked Accounts
+    = render :partial => 'user_accounts'
     .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'

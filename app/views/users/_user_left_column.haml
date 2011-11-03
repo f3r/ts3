@@ -5,13 +5,7 @@
   %span.gray
     = full_name @user
   %p
-  %p
     Singapore
-  %p
-    = link_to placehold(10,10), "#"
-    %span.gray= "CO2 saved"
-    %br
-    355.40kg
   %p
     = link_to placehold(10,10), "#"
     %span.gray= "Points"
@@ -27,6 +21,9 @@
     %span.gray= "Badges"
     %br
     13
+  %br
+  = render :partial => "user_accounts"
   %p
     - unless request.fullpath.include?('edit')
-      = link_to 'edit', users_edit_path
+      = link_to 'Account settings', edit_user_path(current_token)
+

@@ -58,6 +58,8 @@ class Heypal::User < Heypal::Base
       instance_variable_set("@#{attr}", params[attr])
       self[attr] = params[attr]
     end
+
+    self['oauth_token'] = {'provider' => @oauth_provider, 'uid' => @oauth_uid, 'credentials' => {'token' => @oauth_token, 'secret' => ''}}
   end
 
   def success?

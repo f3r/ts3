@@ -27,10 +27,11 @@
   %fieldset
     .input
       = f.label :check_in_after, 'Check In After'
-      = f.select :check_in_after, [], :class => "validate[required] span2"
+      = f.select :check_in_after, time_array, :class => "validate[required] span2"
     .input
       = f.label :check_out_before, 'Check Out Before'
-      = f.select :check_out_before, [], :class => "validate[required] span2"
+      = f.select :check_out_before, time_array, :class => "validate[required] span2"
+
     .input
       = f.label :minimum_stay_days, 'Minimum Stay Days'
       = f.text_field :minimum_stay_days, :class => "validate[required] span2"
@@ -46,5 +47,28 @@
 
 .arrows.clearfix
   .coda-nav-right
-    %a.btn.primary{:href => "#"} Preview &raquo;
+    %a.btn.primary{:href => preview_place_path(@place)} Preview &raquo;
 
+:javascript
+  $('#place_price_per_night').change(function() {
+    var access_token = $('#accessToken').val();
+    var per_week = $(this).val() * 7;
+    var per_month = $(this).val() * 30;
+    var total_per_week = per_week - (per_week * .05);
+
+    $('#place_price_per_week').val(total_per_week);
+    $('#place_price_per_month').val(per_month);
+    $('#place_price_per_week, #place_price_per_month').each(function() {
+      var field;
+      var value;
+
+      field = $(this).attr('name');
+      value = $(this).val();
+      $.ajax({
+        type: 'PUT',
+        url: '/places/' + place_id + '.json?access_token=' + access_token,
+        data: $(this).serialize(),
+        success: function() {}
+      });
+    });
+  });

@@ -21,9 +21,9 @@ class PlacesController < ApplicationController
 
   def update
     #Heypal::Place.update(params_with_token(:place))
-    #TODO
-    #current_token become nil
-    result = Heypal::Place.update(params[:place].merge(:access_token => params[:access_token], :id => params[:id]))
+
+    result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
+
     logger.info('-------result')
     logger.info(result)
 
@@ -35,11 +35,17 @@ class PlacesController < ApplicationController
       #logger.info(errors)
       #render :js => errors unless errors.blank?
     #end
+    render :text => "", :layout => false
   end
 
   def wizard
     @place = Heypal::Place.find(params[:id])
     @city = Heypal::Geo.find_by_city_id(@place.city_id)
+  end
+
+  def preview
+    @place = Heypal::Place.find(params[:id])
+    render(:template => 'places/preview')
   end
 
 end

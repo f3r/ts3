@@ -46,7 +46,10 @@
   try{Typekit.load();}catch(e){}
 
 %script{:src => '/javascripts/bootstrap-twipsy.js', :type => 'text/javascript'}
+
+= csrf_meta_tag
 -#live validation
 %link{:rel => "stylesheet", :href => "/stylesheets/validationEngine.jquery.css"}
 %script{:src => "/javascripts/jquery.validationEngine-en.js", :type => "text/javascript"}
 %script{:src => "/javascripts/jquery.validationEngine.js", :type => "text/javascript"}
+

@@ -806,6 +806,9 @@ aside .section-header, .aside .section-header, .section-header {
       h1{
         line-height: 1.2em;
         margin-bottom: 15px;
+      }
+      p{
+        color: #888;
       }      
     }
     
@@ -1025,22 +1028,22 @@ aside .section-header, .aside .section-header, .section-header {
 
 ul.references{
   list-style-type: none;
-  margin: 0;
+  margin: 0 0 20px 0;
   
   li{
     padding: 3px 0 3px 25px;
     
     &.check{
-      background: transparent url(../images/icons/icon.check.png) no-repeat center center;
+      background: transparent url(../images/icons/icon.check.png) no-repeat 0 center;
     }
     &.reviews{
-      background: transparent url(../images/icons/icon.reviews.png) no-repeat center center;
+      background: transparent url(../images/icons/icon.smile.png) no-repeat 0 center;
     }
     &.response{
-      background: transparent url(../images/icons/icon.response.png) no-repeat center center;
+      background: transparent url(../images/icons/icon.response.png) no-repeat 0 center;
     }
     &.friends{
-      background: transparent url(../images/icons/icon.friends.png) no-repeat center center;
+      background: transparent url(../images/icons/icon.people.png) no-repeat 0 center;
     }    
   }
 } // references
@@ -1076,6 +1079,7 @@ ul.references{
   .input,
   .loc-filter{
     .floatLeft();
+    margin: 0;
   }
   .loc-filter{
     padding-top: 2px;

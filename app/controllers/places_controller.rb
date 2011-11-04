@@ -42,4 +42,9 @@ class PlacesController < ApplicationController
     @city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
+  def preview
+    @place = Heypal::Place.find(params[:id])
+    render(:template => 'places/preview')
+  end
+
 end

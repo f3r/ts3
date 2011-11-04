@@ -23,6 +23,7 @@ HeyPalFrontEnd::Application.routes.draw do
 
     member do
       get :wizard
+      get :preview
     end
 
   end

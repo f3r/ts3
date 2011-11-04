@@ -27,10 +27,10 @@
   %fieldset
     .input
       = f.label :check_in_after, 'Check In After'
-      = f.select :check_in_after, [], :class => "span2"
+      = f.select :check_in_after, time_array, :class => "span2"
     .input
       = f.label :check_out_before, 'Check Out Before'
-      = f.select :check_out_before, [], :class => "span2"
+      = f.select :check_out_before, time_array, :class => "span2"
     .input
       = f.label :minimum_stay_days, 'Minimum Stay Days'
       = f.text_field :minimum_stay_days, :class => "span2"

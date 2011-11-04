@@ -64,6 +64,8 @@ class Heypal::Place < Heypal::Base
       p = p.merge(result['place']['amenities']) if result['place']['amenities'].present?
       p = p.merge(result['place']['details']) if result['place']['details'].present?
       p = p.merge(result['place']['location']) if result['place']['location'].present?
+      p = p.merge(result['place']['terms_of_offer']) if result['place']['terms_of_offer'].present?
+      p = p.merge(result['place']['pricing']) if result['place']['pricing'].present?
       p = p.merge(result['place'])
 
 

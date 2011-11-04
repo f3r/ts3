@@ -99,7 +99,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = Heypal::User.new(params_with_token(:user)) 
+    @user = Heypal::User.new(params_with_token(:user))
 
     if @user.valid? && @user.save
       redirect_to profile_path

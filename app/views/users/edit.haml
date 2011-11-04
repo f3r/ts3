@@ -41,8 +41,9 @@
 
     -#Accounts Section
     .section-header Linked Accounts
-    = render :partial => 'user_accounts'
+    = render :partial => "user_accounts"
+
     .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'
-      = button_tag 'Cancel', :class => 'btn secondary'
+      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path

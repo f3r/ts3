@@ -23,86 +23,16 @@
   #photo-slider
     .viewport
       %ul.overview
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")              
-        %li
-          .big
-            = image_tag("http://placehold.it/490x340")
-          .small
-            %a{:href => "#"}
-              = image_tag("http://placehold.it/200x165")
-            %a{:href => "#"}              
-              = image_tag("http://placehold.it/200x165")
+        - 10.times do 
+          %li
+            .big
+              = image_tag("http://placehold.it/490x340")
+            .small
+              %a{:href => "#"}
+                = image_tag("http://placehold.it/200x165")
+              %a{:href => "#"}              
+                = image_tag("http://placehold.it/200x165")
+
 
     .slider-nav      
       %a.buttons.prev{:href => "#"} 
@@ -143,10 +73,11 @@
         =raw('&raquo;')
 
     / %a#gotoslide4{:href => "#"} Go to 4  
+
+  #photo-slider-control
+    Gallery Controls:
     %a#stopslider{:href => "#"} Stop
-    %a#startslider{:href => "#"} Play
-    
-    %br 
+    %a#startslider{:href => "#"} Play    
          
     
   %ul.tabs

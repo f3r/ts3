@@ -6,7 +6,7 @@ module UsersHelper
 
   def nickname(user)
     nick = 'no username yet'
-    nick = "#{user['first_name'][0]}#{user['last_name']}" unless user['first_name'].nil? && user['last_name'].nil?
+    nick = "#{user['first_name']} #{user['last_name']}" unless user['first_name'].nil? && user['last_name'].nil?
   end
 
   def date_convert(date)

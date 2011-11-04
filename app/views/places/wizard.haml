@@ -2,7 +2,9 @@
   .span12
     .coda-slider-wrapper
       #coda-slider-1.coda-slider.preload
-        = form_for :place, :class => 'form-stacked' do |f|
+        = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+          = hidden_field_tag :place_id, params[:id]
+          = hidden_field_tag :token, form_authenticity_token, :id => 'token'
           / .description
           .panel
             = render 'step_2', :f => f
@@ -53,4 +55,33 @@
           %a{:href => "#6"}
             %span
             Preview
+= hidden_field_tag 'access_token', current_token, :id => 'accessToken'
+:javascript
 
+  var place_id = $('#place_id').val();
+  var token = $('#token').val();
+  var access_token = $('#accessToken').val();
+  // proof of concept - save on update feature
+  $('#wizard_form input, #wizard_form textarea').each(function() {
+
+    $(this).blur(function() {
+      var field;
+      var value;
+
+      field = $(this).attr('name');
+      value = $(this).val();
+      $.ajax({
+        type: 'PUT',
+        url: '/places/' + place_id + '.json?access_token=' + access_token,
+        data: $(this).serialize(),
+        success: function() {}
+      });
+
+
+    });
+
+  });
+
+  $(document).ready(function() {
+    $('#place_max_guests').valid8();
+  });

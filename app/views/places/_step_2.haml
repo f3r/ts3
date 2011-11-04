@@ -1,28 +1,55 @@
 .panel-wrapper
   %h2.title Description
   %fieldset
+
+    .input
+      = f.label :title, 'Title'
+      = f.text_field :title, :class => "span8"
+
+    .input
+      = f.label :place_type_id, 'Type'
+      = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]      
+
     .input
       = f.label :description
-      = f.text_area :description, :class => "span8", :rows => 5                
+      = f.text_area :description, :class => "span8", :rows => 5         
     .input
-      = f.label :max_guests, 'Max Guests'
-      = f.text_field :max_guests, :class => "span3"
+      = f.label :max_guests, 'Number of Guests'
+      = f.text_field :max_guests, :class => "span1"
     .input
       = f.label :num_bedrooms, 'Number of Bedrooms'
-      = f.text_field :num_bedrooms, :class => "span3"
+      = f.text_field :num_bedrooms, :class => "span1"
     .input
       = f.label :num_beds, 'Number of Beds'
-      = f.text_field :num_beds, :class => "span3"
-  %h2.title Dimensions
-  %fieldset      
+      = f.text_field :num_beds, :class => "span1"
+    .input
+      = f.label :num_bathrooms, 'Number of Bathrooms'
+      = f.text_field :num_bathrooms, :class => "span1"      
+
     .input
       = f.label :sqm
       = f.text_field :sqm, :class => "span2"
     .input
-      = f.label :sqf
-      = f.text_field :sqf, :class => "span2"
+      = f.label :size_type
+      = f.select :size_type, ["m2", "ft2"], :class => "span2", :style => "width:60px"
   %h2.title Address
   %fieldset
+
+    .input
+      = f.label :city_id, 'City'
+      = f.text_field :city_id, :class => "span6", :value => "22186"    
+    .input
+      = f.label :city
+      = @city['name']
+
+    .input
+      = f.label :state
+      = @city['state']['name']
+
+    .input
+      = f.label :country
+      = @city['country']['name']
+
     .input
       = f.label :address_1
       = f.text_field :address_1, :class => "span5"
@@ -43,3 +70,5 @@
 .arrows.clearfix
   .coda-nav-right
     %a.btn.primary{:href => "#"} Next Step &raquo;
+
+

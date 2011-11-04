@@ -1,3 +1,12 @@
+- No overlapping of dates
+- Ability to set prices per date range
+- Minimum Stay (no minimum / no maximum)
+
+- Check in after/before, 30 mins interval, flexible
+- Military Time
+- 
+
+
 Step 1
 - Cities dropdown should be strict
 - Square meter auto convert to square foot
@@ -64,91 +73,79 @@ end
 
 
 
-class Place < ActiveRecord::Migration
- def change
-    add_column :places, :user_id,         :integer
-    add_column :places, :published,         :boolean
-
-    # Place Description
-    add_column :places, :title,             :string
-    add_column :places, :description,         :text
-    add_column :places, :place_type_id,     :integer    # Relates to place_type model
-    add_column :places, :num_bedrooms,     :integer
-    add_column :places, :num_beds,         :integer
-    add_column :places, :num_bathrooms,     :integer
-    add_column :places, :sqm,             :float        # Should be able to calculate sqf
-    add_column :places, :max_guests,         :integer
-
-    # Geographical stuff
-    # Province/Country updates automatically on insert/update
-    add_column :places, :city_id,         :integer    # Relates to cities model
-    add_column :places, :province_id,         :integer    # Relates to provinces model
-    add_column :places, :country_id,         :integer    # Relates to countries model
-    add_column :places, :address_1,         :string
-    add_column :places, :address_2,         :string
-    add_column :places, :zip,             :string
-    add_column :places, :lat,             :double        # updates on address change
-    add_column :places, :lon,             :double        # updates on address change
-    add_column :places, :directions,         :text
-
-    # Amenities included (A-Z)
-    add_column :places, :amenities_aircon,        :boolean,     :default => false
-    add_column :places, :amenities_breakfast,        :boolean,     :default => false
-    add_column :places, :amenities_buzzer_intercom,    :boolean,     :default => false
-    add_column :places, :amenities_cable_tv,        :boolean,     :default => false
-    add_column :places, :amenities_dryer,        :boolean,     :default => false
-    add_column :places, :amenities_doorman,        :boolean,     :default => false
-    add_column :places, :amenities_elevator,         :boolean,     :default => false
-    add_column :places, :amenities_family_friendly,    :boolean,     :default => false
-    add_column :places, :amenities_gym,        :boolean,     :default => false
-    add_column :places, :amenities_hot_tub,        :boolean,     :default => false
-    add_column :places, :amenities_kitchen,        :boolean,     :default => false
-    add_column :places, :amenities_handicap,        :boolean,     :default => false
-    add_column :places, :amenities_heating,        :boolean,     :default => false
-    add_column :places, :amenities_hot_water,        :boolean,     :default => false
-    add_column :places, :amenities_internet,        :boolean,     :default => false
-    add_column :places, :amenities_internet_wifi,    :boolean,     :default => false
-    add_column :places, :amenities_jacuzzi,        :boolean,     :default => false
-    add_column :places, :amenities_parking_included,    :boolean,     :default => false
-    add_column :places, :amenities_pets_allowed,     :boolean,     :default => false
-    add_column :places, :amenities_pool,        :boolean,     :default => false
-    add_column :places, :amenities_smoking_allowed,    :boolean,     :default => false
-    add_column :places, :amenities_suitable_events,    :boolean,     :default => false
-    add_column :places, :amenities_tennis,        :boolean,     :default => false
-    add_column :places, :amenities_tv,            :boolean,     :default => false
-    add_column :places, :amenities_washer,        :boolean,     :default => false
-
-    # Pricing of the offer
-    # Currency from: https://github.com/RubyMoney/money/blob/master/config/currency.json
-    add_column :places, :currency,             :string        # Currency_iso
-    add_column :places, :price_per_night,        :integer    # Currency Units, not cents 1=$1
-    add_column :places, :price_per_week,        :integer
-    add_column :places, :price_per_month,        :integer
-    add_column :places, :price_final_cleanup,        :integer
-    add_column :places, :price_security_deposit,    :integer
-    # Fields for price comparison, must be updated with currency exchange every couple of days
-    add_column :places, :price_per_night_usd,        :integer    # Dollar Cents
-    add_column :places, :price_per_week_usd,        :integer
-    add_column :places, :price_per_month_usd,        :integer
-
-    # Terms of the offer
-    add_column :places, :check_in_after,        :string        #11:00 / 11:30 / 13:30
-    add_column :places, :check_out_before,        :string        #11:00 / 11:30 / 13:30
-    add_column :places, :minimum_stay_days,        :integer    # 0 means no minimum
-    add_column :places, :maximum_stay_days,        :integer    # 0 means no maximum
-    add_column :places, :house_rules,            :text
-    add_column :places, :cancellation_policy,        :integer    # should align with frontend
-
-#  cancellation_policies
-
-#       1: flexible     # full refund 1 day prior to arrival, except fees
-
-#       2: moderate     # full refund 5 days prior to arrival, except fees
-
-#       3: strict       # 50% refund up until 1 week prior, except fees
- end
-end
-
+ create_table "places", :force => true do |t|
+    t.integer  "user_id"
+    t.boolean  "published",                  :default => false
+    t.string   "title"
+    t.text     "description"
+    t.integer  "place_type_id"
+    t.integer  "num_bedrooms"
+    t.integer  "num_beds"
+    t.integer  "num_bathrooms"
+    t.float    "sqm"
+    t.integer  "max_guests"
+    t.text     "photos"
+    t.integer  "city_id"
+    t.integer  "state_id"
+    t.integer  "country_id"
+    t.string   "address_1"
+    t.string   "address_2"
+    t.string   "zip"
+    t.float    "lat"
+    t.float    "lon"
+    t.text     "directions"
+    t.boolean  "amenities_aircon",           :default => false
+    t.boolean  "amenities_breakfast",        :default => false
+    t.boolean  "amenities_buzzer_intercom",  :default => false
+    t.boolean  "amenities_cable_tv",         :default => false
+    t.boolean  "amenities_dryer",            :default => false
+    t.boolean  "amenities_doorman",          :default => false
+    t.boolean  "amenities_elevator",         :default => false
+    t.boolean  "amenities_family_friendly",  :default => false
+    t.boolean  "amenities_gym",              :default => false
+    t.boolean  "amenities_hot_tub",          :default => false
+    t.boolean  "amenities_kitchen",          :default => false
+    t.boolean  "amenities_handicap",         :default => false
+    t.boolean  "amenities_heating",          :default => false
+    t.boolean  "amenities_hot_water",        :default => false
+    t.boolean  "amenities_internet",         :default => false
+    t.boolean  "amenities_internet_wifi",    :default => false
+    t.boolean  "amenities_jacuzzi",          :default => false
+    t.boolean  "amenities_parking_included", :default => false
+    t.boolean  "amenities_pets_allowed",     :default => false
+    t.boolean  "amenities_pool",             :default => false
+    t.boolean  "amenities_smoking_allowed",  :default => false
+    t.boolean  "amenities_suitable_events",  :default => false
+    t.boolean  "amenities_tennis",           :default => false
+    t.boolean  "amenities_tv",               :default => false
+    t.boolean  "amenities_washer",           :default => false
+    t.string   "currency"
+    t.integer  "price_per_night"
+    t.integer  "price_per_week"
+    t.integer  "price_per_month"
+    t.integer  "price_final_cleanup",        :default => 0
+    t.integer  "price_security_deposit",     :default => 0
+    t.integer  "price_per_night_usd"
+    t.integer  "price_per_week_usd"
+    t.integer  "price_per_month_usd"
+    t.string   "check_in_after"
+    t.string   "check_out_before"
+    t.integer  "minimum_stay_days",          :default => 0
+    t.integer  "maximum_stay_days",          :default => 0
+    t.text     "house_rules"
+    t.integer  "cancellation_policy",        :default => 1
+    t.float    "reviews_overall",            :default => 0.0
+    t.float    "reviews_accuracy_avg",       :default => 0.0
+    t.float    "reviews_cleanliness_avg",    :default => 0.0
+    t.float    "reviews_checkin_avg",        :default => 0.0
+    t.float    "reviews_communication_avg",  :default => 0.0
+    t.float    "reviews_location_avg",       :default => 0.0
+    t.float    "reviews_value_avg",          :default => 0.0
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "price_final_cleanup_usd"
+    t.integer  "price_security_deposit_usd"
+  end
 class PlacePhoto < ActiveRecord::Migration
  def change
     add_column :place_photos, :place_id,            :integer

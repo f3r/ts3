@@ -8,10 +8,10 @@
           %li
             = link_to t(:my_heypal), '#'
           %li
-            = link_to t(:profile), users_show_path(:access_token => current_token)
+            = link_to t(:profile), profile_path
         %ul.nav.secondary-nav
           %li.add-item
-            = link_to t(:add_a_place), '#'
+            = link_to t(:add_a_place), new_place_path
           %li.notification
             = link_to "5", '#', :class => 'dropdown-toggle'
             %ul.dropdown-menu

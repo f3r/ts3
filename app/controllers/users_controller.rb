@@ -5,22 +5,19 @@ class UsersController < ApplicationController
   end
 
   def create
-
-
     @user = Heypal::User.new(params[:user])
 
-    #if params[:user][:oauth_token].present?    
-      @user.oauth_token = {'provider' => params['oauth_provider'], 
-        'uid' => params[:oauth_uid], 
-        'credentials' => { 
-          'token' => params[:oauth_token], 
+    #if params[:user][:oauth_token].present?
+      @user.oauth_token = {'provider' => params['oauth_provider'],
+        'uid' => params[:oauth_uid],
+        'credentials' => {
+          'token' => params[:oauth_token],
           'secret' => ''
         }
       }
     #end
 
-    #Rails.logger.info "POST PARAMS: #{@user.inspect}"    
-
+    #Rails.logger.info "POST PARAMS: #{@user.inspect}"
     if @user.valid? && @user.save
 
       redirect_to signup_complete_path
@@ -92,24 +89,24 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = Heypal::User.show(params)
-    logger.info(@user)
-    @user_list = Heypal::User.list(params)
-    logger.info(@user_list)
+    @user = Heypal::User.show('access_token' => current_token)
+
+    @user_auth = Heypal::User.list('access_token' => current_token)
   end
 
   def edit
-    @user = current_user
-    logger.info(@user)
+    @user = Heypal::User.show('access_token' => current_token)
+    @user_auth = Heypal::User.list('access_token' => current_token)
   end
 
   def update
-    @user = Heypal::User.update(params)
-    logger.info(@user)
-    if @user['stat'].eql?('ok')
-      redirect_to user_path(:access_token => params[:access_token])
+    @user = Heypal::User.new(params_with_token(:user)) 
+
+    if @user.valid? && @user.save
+      redirect_to profile_path
     else
-      redirect_to users_edit_path(:access_token => params[:access_token])
+      @user_auth = Heypal::User.list('access_token' => current_token)
+      render :action => :edit
     end
   end
 end

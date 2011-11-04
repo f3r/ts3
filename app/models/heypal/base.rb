@@ -42,8 +42,11 @@ class Heypal::Base < Hash
           delete(resource_url(path), options)
       end  
 
-      parse_json(result)
+      @results = parse_json(result)
 
+      Rails.logger.info "Result #{@results}"
+
+      @results    
     end
 
     def find(type, options = {})      
@@ -89,6 +92,11 @@ class Heypal::Base < Hash
 
   end
 
-
+  def deserialize(hash)
+    hash.each do |key, value|  
+      instance_variable_set("@#{key}", value)
+      self[key] = value
+    end
+  end
 
 end

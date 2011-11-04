@@ -8,36 +8,36 @@
 
     .input
       = f.label :place_type_id, 'Type'
-      = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]      
+      = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]], :class => 'validate[required]'      
 
     .input
       = f.label :description
-      = f.text_area :description, :class => "span8", :rows => 5         
+      = f.text_area :description, :class => "validate[required] span8", :rows => 5         
     .input
       = f.label :max_guests, 'Number of Guests'
-      = f.text_field :max_guests, :class => "span1"
+      = f.text_field :max_guests, :class => "validate[required,custom[integer]] span1"
     .input
       = f.label :num_bedrooms, 'Number of Bedrooms'
-      = f.text_field :num_bedrooms, :class => "span1"
+      = f.text_field :num_bedrooms, :class => "validate[required,custom[integer]] span1"
     .input
       = f.label :num_beds, 'Number of Beds'
-      = f.text_field :num_beds, :class => "span1"
+      = f.text_field :num_beds, :class => "validate[required,custom[integer]] span1"
     .input
       = f.label :num_bathrooms, 'Number of Bathrooms'
-      = f.text_field :num_bathrooms, :class => "span1"      
+      = f.text_field :num_bathrooms, :class => "validate[required,custom[integer]] span1"      
 
     .input
       = f.label :sqm
-      = f.text_field :sqm, :class => "span2"
+      = f.text_field :sqm, :class => "validate[required,custom[integer]] span2"
     .input
       = f.label :size_type
-      = f.select :size_type, ["m2", "ft2"], :class => "span2", :style => "width:60px"
+      = f.select :size_type, ["m2", "ft2"], :class => "validate[required] span2", :style => "width:60px"
   %h2.title Address
   %fieldset
 
     .input
       = f.label :city_id, 'City'
-      = f.text_field :city_id, :class => "span6", :value => "22186"    
+      = f.text_field :city_id, :class => "validate[required] span6", :value => "22186"    
     .input
       = f.label :city
       = @city['name']
@@ -52,7 +52,7 @@
 
     .input
       = f.label :address_1
-      = f.text_field :address_1, :class => "span5"
+      = f.text_field :address_1, :class => "validate[required] span5"
       %span.help-inline
         Street Address, Company 
     .input
@@ -62,10 +62,10 @@
         Apartment / Unit Number / Suite
     .input
       = f.label :zip
-      = f.text_field :zip, :class => "span3"
+      = f.text_field :zip, :class => "validate[required] span3"
     .input
       = f.label :directions
-      = f.text_area :directions, :class => "span8", :rows => 5       
+      = f.text_area :directions, :class => "validate[required] span8", :rows => 5       
 
 .arrows.clearfix
   .coda-nav-right

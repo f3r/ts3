@@ -28,7 +28,7 @@ HeyPalFrontEnd::Application.routes.draw do
   end
   
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'
-  match '/users/password/:token'  => 'users#confirm_reset_password'
+  match '/users/password/:reset_password_token'  => 'users#confirm_reset_password'
 
 
   match '/profile' => 'users#show', :as => :profile

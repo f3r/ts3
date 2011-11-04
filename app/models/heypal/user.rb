@@ -56,7 +56,10 @@ class Heypal::User < Heypal::Base
 
   def initialize(params = {})
     deserialize(params)
+
     self['oauth_token'] = {'provider' => @oauth_provider, 'uid' => @oauth_uid, 'credentials' => {'token' => @oauth_token, 'secret' => ''}}
+
+    @auth_token = self['auth_token']
   end
 
   def success?

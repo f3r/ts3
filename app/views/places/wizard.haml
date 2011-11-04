@@ -99,11 +99,11 @@
     $(this).blur(sendFieldUpdate);
   });
 
-   $("#wizard_form input[type='checkbox']").each(function() {
+
+  $("#wizard_form input[type='checkbox']").each(function() {
     $(this).change(sendCheckBoxUpdate);
-   });
+  });
 
-
-  $(document).ready(function() {
-    $('#place_max_guests').valid8();
+  jQuery(document).ready(function() {
+    jQuery('#wizard_form').validationEngine();
   });

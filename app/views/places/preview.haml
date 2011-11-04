@@ -1,0 +1,61 @@
+.row
+  .span12
+    .coda-slider-wrapper
+      #coda-slider-1.coda-slider.preload
+        .panel
+          .panel-wrapper
+            %h2.title Preview
+            .row
+              .span2x
+                .image
+                  %img{:src => "http://placehold.it/100x100"}/
+                %br
+                %img{:src => "http://placehold.it/24x24"}/
+                %img{:src => "http://placehold.it/24x24"}/        
+              .span8
+                %h1= @place.title
+                .labels
+                  %span.label.new like new
+                  %span.label.nearby nearby
+                .environmental
+                  %span.gray
+
+
+                %br.clearfix/
+                %p.description
+                  = @place.description
+                %p.small.sup
+        added on 24 March 2011
+
+  .span4
+    #coda-nav-1.coda-nav
+      %ul
+        %li.tab1
+          %a{:href => "#{wizard_place_path(@place)}#1"}
+            %span
+            General Info
+
+        %li.tab2
+          %a{:href => "#{wizard_place_path(@place)}#2"}
+            %span
+            Photos
+
+        %li.tab3
+          %a{:href => "#{wizard_place_path(@place)}#3"}
+            %span
+            Amenities
+
+        %li.tab4
+          %a{:href => "#{wizard_place_path(@place)}#4"}
+            %span
+            Calendar
+
+        %li.tab5
+          %a{:href => "#{wizard_place_path(@place)}#5"}
+            %span
+            Price and Conditions
+
+        %li.tab6
+          %a{:href => preview_place_path(@place) }
+            %span
+            Preview

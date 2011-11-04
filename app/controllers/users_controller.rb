@@ -90,7 +90,6 @@ class UsersController < ApplicationController
 
   def show
     @user = Heypal::User.show('access_token' => current_token)
-
     @user_auth = Heypal::User.list('access_token' => current_token)
   end
 

@@ -1,5 +1,6 @@
 = render :partial => 'user_left_column'
 %section.span8
+  .section-header User Information
   = error_messages_for :user
   = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
     .input

@@ -1,4 +1,3 @@
-= @place.inspect
 .row
   .span12
     .coda-slider-wrapper
@@ -61,7 +60,7 @@
   var place_id = $('#place_id').val();
 
   // proof of concept - save on update feature
-  $('#wizard_form input').each(function() {
+  $('#wizard_form input, #wizard_form textarea').each(function() {
 
     $(this).blur(function() {
       var field;

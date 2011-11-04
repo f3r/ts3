@@ -2,18 +2,18 @@ class Heypal::User < Heypal::Base
 
   set_resource_path '/users.json'
 
-  @@attributes = %w(first_name last_name email password password_confirmation terms oauth_provider oauth_token oauth_uid)
+  @@attributes = %w(first_name last_name gender email password password_confirmation terms oauth_provider oauth_token oauth_uid phone_home phone_mobile phone_work birthdate access_token)
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
   define_attribute_methods = @@attributes
 
-  validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true
-  validates :password, :confirmation => true
-  validates :terms, :acceptance => true
+  validates :first_name, :last_name, :email, :password, :password_confirmation, :presence => true, :on => :create
+  validates :password, :confirmation => true, :on => :create
+  validates :terms, :acceptance => true, :on => :create
 
   class << self
     def create(params = {})
-      self.new.merge(request('/users/sign_up.json', :post, params))
+      self.new.unserialize(request('/users/sign_up.json', :post, params))
     end
 
     def confirm(params = {})
@@ -33,18 +33,19 @@ class Heypal::User < Heypal::Base
 
     def confirm_reset_password(params = {})
       result = request('/users/password.json', :put, params)
-
-      Rails.logger.info result.inspect
       result['stat'] == 'ok'
     end
 
     def show(params = {})
       result = request("/users.json?access_token=#{params['access_token']}", :get, params)
-      result['user']
+      self.new(result['user'])
     end
 
     def update(params = {})
       result = request("/users.json?access_token=#{params['access_token']}", :put, params)
+      if result['stat'] == 'ok'
+
+      end
     end
 
     def list(params = {})
@@ -54,11 +55,7 @@ class Heypal::User < Heypal::Base
   end
 
   def initialize(params = {})
-    @@attributes.each do |attr|
-      instance_variable_set("@#{attr}", params[attr])
-      self[attr] = params[attr]
-    end
-
+    deserialize(params)
     self['oauth_token'] = {'provider' => @oauth_provider, 'uid' => @oauth_uid, 'credentials' => {'token' => @oauth_token, 'secret' => ''}}
   end
 
@@ -66,14 +63,23 @@ class Heypal::User < Heypal::Base
     self['user_id'].present?
   end
 
+  def new_record?
+    self['id'].blank? && self.access_token.blank?
+  end
+
   def save
-    response = self.class.request('/users/sign_up.json', :post, self.to_hash)
-    if response['stat'] == 'ok'
+    if new_record?
+      @response = self.class.request('/users/sign_up.json', :post, self.to_hash)        
+    else
+      @response = self.class.request("/users.json?access_token=#{self.access_token}", :put, self.to_hash)
+    end
+
+    if @response['stat'] == 'ok'
       return true
     else
-      Rails.logger.info response.inspect
+      Rails.logger.info @response.inspect
       # TODO: Standardize the error message
-      self.errors.add(:base, response['err'])
+      self.errors.add(:base, @response['err'])
       return false
     end
   end

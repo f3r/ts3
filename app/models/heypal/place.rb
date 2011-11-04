@@ -3,11 +3,11 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id num_bedrooms num_beds sqm sqf max_guests access_token 
+    title description place_type_id city_id num_bedrooms num_beds num_bathrooms sqm sqf max_guests size_type access_token
   )
 
   @@geo_attributes = %w(
-    city_id address_1 address_2 zip directions
+    address_1 address_2 zip directions state_id country_id 
   )
 
   @@amenities_attributes = %w(amenities_aircon amenities_breakfast amenities_buzzer_intercom amenities_cable_tv amenities_dryer amenities_doorman amenities_elevator amenities_family_friendly amenities_gym amenities_hot_tub amenities_kitchen amenities_handicap amenities_heating amenities_hot_water amenities_internet amenities_internet_wifi amenities_jacuzzi amenities_parking_included amenities_pets_allowed amenities_pool amenities_smoking_allowed amenities_suitable_events amenities_tennis amenities_tv amenities_washer)
@@ -28,69 +28,89 @@ class Heypal::Place < Heypal::Base
 
   validates :title, :place_type_id, :num_bedrooms, :num_beds, :max_guests, :city_id, :presence => true
 
+  validates :terms, :acceptance => true
+
   attr_accessor :photos
 
   class << self 
 
     def create(options)
-      self.new.merge(request('/places.json', :post, options))
-    end
+      result = request('/places.json', :post, options)
 
-    def update(options)
-      result = request('/places.json', :put, options)
-      result['stat'] == 'ok'
+      if result['stat'] == 'ok'    
+        return normalize_place(result)
+      else
+        #TODO: display error here.
+      end
+
     end
 
     def find(id)
       result = request('/places/' + id + '.json' , :get)
       if result['stat'] == 'ok'
-        self.new.merge(result['place'])
+        return self.new(normalize_place(result))
       end
+    end
 
+    def normalize_place(result)
+      # merge the place hash for now
+      p = {}
+      p = p.merge(result['place']['amenities']) if result['place']['amenities'].present?
+      p = p.merge(result['place']['details']) if result['place']['details'].present?
+      p = p.merge(result['place']['location']) if result['place']['location'].present?
+      p = p.merge(result['place'])
+
+
+      # cleanup, messy but this should work for now
+      #
+      p.delete('details')
+      p.delete('location')
+      p.delete('place_type')
+
+      p['user_id'] = result['place']['user']['id']
+      p['place_type_id'] = result['place']['place_type']['id']
+      Rails.logger.info "Normalized Params #{p}"
+      p    
     end
 
   end
 
   def initialize(params = {})
-    @@general_attributes.each do |attr|
-      instance_variable_set("@#{attr}", params[attr])
-      self[attr] = params[attr]
-    end
+    deserialize(params) if params
+    self
   end  
 
   def save
-    return self.class.create(self)
-    #if new_record?
-      #if self.class.create(self)
-        #return true
-      #else 
-        #return false
-      #end
-    #else
-      #if self.class.update(self)
-        #return true
-      #else
-        #return false
-      #end
-    #end
+    if new_record?
+      if response = self.class.create(self)
+        self.deserialize(response)
+        return true
+      else
+        return false
+      end
+    else
+      if self.class.update(self)
+        return true
+      else
+        return false
+      end
+    end
   end
 
-  def id
+  #def id
     #self['id']
-    1
-  end
+  #end
 
   def valid?
     self['stat'] == 'ok'
   end
 
   def new_record?
-    true
-    #self['id'].present?
+    self['id'].blank?
   end
 
   def to_param
-    id.to_s
+    self['id'].to_s
   end
 
 end

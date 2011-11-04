@@ -21,4 +21,10 @@
       .input-append
         %p.span2=a[0]          
         %label.add-on.active
-          = f.check_box a[1]        
+          = f.check_box a[1]
+
+.arrows.clearfix
+  .coda-nav-left
+    %a.btn.primary{:href => "#"} &laquo; Previous Step
+  .coda-nav-right
+    %a.btn.primary{:href => "#"} Next Step &raquo;          

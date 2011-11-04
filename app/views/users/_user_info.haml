@@ -1,5 +1,6 @@
 %section.span8
-  = render :partial => 'user_header'
+  -#= render :partial => 'user_header'
+
   .span8.edge-left
     .span3
       Fullname
@@ -29,4 +30,4 @@
     .span3
       Birthdate
     .span4
-      = date_convert @user['birthdate']
+      = date_convert @user['birthdate'] unless @user['birthdate'].blank?

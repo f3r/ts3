@@ -17,18 +17,15 @@ class PlacesController < ApplicationController
     else
       render :action => :new
     end
-
   end
 
   def update
-    place_params = params[:place]
-    place_params[:access_token] = current_token
-
-    Heypal::Place.update(place_params)
+    Heypal::Place.update(params_with_token(:place))
   end
 
   def wizard
     @place = Heypal::Place.find(params[:id])
+    @city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
 end

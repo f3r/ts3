@@ -89,27 +89,24 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = Heypal::User.show('access_token' => params[:id])
-    logger.info(@user)
+    @user = Heypal::User.show('access_token' => current_token)
+
     @user_auth = Heypal::User.list('access_token' => current_token)
-    logger.info(@authentications)
   end
 
   def edit
     @user = Heypal::User.show('access_token' => current_token)
-    logger.info(@user)
-    logger.info(@user.class)
     @user_auth = Heypal::User.list('access_token' => current_token)
-    logger.info(@user_auth)
   end
 
   def update
-    @user = Heypal::User.update(params[:user])
-    logger.info(@user)
-    if @user['stat'].eql?('ok')
-      redirect_to user_path(:access_token => params[:access_token])
+    @user = Heypal::User.new(params_with_token(:user)) 
+
+    if @user.valid? && @user.save
+      redirect_to profile_path
     else
-      redirect_to edit_user_path(current_token)
+      @user_auth = Heypal::User.list('access_token' => current_token)
+      render :action => :edit
     end
   end
 end

@@ -732,6 +732,20 @@ aside .section-header, .aside .section-header, .section-header {
 .pal-aside-profile{
   .textLeft();
   
+  .divider{    
+    background: #f8f8f8;    
+    color: #666;
+    font-weight: bold;
+    padding: 10px 7px;    
+    margin-bottom: 10px;
+    h2{
+      font-size: 11px;
+      margin: 0;
+      line-height: 1;
+      text-transform: uppercase;
+      text-align: center;
+    }
+  }  
   
   .name{
     .textCenter();
@@ -811,7 +825,7 @@ aside .section-header, .aside .section-header, .section-header {
   .thumb{
     padding: 4px;
   }  
-  .viewport { float: left; width: 700px; height: 370px; overflow: hidden; position: relative; margin-bottom: 10px; }  
+  .viewport { float: left; width: 700px; height: 340px; overflow: hidden; position: relative; margin-bottom: 10px; }  
   .disable { /*visibility: hidden;*/ opacity: .4; }
   .overview { 
     list-style: none; 
@@ -861,6 +875,7 @@ aside .section-header, .aside .section-header, .section-header {
     overflow: hidden;
     clear: both;
     padding: 10px;
+    margin-bottom: 10px;
     float: none;
     position: relative;
     
@@ -919,3 +934,112 @@ aside .section-header, .aside .section-header, .section-header {
     }    
   } // slider-nav
 } // #photo-slider 
+
+// Price Holder
+
+.destination{
+  padding: 5px 0;
+  clear: both;
+}
+
+.price-holder{
+  background: #f0f0f0;
+  border: 1px solid #eee;
+  .border-radius(2px);
+  padding: 10px;    
+  
+  .amt{
+    float: left;
+    margin: 0;
+    line-height: 1;
+    
+    span{
+      display: none;
+      border-top: 1px solid #bbb;
+      font-size: 11px;
+      font-weight: normal;
+      color: #666;
+      text-transform: uppercase;
+      margin-top: 5px;
+      padding-top: 5px;
+      letter-spacing: 0.025em;
+    }
+  }  
+  
+  .btn{
+    float: right;
+  }  
+  
+  .figure{
+    .clearfix();
+    overflow: hidden;  
+    _zoom: 1;    
+  }
+  
+  .filter{
+    clear: both;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #cecece;
+    
+    select{
+      width: 198px;
+    }
+  }  
+  
+} // price holder
+
+.fine-print{
+  clear: both;
+  margin:  15px 0;
+  padding: 10px 0;
+  border-top: 1px solid #eee;
+  
+  .col{
+    .clearfix();
+    overflow: hidden;
+    _zoom: 1;
+    
+    label{
+      font-weight: bold;
+      color: #353535;
+      background: none;
+      text-align: right;
+      width: 110px;
+      margin-right: 10px;
+    }
+    
+    .value{      
+      width: 100px;
+      font-weight: normal;
+    }
+    
+    label,.value{
+      float: left;
+      padding: 5px 0;
+    }
+  }  
+} // fine-print
+
+
+ul.references{
+  list-style-type: none;
+  margin: 0;
+  
+  li{
+    padding: 3px 0 3px 25px;
+    
+    &.check{
+      background: transparent url(../images/icons/icon.check.png) no-repeat center center;
+    }
+    &.reviews{
+      background: transparent url(../images/icons/icon.reviews.png) no-repeat center center;
+    }
+    &.response{
+      background: transparent url(../images/icons/icon.response.png) no-repeat center center;
+    }
+    &.friends{
+      background: transparent url(../images/icons/icon.friends.png) no-repeat center center;
+    }    
+  }
+} // references

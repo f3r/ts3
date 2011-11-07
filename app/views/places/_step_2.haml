@@ -4,8 +4,7 @@
 
     .input
       = f.label :title, 'Title'
-      = f.text_field :title, :class => "span8"
-
+      = f.text_field :title, :class => "span8", :class => "validate[required]"
     .input
       = f.label :place_type_id, 'Type'
       = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]], :class => 'validate[required]'      
@@ -37,18 +36,19 @@
 
     .input
       = f.label :city_id, 'City'
-      = f.text_field :city_id, :class => "validate[required] span6", :value => "22186"    
-    .input
-      = f.label :city
-      = @city['name']
+      = f.text_field :city_id, :class => "validate[required] span6", :value => "22186"
+    - if false
+      .input
+        = f.label :city
+        = @city['name']
 
-    .input
-      = f.label :state
-      = @city['state']['name']
+      .input
+        = f.label :state
+        = @city['state']['name']
 
-    .input
-      = f.label :country
-      = @city['country']['name']
+      .input
+        = f.label :country
+        = @city['country']['name']
 
     .input
       = f.label :address_1

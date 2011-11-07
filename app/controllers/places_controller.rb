@@ -40,7 +40,7 @@ class PlacesController < ApplicationController
 
   def wizard
     @place = Heypal::Place.find(params[:id])
-    @city = Heypal::Geo.find_by_city_id(@place.city_id)
+    #@city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
   def preview

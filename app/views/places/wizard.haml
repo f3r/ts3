@@ -26,25 +26,62 @@
   .span4
     = render :partial => 'sidebar'
 = hidden_field_tag 'access_token', current_token, :id => 'accessToken'
+
 :javascript
 
+  // TODO: Move this to a specific file
   var place_id = $('#place_id').val();
   var token = $('#token').val();
   var access_token = $('#accessToken').val();
 
+  function showIndicator(elem) {
+    elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+  }
+
+  function showSavedIndicator(elem) {
+    elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
+    window.setTimeout(function() {
+      hideIndicator(elem);
+    }, 2000);
+  }
+
+  function validateElement(elem) {
+    return $('#wizard_form').validationEngine('validateField', elem);
+  }
+
+  function hideIndicator(elem) {
+    elem.parent().find('.save-indicator').detach();
+  }
+
   var sendFieldUpdate = function() {
-    $.ajax({
-      type: 'PUT',
-      url: '/places/' + place_id + '.json',
-      data: $(this).serialize(), 
-      success: function() {}
-    });
+    
+    var elem = $(this);
+
+    // Check if we have changed values
+    if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
+
+      hideIndicator(elem);
+      showIndicator(elem);
+
+      $.ajax({
+        type: 'PUT',
+        url: '/places/' + place_id + '.json',
+        data: $(this).serialize(), 
+        success: function() {
+          showSavedIndicator(elem);
+          elem.attr('data-changed', '0');
+        }
+      });
+
+    }
   };
 
   var sendCheckBoxUpdate = function() {
+    var elem = $(this);
+    hideIndicator(elem);
+    showIndicator(elem);
 
     var post_data = "";
-
     var field = $(this).attr("name");
     var value = "1";
 
@@ -64,15 +101,15 @@
     });
   };  
 
+  var trackChange = function() {
+    $(this).attr('data-changed', "1");
+  };
+
   // proof of concept - save on update feature
-  $('#wizard_form input, #wizard_form textarea, #wizard_form select').each(function() {
-    $(this).blur(sendFieldUpdate);
-  });
+  $('#wizard_form input, #wizard_form textarea, #wizard_form select').change(trackChange)
+        .blur(sendFieldUpdate);
 
-
-  $("#wizard_form input[type='checkbox']").each(function() {
-    $(this).change(sendCheckBoxUpdate);
-  });
+  $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
 
   jQuery(document).ready(function() {
     jQuery('#wizard_form').validationEngine();

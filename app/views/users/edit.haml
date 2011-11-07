@@ -1,5 +1,6 @@
 = render :partial => 'user_left_column'
 %section.span8
+  .section-header User Information
   = error_messages_for :user
   = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
     .input
@@ -40,8 +41,9 @@
 
     -#Accounts Section
     .section-header Linked Accounts
-    = render :partial => 'user_accounts'
+    = render :partial => "user_accounts"
+
     .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'
-      = button_tag 'Cancel', :class => 'btn secondary'
+      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path

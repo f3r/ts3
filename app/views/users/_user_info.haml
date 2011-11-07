@@ -1,33 +1,28 @@
-%section.span8
-  -#= render :partial => 'user_header'
-
-  %br.clearfix
-  .span3
-    Fullname
-  .span4
-    = full_name @user
-  %br.clearfix
-  .span3
-    Gender
-  .span4
-    = @user['gender']
-  %br.clearfix
-  .span3
-    Mobile Phone Number
-  .span4
-    = @user['phone_mobile']
-  %br.clearfix
-  .span3
-    Home Phone Number
-  .span4
-    = @user['phone_home']
-  %br.clearfix
-  .span3
-    Work Phone Number
-  .span4
-    = @user['phone_work']
-  %br.clearfix
-  .span3
-    Birthdate
-  .span4
-    = date_convert @user['birthdate'] unless @user['birthdate'].blank?
+-#= render :partial => 'user_header'
+.span8
+  .section-header User Information
+  .user_info
+    .label_detail
+      Fullname
+    .user_detail
+      = full_name @user
+    .label_detail
+      Gender
+    .user_detail
+      = @user['gender']
+    .label_detail
+      Mobile Phone Number
+    .user_detail
+      = @user['phone_mobile']
+    .label_detail
+      Home Phone Number
+    .user_detail
+      = @user['phone_home']
+    .label_detail
+      Work Phone Number
+    .user_detail
+      = @user['phone_work']
+    .label_detail
+      Birthdate
+    .user_detail
+      = date_convert @user['birthdate'] unless @user['birthdate'].blank?

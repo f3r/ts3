@@ -13,6 +13,7 @@
 
   %br
   = render :partial => "user_accounts"
+  %br
   %p
     - unless request.fullpath.include?('edit')
       = link_to 'Account settings', edit_profile_path

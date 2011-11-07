@@ -105,12 +105,19 @@
     $(this).attr('data-changed', "1");
   };
 
-  // proof of concept - save on update feature
-  $('#wizard_form input, #wizard_form textarea, #wizard_form select').change(trackChange)
-        .blur(sendFieldUpdate);
 
-  $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
 
-  jQuery(document).ready(function() {
-    jQuery('#wizard_form').validationEngine();
+  $(document).ready(function() {
+    $('#wizard_form').validationEngine();
+
+    // Character count
+    $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
+
+    // proof of concept - save on update feature
+    $('#wizard_form input, #wizard_form textarea, #wizard_form select').change(trackChange)
+          .blur(sendFieldUpdate);
+
+    $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
+
+
   });

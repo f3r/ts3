@@ -1,8 +1,17 @@
 = error_messages_for :place
 .row
   .span12
-    = form_for :place, :url => places_path, :class => 'form-stacked' do |f|
+    = form_for :place, :url => places_path, :class => 'form-stacked', :html => {:id => 'wizard_form'} do |f|
       .panel
         = render 'step_1', :f => f
 
+:javascript
 
+    $(document).ready(function() {
+
+      $('#wizard_form').validationEngine();
+
+      // Character count
+      $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
+
+    });

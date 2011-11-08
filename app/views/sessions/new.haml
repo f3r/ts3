@@ -14,6 +14,8 @@
 
       %br.clearfix
       = link_to t(:forgot_password), reset_password_users_path
+      %br
+      = link_to 'Resend confirmation email', confirm_users_path      
     .section.span5
       %h2= t(:login_using)
       %a{:href => "/auth/facebook"}

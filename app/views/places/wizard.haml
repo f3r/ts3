@@ -22,66 +22,102 @@
             = render 'step_6', :f => f
           / .preview
           .panel
-            = render 'preview', :f => f
+            -#= render 'preview', :f => f
   .span4
-    #coda-nav-1.coda-nav
-      %ul
-        %li.tab1
-          %a{:href => "#1"}
-            %span
-            General Info
-
-        %li.tab2
-          %a{:href => "#2"}
-            %span
-            Photos
-
-        %li.tab3
-          %a{:href => "#3"}
-            %span
-            Amenities
-
-        %li.tab4
-          %a{:href => "#4"}
-            %span
-            Calendar
-
-        %li.tab5
-          %a{:href => "#5"}
-            %span
-            Price and Conditions
-
-        %li.tab6
-          %a{:href => "#6"}
-            %span
-            Preview
+    = render :partial => 'sidebar'
 = hidden_field_tag 'access_token', current_token, :id => 'accessToken'
+
 :javascript
 
+  // TODO: Move this to a specific file
   var place_id = $('#place_id').val();
   var token = $('#token').val();
   var access_token = $('#accessToken').val();
-  // proof of concept - save on update feature
-  $('#wizard_form input, #wizard_form textarea').each(function() {
 
-    $(this).blur(function() {
-      var field;
-      var value;
+  function showIndicator(elem) {
+    elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+  }
 
-      field = $(this).attr('name');
-      value = $(this).val();
+  function showSavedIndicator(elem) {
+    elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
+    window.setTimeout(function() {
+      hideIndicator(elem);
+    }, 2000);
+  }
+
+  function validateElement(elem) {
+    return $('#wizard_form').validationEngine('validateField', elem);
+  }
+
+  function hideIndicator(elem) {
+    elem.parent().find('.save-indicator').detach();
+  }
+
+  var sendFieldUpdate = function() {
+    
+    var elem = $(this);
+
+    // Check if we have changed values
+    if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
+
+      hideIndicator(elem);
+      showIndicator(elem);
+
       $.ajax({
         type: 'PUT',
-        url: '/places/' + place_id + '.json?access_token=' + access_token,
-        data: $(this).serialize(),
-        success: function() {}
+        url: '/places/' + place_id + '.json',
+        data: $(this).serialize(), 
+        success: function() {
+          showSavedIndicator(elem);
+          elem.attr('data-changed', '0');
+        }
       });
 
+    }
+  };
 
+  var sendCheckBoxUpdate = function() {
+    var elem = $(this);
+    hideIndicator(elem);
+    showIndicator(elem);
+
+    var post_data = "";
+    var field = $(this).attr("name");
+    var value = "1";
+
+    if($(this).attr("checked") == "checked") {
+      value = "1";
+    } else {
+      value = "0";
+    }
+
+    post_data = field + "=" + value;
+
+    $.ajax({
+      type: 'PUT',
+      url: '/places/' + place_id + '.json',
+      data: post_data, 
+      success: function() {}
     });
+  };  
 
-  });
+  var trackChange = function() {
+    $(this).attr('data-changed', "1");
+  };
+
+
 
   $(document).ready(function() {
-    $('#place_max_guests').valid8();
+    $('#wizard_form').validationEngine();
+
+    // Character count
+    $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
+
+    // proof of concept - save on update feature
+    $('#wizard_form input, #wizard_form textarea, #wizard_form select').change(trackChange)
+          .blur(sendFieldUpdate);
+
+    $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
+
+
   });

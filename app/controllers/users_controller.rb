@@ -90,7 +90,6 @@ class UsersController < ApplicationController
 
   def show
     @user = Heypal::User.show('access_token' => current_token)
-
     @user_auth = Heypal::User.list('access_token' => current_token)
   end
 
@@ -100,7 +99,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @user = Heypal::User.new(params_with_token(:user)) 
+    @user = Heypal::User.new(params_with_token(:user))
 
     if @user.valid? && @user.save
       redirect_to profile_path

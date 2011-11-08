@@ -1,24 +1,19 @@
 %section.span3
   = link_to placehold(120, 90), "#"
   %h2
-    = nickname @user
-  %span.gray
     = full_name @user
   %p
     Singapore
   %p
-    = link_to placehold(10,10), "#"
     %span.gray= "Points"
-    %br
     43
   %p
-    = link_to placehold(10,10), "#"
     %span.gray= "Rating"
-    %br
     +39 | -1
 
   %br
   = render :partial => "user_accounts"
+  %br
   %p
     - unless request.fullpath.include?('edit')
       = link_to 'Account settings', edit_profile_path

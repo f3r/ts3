@@ -43,9 +43,10 @@ class Heypal::User < Heypal::Base
 
     def update(params = {})
       result = request("/users.json?access_token=#{params['access_token']}", :put, params)
-      if result['stat'] == 'ok'
+      result['stat'] == 'ok'
+      #if result['stat'] == 'ok'
 
-      end
+      #end
     end
 
     def list(params = {})
@@ -56,7 +57,10 @@ class Heypal::User < Heypal::Base
 
   def initialize(params = {})
     deserialize(params)
+
     self['oauth_token'] = {'provider' => @oauth_provider, 'uid' => @oauth_uid, 'credentials' => {'token' => @oauth_token, 'secret' => ''}}
+
+    @auth_token = self['auth_token']
   end
 
   def success?

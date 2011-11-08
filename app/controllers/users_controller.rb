@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   def reset_password
 
     if request.post?
-      if params['email']        
+      if params['email']
         if params['email'].present? && Heypal::User.reset_password({:email => params[:email]})
           flash[:notice] = t(:password_reset_instruction_sent)
           redirect_to login_path
@@ -69,6 +69,9 @@ class UsersController < ApplicationController
   end
 
   def received
+  end
+
+  def connect
   end
 
   def confirm_reset_password

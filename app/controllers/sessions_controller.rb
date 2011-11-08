@@ -36,13 +36,13 @@ class SessionsController < ApplicationController
   end
   
   def auth
-
     unless logged_in?
-      
       # Attempt to sign in (check if there's an existing oauth record)
       @heypal_session = Heypal::Session.signin_via_oauth(oauth_provider, {:oauth_token => 
                                                          {'provider' => oauth_provider, 'uid' => oauth_uid,
-                                                           'credentials' => {'token' => oauth_token}
+                                                           'credentials' => {'token' => oauth_token}, 'user_info' => {'name' => oauth_name,
+                                                           'email' => oauth_email, 'first_name' => oauth_firstname, 'last_name' => oauth_lastname,
+                                                           'image' => oauth_image}
                                                          }})
 
       # IF it's existing it should log in the user
@@ -84,6 +84,10 @@ class SessionsController < ApplicationController
     @omniauth = request.env['omniauth.auth']    
   end
 
+  def omniauth_userinfo
+    @omniauth_userinfo = omniauth['user_info']
+  end
+
   def oauth_token
     @oauth_token = omniauth['credentials']['token']
   end
@@ -94,6 +98,26 @@ class SessionsController < ApplicationController
 
   def oauth_uid
     @oauth_uid = omniauth['uid']
+  end
+
+  def oauth_name
+    @oauth_name = omniauth_userinfo['name']
+  end
+
+  def oauth_firstname
+    @oauth_firstname = omniauth_userinfo['first_name']
+  end
+
+  def oauth_lastname
+    @oauth_lastname = omniauth_userinfo['last_name']
+  end
+
+  def oauth_email
+    @oauth_email = omniauth_userinfo['email']
+  end
+
+  def oauth_image
+    @oauth_image = omniauth_userinfo['image']
   end
 
   def destroy

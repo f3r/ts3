@@ -1,7 +1,8 @@
--#= render :partial => 'user_header'
+= render :partial => 'user_header'
 .span8
-  .section-header User Information
+  .section-header=full_name @user
   .user_info
+    -#= render :partial => 'user_header'
     .label_detail
       Fullname
     .user_detail
@@ -9,7 +10,7 @@
     .label_detail
       Gender
     .user_detail
-      = @user['gender']
+      = @user['gender'].titleize unless @user['gender'].nil?
     .label_detail
       Mobile Phone Number
     .user_detail

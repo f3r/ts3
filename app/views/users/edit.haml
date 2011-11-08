@@ -23,7 +23,7 @@
       = f.text_field :phone_work
     .input
       = f.label :birthdate, 'Birthdate'
-      = f.text_field :birthdate
+      = f.text_field :birthdate, :id => 'hasDate', :class => 'datepicker'
     .clearfix
 
     - if false
@@ -42,7 +42,6 @@
     -#Accounts Section
     .section-header Linked Accounts
     = render :partial => "user_accounts"
-
     .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'

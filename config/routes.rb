@@ -21,6 +21,7 @@ HeyPalFrontEnd::Application.routes.draw do
   #match '/users/show' => 'users#show', :via => :get
   match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'
+  match '/connect' => 'users#connect'
 
   resources :products
 
@@ -52,7 +53,7 @@ HeyPalFrontEnd::Application.routes.draw do
     end
 
     member do
-      post :publish 
+      post :publish
     end
 
   end

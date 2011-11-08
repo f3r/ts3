@@ -26,6 +26,7 @@ HeyPalFrontEnd::Application.routes.draw do
       get :preview
     end
 
+    resources :availabilities
   end
   
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'

@@ -1,9 +1,14 @@
 HeyPalFrontEnd::Application.routes.draw do
 
+  get "accomodation/show"
+
+  get "accomodation/index"
+
   get "items/index"
 
   match '/auth/:provider/callback', to: 'sessions#auth'
   match '/auth/failure', to: 'sessions#fail'
+  get "search/index"
 
   get "publish/index"
 

@@ -1,15 +1,12 @@
 .panel-wrapper
   %h2.title Photos
   .clearfix
-    %br
-    %h3 To be replaced with multi uploader thingy
-    .input
-      %ul.media-grid.gallery
-        %li
-          %a{:href => "#"}
-            %img.thumbnail{:alt => "", :src => "http://placehold.it/90x90"}/
-        %li
-          %input#fileInput.input-file{:name => "fileInput", :type => "file"}/
+  :erb
+    <form action="/playground/ajax_upload" id="newHotnessForm">
+						<label>Upload a Picture of Yourself</label>
+						<input type="file" size="20" id="imageUpload" class="   ">
+						<button class="button" type="submit">Save</button>
+		</form>
   .clearfix
 
   %h3 Photos
@@ -28,3 +25,24 @@
     %a.btn.primary{:href => "#"} &laquo; Previous Step
   .coda-nav-right
     %a.btn.primary{:href => "#"} Next Step &raquo;
+
+:javascript
+  $(document).ready(function(){
+
+    var thumb = $('img#thumb');	
+
+    new AjaxUpload('imageUpload', {
+      action: $('form#wizard_form').attr('action'),
+      name: 'image',
+      onSubmit: function(file, extension) {
+        $('div.preview').addClass('loading');
+      },
+      onComplete: function(file, response) {
+        thumb.load(function(){
+          $('div.preview').removeClass('loading');
+          thumb.unbind();
+        });
+        thumb.attr('src', response);
+      }
+    });
+  });

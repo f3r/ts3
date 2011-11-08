@@ -9,13 +9,16 @@
 //= require_tree .
 
 $(function() {
-  $('input#hasDate.datepicker').datepicker({
-    minDate: -0,
-    maxDate: '3M'
+  $('.generic-datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
   });
-  $('input#hasAnotherDate.datepicker').datepicker({
+  $('input#hasGrayedDate.datepicker').datepicker({
     minDate: -0,
-    maxDate: '3M'
+    maxDate: '3M',
+    dateFormat: 'yy-mm-dd'
+  });
+  $('input#hasDate.datepicker').datepicker({
+    dateFormat: 'yy-mm-dd'
   });
 });
 

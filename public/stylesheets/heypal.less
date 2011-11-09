@@ -743,6 +743,7 @@ aside .section-header, .aside .section-header, .section-header {
     font-weight: bold;
     padding: 10px 7px;    
     margin-bottom: 10px;
+
     h2{
       font-size: 11px;
       margin: 0;
@@ -752,8 +753,11 @@ aside .section-header, .aside .section-header, .section-header {
     }
   }  
   
-  .name{
+  .name{    
     .textCenter();
+    padding-bottom: 5px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 1em;    
   }
   
 }// Pal Aside
@@ -799,39 +803,119 @@ aside .section-header, .aside .section-header, .section-header {
 
 .accomodation-wrapper{
   .header{
-    padding-bottom: 5px;
+    padding: 10px 0;
+    position: relative;
     .clearfix();
-    overflow: hidden;
+    overflow: visible;
     _zoom: 1;
+    border-top: 1px solid #eee;
     
     .title{
-      width: 80%;      
-      float: left;
+      width: 70%;      
+      float: left;      
+      
       h1{
         line-height: 1.2em;
         margin-bottom: 15px;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 10px;
       }
-      p{
-        color: #888;
-      }      
-    }
+      
+      .meta{
+        .clearfix();
+        overflow: hidden;
+        _zoom: 1;
+        
+        p{
+          color: #888;
+          float: left;
+          width: 65%
+        }      
+        .share{
+          padding: .7em .5em 0 0;
+          float: right;          
+        }              
+      }
+    } // header    
     
-    .share{
-      padding: .7em .5em 0 0;
-      float: right;
-    }
+    .focal{
+      width: 180px;
+      height: 180px;
+      background: transparent url(../images/badge.png) no-repeat 0 0;
+      padding: 10px;
+      position: absolute;
+      top: -2px;
+      right: 0;
+      z-index: 1;
+      text-align: center;
+      
+      .btn{
+        display: block;
+      }      
+      
+      .price{
+        color: #fff;
+        text-shadow: 0 -1px #ff6600;        
+        line-height: 1;
+        padding: 1.5em 0 0;
+        margin-bottom: 0;
+        
+        
+        .sub{
+          margin-bottom: 10px;
+          font-size: 11px;
+          padding: 10px 0;
+          letter-spacing: 0.025em;
+          font-weight: normal;
+          display: block;
+          text-transform: uppercase;
+          
+        }        
+      }      
+    } //end focal
   }//end header
 
   .tabs{
     margin-bottom: 7px;
   }
   
+  .description{
+    margin: 20px 0;
+  }  
   
 }//accomodation-wrapper
 
+.tabbed-panel{
+  .border-radius(5px);    
+  border: 1px solid #eee;
+  overflow: hidden;
+  margin: 20px 0;
+  _zoom: 1;
+  .clearfix();    
+  
+  .tabs{
+    padding: 5px 10px 0;
+    background: #f8f8f8;
+  }
+  .contents{
+    clear: both;
+    padding: 10px;
+    background: #fff;
+    
+    .fine-print{
+      margin: 0;
+      padding: 0;
+      
+      .span4{
+        width: 212px;
+      }
+    }
+  }
+} // end tabbed-panel
+
 #photo-slider-control{
   padding: 10px 0;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   a{
     margin: 0 .5em;
   }  
@@ -866,6 +950,18 @@ aside .section-header, .aside .section-header, .section-header {
       .big{
         width: 490px;
         margin-right: 10px;
+        position: relative;
+        
+        .caption{
+          width: 470px;
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          padding: 10px;
+          height: 40px;
+          color: #fff;
+          background: transparent url(../images/glass.black.png) repeat 0 0;
+        }
       }  
       .small{
         width: 200px;
@@ -957,7 +1053,7 @@ aside .section-header, .aside .section-header, .section-header {
   clear: both;
 }
 
-.price-holder{
+.highlight{
   background: #f0f0f0;
   border: 1px solid #eee;
   .border-radius(2px);
@@ -1008,7 +1104,7 @@ aside .section-header, .aside .section-header, .section-header {
   clear: both;
   margin:  15px 0;
   padding: 10px 0;
-  border-top: 1px solid #eee;
+
   
   .col{
     .clearfix();
@@ -1019,19 +1115,20 @@ aside .section-header, .aside .section-header, .section-header {
       font-weight: bold;
       color: #353535;
       background: none;
-      text-align: right;
-      width: 110px;
+      text-align: left;
+      width: 100px;
       margin-right: 10px;
     }
     
     .value{      
-      width: 100px;
+      width: 90px;
       font-weight: normal;
     }
     
     label,.value{
       float: left;
       padding: 5px 0;
+      line-height: 20px;
     }
   }  
 } // fine-print

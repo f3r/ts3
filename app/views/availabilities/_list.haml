@@ -4,4 +4,23 @@
   %div.data-container
     %span= "#{date_formatted(a['date_start'])} - #{date_formatted(a['date_end'])}"
     %span= price_availability(a)
-    %span= link_to "Edit", '#'
+    %span= link_to "Edit", '#', :class => 'edit-availability hide'
+
+
+  %div.edit-data-container.hide
+    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.parse(a['date_start']).strftime("%d/%m/%Y")
+    to
+    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.parse(a['date_end']).strftime("%d/%m/%Y")
+
+    %span.availability-price
+      = select_tag "availability_type",
+        raw("<option value='2'#{' selected="selected"' if a['availability_type'] == 2}>New Price</option><option value='1'#{' selected="selected"' if a['availability_type'] == 1}>Unavailable</option>"), :class => 'availability_type'
+      - if a['availability_type'] == 1
+        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small disabled', :disabled => true
+      - else
+        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small', :value => a['price_per_night']
+
+    %div.availability-action
+      = link_to "Remove", place_availability_path(@place.to_param, a['id']), :method => :delete, :confirm => 'Remove this period from your calendar?', :class => 'delete btn error'
+      = button_tag "Cancel", :class => "btn cancel-edit-availability"
+      = button_tag "Save", :class => "btn primary"

@@ -22,3 +22,13 @@
     $("#open-new-availability").addClass('disabled').attr('disabled', 'disabled');
     return false;
   });
+
+  $(".availabilities-block .edit-availability").unbind('click').click(function() {
+    $(this).parents(".availabilities-block").children(".edit-data-container").show();
+    return false;
+  });
+
+  $(".cancel-edit-availability").unbind('click').click(function() {
+    $(this).parents(".edit-data-container").hide();
+    return false;
+  });

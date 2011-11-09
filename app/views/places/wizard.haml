@@ -114,7 +114,7 @@
     $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
 
     // proof of concept - save on update feature
-    $('#wizard_form input[type=text], #wizard_form textarea, #wizard_form select').change(trackChange)
+    $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)
           .blur(sendFieldUpdate);
 
     $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);

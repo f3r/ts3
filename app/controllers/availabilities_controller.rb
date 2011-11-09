@@ -17,4 +17,12 @@ class AvailabilitiesController < ApplicationController
       end
     end
   end
+
+  def destroy
+    param = {}
+    param[:access_token] = current_token
+    param[:place_id] = params[:place_id]
+
+    Heypal::Availability.delete(params[:id], param)
+  end
 end

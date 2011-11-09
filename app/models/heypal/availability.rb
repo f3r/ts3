@@ -18,6 +18,15 @@ class Heypal::Availability < Heypal::Base
         #TODO: display error here.
       end
     end
+
+    def find_all(params = {})
+      result = request("/places/#{params[:place_id]}/availabilities.json")
+      if result["stat"] == 'ok'
+        result["availabilities"]
+      else
+        []
+      end
+    end
   end
   
   def initialize(params = {})

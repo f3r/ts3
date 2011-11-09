@@ -13,7 +13,7 @@ class AvailabilitiesController < ApplicationController
 
     if availability.save
       respond_to do |format|
-        format.json { render :json => place }
+        format.json { render :json => availability }
       end
     end
   end

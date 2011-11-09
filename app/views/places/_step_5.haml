@@ -6,8 +6,8 @@
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
-  %fieldset
-    .input
+  - Heypal::Availability.find_all(:place_id => @place.to_param).each do |a|
+    = render 'availabilities/list', :a => a, :place => @place
 
 .arrows.clearfix
   .coda-nav-left

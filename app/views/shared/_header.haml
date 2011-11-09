@@ -8,7 +8,7 @@
           - if logged_in?
             .span3
               .user_name
-                = "blah" # link_to full_name(current_user), '#' 
+                = link_to full_name(current_user), '#' 
                 .small
                   = link_to t(:sign_out), logout_path
             .span2

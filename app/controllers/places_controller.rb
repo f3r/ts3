@@ -48,4 +48,27 @@ class PlacesController < ApplicationController
     render(:template => 'places/preview')
   end
 
+  def upload_photo
+    @place = Heypal::Place.find(params[:id])
+
+    p = Heypal::Photo.new
+    p.photo = params[:file]
+    p.save
+
+    photo = {:large => p.photo.url(:large), :medium => p.photo.url(:medium), :thumb => p.photo.url(:medium), :original => p.photo.url(:original)}
+
+    if @place.photos.is_a?(Hash)
+      @photos = photos
+      @photos << photo
+    else
+      @photos = [photo]
+    end
+
+    post_params = {:photos => @photos}
+
+    result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
+
+    render :text => "", :layout => false
+  end
+
 end

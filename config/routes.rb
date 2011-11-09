@@ -30,6 +30,7 @@ HeyPalFrontEnd::Application.routes.draw do
     member do
       get :wizard
       get :preview
+      post :upload_photo      
     end
 
   end

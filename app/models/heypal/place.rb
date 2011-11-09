@@ -105,9 +105,9 @@ class Heypal::Place < Heypal::Base
     end
   end
 
-  #def id
-    #self['id']
-  #end
+  def id
+    self['id']
+  end
 
   def valid?
     self['stat'] == 'ok'

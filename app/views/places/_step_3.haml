@@ -1,12 +1,10 @@
 .panel-wrapper
   %h2.title Photos
   .clearfix
-  :erb
-    <form action="/playground/ajax_upload" id="newHotnessForm">
-						<label>Upload a Picture of Yourself</label>
-						<input type="file" size="20" id="imageUpload" class="   ">
-						<button class="button" type="submit">Save</button>
-		</form>
+
+  .upload_wrapper
+    %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :value => 'Select files', :id => "photo_uploader" }
+    
   .clearfix
 
   %h3 Photos
@@ -14,11 +12,7 @@
     You can sort your photos by drag and drop
   .row
     .span12
-      %ul.media-grid.gallery
-        - 10.times do
-          %li
-            %a{:href => "#"}
-              %img.thumbnail{:alt => "", :src => "http://placehold.it/90x90"}/
+      %ul.media-grid.gallery#photos_list
 
 .arrows.clearfix
   .coda-nav-left
@@ -29,20 +23,37 @@
 :javascript
   $(document).ready(function(){
 
-    var thumb = $('img#thumb');	
+    function refreshPhotoList() {
+      $.ajax( { 
+        url : "/places/#{@place.id}/upload_photo", 
+        context : $('#photos_list'),
+        success : function(data) {
+          $(this).html(data);
+        }
+      });
+    }
 
-    new AjaxUpload('imageUpload', {
-      action: $('form#wizard_form').attr('action'),
-      name: 'image',
-      onSubmit: function(file, extension) {
-        $('div.preview').addClass('loading');
-      },
-      onComplete: function(file, response) {
-        thumb.load(function(){
-          $('div.preview').removeClass('loading');
-          thumb.unbind();
-        });
-        thumb.attr('src', response);
-      }
+    var uploadify_script_data = {};
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var csrf_param = $('meta[name=csrf-param]').attr('content');
+
+    $('#photo_uploader').uploadify({
+      'uploader'        : '/javascripts/uploadify/uploadify.swf',
+      'script'          : "/places/#{@place.id}/upload_photo",
+      'cancelImg'       : '/images/close.png',
+      'buttonImg'       : '/images/browse-button.png',
+      'auto'            : true,
+      'multi'           : true,
+      'fileDataName'    : 'file',
+      'fileDesc'        : 'Photos',
+      'buttonText'      : 'Browse',
+      'width'           : 230,
+      'height'          : 50,
+      'wmode'           : 'transparent',
+      'fileExt'         : '*.jpg;*.png',
+      'scriptData'      : { 'photo_album_id' : #{@place.id}, '_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
+      'onSelect'        : function(event, data) {  },
+      'onAllComplete'      : function(event, data) { refreshPhotoList(); }
     });
+
   });

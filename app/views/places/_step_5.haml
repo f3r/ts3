@@ -1,7 +1,24 @@
 .panel-wrapper
   %h2.title Calendar
 
+  %fieldset
+    = button_tag 'Add New', :id => 'open-new-availability', :class => 'btn primary'
+    %div#new-availability-form.hide
+      = render 'availabilities/form'
+
+  - Heypal::Availability.find_all(:place_id => @place.to_param).each do |a|
+    = render 'availabilities/list', :a => a, :place => @place
+
 .arrows.clearfix
+  .coda-nav-left
+    %a.btn.primary{:href => "#"} Previous Step
   .coda-nav-right
     %a.btn.primary{:href => "#"} Next Step &raquo;
 
+:javascript
+
+  $("#open-new-availability").unbind('click').click(function() {
+    $("#new-availability-form").show();
+    $("#open-new-availability").addClass('disabled').attr('disabled', 'disabled');
+    return false;
+  });

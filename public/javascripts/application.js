@@ -10,7 +10,7 @@
 
 $(function() {
   $('.generic-datepicker').datepicker({
-    dateFormat: 'yy-mm-dd'
+    dateFormat: 'dd/mm/yy'
   });
   $('input#hasGrayedDate.datepicker').datepicker({
     minDate: -0,

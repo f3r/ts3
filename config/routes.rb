@@ -33,6 +33,7 @@ HeyPalFrontEnd::Application.routes.draw do
       post :upload_photo      
     end
 
+    resources :availabilities
   end
   
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'

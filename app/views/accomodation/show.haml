@@ -2,15 +2,22 @@
   .header
     .title 
       %h1 Beautiful Condo in Ortigas Center, Very accessible and close to everything
-      %p 
-        Manila, Philippines 
-        =raw("&bull;") 
-        Listed on 24 March 2011, 13:57
-    .share
-      %span.label Share via
-      %a.fb{:href => "#"} Facebook
-      %a.tw{:href => "#"} Twitter
-      %a.gplus{:href => "#"} Google Plus
+      .meta
+        %p 
+          Manila, Philippines 
+        
+        .share
+          %span.label Share via
+          %a.fb{:href => "#"} Facebook
+          %a.tw{:href => "#"} Twitter
+          %a.gplus{:href => "#"} Google Plus
+        
+    .focal
+      %h1.price
+        $199.50
+        %span.sub  Per Night 
+      %a.btn.large.primary Rent it!  
+      
       
   %ul.tabs
     %li.active  
@@ -26,6 +33,7 @@
         - 10.times do 
           %li
             .big
+              .caption This is a sample caption...                
               = image_tag("http://placehold.it/490x340")
             .small
               %a{:href => "#"}
@@ -74,77 +82,42 @@
 
     / %a#gotoslide4{:href => "#"} Go to 4  
 
-  #photo-slider-control
-    Gallery Controls:
+  #photo-slider-control    
     %a#stopslider{:href => "#"} Stop
     %a#startslider{:href => "#"} Play    
-         
-    
-  %ul.tabs
-    %li.active  
-      %a{:href => "#"} Destination  
-    %li
-      %a{:href => "#"} Amenities
-  
-  .destination
+
+
+  .description
     .row
       .span8
         %p Proin quis tortor orci. Etiam at risus et justo dignissim congue. Donec congue lacinia dui, a porttitor lectus condimentum laoreet. Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor. Nulla facilisi. Duis aliquet egestas purus in blandit. Curabitur vulputate, ligula lacinia scelerisque tempor, lacus lacus ornare ante, ac egestas est urna sit amet arcu. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Sed molestie augue sit amet leo consequat posuere. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere.
       .span4
-        .price-holder
-          .figure
-            %h1.amt 
-              $199
-            %a.btn.primary Rent it!
-          
-          .filter
-            %select
-              %option Per Night
-              %option Per Week
-              %option Per Months
-              
-    .fine-print
-      .row
-        .span4.col
-          %label Type
-          .value Apartment
-        .span4.col
-          %label Bedrooms
-          .value 3
-        .span4.col
-          %label Size
-          .value 
-            93m
-            %sup 2
-      .row
-        .span4.col
-          %label Guests
-          .value 1-5
-        .span4.col
-          %label Guests
-          .value 1-5
-        .span4.col
-          %label Size
-          .value 
-            93m
-            %sup 2
-      .row
-        .span4.col
-          %label Size
-          .value
-            93m
-            %sup 2            
-            %br
-            356ft
-            %sup 2                                  
-        .span4.col
-          %label Size
-          .value
-            93m
-            %sup 2            
-            %br
-            356ft
-            %sup 2                        
+        .highlight
+          %h5 Sample Highlight
+          %p Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    
+         
+  
+  .tabbed-panel.other-info  
+    %ul.tabs
+      %li.active  
+        %a{:href => "#"} Details  
+      %li
+        %a{:href => "#"} Amenities
+    .contents    
+      .fine-print
+        - 2.times do 
+          .row
+            .span4.col
+              %label Type
+              .value Apartment
+            .span4.col
+              %label Bedrooms
+              .value 3
+            .span4.col
+              %label Size
+              .value 
+                93m
+                %sup 2                     
 
 
   %ul.tabs
@@ -249,14 +222,9 @@
           
 - content_for :aside do
   %section.pal-aside-profile
-    .divider
-      %h2= t(:Pal)
     .thumb
       = image_tag("http://placehold.it/200x200")    
-    %h3.name=t(:greg_stokes)      
-    .divider
-      %h2= t(:references)
-      
+    %h3.name=t(:greg_stokes)            
     %ul.references
       %li.check Agent
       %li.reviews
@@ -264,13 +232,5 @@
       %li.response
         %a{:href => "#"} 97% Response rate
       %li.friends
-        %a{:href => "#"} 5 Friends in common
-                  
-    %ul.media-grid
-      - 8.times do 
-        %li
-          = link_to placehold(60, 60), '#'
-  .clearfix.sup
-  = link_to raw(t(:see_all_friends)), '#', :class => 'sup'
-          
+        %a{:href => "#"} 5 Friends in common          
           

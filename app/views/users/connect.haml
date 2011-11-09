@@ -1,21 +1,32 @@
 .span12.offset2
+  .row
+    .span
+      %h1
+        Hello
+    .span
+      - if @oauth_provider == "twitter"
+        %img{:src => @oauth_image}
+      - elsif @oauth_provider == "facebook"
+        %img{:src => "#{profile_picture_url @oauth_uid}"}
+    .span4{:style => "line-height: 40px;"}
+      = @oauth_name
   .registration.row
     %br
     .section.span6.bored
       %h2= t(:create_new_account)
 
       = form_for :user, :url => users_path do |f|
-        = f.hidden_field :oauth_provider, :value => @oauth_provider        
+        = f.hidden_field :oauth_provider, :value => @oauth_provider
         = f.hidden_field :oauth_token, :value => @oauth_token
         = f.hidden_field :oauth_uid, :value => @oauth_uid
-        
+
         = f.error_messages
         .input
-          = f.text_field :first_name, :placeholder => 'First Name'
+          = f.text_field :first_name, :placeholder => 'First Name', :value => @oauth_firstname
         .input
-          = f.text_field :last_name, :placeholder => 'Last Name'
+          = f.text_field :last_name, :placeholder => 'Last Name', :value => @oauth_lastname
         .input
-          = f.text_field :email, :placeholder => 'E-Mail Address'
+          = f.text_field :email, :placeholder => 'E-Mail Address', :value => @oauth_email
         .input
           = f.password_field :password, :placeholder => 'Confirm'
         .input
@@ -29,10 +40,10 @@
           Create account
 
     .section.span5
-      %h2= t(:connect_to_your_account)
-      
-      = form_tag sessions_path do 
-        = hidden_field_tag :oauth_provider, @oauth_provider        
+      %h2= t(:i_have_an_account)
+
+      = form_tag sessions_path do
+        = hidden_field_tag :oauth_provider, @oauth_provider
         = hidden_field_tag :oauth_token, @oauth_token
         = hidden_field_tag :oauth_uid, @oauth_uid
         .input
@@ -41,6 +52,17 @@
           = password_field_tag :password, '', :placeholder => 'Password'
         %button.btn.float-right{:type => 'submit primary'}
           Login
-
       %br.clearfix
-      = link_to t(:forgot_password), reset_password_users_path    
+      = link_to t(:forgot_password), reset_password_users_path
+      %br
+      %br
+      %br
+      %p
+        This will connect your
+        %br
+        - if @oauth_provider == "twitter"
+          twitter account to your
+        - elsif @oauth_provider == "facebook"
+          facebook account to your
+        %br
+        existing heypal account

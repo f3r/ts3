@@ -28,9 +28,7 @@
     .input
       = f.label :sqm
       = f.text_field :sqm, :class => "validate[required,custom[integer]] span2"
-    .input
-      = f.label :size_type
-      = f.select :size_type, ["m2", "ft2"], :class => "validate[required] span2", :style => "width:60px"
+      = f.select :size_type, ["sqm", "sqf"], :class => "validate[required] span2", :html => {:style => "width:60px"}
   %h2.title Address
   %fieldset
 

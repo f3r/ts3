@@ -8,8 +8,41 @@ class Heypal::Availability < Heypal::Base
   define_attribute_methods = @@attributes
 
   class << self
-    def create(params = {})
+    def create(params)
+      place_id = params.delete(:place_id)
+      result = request("/places/#{place_id}/availabilities.json", :post, params);
 
+      if result['stat'] == 'ok'
+        return result
+      else
+        #TODO: display error here.
+      end
     end
+  end
+  
+  def initialize(params = {})
+    deserialize(params) if params
+    self
+  end
+
+  def save
+    if new_record?
+      if response = self.class.create(self)
+        self.deserialize(response)
+        return true
+      else
+        return false
+      end
+    else
+      if self.class.update(self)
+        return true
+      else
+        return false
+      end
+    end
+  end
+
+  def new_record?
+    self['id'].blank?
   end
 end

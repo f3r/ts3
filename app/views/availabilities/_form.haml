@@ -1,8 +1,8 @@
 %fieldset
   %h3 New
   %div
-    = text_field_tag "date_start", "", :placeholder => "yy-mm-dd", :class => 'generic-datepicker'
-    = text_field_tag "date_end", "", :placeholder => "yy-mm-dd", :class => 'generic-datepicker'
+    = text_field_tag "date_start", "", :placeholder => "yyyy-mm-dd", :class => 'generic-datepicker', :value => Time.now.to_date
+    = text_field_tag "date_end", "", :placeholder => "yyyy-mm-dd", :class => 'generic-datepicker', :value => Time.now.to_date
 
     .clearFix
     = select_tag "availability_type", raw("<option value='2'>New Price</option><option value='1'>Unavailable</option>")
@@ -14,19 +14,31 @@
 
 :javascript
 
-  $(".cancel-new-availability").click(function() {
+  $(".cancel-new-availability").unbind('click').click(function() {
     $("#new-availability-form").hide();
+    $("#open-new-availability").removeClass('disabled').removeAttr('disabled');
     return false;
   });
 
-  $("#new-availability").click(function() {
-    console.log('a');
-
+  $("#new-availability").unbind('click').click(function() {
     $.ajax({
       type: 'POST',
       url: '/places/'+place_id+'/availabilities',
-      data: {'a':'b'},
+      data: {
+        'availability_type':$("#availability_type").val(),
+        'price_per_night':$("#price_per_night").val(),
+        'date_start':$("#date_start").val(),
+        'date_end':$("#date_end").val()
+      },
       success: function() {}
     });
     return false;
+  });
+
+  $("#availability_type").unbind('change').change(function() {
+    if ($(this).val() == '1') {
+      $("#price_per_night").addClass('disabled').attr('disabled', 'disabled');
+    } else {
+      $("#price_per_night").removeClass('disabled').removeAttr('disabled');
+    }
   });

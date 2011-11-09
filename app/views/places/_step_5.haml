@@ -17,8 +17,8 @@
 
 :javascript
 
-  $("#open-new-availability").click(function() {
-    console.log('b');
+  $("#open-new-availability").unbind('click').click(function() {
     $("#new-availability-form").show();
+    $("#open-new-availability").addClass('disabled').attr('disabled', 'disabled');
     return false;
   });

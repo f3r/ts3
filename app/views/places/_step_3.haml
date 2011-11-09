@@ -1,12 +1,10 @@
 .panel-wrapper
   %h2.title Photos
   .clearfix
-  :erb
-    <form action="/playground/ajax_upload" id="newHotnessForm">
-						<label>Upload a Picture of Yourself</label>
-						<input type="file" size="20" id="imageUpload" class="   ">
-						<button class="button" type="submit">Save</button>
-		</form>
+  %img#thumb
+  = file_field_tag 'imageUpload'
+  %button.btn{:type => "submit"} Upload 
+
   .clearfix
 
   %h3 Photos

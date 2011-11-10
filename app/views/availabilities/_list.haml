@@ -8,9 +8,9 @@
 
 
   %div.edit-data-container.hide
-    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.parse(a['date_start']).strftime("%d/%m/%Y")
+    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.parse(a['date_start']).strftime("%d/%m/%Y"), :id => "date_start-#{a['id']}"
     to
-    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.parse(a['date_end']).strftime("%d/%m/%Y")
+    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.parse(a['date_end']).strftime("%d/%m/%Y"), :id => "date_end-#{a['id']}"
 
     %span.availability-price
       = select_tag "availability_type",

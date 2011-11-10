@@ -2,10 +2,7 @@
   %div{:class => "availability-color #{color_price(a, place)}"}
 
   %div.data-container
-    %span= "#{date_formatted(a['date_start'])} - #{date_formatted(a['date_end'])}"
-    %span= price_availability(a)
-    %span= link_to "Edit", '#', :class => 'open-edit-availability hide'
-
+    = render 'availabilities/data', :a => a
 
   %div.edit-data-container.hide
     = hidden_field_tag "id", a['id'], :id => "id-#{a['id']}"
@@ -21,6 +18,6 @@
         = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small', :value => a['price_per_night'], :id => "price_per_night-#{a['id']}"
 
     %div.availability-action
-      = link_to "Remove", place_availability_path(@place.to_param, a['id']), :method => :delete, :confirm => 'Remove this period from your calendar?', :class => 'delete btn error'
+      = link_to "Remove", place_availability_path(place.to_param, a['id']), :method => :delete, :confirm => 'Remove this period from your calendar?', :class => 'delete btn error'
       = button_tag "Cancel", :class => "btn cancel-edit-availability"
       = button_tag "Save", :class => "btn primary edit-availability"

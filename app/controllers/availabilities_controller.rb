@@ -12,18 +12,10 @@ class AvailabilitiesController < ApplicationController
     availability = Heypal::Availability.new(param)
 
     if availability.save
-      respond_to do |format|
-        format.json { render :json => availability }
-      end
+      place = Heypal::Place.find(availability['place_id'].to_s)
+
+      render :text =>  render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false), :layout => false
     end
-  end
-
-  def destroy
-    param = {}
-    param[:access_token] = current_token
-    param[:place_id] = params[:place_id]
-
-    Heypal::Availability.delete(params[:id], param)
   end
 
   def update
@@ -36,10 +28,15 @@ class AvailabilitiesController < ApplicationController
     param[:id] = params[:id]
 
     if availability = Heypal::Availability.update(param)
-      respond_to do |format|
-        format.json { render :json => availability }
-      end
+      render :text => render_to_string(:_data, :locals => {:a => availability}, :layout => false), :layout => false
     end
-      
+  end
+
+  def destroy
+    param = {}
+    param[:access_token] = current_token
+    param[:place_id] = params[:place_id]
+
+    Heypal::Availability.delete(params[:id], param)
   end
 end

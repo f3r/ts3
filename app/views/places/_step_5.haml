@@ -6,6 +6,11 @@
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
+  %div#new-availabilities.hide
+    %h5 Added Availabilities
+
+  %div
+    %h5 Existing Availabilities
   - Heypal::Availability.find_all(:place_id => @place.to_param).each do |a|
     = render 'availabilities/list', :a => a, :place => @place
 
@@ -23,18 +28,20 @@
     return false;
   });
 
-  $(".availabilities-block .open-edit-availability").unbind('click').click(function() {
+  $(".open-edit-availability").unbind('click').live("click", function() {
     $(this).parents(".availabilities-block").children(".edit-data-container").show();
     return false;
   });
 
-  $(".cancel-edit-availability").unbind('click').click(function() {
+  $(".cancel-edit-availability").unbind('click').live("click", function() {
     $(this).parents(".edit-data-container").hide();
     return false;
   });
 
-  $(".edit-availability").unbind('click').click(function() {
-    var form = $(this).parents(".availabilities-block").children(".edit-data-container");
+  $(".edit-availability").unbind('click').live("click", function() {
+    var save_btn = $(this);
+    var mother = save_btn.parents(".availabilities-block");
+    var form = mother.children(".edit-data-container");
 
     var aid = form.children('[name="id"]').val();
 
@@ -47,8 +54,9 @@
         'availability_type':form.find('[name="availability_type"]').val(),
         'price_per_night':form.find('[name="price_per_night"]').val()
       },
-      success: function() {
-        $(this).prev().click();
+      success: function(data) {
+        mother.children(".data-container").html(data);
+        save_btn.prev().click();
       }
     });
 

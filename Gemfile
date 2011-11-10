@@ -11,6 +11,8 @@ gem 'haml'
 
 gem 'rest-client', :require => 'rest_client'
 
+gem 'aws-s3', :require => 'aws/s3'
+
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
@@ -24,7 +26,7 @@ gem 'dynamic_form'
 gem 'airbrake'
 gem 'omniauth'
 
-gem 'paperclip'
+gem 'paperclip', :path => 'lib/paperclip', :require => 'paperclip'
 
 # To use debugger
 # gem 'ruby-debug19', :require => 'ruby-debug'

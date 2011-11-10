@@ -20,21 +20,11 @@ class PlacesController < ApplicationController
   end
 
   def update
-    #Heypal::Place.update(params_with_token(:place))
-
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
 
     logger.info('-------result')
     logger.info(result)
 
-    #if result['stat'].eql?('fail')
-      #errors = ''
-      #result['err'].each_pair do |k, v|
-        #errors += "$('##{k}_error').html('cant be blank');"
-      #end
-      #logger.info(errors)
-      #render :js => errors unless errors.blank?
-    #end
     render :text => "", :layout => false
   end
 
@@ -48,27 +38,53 @@ class PlacesController < ApplicationController
     render(:template => 'places/preview')
   end
 
+  def photos
+    @place = Heypal::Place.find(params[:id])
+    @photos = @place.photos
+    render :template => 'places/_photo_list', :layout => false
+  end
+
   def upload_photo
     @place = Heypal::Place.find(params[:id])
 
     p = Heypal::Photo.new
+    p.place_id = params[:id]
+    p.photo_id = Time.now.to_i
+
     p.photo = params[:file]
+
     p.save
 
-    photo = {:large => p.photo.url(:large), :medium => p.photo.url(:medium), :thumb => p.photo.url(:medium), :original => p.photo.url(:original)}
+    photo = {
+              :photo => {
+                :id => p.photo_id,
+                :place_id => params[:id],
+                :filename => params[:Filename],
+                :large => p.photo.url(:large, false),
+                :medium => p.photo.url(:medium, false),
+                :small => p.photo.url(:small, false),
+                :original => p.photo.url(:original, false)
+              }
+            }
 
-    if @place.photos.is_a?(Hash)
-      @photos = photos
-      @photos << photo
+    unless @place.photos.nil?
+      @photos = @place.photos
     else
-      @photos = [photo]
+      @photos = []
     end
 
-    post_params = {:photos => @photos}
+    @photos << photo
+
+    post_params = {:photos => @photos.to_json}
 
     result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
 
-    render :text => "", :layout => false
+    # Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
+    @place = Heypal::Place.find(params[:id])
+    @photos = @place.photos
+    render :template => 'places/_photo_list', :layout => false
+
+    #render :text => "cool", :layout => false
   end
 
 end

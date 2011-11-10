@@ -23,12 +23,34 @@
     return false;
   });
 
-  $(".availabilities-block .edit-availability").unbind('click').click(function() {
+  $(".availabilities-block .open-edit-availability").unbind('click').click(function() {
     $(this).parents(".availabilities-block").children(".edit-data-container").show();
     return false;
   });
 
   $(".cancel-edit-availability").unbind('click').click(function() {
     $(this).parents(".edit-data-container").hide();
+    return false;
+  });
+
+  $(".edit-availability").unbind('click').click(function() {
+    var form = $(this).parents(".availabilities-block").children(".edit-data-container");
+
+    var aid = form.children('[name="id"]').val();
+
+    $.ajax({
+      type: 'PUT',
+      url: '/places/'+place_id+'/availabilities/'+aid,
+      data: {
+        'date_start':form.children('[name="date_start"]').val(),
+        'date_end':form.children('[name="date_end"]').val(),
+        'availability_type':form.find('[name="availability_type"]').val(),
+        'price_per_night':form.find('[name="price_per_night"]').val()
+      },
+      success: function() {
+        $(this).prev().click();
+      }
+    });
+
     return false;
   });

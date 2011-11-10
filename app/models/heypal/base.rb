@@ -20,7 +20,7 @@ class Heypal::Base < Hash
       RestClient.post(url, options)
     end
 
-    def delete(url, options = {})
+    def destroy(url, options = {})
       RestClient.delete(url, options)
     end
 
@@ -39,8 +39,8 @@ class Heypal::Base < Hash
         when :post
           post(resource_url(path), options)
         when :delete
-          delete(resource_url(path), options)
-      end  
+          destroy(resource_url(path), options)
+      end
 
       @results = parse_json(result)
 

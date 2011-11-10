@@ -2,60 +2,81 @@
 # See https://github.com/svenfuchs/rails-i18n/tree/master/rails%2Flocale for starting points.
 
 en:
-  app_name: Heypal
-  find_places: Find Places
-  my_places: My Places
-  profile: Profile
-  notifications: Notifications
-  add_an_item: Add an Item
-  
-  item_history: Item History
+  ####################################################################################
+  # App General Stuff
+  ####################################################################################
+  app_name:   Heypal
+  submit:     Submit
 
-  create_new_account: Create New Account
+  ####################################################################################
+  # App Menus
+  ####################################################################################
+  find_places:    Find Places
+  my_places:      My Places
+  profile:        Profile
+  notifications:  Notifications
+  add_a_place:    Add a Place
 
-  your_other_items: Your Other Items
-  see_all: See All &raquo;
-  user_confirmed: Your account has been successfully confirmed!
-  invalid_confirmation_code: Invalid Confirmation Code
-
-  enter_confirmation_code: Enter Confirmation Code
-  resend_confirmation: Resend Confirmation
-  enter_your_email: Enter your Email
-
-  reset_password: Reset Password
-  
-  confirmation_code: Confirmation code
-
-  email: email
-  invalid_email: Invalid Email
-
-  confirmation_email_sent: Confirmation email sent
-
-  register: Register
-
-  submit: Submit
-  login: Login to Heypal
-  login_using: Login using
-  sign_in: Sign In
-  sign_out: Sign Out
-
-  invalid_login: Invalid Login
-
+  ####################################################################################
+  # Account creation & management
+  ####################################################################################
+  create_new_account:         Create New Account
+  user_confirmed:             Your account has been successfully confirmed!
+  invalid_confirmation_code:  Invalid Confirmation Code
+  enter_confirmation_code:    Enter Confirmation Code
+  resend_confirmation:        Resend Confirmation
+  enter_your_email:           Enter your Email
+  reset_password:             Reset Password
+  confirmation_code:          Confirmation code
+  confirmation_email_sent:    Confirmation email sent
+  register:                   Register
+  login:                      Login to Heypal
+  login_using:                Login using
+  sign_in:                    Sign In
+  sign_out:                   Sign Out
+  invalid_login:              Invalid Login
   password_reset_instruction_sent: Password reset instruction has been sent to your email. 
-  
-  password_reset_failed: Password reset failed. 
+  password_reset_failed:      Password reset failed. 
+  signup_complete:            Signup Complete
+  signup_complete_text:       Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it.
+  confirm_reset_password:     Confirm your password reset
+  enter_your_new_password:    Enter your new password
+  password_reset_success:     Password reset successful
+  facebook_connected:         You have successfully connected your facebook account!
+  twitter_connected:          You have successfully connected your twitter account!
+  authentication_fail:        We are unable to authenticate you at the moment. Please try again.
+  signup_needed_to_connect:   We need to connect the details to your heypal account, please provide us the following.
 
-  signup_complete: Signup Complete
-  signup_complete_text: Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it.
-  
-  confirm_reset_password: Confirm your password reset
-  enter_your_new_password: Enter your new password
-  password_reset_success: Password reset successful
+  ####################################################################################
+  # General field names and validation errors
+  ####################################################################################
+  email:            Email
+  invalid_email:    Invalid Email
 
-  facebook_connected: You have successfully connected your facebook account!
-  twitter_connected: You have successfully connected your twitter account!
-  authentication_fail: We are unable to authenticate you at the moment. Please try again.
+  ####################################################################################
+  # Section Headers
+  ####################################################################################
+  section_header_user_profile:      Personal Information
+  section_header_user_information:  User Information
+  section_header_billing_address:   Billing Address
+  section_header_user_password:     Password
 
-  signup_needed_to_connect: We need to connect the details to your heypal account, please provide us the following.
+  ####################################################################################
+  # User Profile Data
+  ####################################################################################
+  first_name:         First Name
+  last_name:          Last Name
+  gender:             Gender
+  gender_undisclosed: Undisclosed
+  gender_male:        Male
+  gender_female:      Female
+  mobile_phone:       Mobile Phone Number
+  birthdate:          Birthdate
+  billing_address:    Billing Address
+  reviews:            Reviews
 
-  add_a_place: Add a Place
+  ####################################################################################
+  # Authentications
+  ####################################################################################  
+  link_accounts:      + link account
+  edit_account:       Edit Account

@@ -5,6 +5,7 @@
         .user_photo.float-left
           - if auth['provider'] == "facebook"
             %img{:src => "#{profile_picture_url auth['uid']}", :style => "width:30px; height:30px; padding-right:5px;"}
+            /TODO: Add twitter picture
           -else
             %img{:src => "/images/icons/#{auth['provider']}.png", :style => "width:30px; height:30px; padding-right:5px;"}
         .user_data

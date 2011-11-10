@@ -1,42 +1,46 @@
 = render :partial => 'user_left_column'
 %section.span8
-  .section-header User Information
+  .section-header #{t(:section_header_user_information)}
   = error_messages_for :user
   = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
     .input
-      = f.label :first_name, "First Name"
+      = f.label :first_name, t(:first_name)
       = f.text_field :first_name
     .input
-      = f.label :last_name, "Last Name"
+      = f.label :last_name, t(:last_name)
       = f.text_field :last_name
+    /TODO: Email has a special validation process, please check with Fer 
     .input
-      = f.label :gender, "Gender"
-      = f.select :gender, [['', 'unknown'],['Male', 'male'], ['Female', 'female']]
+      = f.label :email, t(:email)
+      = f.text_field :email
     .input
-      = f.label :phone_mobile, 'Mobile Phone Number'
+      = f.label :gender, t(:gender)
+      = f.select :gender, [['undisclosed', 'unknown'],['Male', 'male'], ['Female', 'female']]
+    .input
+      = f.label :phone_mobile, t(:mobile_phone)
       = f.text_field :phone_mobile
     .input
-      = f.label :phone_home, 'Home Phone Number'
-      = f.text_field :phone_home
-    .input
-      = f.label :phone_work, 'Work Phone Number'
-      = f.text_field :phone_work
-    .input
-      = f.label :birthdate, 'Birthdate'
+      = f.label :birthdate, t(:birthdate)
       = f.text_field :birthdate, :id => 'hasDate', :class => 'datepicker'
     .clearfix
 
-    - if false
-      .section-header Password
-      .input
-        = label_tag 'Current Password'
-        = text_field_tag 'current_password', '', :placeholder => 'current password'
-      .input
-        = label_tag 'Password'
-        = text_field_tag 'password', ''
-      .input
-        = label_tag 'Re-type Password'
-        = text_field_tag 'password_confirmation', ''
+    /Billing Address Section
+    .section-header #{t(:section_header_billing_address)}
+    .text
+      Please include your address edit here
+    .clearfix
+
+    /Password Section
+    .section-header #{t(:section_header_user_password)}
+    .input
+      = label_tag 'Current Password'
+      = text_field_tag 'current_password', '', :placeholder => 'current password'
+    .input
+      = label_tag 'Password'
+      = text_field_tag 'password', ''
+    .input
+      = label_tag 'Re-type Password'
+      = text_field_tag 'password_confirmation', ''
     .clearfix
 
     -#Accounts Section

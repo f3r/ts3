@@ -28,19 +28,26 @@
     return false;
   });
 
-  $(".open-edit-availability").unbind('click').live("click", function() {
+  $(".open-edit-availability").die().live("click", function() {
     $(this).parents(".availabilities-block").children(".edit-data-container").show();
     return false;
   });
 
-  $(".cancel-edit-availability").unbind('click').live("click", function() {
+  $(".cancel-edit-availability").die().live("click", function() {
     $(this).parents(".edit-data-container").hide();
     return false;
   });
 
-  $(".edit-availability").unbind('click').live("click", function() {
-    var save_btn = $(this);
-    var mother = save_btn.parents(".availabilities-block");
+  $(".availability_type").die().live("change", function() {
+    if ($(this).val() == '1') {
+      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
+    } else {
+      $(this).next().removeClass('disabled').removeAttr('disabled');
+    }
+  });
+
+  $(".edit-availability").die().live("click", function() {
+    var mother = $(this).parents(".availabilities-block");
     var form = mother.children(".edit-data-container");
 
     var aid = form.children('[name="id"]').val();
@@ -56,7 +63,7 @@
       },
       success: function(data) {
         mother.children(".data-container").html(data);
-        save_btn.prev().click();
+        form.hide();
       }
     });
 

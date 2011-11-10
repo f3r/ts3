@@ -37,11 +37,3 @@
     });
     return false;
   });
-
-  $(".availability_type").unbind('change').change(function() {
-    if ($(this).val() == '1') {
-      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
-    } else {
-      $(this).next().removeClass('disabled').removeAttr('disabled');
-    }
-  });

@@ -34,7 +34,7 @@
 
     .input
       = f.label :city_id, 'City'
-      = f.text_field :city_id, :class => "validate[required] span6 autosave", :value => "22186"
+      = f.select :city_id, [['Singapore', '1'], ['Hong Kong', '13984'], ['Kuala Lumpur', '4065']], :class => "validate[required] span6 autosave"      
     - if false
       .input
         = f.label :city

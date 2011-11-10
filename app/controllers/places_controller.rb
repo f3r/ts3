@@ -30,12 +30,19 @@ class PlacesController < ApplicationController
 
   def wizard
     @place = Heypal::Place.find(params[:id])
+
+    @photos = @place.photos
+    @availabilities = Heypal::Availability.find_all(:place_id => @place.to_param)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
   def preview
     @place = Heypal::Place.find(params[:id])
     render(:template => 'places/preview')
+  end
+
+  def show
+    @place = Heypal::Place.find(params[:id])
   end
 
   def photos
@@ -80,11 +87,11 @@ class PlacesController < ApplicationController
     result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
 
     # Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
+
     @place = Heypal::Place.find(params[:id])
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
 
-    #render :text => "cool", :layout => false
   end
 
 end

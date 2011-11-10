@@ -4,7 +4,7 @@
     .clearfix
       .input
         = f.label :city_id, 'What city is your place in?'
-        = f.text_field :city_id, :class => "validate[required] span6", :value => "22186"
+        = f.select :city_id, [['Singapore', '1'], ['Hong Kong', '13984'], ['Kuala Lumpur', '4065']], :class => "validate[required] span6"
       .input
         = f.label :title, 'Give us a descriptive title'
         = f.text_field :title, :class => "validate[required] span7"
@@ -31,13 +31,3 @@
     %button.btn.primary{:type => "submit"}
       Save and Continue &raquo;
 
-:javascript
-  $(function() {
-
-    var validCities = [
-      "Manila", "Singapore", "31"
-    ];
-
-    $('#place_city_id').autocompleteArray(validCities, {mustMatch:1});
-
-  });

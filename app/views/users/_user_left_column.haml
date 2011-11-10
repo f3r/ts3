@@ -1,20 +1,20 @@
 %section.span3
   = link_to placehold(120, 90), "#"
   %h2
-    = full_name @user
+    = short_full_name @user
   %p
+    /TODO: To be provided by backend
+    is_Agent?
+  %p
+    /TODO: Retrieve from User Addresses "city, country"
     Singapore
   %p
-    %span.gray= "Points"
-    43
-  %p
-    %span.gray= "Rating"
-    +39 | -1
-
+    39 
+    %span.gray= t(:reviews)
   %br
   = render :partial => "user_accounts"
   %br
   %p
     - unless request.fullpath.include?('edit')
-      = link_to 'Account settings', edit_profile_path
+      = link_to t(:account_settings), edit_profile_path
 

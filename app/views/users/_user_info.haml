@@ -1,29 +1,33 @@
-= render :partial => 'user_header'
 .span8
-  .section-header=full_name @user
+  /TODO: Add link to edit on the right of the section header
+  .section-header=t(:section_header_user_profile)
   .user_info
-    -#= render :partial => 'user_header'
     .label_detail
-      Fullname
+      #{t(:first_name)}
     .user_detail
-      = full_name @user
+      = @user['first_name']
     .label_detail
-      Gender
+      #{t(:last_name)}
     .user_detail
-      = @user['gender'].titleize unless @user['gender'].nil?
+      = @user['last_name']
     .label_detail
-      Mobile Phone Number
+      #{t(:email)}
+    .user_detail
+      = @user['email']
+    .label_detail
+      #{t(:billing_address)}
+    .user_detail
+      /TODO: Format Billing Address here
+    .label_detail
+      #{t(:mobile_phone)}
     .user_detail
       = @user['phone_mobile']
     .label_detail
-      Home Phone Number
+      #{t(:gender)}
     .user_detail
-      = @user['phone_home']
+      /TODO: Map gender to i18n gender_male/gender_female
+      = @user['gender'].nil? ? t(:gender_undisclosed) : @user['gender'].titleize
     .label_detail
-      Work Phone Number
-    .user_detail
-      = @user['phone_work']
-    .label_detail
-      Birthdate
+      #{t(:birthdate)}
     .user_detail
       = date_convert @user['birthdate'] unless @user['birthdate'].blank?

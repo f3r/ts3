@@ -34,8 +34,9 @@
 :javascript
   $(function() {
 
+    // FIXME: validCities= "Manila", "Singapore", "Hong Kong" but need to send the city_id and do the matching
     var validCities = [
-      "Manila", "Singapore", "31"
+      "Manila", "Singapore", "1"
     ];
 
     $('#place_city_id').autocompleteArray(validCities, {mustMatch:1});

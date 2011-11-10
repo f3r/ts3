@@ -24,150 +24,91 @@
             %h4 About 1,430 results found for "keyword"
           .controls
             %select{:class => "medium"}
-              %option Newest First
-              %option Option 2
-              %option Option 3
+              %option Price (Lowest First)
+              %option Price/Size (Lowest First) 
+              %option Price/Size (Highest First) 
+              %option Reviews
 
         .alert-message.info No Results Found.          
         
         %ul.list-display
-          %li
-            .thumb.data-block
-              %img{:src=>"http://placehold.it/114x74"}
-            .name.data-block
-              %h4.title
-                %a{:href => "#"} Flat in Shangri-la towers Ortigas                
-              .category
-                %a{:href => "#"} Video Games &raquo;
-                %a{:href => "#"} Consoles &raquo;
-              %span.label.like_new Like New
-            .flags.data-block
-              .location Singapore, SG
-              .condition
-                %span.label.new New
-                %span.label.nearby Nearby
-            .figure.data-block
-              .micro Buy it for
-              .cost $198.83
-            .people.data-block
-              .details
-                .name
-                  %a{:href => "#"} Fer Martinez
-                .rating
-                  .smile 
-                    %a{:href => "#"} 71
-                  .star
-                    %a{:href => "#"} 32
-              .profile-pic
-                %img{:src=>"http://placehold.it/40x40"}
-              
-              .time-stamp.micro 31 minutes ago  
-              
+          - 3.times do
             %li
               .thumb.data-block
-                %img{:src=>"http://placehold.it/114x74"}
-              .name.data-block
-                %h4.title
-                  %a{:href => "#"} Flat in Shangri-la towers Ortigas                
-                .category
-                  %a{:href => "#"} Video Games &raquo;
-                  %a{:href => "#"} Consoles &raquo;
-                %span.label.like_new Like New
-              .flags.data-block
-                .location Singapore, SG
-                .condition
-                  %span.label.new New
-                  %span.label.nearby Nearby
-              .figure.data-block
-                .micro Buy it for
-                .cost $198.83
-              .people.data-block
-                .details
-                  .name
-                    %a{:href => "#"} Fer Martinez
-                  .rating
-                    .smile 
-                      %a{:href => "#"} 71
-                    .star
-                      %a{:href => "#"} 32
-                .profile-pic
-                  %img{:src=>"http://placehold.it/40x40"}
+                %img{:src=>"http://placehold.it/150x90"}
+              .info  
+                %h3.title
+                  %a{:href => "#"} Comfy Place Near Chunling District
+                .people.data-block
+                  .profile-pic
+                    %img{:src=>"http://placehold.it/40x40"}
+                  .details
+                    .name
+                      %a.title{:href => "#"} Fer Martinez
+                      .micro
+                        .type.verified Agent
 
-                .time-stamp.micro 31 minutes ago     
+                .property.data-block
+                  .title
+                    .type.apartment 
+                      Apartment
+                  .micro
+                    120ft
+                    %sup 2 
+                
+                .reviews.data-block
+                  .title 16
+                  .micro reviews                                    
+                                
+              .price.data-block
+                .figure $198.83
+                .micro Per night
+              
                 
                 
     
       .items-gallery.results
         .row.show-grid
-          .span4
-            .clearfix
-              .thumb
-                %a{:href => "#"}
-                  %img{ :src => "http://placehold.it/90x90" }
-              .meta
-                %dl
-                  %dt
-                    Buy it for
-                    %dd
-                      $249
-                  %dt
-                    Rent it for
-                    %dd 
-                      $11.49 
-                      %span per day
-            .desc.clearfix    
-              %h4.title
-                %a{:href => "#"} Flat in Shangri-la towers Ortigas
-              %span.label.new like new
-              %span.label.nearby nearby
-              
-          .span4
-            .clearfix
-              .thumb
-                %a{:href => "#"}
-                  %img{ :src => "http://placehold.it/90x90" }
-              .meta
-                %dl
-                  %dt
-                    Buy it for
-                    %dd
-                      $249
-                  %dt
-                    Rent it for
-                    %dd 
-                      $11.49 
-                      %span per day
-            .desc.clearfix    
-              %h4.title
-                %a{:href => "#"} Flat in Shangri-la towers Ortigas
-              %span.label.new like new
-              %span.label.nearby nearby
-              
-          .span4
-            .clearfix
-              .thumb
-                %a{:href => "#"}
-                  %img{ :src => "http://placehold.it/90x90" }
-              .meta
-                %dl
-                  %dt
-                    Buy it for
-                    %dd
-                      $249
-                  %dt
-                    Rent it for
-                    %dd 
-                      $11.49 
-                      %span per day
-            .desc.clearfix    
-              %h4.title
-                %a{:href => "#"} Flat in Shangri-la towers Ortigas
-              %span.label.new like new
-              %span.label.nearby nearby
+          - 4.times do
+            .span6
+              .box
+                .clearfix
+                  .feat
+                    .thumb
+                      %a{:href => "#"}
+                        %img{ :src => "http://placehold.it/205x137" }                  
+                  .side    
+                    .thumb
+                      %a{:href => "#"}
+                        %img{ :src => "http://placehold.it/90x60" }
+                    .thumb
+                      %a{:href => "#"}
+                        %img{ :src => "http://placehold.it/90x60" }                      
+                .desc.clearfix    
+                  %h3.title
+                    %a{:href => "#"} Flat in Shangri-la towers Ortigas
+                  .clearfix
+                  
+                    .property.data-block
+                      .title
+                        .type.apartment 
+                          Apartment
+                      .micro
+                        120ft
+                        %sup 2 
+
+                    .reviews.data-block
+                      .title 16
+                      .micro reviews                                    
+
+                    .price.data-block
+                      .title.figure $198.83                  
+                      .micro Per night
+                  
                          
     .span4
       .search-aside
-        .toggle
+        .toggle.hidden
           %button{ :class=>"btn primary" } Buy
           %button{ :class=>"btn" } Get
           %button{ :class=>"btn" } Rent
@@ -177,172 +118,91 @@
           %ul.panel-expander 
             %li
               .header 
-                Categories
-              .content
-                %ul.cat-list
-                  %li
-                    %a{:href => "#"} 
-                      All
-                      %span (320)
-                  %li
-                    %a{:href => "#", :class => "current"} 
-                      Books
-                      %span (320)
-                    %ul
-                      %li
-                        %a{:href => "#"} 
-                          Science Fiction
-                          %span (31)     
-                      %li
-                        %a{:href => "#"} 
-                          Romance
-                          %span (31)                                   
-                  %li
-                    %a{:href => "#"} 
-                      Software
-                      %span (823)
-            %li
-              .header 
-                Item Condition
+                Type
               .content
                 %ul{:class => "inputs-list"}
                   %li
                     %label
-                      %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
-                      %span Like New
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                        %span Apartment
+                      .right  
+                        %span (320)
                   %li
                     %label
-                      %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option2" }
-                      %span Used
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option2" }
+                        %span House
+                      .right  
+                        %span (71)
                   %li
                     %label
-                      %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
-                      %span Worn
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                        %span Villa
+                      .right  
+                        %span (17)
+                        
+                  %li
+                    %label
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                        %span Room
+                      .right  
+                        %span (47)
+                        
+                  %li
+                    %label
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option2" }
+                        %span Shared Room
+                      .right  
+                        %span (19)
+                        
+                  %li
+                    %label
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                        %span Dorm
+                      .right  
+                        %span (87)
+                        
+                  %li
+                    %label
+                      .left
+                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                        %span Other spaces  
+                      .right  
+                        %span (14)                        
+                      
             %li
               .header 
-                Buy it For
+                Price per night
               .content
-                .clearfix
+                .clearfix.textfield
                   %label Minimum
                   .input
                     %input{ :class => "small", :id => "prependedInput", :name => "prependedInput", :size => "16", :type => "text", :placeholder => "$100" }
-                .clearfix
+                .clearfix.textfield
                   %label Maximum
                   .input
                     %input{ :class => "small", :id => "prependedInput", :name => "prependedInput", :size => "16", :type => "text", :placeholder => "$300" }                
           	  
-            %li
-              .header 
-                Rent it For
-              .content
-                .clearfix
-                  %label Minimum
-                  .input
-                    %input{ :class => "small", :id => "prependedInput", :name => "prependedInput", :size => "16", :type => "text", :placeholder => "$100" }
-                .clearfix
-                  %label Maximum
-                  .input
-                    %input{ :class => "small", :id => "prependedInput", :name => "prependedInput", :size => "16", :type => "text", :placeholder => "$300" }
+
 
             %li
               .header 
-                Search Distance
+                Amenities
               .content
-                .clearfix
-                  %select{:class => "full-width"}
-                    %option Worldwide
-                    %option Option 2
-                    %option Option 3
-
-
-
-
-
-%section#carousel.clearfix        
-  .items-gallery
-    .header
-      %h3 Items Nearby
-    .row.show-grid
-      .span-one-third
-        .clearfix
-          .thumb
-            %a{:href => "#"}
-              %img{ :src => "http://placehold.it/160x160" }
-          .meta
-            %dl
-              %dt
-                Buy it for
-                %dd
-                  $249
-              %dt
-                Rent it for
-                %dd 
-                  $11.49 
-                  %span per day
-          
-            .label.new like new
-            %br
-            .label.nearby nearby    
-          
-        .desc.clearfix  
-          %h4.title
-            %a{:href => "#"} Flat in Shangri-la towers Ortigas
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-      .span-one-third
-        .clearfix
-          .thumb
-            %a{:href => "#"}
-              %img{ :src => "http://placehold.it/160x160" }
-          .meta
-            %dl
-              %dt
-                Buy it for
-                %dd
-                  $249
-              %dt
-                Rent it for
-                %dd 
-                  $11.49 
-                  %span per day
-
-            .label.new like new
-            %br
-            .label.nearby nearby    
-
-        .desc.clearfix    
-          %h4.title
-            %a{:href => "#"} Flat in Shangri-la towers Ortigas        
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-
-      .span-one-third
-        .clearfix
-          .thumb
-            %a{:href => "#"}
-              %img{ :src => "http://placehold.it/160x160" }
-          .meta
-            %dl
-              %dt
-                Buy it for
-                %dd
-                  $249
-              %dt
-                Rent it for
-                %dd 
-                  $11.49 
-                  %span per day
-
-            .label.new like new
-            %br
-            .label.nearby nearby    
-
-        .desc.clearfix
-          %h4.title
-            %a{:href => "#"} Flat in Shangri-la towers Ortigas            
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-        
-  
-        
-        
+                %ul{:class => "inputs-list"}
+                  - 3.times do 
+                    %li
+                      %label
+                        .left
+                          %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                          %span Most Popular
+                        .right  
+                          %span (300)
+                  %li
+                    %a{:href => "#"} more amenities
+                          

@@ -1,7 +1,71 @@
 .panel-wrapper
   %h2.title Calendar
 
+  %fieldset
+    = button_tag 'Add New', :id => 'open-new-availability', :class => 'btn primary'
+    %div#new-availability-form.hide
+      = render 'availabilities/form'
+
+  %div#new-availabilities.hide
+    %h5 Added Availabilities
+
+  %div
+    %h5 Existing Availabilities
+  - Heypal::Availability.find_all(:place_id => @place.to_param).each do |a|
+    = render 'availabilities/list', :a => a, :place => @place
+
 .arrows.clearfix
+  .coda-nav-left
+    %a.btn.primary{:href => "#"} Previous Step
   .coda-nav-right
     %a.btn.primary{:href => "#"} Next Step &raquo;
 
+:javascript
+
+  $("#open-new-availability").unbind('click').click(function() {
+    $("#new-availability-form").show();
+    $("#open-new-availability").addClass('disabled').attr('disabled', 'disabled');
+    return false;
+  });
+
+  $(".open-edit-availability").die().live("click", function() {
+    $(this).parents(".availabilities-block").children(".edit-data-container").show();
+    return false;
+  });
+
+  $(".cancel-edit-availability").die().live("click", function() {
+    $(this).parents(".edit-data-container").hide();
+    return false;
+  });
+
+  $(".availability_type").die().live("change", function() {
+    if ($(this).val() == '1') {
+      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
+    } else {
+      $(this).next().removeClass('disabled').removeAttr('disabled');
+    }
+  });
+
+  $(".edit-availability").die().live("click", function() {
+    var mother = $(this).parents(".availabilities-block");
+    var form = mother.children(".edit-data-container");
+
+    var aid = form.children('[name="id"]').val();
+
+    $.ajax({
+      type: 'PUT',
+      url: '/places/'+place_id+'/availabilities/'+aid,
+      data: {
+        'date_start':form.children('[name="date_start"]').val(),
+        'date_end':form.children('[name="date_end"]').val(),
+        'availability_type':form.find('[name="availability_type"]').val(),
+        'price_per_night':form.find('[name="price_per_night"]').val()
+      },
+      success: function(data) {
+        mother.children(".data-container").html(data);
+        form.hide();
+      }
+    });
+
+    return false;
+  });

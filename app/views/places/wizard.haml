@@ -81,6 +81,8 @@
     hideIndicator(elem);
     showIndicator(elem);
 
+    elem.hide();
+
     var post_data = "";
     var field = $(this).attr("name");
     var value = "1";
@@ -97,7 +99,10 @@
       type: 'PUT',
       url: '/places/' + place_id + '.json',
       data: post_data, 
-      success: function() {}
+      success: function() {
+        hideIndicator(elem);      
+        elem.show();
+      }
     });
   };  
 

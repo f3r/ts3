@@ -1,5 +1,8 @@
 .row
   .span12
+    %h1.title= @place.title
+    %p.section_title
+      General Information
     .coda-slider-wrapper
       #coda-slider-1.coda-slider.preload
         = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
@@ -110,9 +113,47 @@
     $(this).attr('data-changed', "1");
   };
 
-
+  $('#place_title').change(function() {
+    $('h1.title').html($(this).val());
+  });
 
   $(document).ready(function() {
+
+      // publish wizard
+    $('#coda-slider-1').codaSlider({
+       dynamicArrows: false,
+       dynamicTabs: false,
+       onSwitch: function(s) {
+          console.log(s);
+       }
+    });      
+  
+    // accomodation photo slider          
+    var oSlider7 = $('#photo-slider');  	
+    if(oSlider7.length > 0){    	
+      oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true });
+    
+      $('#startslider').click(function(){ 
+        oSlider7.tinycarousel_start();
+        return false;
+      });
+    
+      $('#stopslider').click(function(){ 
+        oSlider7.tinycarousel_stop();
+        return false;
+      });		    		
+    }
+    
+    // search siderbar accordion
+    $(".panel-expander > .content:gt(0)").hide();
+    $(".panel-expander > li:gt(4)").hide();
+    $(".panel-expander .header").click(function(){
+      $(this).toggleClass("active");
+      $(this).siblings(".header").removeClass("active");      	        
+      $(this).next(".content").slideToggle(500)
+      return false;
+    });
+
     $('#wizard_form').validationEngine();
 
     // Character count

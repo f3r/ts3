@@ -1,27 +1,36 @@
 .panel-wrapper
-  %h2.title Price &amp; Conditions
   %fieldset
     .input
       = f.label :currency, 'Currency'
-      = f.select :currency, ['USD', 'SGD', 'PHP'], {}, :class => 'autosave'
+      = f.select :currency, currencies_select, {}, :class => 'autosave'
   %h2.title Pricing
   %fieldset      
     .input
       = f.label :price_per_night
+      %span.currency
+        $
       = f.text_field :price_per_night, :class => "validate[required] span2 autosave"
     .input
       = f.label :price_per_week
+      %span.currency
+        $
       = f.text_field :price_per_week, :class => "validate[required] span2 autosave"
     .input
       = f.label :price_per_month
+      %span.currency
+        $
       = f.text_field :price_per_month, :class => "validate[required] span2 autosave"
   %h2.title Additional Costs
   %fieldset
     .input
       = f.label :price_final_cleanup, 'Final Cleanup'
+      %span.currency
+        $
       = f.text_field :price_final_cleanup, :class => "validate[required] span2 autosave"
     .input
       = f.label :price_security_deposit, 'Security Deposit'
+      %span.currency
+        $
       = f.text_field :price_security_deposit, :class => "validate[required] span2 autosave"
   %h2.title Terms
   %fieldset

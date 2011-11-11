@@ -9,7 +9,6 @@ class Heypal::Availability < Heypal::Base
 
   class << self
     def create(params)
-      puts params.inspect
       result = request("/places/#{params[:place_id]}/availabilities.json", :post, params)
 
       if result['stat'] == 'ok'

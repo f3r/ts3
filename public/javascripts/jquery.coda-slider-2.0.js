@@ -33,7 +33,8 @@ $.fn.codaSlider = function(settings) {
 		firstPanelToLoad: 1,
 		panelTitleSelector: "h2.title",
 		slideEaseDuration: 1000,
-		slideEaseFunction: "easeInOutExpo"
+		slideEaseFunction: "easeInOutExpo",
+    onSwitch: function(e) {}
 	}, settings);
 	
 	return this.each(function(){
@@ -93,6 +94,7 @@ $.fn.codaSlider = function(settings) {
 				$('.coda-nav').find('a.current').removeClass('current').parent().prev().find('a').addClass('current');
 			};
 			$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
+      settings.onSwitch($('.coda-nav').find('a.current'));      
 			if (settings.crossLinking) { location.hash = currentPanel }; // Change the URL hash (cross-linking)
 			return false;
 		});
@@ -114,6 +116,7 @@ $.fn.codaSlider = function(settings) {
 				$('.coda-nav').find('a.current').removeClass('current').parent().next().find('a').addClass('current');
 			};
 			$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
+      settings.onSwitch($('.coda-nav').find('a.current'));      
 			if (settings.crossLinking) { location.hash = currentPanel }; // Change the URL hash (cross-linking)
 			return false;
 		});
@@ -156,6 +159,7 @@ $.fn.codaSlider = function(settings) {
 				alterPanelHeight(z);
 				currentPanel = z + 1;
 				$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
+        settings.onSwitch($('.coda-nav').find('a.current'));
 				if (!settings.crossLinking) { return false }; // Don't change the URL hash unless cross-linking is specified
 			});
 		});

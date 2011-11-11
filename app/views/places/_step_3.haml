@@ -16,6 +16,8 @@
       %ul.media-grid.gallery#photos_list
         - @photos = @place.photos
         = render 'photo_list'
+      .clearfix
+
 .arrows.clearfix
   .coda-nav-left
     %a.btn.primary{:href => "#"} &laquo; Previous Step
@@ -47,20 +49,17 @@
       'scriptData'      : { 'photo_album_id' : #{@place.id}, '_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
       'onSelect'        : function(event, data) {  },
       'onComplete'  : function(event, ID, fileObj, response, data) {
-          console.log(response);
-          console.log(data);
-          $('#photos_list').html(response);
-          /*
-          $.ajax( { 
-            url : "/places/#{@place.id}/photos",
-            context : $('#photos_list'),
-            success : function(data) {
-              $(this).html(data);
-            }
-          });
-          */
-            
+        $('#photos_list').html(response);
+        //$('#photos_list').sortable();        
       }
     });
 
+    function afterSort(event, ui) {
+      $('#photos_list li').removeClass("active");
+      $('#photos_list li:first').addClass("active");
+    }
+
+    $('#photos_list').sortable({ grid: [8,2], stop: afterSort});
+
+    afterSort();
   });

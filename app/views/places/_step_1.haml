@@ -28,5 +28,30 @@
 
 .arrows.clearfix
   .coda-nav-right
-    %button.btn.primary{:type => "submit"}
+    %button.btn.primary{:type => "submit", :id => "submit_button"}
       Save and Continue &raquo;
+
+
+:javascript
+
+  $(function() {
+
+    function validateStep1Form() {
+
+      if($('#place_title').val() && $('#place_num_bedrooms').val() && $('#place_max_guests').val() && $('#place_terms').attr("checked") == "checked") {
+        $('#submit_button').attr('disabled', null);
+      } else {
+        $('#submit_button').attr('disabled', 'true');
+      }
+
+    }
+
+    $('form input').change(function(){
+      validateStep1Form();
+    }).keypress(function() {
+      validateStep1Form();
+    });
+      
+    validateStep1Form();
+
+  });

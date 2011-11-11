@@ -61,7 +61,7 @@
                 },
                 "integer": {
                     "regex": /^[\-\+]?\d+$/,
-                    "alertText": "* Not a valid integer"
+                    "alertText": "* Not a valid number"
                 },
                 "number": {
                     // Number, including positive, negative, and floating decimal. credit: orefalo

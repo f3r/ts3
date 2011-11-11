@@ -1,7 +1,7 @@
 module AuthenticationHelper
 
   def logged_in?
-    session['authentication_token'].present?
+    session['authentication_token'].present? && current_user
   end
 
   def sign_in(_session)
@@ -22,6 +22,9 @@ module AuthenticationHelper
 
   def current_user
     @current_user ||= Heypal::User.show('access_token' => current_token)
+  rescue RestClient::Unauthorized
+    # We got an invalid user
+    session['authentication_token'] = nil    
   end
 
   def current_user=(user)

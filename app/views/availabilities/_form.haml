@@ -1,5 +1,4 @@
 %fieldset
-  %h3 New
   %div
     = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.today.strftime("%d/%m/%Y")
     to
@@ -31,15 +30,10 @@
         'date_start':$("#date_start").val(),
         'date_end':$("#date_end").val()
       },
-      success: function() {}
+      success: function(data) {
+        $("#new-availabilities").show().append(data);
+        $(".cancel-new-availability").click();
+      }
     });
     return false;
-  });
-
-  $(".availability_type").unbind('change').change(function() {
-    if ($(this).val() == '1') {
-      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
-    } else {
-      $(this).next().removeClass('disabled').removeAttr('disabled');
-    }
   });

@@ -1,0 +1,9 @@
+development:
+  bucket_name: squarestays-img
+  access_key_id: AKIAICSWWKMXN4NP7FIQ
+  secret_access_key: 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
+
+production:
+  bucket_name: squarestays-img
+  access_key_id: AKIAICSWWKMXN4NP7FIQ
+  secret_access_key: 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

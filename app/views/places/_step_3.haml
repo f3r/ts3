@@ -4,7 +4,8 @@
 
   .upload_wrapper
     %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :value => 'Select files', :id => "photo_uploader" }
-    
+    %p
+      (Button will be changed soon. This button supports multiple file upload too!)
   .clearfix
 
   %h3 Photos
@@ -13,7 +14,8 @@
   .row
     .span12
       %ul.media-grid.gallery#photos_list
-
+        - @photos = @place.photos
+        = render 'photo_list'
 .arrows.clearfix
   .coda-nav-left
     %a.btn.primary{:href => "#"} &laquo; Previous Step
@@ -21,17 +23,8 @@
     %a.btn.primary{:href => "#"} Next Step &raquo;
 
 :javascript
-  $(document).ready(function(){
 
-    function refreshPhotoList() {
-      $.ajax( { 
-        url : "/places/#{@place.id}/upload_photo", 
-        context : $('#photos_list'),
-        success : function(data) {
-          $(this).html(data);
-        }
-      });
-    }
+  $(document).ready(function(){
 
     var uploadify_script_data = {};
     var csrf_token = $('meta[name=csrf-token]').attr('content');
@@ -53,7 +46,21 @@
       'fileExt'         : '*.jpg;*.png',
       'scriptData'      : { 'photo_album_id' : #{@place.id}, '_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
       'onSelect'        : function(event, data) {  },
-      'onAllComplete'      : function(event, data) { refreshPhotoList(); }
+      'onComplete'  : function(event, ID, fileObj, response, data) {
+          console.log(response);
+          console.log(data);
+          $('#photos_list').html(response);
+          /*
+          $.ajax( { 
+            url : "/places/#{@place.id}/photos",
+            context : $('#photos_list'),
+            success : function(data) {
+              $(this).html(data);
+            }
+          });
+          */
+            
+      }
     });
 
   });

@@ -1,0 +1,4 @@
+- if @photos && @photos.any?
+  - @photos.each do |photo|
+    %li 
+      %img{:src => photo['photo']['small']}

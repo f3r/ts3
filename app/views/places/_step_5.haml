@@ -6,8 +6,14 @@
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
-  - Heypal::Availability.find_all(:place_id => @place.to_param).each do |a|
-    = render 'availabilities/list', :a => a, :place => @place
+  %div#new-availabilities.hide
+    %h5 Added Availabilities
+
+  %div
+    %h5 Existing Availabilities
+  - if @availabilities && @availabilities.any?
+    - @availabilities.each do |a|
+      = render 'availabilities/list', :a => a, :place => @place
 
 .arrows.clearfix
   .coda-nav-left
@@ -23,12 +29,44 @@
     return false;
   });
 
-  $(".availabilities-block .edit-availability").unbind('click').click(function() {
+  $(".open-edit-availability").die().live("click", function() {
     $(this).parents(".availabilities-block").children(".edit-data-container").show();
     return false;
   });
 
-  $(".cancel-edit-availability").unbind('click').click(function() {
+  $(".cancel-edit-availability").die().live("click", function() {
     $(this).parents(".edit-data-container").hide();
+    return false;
+  });
+
+  $(".availability_type").die().live("change", function() {
+    if ($(this).val() == '1') {
+      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
+    } else {
+      $(this).next().removeClass('disabled').removeAttr('disabled');
+    }
+  });
+
+  $(".edit-availability").die().live("click", function() {
+    var mother = $(this).parents(".availabilities-block");
+    var form = mother.children(".edit-data-container");
+
+    var aid = form.children('[name="id"]').val();
+
+    $.ajax({
+      type: 'PUT',
+      url: '/places/'+place_id+'/availabilities/'+aid,
+      data: {
+        'date_start':form.children('[name="date_start"]').val(),
+        'date_end':form.children('[name="date_end"]').val(),
+        'availability_type':form.find('[name="availability_type"]').val(),
+        'price_per_night':form.find('[name="price_per_night"]').val()
+      },
+      success: function(data) {
+        mother.children(".data-container").html(data);
+        form.hide();
+      }
+    });
+
     return false;
   });

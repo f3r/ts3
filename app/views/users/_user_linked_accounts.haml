@@ -3,11 +3,11 @@
     - if @user_auth['authentications'].size == 1
       #{t(:link_accounts)}
       - for auth in @user_auth['authentications']
-        - if auth['provider'] == "twitter"
-          .p{:style => "padding-left: 10px;"}
+        - if auth['provider'] == 'twitter'
+          .p{:style => "padding-left: 5px;"}
             = link_to image_tag("/images/icons/facebook.png"), "/auth/facebook"
-        - elsif auth['provider'] == "facebook"
-          .p{:style => "padding-left: 10px;"}
+        - elsif auth['provider'] == 'facebook'
+          .p{:style => "padding-left: 5px;"}
             = link_to image_tag("/images/icons/twitter.png"), "/auth/twitter"
 - else
   #{t(:link_accounts)}:

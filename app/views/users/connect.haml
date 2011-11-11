@@ -4,10 +4,7 @@
       %h1
         Hello
     .span
-      - if @oauth_provider == "twitter"
-        %img{:src => @oauth_image}
-      - elsif @oauth_provider == "facebook"
-        %img{:src => "#{profile_picture_url @oauth_uid}"}
+      %img{:src => "#{profile_picture_url(@oauth_uid, @oauth_provider)}"}
     .span4{:style => "line-height: 40px;"}
       = @oauth_name
   .registration.row
@@ -19,7 +16,7 @@
         = f.hidden_field :oauth_provider, :value => @oauth_provider
         = f.hidden_field :oauth_token, :value => @oauth_token
         = f.hidden_field :oauth_uid, :value => @oauth_uid
-        = f.hidden_field :avatar_url, :value => ""
+        = f.hidden_field :avatar_url, :value => profile_picture_url(@oauth_uid, @oauth_provider)
         = f.error_messages
         .input
           = f.text_field :first_name, :placeholder => 'First Name', :value => @oauth_firstname

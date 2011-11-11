@@ -19,5 +19,5 @@
 
     %div.availability-action
       = link_to "Remove", place_availability_path(place.to_param, a['id']), :method => :delete, :confirm => 'Remove this period from your calendar?', :class => 'delete btn error'
-      = button_tag "Cancel", :class => "btn cancel-edit-availability"
+      = button_tag "Close", :class => "btn cancel-edit-availability"
       = button_tag "Save", :class => "btn primary edit-availability"

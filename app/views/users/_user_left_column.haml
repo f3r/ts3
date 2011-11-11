@@ -1,5 +1,8 @@
 %section.span3
-  = link_to placehold(120, 90), "#"
+  - unless @user.avatar_url.nil?
+    %img{:src => @user.avatar_url, :style => "width:120px, height:90px;"}
+  - else
+    = placehold(120,90)
   %h2
     = short_full_name @user
   %p

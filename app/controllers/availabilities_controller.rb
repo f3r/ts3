@@ -14,7 +14,9 @@ class AvailabilitiesController < ApplicationController
     if availability.save
       place = Heypal::Place.find(availability['place_id'].to_s)
 
-      render :text =>  render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false), :layout => false
+      render :text => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false), :layout => false
+    else
+      
     end
   end
 
@@ -29,6 +31,7 @@ class AvailabilitiesController < ApplicationController
 
     if availability = Heypal::Availability.update(param)
       render :text => render_to_string(:_data, :locals => {:a => availability}, :layout => false), :layout => false
+    else
     end
   end
 

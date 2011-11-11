@@ -19,7 +19,7 @@
         = f.hidden_field :oauth_provider, :value => @oauth_provider
         = f.hidden_field :oauth_token, :value => @oauth_token
         = f.hidden_field :oauth_uid, :value => @oauth_uid
-
+        = f.hidden_field :avatar_url, :value => ""
         = f.error_messages
         .input
           = f.text_field :first_name, :placeholder => 'First Name', :value => @oauth_firstname

@@ -15,6 +15,13 @@ class Heypal::Geo < Heypal::Base
 
     end
 
+    def get_all_cities(params)
+      result = request("/geo/cities/search.json?query=#{params}", :get)
+      if result['stat'] == 'ok'
+        return result['cities']
+      end
+    end
+
   end
 
 end

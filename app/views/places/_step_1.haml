@@ -34,10 +34,16 @@
 :javascript
   $(function() {
 
-    var validCities = [
+    /** var validCities = [
       "Manila", "Singapore", "31"
-    ];
+    ]; **/
+    $.ajax({
+      url: '/cities',
+      dataType: "json",
+      success: function ( data ){
+        return data
+      }
+    });
 
-    $('#place_city_id').autocompleteArray(validCities, {mustMatch:1});
-
+    $('#place_city_id').autocompleteArray(data, {mustMatch:1});
   });

@@ -71,4 +71,8 @@ class PlacesController < ApplicationController
     render :text => "", :layout => false
   end
 
+  def get_cities
+    @cities = Heypal::Geo.get_all_cities(params[:query])
+    render :js => @cities.map.collect{|city| [city['name']]}
+  end
 end

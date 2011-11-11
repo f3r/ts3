@@ -22,6 +22,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'
   match '/connect' => 'users#connect'
+  match '/cities'  => 'places#get_cities'
 
   resources :products
 

@@ -30,7 +30,6 @@ class PlacesController < ApplicationController
 
   def wizard
     @place = Heypal::Place.find(params[:id])
-
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all(:place_id => @place.to_param)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
@@ -65,6 +64,7 @@ class PlacesController < ApplicationController
     photo = {
               :photo => {
                 :id => p.photo_id,
+                :name => '',
                 :place_id => params[:id],
                 :filename => params[:Filename],
                 :large => p.photo.url(:large, false),

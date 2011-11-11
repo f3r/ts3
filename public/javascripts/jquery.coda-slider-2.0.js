@@ -178,6 +178,7 @@ $.fn.codaSlider = function(settings) {
 					slider.siblings('.coda-nav').find('a').removeClass('current').parents('ul').find('li:eq(' + (targetPanel - 1) + ') a').addClass('current');
 					// Slide
 					$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
+          settings.onSwitch($('.coda-nav').find('a.current'));          
 					if (!settings.crossLinking) { return false }; // Don't change the URL hash unless cross-linking is specified
 				});
 			};
@@ -228,6 +229,7 @@ $.fn.codaSlider = function(settings) {
 				slider.siblings('.coda-nav').find('a').removeClass('current').parents('ul').find('li:eq(' + (currentPanel - 1) + ') a').addClass('current');
 				// Slide:
 				$('.panel-container', slider).animate({ marginLeft: offset }, settings.slideEaseDuration, settings.slideEaseFunction);
+        settings.onSwitch($('.coda-nav').find('a.current'));        
 				setTimeout(autoSlide,settings.autoSlideInterval);
 			};
 		};

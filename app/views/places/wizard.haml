@@ -28,7 +28,6 @@
             -#= render 'preview', :f => f
   .span4
     = render :partial => 'sidebar'
-= hidden_field_tag 'access_token', current_token, :id => 'accessToken'
 
 :javascript
 
@@ -124,7 +123,7 @@
        dynamicArrows: false,
        dynamicTabs: false,
        onSwitch: function(s) {
-          console.log(s);
+        $('.section_title').html(s.html());
        }
     });      
   

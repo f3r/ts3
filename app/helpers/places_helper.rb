@@ -42,4 +42,9 @@ module PlacesHelper
       ['Handicap', :amenities_handicap],
     ]   
   end
+
+  def render_photo(photo)
+    p = photo['photo']
+    raw "<img src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}'  data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' />"
+  end
 end

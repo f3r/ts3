@@ -59,25 +59,27 @@
     %a.btn.primary{:href => preview_place_path(@place)} Preview &raquo;
 
 :javascript
-  $('#place_price_per_night').change(function() {
-    var access_token = $('#accessToken').val();
-    var per_week = $(this).val() * 7;
-    var per_month = $(this).val() * 30;
-    var total_per_week = per_week - (per_week * .05);
+  $(document).ready(function() {  
+    $('#place_price_per_night').change(function() {
+      var access_token = $('#accessToken').val();
+      var per_week = $(this).val() * 7;
+      var per_month = $(this).val() * 30;
+      var total_per_week = per_week - (per_week * .05);
 
-    $('#place_price_per_week').val(total_per_week);
-    $('#place_price_per_month').val(per_month);
-    $('#place_price_per_week, #place_price_per_month').each(function() {
-      var field;
-      var value;
+      $('#place_price_per_week').val(total_per_week);
+      $('#place_price_per_month').val(per_month);
+      $('#place_price_per_week, #place_price_per_month').each(function() {
+        var field;
+        var value;
 
-      field = $(this).attr('name');
-      value = $(this).val();
-      $.ajax({
-        type: 'PUT',
-        url: '/places/' + place_id + '.json?access_token=' + access_token,
-        data: $(this).serialize(),
-        success: function() {}
+        field = $(this).attr('name');
+        value = $(this).val();
+        $.ajax({
+          type: 'PUT',
+          url: '/places/' + place_id + '.json?access_token=' + access_token,
+          data: $(this).serialize(),
+          success: function() {}
+        });
       });
     });
   });

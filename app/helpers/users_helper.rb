@@ -19,8 +19,14 @@ module UsersHelper
     new_date unless date.blank?
   end
 
-  def profile_picture_url(uid)
-    picture_url = "https://graph.facebook.com/#{uid}/picture"
-    picture_url unless uid.nil?
+  def profile_picture_url(uid, type)
+    if type == "facebook"
+      avatar = "https://graph.facebook.com/#{uid}/picture"
+    elsif type == "twitter"
+      user = RestClient.get("https://api.twitter.com/1/users/show.json?user_id=#{uid}")
+      user_info = JSON.parse(user)
+      avatar = user_info['profile_image_url']
+    end
+    avatar
   end
 end

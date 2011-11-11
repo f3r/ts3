@@ -1,7 +1,12 @@
 .row
   .span12
-    .preview-header
+    %div{:style => "float:right"}
+      %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
+        %span
+          Publish
 
+    .preview-header
+      %br
       %p This is a Preview
       .border.span11      
     .accomodation-wrapper
@@ -162,9 +167,5 @@
             %span
             Price and Conditions
 
-    .clearfix
-      %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
-        %span
-          Preview
-        
+
 

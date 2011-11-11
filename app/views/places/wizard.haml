@@ -1,5 +1,10 @@
 .row
   .span12
+    %div{:style => "float:right"}
+      %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
+        %span
+          Preview
+        
     %h1.title= @place.title
     %p.section_title
       General Information

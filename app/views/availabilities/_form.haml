@@ -1,8 +1,8 @@
 %fieldset
   %div
-    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.today.strftime("%d/%m/%Y")
+    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :from
     to
-    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.today.strftime("%d/%m/%Y")
+    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :to
 
     %span.availability-price
       = select_tag "availability_type", raw("<option value='2'>New Price</option><option value='1'>Unavailable</option>"), :class => 'availability_type'

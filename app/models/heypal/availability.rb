@@ -38,8 +38,12 @@ class Heypal::Availability < Heypal::Base
     end
 
     def delete(id, params)
-      place_id = params.delete(:place_id)
-      request("/places/#{place_id}/availabilities/#{id}.json", :delete, params)
+      result = request("/places/#{params[:place_id]}/availabilities/#{id}.json?access_token=#{params[:access_token]}", :delete, params)
+      if result['stat'] == 'ok'
+        true
+      else
+        false
+      end
     end
 
     def get_data_on(result)

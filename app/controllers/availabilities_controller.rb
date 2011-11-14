@@ -41,6 +41,10 @@ class AvailabilitiesController < ApplicationController
     param[:access_token] = current_token
     param[:place_id] = params[:place_id]
 
-    Heypal::Availability.delete(params[:id], param)
+    if Heypal::Availability.delete(params[:id], param)
+      render :json => {:stat => true}
+    else
+      render :json => {:stat => false, :data => 'Something went wrong. Please check your availabilities again.'}
+    end
   end
 end

@@ -101,7 +101,7 @@
       'onSelect'        : function(event, data) {  },
       'onComplete'  : function(event, ID, fileObj, response, data) {
         $('#photos_list').html(response);
-        //$('#photos_list').sortable();        
+        afterSort();
       }
     });
 

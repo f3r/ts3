@@ -2,12 +2,12 @@ module AvailabilitiesHelper
   def color_price(s, p) # self, place
     if !s['price_per_night']
       'red'
+    elsif p['price_per_night'].nil? || s['price_per_night'] == p['price_per_night']
+      'grey'
     elsif s['price_per_night'] > p['price_per_night']
       'blue'
     elsif s['price_per_night'] < p['price_per_night']
       'green'
-    else
-      'grey'
     end
   end
   

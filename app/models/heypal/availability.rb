@@ -9,13 +9,12 @@ class Heypal::Availability < Heypal::Base
 
   class << self
     def create(params)
-      puts params.inspect
       result = request("/places/#{params[:place_id]}/availabilities.json", :post, params)
 
       if result['stat'] == 'ok'
         return get_data_on(result)
       else
-        #TODO: display error here.
+        return get_errors_on(result)
       end
     end
 
@@ -25,7 +24,7 @@ class Heypal::Availability < Heypal::Base
       if result['stat'] == 'ok'
         return get_data_on(result)
       else
-        #TODO: display error here.
+        return get_errors_on(result)
       end
     end
 
@@ -34,7 +33,7 @@ class Heypal::Availability < Heypal::Base
       if result["stat"] == 'ok'
         result["availabilities"]
       else
-        []
+        {}
       end
     end
 
@@ -45,6 +44,12 @@ class Heypal::Availability < Heypal::Base
 
     def get_data_on(result)
       result["availability"]
+    end
+
+    def get_errors_on(result)
+      return false
+
+      result["err"] # contains the error codes
     end
   end
   

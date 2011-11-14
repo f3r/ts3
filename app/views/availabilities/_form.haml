@@ -9,7 +9,7 @@
       = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
 
     %div.availability-action
-      = button_tag "Cancel", :class => "btn cancel-new-availability"
+      = button_tag "Close", :class => "btn cancel-new-availability"
       = button_tag "Add", :id => "new-availability", :class => "btn primary"
 
 :javascript
@@ -21,6 +21,10 @@
   });
 
   $("#new-availability").unbind('click').click(function() {
+    var save_btn = $(this);
+
+    showIndicator(save_btn);
+    save_btn.attr('disabled', 'disabled');
     $.ajax({
       type: 'POST',
       url: '/places/'+place_id+'/availabilities',
@@ -31,8 +35,15 @@
         'date_end':$("#date_end").val()
       },
       success: function(data) {
-        $("#new-availabilities").show().append(data);
-        $(".cancel-new-availability").click();
+        if (data.stat) {
+          $("#new-availabilities").show().append(data.data);
+          $(".cancel-new-availability").click();
+        } else {
+          alert(data.data);
+        }
+
+        hideIndicator(save_btn);
+        save_btn.removeAttr('disabled');
       }
     });
     return false;

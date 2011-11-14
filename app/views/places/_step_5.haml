@@ -9,10 +9,11 @@
   %div#new-availabilities.hide
     %h5 Added Availabilities
 
-  %div
-    %h5 Existing Availabilities
   - if @availabilities && @availabilities.any?
     - @availabilities.each do |a|
+      - if !defined?(@this_year) || @this_year < Date.parse(a['date_start']).year
+        %h4.year-header= @this_year = Date.parse(a['date_start']).year
+
       = render 'availabilities/list', :a => a, :place => @place
 
 .arrows.clearfix
@@ -48,10 +49,14 @@
   });
 
   $(".edit-availability").die().live("click", function() {
-    var mother = $(this).parents(".availabilities-block");
+    var save_btn = $(this);
+    var mother = save_btn.parents(".availabilities-block");
     var form = mother.children(".edit-data-container");
 
     var aid = form.children('[name="id"]').val();
+
+    showIndicator(save_btn);
+    save_btn.attr('disabled', 'disabled');
 
     $.ajax({
       type: 'PUT',
@@ -63,8 +68,15 @@
         'price_per_night':form.find('[name="price_per_night"]').val()
       },
       success: function(data) {
-        mother.children(".data-container").html(data);
-        form.hide();
+        if (data.stat) {
+          mother.children(".data-container").html(data.data);
+          form.hide();
+        } else {
+          alert(data.data);
+        }
+
+        hideIndicator(save_btn);
+        save_btn.removeAttr('disabled');
       }
     });
 

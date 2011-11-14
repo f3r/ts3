@@ -269,6 +269,7 @@ jQuery.autocomplete = function(input, options) {
 
 	function parseData(data) {
 		if (!data) return null;
+		alert(data)
 		var parsed = [];
 		var rows = data.split(options.lineSeparator);
 		for (var i=0; i < rows.length; i++) {
@@ -335,7 +336,7 @@ jQuery.autocomplete = function(input, options) {
 	};
 
 	function makeUrl(q) {
-		var url = options.url + "?q=" + encodeURI(q);
+		var url = options.url + "?query=" + encodeURI(q);
 		for (var i in options.extraParams) {
 			url += "&" + i + "=" + encodeURI(options.extraParams[i]);
 		}

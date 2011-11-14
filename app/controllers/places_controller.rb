@@ -21,10 +21,6 @@ class PlacesController < ApplicationController
 
   def update
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
-
-    logger.info('-------result')
-    logger.info(result)
-
     render :text => "", :layout => false
   end
 
@@ -37,11 +33,13 @@ class PlacesController < ApplicationController
 
   def preview
     @place = Heypal::Place.find(params[:id])
-    render(:template => 'places/preview')
+    @preview = true
+    render(:template => 'places/show')
   end
 
   def show
     @place = Heypal::Place.find(params[:id])
+    @preview = false
   end
 
   def photos
@@ -94,4 +92,8 @@ class PlacesController < ApplicationController
 
   end
 
+  def get_cities
+    @cities = Heypal::Geo.get_all_cities(params[:query])
+    render :js => @cities.map.collect{|city| [city['name']]}
+  end
 end

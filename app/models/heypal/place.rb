@@ -1,4 +1,5 @@
 class Heypal::Place < Heypal::Base
+  include LookupsHelper
 
   set_resource_path '/places.json'
 
@@ -122,7 +123,13 @@ class Heypal::Place < Heypal::Base
   end
 
   def place_type
-    [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]].select { |s| s[1] == self.place_type_id }[0].first
+    place_types_select.select { |s| s[1] == self.place_type_id }[0].first
+  end
+
+  ##
+  # Returns the primary photo. The 
+  def primary_photo
+    photos.first
   end
 
 end

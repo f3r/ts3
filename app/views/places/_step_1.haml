@@ -4,14 +4,14 @@
     .clearfix
       .input
         = f.label :city_id, 'What city is your place in?'
-        = f.select :city_id, [['Singapore', '1'], ['Hong Kong', '13984'], ['Kuala Lumpur', '4065']], :class => "validate[required] span6"
+        = f.select :city_id, cities_select, :class => "validate[required] span6"
       .input
         = f.label :title, 'Give us a descriptive title'
         = f.text_field :title, :class => "validate[required] span7"
 
       .input
         = f.label :place_type_id, 'What kind of place is it'
-        = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]
+        = f.select :place_type_id, place_types_select
       .input
         = f.label :num_bedrooms, 'How many bedrooms'
         = f.text_field :num_bedrooms, :class => "validate[required,custom[integer]] span2"
@@ -30,7 +30,6 @@
   .coda-nav-right
     %button.btn.primary{:type => "submit", :id => "submit_button"}
       Save and Continue &raquo;
-
 
 :javascript
 
@@ -51,7 +50,6 @@
     }).keypress(function() {
       validateStep1Form();
     });
-      
     validateStep1Form();
 
   });

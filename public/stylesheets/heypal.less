@@ -117,15 +117,15 @@ a.sup {
 
 header{
   background: #fff;
-  padding-top: 10px;
-  position: fixed;
+  //padding-top: 10px;
+  //position: fixed;
   width: 100%;
   top: 0;
   z-index: 999;
 }
 
 body {
-  padding: 120px 0 10px;
+  padding: 10px 0 10px;
 }
 
 .container > footer p {
@@ -1718,6 +1718,11 @@ ul.references{
 
 // Availabilities
 // --------------
+h4.year-header {
+  padding-left:15px;
+  background-color:#046CB6;
+  color:#EEE;
+}
 .availabilities-block {
   border:3px solid grey;
   margin:10px;
@@ -1779,9 +1784,18 @@ ul.references{
 
 // Photos List
 
+.primary_marker {
+  margin-left: 30px;
+  font-weight: bold;
+  color: @gray;
+}
 ul#photos_list { list-style-type: none; margin: 0; padding: 0; }
-ul#photos_list li { margin: 3px 3px 3px 0; padding: 4px; float: left; width: 100px; height: 90px; font-size: 4em; text-align: center; }
-ul#photos_list li.active {border:4px solid red;}
+ul#photos_list li { margin: 3px 3px 3px 0; padding: 8px 8px 10px 8px; float: left; width: 100px; height: 110px; font-size: 4em; text-align: center; }
+ul#photos_list li.active {background:#999;}
+ul#photos_list li.active .photo_image {height: 92px;  width: 100px; background: #FFF;}
+ul#photos_list li .photo_image {min-height: 105px;margin-bottom: 15px;}
+ul#photos_list li .photo_action {font-size: 13px;z-index:999;}
+ul#photos_list li .photo_action a {color:red;font-weight:bold;font-size:13px;}
 
 // Wizard
 h1.title {

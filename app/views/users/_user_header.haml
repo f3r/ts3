@@ -1,6 +1,9 @@
 .span8
   .user_photo.float-right
-    = placehold(30,30)
+    - unless @user.avatar_url.nil?
+      %img{:src => @user.avatar_url, :style => "width:30px; height:30px;"}
+    - else
+      = placehold(30,30)
   .user_data.float-right
     .user_name
       = full_name @user

@@ -11,9 +11,11 @@
   %h3 Photos
   %p
     You can sort your photos by drag and drop
+  .primary_marker
+    Primary
   .row
     .span12
-      %ul.media-grid.gallery#photos_list
+      %ul.gallery#photos_list
         - @photos = @place.photos
         = render 'photo_list'
       .clearfix
@@ -25,6 +27,55 @@
     %a.btn.primary{:href => "#"} Next Step &raquo;
 
 :javascript
+
+  var afterSort = function(event, ui) {
+    $('#photos_list li').removeClass("active");
+    $('#photos_list li:first').addClass("active");
+
+    $('#photos_list li').hover(function() {
+      $(this).find(".photo_action").show();
+    }, function() {
+      $(this).find(".photo_action").hide();      
+    });
+  };
+
+  var deletePhoto = function(elem) {
+    if(confirm("Are you sure?")) {
+      elem.parent().parent().fadeOut('slow', function(){
+          $(this).remove();    
+      });
+      afterSort();
+      syncPhotos();
+    }
+  };
+
+  var photoMetadata = function() {
+    var photoArray = [];
+    $('#photos_list li img').each(function() {
+      var imgElem = $(this);
+      var img = {};
+      img.name = imgElem.attr('data-name');
+      img.small = imgElem.attr('data-small');
+      img.medium = imgElem.attr('data-medium');
+      img.large = imgElem.attr('data-large');
+      img.tiny = imgElem.attr('data-tiny');
+      img.original = imgElem.attr('data-original');
+      img.id = imgElem.attr('data-id');
+      img.filename = imgElem.attr('data-filename'); 
+      photoArray.push({photo: img});
+    });
+
+    return photoArray;
+  };
+
+  var syncPhotos = function() {
+    $.ajax({
+      type: 'PUT',
+      url: '/places/' + place_id + '.json',
+      data: {place: {photos: JSON.stringify(photoMetadata())}}, 
+      success: function() {}
+    });
+  };
 
   $(document).ready(function(){
 
@@ -54,12 +105,12 @@
       }
     });
 
-    function afterSort(event, ui) {
-      $('#photos_list li').removeClass("active");
-      $('#photos_list li:first').addClass("active");
-    }
 
-    $('#photos_list').sortable({ grid: [8,2], stop: afterSort});
+    $('#photos_list').sortable({ grid: [8,2], stop: function() {
+        afterSort();
+        syncPhotos();
+      }
+    });
 
     afterSort();
   });

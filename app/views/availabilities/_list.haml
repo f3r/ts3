@@ -6,9 +6,9 @@
 
   %div.edit-data-container.hide
     = hidden_field_tag "id", a['id'], :id => "id-#{a['id']}"
-    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small tom-picker', :value => Date.parse(a['date_start']).strftime("%d/%m/%Y"), :id => "date_start-#{a['id']}"
+    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', :value => Date.parse(a['date_start']).strftime("%d/%m/%Y"), :id => "date_start-#{a['id']}", "data-date" => :from
     to
-    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small tom-picker', :value => Date.parse(a['date_end']).strftime("%d/%m/%Y"), :id => "date_end-#{a['id']}"
+    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', :value => Date.parse(a['date_end']).strftime("%d/%m/%Y"), :id => "date_end-#{a['id']}", "data-date" => :to
 
     %span.availability-price
       = select_tag "availability_type", raw("<option value='2'#{' selected="selected"' if a['availability_type'] == 2}>New Price</option><option value='1'#{' selected="selected"' if a['availability_type'] == 1}>Unavailable</option>"), :class => 'availability_type', :id => "availability_type-#{a['id']}"

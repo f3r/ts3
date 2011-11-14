@@ -42,9 +42,9 @@
 
   $(".availability_type").die().live("change", function() {
     if ($(this).val() == '1') {
-      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
+      $(this).next().val('').hide();
     } else {
-      $(this).next().removeClass('disabled').removeAttr('disabled');
+      $(this).next().show();
     }
   });
 
@@ -82,3 +82,19 @@
 
     return false;
   });
+
+  $(".delete-availability").die()
+    .live("ajax:beforeSend", function() {
+      showIndicator($(this));
+    })
+    .live("ajax:success", function(evt, data) {
+      if (data.stat) {
+        var mother = $(this).parents(".availabilities-block");
+        mother.children(".edit-data-container").hide();
+        mother.hide("drop", { direction: "left" }, function() {
+          $(this).remove();
+        });
+      } else {
+        alert(data.data);
+      }
+    });

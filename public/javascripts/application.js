@@ -12,6 +12,10 @@ $(function() {
   $('.generic-datepicker').datepicker({
     dateFormat: 'dd/mm/yy'
   });
+  $('.tom-picker').datepicker({
+    dateFormat: 'dd/mm/yy',
+    minDate: +1
+  });
   $('input#hasGrayedDate.datepicker').datepicker({
     minDate: -0,
     maxDate: '3M',

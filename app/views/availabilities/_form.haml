@@ -35,8 +35,13 @@
         'date_end':$("#date_end").val()
       },
       success: function(data) {
-        $("#new-availabilities").show().append(data);
-        $(".cancel-new-availability").click();
+        if (data.stat) {
+          $("#new-availabilities").show().append(data.data);
+          $(".cancel-new-availability").click();
+        } else {
+          alert(data.data);
+        }
+
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }

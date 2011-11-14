@@ -68,8 +68,13 @@
         'price_per_night':form.find('[name="price_per_night"]').val()
       },
       success: function(data) {
-        mother.children(".data-container").html(data);
-        form.hide();
+        if (data.stat) {
+          mother.children(".data-container").html(data.data);
+          form.hide();
+        } else {
+          alert(data.data);
+        }
+
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }

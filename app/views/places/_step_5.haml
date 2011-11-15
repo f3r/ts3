@@ -64,6 +64,8 @@
       success: function(data) {
         if (data.stat) {
           mother.replaceWith(data.data);
+
+          add_datepicker();
         } else {
           alert(data.data);
           hideIndicator(save_btn);

@@ -1,36 +1,34 @@
+- content_for :javascripts do
+  %script{:src => "/javascripts/wizard.js", :type => 'text/javascript'}
+
+
 .row
-  .span12
-    %div{:style => "float:right"}
-      %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
-        %span
-          Preview
-        
+  .span12       
     %h1.title= @place.title
     %p.section_title
       General Information
-    .coda-slider-wrapper
-      #coda-slider-1.coda-slider.preload
-        = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
-          = hidden_field_tag :place_id, params[:id]
-          = hidden_field_tag :token, form_authenticity_token, :id => 'token'
-          / .description
-          .panel
-            = render 'step_2', :f => f
-          / .photos
-          .panel
-            = render 'step_3', :f => f
-          / .amenities
-          .panel
-            = render 'step_4', :f => f
-          / .calendar
-          .panel
-            = render 'step_5', :f => f
-          / .pricing
-          .panel
-            = render 'step_6', :f => f
-          / .preview
-          .panel
-            -#= render 'preview', :f => f
+    .wizard-wrapper
+      = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+        = hidden_field_tag :place_id, params[:id]
+        = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+        / .description
+        .panel#1
+          = render 'step_2', :f => f
+        / .photos
+        .panel#2
+          = render 'step_3', :f => f
+        / .amenities
+        .panel#3
+          = render 'step_4', :f => f
+        / .calendar
+        .panel#4
+          = render 'step_5', :f => f
+        / .pricing
+        .panel#5
+          = render 'step_6', :f => f
+        / .preview
+        .panel#6
+          -#= render 'preview', :f => f
   .span4
     = render :partial => 'sidebar'
 
@@ -51,6 +49,8 @@
       hideIndicator(elem);
     }, 2000);
   }
+
+  $('#tabs').tabs();
 
   function validateElement(elem) {
     return $('#wizard_form').validationEngine('validateField', elem);
@@ -123,15 +123,12 @@
 
   $(document).ready(function() {
 
-      // publish wizard
-    $('#coda-slider-1').codaSlider({
-       dynamicArrows: false,
-       dynamicTabs: false,
-       onSwitch: function(s) {
-        $('.section_title').html(s.html());
-       }
-    });      
-  
+    if(window.location.hash != "") {
+      switchToPanel(window.location.hash);
+    } else {
+      switchToPanel('#1');
+    }
+
     // accomodation photo slider          
     var oSlider7 = $('#photo-slider');  	
     if(oSlider7.length > 0){    	

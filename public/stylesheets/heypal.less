@@ -551,164 +551,33 @@ aside .section-header, .aside .section-header, .section-header {
   background: @grayLight;
 }
 
-// Wizard
-
-.coda-nav{
-  .clearfix();  
-  float: none;
-  padding-bottom: 10px;
-  margin: 10px 0;
-  border-bottom: 1px solid #eee;  
-  
-  &.wizard-aside{
-    position: fixed;
-    width:  220px;
-  }
-  
-  &.nav-left{
-    float: left;
-    padding-top: 8px;
-  }  
-
-  &.nav-right{
-    float:right;
-    margin-top: -20px;
-  }  
-  
-
-  ul{
-    float: right;    
-  }
-  
-  ul li {
-    float:left;
-    font-size:16px;
-    line-height:16px;
-    font-weight: bold;
-  }
-
-  ul li#preview-toggle {
-
-  }
-
-  ul li#preview-toggle a {
-    display:block;
-    position:relative;
-    padding: 8px 8px 8px 23px;
-    background:url(../images/nav-red-bg-left.png) no-repeat 0 0;
-  }
-
-  ul li#preview-toggle a span {
-    cursor:pointer;
-    background:url(../images/nav-red-bg-right.png) no-repeat 0 0;
-  }
-
-  ul li a {
-    display:block;
-    position:relative;
-    width: 160px;
-    padding: 9px 25px 11px 25px;
-    // background: #46A546;
-    background: #FFF;
-    color: #444;
-  }
-
-  ul li a span {
-    position:absolute;
-    top:0px;
-    right:-10px;
-    width:30px;
-    height:36px;
-    //background:url(../images/nav-bg-right.png) no-repeat top right;
-    z-index:100;
-  }
-
-  ul li a:hover {
-    color: #000;
-  }
-
-  ul li a.current {
-    color: #FFF;
-  }
-
-  ul li a:hover span,
-  ul li a.current span,
-  ul li a:hover + span,
-  ul li a.current + span {
-    // background:url(../images/nav-bg-right.png) no-repeat right bottom;
-  }
-
-  ul li#contact-toggle a:hover,
-  ul li#contact-toggle a:hover.current {
-    background:url(../images/nav-bg-left.png) no-repeat 0 -36px !important;
-    color:#cc0000;
-  }
-
-  ul li#contact-toggle a:hover span,
-  ul li#contact-toggle a:hover.current span,
-  ul li#contact-toggle a:hover + span,
-  ul li#contact-toggle a:hover.current + span {
-    background:url(../images/nav-bg-right.png) no-repeat right -32px;
-  }
-
-  ul li#contact-toggle a:active,
-  ul li#contact-toggle a.current {
-    background:url(../images/nav-red-bg-left.png) no-repeat 0 0 !important;
-    color:#ffffff;
-  }
-
-  ul li#contact-toggle a:active span,
-  ul li#contact-toggle a.current span,
-  ul li#contact-toggle a:active + span,
-  ul li#contact-toggle a.current + span {
-    background:url(../images/nav-red-bg-right.png) no-repeat right bottom;
-  }
-  
-}
-
-.coda-slider-wrapper {
-  padding: 0;
-  //border: 1px solid #eee;
-  //.border-radius();
-  
-}
-
-.coda-slider{
-  background: #fff;
-  width: 640px;
-  margin-bottom: 20px;  
-  
-  .panel{
-    width: 640px;
-  }
-  
-  .panel-wrapper{
-    padding: 20px 10px;
-
-    h2.title {
-      background: #CCCCCC;
-      width: 380px;
-      padding: 0px 15px;
-      color: #444;
-    }
-  }
-  
-}
-.arrows{
-  .clearfix();
-  padding: 10px;
-}
-
-.coda-nav-right{
-  float: right;
-}
-
-.coda-nav-left a,
-.coda-nav-right a{
-}
-
 .media-grid.gallery{ margin-left: 0;}
 
+// Wizard Sidebar
+// -----------
+
+.wizard-wrapper .panel {
+  display: none;
+}
+
+ul#wizard-selector {
+  list-style: none;
+  padding:0;
+  margin:0 0 35px 0;
+  li {
+    //padding: 5px;
+    a {
+      padding: 10px;
+      display:block;
+      color: @red;
+    }
+    a.active {
+      background: @grayLight;
+      color: #000;
+    }
+  }
+
+}
 
 // Registration
 // -----------
@@ -1790,7 +1659,7 @@ h4.year-header {
   color: @gray;
 }
 ul#photos_list { list-style-type: none; margin: 0; padding: 0; }
-ul#photos_list li { margin: 3px 3px 3px 0; padding: 8px 8px 10px 8px; float: left; width: 100px; height: 110px; font-size: 4em; text-align: center; }
+ul#photos_list li { margin: 3px 3px 30px 0; padding: 8px 8px 10px 8px; float: left; width: 100px; height: 110px; font-size: 4em; text-align: center; }
 ul#photos_list li.active {background:#999;}
 ul#photos_list li.active .photo_image {height: 92px;  width: 100px; background: #FFF;}
 ul#photos_list li .photo_image {min-height: 105px;margin-bottom: 15px;}
@@ -1813,7 +1682,7 @@ h1.title {
 .uploadifyQueueItem {
 	background-color: #F5F5F5;
 	border: 2px solid #E5E5E5;
-	font-family: ProximaNovaBold;
+	font-family: helvetica, arial;
 	font: 14px;
 	margin-top: 5px;
 	padding: 10px;

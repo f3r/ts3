@@ -8,6 +8,8 @@
       (Button will be changed soon. This button supports multiple file upload too!)
   .clearfix
 
+    #photoQueue
+
   %h3 Photos
   %p
     You can sort your photos by drag and drop
@@ -21,11 +23,10 @@
       .clearfix
 
 .arrows.clearfix
-  .coda-nav-left
-    %a.btn.primary{:href => "#"} &laquo; Previous Step
-  .coda-nav-right
-    %a.btn.primary{:href => "#"} Next Step &raquo;
-
+  .float-left
+    %a.btn.primary{:href => "javascript:switchToPanel('#2')"} &laquo; Previous Step
+  .float-right
+    %a.btn.primary{:href => "javascript:switchToPanel('#3')"} Next Step &raquo;
 :javascript
 
   var afterSort = function(event, ui) {
@@ -77,40 +78,37 @@
     });
   };
 
-  $(document).ready(function(){
+  var uploadify_script_data = {};
+  var csrf_token = $('meta[name=csrf-token]').attr('content');
+  var csrf_param = $('meta[name=csrf-param]').attr('content');
 
-    var uploadify_script_data = {};
-    var csrf_token = $('meta[name=csrf-token]').attr('content');
-    var csrf_param = $('meta[name=csrf-param]').attr('content');
-
-    $('#photo_uploader').uploadify({
-      'uploader'        : '/javascripts/uploadify/uploadify.swf',
-      'script'          : "/places/#{@place.id}/upload_photo",
-      'cancelImg'       : '/images/close.png',
-      'buttonImg'       : '/images/browse-button.png',
-      'auto'            : true,
-      'multi'           : true,
-      'fileDataName'    : 'file',
-      'fileDesc'        : 'Photos',
-      'buttonText'      : 'Browse',
-      'width'           : 230,
-      'height'          : 50,
-      'wmode'           : 'transparent',
-      'fileExt'         : '*.jpg;*.png',
-      'scriptData'      : { 'photo_album_id' : #{@place.id}, '_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
-      'onSelect'        : function(event, data) {  },
-      'onComplete'  : function(event, ID, fileObj, response, data) {
-        $('#photos_list').html(response);
-        afterSort();
-      }
-    });
-
-
-    $('#photos_list').sortable({ grid: [8,2], stop: function() {
-        afterSort();
-        syncPhotos();
-      }
-    });
-
-    afterSort();
+  $('#photo_uploader').uploadify({
+    'uploader'        : '/javascripts/uploadify/uploadify.swf',
+    'script'          : "/places/#{@place.id}/upload_photo",
+    'cancelImg'       : '/images/close.png',
+    'buttonImg'       : '/images/browse-button.png',
+    'auto'            : true,
+    'multi'           : false,
+    'fileDataName'    : 'file',
+    'fileDesc'        : 'Photos',
+    'buttonText'      : 'Browse',
+    'width'           : 230,
+    'height'          : 50,
+    'queueID'         : 'photoQueue',
+    'wmode'           : 'transparent',
+    'fileExt'         : '*.jpg;*.png',
+    'scriptData'      : { 'photo_album_id' : #{@place.id}, '_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
+    'onComplete'  : function(event, ID, fileObj, response, data) {
+      $('#photos_list').html(response);
+      afterSort();
+    }
   });
+
+  $('#photos_list').sortable({ grid: [8,2], stop: function() {
+      afterSort();
+      syncPhotos();
+    }
+  });
+
+  afterSort();
+

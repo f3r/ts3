@@ -140,8 +140,8 @@
                 .value= number_to_currency @place.price_per_month 
 
   .span4
-    #coda-nav-1.coda-nav
-      %ul
+    .wizard-aside
+      %ul#wizard-selector
         %li.tab1
           %a{:href => "#{wizard_place_path(@place)}#1"}
             %span

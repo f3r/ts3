@@ -1,26 +1,22 @@
-#coda-nav-1.coda-nav.wizard-aside
-  %ul
-    %li.tab1
+.wizard-aside
+  %ul#wizard-selector
+    %li
       %a{:href => "#1"}
-        %span
         General Info
-
-    %li.tab2
+    %li
       %a{:href => "#2"}
-        %span
         Photos
-
-    %li.tab3
+    %li
       %a{:href => "#3"}
-        %span
         Amenities
-
-    %li.tab4
+    %li
       %a{:href => "#4"}
-        %span
         Calendar
-
-    %li.tab5
+    %li
       %a{:href => "#5"}
-        %span
         Price and Conditions
+
+  .clearfix
+  %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
+    %span
+      Preview

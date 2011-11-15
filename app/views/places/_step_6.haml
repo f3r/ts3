@@ -55,7 +55,7 @@
       = f.select :cancellation_policy, [['full refund 1 day prior to arrival, except fees', 'flexible'],['full refund 5 days prior to arrival, except fees', 'moderate'],['50% refund up until 1 week prior, except fees', 'strict']], {}, :class => 'validate[required] autosave'
 
 .arrows.clearfix
-  .coda-nav-right
+  .float-right
     %a.btn.primary{:href => preview_place_path(@place)} Preview &raquo;
 
 :javascript

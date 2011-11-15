@@ -71,6 +71,11 @@
           hideIndicator(save_btn);
           save_btn.removeAttr('disabled');
         }
+      },
+      error: function() {
+        alert('Something went wrong. Please check again later.');
+        hideIndicator(save_btn);
+        save_btn.removeAttr('disabled');
       }
     });
 
@@ -91,4 +96,8 @@
       } else {
         alert(data.data);
       }
+    })
+    .live("ajax:error", function() {
+      alert('Something went wrong. Please check again later.');
+      hideIndicator($(this));
     });

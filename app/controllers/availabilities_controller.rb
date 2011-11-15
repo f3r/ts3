@@ -10,9 +10,10 @@ class AvailabilitiesController < ApplicationController
     param[:place_id] = params[:place_id]
 
     availability = Heypal::Availability.new(param)
+    saved, result = availability.save
 
-    if availability.save
-      place = Heypal::Place.find(availability['place_id'].to_s)
+    if saved
+      place = Heypal::Place.find(result['place_id'].to_s)
       availabilities = Heypal::Availability.find_all(:place_id => place.to_param)
 
       render :json => {:stat => true, :data => render_to_string(:_list_all, :locals => {:availabilities => availabilities, :place => place}, :layout => false)}
@@ -20,7 +21,7 @@ class AvailabilitiesController < ApplicationController
       # TODO: returns all for now, cause I can't insert it in the middle of the availabilities list.
       #render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false)}
     else
-      render :json => {:stat => false, :data => 'Something went wrong. Please chech your availabilities again.'}
+      render :json => {:stat => false, :data => error_messages(result).join(', ')}
     end
   end
 
@@ -32,13 +33,14 @@ class AvailabilitiesController < ApplicationController
     param[:access_token] = current_token
     param[:place_id] = params[:place_id]
     param[:id] = params[:id]
+    saved, result = Heypal::Availability.update(param)
 
-    if availability = Heypal::Availability.update(param)
-      place = Heypal::Place.find(availability['place_id'].to_s)
+    if saved
+      place = Heypal::Place.find(result['place_id'].to_s)
 
-      render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false)}
+      render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => result, :place => place}, :layout => false)}
     else
-      render :json => {:stat => false, :data => 'Something went wrong. Please check your availabilities again.'}
+      render :json => {:stat => false, :data => error_messages(result).join(', ')}
     end
   end
 

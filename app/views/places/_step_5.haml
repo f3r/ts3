@@ -6,15 +6,9 @@
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
-  %div#new-availabilities.hide
-    %h5 Added Availabilities
+  %div#all-availabilities
+    = render 'availabilities/list_all', :availabilities => @availabilities, :place => @place
 
-  - if @availabilities && @availabilities.any?
-    - @availabilities.each do |a|
-      - if !defined?(@this_year) || @this_year < Date.parse(a['date_start']).year
-        %h4.year-header= @this_year = Date.parse(a['date_start']).year
-
-      = render 'availabilities/list', :a => a, :place => @place
 
 .arrows.clearfix
   .coda-nav-left

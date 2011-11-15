@@ -36,8 +36,12 @@
       },
       success: function(data) {
         if (data.stat) {
-          $("#new-availabilities").show().append(data.data);
+          $("#all-availabilities").html(data.data);
           $(".cancel-new-availability").click();
+
+          $("#date_start, #date_end").val('');
+          $("#availability_type").val("2");
+          $("#price_per_night").val('').show();
         } else {
           alert(data.data);
         }

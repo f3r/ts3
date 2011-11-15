@@ -13,8 +13,12 @@ class AvailabilitiesController < ApplicationController
 
     if availability.save
       place = Heypal::Place.find(availability['place_id'].to_s)
+      availabilities = Heypal::Availability.find_all(:place_id => place.to_param)
 
-      render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false)}
+      render :json => {:stat => true, :data => render_to_string(:_list_all, :locals => {:availabilities => availabilities, :place => place}, :layout => false)}
+
+      # TODO: returns all for now, cause I can't insert it in the middle of the availabilities list.
+      #render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false)}
     else
       render :json => {:stat => false, :data => 'Something went wrong. Please chech your availabilities again.'}
     end

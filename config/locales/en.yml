@@ -52,7 +52,10 @@ en:
   ####################################################################################
   email:            Email
   invalid_email:    Invalid Email
-
+  password:         Password
+  confirm_password: Confirm Password
+  terms_and_conditions: Terms and Conditions
+  
   ####################################################################################
   # Section Headers
   ####################################################################################

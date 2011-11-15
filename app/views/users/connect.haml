@@ -19,20 +19,20 @@
         = f.hidden_field :avatar_url, :value => profile_picture_url(@oauth_uid, @oauth_provider)
         = f.error_messages
         .input
-          = f.text_field :first_name, :placeholder => 'First Name', :value => @oauth_firstname
+          = f.text_field :first_name, :placeholder => t(:first_name), :value => @oauth_firstname
         .input
-          = f.text_field :last_name, :placeholder => 'Last Name', :value => @oauth_lastname
+          = f.text_field :last_name, :placeholder => t(:last_name), :value => @oauth_lastname
         .input
-          = f.text_field :email, :placeholder => 'E-Mail Address', :value => @oauth_email
+          = f.text_field :email, :placeholder => t(:email), :value => @oauth_email
         .input
-          = f.password_field :password, :placeholder => 'Confirm'
+          = f.password_field :password, :placeholder => t(:password)
         .input
-          = f.password_field :password_confirmation, :placeholder => 'Confirm Password'
+          = f.password_field :password_confirmation, :placeholder => t(:confirm_password)
         .input
           %label.reset-width
             = f.check_box :terms
             I accept the
-            = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank
+            = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank
         %button.btn.float-right{:type => 'submit primary'}
           Create account
 
@@ -44,9 +44,9 @@
         = hidden_field_tag :oauth_token, @oauth_token
         = hidden_field_tag :oauth_uid, @oauth_uid
         .input
-          = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
+          = text_field_tag :email, '',  :placeholder => t(:email)
         .input
-          = password_field_tag :password, '', :placeholder => 'Password'
+          = password_field_tag :password, '', :placeholder => t(:password)
         %button.btn.float-right{:type => 'submit primary'}
           Login
       %br.clearfix

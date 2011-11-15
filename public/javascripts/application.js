@@ -12,28 +12,32 @@ $(function() {
   $('.generic-datepicker').datepicker({
     dateFormat: 'dd/mm/yy'
   });
-  $('.from-to-picker').datepicker({
-    dateFormat: 'dd/mm/yy',
-    minDate: +1,
-    onSelect: function(selectedDate) {
-      var me = $(this);
-      var who = me.attr("data-date");
-      var instance = me.data("datepicker");
 
-      var date = $.datepicker.parseDate(
-            instance.settings.dateFormat ||
-            $.datepicker._defaults.dateFormat,
-            selectedDate, instance.settings);
+  $('.from-to-picker').live('focus', function() {
+    $(this).datepicker({
+      dateFormat: 'dd/mm/yy',
+      minDate: +1,
+      onSelect: function(selectedDate) {
+        var me = $(this);
+        var who = me.attr("data-date");
+        var instance = me.data("datepicker");
 
-      if (who == 'from') {
-        from = me.next();
-        from.datepicker("option", "minDate", date);
-      } else {
-        to = me.prev();
-        to.datepicker("option", "maxDate", date);
+        var date = $.datepicker.parseDate(
+              instance.settings.dateFormat ||
+              $.datepicker._defaults.dateFormat,
+              selectedDate, instance.settings);
+
+        if (who == 'from') {
+          from = me.next();
+          from.datepicker("option", "minDate", date);
+        } else {
+          to = me.prev();
+          to.datepicker("option", "maxDate", date);
+        }
       }
-    }
+    });
   });
+
   $('input#hasGrayedDate.datepicker').datepicker({
     minDate: -0,
     maxDate: '3M',

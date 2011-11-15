@@ -30,7 +30,9 @@ class AvailabilitiesController < ApplicationController
     param[:id] = params[:id]
 
     if availability = Heypal::Availability.update(param)
-      render :json => {:stat => true, :data => render_to_string(:_data, :locals => {:a => availability}, :layout => false)}
+      place = Heypal::Place.find(availability['place_id'].to_s)
+
+      render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false)}
     else
       render :json => {:stat => false, :data => 'Something went wrong. Please check your availabilities again.'}
     end

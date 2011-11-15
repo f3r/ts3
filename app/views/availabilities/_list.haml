@@ -12,10 +12,7 @@
 
     %span.availability-price
       = select_tag "availability_type", raw("<option value='2'#{' selected="selected"' if a['availability_type'] == 2}>New Price</option><option value='1'#{' selected="selected"' if a['availability_type'] == 1}>Unavailable</option>"), :class => 'availability_type', :id => "availability_type-#{a['id']}"
-      - if a['availability_type'] == 1
-        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small disabled', :disabled => true, :id => "price_per_night-#{a['id']}"
-      - else
-        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small', :value => a['price_per_night'], :id => "price_per_night-#{a['id']}"
+      = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => "small#{' hide' if a['availability_type'] == 1}", :value => a['price_per_night'], :id => "price_per_night-#{a['id']}"
 
     %div.availability-action
       %div.remove-action

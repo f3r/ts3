@@ -69,14 +69,12 @@
       },
       success: function(data) {
         if (data.stat) {
-          mother.children(".data-container").html(data.data);
-          form.hide();
+          mother.replaceWith(data.data);
         } else {
           alert(data.data);
+          hideIndicator(save_btn);
+          save_btn.removeAttr('disabled');
         }
-
-        hideIndicator(save_btn);
-        save_btn.removeAttr('disabled');
       }
     });
 

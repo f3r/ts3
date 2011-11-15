@@ -46,6 +46,11 @@ class Heypal::Place < Heypal::Base
 
     end
 
+    def placeList
+      result = request("/place_types.json", :get)
+      result['place_types']
+    end
+
     def update(options)
       result = request("/places/#{options[:id]}.json", :put, options)
       #result['stat'] == 'ok'

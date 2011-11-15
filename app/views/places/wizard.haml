@@ -40,6 +40,7 @@
   var place_id = $('#place_id').val();
   var token = $('#token').val();
   var access_token = $('#accessToken').val();
+  var zipCodeVal = true;
 
   function showIndicator(elem) {
     elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
@@ -50,6 +51,10 @@
     window.setTimeout(function() {
       hideIndicator(elem);
     }, 2000);
+  }
+
+  function showErrorIndicator(elem) {
+    elem.after("<span class='save-indicator'><span class='label success'>error</span></span>");
   }
 
   function validateElement(elem) {
@@ -63,23 +68,24 @@
   var sendFieldUpdate = function() {
     
     var elem = $(this);
-
     // Check if we have changed values
     if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
+      if(zipCodeVal){
+        hideIndicator(elem);
+        showIndicator(elem);
 
-      hideIndicator(elem);
-      showIndicator(elem);
-
-      $.ajax({
-        type: 'PUT',
-        url: '/places/' + place_id + '.json',
-        data: $(this).serialize(), 
-        success: function() {
-          showSavedIndicator(elem);
-          elem.attr('data-changed', '0');
-        }
-      });
-
+        $.ajax({
+          type: 'PUT',
+          url: '/places/' + place_id + '.json',
+          data: $(this).serialize(), 
+          success: function() {
+            showSavedIndicator(elem);
+            elem.attr('data-changed', '0');
+          }
+        });
+      } else {
+        showErrorIndicator(elem);
+      }
     }
   };
 
@@ -116,10 +122,29 @@
   var trackChange = function() {
     $(this).attr('data-changed', "1");
   };
+  
+
+  var validateZipCode = function() {
+    var country_id = $('#place_city_id').val();
+    var zip = $(this).val();
+    if(zip.match(/\d{6}/) && (country_id == '1' || country_id == 'IN' || country_id == 'SG' || country_id == 'VN')) {
+      zipCodeVal = true;
+    } else if(zip.match(/\d{5}/) && (country_id == 'ID' || country_id == 'MY' || country_id == 'TH')) {
+      zipCodeVal = true;
+    } else if(zip.match(/\d{4}/) && (country_id == 'AU' || country_id == 'PH')) {
+      zipCodeVal = true;
+    } else if(zip.match(/\d{5}([ \-]\d{4})?/) && country_id == 'US') {
+      zipCodeVal = true;
+    } else {
+      zipCodeVal = false;
+    }
+  };
 
   $('#place_title').change(function() {
     $('h1.title').html($(this).val());
   });
+
+  $('#place_zip').change(validateZipCode);
 
   $(document).ready(function() {
 

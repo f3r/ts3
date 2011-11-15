@@ -20,4 +20,8 @@ module LookupsHelper
     [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]    
   end
 
+  def placeList
+    Heypal::Place.placeList.map {|p| [p['name'], p['id']]}
+  end
+
 end

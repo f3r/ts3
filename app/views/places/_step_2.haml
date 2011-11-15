@@ -7,7 +7,8 @@
       = f.text_field :title, :class => "span8", :class => "validate[required] autosave"
     .input
       = f.label :place_type_id, 'Type'
-      = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]], {}, :class => 'validate[required] autosave'
+      -# = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]], {}, :class => 'validate[required] autosave'
+      = f.select :place_type_id, placeList, {}, :class => 'validate[required] autosave'
 
     .input
       = f.label :description
@@ -68,4 +69,21 @@
   .coda-nav-right
     %a.btn.primary{:href => "#"} Next Step &raquo;
 
-
+:javascript
+  $(document).ready(function() {
+    $('#place_zip').change(function() {
+      var country_id = $('#place_city_id').val();
+      var zip = $(this).val();
+      if(zip.match(/\d{6}/) && (country_id == 'CN' || country_id == 'IN' || country_id == 'SG' || country_id == 'VN')) {
+        return true;
+      } else if(zip.match(/\d{5}/) && (country_id == 'ID' || country_id == 'MY' || country_id == 'TH')) {
+        return true;
+      } else if(zip.match(/\d{4}/) && (country_id == 'AU' || country_id == 'PH')) {
+        return true;
+      } else if(zip.match(/\d{5}([ \-]\d{4})?/) && country_id == 'US') {
+        return true;
+      } else {
+        return false;
+      }
+    });
+  })

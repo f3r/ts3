@@ -1,18 +1,28 @@
 .wizard-aside
   %ul#wizard-selector
-    %li
+    %li#general
+      .indicator
+        = image_tag('/images/check-disabled.png')
       %a{:href => "#1"}
         General Info
-    %li
+    %li#photos
+      .indicator
+        = image_tag('/images/check-disabled.png')
       %a{:href => "#2"}
         Photos
-    %li
+    %li#amenities
+      .indicator
+        = image_tag('/images/check.png')
       %a{:href => "#3"}
         Amenities
-    %li
+    %li#calendar
+      .indicator
+        = image_tag('/images/check-disabled.png')
       %a{:href => "#4"}
         Calendar
-    %li
+    %li#price
+      .indicator
+        = image_tag('/images/check-disabled.png')
       %a{:href => "#5"}
         Price and Conditions
 

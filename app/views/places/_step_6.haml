@@ -59,36 +59,5 @@
   .float-right
     %a.btn.primary{:href => preview_place_path(@place)} Preview &raquo;
 
-:javascript
-  $(document).ready(function() {  
-    $('#place_price_per_night').change(function() {
-      var access_token = $('#accessToken').val();
-      var per_week = $(this).val() * 7;
-      var per_month = $(this).val() * 30;
-      var total_per_week = per_week - (per_week * .05);
-      total_per_week = Math.round(total_per_week);
-
-      $('#estimated_amount_weekly').html("$" + total_per_week);
-      $('#estimated_amount_monthly').html("$" + per_month);
-      $('#priceNotification').show();
-    });
-
-    $('#place_currency').change(function() {
-      var elem = $(this);
-      hideIndicator(elem);
-      showIndicator(elem);
-
-      $.ajax({
-        type: 'PUT',
-        url: '/places/' + place_id + '/update_currency.json',
-        data: $(this).serialize(), 
-        success: function(data) {
-          $(".currency-sign").html(data.currency_sign);
-          showSavedIndicator(elem);
-        }
-      });
-    });
-  });
-
 :css
   #priceNotification{display:none; float: right; font-size: 12px; width: 150px; margin-right: 145px; margin-top: -15px;}

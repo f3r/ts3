@@ -1,30 +1,31 @@
-.panel-wrapper
+.panel-wrapper.amenities
   %h2.title Amenities
   %fieldset
     - amenities_group_1.each do |a|
-      .input-append
-        %p.span2=a[0]          
-        %label.add-on.active
-          = f.check_box a[1]
+      %label.amenity
+        = f.check_box a[1], :value => 'true'
+        =a[0]          
+
+
   
   %h2.title Furnishings
   %fieldset
     - amenities_group_2.each do |a|
-      .input-append
-        %p.span2=a[0]          
-        %label.add-on.active
-          = f.check_box a[1], :value => 'true'
+      %label.amenity
+        = f.check_box a[1], :value => 'true'
+        =a[0]          
+
+
 
   %h2.title Miscellaneous
   %fieldset
-    - amenities_group_2.each do |a|
-      .input-append
-        %p.span2=a[0]          
-        %label.add-on.active
-          = f.check_box a[1], :value => 'true'
+    - amenities_group_3.each do |a|
+      %label.amenity
+        = f.check_box a[1], :value => 'true'
+        =a[0]
 
 .arrows.clearfix
-  .coda-nav-left
-    %a.btn.primary{:href => "#"} &laquo; Previous Step
-  .coda-nav-right
-    %a.btn.primary{:href => "#"} Next Step &raquo;          
+  .float-left
+    %a.btn.primary{:href => "javascript:switchToPanel('#2')"} &laquo; Previous Step
+  .float-right
+    %a.btn.primary{:href => "javascript:switchToPanel('#4')"} Next Step &raquo;  

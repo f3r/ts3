@@ -12,6 +12,9 @@ $(function() {
   $('.generic-datepicker').datepicker({
     dateFormat: 'dd/mm/yy'
   });
+
+  add_datepicker();
+
   $('input#hasGrayedDate.datepicker').datepicker({
     minDate: -0,
     maxDate: '3M',
@@ -35,3 +38,36 @@ $(function() {
     dateFormat: '%d %B %Y'
   });
 });
+
+function add_datepicker() {
+
+  // TODO: hack now. to make datepicker from-to live. focus only work "on"-focus (duh). So hasDatepicker class isn't assigned on load and from-to doesn't work.
+  // I just re-bind it now, used in places/_step_5 and availabilities/_form
+
+  //$('.from-to-picker').live('focus', function() {
+  //  $(this).datepicker({
+
+  $('.from-to-picker').datepicker('destroy').datepicker({
+    dateFormat: 'dd/mm/yy',
+    minDate: +1,
+    onSelect: function(selectedDate) {
+      var me = $(this);
+      var who = me.attr("data-date");
+      var instance = me.data("datepicker");
+
+      var date = $.datepicker.parseDate(
+            instance.settings.dateFormat ||
+            $.datepicker._defaults.dateFormat,
+            selectedDate, instance.settings);
+
+      if (who == 'from') {
+        from = me.next();
+        from.datepicker("option", "minDate", date);
+      } else {
+        to = me.prev();
+        to.datepicker("option", "maxDate", date);
+      }
+    }
+  });
+  //});
+}

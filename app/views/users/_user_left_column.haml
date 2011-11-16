@@ -1,6 +1,6 @@
 %section.span3
-  - unless @user.avatar_url.nil?
-    %img{:src => @user.avatar_url, :style => "width:120px, height:90px;"}
+  - unless @user.avatar.nil?
+    %img{:src => @user.avatar, :style => "width:120px, height:90px;"}
   - else
     = placehold(120,90)
   %h2

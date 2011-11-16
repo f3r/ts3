@@ -12,8 +12,8 @@
                 .small
                   = link_to t(:sign_out), logout_path
             .span2
-              - unless current_user.avatar_url.nil?
-                %img{:src => current_user.avatar_url, :style => "width:60px; height:60px;"}
+              - unless current_user.avatar.nil?
+                %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
               - else
                 = placehold(60,60)
           - else

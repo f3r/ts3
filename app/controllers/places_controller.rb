@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
   layout 'plain'
   before_filter :login_required, :only => [:new, :wizard, :create]
+  before_filter :find_place, :only => [:wizard, :show, :preview, :photos]
 
   def new
     @place = Heypal::Place.new
@@ -24,32 +25,34 @@ class PlacesController < ApplicationController
     render :text => "", :layout => false
   end
 
+  def update_currency
+    place = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
+    puts place.inspect
+    render :json => {:currency_sign => currency_sign_of(place['place']['currency'])}
+  end
+
   def wizard
-    @place = Heypal::Place.find(params[:id])
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all(:place_id => @place.to_param)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
   def preview
-    @place = Heypal::Place.find(params[:id])
     @preview = true
     render(:template => 'places/show')
   end
 
   def show
-    @place = Heypal::Place.find(params[:id])
     @preview = false
   end
 
   def photos
-    @place = Heypal::Place.find(params[:id])
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
   end
 
   def upload_photo
-    @place = Heypal::Place.find(params[:id])
+    @place = Heypal::Place.find(params[:id], params[:token])
 
     p = Heypal::Photo.new
     p.place_id = params[:id]
@@ -84,9 +87,8 @@ class PlacesController < ApplicationController
 
     result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
 
-    # Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
-
-    @place = Heypal::Place.find(params[:id])
+    # TODO: Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
+    @place = Heypal::Place.find(params[:id], params[:token])    
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
 
@@ -95,5 +97,11 @@ class PlacesController < ApplicationController
   def get_cities
     @cities = Heypal::Geo.get_all_cities(params[:query])
     render :js => @cities.map.collect{|city| [city['name']]}
+  end
+
+protected
+
+  def find_place
+    @place = Heypal::Place.find(params[:id], current_token)
   end
 end

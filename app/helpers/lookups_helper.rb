@@ -1,11 +1,16 @@
 module LookupsHelper
+  CURRENCIES = {'SGD' => 'S$', 'USD' => 'US$', 'HKD' => 'HK$'}
 
   def currencies
-    ['SGD', 'USD', 'HKD']
+    CURRENCIES.keys
   end
 
   def currencies_select
     currencies
+  end
+
+  def currency_sign_of(country)
+    CURRENCIES[country]
   end
 
   def cities
@@ -17,7 +22,8 @@ module LookupsHelper
   end
 
   def place_types_select
-    [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]    
+    #[["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]    
+    Heypal::Place.place_types.map {|p| [p['name'], p['id']]}    
   end
 
 end

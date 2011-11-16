@@ -1,12 +1,15 @@
 %fieldset
   %div
-    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.today.strftime("%d/%m/%Y")
+    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :from
     to
-    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small generic-datepicker', :value => Date.today.strftime("%d/%m/%Y")
+    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :to
 
     %span.availability-price
       = select_tag "availability_type", raw("<option value='2'>New Price</option><option value='1'>Unavailable</option>"), :class => 'availability_type'
-      = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
+
+      %span.wrap
+        %small.currency-sign= currency_sign_of(@place.currency)
+        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
 
     %div.availability-action
       = button_tag "Close", :class => "btn cancel-new-availability"
@@ -36,12 +39,23 @@
       },
       success: function(data) {
         if (data.stat) {
-          $("#new-availabilities").show().append(data.data);
+          $("#all-availabilities").html(data.data);
           $(".cancel-new-availability").click();
+
+          $("#date_start, #date_end").val('');
+          $("#availability_type").val("2");
+          $("#price_per_night").val('').show();
+
+          add_datepicker();
         } else {
           alert(data.data);
         }
 
+        hideIndicator(save_btn);
+        save_btn.removeAttr('disabled');
+      },
+      error: function() {
+        alert('Something went wrong. Please check again later.');
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }

@@ -38,18 +38,17 @@ class Heypal::Availability < Heypal::Base
     end
 
     def delete(id, params)
-      place_id = params.delete(:place_id)
-      request("/places/#{place_id}/availabilities/#{id}.json", :delete, params)
+      result = request("/places/#{params[:place_id]}/availabilities/#{id}.json?access_token=#{params[:access_token]}", :delete, params)
+
+      result['stat'] == 'ok' ? true : false
     end
 
     def get_data_on(result)
-      result["availability"]
+      [true, result["availability"]]
     end
 
     def get_errors_on(result)
-      return false
-
-      result["err"] # contains the error codes
+      [false, result["err"]]
     end
   end
   
@@ -60,11 +59,13 @@ class Heypal::Availability < Heypal::Base
 
   def save
     if new_record?
-      if response = self.class.create(self)
+      saved, response = self.class.create(self)
+
+      if saved
         self.deserialize(response)
-        return true
+        return [true, response]
       else
-        return false
+        return [false, response]
       end
     else
       if self.class.update(self)

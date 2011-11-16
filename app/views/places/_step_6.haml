@@ -2,84 +2,60 @@
   %fieldset
     .input
       = f.label :currency, 'Currency'
-      = f.select :currency, currencies_select, {}, :class => 'autosave'
+      = f.select :currency, currencies_select, {}, :class => 'validate[required]'
   %h2.title Pricing
   %fieldset      
     .input
       = f.label :price_per_night
-      %span.currency
-        $
+      %span.currency-sign-id= currency_sign_of(@place.currency)
       = f.text_field :price_per_night, :class => "validate[required] span2 autosave"
     .input
       = f.label :price_per_week
-      %span.currency
-        $
-      = f.text_field :price_per_week, :class => "validate[required] span2 autosave"
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_per_week, :class => "span2 autosave"
+      %span#estimated_amount_weekly
     .input
       = f.label :price_per_month
-      %span.currency
-        $
-      = f.text_field :price_per_month, :class => "validate[required] span2 autosave"
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_per_month, :class => "span2 autosave"
+      %span#estimated_amount_monthly
   %h2.title Additional Costs
   %fieldset
     .input
       = f.label :price_final_cleanup, 'Final Cleanup'
-      %span.currency
-        $
-      = f.text_field :price_final_cleanup, :class => "validate[required] span2 autosave"
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_final_cleanup, :class => "span2 autosave"
     .input
       = f.label :price_security_deposit, 'Security Deposit'
-      %span.currency
-        $
-      = f.text_field :price_security_deposit, :class => "validate[required] span2 autosave"
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_security_deposit, :class => "span2 autosave"
   %h2.title Terms
   %fieldset
     .input
       = f.label :check_in_after, 'Check In After'
-      = f.select :check_in_after, time_array, {}, :class => "validate[required] span2 autosave"
+      = f.select :check_in_after, time_array, {}, :class => "span2 autosave"
     .input
       = f.label :check_out_before, 'Check Out Before'
-      = f.select :check_out_before, time_array, {}, :class => "validate[required] span2 autosave"
+      = f.select :check_out_before, time_array, {}, :class => "span2 autosave"
 
     .input
       = f.label :minimum_stay_days, 'Minimum Stay Days'
-      = f.text_field :minimum_stay_days, :class => "validate[required] span2 autosave"
+      = f.text_field :minimum_stay_days, :class => "span2 autosave"
     .input
       = f.label :maximum_stay_days, 'Maximum Stay Days'
       = f.text_field :maximum_stay_days, :class => "validate[required] span2 autosave"
     .input
       = f.label :house_rules
-      = f.text_area :house_rules, :class => "validate[required] span8 autosave", :rows => 5
+      = f.text_area :house_rules, :class => "span8 autosave", :rows => 5
     .input
       = f.label :cancellation_policy, 'Cancellation Policy'
       = f.select :cancellation_policy, [['full refund 1 day prior to arrival, except fees', 'flexible'],['full refund 5 days prior to arrival, except fees', 'moderate'],['50% refund up until 1 week prior, except fees', 'strict']], {}, :class => 'validate[required] autosave'
 
 .arrows.clearfix
-  .coda-nav-right
+  .float-left
+    %a.btn.primary{:href => "javascript:switchToPanel('#5')"} &laquo; Previous Step
+  .float-right
     %a.btn.primary{:href => preview_place_path(@place)} Preview &raquo;
 
-:javascript
-  $(document).ready(function() {  
-    $('#place_price_per_night').change(function() {
-      var access_token = $('#accessToken').val();
-      var per_week = $(this).val() * 7;
-      var per_month = $(this).val() * 30;
-      var total_per_week = per_week - (per_week * .05);
-
-      $('#place_price_per_week').val(total_per_week);
-      $('#place_price_per_month').val(per_month);
-      $('#place_price_per_week, #place_price_per_month').each(function() {
-        var field;
-        var value;
-
-        field = $(this).attr('name');
-        value = $(this).val();
-        $.ajax({
-          type: 'PUT',
-          url: '/places/' + place_id + '.json?access_token=' + access_token,
-          data: $(this).serialize(),
-          success: function() {}
-        });
-      });
-    });
-  });
+:css
+  #estimated_amount_weekly, #estimated_amount_monthly {font-size: 12px;}

@@ -6,21 +6,15 @@
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
-  %div#new-availabilities.hide
-    %h5 Added Availabilities
+  %div#all-availabilities
+    = render 'availabilities/list_all', :availabilities => @availabilities, :place => @place
 
-  - if @availabilities && @availabilities.any?
-    - @availabilities.each do |a|
-      - if !defined?(@this_year) || @this_year < Date.parse(a['date_start']).year
-        %h4.year-header= @this_year = Date.parse(a['date_start']).year
-
-      = render 'availabilities/list', :a => a, :place => @place
 
 .arrows.clearfix
-  .coda-nav-left
-    %a.btn.primary{:href => "#"} Previous Step
-  .coda-nav-right
-    %a.btn.primary{:href => "#"} Next Step &raquo;
+  .float-left
+    %a.btn.primary{:href => "javascript:switchToPanel('#3')"} &laquo; Previous Step
+  .float-right
+    %a.btn.primary{:href => "javascript:switchToPanel('#5')"} Next Step &raquo;
 
 :javascript
 
@@ -42,9 +36,9 @@
 
   $(".availability_type").die().live("change", function() {
     if ($(this).val() == '1') {
-      $(this).next().val('').addClass('disabled').attr('disabled', 'disabled');
+      $(this).next().val('').hide();
     } else {
-      $(this).next().removeClass('disabled').removeAttr('disabled');
+      $(this).next().show();
     }
   });
 
@@ -69,12 +63,17 @@
       },
       success: function(data) {
         if (data.stat) {
-          mother.children(".data-container").html(data.data);
-          form.hide();
+          mother.replaceWith(data.data);
+
+          add_datepicker();
         } else {
           alert(data.data);
+          hideIndicator(save_btn);
+          save_btn.removeAttr('disabled');
         }
-
+      },
+      error: function() {
+        alert('Something went wrong. Please check again later.');
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }
@@ -82,3 +81,23 @@
 
     return false;
   });
+
+  $(".delete-availability").die()
+    .live("ajax:beforeSend", function() {
+      showIndicator($(this));
+    })
+    .live("ajax:success", function(evt, data) {
+      if (data.stat) {
+        var mother = $(this).parents(".availabilities-block");
+        mother.children(".edit-data-container").hide();
+        mother.hide("drop", { direction: "left" }, function() {
+          $(this).remove();
+        });
+      } else {
+        alert(data.data);
+      }
+    })
+    .live("ajax:error", function() {
+      alert('Something went wrong. Please check again later.');
+      hideIndicator($(this));
+    });

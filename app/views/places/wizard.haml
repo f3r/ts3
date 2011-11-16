@@ -1,173 +1,45 @@
+- content_for :javascripts do
+  %script{:src => "/javascripts/wizard.js", :type => 'text/javascript'}
+
+
 .row
-  .span12
-    %div{:style => "float:right"}
-      %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
-        %span
-          Preview
-        
+  .span12       
     %h1.title= @place.title
     %p.section_title
       General Information
-    .coda-slider-wrapper
-      #coda-slider-1.coda-slider.preload
-        = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
-          = hidden_field_tag :place_id, params[:id]
-          = hidden_field_tag :token, form_authenticity_token, :id => 'token'
-          / .description
-          .panel
-            = render 'step_2', :f => f
-          / .photos
-          .panel
-            = render 'step_3', :f => f
-          / .amenities
-          .panel
-            = render 'step_4', :f => f
-          / .calendar
-          .panel
-            = render 'step_5', :f => f
-          / .pricing
-          .panel
-            = render 'step_6', :f => f
-          / .preview
-          .panel
-            -#= render 'preview', :f => f
+    .wizard-wrapper
+      = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+        = hidden_field_tag :place_id, params[:id]
+        = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+        / .description
+        .panel#1
+          = render 'step_2', :f => f
+        / .photos
+        .panel#2
+          = render 'step_3', :f => f
+        / .amenities
+        .panel#3
+          = render 'step_4', :f => f
+        / .calendar
+        .panel#4
+          = render 'step_5', :f => f
+        / .pricing
+        .panel#5
+          = render 'step_6', :f => f
+        / .preview
+        .panel#6
+          -#= render 'preview', :f => f
   .span4
     = render :partial => 'sidebar'
 
 :javascript
+  // Load initial Panel
+  $('.wizard-wrapper .panel').css("display", "none");  
+  $('.wizard-wrapper .panel:first').css("display", "block");  
 
-  // TODO: Move this to a specific file
-  var place_id = $('#place_id').val();
-  var token = $('#token').val();
-  var access_token = $('#accessToken').val();
-
-  function showIndicator(elem) {
-    elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+  if(window.location.hash != "") {
+    switchToPanel(window.location.hash);
+  } else {
+    switchToPanel('#1');
   }
-
-  function showSavedIndicator(elem) {
-    elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
-    window.setTimeout(function() {
-      hideIndicator(elem);
-    }, 2000);
-  }
-
-  function validateElement(elem) {
-    return $('#wizard_form').validationEngine('validateField', elem);
-  }
-
-  function hideIndicator(elem) {
-    elem.parent().find('.save-indicator').detach();
-  }
-
-  var sendFieldUpdate = function() {
-    
-    var elem = $(this);
-
-    // Check if we have changed values
-    if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
-
-      hideIndicator(elem);
-      showIndicator(elem);
-
-      $.ajax({
-        type: 'PUT',
-        url: '/places/' + place_id + '.json',
-        data: $(this).serialize(), 
-        success: function() {
-          showSavedIndicator(elem);
-          elem.attr('data-changed', '0');
-        }
-      });
-
-    }
-  };
-
-  var sendCheckBoxUpdate = function() {
-    var elem = $(this);
-    hideIndicator(elem);
-    showIndicator(elem);
-
-    elem.hide();
-
-    var post_data = "";
-    var field = $(this).attr("name");
-    var value = "1";
-
-    if($(this).attr("checked") == "checked") {
-      value = "1";
-    } else {
-      value = "0";
-    }
-
-    post_data = field + "=" + value;
-
-    $.ajax({
-      type: 'PUT',
-      url: '/places/' + place_id + '.json',
-      data: post_data, 
-      success: function() {
-        hideIndicator(elem);      
-        elem.show();
-      }
-    });
-  };  
-
-  var trackChange = function() {
-    $(this).attr('data-changed', "1");
-  };
-
-  $('#place_title').change(function() {
-    $('h1.title').html($(this).val());
-  });
-
-  $(document).ready(function() {
-
-      // publish wizard
-    $('#coda-slider-1').codaSlider({
-       dynamicArrows: false,
-       dynamicTabs: false,
-       onSwitch: function(s) {
-        $('.section_title').html(s.html());
-       }
-    });      
-  
-    // accomodation photo slider          
-    var oSlider7 = $('#photo-slider');  	
-    if(oSlider7.length > 0){    	
-      oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true });
-    
-      $('#startslider').click(function(){ 
-        oSlider7.tinycarousel_start();
-        return false;
-      });
-    
-      $('#stopslider').click(function(){ 
-        oSlider7.tinycarousel_stop();
-        return false;
-      });		    		
-    }
-    
-    // search siderbar accordion
-    $(".panel-expander > .content:gt(0)").hide();
-    $(".panel-expander > li:gt(4)").hide();
-    $(".panel-expander .header").click(function(){
-      $(this).toggleClass("active");
-      $(this).siblings(".header").removeClass("active");      	        
-      $(this).next(".content").slideToggle(500)
-      return false;
-    });
-
-    $('#wizard_form').validationEngine();
-
-    // Character count
-    $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
-
-    // proof of concept - save on update feature
-    $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)
-          .blur(sendFieldUpdate);
-
-    $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
-
-
-  });
+ 

@@ -20,6 +20,11 @@ class SessionsController < ApplicationController
                                         'provider' => params['oauth_provider'], 'uid' => params[:oauth_uid], 'credentials' => {'token' => params[:oauth_token], 'secret' => ''}}
                                     })
 
+          if (current_user.avatar.nil?)
+            user_data = {'access_token' => current_token, 'avatar_url' => params[:avatar_url]}
+            user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
+            user = Heypal::User.update(user_data)
+          end
         end
 
         redirect_to '/dashboard'  
@@ -48,6 +53,10 @@ class SessionsController < ApplicationController
       # IF it's existing it should log in the user
       if @heypal_session.valid?
         sign_in @heypal_session
+        if (current_user.avatar.nil?)
+          user_data = {'access_token' => current_token, 'avatar_url' => oauth_image, 'birthdate' => '1966-01-01'}
+          user = Heypal::User.update(user_data)
+        end
         redirect_to '/dashboard'
       else
         # Ask the user to connect the account

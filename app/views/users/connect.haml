@@ -43,6 +43,8 @@
         = hidden_field_tag :oauth_provider, @oauth_provider
         = hidden_field_tag :oauth_token, @oauth_token
         = hidden_field_tag :oauth_uid, @oauth_uid
+        = hidden_field_tag :avatar_url, profile_picture_url(@oauth_uid, @oauth_provider)
+
         .input
           = text_field_tag :email, '',  :placeholder => t(:email)
         .input

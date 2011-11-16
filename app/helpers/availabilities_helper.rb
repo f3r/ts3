@@ -16,11 +16,11 @@ module AvailabilitiesHelper
     ds.strftime("%a %d/%B")
   end
 
-  def price_availability(s) # self
+  def price_availability(s, p) # self, place
     if s['availability_type'] == 1
       'unavailable / manual booking'
     else
-      "New Price: #{s['price_per_night']} $ per night"
+      raw("New Price: #{s['price_per_night']} <small class='currency-sign'>#{currency_sign_of(p.currency)}</small> per night")
     end
   end
 end

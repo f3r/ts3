@@ -6,7 +6,10 @@
 
     %span.availability-price
       = select_tag "availability_type", raw("<option value='2'>New Price</option><option value='1'>Unavailable</option>"), :class => 'availability_type'
-      = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
+
+      %span.wrap
+        %small.currency-sign= currency_sign_of(@place.currency)
+        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
 
     %div.availability-action
       = button_tag "Close", :class => "btn cancel-new-availability"

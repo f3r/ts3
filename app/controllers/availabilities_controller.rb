@@ -13,7 +13,7 @@ class AvailabilitiesController < ApplicationController
     saved, result = availability.save
 
     if saved
-      place = Heypal::Place.find(result['place_id'].to_s)
+      place = Heypal::Place.find(result['place_id'].to_s, current_token)
       availabilities = Heypal::Availability.find_all(:place_id => place.to_param)
 
       render :json => {:stat => true, :data => render_to_string(:_list_all, :locals => {:availabilities => availabilities, :place => place}, :layout => false)}
@@ -36,7 +36,7 @@ class AvailabilitiesController < ApplicationController
     saved, result = Heypal::Availability.update(param)
 
     if saved
-      place = Heypal::Place.find(result['place_id'].to_s)
+      place = Heypal::Place.find(result['place_id'].to_s, current_token)
 
       render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => result, :place => place}, :layout => false)}
     else

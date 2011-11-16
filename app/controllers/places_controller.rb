@@ -1,6 +1,7 @@
 class PlacesController < ApplicationController
   layout 'plain'
   before_filter :login_required, :only => [:new, :wizard, :create]
+  before_filter :find_place, :only => [:upload_photo, :wizard, :show, :preview, :photos]
 
   def new
     @place = Heypal::Place.new
@@ -25,25 +26,22 @@ class PlacesController < ApplicationController
   end
 
   def wizard
-    @place = Heypal::Place.find(params[:id])
+
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all(:place_id => @place.to_param)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
   def preview
-    @place = Heypal::Place.find(params[:id])
     @preview = true
     render(:template => 'places/show')
   end
 
   def show
-    @place = Heypal::Place.find(params[:id])
     @preview = false
   end
 
   def photos
-    @place = Heypal::Place.find(params[:id])
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
   end
@@ -86,7 +84,7 @@ class PlacesController < ApplicationController
 
     # Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
 
-    @place = Heypal::Place.find(params[:id])
+
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
 
@@ -95,5 +93,11 @@ class PlacesController < ApplicationController
   def get_cities
     @cities = Heypal::Geo.get_all_cities(params[:query])
     render :js => @cities.map.collect{|city| [city['name']]}
+  end
+
+protected
+
+  def find_place
+    @place = Heypal::Place.find(params[:id], current_token)
   end
 end

@@ -48,12 +48,11 @@ class Heypal::Place < Heypal::Base
 
     def update(options)
       result = request("/places/#{options[:id]}.json", :put, options)
-      #result['stat'] == 'ok'
       result
     end
 
-    def find(id)
-      result = request('/places/' + id + '.json' , :get)
+    def find(id, access_token)
+      result = request("/places/#{id}.json?access_token=#{access_token}", :get)
       if result['stat'] == 'ok'
         return self.new(normalize_place(result))
       end
@@ -68,7 +67,6 @@ class Heypal::Place < Heypal::Base
       p = p.merge(result['place']['terms_of_offer']) if result['place']['terms_of_offer'].present?
       p = p.merge(result['place']['pricing']) if result['place']['pricing'].present?
       p = p.merge(result['place'])
-
 
       # cleanup, messy but this should work for now
       #

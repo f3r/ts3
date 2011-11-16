@@ -7,8 +7,7 @@
       = f.text_field :title, :class => "span8", :class => "validate[required] autosave"
     .input
       = f.label :place_type_id, 'Type'
-      -# = f.select :place_type_id, [["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]], {}, :class => 'validate[required] autosave'
-      = f.select :place_type_id, placeList, {}, :class => 'validate[required] autosave'
+      = f.select :place_type_id, place_types_select, {}, :class => 'validate[required] autosave'
 
     .input
       = f.label :description

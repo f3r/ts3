@@ -69,11 +69,14 @@
 
   var showLatestPhoto = function() {
     var photo = $('#photos_list li img').last();
-    setPhoto(photo);
+    if(photo.size() > 0) {
+      setPhoto(photo);
+    }
   }
 
   var setPhoto = function(photo) {
     $('.photo_wrapper').empty();
+
     var img_wrapper = $("<div class='active-photo'></div>");
 
     var large_photo = photo.clone();

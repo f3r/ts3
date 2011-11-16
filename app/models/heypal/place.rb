@@ -46,7 +46,7 @@ class Heypal::Place < Heypal::Base
 
     end
 
-    def placeList
+    def place_types
       result = request("/place_types.json", :get)
       result['place_types']
     end

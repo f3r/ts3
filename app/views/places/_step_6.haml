@@ -74,21 +74,6 @@
       $('#estimated_amount_weekly').html("$" + total_per_week);
       $('#estimated_amount_monthly').html("$" + per_month);
       $('#priceNotification').show();
-      $('#place_price_per_week').val(total_per_week);
-      $('#place_price_per_month').val(per_month);
-      $('#place_price_per_week, #place_price_per_month').each(function() {
-        var field;
-        var value;
-
-        field = $(this).attr('name');
-        value = $(this).val();
-        $.ajax({
-          type: 'PUT',
-          url: '/places/' + place_id + '.json?access_token=' + access_token,
-          data: $(this).serialize(),
-          success: function() {}
-        });
-      });
     });
   });
 

@@ -25,8 +25,13 @@ class PlacesController < ApplicationController
     render :text => "", :layout => false
   end
 
-  def wizard
+  def update_currency
+    place = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
+    puts place.inspect
+    render :json => {:currency_sign => currency_sign_of(place['place']['currency'])}
+  end
 
+  def wizard
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all(:place_id => @place.to_param)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)

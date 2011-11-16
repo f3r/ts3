@@ -1,11 +1,16 @@
 module LookupsHelper
+  CURRENCIES = {'SGD' => 'S$', 'USD' => 'US$', 'HKD' => 'HK$'}
 
   def currencies
-    ['SGD', 'USD', 'HKD']
+    CURRENCIES.keys
   end
 
   def currencies_select
     currencies
+  end
+
+  def currency_sign_of(country)
+    CURRENCIES[country]
   end
 
   def cities

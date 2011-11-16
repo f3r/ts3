@@ -2,7 +2,9 @@
   %div{:class => "availability-color #{color_price(a, place)}"}
 
   %div.data-container
-    = render 'availabilities/data', :a => a
+    %span= "#{date_formatted(a['date_start'])} - #{date_formatted(a['date_end'])}"
+    %span= price_availability(a, place)
+    %span= link_to "Edit", '#', :class => 'open-edit-availability hide'
 
   %div.edit-data-container.hide
     = hidden_field_tag "id", a['id'], :id => "id-#{a['id']}"
@@ -12,7 +14,10 @@
 
     %span.availability-price
       = select_tag "availability_type", raw("<option value='2'#{' selected="selected"' if a['availability_type'] == 2}>New Price</option><option value='1'#{' selected="selected"' if a['availability_type'] == 1}>Unavailable</option>"), :class => 'availability_type', :id => "availability_type-#{a['id']}"
-      = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => "small#{' hide' if a['availability_type'] == 1}", :value => a['price_per_night'], :id => "price_per_night-#{a['id']}"
+
+      %span.wrap
+        %small.currency-sign= currency_sign_of(place.currency)
+        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => "small#{' hide' if a['availability_type'] == 1}", :value => a['price_per_night'], :id => "price_per_night-#{a['id']}"
 
     %div.availability-action
       %div.remove-action

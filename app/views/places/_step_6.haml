@@ -2,39 +2,34 @@
   %fieldset
     .input
       = f.label :currency, 'Currency'
-      = f.select :currency, currencies_select, {}, :class => 'autosave'
+      = f.select :currency, currencies_select, {}
   %h2.title Pricing
   %fieldset      
     %span#priceNotification
       Based on your daily price, we recommend
     .input
       = f.label :price_per_night
-      %span.currency
-        $
+      %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_per_night, :class => "validate[required] span2 autosave"
     .input
       = f.label :price_per_week
-      %span.currency
-        $
+      %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_per_week, :class => "validate[required] span2 autosave"
       %span#estimated_amount_weekly
     .input
       = f.label :price_per_month
-      %span.currency
-        $
+      %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_per_month, :class => "validate[required] span2 autosave"
       %span#estimated_amount_monthly
   %h2.title Additional Costs
   %fieldset
     .input
       = f.label :price_final_cleanup, 'Final Cleanup'
-      %span.currency
-        $
+      %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_final_cleanup, :class => "validate[required] span2 autosave"
     .input
       = f.label :price_security_deposit, 'Security Deposit'
-      %span.currency
-        $
+      %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_security_deposit, :class => "validate[required] span2 autosave"
   %h2.title Terms
   %fieldset
@@ -76,6 +71,22 @@
       $('#estimated_amount_weekly').html("$" + total_per_week);
       $('#estimated_amount_monthly').html("$" + per_month);
       $('#priceNotification').show();
+    });
+
+    $('#place_currency').change(function() {
+      var elem = $(this);
+      hideIndicator(elem);
+      showIndicator(elem);
+
+      $.ajax({
+        type: 'PUT',
+        url: '/places/' + place_id + '/update_currency.json',
+        data: $(this).serialize(), 
+        success: function(data) {
+          $(".currency-sign").html(data.currency_sign);
+          showSavedIndicator(elem);
+        }
+      });
     });
   });
 

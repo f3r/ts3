@@ -156,7 +156,7 @@ $(document).ready(function() {
 
   // Character count
   $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
-  $('#place_description').charCounter(20, {container: "<em></em>",classname: "counter", format: "(%1)"});
+  $('#place_description').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
 
   // proof of concept - save on update feature
   $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)

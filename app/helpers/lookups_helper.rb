@@ -29,4 +29,11 @@ module LookupsHelper
     Heypal::Place.placeList.map {|p| [p['name'], p['id']]}
   end
 
+  def pref_language_list
+    select_tag :pref_language, raw('<option value="en">English</option><option value="ph">Tagalog(lol)</option>'), :id => "pref-language-entry", :class => "hide"
+  end
+
+  def pref_currency_list
+    select_tag :pref_currency, raw('<option value="USD">US$</option><option value="SGD">S$</option>'), :id => "pref-currency-entry", :class => "hide"
+  end
 end

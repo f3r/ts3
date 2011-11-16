@@ -3,7 +3,7 @@
     .row
       .span5
         = link_to image_tag('/images/logo.png'), root_path, :title => t(:app_name)
-      .span5.offset6.user_box
+      .span5.offset5.user_box
         .row
           - if logged_in?
             .span3
@@ -22,4 +22,10 @@
                 = link_to t(:sign_in), login_path
                 |
                 = link_to t(:register), signup_path
-  = render 'shared/menu'                
+      .span1
+        .row
+          #pref-language English
+          = pref_language_list
+          .small#pref-currency US$
+          = pref_currency_list
+  = render 'shared/menu'

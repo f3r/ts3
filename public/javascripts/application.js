@@ -23,24 +23,40 @@ $(function() {
   $('input#hasDate.datepicker').datepicker({
     dateFormat: 'yy-mm-dd'
   });
-});
 
-$(function() {
   $('span#date-input-1').calendar({
     parentElement: 'div#date-input-1-container',
     dateFormat: '%d %B %Y'
   });
-});
 
-$(function() {
   $('span#date-input-2').calendar({
     parentElement: 'div#date-input-2-container',
     dateFormat: '%d %B %Y'
   });
+
+  $("#pref-language, #pref-currency").click(function() {
+    $(this).hide().next().show();
+  });
+
+  $("#pref-language-entry, #pref-currency-entry").change(function() {
+    me = $(this);
+    text = $(this).prev();
+
+    showIndicator(me);
+    $.ajax({
+      type: 'PUT',
+      url: '/users/change_preference.json',
+      data: me.serialize(), 
+      success: function(data) {
+        showSavedIndicator(me);
+        me.hide();
+        text.html(me.children("option:selected").text()).show();
+      }
+    });
+  });
 });
 
 function add_datepicker() {
-
   // TODO: hack now. to make datepicker from-to live. focus only work "on"-focus (duh). So hasDatepicker class isn't assigned on load and from-to doesn't work.
   // I just re-bind it now, used in places/_step_5 and availabilities/_form
 

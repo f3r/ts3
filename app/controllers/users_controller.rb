@@ -111,4 +111,22 @@ class UsersController < ApplicationController
       render :action => :edit
     end
   end
+
+  def change_preference
+    preference = if params.key?("pref_language")
+      :pref_language
+    elsif params.key?("pref_currency")
+      :pref_currency
+    end
+
+    params['access_token'] = current_token
+
+    puts params.inspect
+    puts preference
+    puts value = params[preference]    
+
+    if Heypal::User.update(params)
+      render :json => {}
+    end
+  end
 end

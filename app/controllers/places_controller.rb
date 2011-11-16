@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
   layout 'plain'
   before_filter :login_required, :only => [:new, :wizard, :create]
-  before_filter :find_place, :only => [:upload_photo, :wizard, :show, :preview, :photos]
+  before_filter :find_place, :only => [:wizard, :show, :preview, :photos]
 
   def new
     @place = Heypal::Place.new
@@ -52,7 +52,7 @@ class PlacesController < ApplicationController
   end
 
   def upload_photo
-    @place = Heypal::Place.find(params[:id])
+    @place = Heypal::Place.find(params[:id], params[:token])
 
     p = Heypal::Photo.new
     p.place_id = params[:id]
@@ -87,9 +87,8 @@ class PlacesController < ApplicationController
 
     result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
 
-    # Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
-
-
+    # TODO: Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
+    @place = Heypal::Place.find(params[:id], params[:token])    
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
 

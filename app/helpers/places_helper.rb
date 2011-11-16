@@ -27,10 +27,18 @@ module PlacesHelper
       ['TV', :amenities_tv],
       ['Washer', :amenities_washer],
     ]
+    #
+    #[
+      #['Couch', :amenities_couch],
+      #['Bedroom Furniture', :amenities_bedroom],
+      #['Dining room furniture', :amenities_dining], 
+      #['Kitchenware', :amenities_kitchenware],
+      #['Dishware', :amenities_dishware]
+    #]
   end
 
   # Misc
-  def aminities_group_3
+  def amenities_group_3
     [
       ['Breakfast', :amenities_breakfast],
       ['Internet', :amenities_internet],
@@ -46,8 +54,8 @@ module PlacesHelper
   def render_photo(photo)
     p = photo['photo']
 
-    photo_title = photo['name'].present? ? photo['name'] : t(:no_caption)
-    raw "<div class='photo_image'><img src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}'  data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' /></div><p class='photo_title'>#{photo_title}</p>"
+    photo_title = p['name'].present? ? p['name'] : t(:no_caption)
+    raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}'  data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' /></div><p class='photo_title'>#{photo_title}</p>"
   end
   
   def render_photo_title(photo)

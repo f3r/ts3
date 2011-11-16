@@ -2,25 +2,28 @@
   %h2.title Photos
   .clearfix
 
+  .photo_wrapper
+
+  .photos_wrapper
+    %h3 Photos
+    %p
+      You can sort your photos by drag and drop
+    .primary_marker
+      Primary
+    .row
+      .span12
+        %ul.gallery#photos_list
+          - @photos = @place.photos
+          = render 'photo_list'
+        .clearfix
+
   .upload_wrapper
+    %h3 Upload Photo
     %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :value => 'Select files', :id => "photo_uploader" }
     %p
       (Button will be changed soon. This button supports multiple file upload too!)
   .clearfix
-
     #photoQueue
-
-  %h3 Photos
-  %p
-    You can sort your photos by drag and drop
-  .primary_marker
-    Primary
-  .row
-    .span12
-      %ul.gallery#photos_list
-        - @photos = @place.photos
-        = render 'photo_list'
-      .clearfix
 
 .arrows.clearfix
   .float-left
@@ -30,6 +33,13 @@
 :javascript
 
   var afterSort = function(event, ui) {
+
+    if($('#photos_list li').size() > 0) {
+      $('.photos_wrapper').show();
+    } else {
+      $('.photos_wrapper').hide();
+    }
+
     $('#photos_list li').removeClass("active");
     $('#photos_list li:first').addClass("active");
 
@@ -38,6 +48,8 @@
     }, function() {
       $(this).find(".photo_action").hide();      
     });
+
+    $('#photos_list li img').click(showPhoto);
   };
 
   var deletePhoto = function(elem) {
@@ -50,6 +62,48 @@
 
     }
   };
+
+  var showPhoto = function() {
+    setPhoto($(this));
+  }
+
+  var showLatestPhoto = function() {
+    var photo = $('#photos_list li img').last();
+    setPhoto(photo);
+  }
+
+  var setPhoto = function(photo) {
+    $('.photo_wrapper').empty();
+    var img_wrapper = $("<div class='active-photo'></div>");
+
+    var large_photo = photo.clone();
+    large_photo.attr('src', large_photo.attr('data-medium'));
+    img_wrapper.append(large_photo);
+
+    var large_photo_label_text = "";
+
+    if(large_photo.attr('data-name') != "") {
+      large_photo_label_text = large_photo.attr('data-name');
+    } else {
+      large_photo_label_text = "click here to add caption";
+    }
+
+    var large_photo_label = $("<div class='active-label' data-image-id='" + large_photo.attr("data-id") + "'>" + large_photo_label_text + "</div>");
+
+    img_wrapper.append(large_photo_label);
+
+    $('.active-label').inlineEdit({
+      placeholder: 'click here to add caption',
+      save: function(e, data) {
+        img_div = $("#image-" + $(this).attr('data-image-id'));
+        img_div.find('img.photo').attr('data-name', data.value);
+        img_div.find('~ .photo_title').html(data.value);
+        syncPhotos();
+      }
+    });
+
+    $('.photo_wrapper').append(img_wrapper);
+  }
 
   var photoMetadata = function() {
     var photoArray = [];
@@ -75,7 +129,9 @@
       type: 'PUT',
       url: '/places/' + place_id + '.json',
       data: {place: {photos: JSON.stringify(photoMetadata())}}, 
-      success: function() {}
+      success: function() {
+
+      }
     });
   };
 
@@ -104,6 +160,7 @@
       'onComplete'  : function(event, ID, fileObj, response, data) {
         $('#photos_list').html(response);
         afterSort();
+        showLatestPhoto();
       }
     });
 
@@ -114,6 +171,7 @@
     });
 
     afterSort();
+    showLatestPhoto();
 
   });
 

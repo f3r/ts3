@@ -5,6 +5,8 @@
       = f.select :currency, currencies_select, {}, :class => 'autosave'
   %h2.title Pricing
   %fieldset      
+    %span#priceNotification
+      Based on your daily price, we recommend
     .input
       = f.label :price_per_night
       %span.currency
@@ -15,11 +17,13 @@
       %span.currency
         $
       = f.text_field :price_per_week, :class => "validate[required] span2 autosave"
+      %span#estimated_amount_weekly
     .input
       = f.label :price_per_month
       %span.currency
         $
       = f.text_field :price_per_month, :class => "validate[required] span2 autosave"
+      %span#estimated_amount_monthly
   %h2.title Additional Costs
   %fieldset
     .input
@@ -67,21 +71,13 @@
       var per_week = $(this).val() * 7;
       var per_month = $(this).val() * 30;
       var total_per_week = per_week - (per_week * .05);
+      total_per_week = Math.round(total_per_week);
 
-      $('#place_price_per_week').val(total_per_week);
-      $('#place_price_per_month').val(per_month);
-      $('#place_price_per_week, #place_price_per_month').each(function() {
-        var field;
-        var value;
-
-        field = $(this).attr('name');
-        value = $(this).val();
-        $.ajax({
-          type: 'PUT',
-          url: '/places/' + place_id + '.json?access_token=' + access_token,
-          data: $(this).serialize(),
-          success: function() {}
-        });
-      });
+      $('#estimated_amount_weekly').html("$" + total_per_week);
+      $('#estimated_amount_monthly').html("$" + per_month);
+      $('#priceNotification').show();
     });
   });
+
+:css
+  #priceNotification{display:none; float: right; font-size: 12px; width: 150px; margin-right: 145px; margin-top: -15px;}

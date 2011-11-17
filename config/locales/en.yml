@@ -150,6 +150,10 @@ en:
 
   cancellation_policy: Cancellation Policy
 
+  strict_cancellation: 50% refund up until 1 week prior, except fees
+  moderate_cancellation: full refund 5 days prior to arrival, except fees
+  flexible_cancellation: full refund 1 day prior to arrival, except fees
+
   ####################################################################################
   # Photos
   ####################################################################################

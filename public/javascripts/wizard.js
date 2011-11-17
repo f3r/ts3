@@ -293,9 +293,7 @@ $(document).ready(function() {
   });
 
   $('ul#wizard-selector li a').click(function(){
-    $('.formError').fadeOut(150, function() {
-      $('.formError').remove();
-    });
+    $('#wizard_form').validationEngine('hideAll');
   });
 
   $("#days_minimum_stay").change(hideShowInputStay);

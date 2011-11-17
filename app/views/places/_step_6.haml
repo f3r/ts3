@@ -8,16 +8,16 @@
     .input
       = f.label :price_per_night
       %span.currency-sign-id= currency_sign_of(@place.currency)
-      = f.text_field :price_per_night, :class => "validate[required] span2 autosave"
+      = f.text_field :price_per_night, :class => "validate[required,custom[integer]] span2 autosave"
     .input
       = f.label :price_per_week
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_week, :class => "span2 autosave"
+      = f.text_field :price_per_week, :class => "validate[custom[integer]] span2 autosave"
       %span#estimated_amount_weekly
     .input
       = f.label :price_per_month
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_month, :class => "span2 autosave"
+      = f.text_field :price_per_month, :class => "validate[custom[integer]] span2 autosave"
       %span#estimated_amount_monthly
   %h2.title Additional Costs
   %fieldset

@@ -1,8 +1,9 @@
 .panel-wrapper
   %fieldset
-    .input
-      = f.label :currency, t(:currency)
-      = f.select :currency, currencies_select, {}, :class => 'validate[required]'
+    .span3.offset7
+      .input
+        = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
+        = f.select :currency, currencies_select, {}, :class => 'validate[required]'
   %h2.title Pricing
   %fieldset      
     .input
@@ -50,7 +51,7 @@
       %span.help-inline= t(:nights)
     .input
       = f.label :cancellation_policy, t(:cancellation_policy)
-      = f.select :cancellation_policy, [['full refund 1 day prior to arrival, except fees', 'flexible'],['full refund 5 days prior to arrival, except fees', 'moderate'],['50% refund up until 1 week prior, except fees', 'strict']], {}, :class => 'validate[required] autosave'
+      = f.select :cancellation_policy, [[t(:flexible_cancellation), 'flexible'],[t(:moderate_cancellation), 'moderate'],[t(:strict_cancellation), 'strict']], {}, :class => 'validate[required] autosave'
     .input
       = f.label :house_rules
       = f.text_area :house_rules, :class => "span8 autosave", :rows => 5

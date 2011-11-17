@@ -11,6 +11,13 @@ var zipCodeVal = true;
 **********************/
 
 var switchPanel = function() {
+
+    // Remove form errors
+  if($('.formError').size() > 0) {
+    alert("Please fix the error on the form first before we can proceed.");
+    return false;
+  }
+
   _this = $(this);
 
   $('.wizard-wrapper .panel').hide();
@@ -19,7 +26,7 @@ var switchPanel = function() {
   _this.parent().parent().find('a').removeClass('active');
   _this.addClass('active');
 
-  validatePanels();
+  validatePanels(_this);
   return false;
 };
 
@@ -32,6 +39,35 @@ var validatePanels = function(target) {
   // At least one photo
   // daily price, currency and cancellation policy
   // Amenities. checked by default
+  var wizard_aside = $('.wizard-aside');
+  
+  // General Validation
+  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
+    wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
+  if($('#photos_list li').size() > 0) {
+    wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
+  if($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val()) {
+    wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
+  if(target && target.attr('href') == '#3') {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+  }
+
+  if(target && target.attr('href') == '#4') {
+    wizard_aside.find('li#calendar .indicator img').attr('src', '/images/check.png');
+  }  
+
 }
 
 
@@ -62,6 +98,7 @@ var sendFieldUpdate = function() {
     } else {
       showErrorIndicator(elem);
     }
+    validatePanels();    
   }
 };
 
@@ -118,6 +155,89 @@ var validateZipCode = function() {
   }
 };
 
+//for minimum and maximum days
+var hideShowInputStay = function() {
+  var elemName = $(this).attr('id');
+  var elemVal = $(this).val();
+  var placeInput;
+
+  if(elemName == 'days_minimum_stay') {
+    placeInput = $('#place_minimum_stay_days');
+  } else {
+    placeInput = $('#place_maximum_stay_days');
+  }
+
+  if(elemVal == 0) {
+    placeInput.show();
+  } else {
+    placeInput.hide();
+
+    field = placeInput.attr("name");
+    post_data = field + "=" + '';
+    place_id = $("#place_id").val(); // TODO: Quick update for now
+
+    $.ajax({
+      type: 'PUT',
+      url: '/places/' + place_id + '.json',
+      data: post_data 
+    });
+  }
+};
+
+var computeWeeklyMonthlyPay = function() {
+  var per_week = $(this).val() * 7;
+  var per_month = $(this).val() * 30;
+  var total_per_week;
+  var total_per_month;
+  var currency_sign = $('.currency-sign-id').text();
+  total_per_week = Math.floor(per_week * 0.95);
+  total_per_month = Math.floor(per_month * 0.95);
+
+  if($(this).val() != 0 || $(this).val() != ''){
+    $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
+    $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
+  }
+};
+
+function showComputeWeeklyMonthlyPay(elem) {
+  var per_week = elem * 7;
+  var per_month = elem * 30;
+  var total_per_week;
+  var total_per_month;
+  var currency_sign = $('.currency-sign-id').text();
+  total_per_week = Math.floor(per_week * 0.95);
+  total_per_month = Math.floor(per_month * 0.95);
+
+  if(elem != 0 || elem != ''){
+    $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
+    $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
+  }
+};
+
+
+function showHideInitialDefultInput() {
+  //check the value of minimum and maximum days
+  var place_min = $('#place_minimum_stay_days').val();
+  if(place_min == '' || place_min == undefined) {
+    $('#place_minimum_stay_days').hide();
+    $('select#days_minimum_stay').val('1');
+  } else {
+    $('#place_minimum_stay_days').show();
+    $('select#days_minimum_stay').val('0');
+  };
+
+  var place_min = $('#place_maximum_stay_days').val();
+  if(place_min == '' || place_min == undefined) {
+    $('#place_maximum_stay_days').hide();
+    $('select#days_maximum_stay').val('1');
+  } else {
+    $('#place_maximum_stay_days').show();
+    $('select#days_maximum_stay').val('0');
+  };
+  //for pricing text
+  var nightPrice = $('#place_price_per_night').val();
+  showComputeWeeklyMonthlyPay(nightPrice);
+};
 
 /*********************
 * Initialize here 
@@ -131,8 +251,10 @@ $(document).ready(function() {
   $('#wizard_form').validationEngine();
 
   // Character count
-  $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
-  $('#place_description').charCounter(20, {container: "<em></em>",classname: "counter", format: "(%1)"});
+  $('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
+
+  // Do we need a limit on place description?
+  //$('#place_description').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
 
   // proof of concept - save on update feature
   $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)
@@ -149,22 +271,7 @@ $(document).ready(function() {
   });  
 
   // Price per night
-  $('#place_price_per_night').change(function() {
-    var access_token = $('#accessToken').val();
-    var per_week = $(this).val() * 7;
-    var per_month = $(this).val() * 30;
-    var total_per_week = per_week - (per_week * .95);
-    var total_per_month = per_month - (per_month * .95);
-    var currency_sign = $('.currency-sign-id').text();
-    total_per_week = Math.round(total_per_week);
-
-    if(per_week != 0){
-      $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
-    }
-    if(per_month != 0){
-      $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
-    }
-  });
+  $('#place_price_per_night').change(computeWeeklyMonthlyPay);
 
   $('#place_currency').change(function() {
     var elem = $(this);
@@ -191,4 +298,11 @@ $(document).ready(function() {
     });
   });
 
+  $("#days_minimum_stay").change(hideShowInputStay);
+  $("#days_maximum_stay").change(hideShowInputStay);
+  showHideInitialDefultInput();
+
+  $("a[rel=twipsy]").twipsy({
+    live:true
+  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px', 'padding' : '2px'});
 });

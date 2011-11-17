@@ -39,10 +39,12 @@
       = f.select :check_out_before, time_array, {}, :class => "span2 autosave"
 
     .input
-      = f.label :minimum_stay_days, 'Minimum Stay Days'
+      = f.label :minimum_stay_days, 'Minimum stay'
+      = select 'days', 'minimum_stay', [['Minimum of', 0],['No minimum', 1]]
       = f.text_field :minimum_stay_days, :class => "span2 autosave"
     .input
-      = f.label :maximum_stay_days, 'Maximum Stay Days'
+      = f.label :maximum_stay_days, 'Maximum stay'
+      = select 'days', 'maximum_stay', [['Maxium of', 0],['No maximum', 1]]
       = f.text_field :maximum_stay_days, :class => "validate[required] span2 autosave"
     .input
       = f.label :house_rules

@@ -6,7 +6,7 @@
         = f.label :city_id, 'What city is your place in?'
         = f.select :city_id, cities_select, :class => "validate[required] span6"
       .input
-        = f.label :title, 'Give us a descriptive title'
+        = f.label :title, 'Title'
         = f.text_field :title, :class => "validate[required] span7"
 
       .input
@@ -44,6 +44,8 @@
       }
 
     }
+
+    //$('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});    
 
     $('form input').change(function(){
       validateStep1Form();

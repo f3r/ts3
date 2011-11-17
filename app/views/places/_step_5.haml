@@ -92,10 +92,16 @@
         var mother = $(this).parents(".availabilities-block");
         mother.children(".edit-data-container").hide();
         mother.hide("drop", { direction: "left" }, function() {
+          if ($(this).next(".availabilities-block").length === 0 && $(this).prev(".availabilities-block").length === 0) {
+            $(this).prev("h4.year-header").hide("drop", {direction:"left"}, function() { $(this).remove() });
+          }
+
           $(this).remove();
         });
+        
       } else {
         alert(data.data);
+        hideIndicator($(this));
       }
     })
     .live("ajax:error", function() {

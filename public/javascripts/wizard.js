@@ -227,8 +227,8 @@ function showComputeWeeklyMonthlyPay(elem) {
   total_per_month = Math.floor(per_month * 0.95);
 
   if(elem != 0 || elem != ''){
-    $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
-    $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
+    $('#estimated_amount_weekly').html("Based on your daily price, we recommend <span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    $('#estimated_amount_monthly').html("Based on your daily price, we recommend <span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 

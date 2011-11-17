@@ -58,13 +58,13 @@ $(function() {
     dateFormat: '%d %B %Y'
   });
 
-  $("#pref-language, #pref-currency").click(function() {
+  $(".preference").click(function() {
     $(this).hide().next().show();
   });
 
-  $("#pref-language-entry, #pref-currency-entry").change(function() {
-    me = $(this);
-    text = $(this).prev();
+  $(".preference-entry").change(function() {
+    var me = $(this);
+    var text_container = $(this).prev();
 
     showIndicator(me);
     $.ajax({
@@ -74,7 +74,8 @@ $(function() {
       success: function(data) {
         showSavedIndicator(me);
         me.hide();
-        text.html(me.children("option:selected").text()).show();
+        text_container.children("span.text").html(me.children("option:selected").text())
+        text_container.show();
       }
     });
   });

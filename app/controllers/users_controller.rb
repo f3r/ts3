@@ -121,11 +121,16 @@ class UsersController < ApplicationController
 
     params['access_token'] = current_token
 
-    puts params.inspect
-    puts preference
-    puts value = params[preference]    
+    # Set to cookies
+    cookies[preference] = params[preference]
 
-    if Heypal::User.update(params)
+    if logged_in?
+      if Heypal::User.update(params)
+        render :json => {:stat => true}
+      else
+        render :json => {:stat => false}
+      end
+    else
       render :json => {}
     end
   end

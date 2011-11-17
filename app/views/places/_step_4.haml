@@ -1,5 +1,5 @@
 .panel-wrapper.amenities
-  %h2.title Amenities
+  %h2.title= t(:amenities)
   %fieldset
     - amenities_group_1.each do |a|
       %label.amenity
@@ -8,7 +8,7 @@
 
 
   
-  %h2.title Furnishings
+  %h2.title= t(:furnishings)
   %fieldset
     - amenities_group_2.each do |a|
       %label.amenity
@@ -17,7 +17,7 @@
 
 
 
-  %h2.title Miscellaneous
+  %h2.title= t(:miscellaneous)
   %fieldset
     - amenities_group_3.each do |a|
       %label.amenity
@@ -30,6 +30,6 @@
 
 .arrows.clearfix
   .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#2')"} &laquo; Previous Step
+    %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t(:previous_step)
   .float-right
-    %a.btn.primary{:href => "javascript:switchToPanel('#4')"} Next Step &raquo;  
+    %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t(:next_step)

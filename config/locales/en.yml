@@ -5,7 +5,7 @@ en:
   ####################################################################################
   # App General Stuff
   ####################################################################################
-  app_name:   Heypal
+  app_name:   Squarestays
   submit:     Submit
 
   ####################################################################################
@@ -30,7 +30,7 @@ en:
   confirmation_code:          Confirmation code
   confirmation_email_sent:    Confirmation email sent
   register:                   Register
-  login:                      Login to Heypal
+  login:                      Login to Squarestays
   login_using:                Login using
   sign_in:                    Sign In
   sign_out:                   Sign Out
@@ -84,10 +84,67 @@ en:
   link_accounts:      + link account
   edit_account:       Edit Account
 
+
+  ####################################################################################
+  # Wizard
+  ####################################################################################
+  
+  general_info: General Info
+  general_information: General Information
+  photos: Photos
+  amenities: Amenities
+  calendar: Calendar
+  price_and_conditions: Price and Conditions
+
+  ####################################################################################
+  # Places Wizard
+  ####################################################################################
+  list_your_place: List Your Place
+  what_city: What city is your place in?
+  place_type: What kind of place is it?
+  how_many_bedrooms: How many bedrooms
+  max_guests: Max number of Guests
+  save_and_continue: Save and Continue &raquo;
+  title: Title
+  type: Type
+  i_agree_to_the: I agree to the
+  terms_and_conditions: Terms and conditions
+  description: Description
+  address: Address
+  max_guests: Number of Guests
+  num_bedrooms: Number of Bedrooms
+  num_beds: Number of Beds
+  num_bathrooms: Number of Bathrooms
+  address_1_help: Street Address, Company 
+  address_2_help: Apartment / Unit Number / Suite
+  size: Size
+  city: City
+  state: State
+  zip_code: Zip/Postal Code
+  country: Country
+  next_step: Next Step &raquo;
+  previous_step: "&laquo; Previous Step"
+  are_you_sure: Are you sure?
+
+  amenities: Amenities
+  furnishings: Furnishings
+  miscellaneous: Miscellaneous
+
+  preview_button: Preview &raquo;
+
   ####################################################################################
   # Photos
   ####################################################################################
+  photos: Photos
   no_caption: No Caption
+  you_can_sort: You can sort your photos by drag and drop
+  primary: Primary
+  upload_photo: Upload Photo
+  upload_photo_hint: We support jpg and png images.
+  click_here_to_add_caption: Click here to add caption
+
+  calendar: Calendar
+  calendar_hint: Please let us know what dates the place is available for ren
 
   ####################################################################################
   # Error codes

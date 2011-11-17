@@ -1,8 +1,6 @@
-/*
 var place_id = $('#place_id').val();
 var token = $('#token').val();
 var access_token = $('#accessToken').val();
-*/
 
 var zipCodeVal = true;
 
@@ -22,6 +20,8 @@ var switchPanel = function() {
 
   $('.wizard-wrapper .panel').hide();
   $(_this.attr('href')).fadeIn('fast');
+
+  $('.section_title').html(_this.attr('title'));
 
   _this.parent().parent().find('a').removeClass('active');
   _this.addClass('active');

@@ -55,9 +55,9 @@
 
 .arrows.clearfix
   .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#5')"} &laquo; Previous Step
+    %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:previous_step)
   .float-right
-    %a.btn.primary{:href => preview_place_path(@place)} Preview &raquo;
+    %a.btn.primary{:href => preview_place_path(@place)}=raw t(:preview_button)
 
 :css
   #estimated_amount_weekly, #estimated_amount_monthly {font-size: 12px;}

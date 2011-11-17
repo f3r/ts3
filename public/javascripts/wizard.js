@@ -8,11 +8,24 @@ var zipCodeVal = true;
 * Panels
 **********************/
 
+
+var il8nStrings = {
+  not_listed_yet: 'Your place is not listed yet!',
+  place_listed: 'Your place is listed. Click here to remove it from the directory',
+  form_error: 'Please fix the error on the form first before we can proceed.',
+  categories_left: 'more categories must be completed',
+  listed: 'Listed'
+};
+
+var t = function(key) {
+  return il8nStrings[key];
+}
+
 var switchPanel = function() {
 
     // Remove form errors
   if($('.formError').size() > 0) {
-    alert("Please fix the error on the form first before we can proceed.");
+    alert(t('form_error'));
     return false;
   }
 
@@ -26,7 +39,6 @@ var switchPanel = function() {
   _this.parent().parent().find('a').removeClass('active');
   _this.addClass('active');
 
-  validatePanels(_this);
   return false;
 };
 
@@ -34,39 +46,75 @@ var switchToPanel = function(target) {
   $('ul#wizard-selector li a[href="' + target + '"]').click();
 }
 
-var validatePlace = function(target) {
+var validatePlace = function(panelStatus) {
+  var validCategories = 0;
 
+  // Count valid categories
+  if(panelStatus.general) { validCategories++; }
+  if(panelStatus.photos) { validCategories++; }
+  if(panelStatus.amenities) { validCategories++; }
+  if(panelStatus.price) { validCategories++; }
+  if(panelStatus.calendar) { validCategories++; }
 
+  var validMarkers = $('#preview_button, #listing-status');
+
+  // If all 5 categories are valid
+  if(validCategories == 5) {
+    $('#preview_button').attr('rel', '');
+    $('#preview_button').attr('data-original-title', '');
+    $('#preview_button').attr('disabled', false);
+
+    $('#listing-status').html(t('listed'));
+    $('#listing-status').attr('rel', 'twipsy');    
+    $('#listing-status').attr('data-original-title', t('place_listed'));
+    $('#listing-status').attr('disabled', false);
+
+  } else {
+    validMarkers.attr('disabled', true);
+    validMarkers.attr('rel', 'twipsy');
+    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5-2) + ' ' + t('categories_left') + '!');    
+  }
 
 }
 
 var validatePanels = function(target) {
 
+  var panelStatus = {};
   var wizard_aside = $('.wizard-aside');
   
   // General Validation
-  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
+  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size_sqm').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
+    panelStatus.general = true;
   } else {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
+    panelStatus.general = false;
   }
 
   // Photos
   if($('#photos_list li').size() > 0) {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
+    panelStatus.photos = true;
   } else {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
+    panelStatus.photos = false;
   }
 
   // Price
   if($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val()) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
+    panelStatus.price = true;
   } else {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
+    panelStatus.price = false;
   }
 
-  validateAmenitiesPanel();
+  panelStatus.amenities = validateAmenitiesPanel();
+  panelStatus.calendar = true;
 
+  validatePlace(panelStatus);
+
+  return panelStatus;
 }
 
 var validateAmenitiesPanel = function(target) {
@@ -327,6 +375,7 @@ $(document).ready(function() {
   showHideInitialDefultInput();
 
   $("a[rel=twipsy]").twipsy({
-    live:true
-  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px', 'padding' : '2px'});
+    live:true,
+    animate: false
+  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
 });

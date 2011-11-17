@@ -3,7 +3,9 @@
 
 
 .row
-  .span12       
+  .span12
+    .float-right
+      = link_to t(:invisible), '#', :class => 'btn secondary', :id => 'listing-status'
     %h1.title= @place.title
     %p.section_title
       General Information

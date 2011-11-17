@@ -162,6 +162,15 @@ en:
 
   do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
 
+  not_listed_yet: Your place is not listed yet!
+  preview: Preview
+
+  invisible: Invisible
+  place_listed: Place listed
+  form_error: Please fix the error on the form first before we can proceed.
+  categories_left: more categories must be completed
+  listed: Listed
+
   ####################################################################################
   # Photos
   ####################################################################################

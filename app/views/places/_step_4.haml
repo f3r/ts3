@@ -22,7 +22,11 @@
     - amenities_group_3.each do |a|
       %label.amenity
         = f.check_box a[1], :value => 'true'
-        =a[0]
+        -if a[0] == 'Smoking Allowed'
+          = a[0]
+          <a href='#' rel='twipsy' data-original-title='Do you allow smoking in your apartment/balcony?'>?</a>
+        -else
+          =a[0]
 
 .arrows.clearfix
   .float-left

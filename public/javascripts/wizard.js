@@ -301,4 +301,8 @@ $(document).ready(function() {
   $("#days_minimum_stay").change(hideShowInputStay);
   $("#days_maximum_stay").change(hideShowInputStay);
   showHideInitialDefultInput();
+
+  $("a[rel=twipsy]").twipsy({
+    live:true
+  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px', 'padding' : '2px'});
 });

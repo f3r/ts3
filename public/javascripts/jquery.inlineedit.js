@@ -79,7 +79,7 @@ $.inlineEdit.initialised = function( elem ) {
 
 // plugin defaults
 $.inlineEdit.defaults = {
-    hover: 'ui-state-hover',
+    hover: 'inline-edit-hover',
     value: '',
     save: '',
     buttons: '<button class="save">save</button> <button class="cancel">cancel</button>',

@@ -1,35 +1,35 @@
 .panel-wrapper
-  %h2.title List your Place
+  %h2.title
+    = t(:list_your_place)
   %fieldset
     .clearfix
       .input
         = f.label :city_id, 'What city is your place in?'
         = f.select :city_id, cities_select, :class => "validate[required] span6"
       .input
-        = f.label :title, 'Title'
+        = f.label :title, t(:title)
         = f.text_field :title, :class => "validate[required] span7"
 
       .input
-        = f.label :place_type_id, 'What kind of place is it'
+        = f.label :place_type_id, t(:place_type)
         = f.select :place_type_id, place_types_select
       .input
-        = f.label :num_bedrooms, 'How many bedrooms'
+        = f.label :num_bedrooms, t(:how_many_bedrooms)
         = f.text_field :num_bedrooms, :class => "validate[required,custom[integer]] span2"
       .input
-        = f.label :max_guests, 'Max number of Guests'
+        = f.label :max_guests, t(:max_guests)
         = f.text_field :max_guests, :class => "validate[required,custom[integer]] span2"
       %br.clearfix
       %br.clearfix
       .input
         %label.reset-width
           = f.check_box :terms
-          I agree to the
-          = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank        
+          = t(:i_agree_to_the)
+          = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank        
 
 .arrows.clearfix
   .coda-nav-right
-    %button.btn.primary{:type => "submit", :id => "submit_button"}
-      Save and Continue &raquo;
+    %button.btn.primary{:type => "submit", :id => "submit_button"}=raw t(:save_and_continue)
 
 :javascript
 

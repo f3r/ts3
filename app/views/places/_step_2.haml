@@ -1,64 +1,64 @@
 .panel-wrapper
-  %h2.title Description
+  %h2.title= t(:description)
   %fieldset
 
     .input
-      = f.label :title, 'Title'
+      = f.label :title, t(:title)
       = f.text_field :title, :class => "span8", :class => "validate[required] autosave"
     .input
-      = f.label :place_type_id, 'Type'
+      = f.label :place_type_id, t(:type)
       = f.select :place_type_id, place_types_select, {}, :class => 'validate[required] autosave'
 
     .input
-      = f.label :description
+      = f.label :description, t(:description)
       = f.text_area :description, :class => "validate[required] span8 autosave", :rows => 5, :style => "width: 440px;"
     .input
-      = f.label :max_guests, 'Number of Guests'
+      = f.label :max_guests, t(:max_guests)
       = f.text_field :max_guests, :class => "validate[required,custom[integer]] span1 autosave"
     .input
-      = f.label :num_bedrooms, 'Number of Bedrooms'
+      = f.label :num_bedrooms, t(:num_bedrooms)
       = f.text_field :num_bedrooms, :class => "span1 autosave"
     .input
-      = f.label :num_beds, 'Number of Beds'
+      = f.label :num_beds, t(:num_beds)
       = f.text_field :num_beds, :class => "span1 autosave"
     .input
-      = f.label :num_bathrooms, 'Number of Bathrooms'
+      = f.label :num_bathrooms, t(:num_bathrooms)
       = f.text_field :num_bathrooms, :class => "span1 autosave"
 
     .input
       = f.label :size
       = f.text_field :size, :class => "validate[required,custom[integer]] span2 autosave"
       = f.select :size_type, ["sqm", "sqf"], {}, :class => "validate[required] span2 autosave"
-  %h2.title Address
+  %h2.title= t(:address)
   %fieldset
     .input
-      = f.label :city_id, 'City'
+      = f.label :city_id, t(:city)
       = f.select :city_id, cities_select, { :class => "validate[required] span6 autosave"}
     - if false
       .input
-        = f.label :city
+        = f.label :city, t(:city)
         = @city['name']
 
       .input
-        = f.label :state
+        = f.label :state, t(:state)
         = @city['state']['name']
 
       .input
-        = f.label :country
+        = f.label :country, t(:country)
         = @city['country']['name']
 
     .input
       = f.label :address_1
       = f.text_field :address_1, :class => "validate[required] span5 autosave"
-      %span.help-inline
-        Street Address, Company 
+      %p.help-inline
+        = t(:address_1_help)
     .input
       = f.label :address_2
       = f.text_field :address_2, :class => "span5 autosave"
-      %span.help-inline
-        Apartment / Unit Number / Suite
+      %p.help-inline
+        = t(:address_2_help)
     .input
-      = f.label :zip
+      = f.label :zip, t(:zip_code)
       = f.text_field :zip, :class => "validate[required] span3 autosave"
     .input
       = f.label :directions
@@ -66,5 +66,5 @@
 
 .arrows.clearfix
   .float-right
-    %a.btn.primary{:href => "javascript:switchToPanel('#2')"} Next Step &raquo;
+    %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t(:next_step)
 

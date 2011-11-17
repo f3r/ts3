@@ -1811,3 +1811,24 @@ h2.title {
 	background-image: -webkit-gradient(linear,leftbottom,lefttop,color-stop(0.02,rgb(79,153,21)), color-stop(0.51,rgb(111,184,49)), color-stop(0.76,rgb(145,221,79)) );
 	background-image: -moz-linear-gradient(centerbottom,rgb(79,153,21) 2% #6fb831 51% #91dd4f 76% );
 }
+
+// Form Error
+// -----------
+
+.formError .formErrorContent {
+	width: 100%;
+	background: @red;
+	position:relative;
+	z-index:5001;
+	color: @grayLight;
+	width: 150px;
+	font-size: 12px;
+	border: 2px solid #ddd;
+  .border-radius(4px);
+  .box-shadow(0 1px 1px rgba(0,0,0,.095));
+	padding: 4px 10px 4px 10px;
+}
+
+.formError .formErrorArrow div {
+  background: @red;
+}

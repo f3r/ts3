@@ -11,7 +11,7 @@
 
     .input
       = f.label :description, t(:description)
-      = f.text_area :description, :class => "validate[required] span8 autosave", :rows => 5, :style => "width: 440px;"
+      = f.text_area :description, :class => "validate[required,minSize[20]] span8 autosave", :rows => 5, :style => "width: 440px;"
     .input
       = f.label :max_guests, t(:max_guests)
       = f.text_field :max_guests, :class => "validate[required,custom[integer]] span1 autosave"

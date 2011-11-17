@@ -48,25 +48,39 @@ var validatePanels = function(target) {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
   }
 
+  // Photos
   if($('#photos_list li').size() > 0) {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
   } else {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
   }
 
+  // Price
   if($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val()) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
   } else {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
   }
 
-  if(target && target.attr('href') == '#3') {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
-  }
+  validateAmenitiesPanel();
 
-  if(target && target.attr('href') == '#4') {
-    wizard_aside.find('li#calendar .indicator img').attr('src', '/images/check.png');
-  }  
+}
+
+var validateAmenitiesPanel = function(target) {
+  var wizard_aside = $('.wizard-aside');
+  // Amenities
+  var hasAmenity = false;
+  $('.amenity input[type=checkbox]').each(function() {
+    if($(this).attr('checked') == 'checked') {
+      hasAmenity = true;
+      wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+      return;
+    }
+  });
+
+  if(hasAmenity == false) {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');    
+  }
 
 }
 
@@ -131,6 +145,7 @@ var sendCheckBoxUpdate = function() {
       elem.show();
     }
   });
+  validateAmenitiesPanel();
 };  
 
 var trackChange = function() {

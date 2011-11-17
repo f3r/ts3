@@ -56,13 +56,13 @@ var validatePlace = function(panelStatus) {
   if(panelStatus.price) { validCategories++; }
   if(panelStatus.calendar) { validCategories++; }
 
-  var validMarkers = $('#preview_button, #listing-status');
+  var validMarkers = $('.preview-button, #listing-status');
 
   // If all 5 categories are valid
   if(validCategories == 5) {
-    $('#preview_button').attr('rel', '');
-    $('#preview_button').attr('data-original-title', '');
-    $('#preview_button').attr('disabled', false);
+    $('.preview-button').attr('rel', '');
+    $('.preview-button').attr('data-original-title', '');
+    $('.preview-button').attr('disabled', false);
 
     $('#listing-status').html(t('listed'));
     $('#listing-status').attr('rel', 'twipsy');    

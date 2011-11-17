@@ -4,7 +4,7 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id city_id num_bedrooms num_beds num_bathrooms size_sqm size_sqf max_guests size_type access_token
+    title description place_type_id city_id num_bedrooms num_beds num_bathrooms size_sqm size_sqf max_guests size_type access_token published 
   )
 
   @@geo_attributes = %w(

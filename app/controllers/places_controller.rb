@@ -27,7 +27,6 @@ class PlacesController < ApplicationController
 
   def update_currency
     place = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
-    puts place.inspect
     render :json => {:currency_sign => currency_sign_of(place['place']['currency'])}
   end
 

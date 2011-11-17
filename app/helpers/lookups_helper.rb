@@ -1,5 +1,6 @@
 module LookupsHelper
   CURRENCIES = {'SGD' => 'S$', 'USD' => 'US$', 'HKD' => 'HK$'}
+  LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
 
   def currencies
     CURRENCIES.keys
@@ -22,15 +23,31 @@ module LookupsHelper
   end
 
   def place_types_select
-    #[["Apartment", 1], ["House", 2], ["Villa", 3], ["Room", 4], ["Shared Room", 5], ["Dorm", 6], ["Other space", 7]]    
     Heypal::Place.place_types.map {|p| [p['name'], p['id']]}    
   end
 
   def pref_language_list
-    select_tag :pref_language, raw('<option value="en">English</option><option value="ph">Tagalog(lol)</option>'), :id => "pref-language-entry", :class => "hide"
+    select_tag :pref_language, options_for_select(LANGUAGES.map{ |l, t| [t, l]}, (self.get_language || 'en')), :class => "hide preference-entry"
   end
 
   def pref_currency_list
-    select_tag :pref_currency, raw('<option value="USD">US$</option><option value="SGD">S$</option>'), :id => "pref-currency-entry", :class => "hide"
+    select_tag :pref_currency, options_for_select(CURRENCIES.map{ |c, t| [t, c]}, (self.get_currency || 'USD')), :class => "hide preference-entry"
+  end
+
+  def get_pref_language
+    LANGUAGES[self.get_language] || 'English'
+  end
+
+  def get_pref_currency
+    CURRENCIES[self.get_currency] || 'US$'
+  end
+
+  protected
+  def get_language
+    (current_user['pref_language'] if logged_in?) || cookies[:pref_language] || nil
+  end
+
+  def get_currency
+    (current_user['pref_currency'] if logged_in?) || cookies[:pref_currency] || nil
   end
 end

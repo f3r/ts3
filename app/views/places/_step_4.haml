@@ -24,7 +24,7 @@
         = f.check_box a[1], :value => 'true'
         -if a[0] == 'Smoking Allowed'
           = a[0]
-          <a href='#' rel='twipsy' data-original-title='Do you allow smoking in your apartment/balcony?'>?</a>
+          = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t(:do_you_allow_smoking))
         -else
           =a[0]
 

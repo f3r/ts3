@@ -133,7 +133,11 @@ en:
   preview_button: Preview &raquo;
  
   final_cleanup: Final Cleanup 
+  final_cleanup_hint: The cost of cleaning the place once rental is finished
   security_deposit: Security Deposit
+  security_deposit_hint: The wireframe has this but I don't have the text yer
+
+  terms: Terms
 
   check_in_before: Check In Before
   check_out_before: Check Out Before
@@ -153,6 +157,8 @@ en:
   strict_cancellation: 50% refund up until 1 week prior, except fees
   moderate_cancellation: full refund 5 days prior to arrival, except fees
   flexible_cancellation: full refund 1 day prior to arrival, except fees
+
+  do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
 
   ####################################################################################
   # Photos

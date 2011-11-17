@@ -155,15 +155,11 @@ var trackChange = function() {
 var validateZipCode = function() {
   var country_id = $('#place_city_id').val();
   var zip = $(this).val();
-  if(zip.match(/^\d{6}$/) && (country_id == '1' || country_id == 'IN' || country_id == 'SG' || country_id == 'VN' || country_id == 'CN' )) {
+  if(zip.match(/^\d{6}$/) && country_id == '1') {
     zipCodeVal = true;
-  } else if(zip.match(/^\d{5}$/) && (country_id == 'ID' || country_id == 'MY' || country_id == 'TH' || country_id == '4065')) {
+  } else if(zip.match(/^\d{5}$/) && country_id == '4065') {
     zipCodeVal = true;
-  } else if(zip.match(/^\d{4}$/) && (country_id == 'AU' || country_id == 'PH')) {
-    zipCodeVal = true;
-  } else if(zip.match(/^\d{5}([ \-]\d{4})?$/) && country_id == 'US') {
-    zipCodeVal = true;
-  } else if(country_id == '13984' && zip.match(/^\d/)){
+  } else if(country_id == '13984' && zip.match(/^\d{2,}$/)){
     zipCodeVal = true;
   } else {
     zipCodeVal = false;

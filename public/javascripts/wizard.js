@@ -40,29 +40,6 @@ var validatePanels = function(target) {
 **********************/
 
 
-function showIndicator(elem) {
-  elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
-}
-
-function showSavedIndicator(elem) {
-  elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
-  window.setTimeout(function() {
-    hideIndicator(elem);
-  }, 2000);
-}
-
-function showErrorIndicator(elem) {
-  elem.after("<span class='save-indicator'><span class='label success'>error</span></span>");
-}
-
-function validateElement(elem) {
-  return $('#wizard_form').validationEngine('validateField', elem);
-}
-
-function hideIndicator(elem) {
-  elem.parent().find('.save-indicator').detach();
-}
-
 var sendFieldUpdate = function() {
   
   var elem = $(this);

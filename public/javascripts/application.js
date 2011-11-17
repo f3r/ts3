@@ -8,6 +8,29 @@
 //= require jquery_ujs
 //= require_tree .
 
+function showIndicator(elem) {
+  elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+}
+
+function showSavedIndicator(elem) {
+  elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
+  window.setTimeout(function() {
+    hideIndicator(elem);
+  }, 2000);
+}
+
+function showErrorIndicator(elem) {
+  elem.after("<span class='save-indicator'><span class='label success'>error</span></span>");
+}
+
+function validateElement(elem) {
+  return $('#wizard_form').validationEngine('validateField', elem);
+}
+
+function hideIndicator(elem) {
+  elem.parent().find('.save-indicator').detach();
+}
+
 $(function() {
   $('.generic-datepicker').datepicker({
     dateFormat: 'dd/mm/yy'

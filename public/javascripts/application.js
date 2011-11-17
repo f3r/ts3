@@ -20,7 +20,8 @@ function showSavedIndicator(elem) {
 }
 
 function showErrorIndicator(elem) {
-  elem.after("<span class='save-indicator'><span class='label success'>error</span></span>");
+  elem.after("<span class='save-indicator'><span class='label success'>error</span></span>")
+  $('.save-indicator span').fadeOut(7000);
 }
 
 function validateElement(elem) {

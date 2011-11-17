@@ -39,7 +39,6 @@ var validatePanels = function(target) {
 * Wizard General
 **********************/
 
-
 var sendFieldUpdate = function() {
   
   var elem = $(this);
@@ -112,7 +111,7 @@ var validateZipCode = function() {
     zipCodeVal = true;
   } else if(zip.match(/\d{5}([ \-]\d{4})?/) && country_id == 'US') {
     zipCodeVal = true;
-  } else if(country_id == '13984'){
+  } else if(country_id == '13984' && zip.match(/\d/)){
     zipCodeVal = true;
   } else {
     zipCodeVal = false;
@@ -154,12 +153,17 @@ $(document).ready(function() {
     var access_token = $('#accessToken').val();
     var per_week = $(this).val() * 7;
     var per_month = $(this).val() * 30;
-    var total_per_week = per_week - (per_week * .05);
+    var total_per_week = per_week - (per_week * .95);
+    var total_per_month = per_month - (per_month * .95);
     var currency_sign = $('.currency-sign-id').text();
     total_per_week = Math.round(total_per_week);
 
-    $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
-    $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + per_month);
+    if(per_week != 0){
+      $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
+    }
+    if(per_month != 0){
+      $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
+    }
   });
 
   $('#place_currency').change(function() {
@@ -181,5 +185,10 @@ $(document).ready(function() {
     });
   });
 
+  $('ul#wizard-selector li a').click(function(){
+    $('.formError').fadeOut(150, function() {
+      $('.formError').remove();
+    });
+  });
 
 });

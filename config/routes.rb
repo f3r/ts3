@@ -43,6 +43,7 @@ HeyPalFrontEnd::Application.routes.draw do
       get  :reset_password
       get  :confirm_reset_password
       post :confirm_reset_password
+      put  :change_preference      
     end
 
     member do

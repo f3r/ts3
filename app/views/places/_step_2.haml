@@ -33,7 +33,7 @@
   %fieldset
     .input
       = f.label :city_id, 'City'
-      = f.select :city_id, [['Singapore', '1'], ['Hong Kong', '13984'], ['Kuala Lumpur', '4065']], { :class => "validate[required] span6 autosave"}
+      = f.select :city_id, cities_select, { :class => "validate[required] span6 autosave"}
     - if false
       .input
         = f.label :city

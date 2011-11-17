@@ -11,6 +11,13 @@ var zipCodeVal = true;
 **********************/
 
 var switchPanel = function() {
+
+    // Remove form errors
+  if($('.formError').size() > 0) {
+    alert("Please fix the error on the form first before we can proceed.");
+    return false;
+  }
+
   _this = $(this);
 
   $('.wizard-wrapper .panel').hide();
@@ -19,7 +26,7 @@ var switchPanel = function() {
   _this.parent().parent().find('a').removeClass('active');
   _this.addClass('active');
 
-  validatePanels();
+  validatePanels(_this);
   return false;
 };
 
@@ -32,37 +39,41 @@ var validatePanels = function(target) {
   // At least one photo
   // daily price, currency and cancellation policy
   // Amenities. checked by default
+  var wizard_aside = $('.wizard-aside');
+  
+  // General Validation
+  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
+    wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
+  if($('#photos_list li').size() > 0) {
+    wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
+  if($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val()) {
+    wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
+  if(target && target.attr('href') == '#3') {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+  }
+
+  if(target && target.attr('href') == '#4') {
+    wizard_aside.find('li#calendar .indicator img').attr('src', '/images/check.png');
+  }  
+
 }
 
 
 /*********************
 * Wizard General
 **********************/
-
-
-function showIndicator(elem) {
-  elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
-}
-
-function showSavedIndicator(elem) {
-  elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
-  window.setTimeout(function() {
-    hideIndicator(elem);
-  }, 2000);
-}
-
-function showErrorIndicator(elem) {
-  elem.after("<span class='save-indicator'><span class='label success'>error</span></span>")
-  $('.save-indicator span').fadeOut(7000);
-}
-
-function validateElement(elem) {
-  return $('#wizard_form').validationEngine('validateField', elem);
-}
-
-function hideIndicator(elem) {
-  elem.parent().find('.save-indicator').detach();
-}
 
 var sendFieldUpdate = function() {
   
@@ -87,6 +98,7 @@ var sendFieldUpdate = function() {
     } else {
       showErrorIndicator(elem);
     }
+    validatePanels();    
   }
 };
 
@@ -239,8 +251,10 @@ $(document).ready(function() {
   $('#wizard_form').validationEngine();
 
   // Character count
-  $('#place_title').charCounter(32, {container: "<em></em>",classname: "counter", format: "(%1)"});
-  $('#place_description').charCounter(20, {container: "<em></em>",classname: "counter", format: "(%1)"});
+  $('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
+
+  // Do we need a limit on place description?
+  //$('#place_description').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
 
   // proof of concept - save on update feature
   $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)

@@ -20,7 +20,7 @@ module AvailabilitiesHelper
     if s['availability_type'] == 1
       'unavailable / manual booking'
     else
-      raw("New Price: #{s['price_per_night']} <small class='currency-sign'>#{currency_sign_of(p.currency)}</small> per night")
+      raw("New Price: <small class='currency-sign'>#{currency_sign_of(p.currency)}</small> #{s['price_per_night']} per night")
     end
   end
 end

@@ -34,11 +34,14 @@ var switchToPanel = function(target) {
   $('ul#wizard-selector li a[href="' + target + '"]').click();
 }
 
+var validatePlace = function(target) {
+
+
+
+}
+
 var validatePanels = function(target) {
-  // Title, Apartment type, Number of guests, Size, Description (>20 chars) and Address
-  // At least one photo
-  // daily price, currency and cancellation policy
-  // Amenities. checked by default
+
   var wizard_aside = $('.wizard-aside');
   
   // General Validation
@@ -74,7 +77,7 @@ var validateAmenitiesPanel = function(target) {
     if($(this).attr('checked') == 'checked') {
       hasAmenity = true;
       wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
-      return;
+      return hasAmenity;
     }
   });
 
@@ -82,6 +85,7 @@ var validateAmenitiesPanel = function(target) {
     wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');    
   }
 
+  return hasAmenity;
 }
 
 

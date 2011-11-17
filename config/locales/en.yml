@@ -137,6 +137,8 @@ en:
   security_deposit: Security Deposit
   security_deposit_hint: The wireframe has this but I don't have the text yer
 
+  size: Size
+
   terms: Terms
 
   check_in_before: Check In Before

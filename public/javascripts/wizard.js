@@ -11,7 +11,7 @@ var zipCodeVal = true;
 
 var il8nStrings = {
   not_listed_yet: 'Your place is not listed yet!',
-  place_listed: 'Your place is listed. Click here to remove it from the directory',
+  place_listed: 'Your place is listed. Click here to remove it from the directory (not yet implemented)',
   form_error: 'Please fix the error on the form first before we can proceed.',
   categories_left: 'more categories must be completed',
   listed: 'Listed'

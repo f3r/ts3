@@ -131,6 +131,24 @@ en:
   miscellaneous: Miscellaneous
 
   preview_button: Preview &raquo;
+ 
+  final_cleanup: Final Cleanup 
+  security_deposit: Security Deposit
+
+  check_in_before: Check In Before
+  check_out_before: Check Out Before
+
+  currency: Currency
+  minimum_stay: Minimum Stay
+  maximum_stay: Maximum Stay
+  minimum_of: Minimum Of
+  maximum_of: Maximum Of
+
+  no_maximum: No Maximum
+  no_minimum: No Minimum
+  nights: Nights
+
+  cancellation_policy: Cancellation Policy
 
   ####################################################################################
   # Photos

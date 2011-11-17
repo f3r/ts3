@@ -169,9 +169,10 @@ var hideShowInputStay = function() {
 
   if(elemVal == 0) {
     placeInput.show();
+    placeInput.find('~ .help-inline').show();    
   } else {
     placeInput.hide();
-
+    placeInput.find('~ .help-inline').hide();    
     field = placeInput.attr("name");
     post_data = field + "=" + '';
     place_id = $("#place_id").val(); // TODO: Quick update for now
@@ -182,6 +183,8 @@ var hideShowInputStay = function() {
       data: post_data 
     });
   }
+
+
 };
 
 var computeWeeklyMonthlyPay = function() {
@@ -221,18 +224,22 @@ function showHideInitialDefultInput() {
   if(place_min == '' || place_min == undefined) {
     $('#place_minimum_stay_days').hide();
     $('select#days_minimum_stay').val('1');
+    $('#place_minimum_stay_days').find('~ .help-inline').hide();
   } else {
     $('#place_minimum_stay_days').show();
     $('select#days_minimum_stay').val('0');
+    $('#place_minimum_stay_days').find('~ .help-inline').show();
   };
 
   var place_min = $('#place_maximum_stay_days').val();
   if(place_min == '' || place_min == undefined) {
     $('#place_maximum_stay_days').hide();
     $('select#days_maximum_stay').val('1');
+    $('#place_maximum_stay_days').find('~ .help-inline').hide();    
   } else {
     $('#place_maximum_stay_days').show();
     $('select#days_maximum_stay').val('0');
+    $('#place_maximum_stay_days').find('~ .help-inline').show();    
   };
   //for pricing text
   var nightPrice = $('#place_price_per_night').val();

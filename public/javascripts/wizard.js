@@ -211,7 +211,7 @@ var sendCheckBoxUpdate = function() {
       elem.show();
     }
   });
-  validateAmenitiesPanel();
+  validatePanels();   
 };  
 
 var trackChange = function() {

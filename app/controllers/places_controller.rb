@@ -10,7 +10,7 @@ class PlacesController < ApplicationController
   def create
     place_params = params[:place]
     place_params[:access_token] = current_token
-    place_params[:currency] = 'USD' #current_currency
+    place_params[:currency] = current_currency
 
     @place = Heypal::Place.new(place_params)
 

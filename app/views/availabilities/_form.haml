@@ -13,7 +13,8 @@
 
     %small.help-block
       You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to
-      = "#{currency_sign_of(@place.currency)} #{@place.price_per_night}"
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = @place.price_per_night
 
     %div.availability-action
       = button_tag "Close", :class => "btn cancel-new-availability"

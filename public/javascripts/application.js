@@ -44,8 +44,12 @@ $(function() {
     maxDate: '3M',
     dateFormat: 'yy-mm-dd'
   });
-  $('input#hasDate.datepicker').datepicker({
-    dateFormat: 'yy-mm-dd'
+  $('input#birthDate.datepicker').datepicker({
+    dateFormat: 'd/M/yy',
+    changeMonth: true,
+    changeYear: true,
+    yearRange: '1930:'+(new Date().getFullYear() - 18),
+    defaultDate: new Date("1/1/1980")
   });
 
   $('span#date-input-1').calendar({

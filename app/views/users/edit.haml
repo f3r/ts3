@@ -9,7 +9,7 @@
     .input
       = f.label :last_name, t(:last_name)
       = f.text_field :last_name
-    /TODO: Email has a special validation process, please check with Fer 
+    /TODO: Email has a special validation process, please check with Fer
     .input
       = f.label :email, t(:email)
       = f.text_field :email
@@ -21,7 +21,10 @@
       = f.text_field :phone_mobile
     .input
       = f.label :birthdate, t(:birthdate)
-      = f.text_field :birthdate, :id => 'hasDate', :class => 'datepicker'
+      - if current_user.birthdate.nil?
+        = f.text_field :birthdate, :id => 'birthDate', :class => 'datepicker'
+      - else
+        = f.text_field :birthdate, :id => 'birthDate', :class => 'datepicker', :value => Date.parse(current_user.birthdate).strftime("%-d/%b/%Y")
     .clearfix
 
     /Billing Address Section

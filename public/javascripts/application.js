@@ -60,31 +60,41 @@ $(function() {
 
   $(".preference").click(function() {
     $(this).hide().next().show();
+    $(this).next().focus();
   });
 
-  $(".preference-entry").change(function() {
+  $(".preference-entry").blur(function() {
     var me = $(this);
     var text_container = $(this).prev();
 
-    showIndicator(me);
-    $.ajax({
-      type: 'PUT',
-      url: '/users/change_preference.json',
-      data: me.serialize(), 
-      success: function(data) {
-        showSavedIndicator(me);
-        me.hide();
-        text_container.children("span.text").html(me.children("option:selected").text());
-        text_container.show();
-      }
-    });
+    if (me.val() != me.attr("data-current")) {
+      showIndicator(me);
+      $.ajax({
+        type: 'PUT',
+        url: '/users/change_preference.json',
+        data: me.serialize(),
+        success: function(data) {
+          showSavedIndicator(me);
+          me.attr("data-current", me.val());
+          text_container.children("span.text").html(me.children("option:selected").text());
+        }
+      });
+    }
+
+    me.hide();
+    text_container.show();
+  });
+
+  $(".preference-entry > option").click(function() {
+    $(this).parent().blur();
   });
 
   $.waypoints.settings.scrollThrottle = 10;  
   $('.topbar').waypoint(function(event, direction) {
-		$(this).toggleClass('sticky', direction === "down");
-		event.stopPropagation();
-	});
+    $(this).toggleClass('sticky', direction === "down");
+    event.stopPropagation();
+  });
+
 });
 
 function add_datepicker() {

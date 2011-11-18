@@ -71,9 +71,6 @@ var validatePlace = function(panelStatus) {
     $('#listing-status').attr('data-original-title', t('place_listed'));
     $('#listing-status').attr('disabled', false);
 
-    $('#listing-status')
-
-
   } else {
     validMarkers.attr('disabled', true);
     validMarkers.attr('rel', 'twipsy');
@@ -380,7 +377,7 @@ $(document).ready(function() {
   }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
 
   $('.wizard-aside').waypoint(function(event, direction) {
-		$(this).toggleClass('sticky');
+		$(this).toggleClass('sticky', direction === "down");
 		event.stopPropagation();
 	});
 

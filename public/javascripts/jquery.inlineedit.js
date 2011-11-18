@@ -166,7 +166,7 @@ $.inlineEdit.prototype = {
     
     value: function( newValue ) {
         if ( arguments.length ) {
-            var value = newValue === this.options.placeholder ? '' : newValue;
+            var value = (newValue === this.options.placeholder || newValue === 'click here to add caption') ? '' : newValue;
             this.element.data( 'value' + namespace, $( '.' + placeholderClass, this ).length ? '' : value && this.encodeHtml( value.replace( /\n/g,"<br />" ) ) );
         }
         return this.element.data( 'value' + namespace );

@@ -98,11 +98,19 @@ $(function() {
     text_container.show();
   });
 
-  $.waypoints.settings.scrollThrottle = 30;
+  $(".preference-entry > option").click(function() {
+    $(this).parent().blur();
+  });
+
+  $.waypoints.settings.scrollThrottle = 10;
+
+
   $('.topbar').waypoint(function(event, direction) {
     $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
   });
+
+
 });
 
 function add_datepicker() {

@@ -18,21 +18,22 @@
       = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
         = hidden_field_tag :place_id, params[:id]
         = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+        = f.hidden_field :published
         / .description
         .panel#1
-          = render 'step_2', :f => f
+          = render 'step_general', :f => f
         / .photos
         .panel#2
-          = render 'step_3', :f => f
+          = render 'step_photos', :f => f
         / .amenities
         .panel#3
-          = render 'step_4', :f => f
-        / .calendar
+          = render 'step_amenities', :f => f
+        / .pricing        
         .panel#4
-          = render 'step_5', :f => f
-        / .pricing
+          = render 'step_pricing', :f => f
+        / .celendar
         .panel#5
-          = render 'step_6', :f => f
+          = render 'step_calendar', :f => f
         / .preview
         .panel#6
           -#= render 'preview', :f => f
@@ -40,14 +41,20 @@
     = render :partial => 'sidebar'
 
 :javascript
-  // Load initial Panel
-  $('.wizard-wrapper .panel').css("display", "none");  
-  $('.wizard-wrapper .panel:first').css("display", "block");  
 
-  if(window.location.hash != "") {
-    switchToPanel(window.location.hash);
-  } else {
-    switchToPanel('#1');
-  }
+  $(function() {
 
-  validatePanels(); 
+    var wizardStep = "#{params[:step]}";
+    // Load initial Panel
+    $('.wizard-wrapper .panel').css("display", "none");  
+    $('.wizard-wrapper .panel:first').css("display", "block");  
+
+    if(wizardStep != "") {
+      switchToPanel("#" + wizardStep);
+    } else {
+      switchToPanel('#1');
+    }
+
+    validatePanels(); 
+
+  });

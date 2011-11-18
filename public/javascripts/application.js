@@ -82,7 +82,7 @@ $(function() {
 
   $.waypoints.settings.scrollThrottle = 30;  
   $('.topbar').waypoint(function(event, direction) {
-		$(this).toggleClass('sticky', direction === "down");
+		$(this).toggleClass('sticky');
 		event.stopPropagation();
 	});
 });

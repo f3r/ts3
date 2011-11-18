@@ -43,12 +43,12 @@
 
     .input
       = f.label :minimum_stay_days, t(:minimum_stay)
-      = select 'days', 'minimum_stay', [[t(:minumum_of), 0],[t(:no_minimum), 1]]
+      = select 'days', 'minimum_stay', [[t(:no_minimum), 1], [t(:minumum_of), 0]]
       = f.text_field :minimum_stay_days, :class => "span2 autosave"
       %span.help-inline= t(:nights)
     .input
       = f.label :maximum_stay_days, t(:maximum_stay)
-      = select 'days', 'maximum_stay', [[t(:maximum_of), 0],[t(:no_maximum), 1]]
+      = select 'days', 'maximum_stay', [[t(:no_maximum), 1], [t(:maximum_of), 0]]
       = f.text_field :maximum_stay_days, :class => "validate[required] span2 autosave"
       %span.help-inline= t(:nights)
     .input

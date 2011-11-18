@@ -380,7 +380,7 @@ $(document).ready(function() {
   }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
 
   $('.wizard-aside').waypoint(function(event, direction) {
-		$(this).toggleClass('sticky', direction === "down");
+		$(this).toggleClass('sticky');
 		event.stopPropagation();
 	});
 

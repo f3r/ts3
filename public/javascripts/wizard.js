@@ -12,10 +12,13 @@ var zipCodeVal = true;
 var il8nStrings = {
   not_listed_yet: 'Your place is not listed yet!',
   not_listed: 'Your place is ready for listing',
-  place_listed: 'Your place is listed. Click here to remove it from the directory (not yet implemented)',
+  place_listed: 'Your place is listed. Click here to remove it from the directory',
   form_error: 'Please fix the error on the form first before we can proceed.',
   categories_left: 'more categories must be completed',
-  listed: 'Listed'
+  listed: 'Listed',
+  preview: 'Preview',
+  unpublish: 'Unpublish',
+  not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!'
 };
 
 var t = function(key) {
@@ -66,15 +69,25 @@ var validatePlace = function(panelStatus) {
     $('.preview-button').attr('disabled', false);
 
     // Enable the listing-status button/ajax call
-    $('#listing-status').html(t('listed'));
     $('#listing-status').attr('rel', 'twipsy');    
-    $('#listing-status').attr('data-original-title', t('place_listed'));
     $('#listing-status').attr('disabled', false);
+    $('#listing-status').attr('href', '/places/' + $('#place_id').val() + '/preview');
+
+    // If not published, display as preview, otherwise unpublish.
+    if($('#place_published').val() == 'false') {
+      $('#listing-status').html(t('preview'));      
+      $('#listing-status').attr('data-original-title', t('not_listed_yet_click_to_preview'));      
+    } else {
+      $('#listing-status').html(t('unpublish'));      
+      $('#listing-status').attr('data-original-title', t('place_listed'));
+    }
 
   } else {
     validMarkers.attr('disabled', true);
     validMarkers.attr('rel', 'twipsy');
-    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');    
+    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');
+
+    $('#listing-status').attr('href', '#');
   }
 
   return (validCategories == 5);

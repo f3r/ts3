@@ -18,6 +18,7 @@
       = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
         = hidden_field_tag :place_id, params[:id]
         = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+        = f.hidden_field :published
         / .description
         .panel#1
           = render 'step_2', :f => f

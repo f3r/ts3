@@ -48,15 +48,17 @@ class PlacesController < ApplicationController
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
+
   end
 
   def preview
     @preview = true
-    render(:template => 'places/show')
+    render(:template => 'places/show', :layout => 'application')
   end
 
   def show
     @preview = false
+    render :layout => 'application'
   end
 
   def photos

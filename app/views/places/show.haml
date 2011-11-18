@@ -147,34 +147,34 @@
                 %label Price per Month
                 .value= number_to_currency @place.price_per_month 
 
-  .span4
-    .wizard-aside
-      %ul#wizard-selector
-        %li#general
-          .indicator
-            = image_tag('/images/check.png')
-          %a{:href => "#{wizard_place_path(@place, :step => "1")}", :title => t(:general_information), :class => 'active'}
-            = t(:general_info)
-        %li#photos
-          .indicator
-            = image_tag('/images/check.png')
-          %a{:href => "#{wizard_place_path(@place, :step => "2")}", :title => t(:photos)}
-            = t(:photos)
-        %li#amenities
-          .indicator
-            = image_tag('/images/check.png')
-          %a{:href => "#{wizard_place_path(@place, :step => "3")}", :title => t(:amenities)}
-            = t(:amenities)
-        %li#price
-          .indicator
-            = image_tag('/images/check.png')
-          %a{:href => "#{wizard_place_path(@place, :step => "4")}", :title => t(:price_and_conditions)}
-            = t(:price_and_conditions)        
-        %li#calendar
-          .indicator
-            = image_tag('/images/check.png')
-          %a{:href => "#{wizard_place_path(@place, :step => "5")}", :title => t(:calendar)}
-            = t(:calendar)
+- content_for :aside do
+  .wizard-aside
+    %ul#wizard-selector
+      %li#general
+        .indicator
+          = image_tag('/images/check.png')
+        %a{:href => "#{wizard_place_path(@place, :step => "1")}", :title => t(:general_information), :class => 'active'}
+          = t(:general_info)
+      %li#photos
+        .indicator
+          = image_tag('/images/check.png')
+        %a{:href => "#{wizard_place_path(@place, :step => "2")}", :title => t(:photos)}
+          = t(:photos)
+      %li#amenities
+        .indicator
+          = image_tag('/images/check.png')
+        %a{:href => "#{wizard_place_path(@place, :step => "3")}", :title => t(:amenities)}
+          = t(:amenities)
+      %li#price
+        .indicator
+          = image_tag('/images/check.png')
+        %a{:href => "#{wizard_place_path(@place, :step => "4")}", :title => t(:price_and_conditions)}
+          = t(:price_and_conditions)        
+      %li#calendar
+        .indicator
+          = image_tag('/images/check.png')
+        %a{:href => "#{wizard_place_path(@place, :step => "5")}", :title => t(:calendar)}
+          = t(:calendar)
 
 :javascript
     // accomodation photo slider          

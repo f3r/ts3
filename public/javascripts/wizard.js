@@ -87,7 +87,13 @@ var validatePlace = function(panelStatus) {
       });
 
     } else {
-      $('#listing-status').html(t('unpublish'));      
+     
+      $('#listing-status').hover(function() {
+        $('#listing-status').html(t('preview'));        
+      }, function() {
+        $('#listing-status').html(t('listed'));
+      });
+
       $('#listing-status').attr('data-original-title', t('place_listed'));
     }
 

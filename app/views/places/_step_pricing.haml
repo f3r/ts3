@@ -65,5 +65,10 @@
   .float-right
     %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:next_step)
 
+
+:javascript
+  $('#place_currency').val("#{@place.currency}");
+  $(".currency-sign, .currency-sign-id").html(currency_sign_of('#{@place.currency}'));
+
 :css
   #estimated_amount_weekly, #estimated_amount_monthly {font-size: 12px;}

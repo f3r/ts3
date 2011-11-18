@@ -44,6 +44,10 @@ module LookupsHelper
     CURRENCIES[self.get_currency] || 'US$'
   end
 
+  def current_currency
+    get_currency
+  end
+
   protected
   def get_language
     (current_user['pref_language'] if logged_in?) || cookies[:pref_language] || nil

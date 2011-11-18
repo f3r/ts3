@@ -18,6 +18,7 @@ var il8nStrings = {
   listed: 'Listed',
   preview: 'Preview',
   unpublish: 'Unpublish',
+  invisible: 'Invisible',
   not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!'
 };
 
@@ -75,8 +76,16 @@ var validatePlace = function(panelStatus) {
 
     // If not published, display as preview, otherwise unpublish.
     if($('#place_published').val() == 'false') {
-      $('#listing-status').html(t('preview'));      
-      $('#listing-status').attr('data-original-title', t('not_listed_yet_click_to_preview'));      
+      $('#listing-status').html(t('invisible'));      
+      $('#listing-status').attr('data-original-title', t('not_listed_yet_click_to_preview'));
+
+      // on mouseover make it preview
+      $('#listing-status').hover(function() {
+        $('#listing-status').html(t('preview'));        
+      }, function() {
+        $('#listing-status').html(t('invisible'));  
+      });
+
     } else {
       $('#listing-status').html(t('unpublish'));      
       $('#listing-status').attr('data-original-title', t('place_listed'));
@@ -295,10 +304,10 @@ function showComputeWeeklyMonthlyPay(elem) {
 };
 
 
-function showHideInitialDefultInput() {
+function showHideInitialDefaultInput() {
   //check the value of minimum and maximum days
   var place_min = $('#place_minimum_stay_days').val();
-  if(place_min == '' || place_min == undefined) {
+  if(place_min == '' || place_min == undefined || place_min == '0') {
     $('#place_minimum_stay_days').hide();
     $('select#days_minimum_stay').val('1');
     $('#place_minimum_stay_days').find('~ .help-inline').hide();
@@ -309,7 +318,7 @@ function showHideInitialDefultInput() {
   };
 
   var place_min = $('#place_maximum_stay_days').val();
-  if(place_min == '' || place_min == undefined) {
+  if(place_min == '' || place_min == undefined || place_min == '0') {
     $('#place_maximum_stay_days').hide();
     $('select#days_maximum_stay').val('1');
     $('#place_maximum_stay_days').find('~ .help-inline').hide();    
@@ -382,7 +391,7 @@ $(document).ready(function() {
 
   $("#days_minimum_stay").change(hideShowInputStay);
   $("#days_maximum_stay").change(hideShowInputStay);
-  showHideInitialDefultInput();
+  showHideInitialDefaultInput();
 
   $("a[rel=twipsy]").twipsy({
     live:true,
@@ -391,7 +400,7 @@ $(document).ready(function() {
 
   $('.wizard-aside').waypoint(function(event, direction) {
 		$(this).toggleClass('sticky', direction === "down");
-		//event.stopPropagation();
+    event.stopPropagation();
 	});
 
 });

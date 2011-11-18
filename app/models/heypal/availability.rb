@@ -28,8 +28,8 @@ class Heypal::Availability < Heypal::Base
       end
     end
 
-    def find_all(params)
-      result = request("/places/#{params[:place_id]}/availabilities.json")
+    def find_all(params, access_token)
+      result = request("/places/#{params[:place_id]}/availabilities.json?access_token=#{access_token}")
       if result["stat"] == 'ok'
         result["availabilities"]
       else

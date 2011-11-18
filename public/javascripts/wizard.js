@@ -11,6 +11,7 @@ var zipCodeVal = true;
 
 var il8nStrings = {
   not_listed_yet: 'Your place is not listed yet!',
+  not_listed: 'Your place is ready for listing',
   place_listed: 'Your place is listed. Click here to remove it from the directory (not yet implemented)',
   form_error: 'Please fix the error on the form first before we can proceed.',
   categories_left: 'more categories must be completed',
@@ -64,10 +65,14 @@ var validatePlace = function(panelStatus) {
     $('.preview-button').attr('data-original-title', '');
     $('.preview-button').attr('disabled', false);
 
+    // Enable the listing-status button/ajax call
     $('#listing-status').html(t('listed'));
     $('#listing-status').attr('rel', 'twipsy');    
     $('#listing-status').attr('data-original-title', t('place_listed'));
     $('#listing-status').attr('disabled', false);
+
+    $('#listing-status')
+
 
   } else {
     validMarkers.attr('disabled', true);
@@ -75,6 +80,7 @@ var validatePlace = function(panelStatus) {
     validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5-2) + ' ' + t('categories_left') + '!');    
   }
 
+  return (validCategories == 5);
 }
 
 var validatePanels = function(target) {
@@ -112,9 +118,7 @@ var validatePanels = function(target) {
   panelStatus.amenities = validateAmenitiesPanel();
   panelStatus.calendar = true;
 
-  validatePlace(panelStatus);
-
-  return panelStatus;
+  return validatePlace(panelStatus); 
 }
 
 var validateAmenitiesPanel = function(target) {

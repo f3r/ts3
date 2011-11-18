@@ -27,9 +27,9 @@ var t = function(key) {
 
 var switchPanel = function() {
 
-    // Remove form errors
+  // Remove form errors
   if($('.formError').size() > 0) {
-    alert(t('form_error'));
+    alert(t('form_error')); 
     return false;
   }
 

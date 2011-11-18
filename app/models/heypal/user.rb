@@ -44,9 +44,6 @@ class Heypal::User < Heypal::Base
     def update(params = {})
       result = request("/users.json?access_token=#{params['access_token']}", :put, params)
       result['stat'] == 'ok'
-      #if result['stat'] == 'ok'
-
-      #end
     end
 
     def list(params = {})

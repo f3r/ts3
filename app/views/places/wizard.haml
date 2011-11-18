@@ -1,6 +1,11 @@
 - content_for :javascripts do
   %script{:src => "/javascripts/wizard.js", :type => 'text/javascript'}
 
+  %link{:rel => "stylesheet", :href => "/javascripts/uploadify/uploadify.css"}  
+  %script{:src => "/javascripts/uploadify/swfobject.js", :type => "text/javascript"}
+  %script{:src => "/javascripts/uploadify/jquery.uploadify.v2.1.4.min.js", :type => "text/javascript"}
+
+  %script{:src => "/javascripts/jquery.inlineedit.js", :type => "text/javascript"}
 
 .row
   .span12

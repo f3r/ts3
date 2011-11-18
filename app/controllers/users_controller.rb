@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     if @user.valid? && @user.save
       redirect_to signup_complete_path
     else
-      error_message = error_messages(@user.result).join(', ')
+      #error_message = error_messages(@user.result).join(', ')
       render :action => :new
     end
   end

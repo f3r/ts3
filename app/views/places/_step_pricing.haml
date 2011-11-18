@@ -57,11 +57,13 @@
     .input
       = f.label :house_rules
       = f.text_area :house_rules, :class => "span8 autosave", :rows => 5
+
+
 .arrows.clearfix
   .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:previous_step)
+    %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:previous_step)
   .float-right
-    %a.btn.primary.preview-button{:href => preview_place_path(@place)}=raw t(:preview_button)
+    %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:next_step)
 
 :css
   #estimated_amount_weekly, #estimated_amount_monthly {font-size: 12px;}

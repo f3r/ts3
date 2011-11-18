@@ -171,6 +171,12 @@ en:
   categories_left: more categories must be completed
   listed: Listed
 
+  publish: Publish
+  unpublish: Unpublish
+
+  place_published: Your place is now listed!
+  place_unpublished: Your place is now invisible
+
   ####################################################################################
   # Photos
   ####################################################################################

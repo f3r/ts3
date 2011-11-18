@@ -56,6 +56,16 @@ class Heypal::Place < Heypal::Base
       result
     end
 
+    def publish(id, access_token)
+      result = request("/places/#{id}/publish.json?access_token=#{access_token}", :get)
+      result
+    end
+
+    def unpublish(id, access_token)
+      result = request("/places/#{id}/unpublish.json?access_token=#{access_token}", :get)
+      result
+    end
+
     def find(id, access_token)
       result = request("/places/#{id}.json?access_token=#{access_token}", :get)
       if result['stat'] == 'ok'
@@ -81,7 +91,6 @@ class Heypal::Place < Heypal::Base
 
       p['user_id'] = result['place']['user']['id']
       p['place_type_id'] = result['place']['place_type']['id']
-      Rails.logger.info "Normalized Params #{p}"
       p    
     end
 

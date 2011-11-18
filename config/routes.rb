@@ -22,7 +22,9 @@ HeyPalFrontEnd::Application.routes.draw do
       get :preview
       post :upload_photo
       get :photos
-      put :update_currency    
+      put :update_currency
+      put :publish
+      put :unpublish
     end
 
     resources :availabilities

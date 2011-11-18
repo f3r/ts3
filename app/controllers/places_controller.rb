@@ -22,12 +22,25 @@ class PlacesController < ApplicationController
 
   def update
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
+
     render :text => "", :layout => false
   end
 
   def update_currency
     place = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
     render :json => {:currency_sign => currency_sign_of(place['place']['currency'])}
+  end
+
+  def publish
+    place = Heypal::Place.publish(params[:id], current_token)
+    flash[:notice] = t(:place_published)
+    redirect_to preview_place_path(:id => params[:id])
+  end
+
+  def unpublish
+    place = Heypal::Place.unpublish(params[:id], current_token)
+    flash[:notice] = t(:place_unpublished)
+    redirect_to preview_place_path(:id => params[:id])
   end
 
   def wizard

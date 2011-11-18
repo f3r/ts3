@@ -89,11 +89,13 @@ $(function() {
     $(this).parent().blur();
   });
 
-  $.waypoints.settings.scrollThrottle = 10;  
+  $.waypoints.settings.scrollThrottle = 10;
+
   $('.topbar').waypoint(function(event, direction) {
     $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
   });
+
 
 });
 

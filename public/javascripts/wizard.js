@@ -391,7 +391,7 @@ $(document).ready(function() {
 
   $('.wizard-aside').waypoint(function(event, direction) {
 		$(this).toggleClass('sticky', direction === "down");
-		event.stopPropagation();
+		//event.stopPropagation();
 	});
 
 });

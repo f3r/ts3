@@ -23,15 +23,17 @@ module LookupsHelper
   end
 
   def place_types_select
-    Heypal::Place.place_types.map {|p| [p['name'], p['id']]}    
+    Heypal::Place.place_types.map {|p| [p['name'], p['id']]}
   end
 
   def pref_language_list
-    select_tag :pref_language, options_for_select(LANGUAGES.map{ |l, t| [t, l]}, (self.get_language || 'en')), :class => "hide preference-entry"
+    current = (self.get_language || 'en')
+    select_tag :pref_language, options_for_select(LANGUAGES.map{ |l, t| [t, l]}, current), :class => "hide preference-entry", "data-current" => current
   end
 
   def pref_currency_list
-    select_tag :pref_currency, options_for_select(CURRENCIES.map{ |c, t| [t, c]}, (self.get_currency || 'USD')), :class => "hide preference-entry"
+    current = (self.get_currency || 'USD')
+    select_tag :pref_currency, options_for_select(CURRENCIES.map{ |c, t| [t, c]}, current), :class => "hide preference-entry", "data-current" => current
   end
 
   def get_pref_language

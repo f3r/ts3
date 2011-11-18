@@ -23,7 +23,7 @@
       %br.clearfix
       .input
         %label.reset-width
-          = f.check_box :terms
+          = f.check_box :terms, :class => "validate[required]"
           = t(:i_agree_to_the)
           = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank        
 
@@ -36,13 +36,11 @@
   $(function() {
 
     function validateStep1Form() {
-
       if($('#place_title').val() && $('#place_num_bedrooms').val() && $('#place_max_guests').val() && $('#place_terms').attr("checked") == "checked") {
         $('#submit_button').attr('disabled', null);
       } else {
         $('#submit_button').attr('disabled', 'true');
       }
-
     }
 
     //$('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});    

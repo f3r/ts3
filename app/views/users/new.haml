@@ -18,7 +18,7 @@
           = f.password_field :password_confirmation, :placeholder => 'Confirm Password'
         .input
           %label.reset-width
-            = f.check_box :terms
+            = f.check_box :terms, :class => "validate[required]"
             I accept the
             = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank
         %button.btn.float-right{:type => 'submit primary'}

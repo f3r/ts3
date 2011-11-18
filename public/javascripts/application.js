@@ -63,9 +63,9 @@ $(function() {
     $(this).next().focus();
   });
 
-  $(".preference-entry").blur(function() {
+  $(".preference-entry").change(function(event) {
     var me = $(this);
-    var text_container = $(this).prev();
+    var text_container = me.prev();
 
     if (me.val() != me.attr("data-current")) {
       showIndicator(me);
@@ -75,12 +75,21 @@ $(function() {
         data: me.serialize(),
         success: function(data) {
           showSavedIndicator(me);
+
           me.attr("data-current", me.val());
           text_container.children("span.text").html(me.children("option:selected").text());
+
+          me.hide();
+          text_container.show();
         }
       });
+    } else {
+      me.hide();
+      text_container.show();
     }
-
+  }).blur(function() {
+    var me = $(this);
+    var text_container = me.prev();
     me.hide();
     text_container.show();
   });
@@ -90,6 +99,7 @@ $(function() {
   });
 
   $.waypoints.settings.scrollThrottle = 10;
+
 
   $('.topbar').waypoint(function(event, direction) {
     $(this).toggleClass('sticky', direction === "down");

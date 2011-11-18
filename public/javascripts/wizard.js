@@ -77,7 +77,7 @@ var validatePlace = function(panelStatus) {
   } else {
     validMarkers.attr('disabled', true);
     validMarkers.attr('rel', 'twipsy');
-    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5-2) + ' ' + t('categories_left') + '!');    
+    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');    
   }
 
   return (validCategories == 5);
@@ -378,4 +378,10 @@ $(document).ready(function() {
     live:true,
     animate: false
   }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
+
+  $('.wizard-aside').waypoint(function(event, direction) {
+		$(this).toggleClass('sticky', direction === "down");
+		event.stopPropagation();
+	});
+
 });

@@ -74,11 +74,17 @@ $(function() {
       success: function(data) {
         showSavedIndicator(me);
         me.hide();
-        text_container.children("span.text").html(me.children("option:selected").text())
+        text_container.children("span.text").html(me.children("option:selected").text());
         text_container.show();
       }
     });
   });
+
+  $.waypoints.settings.scrollThrottle = 30;  
+  $('.topbar').waypoint(function(event, direction) {
+		$(this).toggleClass('sticky', direction === "down");
+		event.stopPropagation();
+	});
 });
 
 function add_datepicker() {

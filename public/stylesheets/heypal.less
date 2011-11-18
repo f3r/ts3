@@ -186,6 +186,15 @@ body {
   }
 }
 
+
+//
+.topbar.sticky{
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 // Announce
 // ----------
 
@@ -621,8 +630,13 @@ ul#wizard-selector {
 }
 
 .wizard-aside {
-  position: fixed;
+ 
   width: 240px;
+}
+
+.wizard-aside.sticky {
+  position:fixed;
+  top: 60px;
 }
 
 // Amenities

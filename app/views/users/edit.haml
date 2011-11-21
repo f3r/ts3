@@ -1,7 +1,8 @@
 = render :partial => 'user_left_column'
 %section.span8
   .section-header #{t(:section_header_user_information)}
-  = error_messages_for :user
+  = coded_errors_for @user
+  
   = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
     .input
       = f.label :first_name, t(:first_name)

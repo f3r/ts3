@@ -21,7 +21,7 @@ class AvailabilitiesController < ApplicationController
       # TODO: returns all for now, cause I can't insert it in the middle of the availabilities list.
       #render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => availability, :place => place}, :layout => false)}
     else
-      render :json => {:stat => false, :data => error_messages(result).join(', ')}
+      render :json => {:stat => false, :data => error_codes_to_messages(result).join(', ')}
     end
   end
 
@@ -40,7 +40,7 @@ class AvailabilitiesController < ApplicationController
 
       render :json => {:stat => true, :data => render_to_string(:_list, :locals => {:a => result, :place => place}, :layout => false)}
     else
-      render :json => {:stat => false, :data => error_messages(result).join(', ')}
+      render :json => {:stat => false, :data => error_codes_to_messages(result).join(', ')}
     end
   end
 

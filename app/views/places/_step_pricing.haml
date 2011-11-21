@@ -1,24 +1,24 @@
 .panel-wrapper
   %fieldset
     .span3.offset7
-      .input
+      .input.required
         = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
         = f.select :currency, currencies_select, {}, :class => 'validate[required]'
   %h2.title Pricing
   %fieldset      
-    .input
+    .input.required
       = f.label :price_per_night
       %span.currency-sign-id= currency_sign_of(@place.currency)
-      = f.text_field :price_per_night, :class => "validate[required,custom[integer]] span2 autosave"
+      = f.text_field :price_per_night, :class => "validate[required,custom[number],min[0]] span2 autosave"
     .input
       = f.label :price_per_week
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_week, :class => "validate[custom[integer]] span2 autosave"
+      = f.text_field :price_per_week, :class => "validate[custom[number],min[0]] span2 autosave"
       %span#estimated_amount_weekly
     .input
       = f.label :price_per_month
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_month, :class => "validate[custom[integer]] span2 autosave"
+      = f.text_field :price_per_month, :class => "validate[custom[number],min[0]] span2 autosave"
       %span#estimated_amount_monthly
   %h2.title Additional Costs
   %fieldset
@@ -46,12 +46,12 @@
       = select 'days', 'minimum_stay', [[t(:no_minimum), 1], [t(:minumum_of), 0]]
       = f.text_field :minimum_stay_days, :class => "span2 autosave"
       %span.help-inline= t(:nights)
-    .input
+    .input.required
       = f.label :maximum_stay_days, t(:maximum_stay)
       = select 'days', 'maximum_stay', [[t(:no_maximum), 1], [t(:maximum_of), 0]]
       = f.text_field :maximum_stay_days, :class => "validate[required] span2 autosave"
       %span.help-inline= t(:nights)
-    .input
+    .input.required
       = f.label :cancellation_policy, t(:cancellation_policy)
       = f.select :cancellation_policy, [[t(:flexible_cancellation), 'flexible'],[t(:moderate_cancellation), 'moderate'],[t(:strict_cancellation), 'strict']], {}, :class => 'validate[required] autosave'
     .input

@@ -2,36 +2,36 @@
   %h2.title= t(:description)
   %fieldset
 
-    .input
+    .input.required
       = f.label :title, t(:title)
       = f.text_field :title, :class => "span8", :class => "validate[required] autosave"
-    .input
+    .input.required
       = f.label :place_type_id, t(:type)
       = f.select :place_type_id, place_types_select, {}, :class => 'validate[required] autosave'
 
-    .input
+    .input.required
       = f.label :description, t(:description)
       = f.text_area :description, :class => "validate[required,minSize[20]] span8 autosave", :rows => 5, :style => "width: 440px;"
-    .input
+    .input.required
       = f.label :max_guests, t(:max_guests)
-      = f.text_field :max_guests, :class => "validate[required,custom[integer]] span1 autosave"
+      = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1 autosave"
     .input
       = f.label :num_bedrooms, t(:num_bedrooms)
-      = f.text_field :num_bedrooms, :class => "span1 autosave"
+      = f.text_field :num_bedrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
     .input
       = f.label :num_beds, t(:num_beds)
-      = f.text_field :num_beds, :class => "span1 autosave"
+      = f.text_field :num_beds, :class => "validate[custom[integer],min[0]] span1 autosave"
     .input
       = f.label :num_bathrooms, t(:num_bathrooms)
-      = f.text_field :num_bathrooms, :class => "span1 autosave"
+      = f.text_field :num_bathrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
 
-    .input
+    .input.required
       = f.label :size_sqm, t(:size)
-      = f.text_field :size_sqm, :class => "validate[required,custom[integer]] span2 autosave"
+      = f.text_field :size_sqm, :class => "validate[required,custom[integer],min[0]] span2 autosave"
       = f.select :size_type, ["sqm", "sqf"], {}, :class => "validate[required] span2 autosave"
   %h2.title= t(:address)
   %fieldset
-    .input
+    .input.required
       = f.label :city_id, t(:city)
       = f.select :city_id, cities_select, { :class => "validate[required] span6 autosave"}
     - if false
@@ -47,7 +47,7 @@
         = f.label :country, t(:country)
         = @city['country']['name']
 
-    .input
+    .input.required
       = f.label :address_1
       = f.text_field :address_1, :class => "span5 autosave"
       %p.help-inline
@@ -57,7 +57,7 @@
       = f.text_field :address_2, :class => "span5 autosave"
       %p.help-inline
         = t(:address_2_help)
-    .input
+    .input.required
       = f.label :zip, t(:zip_code)
       = f.text_field :zip, :class => "span3 autosave"
     .input

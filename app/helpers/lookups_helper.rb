@@ -48,6 +48,19 @@ module LookupsHelper
     get_currency
   end
 
+  # Should be of this format:
+  # {"date_end"=>[120]}
+  def error_codes_to_messages(error_hash)
+    ret = []
+    error_hash.each do |field, error_codes|
+      error_codes.each do |error_code|
+        ret << "#{field.humanize}: #{t("errors.#{error_code}")}"
+      end
+    end
+
+    ret
+  end
+
   protected
   def get_language
     (current_user['pref_language'] if logged_in?) || cookies[:pref_language] || nil

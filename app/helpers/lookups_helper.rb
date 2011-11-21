@@ -1,5 +1,5 @@
 module LookupsHelper
-  CURRENCIES = {'SGD' => 'S$', 'USD' => 'US$', 'HKD' => 'HK$'}
+  CURRENCIES = {'SGD' => '$', 'USD' => '$', 'HKD' => '$'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
 
   def currencies

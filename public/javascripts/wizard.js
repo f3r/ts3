@@ -319,7 +319,7 @@ function showHideInitialDefaultInput() {
     $('#place_minimum_stay_days').find('~ .help-inline').hide();
   } else {
     $('#place_minimum_stay_days').show();
-    $('select#days_minimum_stay').val('0');
+    $('select#days_minimum_stay').val('1');
     $('#place_minimum_stay_days').find('~ .help-inline').show();
   };
 
@@ -330,7 +330,7 @@ function showHideInitialDefaultInput() {
     $('#place_maximum_stay_days').find('~ .help-inline').hide();    
   } else {
     $('#place_maximum_stay_days').show();
-    $('select#days_maximum_stay').val('0');
+    $('select#days_maximum_stay').val('30');
     $('#place_maximum_stay_days').find('~ .help-inline').show();    
   };
   //for pricing text

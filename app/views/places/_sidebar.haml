@@ -3,30 +3,30 @@
     %li#general
       .indicator
         = image_tag('/images/check-disabled.png')
-      %a{:href => "#1"}
-        General Info
+      %a{:href => "#1", :title => t(:general_information), :class => 'active'}
+        = t(:general_info)
     %li#photos
       .indicator
         = image_tag('/images/check-disabled.png')
-      %a{:href => "#2"}
-        Photos
+      %a{:href => "#2", :title => t(:photos)}
+        = t(:photos)
     %li#amenities
       .indicator
         = image_tag('/images/check-disabled.png')
-      %a{:href => "#3"}
-        Amenities
-    %li#calendar
-      .indicator
-        = image_tag('/images/check-disabled.png')
-      %a{:href => "#4"}
-        Calendar
+      %a{:href => "#3", :title => t(:amenities)}
+        = t(:amenities)
     %li#price
       .indicator
         = image_tag('/images/check-disabled.png')
-      %a{:href => "#5"}
-        Price and Conditions
+      %a{:href => "#4", :title => t(:price_and_conditions)}
+        = t(:price_and_conditions)        
+    %li#calendar
+      .indicator
+        = image_tag('/images/check.png')
+      %a{:href => "#5", :title => t(:calendar)}
+        = t(:calendar)
 
   .clearfix
-  %a.btn.primary.large.preview-button{:href => preview_place_path(@place)}
+  %a.btn.primary.large.preview-button{:href => preview_place_path(@place), :id => "preview_button"}
     %span
-      Preview
+      = t(:preview)

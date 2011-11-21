@@ -44,8 +44,12 @@ $(function() {
     maxDate: '3M',
     dateFormat: 'yy-mm-dd'
   });
-  $('input#hasDate.datepicker').datepicker({
-    dateFormat: 'yy-mm-dd'
+  $('input#birthDate.datepicker').datepicker({
+    dateFormat: 'd/M/yy',
+    changeMonth: true,
+    changeYear: true,
+    yearRange: '1930:'+(new Date().getFullYear() - 18),
+    defaultDate: new Date("1/1/1980")
   });
 
   $('span#date-input-1').calendar({
@@ -60,25 +64,53 @@ $(function() {
 
   $(".preference").click(function() {
     $(this).hide().next().show();
+    $(this).next().focus();
   });
 
-  $(".preference-entry").change(function() {
+  $(".preference-entry").change(function(event) {
     var me = $(this);
-    var text_container = $(this).prev();
+    var text_container = me.prev();
 
-    showIndicator(me);
-    $.ajax({
-      type: 'PUT',
-      url: '/users/change_preference.json',
-      data: me.serialize(), 
-      success: function(data) {
-        showSavedIndicator(me);
-        me.hide();
-        text_container.children("span.text").html(me.children("option:selected").text())
-        text_container.show();
-      }
-    });
+    if (me.val() != me.attr("data-current")) {
+      showIndicator(me);
+      $.ajax({
+        type: 'PUT',
+        url: '/users/change_preference.json',
+        data: me.serialize(),
+        success: function(data) {
+          showSavedIndicator(me);
+
+          me.attr("data-current", me.val());
+          text_container.children("span.text").html(me.children("option:selected").text());
+
+          me.hide();
+          text_container.show();
+        }
+      });
+    } else {
+      me.hide();
+      text_container.show();
+    }
+  }).blur(function() {
+    var me = $(this);
+    var text_container = me.prev();
+    me.hide();
+    text_container.show();
   });
+
+  $(".preference-entry > option").click(function() {
+    $(this).parent().blur();
+  });
+
+  $.waypoints.settings.scrollThrottle = 10;
+
+
+  $('.topbar').waypoint(function(event, direction) {
+    $(this).toggleClass('sticky', direction === "down");
+    event.stopPropagation();
+  });
+
+
 });
 
 function add_datepicker() {

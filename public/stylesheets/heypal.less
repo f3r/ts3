@@ -186,6 +186,15 @@ body {
   }
 }
 
+
+//
+.topbar.sticky{
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
 // Announce
 // ----------
 
@@ -268,6 +277,26 @@ select {
     font-size: 12px;
   }
 }
+.active-photo {
+  background: @grayLight;
+  padding: 20px 40px;
+}
+.active-label {
+  margin: 10px;
+}
+.active-label button {
+  padding: 5px 10px;
+}
+.inline-edit-hover {
+  background: none;
+  width: auto;
+  text-decoration: underline;
+}
+
+p.help-inline {
+  margin-left: 200px;
+}
+
 // Item
 // ----------
 
@@ -598,6 +627,18 @@ ul#wizard-selector {
     }
   }
 
+}
+
+.wizard-aside {
+  position: fixed;
+  margin-top: 10px;
+  width: 240px;
+}
+
+.wizard-aside.sticky {
+  position:fixed;
+  top: 60px;
+  margin-top: 0;
 }
 
 // Amenities
@@ -1738,12 +1779,22 @@ h1.title {
   margin-bottom: 0;
 }
 
+h2.title {
+  background: @grayLight;
+  padding: 5px 20px ;
+  width: 50%;
+  text-align: right;
+
+}
+
 .preview-button {
   width: 120px;
   text-align: center;
 }
 
-
+#listing-status {
+  margin-right: 35px;
+}
 
 /* @start uploadify */
 .uploadifyQueueItem {
@@ -1780,4 +1831,25 @@ h1.title {
 	width: 1px;
 	background-image: -webkit-gradient(linear,leftbottom,lefttop,color-stop(0.02,rgb(79,153,21)), color-stop(0.51,rgb(111,184,49)), color-stop(0.76,rgb(145,221,79)) );
 	background-image: -moz-linear-gradient(centerbottom,rgb(79,153,21) 2% #6fb831 51% #91dd4f 76% );
+}
+
+// Form Error
+// -----------
+
+.formError .formErrorContent {
+	width: 100%;
+	background: @red;
+	position:relative;
+	z-index:5001;
+	color: @grayLight;
+	width: 150px;
+	font-size: 12px;
+	border: 2px solid #ddd;
+  .border-radius(4px);
+  .box-shadow(0 1px 1px rgba(0,0,0,.095));
+	padding: 4px 10px 4px 10px;
+}
+
+.formError .formErrorArrow div {
+  background: @red;
 }

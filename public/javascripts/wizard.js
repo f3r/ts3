@@ -1,8 +1,6 @@
-/*
 var place_id = $('#place_id').val();
 var token = $('#token').val();
 var access_token = $('#accessToken').val();
-*/
 
 var zipCodeVal = true;
 
@@ -10,11 +8,28 @@ var zipCodeVal = true;
 * Panels
 **********************/
 
+
+var il8nStrings = {
+  not_listed_yet: 'Your place is not listed yet!',
+  not_listed: 'Your place is ready for listing',
+  place_listed: 'Your place is listed. Click here to remove it from the directory',
+  form_error: 'Please fix the error on the form first before we can proceed.',
+  categories_left: 'more categories must be completed',
+  listed: 'Listed',
+  preview: 'Preview',
+  unpublish: 'Unpublish',
+  not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!'
+};
+
+var t = function(key) {
+  return il8nStrings[key];
+}
+
 var switchPanel = function() {
 
     // Remove form errors
   if($('.formError').size() > 0) {
-    alert("Please fix the error on the form first before we can proceed.");
+    alert(t('form_error'));
     return false;
   }
 
@@ -23,10 +38,11 @@ var switchPanel = function() {
   $('.wizard-wrapper .panel').hide();
   $(_this.attr('href')).fadeIn('fast');
 
+  $('.section_title').html(_this.attr('title'));
+
   _this.parent().parent().find('a').removeClass('active');
   _this.addClass('active');
 
-  validatePanels(_this);
   return false;
 };
 
@@ -34,40 +50,104 @@ var switchToPanel = function(target) {
   $('ul#wizard-selector li a[href="' + target + '"]').click();
 }
 
+var validatePlace = function(panelStatus) {
+  var validCategories = 0;
+
+  // Count valid categories
+  if(panelStatus.general) { validCategories++; }
+  if(panelStatus.photos) { validCategories++; }
+  if(panelStatus.amenities) { validCategories++; }
+  if(panelStatus.price) { validCategories++; }
+  if(panelStatus.calendar) { validCategories++; }
+
+  var validMarkers = $('.preview-button, #listing-status');
+
+  // If all 5 categories are valid
+  if(validCategories == 5) {
+    $('.preview-button').attr('rel', '');
+    $('.preview-button').attr('data-original-title', '');
+    $('.preview-button').attr('disabled', false);
+
+    // Enable the listing-status button/ajax call
+    $('#listing-status').attr('rel', 'twipsy');    
+    $('#listing-status').attr('disabled', false);
+    $('#listing-status').attr('href', '/places/' + $('#place_id').val() + '/preview');
+
+    // If not published, display as preview, otherwise unpublish.
+    if($('#place_published').val() == 'false') {
+      $('#listing-status').html(t('preview'));      
+      $('#listing-status').attr('data-original-title', t('not_listed_yet_click_to_preview'));      
+    } else {
+      $('#listing-status').html(t('unpublish'));      
+      $('#listing-status').attr('data-original-title', t('place_listed'));
+    }
+
+  } else {
+    validMarkers.attr('disabled', true);
+    validMarkers.attr('rel', 'twipsy');
+    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');
+
+    $('#listing-status').attr('href', '#');
+  }
+
+  return (validCategories == 5);
+}
+
 var validatePanels = function(target) {
-  // Title, Apartment type, Number of guests, Size, Description (>20 chars) and Address
-  // At least one photo
-  // daily price, currency and cancellation policy
-  // Amenities. checked by default
+
+  var panelStatus = {};
   var wizard_aside = $('.wizard-aside');
   
   // General Validation
-  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
+  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size_sqm').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
+    panelStatus.general = true;
   } else {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
+    panelStatus.general = false;
   }
 
+  // Photos
   if($('#photos_list li').size() > 0) {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
+    panelStatus.photos = true;
   } else {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
+    panelStatus.photos = false;
   }
 
+  // Price
   if($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val()) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
+    panelStatus.price = true;
   } else {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
+    panelStatus.price = false;
   }
 
-  if(target && target.attr('href') == '#3') {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+  panelStatus.amenities = validateAmenitiesPanel();
+  panelStatus.calendar = true;
+
+  return validatePlace(panelStatus); 
+}
+
+var validateAmenitiesPanel = function(target) {
+  var wizard_aside = $('.wizard-aside');
+  // Amenities
+  var hasAmenity = false;
+  $('.amenity input[type=checkbox]').each(function() {
+    if($(this).attr('checked') == 'checked') {
+      hasAmenity = true;
+      wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+      return hasAmenity;
+    }
+  });
+
+  if(hasAmenity == false) {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');    
   }
 
-  if(target && target.attr('href') == '#4') {
-    wizard_aside.find('li#calendar .indicator img').attr('src', '/images/check.png');
-  }  
-
+  return hasAmenity;
 }
 
 
@@ -131,6 +211,7 @@ var sendCheckBoxUpdate = function() {
       elem.show();
     }
   });
+  validatePanels();   
 };  
 
 var trackChange = function() {
@@ -140,15 +221,11 @@ var trackChange = function() {
 var validateZipCode = function() {
   var country_id = $('#place_city_id').val();
   var zip = $(this).val();
-  if(zip.match(/\d{6}/) && (country_id == '1' || country_id == 'IN' || country_id == 'SG' || country_id == 'VN' || country_id == 'CN' )) {
+  if(zip.match(/^\d{6}$/) && country_id == '1') {
     zipCodeVal = true;
-  } else if(zip.match(/\d{5}/) && (country_id == 'ID' || country_id == 'MY' || country_id == 'TH' || country_id == '4065')) {
+  } else if(zip.match(/^\d{5}$/) && country_id == '4065') {
     zipCodeVal = true;
-  } else if(zip.match(/\d{4}/) && (country_id == 'AU' || country_id == 'PH')) {
-    zipCodeVal = true;
-  } else if(zip.match(/\d{5}([ \-]\d{4})?/) && country_id == 'US') {
-    zipCodeVal = true;
-  } else if(country_id == '13984' && zip.match(/\d/)){
+  } else if(country_id == '13984' && zip.match(/^\d{2,}$/)){
     zipCodeVal = true;
   } else {
     zipCodeVal = false;
@@ -169,9 +246,10 @@ var hideShowInputStay = function() {
 
   if(elemVal == 0) {
     placeInput.show();
+    placeInput.find('~ .help-inline').show();    
   } else {
     placeInput.hide();
-
+    placeInput.find('~ .help-inline').hide();    
     field = placeInput.attr("name");
     post_data = field + "=" + '';
     place_id = $("#place_id").val(); // TODO: Quick update for now
@@ -182,6 +260,8 @@ var hideShowInputStay = function() {
       data: post_data 
     });
   }
+
+
 };
 
 var computeWeeklyMonthlyPay = function() {
@@ -209,8 +289,8 @@ function showComputeWeeklyMonthlyPay(elem) {
   total_per_month = Math.floor(per_month * 0.95);
 
   if(elem != 0 || elem != ''){
-    $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
-    $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
+    $('#estimated_amount_weekly').html("Based on your daily price, we recommend <span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    $('#estimated_amount_monthly').html("Based on your daily price, we recommend <span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 
@@ -221,18 +301,22 @@ function showHideInitialDefultInput() {
   if(place_min == '' || place_min == undefined) {
     $('#place_minimum_stay_days').hide();
     $('select#days_minimum_stay').val('1');
+    $('#place_minimum_stay_days').find('~ .help-inline').hide();
   } else {
     $('#place_minimum_stay_days').show();
     $('select#days_minimum_stay').val('0');
+    $('#place_minimum_stay_days').find('~ .help-inline').show();
   };
 
   var place_min = $('#place_maximum_stay_days').val();
   if(place_min == '' || place_min == undefined) {
     $('#place_maximum_stay_days').hide();
     $('select#days_maximum_stay').val('1');
+    $('#place_maximum_stay_days').find('~ .help-inline').hide();    
   } else {
     $('#place_maximum_stay_days').show();
     $('select#days_maximum_stay').val('0');
+    $('#place_maximum_stay_days').find('~ .help-inline').show();    
   };
   //for pricing text
   var nightPrice = $('#place_price_per_night').val();
@@ -293,9 +377,7 @@ $(document).ready(function() {
   });
 
   $('ul#wizard-selector li a').click(function(){
-    $('.formError').fadeOut(150, function() {
-      $('.formError').remove();
-    });
+    $('#wizard_form').validationEngine('hideAll');
   });
 
   $("#days_minimum_stay").change(hideShowInputStay);
@@ -303,6 +385,13 @@ $(document).ready(function() {
   showHideInitialDefultInput();
 
   $("a[rel=twipsy]").twipsy({
-    live:true
-  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px', 'padding' : '2px'});
+    live:true,
+    animate: false
+  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
+
+  $('.wizard-aside').waypoint(function(event, direction) {
+		$(this).toggleClass('sticky', direction === "down");
+		//event.stopPropagation();
+	});
+
 });

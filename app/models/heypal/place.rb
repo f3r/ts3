@@ -4,7 +4,7 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id city_id num_bedrooms num_beds num_bathrooms size sqm sqf max_guests size_type access_token
+    title description place_type_id city_id num_bedrooms num_beds num_bathrooms size_sqm size_sqf max_guests size_type access_token published 
   )
 
   @@geo_attributes = %w(
@@ -56,6 +56,16 @@ class Heypal::Place < Heypal::Base
       result
     end
 
+    def publish(id, access_token)
+      result = request("/places/#{id}/publish.json?access_token=#{access_token}", :get)
+      result
+    end
+
+    def unpublish(id, access_token)
+      result = request("/places/#{id}/unpublish.json?access_token=#{access_token}", :get)
+      result
+    end
+
     def find(id, access_token)
       result = request("/places/#{id}.json?access_token=#{access_token}", :get)
       if result['stat'] == 'ok'
@@ -81,7 +91,6 @@ class Heypal::Place < Heypal::Base
 
       p['user_id'] = result['place']['user']['id']
       p['place_type_id'] = result['place']['place_type']['id']
-      Rails.logger.info "Normalized Params #{p}"
       p    
     end
 

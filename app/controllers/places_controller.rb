@@ -22,6 +22,7 @@ class PlacesController < ApplicationController
 
   def update
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
+
     render :text => "", :layout => false
   end
 
@@ -30,9 +31,21 @@ class PlacesController < ApplicationController
     render :json => {:currency_sign => currency_sign_of(place['place']['currency'])}
   end
 
+  def publish
+    place = Heypal::Place.publish(params[:id], current_token)
+    flash[:notice] = t(:place_published)
+    redirect_to preview_place_path(:id => params[:id])
+  end
+
+  def unpublish
+    place = Heypal::Place.unpublish(params[:id], current_token)
+    flash[:notice] = t(:place_unpublished)
+    redirect_to preview_place_path(:id => params[:id])
+  end
+
   def wizard
     @photos = @place.photos
-    @availabilities = Heypal::Availability.find_all(:place_id => @place.to_param)
+    @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
@@ -87,7 +100,7 @@ class PlacesController < ApplicationController
     result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
 
     # TODO: Refresh (unnecessary since we can get it from the result object. But for the sake of testing today)
-    @place = Heypal::Place.find(params[:id], params[:token])    
+    @place = Heypal::Place.find(params[:id], params[:token])
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
 

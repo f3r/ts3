@@ -5,11 +5,16 @@
     = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :to
 
     %span.availability-price
-      = select_tag "availability_type", raw("<option value='2'>New Price</option><option value='1'>Unavailable</option>"), :class => 'availability_type'
+      = select_tag "availability_type", raw("<option value='1'>Unavailable</option><option value='2'>New Price</option>"), :class => 'availability_type'
 
-      %span.wrap
+      %span.wrap.hide
         %small.currency-sign= currency_sign_of(@place.currency)
         = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
+
+    %small.help-block
+      You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = @place.price_per_night
 
     %div.availability-action
       = button_tag "Close", :class => "btn cancel-new-availability"
@@ -44,8 +49,8 @@
           $(".cancel-new-availability").click();
 
           $("#date_start, #date_end").val('');
-          $("#availability_type").val("2");
-          $("#price_per_night").val('').parent().show();
+          $("#availability_type").val("1");
+          $("#price_per_night").val('').parent().hide();
 
           add_datepicker();
         } else {

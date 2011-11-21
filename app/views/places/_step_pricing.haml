@@ -1,0 +1,69 @@
+.panel-wrapper
+  %fieldset
+    .span3.offset7
+      .input
+        = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
+        = f.select :currency, currencies_select, {}, :class => 'validate[required]'
+  %h2.title Pricing
+  %fieldset      
+    .input
+      = f.label :price_per_night
+      %span.currency-sign-id= currency_sign_of(@place.currency)
+      = f.text_field :price_per_night, :class => "validate[required,custom[integer]] span2 autosave"
+    .input
+      = f.label :price_per_week
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_per_week, :class => "validate[custom[integer]] span2 autosave"
+      %span#estimated_amount_weekly
+    .input
+      = f.label :price_per_month
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_per_month, :class => "validate[custom[integer]] span2 autosave"
+      %span#estimated_amount_monthly
+  %h2.title Additional Costs
+  %fieldset
+    .input
+      = f.label :price_final_cleanup, t(:final_cleanup)
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_final_cleanup, :class => "span2 autosave"
+      = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t(:final_cleanup_hint))      
+    .input
+      = f.label :price_security_deposit, t(:security_deposit)
+      %span.currency-sign= currency_sign_of(@place.currency)
+      = f.text_field :price_security_deposit, :class => "span2 autosave"
+      = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t(:security_deposit_hint))            
+  %h2.title= t(:terms)
+  %fieldset
+    .input
+      = f.label :check_in_after, t(:check_in_before)
+      = f.select :check_in_after, time_array, {}, :class => "span2 autosave"
+    .input
+      = f.label :check_out_before,  t(:check_out_before)
+      = f.select :check_out_before, time_array, {}, :class => "span2 autosave"
+
+    .input
+      = f.label :minimum_stay_days, t(:minimum_stay)
+      = select 'days', 'minimum_stay', [[t(:no_minimum), 1], [t(:minumum_of), 0]]
+      = f.text_field :minimum_stay_days, :class => "span2 autosave"
+      %span.help-inline= t(:nights)
+    .input
+      = f.label :maximum_stay_days, t(:maximum_stay)
+      = select 'days', 'maximum_stay', [[t(:no_maximum), 1], [t(:maximum_of), 0]]
+      = f.text_field :maximum_stay_days, :class => "validate[required] span2 autosave"
+      %span.help-inline= t(:nights)
+    .input
+      = f.label :cancellation_policy, t(:cancellation_policy)
+      = f.select :cancellation_policy, [[t(:flexible_cancellation), 'flexible'],[t(:moderate_cancellation), 'moderate'],[t(:strict_cancellation), 'strict']], {}, :class => 'validate[required] autosave'
+    .input
+      = f.label :house_rules
+      = f.text_area :house_rules, :class => "span8 autosave", :rows => 5
+
+
+.arrows.clearfix
+  .float-left
+    %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:previous_step)
+  .float-right
+    %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:next_step)
+
+:css
+  #estimated_amount_weekly, #estimated_amount_monthly {font-size: 12px;}

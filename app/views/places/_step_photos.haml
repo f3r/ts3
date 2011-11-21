@@ -1,15 +1,16 @@
 .panel-wrapper
-  %h2.title Photos
+  %h2.title= t(:photos)
   .clearfix
 
   .photo_wrapper
 
+  %hr
   .photos_wrapper
-    %h3 Photos
-    %p
-      You can sort your photos by drag and drop
+    %h3= t(:photos)
+    %p= t(:you_can_sort)
+      
     .primary_marker
-      Primary
+      = t(:primary)
     .row
       .span12
         %ul.gallery#photos_list
@@ -17,19 +18,22 @@
           = render 'photo_list'
         .clearfix
 
+
+
   .upload_wrapper
-    %h3 Upload Photo
+    %h3= t(:upload_photo)
     %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :value => 'Select files', :id => "photo_uploader" }
-    %p
-      (Button will be changed soon. This button supports multiple file upload too!)
+
+    %p= t(:upload_photo_hint)
+
   .clearfix
     #photoQueue
 
 .arrows.clearfix
   .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#1')"} &laquo; Previous Step
+    %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t(:previous_step)
   .float-right
-    %a.btn.primary{:href => "javascript:switchToPanel('#3')"} Next Step &raquo;
+    %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:next_step)
 :javascript
 
   var afterSort = function(event, ui) {
@@ -49,15 +53,16 @@
       $(this).find(".photo_action").hide();      
     });
 
-    $('#photos_list li img').click(showPhoto);
+    $('#photos_list li img').click(showPhoto);    
   };
 
   var deletePhoto = function(elem) {
-    if(confirm("Are you sure?")) {
+    if(confirm("#{t(:are_you_sure)}")) {
       elem.parent().parent().fadeOut('slow', function(){
         $(this).remove();
         afterSort();
-        syncPhotos();        
+        syncPhotos();
+        showLatestPhoto();
       });
 
     }
@@ -71,6 +76,8 @@
     var photo = $('#photos_list li img').last();
     if(photo.size() > 0) {
       setPhoto(photo);
+    } else {
+      $('.photo_wrapper').empty();
     }
   }
 
@@ -96,7 +103,7 @@
     img_wrapper.append(large_photo_label);
 
     $('.active-label').inlineEdit({
-      placeholder: 'click here to add caption',
+      placeholder: '#{t(:click_here_to_add_caption)}',
       save: function(e, data) {
         img_div = $("#image-" + $(this).attr('data-image-id'));
         img_div.find('img.photo').attr('data-name', data.value);
@@ -130,10 +137,10 @@
   var syncPhotos = function() {
     $.ajax({
       type: 'PUT',
-      url: '/places/' + place_id + '.json',
+      url: '/places/#{@place.id}.json',
       data: {place: {photos: JSON.stringify(photoMetadata())}}, 
       success: function() {
-
+        validatePanels();
       }
     });
   };
@@ -164,6 +171,7 @@
         $('#photos_list').html(response);
         afterSort();
         showLatestPhoto();
+        validatePanels();        
       }
     });
 

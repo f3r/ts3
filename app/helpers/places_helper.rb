@@ -22,8 +22,6 @@ module PlacesHelper
       ['Airconditioning', :amenities_aircon], 
       ['Heating', :amenities_heating],
       ['Hot Water', :amenities_hot_water], 
-      ['Hot Tub', :amenities_hot_tub],
-      ['Jacuzzi', :amenities_jacuzzi],      
       ['TV', :amenities_tv],
       ['Washer', :amenities_washer],
     ]
@@ -48,6 +46,7 @@ module PlacesHelper
       ['Family Friendly', :amenities_family_friendly],
       ['Pets Allowed', :amenities_pets_allowed],
       ['Handicap', :amenities_handicap],
+      ['Jacuzzi', :amenities_jacuzzi],      
     ]   
   end
 

@@ -5,7 +5,7 @@ en:
   ####################################################################################
   # App General Stuff
   ####################################################################################
-  app_name:   Heypal
+  app_name:   Squarestays
   submit:     Submit
 
   ####################################################################################
@@ -30,7 +30,7 @@ en:
   confirmation_code:          Confirmation code
   confirmation_email_sent:    Confirmation email sent
   register:                   Register
-  login:                      Login to Heypal
+  login:                      Login to Squarestays
   login_using:                Login using
   sign_in:                    Sign In
   sign_out:                   Sign Out
@@ -84,10 +84,112 @@ en:
   link_accounts:      + link account
   edit_account:       Edit Account
 
+
+  ####################################################################################
+  # Wizard
+  ####################################################################################
+  
+  general_info: General Info
+  general_information: General Information
+  photos: Photos
+  amenities: Amenities
+  calendar: Calendar
+  price_and_conditions: Price and Conditions
+
+  ####################################################################################
+  # Places Wizard
+  ####################################################################################
+  list_your_place: List Your Place
+  what_city: What city is your place in?
+  place_type: What kind of place is it?
+  how_many_bedrooms: How many bedrooms
+  max_guests: Max number of Guests
+  save_and_continue: Save and Continue &raquo;
+  title: Title
+  type: Type
+  i_agree_to_the: I agree to the
+  terms_and_conditions: Terms and conditions
+  description: Description
+  address: Address
+  max_guests: Number of Guests
+  num_bedrooms: Number of Bedrooms
+  num_beds: Number of Beds
+  num_bathrooms: Number of Bathrooms
+  address_1_help: Street Address, Company 
+  address_2_help: Apartment / Unit Number / Suite
+  size: Size
+  city: City
+  state: State
+  zip_code: Zip/Postal Code
+  country: Country
+  next_step: Next Step &raquo;
+  previous_step: "&laquo; Previous Step"
+  are_you_sure: Are you sure?
+
+  amenities: Amenities
+  furnishings: Furnishings
+  miscellaneous: Miscellaneous
+
+  preview_button: Preview &raquo;
+ 
+  final_cleanup: Final Cleanup 
+  final_cleanup_hint: The cost of cleaning the place once rental is finished
+  security_deposit: Security Deposit
+  security_deposit_hint: The wireframe has this but I don't have the text yer
+
+  size: Size
+
+  terms: Terms
+
+  check_in_before: Check In Before
+  check_out_before: Check Out Before
+
+  currency: Currency
+  minimum_stay: Minimum Stay
+  maximum_stay: Maximum Stay
+  minimum_of: Minimum Of
+  maximum_of: Maximum Of
+
+  no_maximum: No Maximum
+  no_minimum: No Minimum
+  nights: Nights
+
+  cancellation_policy: Cancellation Policy
+
+  strict_cancellation: 50% refund up until 1 week prior, except fees
+  moderate_cancellation: full refund 5 days prior to arrival, except fees
+  flexible_cancellation: full refund 1 day prior to arrival, except fees
+
+  do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
+
+  not_listed_yet: Your place is not listed yet!
+  preview: Preview
+
+  invisible: Invisible
+  place_listed: Place listed
+  form_error: Please fix the error on the form first before we can proceed.
+  categories_left: more categories must be completed
+  listed: Listed
+
+  publish: Publish
+  unpublish: Unpublish
+
+  place_published: Your place is now listed!
+  place_unpublished: Your place is now invisible
+
   ####################################################################################
   # Photos
   ####################################################################################
+  photos: Photos
   no_caption: No Caption
+  you_can_sort: You can sort your photos by drag and drop
+  primary: Primary
+  upload_photo: Upload Photo
+  upload_photo_hint: We support jpg and png images.
+  click_here_to_add_caption: Click here to add caption
+
+  calendar: Calendar
+  calendar_hint: Please let us know what dates the place is available for rent
 
   ####################################################################################
   # Error codes

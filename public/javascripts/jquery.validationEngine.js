@@ -880,6 +880,10 @@
                 methods._updatePrompt(field, prompt, promptText, type, ajaxed, options);
             else
                 methods._buildPrompt(field, promptText, type, ajaxed, options);
+            //hide after 4second
+            setTimeout(function() {
+              $('#wizard_form').validationEngine('hide');
+            }, 3000);
         },
         /**
          * Builds and shades a prompt for the given field.

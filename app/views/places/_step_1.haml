@@ -36,7 +36,7 @@
   $(function() {
 
     function validateStep1Form() {
-      if($('#place_title').val() && $('#place_num_bedrooms').val() && $('#place_max_guests').val() && $('#place_terms').attr("checked") == "checked") {
+      if($('#place_title').val() && $('#place_num_bedrooms').val() && $('#place_max_guests').val()) {
         $('#submit_button').attr('disabled', null);
       } else {
         $('#submit_button').attr('disabled', 'true');

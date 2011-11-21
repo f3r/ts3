@@ -3,22 +3,22 @@
     = t(:list_your_place)
   %fieldset
     .clearfix
-      .input
+      .input.required
         = f.label :city_id, 'What city is your place in?'
         = f.select :city_id, cities_select, :class => "validate[required] span6"
-      .input
+      .input.required
         = f.label :title, t(:title)
         = f.text_field :title, :class => "validate[required] span7"
 
       .input
         = f.label :place_type_id, t(:place_type)
         = f.select :place_type_id, place_types_select
-      .input
+      .input.required
         = f.label :num_bedrooms, t(:how_many_bedrooms)
-        = f.text_field :num_bedrooms, :class => "validate[required,custom[integer]] span2"
-      .input
+        = f.text_field :num_bedrooms, :class => "validate[required,custom[integer],min[0]] span2"
+      .input.required
         = f.label :max_guests, t(:max_guests)
-        = f.text_field :max_guests, :class => "validate[required,custom[integer]] span2"
+        = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span2"
       %br.clearfix
       %br.clearfix
       .input

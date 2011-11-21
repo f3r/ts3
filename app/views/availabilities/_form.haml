@@ -9,7 +9,7 @@
 
       %span.wrap.hide
         %small.currency-sign= currency_sign_of(@place.currency)
-        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small'
+        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small validate[custom[number],min[0]]'
 
     %small.help-block
       You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to

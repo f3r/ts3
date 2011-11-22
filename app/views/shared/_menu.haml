@@ -5,13 +5,15 @@
         %ul.nav
           %li.active
             = link_to t(:find_places), '/places'
-          %li
-            = link_to t(:my_places), '#'
+          - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
+            %li
+              = link_to t(:my_places), '#'
           %li
             = link_to t(:profile), profile_path
         %ul.nav.secondary-nav
-          %li.add-item
-            = link_to t(:add_a_place), new_place_path
+          - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
+            %li.add-item
+              = link_to t(:add_a_place), new_place_path
           %li.notification
             = link_to "5", '#', :class => 'dropdown-toggle'
             %ul.dropdown-menu

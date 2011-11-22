@@ -293,6 +293,35 @@ var sendFieldUpdate = function() {
   }
 };
 
+var sendPlaceSizeUpdate = function () {
+
+  var elem = $(this);
+  var put_data;
+  // Check if we have changed values
+  if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
+
+    hideIndicator(elem);
+    showIndicator(elem);
+
+    place_id = $("#place_id").val(); // TODO: Quick update for now
+
+    put_data = 'place[size]='+ $('#place_place_size').val() + "&" + $('#place_size_unit').serialize();
+
+    $.ajax({
+      type: 'PUT',
+      url: '/places/' + place_id + '.json',
+      data: put_data, 
+      success: function() {
+        showSavedIndicator(elem);
+        elem.attr('data-changed', '0');
+      }
+    });
+
+    validatePanels();    
+  }
+
+}
+
 var sendCheckBoxUpdate = function() {
   var elem = $(this);
   hideIndicator(elem);
@@ -455,6 +484,9 @@ $(document).ready(function() {
   $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)
         .blur(sendFieldUpdate);
 
+  $('#wizard_form input[type=text].autosave_place_unit,  #wizard_form select.autosave_place_unit').change(trackChange)
+        .blur(sendPlaceSizeUpdate);        
+
   $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
 
   // Validate the zip code
@@ -491,7 +523,7 @@ $(document).ready(function() {
   // Place size event
   $('#place_place_size').blur(function() {
     if($(this).val() != "") {
-      if($('#place_size_type').val() == 'sqm') {
+      if($('#place_size_unit').val() == 'sqm') {
         $('#place_size_sqm').val($('#place_place_size').val());
         $('#place_size_sqm').attr('data-changed', 1);
         $('#place_size_sqm').trigger('blur');

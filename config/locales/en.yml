@@ -138,7 +138,7 @@ en:
   final_cleanup_hint: The cost of cleaning the place once rental is finished
   security_deposit: Security Deposit
   security_deposit_hint: The wireframe has this but I don't have the text yer
-  cancellation_policy_hint: "Flexible: 1 day Strict: 3 days Long-term: 15 days Seeour Cancellation Policies for more info"
+  cancellation_policy_hint: "Flexible: 1 day<br /> Strict: 3 days<br /> Long-term: 15 days<br /> See our <a href='#'>Cancellation Policies</a> for more info"
 
   size: Size
 

@@ -549,8 +549,18 @@ $(document).ready(function() {
   $("a[rel=twipsy]").twipsy({
     live:true,
     animate: false,
-    placement: 'below'
+    placement: 'below',
+    html: true
   }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
+
+  $("a[rel=twipsy-link]").twipsy({
+    live:true,
+    animate: false,
+    placement:'below',
+    delayOut: 3000,
+    html: true
+  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
+
 
   $('#preview_button, #listing-status').click(validatePreview);
 

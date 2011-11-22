@@ -2,6 +2,7 @@ var place_id = $('#place_id').val();
 var token = $('#token').val();
 var access_token = $('#accessToken').val();
 var zipCodeVal = true;
+var firstLoad = true;
 
 var RATE_DISCOUNT_PER_WEEK = 0.95;
 var RATE_DISCOUNT_PER_MONTH = 0.95;
@@ -16,6 +17,7 @@ var il8nStrings = {
   not_listed: 'Your place is ready for listing',
   place_listed: 'Your place is listed. Click here to remove it from the directory',
   form_error: 'Please fix the error on the form first before we can proceed.',
+  cannot_preview: 'Sorry. You have to fill up the necessary info before you can preview',
   categories_left: 'more categories must be completed',
   listed: 'Listed',
   preview: 'Preview',
@@ -31,25 +33,78 @@ var t = function(key) {
 
 var switchPanel = function() {
 
-  var _panelStatus = panelStatuses();
+  var _panelStatus = validatePanels();
+  var switchMe = true;
+  var _this = $(this);
 
-  if(_panelStatus.general && _panelStatus.photos && _panelStatus.amenities && _panelStatus.price && _panelStatus.calendar) {
-    alert(t('form_error')); 
-    return false;
+  // First, Check the current panel if it is valid
+  switch(currentPanel()) {
+    case '#1':
+      switchMe = _panelStatus.general;
+      break;
+    case '#2':
+      switchMe = _panelStatus.photos;
+      break;
+    case '#3':
+      switchMe = _panelStatus.amenities;
+      break;
+    case '#4':
+      switchMe = _panelStatus.price;
+      break;      
+    case '#5':
+      switchMe = _panelStatus.calendar;
+      break;
+    default:
+      break;
   }
 
-  _this = $(this);
+  // Second, Also check the target panel if it is valid then allow.
 
-  $('.wizard-wrapper .panel').hide();
-  $(_this.attr('href')).fadeIn('fast');
+  /*
+  switch(_this.attr('href')) {
+    case '#1':
+      if(_panelStatus.general) { switchMe = true };
+      break;
+    case '#2':
+      if(_panelStatus.photos) { switchMe = true };
+      break;
+    case '#3':
+      if(_panelStatus.amenities) { switchMe = true };
+      break;
+    case '#4':
+      if(_panelStatus.price) { switchMe = true };
+      break;      
+    case '#5':
+      if(_panelStatus.calendar) { switchMe = true };
+      break;
+    default:
+      break;
+  }
+  */
 
-  $('.section_title').html(_this.attr('title'));
+  if(switchMe) {
+    $('.wizard-wrapper .panel').hide();
+    $(_this.attr('href')).fadeIn('fast');
 
-  _this.parent().parent().find('a').removeClass('active');
-  _this.addClass('active');
+    $('.section_title').html(_this.attr('title'));
+
+    _this.parent().parent().find('a').removeClass('active');
+    _this.addClass('active');
+
+  } else {
+    if(firstLoad == false) {
+      alert(t('form_error')); 
+    } else {
+      firstLoad = false;
+    }
+  }
 
   return false;
 };
+
+var currentPanel = function() {
+  return $('ul#wizard-selector li a[class=active]').attr('href');
+}
 
 var switchToPanel = function(target) {
   $('ul#wizard-selector li a[href="' + target + '"]').click();
@@ -138,7 +193,8 @@ var validatePanels = function(target) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
   }
 
-  return validatePlace(panelErrors); 
+  validatePlace(panelErrors); 
+  return panelErrors;
 }
 
 var panelStatuses = function(target) {
@@ -146,7 +202,7 @@ var panelStatuses = function(target) {
   var errors = {};
 
   // General errors
-  errors.general = ($('#place_title').val() && $('#place_max_guests').val() && $('#place_place_size').val() && $('#place_description').val() && $('#place_description').val().length >= 20);
+  errors.general = ($('#place_title').val() != "" && $('#place_max_guests').val() != "" && $('#place_place_size').val() != "" && $('#place_description').val() != "" && $('#place_description').val().length >= 20);
 
   // For a better UX. Highlight those fields.
   if($('#place_title').val() == "") { $('#place_title').addClass('error'); } else { $('#place_title').removeClass('error');  }
@@ -159,7 +215,7 @@ var panelStatuses = function(target) {
   errors.photos = ($('#photos_list li').size() > 0);
 
   // Price
-  errors.price = ($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val());
+  errors.price = ($('#place_price_per_night').val() != "" && $('#place_currency').val() != "" && $('#place_cancellation_policy').val() != "");
 
   if($('#place_price_per_night').val() == "") { $('#place_price_per_night').addClass('error'); } else { $('#place_price_per_night').removeClass('error');  }
   if($('#place_currency').val() == "") { $('#place_currency').addClass('error'); } else { $('#place_currency').removeClass('error'); }
@@ -191,6 +247,19 @@ var validateAmenitiesPanel = function(target) {
   }
 
   return hasAmenity;
+}
+
+var validatePreview = function() {
+
+  var _panelStatus = validatePanels();
+
+  if(_panelStatus.general && _panelStatus.photos && _panelStatus.amenities && _panelStatus.price && _panelStatus.calendar) {
+    return true;
+  } else {
+    alert(t('cannot_preview'));    
+    return false;
+  }
+
 }
 
 /*********************
@@ -399,6 +468,7 @@ $(document).ready(function() {
   // Price per night
   $('#place_price_per_night').change(computeWeeklyMonthlyPay);
 
+  // Place currency event
   $('#place_currency').change(function() {
     var elem = $(this);
 
@@ -418,6 +488,24 @@ $(document).ready(function() {
     });
   });
 
+  // Place size event
+  $('#place_place_size').blur(function() {
+    if($(this).val() != "") {
+      if($('#place_size_type').val() == 'sqm') {
+        $('#place_size_sqm').val($('#place_place_size').val());
+        $('#place_size_sqm').attr('data-changed', 1);
+        $('#place_size_sqm').trigger('blur');
+        console.log($('#place_size_sqm').val());
+      } else {
+        $('#place_size_sqf').val($('#place_place_size').val());
+        $('#place_size_sqf').attr('data-changed', 1);
+        //$('#place_size_sqf').blur(sendFieldUpdate);
+        $('#place_size_sqf').trigger('blur');
+        console.log($('#place_size_sqf').val());
+      }
+    }
+  });
+
   $('ul#wizard-selector li a').click(function(){
     $('#wizard_form').validationEngine('hideAll');
   });
@@ -430,5 +518,8 @@ $(document).ready(function() {
     live:true,
     animate: false
   }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
+
+  $('#preview_button, #listing-status').click(validatePreview);
+
 
 });

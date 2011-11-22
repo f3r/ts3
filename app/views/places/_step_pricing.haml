@@ -54,6 +54,7 @@
     .input.required
       = f.label :cancellation_policy, t(:cancellation_policy)
       = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
+      = link_to '?', '#', :rel => 'twipsy', :title => t(:cancellation_policy_hint)
     .input
       = f.label :house_rules
       = f.text_area :house_rules, :class => "span8 autosave", :rows => 5

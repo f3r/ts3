@@ -25,6 +25,8 @@ class Heypal::Place < Heypal::Base
 
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
+  attr_accessor :place_size
+
   define_attribute_methods = @@attributes
 
   validates :title, :place_type_id, :num_bedrooms, :num_beds, :max_guests, :city_id, :presence => true
@@ -142,6 +144,31 @@ class Heypal::Place < Heypal::Base
   # Returns the primary photo. The 
   def primary_photo
     photos.first
+  end
+
+  # Am i really valid?
+  def attributes_valid?
+    title.present? && max_guests.present? && place_size.valid? && description.valid? && description.length > 20 && photos.length > 0 && price_per_night.present? && currency.present? && cancellation_policy.present?
+  end
+
+  # Virtual attribute for size (sqm/sqf) and size type
+  def place_size
+    if size_type == 'sqm'
+      size_sqm
+    elsif size_type == 'sqf'
+      size_sqf
+    end
+  end
+
+  def place_size=(v) 
+    if size_type == 'sqm'
+      size_sqm = v
+    elsif size_type == 'sqf'
+      size_sqf = v
+    else
+      size_sqm = v
+      size_type = 'sqm'
+    end
   end
 
 end

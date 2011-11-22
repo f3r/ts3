@@ -1,8 +1,10 @@
 var place_id = $('#place_id').val();
 var token = $('#token').val();
 var access_token = $('#accessToken').val();
-
 var zipCodeVal = true;
+
+var RATE_DISCOUNT_PER_WEEK = 0.95;
+var RATE_DISCOUNT_PER_MONTH = 0.95;
 
 /*********************
 * Panels
@@ -19,7 +21,8 @@ var il8nStrings = {
   preview: 'Preview',
   unpublish: 'Unpublish',
   invisible: 'Invisible',
-  not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!'
+  not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!',
+  based_on_your_daily_price: "Based on your daily price, we recommend "
 };
 
 var t = function(key) {
@@ -28,8 +31,9 @@ var t = function(key) {
 
 var switchPanel = function() {
 
-  // Remove form errors
-  if($('.formError').size() > 0) {
+  var _panelStatus = panelStatuses();
+
+  if(_panelStatus.general && _panelStatus.photos && _panelStatus.amenities && _panelStatus.price && _panelStatus.calendar) {
     alert(t('form_error')); 
     return false;
   }
@@ -109,41 +113,65 @@ var validatePlace = function(panelStatus) {
 }
 
 var validatePanels = function(target) {
-
-  var panelStatus = {};
   var wizard_aside = $('.wizard-aside');
+
+  var panelErrors = panelStatuses(target);
   
   // General Validation
-  if($('#place_title').val() && $('#place_max_guests').val() && $('#place_size_sqm').val() && $('#place_description').val() && $('#place_description').val().length >= 20) {
+  if(panelErrors.general) {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
-    panelStatus.general = true;
   } else {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
-    panelStatus.general = false;
   }
 
   // Photos
-  if($('#photos_list li').size() > 0) {
+  if(panelErrors.photos) {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
-    panelStatus.photos = true;
   } else {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
-    panelStatus.photos = false;
   }
 
   // Price
-  if($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val()) {
+  if(panelErrors.price) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
-    panelStatus.price = true;
   } else {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
-    panelStatus.price = false;
   }
 
-  panelStatus.amenities = validateAmenitiesPanel();
-  panelStatus.calendar = true;
+  return validatePlace(panelErrors); 
+}
 
-  return validatePlace(panelStatus); 
+var panelStatuses = function(target) {
+
+  var errors = {};
+
+  // General errors
+  errors.general = ($('#place_title').val() && $('#place_max_guests').val() && $('#place_place_size').val() && $('#place_description').val() && $('#place_description').val().length >= 20);
+
+  // For a better UX. Highlight those fields.
+  if($('#place_title').val() == "") { $('#place_title').addClass('error'); } else { $('#place_title').removeClass('error');  }
+  if($('#place_max_guests').val() == "") { $('#place_max_guests').addClass('error'); } else { $('#place_max_guests').removeClass('error'); }
+  if($('#place_place_size').val() == "") { $('#place_place_size').addClass('error'); } else { $('#place_place_size').removeClass('error'); }
+  if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
+  if($('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else { $('#place_description').removeClass('error'); } 
+
+  // Photos
+  errors.photos = ($('#photos_list li').size() > 0);
+
+  // Price
+  errors.price = ($('#place_price_per_night').val() && $('#place_currency').val() && $('#place_cancellation_policy').val());
+
+  if($('#place_price_per_night').val() == "") { $('#place_price_per_night').addClass('error'); } else { $('#place_price_per_night').removeClass('error');  }
+  if($('#place_currency').val() == "") { $('#place_currency').addClass('error'); } else { $('#place_currency').removeClass('error'); }
+  if($('#place_cancellation_policy').val() == "") { $('#place_cancellation_policy').addClass('error'); } else { $('#place_cancellation_policy').removeClass('error'); }
+
+  // Amenities
+  errors.amenities = validateAmenitiesPanel();
+
+  // Calendar
+  errors.calendar = true;
+
+  return errors;
 }
 
 var validateAmenitiesPanel = function(target) {
@@ -164,7 +192,6 @@ var validateAmenitiesPanel = function(target) {
 
   return hasAmenity;
 }
-
 
 /*********************
 * Wizard General
@@ -285,12 +312,12 @@ var computeWeeklyMonthlyPay = function() {
   var total_per_week;
   var total_per_month;
   var currency_sign = $('.currency-sign-id').text();
-  total_per_week = Math.floor(per_week * 0.95);
-  total_per_month = Math.floor(per_month * 0.95);
+  total_per_week = Math.floor(per_week * RATE_DISCOUNT_PER_WEEK);
+  total_per_month = Math.floor(per_month * RATE_DISCOUNT_PER_MONTH);
 
   if($(this).val() != 0 || $(this).val() != ''){
-    $('#estimated_amount_weekly').html("Based on your daily price, we recommend " + currency_sign + total_per_week);
-    $('#estimated_amount_monthly').html("Based on your daily price, we recommend " + currency_sign + total_per_month);
+    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 
@@ -304,8 +331,8 @@ function showComputeWeeklyMonthlyPay(elem) {
   total_per_month = Math.floor(per_month * 0.95);
 
   if(elem != 0 || elem != ''){
-    $('#estimated_amount_weekly').html("Based on your daily price, we recommend <span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
-    $('#estimated_amount_monthly').html("Based on your daily price, we recommend <span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
+    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 

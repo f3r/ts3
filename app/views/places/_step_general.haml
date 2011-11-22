@@ -26,8 +26,11 @@
       = f.text_field :num_bathrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
 
     .input.required
-      = f.label :size_sqm, t(:size)
-      = f.text_field :size_sqm, :class => "validate[required,custom[integer],min[0]] span2 autosave"
+      = f.label :place_size, t(:size)
+      = f.text_field :place_size, :class => "validate[required,custom[integer],min[0]] span2"
+      = f.text_field :size_sqm, :class => 'autosave', :style => 'display:none'
+      = f.text_field :size_sqf, :class => 'autosave', :style => 'display:none'
+      
       = f.select :size_type, ["sqm", "sqf"], {}, :class => "validate[required] span2 autosave"
   %h2.title= t(:address)
   %fieldset

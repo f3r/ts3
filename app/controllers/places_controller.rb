@@ -33,6 +33,7 @@ class PlacesController < ApplicationController
   end
 
   def publish
+    # Add validation for this    
     place = Heypal::Place.publish(params[:id], current_token)
     flash[:notice] = t(:place_published)
     redirect_to preview_place_path(:id => params[:id])
@@ -48,7 +49,6 @@ class PlacesController < ApplicationController
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
-
   end
 
   def preview

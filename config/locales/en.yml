@@ -177,6 +177,7 @@ en:
   unpublish: Unpublish
 
   place_published: Your place is now listed!
+  place_publish_error: Sorry, we can't publish your place because of missing information.
   place_unpublished: Your place is now invisible
 
   ####################################################################################

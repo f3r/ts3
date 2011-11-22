@@ -10,6 +10,8 @@ class SessionsController < ApplicationController
 
         sign_in @heypal_session
 
+        #save user data in session
+        session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
 
         # IF OAUTH session, create the oauth token as well.
         if params[:oauth_token].present?
@@ -53,6 +55,8 @@ class SessionsController < ApplicationController
       # IF it's existing it should log in the user
       if @heypal_session.valid?
         sign_in @heypal_session
+        #save user data in session
+        session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         if (current_user.avatar.nil?)
           user_data = {'access_token' => current_token, 'avatar_url' => oauth_image, 'birthdate' => '1966-01-01'}
           user = Heypal::User.update(user_data)

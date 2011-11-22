@@ -1,5 +1,5 @@
 .panel-wrapper.amenities
-  %h2.title= t(:amenities)
+  %h2.title= t(:place_and_building_facilities)
   %fieldset
     - amenities_group_1.each do |a|
       %label.amenity
@@ -11,6 +11,15 @@
   %h2.title= t(:furnishings)
   %fieldset
     - amenities_group_2.each do |a|
+      %label.amenity
+        = f.check_box a[1], :value => 'true'
+        =a[0]          
+
+
+
+  %h2.title= t(:sports_and_recreation)
+  %fieldset
+    - amenities_group_4.each do |a|
       %label.amenity
         = f.check_box a[1], :value => 'true'
         =a[0]          

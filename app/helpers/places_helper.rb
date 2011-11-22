@@ -3,26 +3,26 @@ module PlacesHelper
   # Amenities
   def amenities_group_1 
     [
-      ['Doorman', :amenities_doorman],
-      ['Elevator', :amenities_elevator],
-      ['Gym', :amenities_gym],
       ['Kitchen', :amenities_kitchen],
-      ['Parking Included', :amenities_parking_included],
-      ['Pool', :amenities_pool],
-      ['Tennis', :amenities_tennis],
+      ['Hot Tub', :amenities_hot_water], 
+      ['Elevator', :amenities_elevator],
+      ['Parking Space', :amenities_parking_included],
+      ['Heating', :amenities_heating],
+      ['Handicap accessible', :amenities_handicap],
+      ['Doorman', :amenities_doorman],
+      ['Airconditioning', :amenities_aircon], 
+      ['Buzzer/Intercom', :amenities_buzzer_intercom],
     ]
   end
 
   # Furnishings 
   def amenities_group_2
     [
-      ['Buzzer/Intercom', :amenities_buzzer_intercom],
-      ['Cable TV', :amenities_cable_tv],
-      ['Dryer', :amenities_dryer],    
-      ['Airconditioning', :amenities_aircon], 
-      ['Heating', :amenities_heating],
-      ['Hot Water', :amenities_hot_water], 
+      ['Internet', :amenities_internet],
       ['TV', :amenities_tv],
+      ['Dryer', :amenities_dryer],    
+      ['Wifi', :amenities_internet_wifi],
+      ['Cable TV', :amenities_cable_tv],
       ['Washer', :amenities_washer],
     ]
     #
@@ -38,16 +38,21 @@ module PlacesHelper
   # Misc
   def amenities_group_3
     [
+      ['Pets Allowed', :amenities_pets_allowed],
       ['Breakfast', :amenities_breakfast],
-      ['Internet', :amenities_internet],
       ['Smoking Allowed', :amenities_smoking_allowed],
       ['Suitable for Events', :amenities_suitable_events],      
-      ['Internet Wifi', :amenities_internet_wifi],
       ['Family Friendly', :amenities_family_friendly],
-      ['Pets Allowed', :amenities_pets_allowed],
-      ['Handicap', :amenities_handicap],
-      ['Jacuzzi', :amenities_jacuzzi],      
     ]   
+  end
+
+  def amenities_group_4
+    [
+      ['Gym', :amenities_gym],
+      ['Jacuzzi', :amenities_jacuzzi],      
+      ['Tennis', :amenities_tennis],
+      ['Pool', :amenities_pool],
+    ]
   end
 
   def render_photo(photo)

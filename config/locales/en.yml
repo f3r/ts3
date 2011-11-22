@@ -127,8 +127,10 @@ en:
   are_you_sure: Are you sure?
 
   amenities: Amenities
-  furnishings: Furnishings
+  place_and_building_facilities: Place & Building facilities
+  furnishings: Conveniences
   miscellaneous: Miscellaneous
+  sports_and_recreation: Sports & Recreation
 
   preview_button: Preview &raquo;
  

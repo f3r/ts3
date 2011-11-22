@@ -33,9 +33,13 @@ class PlacesController < ApplicationController
   end
 
   def publish
-    # Add validation for this    
-    place = Heypal::Place.publish(params[:id], current_token)
-    flash[:notice] = t(:place_published)
+    @place = Heypal::Place.find(params[:id], current_token)
+    if @place.attributes_valid?
+      result = Heypal::Place.publish(params[:id], current_token)
+      flash[:notice] = t(:place_published)
+    else
+      flash[:error] = t(:place_publish_error)
+    end
     redirect_to preview_place_path(:id => params[:id])
   end
 

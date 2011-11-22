@@ -28,10 +28,10 @@
     .input.required
       = f.label :place_size, t(:size)
       = f.text_field :place_size, :class => "validate[required,custom[integer],min[0]] span2"
-      = f.text_field :size_sqm, :class => 'autosave', :style => 'display:none'
-      = f.text_field :size_sqf, :class => 'autosave', :style => 'display:none'
+      = f.text_field :size_sqm, :class => 'autosave_place_unit', :style => 'display:none'
+      = f.text_field :size_sqf, :class => 'autosave_place_unit', :style => 'display:none'
       
-      = f.select :size_type, ["sqm", "sqf"], {}, :class => "validate[required] span2 autosave"
+      = f.select :size_unit, [["sqm", "meters"], ["sqf", "feet"]], {}, :class => "validate[required] span2 autosave_place_unit"
   %h2.title= t(:address)
   %fieldset
     .input.required

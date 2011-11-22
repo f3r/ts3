@@ -4,7 +4,7 @@ class Heypal::Place < Heypal::Base
   set_resource_path '/places.json'
 
   @@general_attributes = %w(
-    title description place_type_id city_id num_bedrooms num_beds num_bathrooms size_sqm size_sqf max_guests size_type access_token published 
+    title description place_type_id city_id num_bedrooms num_beds num_bathrooms size_sqm size_sqf max_guests size_unit access_token published 
   )
 
   @@geo_attributes = %w(
@@ -153,21 +153,21 @@ class Heypal::Place < Heypal::Base
 
   # Virtual attribute for size (sqm/sqf) and size type
   def place_size
-    if size_type == 'sqm'
+    if size_unit == 'meters'
       size_sqm
-    elsif size_type == 'sqf'
+    elsif size_unit == 'feet'
       size_sqf
     end
   end
 
   def place_size=(v) 
-    if size_type == 'sqm'
+    if size_unit == 'meters'
       size_sqm = v
-    elsif size_type == 'sqf'
+    elsif size_unit == 'feet'
       size_sqf = v
     else
       size_sqm = v
-      size_type = 'sqm'
+      size_unit = 'meters'
     end
   end
 

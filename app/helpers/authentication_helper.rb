@@ -21,7 +21,7 @@ module AuthenticationHelper
   end
 
   def current_user
-    @current_user ||= Heypal::User.show('access_token' => current_token)
+    @current_user = @current_user || session['current_user'] || Heypal::User.show('access_token' => current_token)
   rescue RestClient::Unauthorized
     # We got an invalid user
     session['authentication_token'] = nil    

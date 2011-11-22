@@ -20,8 +20,9 @@ function showSavedIndicator(elem) {
 }
 
 function showErrorIndicator(elem) {
-  elem.after("<span class='save-indicator'><span class='label success'>error</span></span>")
-  $('.save-indicator span').fadeOut(7000);
+  //elem.after("<span class='save-indicator'><span class='label success'>error</span></span>")
+  //$('.save-indicator span').fadeOut(7000);
+  $('#place_zip').validationEngine('showPrompt', 'Wrong format of zipcode', 'load');
 }
 
 function validateElement(elem) {

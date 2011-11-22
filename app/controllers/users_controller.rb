@@ -101,6 +101,7 @@ class UsersController < ApplicationController
   end
 
   def update
+    params[:user][:birthdate] = "#{params[:birthdate][:day]}/#{params[:birthdate][:month]}/#{params[:birthdate][:year]}"
     @user = Heypal::User.new(params_with_token(:user))
 
     if @user.valid? && @user.save

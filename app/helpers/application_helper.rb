@@ -32,15 +32,18 @@ module ApplicationHelper
     ret = ''
 
     if model.errors.any?
-      ret = "<h5>#{pluralize(model.errors.size, 'error')} prohibited this to save.</h5>"
-      ret << '<ul class="coded_error">'
+
 
       msgs = []
       model.errors.full_messages.each do |errs|
-        msgs << error_codes_to_messages(errs) 
+        msgs << error_codes_to_messages(errs)
       end
+      msgs.flatten!
 
-      msgs.flatten.each do |msg|
+      ret = "<h5>#{pluralize(msgs.size, 'error')} prohibited this to save.</h5>"
+      ret << '<ul class="coded_error">'
+
+      msgs.each do |msg|
         ret << "<li>#{msg}</li>"
       end
 

@@ -1,5 +1,5 @@
 .span12.offset2
-  = error_messages_for :user
+  = coded_errors_for @user
   .registration.row
     %br
     .section.span6.bored
@@ -19,8 +19,9 @@
         .input
           %label.reset-width
             = f.check_box :terms, :id => 'terms_and_conditions'
-            I accept the
-            = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank
+            %label.for-checkbox{:for => "terms_and_conditions"}
+              I accept the
+              = link_to 'terms and conditions', '/terms-and-conditions', :target => :blank
         %button.btn.float-right{:type => 'submit primary'}
           Create account
 

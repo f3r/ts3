@@ -10,6 +10,14 @@
     $(document).ready(function() {
 
       $('#wizard_form').validationEngine();
+      $("#wizard_form").submit(function(e) {
+        var isChecked = $('#place_terms').is(':checked');
+        if(!isChecked) {
+          alert("Please check 'I accept the terms and conditions' to continue");
+          e.preventDefault();
+         }
+        });
+
 
       // Character count
       $('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});

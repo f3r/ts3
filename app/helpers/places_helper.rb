@@ -60,4 +60,8 @@ module PlacesHelper
   def render_photo_title(photo)
 
   end
+
+  def location(place)
+    [place['city_name'], place['country_name']].join(',')
+  end
 end

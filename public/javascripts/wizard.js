@@ -549,8 +549,18 @@ $(document).ready(function() {
   $("a[rel=twipsy]").twipsy({
     live:true,
     animate: false,
-    placement: 'below'
+    placement: 'below',
+    html: true
   });
+
+  $("a[rel=twipsy-link]").twipsy({
+    live:true,
+    animate: false,
+    placement:'below',
+    delayOut: 3000,
+    html: true
+  });
+
 
   $('#preview_button, #listing-status').click(validatePreview);
 

@@ -54,7 +54,8 @@
     .input.required
       = f.label :cancellation_policy, t(:cancellation_policy)
       = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
-      = link_to '?', '#', :rel => 'twipsy', :title => t(:cancellation_policy_hint)
+      = link_to '?', '#', :rel => 'twipsy-link',
+        :title => "<b>#{t(:flexible)}</b>: #{t(:flexible_cancellation)}<br> <b>#{t(:moderate)}</b>: #{t(:moderate_cancellation)}<br><b>#{t(:strict)}</b>: #{t(:strict_cancellation)}<br><br> See our <a href="">Cancellation Policy</a> for more info."
     .input
       = f.label :house_rules
       = f.text_area :house_rules, :class => "span8 autosave", :rows => 5

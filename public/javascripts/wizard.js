@@ -550,7 +550,7 @@ $(document).ready(function() {
     live:true,
     animate: false,
     placement: 'below'
-  }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
+  });
 
   $('#preview_button, #listing-status').click(validatePreview);
 

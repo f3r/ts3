@@ -22,7 +22,7 @@
       = f.text_field :phone_mobile
     .input
       = f.label :birthdate, t(:birthdate)
-      = select_date Date.parse(current_user.birthdate), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => Date.parse('1/1/1930').year, :end_year => Date.today.year - 18, :default => Date.parse('1/1/1980')
+      = select_date (current_user && current_user.birthdate ? Date.parse(current_user.birthdate) : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => Date.parse('1/1/1930').year, :end_year => Date.today.year - 18, :default => Date.parse('1/1/1980')
     .clearfix
 
     /Billing Address Section

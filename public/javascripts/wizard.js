@@ -548,7 +548,8 @@ $(document).ready(function() {
 
   $("a[rel=twipsy]").twipsy({
     live:true,
-    animate: false
+    animate: false,
+    placement: 'below'
   }).css({'border': '1px solid', 'border-radius' : '5px', 'margin-left': '10px'});
 
   $('#preview_button, #listing-status').click(validatePreview);

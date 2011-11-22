@@ -2,6 +2,8 @@ module LookupsHelper
   CURRENCIES = {'SGD' => '$', 'USD' => '$', 'HKD' => '$'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
 
+  CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
+
   def currencies
     CURRENCIES.keys
   end
@@ -17,6 +19,10 @@ module LookupsHelper
   def cities
 
   end
+
+  def cancellation_policies_select
+    CANCELLATION_POLICIES.collect { |key, value| [t(value), key] }
+  end 
 
   def cities_select
     [['Singapore', '1'], ['Hong Kong', '13984'], ['Kuala Lumpur', '4065']]

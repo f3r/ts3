@@ -118,34 +118,42 @@
       .tabbed-panel.other-info  
         %ul.tabs
           %li.active  
-            %a{:href => "#"} Details  
+            %a{:href => "#details-tab"} Details  
           %li
-            %a{:href => "#"} Amenities
-        .contents    
-          .fine-print
-            .row
-              .span4.col
+            %a{:href => "#amenities-tab"} Amenities
+        .contents
+          .fine-print.pill-content
+            .row.active#details-tab
+              .span3.col
                 %label Type
                 .value= @place.place_type
-                .label Size
+                %label Size
                 .value= @place.size_sqm
-              .span4.col
-                %label Bedrooms          
-                .value= @place.num_bedrooms
-                %label Bed          
-                .value= @place.num_beds
-                %label Guests
-                .value
-                  1 - 
-                  = @place.max_guests
-
-              .span4.col
+              .span2.col
+                %label.sm Bedrooms          
+                .value.sm= @place.num_bedrooms
+                %label.sm Bed          
+                .value.sm= @place.num_beds
+                %label.sm Guests
+                .value.sm= "1 - #{@place.max_guests}"
+              .span3.col
                 %label Price per Night
                 .value= number_to_currency @place.price_per_night 
                 %label Price per Week
                 .value= number_to_currency @place.price_per_week
                 %label Price per Month
-                .value= number_to_currency @place.price_per_month 
+                .value= number_to_currency @place.price_per_month
+              .span4.col
+                %label Final Cleanup
+                .value= number_to_currency @place.price_final_cleanup
+                %label Security Deposit
+                .value= number_to_currency @place.price_security_deposit
+                %label Cancellation
+                .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
+
+            .row#amenities-tab
+              .span4.col
+                %label Blah
 
 - content_for :aside do
   .wizard-aside
@@ -202,3 +210,5 @@
     $(this).next(".content").slideToggle(500)
     return false;
   });
+
+  $('.tabs').tabs();

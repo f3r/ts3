@@ -53,7 +53,7 @@
       %span.help-inline= t(:nights)
     .input.required
       = f.label :cancellation_policy, t(:cancellation_policy)
-      = f.select :cancellation_policy, [[t(:flexible_cancellation), 'flexible'],[t(:moderate_cancellation), 'moderate'],[t(:strict_cancellation), 'strict']], {}, :class => 'validate[required] autosave'
+      = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
     .input
       = f.label :house_rules
       = f.text_area :house_rules, :class => "span8 autosave", :rows => 5

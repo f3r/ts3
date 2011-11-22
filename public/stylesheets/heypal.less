@@ -900,7 +900,7 @@ ul#wizard-selector {
       padding: 0;
       
       .span4{
-        width: 212px;
+        width: 198px;
       }
     }
   }
@@ -1105,26 +1105,35 @@ ul#wizard-selector {
     _zoom: 1;
     
     label{
-      font-weight: bold;
+      float: left;
       color: #353535;
       background: none;
       text-align: left;
-      width: 100px;
       margin-right: 10px;
+      font-size:10px;
+      width:75px;
+    }
+
+    label.sm {
+      width:35px;
     }
     
-    .value{      
-      width: 90px;
+    .value{
+      float: right;
+      text-align:right;
+      width: 75px;
       font-weight: normal;
+    }
+    .value.sm {
+      width:35px;
     }
     
     label,.value{
-      float: left;
       padding: 5px 0;
       line-height: 20px;
     }
   }  
-} // fine-print
+}
 
 
 ul.references{

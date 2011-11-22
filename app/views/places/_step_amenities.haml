@@ -4,7 +4,7 @@
     - amenities_group_1.each do |a|
       %label.amenity
         = f.check_box a[1], :value => 'true'
-        =a[0]          
+        = a[0]
 
 
   
@@ -13,7 +13,7 @@
     - amenities_group_2.each do |a|
       %label.amenity
         = f.check_box a[1], :value => 'true'
-        =a[0]          
+        = a[0]
 
 
 
@@ -22,7 +22,7 @@
     - amenities_group_4.each do |a|
       %label.amenity
         = f.check_box a[1], :value => 'true'
-        =a[0]          
+        = a[0]
 
 
 
@@ -35,7 +35,7 @@
           = a[0]
           = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t(:do_you_allow_smoking))
         -else
-          =a[0]
+          = a[0]
 
 .arrows.clearfix
   .float-left

@@ -128,7 +128,7 @@
                 %label Type
                 .value= @place.place_type
                 %label Size
-                .value= @place.size_sqm
+                .value= raw("#{@place.size} #{@place.size_unit == 'meter' ? 'm' : 'ft'}&sup2;")
               .span2.col
                 %label.sm Bedrooms          
                 .value.sm= @place.num_bedrooms

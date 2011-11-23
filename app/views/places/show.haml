@@ -109,10 +109,10 @@
         .row
           .span8
             %pre.desc= @place.description
-          .span4
-            .highlight
-              %h5 Sample Highlight
-              %p Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    
+          -#.span4
+            -#.highlight
+              -#%h5 Sample Highlight
+              -#%p Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    
              
       
       .tabbed-panel.other-info  
@@ -128,26 +128,39 @@
                 %label Type
                 .value= @place.place_type
                 %label Size
-                .value= raw("#{@place.size} #{@place.size_unit == 'meter' ? 'm' : 'ft'}&sup2;")
+                .value= raw("#{@place.size_sqm} m&sup2;")
+                %label &nbsp;
+                .value= raw("#{@place.size_sqf} ft&sup2;")
               .span2.col
-                %label.sm Bedrooms          
-                .value.sm= @place.num_bedrooms
-                %label.sm Bed          
-                .value.sm= @place.num_beds
+                - unless @place.num_bedrooms.blank?
+                  %label.sm Bedrooms
+                  .value.sm= @place.num_bedrooms
+                - unless @place.num_beds.blank?
+                  %label.sm Bed
+                  .value.sm= @place.num_beds
                 %label.sm Guests
-                .value.sm= "1 - #{@place.max_guests}"
+                .value.sm
+                  1
+                  = " - #{@place.max_guests}" if @place.max_guests > 1
+                - unless @place.num_bathrooms.blank?
+                  %label.sm Bathrooms
+                  .value.sm= @place.num_bathrooms
               .span3.col
                 %label Price per Night
-                .value= number_to_currency @place.price_per_night 
-                %label Price per Week
-                .value= number_to_currency @place.price_per_week
-                %label Price per Month
-                .value= number_to_currency @place.price_per_month
+                .value= number_to_currency @place.price_per_night
+                - unless @place.price_per_week.blank?
+                  %label Price per Week
+                  .value= number_to_currency @place.price_per_week
+                - unless @place.price_per_month.blank?
+                  %label Price per Month
+                  .value= number_to_currency @place.price_per_month
               .span4.col
-                %label Final Cleanup
-                .value= number_to_currency @place.price_final_cleanup
-                %label Security Deposit
-                .value= number_to_currency @place.price_security_deposit
+                - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
+                  %label Final Cleanup
+                  .value= number_to_currency @place.price_final_cleanup
+                - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
+                  %label Security Deposit
+                  .value= number_to_currency @place.price_security_deposit
                 %label Cancellation
                 .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
 

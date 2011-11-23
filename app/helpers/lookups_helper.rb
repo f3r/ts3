@@ -1,5 +1,5 @@
 module LookupsHelper
-  CURRENCIES = {'SGD' => '$', 'USD' => '$', 'HKD' => '$'}
+  CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
 
   CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}

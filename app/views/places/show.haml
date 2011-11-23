@@ -147,20 +147,20 @@
                   .value.sm= @place.num_bathrooms
               .span3.col
                 %label Price per Night
-                .value= number_to_currency @place.price_per_night
+                .value= number_to_currency @place.price_per_night, :unit => currency_sign_of(@place.currency)
                 - unless @place.price_per_week.blank?
                   %label Price per Week
-                  .value= number_to_currency @place.price_per_week
+                  .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency)
                 - unless @place.price_per_month.blank?
                   %label Price per Month
-                  .value= number_to_currency @place.price_per_month
+                  .value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency)
               .span4.col
                 - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
                   %label Final Cleanup
-                  .value= number_to_currency @place.price_final_cleanup
+                  .value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency)
                 - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
                   %label Security Deposit
-                  .value= number_to_currency @place.price_security_deposit
+                  .value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency)
                 %label Cancellation
                 .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
 

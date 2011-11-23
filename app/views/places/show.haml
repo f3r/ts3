@@ -152,8 +152,22 @@
                 .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
 
             .row#amenities-tab
-              .span4.col
-                %label Blah
+              .span-one-fourth
+                - amenities_group_1.each do |a|
+                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
+                    = a[0]
+              .span-one-fourth
+                - amenities_group_2.each do |a|
+                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
+                    = a[0]
+              .span-one-fourth
+                - amenities_group_4.each do |a|
+                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
+                    = a[0]
+              .span-one-fourth
+                - amenities_group_3.each do |a|
+                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
+                    = a[0]
 
 - content_for :aside do
   .wizard-aside

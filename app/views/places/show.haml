@@ -128,9 +128,9 @@
                 %label Type
                 .value= @place.place_type
                 %label Size
-                .value= raw("#{@place.size_sqm} m&sup2;")
+                .value= raw("#{number_with_precision @place.size_sqm, :strip_insignificant_zeros => true, :precision => 1} m&sup2;")
                 %label &nbsp;
-                .value= raw("#{@place.size_sqf} ft&sup2;")
+                .value= raw("#{number_with_precision @place.size_sqf, :strip_insignificant_zeros => true, :precision => 1} ft&sup2;")
               .span2.col
                 - unless @place.num_bedrooms.blank?
                   %label.sm Bedrooms

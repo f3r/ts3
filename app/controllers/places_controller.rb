@@ -122,5 +122,6 @@ protected
 
   def find_place
     @place = Heypal::Place.find(params[:id], current_token)
+    @owner = @place['user']
   end
 end

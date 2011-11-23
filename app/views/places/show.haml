@@ -184,33 +184,47 @@
 
 - content_for :aside do
   .wizard-aside
-    %ul#wizard-selector
-      %li#general
-        .indicator
-          = image_tag('/images/check.png')
-        %a{:href => "#{wizard_place_path(@place, :step => "1")}", :title => t(:general_information), :class => 'active'}
-          = t(:general_info)
-      %li#photos
-        .indicator
-          = image_tag('/images/check.png')
-        %a{:href => "#{wizard_place_path(@place, :step => "2")}", :title => t(:photos)}
-          = t(:photos)
-      %li#amenities
-        .indicator
-          = image_tag('/images/check.png')
-        %a{:href => "#{wizard_place_path(@place, :step => "3")}", :title => t(:amenities)}
-          = t(:amenities)
-      %li#price
-        .indicator
-          = image_tag('/images/check.png')
-        %a{:href => "#{wizard_place_path(@place, :step => "4")}", :title => t(:price_and_conditions)}
-          = t(:price_and_conditions)        
-      %li#calendar
-        .indicator
-          = image_tag('/images/check.png')
-        %a{:href => "#{wizard_place_path(@place, :step => "5")}", :title => t(:calendar)}
-          = t(:calendar)
-
+    - if @preview
+      %ul#wizard-selector
+        %li#general
+          .indicator
+            = image_tag('/images/check.png')
+          %a{:href => "#{wizard_place_path(@place, :step => "1")}", :title => t(:general_information), :class => 'active'}
+            = t(:general_info)
+        %li#photos
+          .indicator
+            = image_tag('/images/check.png')
+          %a{:href => "#{wizard_place_path(@place, :step => "2")}", :title => t(:photos)}
+            = t(:photos)
+        %li#amenities
+          .indicator
+            = image_tag('/images/check.png')
+          %a{:href => "#{wizard_place_path(@place, :step => "3")}", :title => t(:amenities)}
+            = t(:amenities)
+        %li#price
+          .indicator
+            = image_tag('/images/check.png')
+          %a{:href => "#{wizard_place_path(@place, :step => "4")}", :title => t(:price_and_conditions)}
+            = t(:price_and_conditions)        
+        %li#calendar
+          .indicator
+            = image_tag('/images/check.png')
+          %a{:href => "#{wizard_place_path(@place, :step => "5")}", :title => t(:calendar)}
+            = t(:calendar)
+    - else
+      - if @owner['id'].eql?(current_user['id'])
+        %p This is your place!
+        %a.btn.large.primary{:title => 'Edit place', :href => "#{wizard_place_path(@place)}"}
+          Edit place
+      - else
+        %ul.references
+          %li
+            %img{:src => @owner['avatar'], :style => "width: 100px; height: 100px;"}
+          %li= short_full_name @owner
+          %li.check Agent
+          %li.reviews 71 reviews
+          %li
+            %a.btn.large.primary Message User
 :javascript
     // accomodation photo slider          
   var oSlider7 = $('#photo-slider');  	

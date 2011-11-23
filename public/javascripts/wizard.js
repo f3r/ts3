@@ -24,7 +24,8 @@ var il8nStrings = {
   unpublish: 'Unpublish',
   invisible: 'Invisible',
   not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!',
-  based_on_your_daily_price: "Based on your daily price, we recommend "
+  based_on_your_daily_price: "Based on your daily price, we recommend ",
+  photo_limit_error: 'We need a minimum of 3 photos before we can publish your place'
 };
 
 var t = function(key) {
@@ -93,7 +94,11 @@ var switchPanel = function() {
 
   } else {
     if(firstLoad == false) {
-      alert(t('form_error')); 
+      if(currentPanel() == '#2') {
+        alert(t('photo_limit_error'));
+      } else {
+        alert(t('form_error')); 
+      }
     } else {
       firstLoad = false;
     }
@@ -214,7 +219,7 @@ var panelStatuses = function(target) {
   if($('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else { $('#place_description').removeClass('error'); } 
 
   // Photos
-  errors.photos = ($('#photos_list li').size() > 0);
+  errors.photos = ($('#photos_list li').size() >= 3);
 
   // Price
   errors.price = ($('#place_price_per_night').val() != "" && $('#place_currency').val() != "" && $('#place_cancellation_policy').val() != "");

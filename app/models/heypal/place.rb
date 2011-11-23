@@ -148,7 +148,7 @@ class Heypal::Place < Heypal::Base
 
   # Am i really valid?
   def attributes_valid?
-    title.present? && max_guests.present? && place_size.present? && description.present? && description.length > 20 && photos.length > 0 && price_per_night.to_s.present? && currency.present? && cancellation_policy.present?
+    title.present? && max_guests.present? && place_size.present? && description.present? && description.length > 20 && photos.length >= 3 && price_per_night.to_s.present? && currency.present? && cancellation_policy.present?
   end
 
   # Virtual attribute for size (sqm/sqf) and size type

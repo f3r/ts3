@@ -146,7 +146,9 @@ var validatePlace = function(panelStatus) {
       });
 
     } else {
-     
+    
+      $('#listing-status').html(t('listed')); 
+
       $('#listing-status').hover(function() {
         $('#listing-status').html(t('preview'));        
       }, function() {

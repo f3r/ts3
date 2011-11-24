@@ -109,7 +109,8 @@
           #map-tab
             %h2 map
           #calendar-tab
-            %h2 calendar
+            #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
+            #second-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
 
 
       .description
@@ -232,8 +233,13 @@
           %li.reviews 71 reviews
           %li
             %a.btn.large.primary Message User
+
+- @js_a = []
+- @availabilities.each do |a|
+  - @js_a << {'title' => price_availability_plain(a, @place), 'start' => Date.parse(a['date_start']), 'end' => Date.parse(a['date_end']), 'color' => color_price(a, @place)}
+
 :javascript
-    // accomodation photo slider          
+  // accomodation photo slider          
   var oSlider7 = $('#photo-slider');  	
   if(oSlider7.length > 0){    	
     oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true });
@@ -260,3 +266,45 @@
   });
 
   $('.tabs').tabs();
+  $('.tabs').bind('change', function (e) {
+    if ($(e.target).attr('href') == '#calendar-tab') {
+      $("#first-calendar, #second-calendar").fullCalendar('render');
+    }
+  })
+  
+
+:erb
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#first-calendar').fullCalendar({
+        header: {
+          left: 'prev',
+          center: 'title',
+          right: ''
+        },
+        editable: false,
+        events: <%= @js_a.to_json %>,
+        visEnd: <%= DateTime.now.end_of_month.to_date %>
+      });
+
+      $('#second-calendar').fullCalendar({
+        header: {
+          left: '',
+          center: 'title',
+          right: 'next'
+        },
+        editable: false,
+        events: <%= @js_a.to_json %>,
+        month: <%= Date.today.month %>,
+        visStart: false
+      });
+
+      $('#first-calendar .fc-header-left .fc-button-prev').click(function() {
+        $('#second-calendar').fullCalendar('prev');
+      });
+
+      $('#second-calendar .fc-header-right .fc-button-next').click(function() {
+        $('#first-calendar').fullCalendar('next');
+      });
+  });
+  </script>

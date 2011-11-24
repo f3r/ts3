@@ -62,6 +62,9 @@ class PlacesController < ApplicationController
 
   def show
     @preview = false
+
+    @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
+
     render :layout => 'application'
   end
 

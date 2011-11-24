@@ -1,15 +1,17 @@
 .topbar
   .fill
     .container
+      %ul.nav
+        %li.active
+          = link_to t(:find_places), '/places'
+          - if logged_in?
+            - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
+              %li
+                = link_to t(:my_places), '#'
+              %li
+                = link_to t(:profile), profile_path
+
       - if logged_in?
-        %ul.nav
-          %li.active
-            = link_to t(:find_places), '/places'
-          - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
-            %li
-              = link_to t(:my_places), '#'
-          %li
-            = link_to t(:profile), profile_path
         %ul.nav.secondary-nav
           - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
             %li.add-item
@@ -21,7 +23,3 @@
                 = link_to 'Notification 1', '#'
               %li
                 = link_to 'Notification 2', '#'
-      - else
-        %ul.nav
-          %li
-            = link_to raw('&nbsp;'), ''

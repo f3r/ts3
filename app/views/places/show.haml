@@ -212,7 +212,7 @@
           %a{:href => "#{wizard_place_path(@place, :step => "5")}", :title => t(:calendar)}
             = t(:calendar)
     - else
-      - if @owner['id'].eql?(current_user['id'])
+      - if logged_in? && @owner['id'].eql?(current_user['id'])
         %p This is your place!
         %a.btn.large.primary{:title => 'Edit place', :href => "#{wizard_place_path(@place)}"}
           Edit place

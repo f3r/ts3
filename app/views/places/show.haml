@@ -234,10 +234,6 @@
           %li
             %a.btn.large.primary Message User
 
-- @js_a = []
-- @availabilities.each do |a|
-  - @js_a << {'title' => price_availability_plain(a, @place), 'start' => Date.parse(a['date_start']), 'end' => Date.parse(a['date_end']), 'color' => color_price(a, @place)}
-
 :javascript
   // accomodation photo slider          
   var oSlider7 = $('#photo-slider');  	
@@ -283,7 +279,7 @@
           right: ''
         },
         editable: false,
-        events: <%= @js_a.to_json %>,
+        events: <%= @availabilities.to_json %>,
         visEnd: <%= DateTime.now.end_of_month.to_date %>
       });
 
@@ -294,7 +290,7 @@
           right: 'next'
         },
         editable: false,
-        events: <%= @js_a.to_json %>,
+        events: <%= @availabilities.to_json %>,
         month: <%= Date.today.month %>,
         visStart: false
       });

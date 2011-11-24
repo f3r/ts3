@@ -63,7 +63,12 @@ class PlacesController < ApplicationController
   def show
     @preview = false
 
-    @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
+    availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
+
+    @availabilities = []
+    availabilities.each do |a|
+      @availabilities << {'title' => price_availability_plain(a, @place), 'start' => Date.parse(a['date_start']), 'end' => Date.parse(a['date_end']), 'color' => color_price(a, @place)}
+    end unless availabilities.blank?
 
     render :layout => 'application'
   end

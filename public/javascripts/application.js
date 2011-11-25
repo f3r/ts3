@@ -101,7 +101,7 @@ $(function() {
     $(this).parent().blur();
   });
 
-  $.waypoints.settings.scrollThrottle = 10;
+  $.waypoints.settings.scrollThrottle = 1;
 
 
   $('.topbar').waypoint(function(event, direction) {
@@ -110,7 +110,7 @@ $(function() {
   });
 
   $('.wizard-aside').waypoint(function(event, direction) {
-		$(this).toggleClass('sticky', direction === "down");
+		$(this).toggleClass('sticky', 400);
     event.stopPropagation();
 	});  
 

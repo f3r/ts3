@@ -156,6 +156,7 @@
               .span3.col
                 %label Price per Night
                 .value= number_to_currency @place.price_per_night, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+
                 - unless @place.price_per_week.blank?
                   %label Price per Week
                   .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
@@ -190,6 +191,19 @@
                   %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
                     = a[0]
 
+      .tabbed-panel.other-info
+        %ul.tabs
+          -#%li.active
+            -#%a{:href => '#details-reviews'} Reviews (2)
+          %li.active
+            %a{:href => '#details-questions'} Questions (5)
+        .contents
+          .fine-print.pill-content
+            -#.row.active#details-reviews
+              -#%p reviews
+            .row.active#details-questions
+              .span
+                = render 'questions'
 - content_for :aside do
   .wizard-aside
     - if @preview
@@ -233,6 +247,7 @@
           -#%li.reviews 71 reviews
           %li
             %a.btn.large.primary Message User
+
 
 :javascript
   // accomodation photo slider          

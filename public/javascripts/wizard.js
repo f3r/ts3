@@ -51,7 +51,7 @@ var switchPanel = function() {
       break;
     case '#4':
       switchMe = _panelStatus.price;
-      break;      
+      break;
     case '#5':
       switchMe = _panelStatus.calendar;
       break;
@@ -74,7 +74,7 @@ var switchPanel = function() {
       break;
     case '#4':
       if(_panelStatus.price) { switchMe = true };
-      break;      
+      break;
     case '#5':
       if(_panelStatus.calendar) { switchMe = true };
       break;
@@ -83,6 +83,7 @@ var switchPanel = function() {
   }
   */
 
+  switchMe = true;
   if(switchMe) {
     $('.wizard-wrapper .panel').hide();
     $(_this.attr('href')).fadeIn('fast');
@@ -97,7 +98,7 @@ var switchPanel = function() {
       if(currentPanel() == '#2') {
         alert(t('photo_limit_error'));
       } else {
-        alert(t('form_error')); 
+        alert(t('form_error'));
       }
     } else {
       firstLoad = false;
@@ -134,28 +135,28 @@ var validatePlace = function(panelStatus) {
     $('.preview-button').attr('disabled', false);
 
     // Enable the listing-status button/ajax call
-    $('#listing-status').attr('rel', 'twipsy');    
+    $('#listing-status').attr('rel', 'twipsy');
     $('#listing-status').attr('disabled', false);
     $('#listing-status').attr('href', '/places/' + $('#place_id').val() + '/preview');
 
     // If not published, display as preview, otherwise unpublish.
     if($('#place_published').val() == 'false') {
-      $('#listing-status').html(t('invisible'));      
+      $('#listing-status').html(t('invisible'));
       $('#listing-status').attr('data-original-title', t('not_listed_yet_click_to_preview'));
 
       // on mouseover make it preview
       $('#listing-status').hover(function() {
-        $('#listing-status').html(t('preview'));        
+        $('#listing-status').html(t('preview'));
       }, function() {
-        $('#listing-status').html(t('invisible'));  
+        $('#listing-status').html(t('invisible'));
       });
 
     } else {
-    
-      $('#listing-status').html(t('listed')); 
+
+      $('#listing-status').html(t('listed'));
 
       $('#listing-status').hover(function() {
-        $('#listing-status').html(t('preview'));        
+        $('#listing-status').html(t('preview'));
       }, function() {
         $('#listing-status').html(t('listed'));
       });
@@ -178,7 +179,7 @@ var validatePanels = function(target) {
   var wizard_aside = $('.wizard-aside');
 
   var panelErrors = panelStatuses(target);
-  
+
   // General Validation
   if(panelErrors.general) {
     wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
@@ -200,7 +201,7 @@ var validatePanels = function(target) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
   }
 
-  validatePlace(panelErrors); 
+  validatePlace(panelErrors);
   return panelErrors;
 }
 
@@ -216,7 +217,7 @@ var panelStatuses = function(target) {
   if($('#place_max_guests').val() == "") { $('#place_max_guests').addClass('error'); } else { $('#place_max_guests').removeClass('error'); }
   if($('#place_place_size').val() == "") { $('#place_place_size').addClass('error'); } else { $('#place_place_size').removeClass('error'); }
   if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
-  if($('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else { $('#place_description').removeClass('error'); } 
+  if($('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else { $('#place_description').removeClass('error'); }
 
   // Photos
   errors.photos = ($('#photos_list li').size() >= 3);
@@ -250,7 +251,7 @@ var validateAmenitiesPanel = function(target) {
   });
 
   if(hasAmenity == false) {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');    
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');
   }
 
   return hasAmenity;
@@ -263,7 +264,7 @@ var validatePreview = function() {
   if(_panelStatus.general && _panelStatus.photos && _panelStatus.amenities && _panelStatus.price && _panelStatus.calendar) {
     return true;
   } else {
-    alert(t('cannot_preview'));    
+    alert(t('cannot_preview'));
     return false;
   }
 
@@ -274,7 +275,7 @@ var validatePreview = function() {
 **********************/
 
 var sendFieldUpdate = function() {
-  
+
   var elem = $(this);
   // Check if we have changed values
   if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
@@ -287,7 +288,7 @@ var sendFieldUpdate = function() {
       $.ajax({
         type: 'PUT',
         url: '/places/' + place_id + '.json',
-        data: $(this).serialize(), 
+        data: $(this).serialize(),
         success: function() {
           showSavedIndicator(elem);
           elem.attr('data-changed', '0');
@@ -296,7 +297,7 @@ var sendFieldUpdate = function() {
     } else {
       showErrorIndicator(elem);
     }
-    validatePanels();    
+    validatePanels();
   }
 };
 
@@ -317,14 +318,14 @@ var sendPlaceSizeUpdate = function () {
     $.ajax({
       type: 'PUT',
       url: '/places/' + place_id + '.json',
-      data: put_data, 
+      data: put_data,
       success: function() {
         showSavedIndicator(elem);
         elem.attr('data-changed', '0');
       }
     });
 
-    validatePanels();    
+    validatePanels();
   }
 
 }
@@ -352,14 +353,14 @@ var sendCheckBoxUpdate = function() {
   $.ajax({
     type: 'PUT',
     url: '/places/' + place_id + '.json',
-    data: post_data, 
+    data: post_data,
     success: function() {
-      hideIndicator(elem);      
+      hideIndicator(elem);
       elem.show();
     }
   });
-  validatePanels();   
-};  
+  validatePanels();
+};
 
 var trackChange = function() {
   $(this).attr('data-changed', "1");
@@ -393,10 +394,10 @@ var hideShowInputStay = function() {
 
   if(elemVal == 0) {
     placeInput.show();
-    placeInput.find('~ .help-inline').show();    
+    placeInput.find('~ .help-inline').show();
   } else {
     placeInput.hide();
-    placeInput.find('~ .help-inline').hide();    
+    placeInput.find('~ .help-inline').hide();
     field = placeInput.attr("name");
     post_data = field + "=" + '';
     place_id = $("#place_id").val(); // TODO: Quick update for now
@@ -404,7 +405,7 @@ var hideShowInputStay = function() {
     $.ajax({
       type: 'PUT',
       url: '/places/' + place_id + '.json',
-      data: post_data 
+      data: post_data
     });
   }
 
@@ -459,11 +460,11 @@ function showHideInitialDefaultInput() {
   if(place_min == '' || place_min == undefined || place_min == '0') {
     $('#place_maximum_stay_days').hide();
     $('select#days_maximum_stay').val('1');
-    $('#place_maximum_stay_days').find('~ .help-inline').hide();    
+    $('#place_maximum_stay_days').find('~ .help-inline').hide();
   } else {
     $('#place_maximum_stay_days').show();
     $('select#days_maximum_stay').val('30');
-    $('#place_maximum_stay_days').find('~ .help-inline').show();    
+    $('#place_maximum_stay_days').find('~ .help-inline').show();
   };
   //for pricing text
   var nightPrice = $('#place_price_per_night').val();
@@ -471,7 +472,7 @@ function showHideInitialDefaultInput() {
 };
 
 /*********************
-* Initialize here 
+* Initialize here
 **********************/
 $(document).ready(function() {
 
@@ -492,7 +493,7 @@ $(document).ready(function() {
         .blur(sendFieldUpdate);
 
   $('#wizard_form input[type=text].autosave_place_unit,  #wizard_form select.autosave_place_unit').change(trackChange)
-        .blur(sendPlaceSizeUpdate);        
+        .blur(sendPlaceSizeUpdate);
 
   $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
 
@@ -502,7 +503,7 @@ $(document).ready(function() {
   // Place title change
   $('#place_title').change(function() {
     $('h1.title').html($(this).val());
-  });  
+  });
 
   // Price per night
   $('#place_price_per_night').change(computeWeeklyMonthlyPay);
@@ -519,7 +520,7 @@ $(document).ready(function() {
     $.ajax({
       type: 'PUT',
       url: '/places/' + place_id + '/update_currency.json',
-      data: $(this).serialize(), 
+      data: $(this).serialize(),
       success: function(data) {
         $(".currency-sign, .currency-sign-id").html(data.currency_sign);
         showSavedIndicator(elem);

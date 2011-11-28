@@ -8,8 +8,8 @@ class Heypal::Comment < Heypal::Base
 
   class << self
 
-    def find_all(params, access_token)
-      result = request("/places/#{params[:place_id]}/comments.json?access_token#{access_token}")
+    def find_all(params)
+      result = request("/places/#{params[:place_id]}/comments.json")
 
       if result["stat"] == 'ok'
         result

@@ -70,6 +70,8 @@ class PlacesController < ApplicationController
       @availabilities << {'title' => price_availability_plain(a, @place), 'start' => Date.parse(a['date_start']), 'end' => Date.parse(a['date_end']), 'color' => color_price(a, @place)}
     end unless availabilities.blank?
 
+    @comments = Heypal::Comment.find_all({:place_id => @place.to_param})
+
     render :layout => 'application'
   end
 

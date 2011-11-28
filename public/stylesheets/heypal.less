@@ -534,28 +534,40 @@ form div.required label:after {
 
 // Questions
 .item-questions {
-  .user_box {
-    width:150px;
+  .question-container {
+    overflow:hidden;
 
-    .user_photo {
-      float:left;
-      margin-right:5px;
-    }
-  }
-
-  div.p {
-    float:left;
-  }
-
-  div.left {
     .user_box {
-      float:right;
-    }
-  }
+      width:150px;
 
-  div.right {
-    .user_box {
+      .user_photo {
+        float:left;
+        margin-right:5px;
+      }
+    }
+
+    div.p {
       float:left;
+    }
+
+    div {
+      overflow:hidden;
+
+      .user_box {
+        float:right;
+      }
+
+      &.left {
+        margin-bottom:20px;
+      }
+
+      &.right {
+        margin-bottom:20px;
+
+        .user_box {
+          float:left;
+        }
+      }
     }
   }
 }

@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
     @comment = Heypal::Comment.new(comment_params)
 
     if @comment.save
-      redirect_to place_path(@place)
+      render :text => 'success'
     else
       render :text => 'error'
     end

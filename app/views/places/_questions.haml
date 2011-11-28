@@ -1,4 +1,15 @@
-%a.btn.large.primary Ask a question
+%a#open-ask-btn.btn.large.primary Ask a question
+#ask-form.hide
+  %div
+    - unless current_user.avatar.nil?
+      %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
+    - else
+      = placehold(60,60)
+    = text_area_tag :blah, "", :rows => 3, :class => "span10"
+  %div.availability-action
+    = button_tag "Cancel", :id => 'ask-cancel', :class => 'btn'
+    = button_tag "Submit", :id => 'ask-btn', :class => "btn primary"
+
 %br
 %br
 %section.item-comments
@@ -124,3 +135,17 @@
               = placehold(24,24)
               13
 
+
+:javascript
+  $("#open-ask-btn").click(function() {
+    $(this).hide();
+    $("#ask-form").show();
+  });
+
+  $("#ask-cancel").click(function() {
+    $("#ask-form").hide();
+    $("#open-ask-btn").show();
+  });
+
+  $("#ask-btn").click(function() {
+  });

@@ -51,58 +51,32 @@
           .active#photo-slider
             .viewport
               %ul.overview
-                - 10.times do 
+                - @place['photos'].each do |p|
                   %li
                     .big
                       .caption This is a sample caption...                
-                      = image_tag("http://placehold.it/490x340")
+                      = image_tag(p['photo']['medium'])
                     .small
                       %a{:href => "#"}
                         = image_tag("http://placehold.it/200x165")
                       %a{:href => "#"}              
                         = image_tag("http://placehold.it/200x165")
 
-            .slider-nav      
+            .slider-nav
               %a.buttons.prev{:href => "#"} 
                 =raw('&laquo;')
               %ul.pager
-                %li
-                  %a{:rel => "0", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "1", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "2", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "3", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "4", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "5", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "6", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "7", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "8", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
-                %li
-                  %a{:rel => "9", :class => "pagenum", :href => "#"}
-                    = image_tag("http://placehold.it/40x40")
+                - @place['photos'].each_with_index do |p, i|
+                  %li
+                    %a{:rel => "#{i}", :class => "pagenum", :href => "#"}
+                      = image_tag(p['photo']['small'])
                     
               %a.buttons.next{:href => "#"}
                 =raw('&raquo;')
 
             / %a#gotoslide4{:href => "#"} Go to 4  
             - if false
-              #photo-slider-control    
+              #photo-slider-control
                 %a#stopslider{:href => "#"} Stop
                 %a#startslider{:href => "#"} Play
 

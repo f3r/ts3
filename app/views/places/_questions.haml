@@ -1,14 +1,15 @@
 %a#open-ask-btn.btn.large.primary Ask a question
 #ask-form.hide
-  %div
-    - unless current_user.avatar.nil?
-      %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
-    - else
-      = placehold(60,60)
-    = text_area_tag :blah, "", :rows => 3, :class => "span10"
-  %div.availability-action
-    = button_tag "Cancel", :id => 'ask-cancel', :class => 'btn'
-    = button_tag "Submit", :id => 'ask-btn', :class => "btn primary"
+  = form_for 'comment', :url => place_comments_path(@place) do |f|
+    %div
+      - unless current_user.avatar.nil?
+        %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
+      - else
+        = placehold(60,60)
+      = f.text_area :comment, :rows => 3, :class => "span10"
+    %div.availability-action
+      = button_tag "Cancel", :id => 'ask-cancel', :class => 'btn'
+      = button_tag "Submit", :id => 'ask-btn', :class => "btn primary"
 
 %br
 %br

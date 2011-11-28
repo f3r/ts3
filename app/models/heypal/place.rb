@@ -15,8 +15,8 @@ class Heypal::Place < Heypal::Base
 
   @@pricing_attributes = %w(
     currency price_per_night price_per_week price_per_month price_final_cleanup price_security_deposit 
-  )
 
+  )
   @@terms_attributes = %w(
     check_in_after check_out_before minimum_stay_days maximum_stay_days house_rules cancellation_policy
   )

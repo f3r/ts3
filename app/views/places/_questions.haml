@@ -9,7 +9,7 @@
         - else
           = placehold(60,60)
         = f.text_area :comment, :rows => 3, :class => "span10"
-      %div.availability-action
+      %div.buttons
         = button_tag "Cancel", :id => 'ask-cancel', :class => 'btn'
         = button_tag "Submit", :id => 'ask-btn', :class => "btn primary"
 -else
@@ -30,15 +30,29 @@
         %div.p
           = comment['comment']
 
-      %div.right
-        .user_box
-          .user_photo= placehold(40,40)
-          .user_data
-            .user_name= link_to 'Jonathan Green', '#'
-            .user_role
-              User
-        %div.p
-          Answer to your question
+      - if comment['replies'].blank?
+        %a.open-respond-form.btn.large.primary Respond
+        .respond-form.hide
+          %div
+            - unless current_user.avatar.nil?
+              %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
+            - else
+              = placehold(60,60)
+            = text_area_tag :comment, "", :rows => 3, :class => "span10"
+          %div.buttons
+            = button_tag "Cancel", :class => 'btn respond-cancel'
+            = button_tag "Submit", :class => "btn primary respond-btn"
+
+      -else
+        %div.right
+          .user_box
+            .user_photo= placehold(40,40)
+            .user_data
+              .user_name= link_to 'Jonathan Green', '#'
+              .user_role
+                User
+          %div.p
+            Answer to your question
 
 :javascript
   $("#open-ask-btn").click(function() {
@@ -56,4 +70,15 @@
     $("#ask-form").hide();
     $('#comment_comment').val('');
     $("#open-ask-btn").show();
+  });
+
+  $(".open-respond-form").click(function() {
+    $(this).next().show();
+    $(this).hide();
+  });
+
+  $(".respond-cancel").click(function() {
+    var container = $(this).parents(".respond-form");
+    container.prev().show();
+    container.hide();
   });

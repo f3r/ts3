@@ -533,9 +533,22 @@ form div.required label:after {
 } 
 
 // Questions
+#ask-form .buttons, .respond-form .buttons {
+  margin-top:10px;
+  float:right;
+}
 .item-questions {
   .question-container {
     overflow:hidden;
+    margin-bottom:10px;
+    padding:5px;
+
+    &:nth-child(even) {
+      background-color:#FFF;
+    }
+    &:nth-child(odd) {
+      background-color:#DDD;
+    }
 
     .user_box {
       width:150px;
@@ -558,16 +571,20 @@ form div.required label:after {
       }
 
       &.left {
-        margin-bottom:20px;
+        margin-bottom:10px;
       }
 
       &.right {
-        margin-bottom:20px;
+        margin-bottom:10px;
 
         .user_box {
           float:left;
         }
       }
+    }
+
+    .open-respond-form {
+      float:right;
     }
   }
 }

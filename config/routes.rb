@@ -28,6 +28,7 @@ HeyPalFrontEnd::Application.routes.draw do
     end
 
     resources :availabilities
+    resources :comments
   end
   
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'

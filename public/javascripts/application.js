@@ -110,9 +110,9 @@ $(function() {
   });
 
   $('.wizard-aside').waypoint(function(event, direction) {
-		$(this).toggleClass('sticky', 400);
+    $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
-	});  
+	}, {offset: 60});  
 
 
 });

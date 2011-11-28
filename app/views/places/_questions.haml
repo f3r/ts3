@@ -18,17 +18,8 @@
 %br
 %br
 %section.item-questions
-  %div.left
-    .user_box
-      .user_photo= placehold(40,40)
-      .user_data
-        .user_name= link_to 'Jonathan Green', '#'
-        .user_role
-          User
-    %div.p
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-    %div.right
+  - @comments.each do |comment|
+    %div.left
       .user_box
         .user_photo= placehold(40,40)
         .user_data
@@ -36,7 +27,18 @@
           .user_role
             User
       %div.p
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        = comment['comment']
+
+      .clearFix
+      %div.right
+        .user_box
+          .user_photo= placehold(40,40)
+          .user_data
+            .user_name= link_to 'Jonathan Green', '#'
+            .user_role
+              User
+        %div.p
+          Answer to your question
 
 :javascript
   $("#open-ask-btn").click(function() {

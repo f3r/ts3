@@ -25,6 +25,16 @@ class Heypal::Comment < Heypal::Base
     def get_errors_on(result)
       [false, result["err"]]
     end
+
+    def create(params)
+      result = request("/places/#{params['place_id']}/comments.json", :post, params)
+
+      if result['stat'] == 'ok'
+        return get_data_on(result)
+      else
+        return get_errors_ond(result)
+      end
+    end
   end
 
   def initialize(params = {})

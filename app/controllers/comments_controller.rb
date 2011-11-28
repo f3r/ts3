@@ -1,4 +1,4 @@
-class Comments < ApplicationController
+class CommentsController < ApplicationController
   before_filter :find_place
 
   def index
@@ -10,7 +10,18 @@ class Comments < ApplicationController
   end
 
   def create
-    
+    comment_params = params[:comment]
+    comment_params[:access_token] = current_token
+    comment_params[:place_id] = params[:place_id]
+
+    logger.info(comment_params)
+    @comment = Heypal::Comment.new(comment_params)
+
+    if @comment.save
+      redirect_to place_path(@place)
+    else
+      render :text => 'error'
+    end
   end
 
   def reply_to_message
@@ -24,6 +35,6 @@ class Comments < ApplicationController
   private
 
   def find_place
-    @place = Heypal::Place.find(params[:id], current_token)
+    @place = Heypal::Place.find(params[:place_id], current_token)
   end
 end

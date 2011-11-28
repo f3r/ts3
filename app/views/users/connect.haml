@@ -38,6 +38,7 @@
 
     .section.span5
       %h2= t(:i_have_an_account)
+      %p Please log in
 
       = form_tag sessions_path do
         = hidden_field_tag :oauth_provider, @oauth_provider
@@ -56,12 +57,4 @@
       %br
       %br
       %br
-      %p
-        This will connect your
-        %br
-        - if @oauth_provider == "twitter"
-          twitter account to your
-        - elsif @oauth_provider == "facebook"
-          facebook account to your
-        %br
-        existing heypal account
+      <p style='text-align: center'><i> SquareStays won't publish anything without your prior consent or share your personal information with third parties.</i></p>

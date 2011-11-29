@@ -1,0 +1,9 @@
+%div.right
+  .user_box
+    .user_photo= placehold(40,40)
+    .user_data
+      .user_name= link_to "User #{reply['user_id']}", '#'
+      .user_role
+        User
+  %div.p
+    = reply['comment']

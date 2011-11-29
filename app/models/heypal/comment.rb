@@ -35,6 +35,16 @@ class Heypal::Comment < Heypal::Base
         return get_errors_on(result)
       end
     end
+
+    def delete(params)
+      result = request("/places/#{params['place_id']}/comments/#{params['id']}.json?access_token=#{params['access_token']}", :delete)
+
+      if result['stat'] == 'ok'
+        return get_data_on(result)
+      else
+        return get_errors_on(result)
+      end
+    end
   end
 
   def initialize(params = {})
@@ -64,4 +74,5 @@ class Heypal::Comment < Heypal::Base
   def new_record?
     self['id'].blank?
   end
+
 end

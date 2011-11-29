@@ -1,4 +1,4 @@
-%div.question-container
+%div.question-container{:id => "qdiv-#{comment['id']}"}
   %div.left
     .user_box
       .user_photo= placehold(40,40)
@@ -8,6 +8,8 @@
           User
     %div.p
       = comment['comment']
+  %div.right
+    = link_to 'X', place_comment_path(comment), :remote => true, :method => :delete
 
   - if comment['replies'].blank?
     -if current_user['id'] == @owner['id']

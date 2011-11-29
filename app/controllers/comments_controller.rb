@@ -16,7 +16,6 @@ class CommentsController < ApplicationController
 
     comment = Heypal::Comment.new(comment_params)
     saved, @comment = comment.save
-    logger.info(@comment.inspect)
 
     if saved
       render :partial => '/comments/add_comment'
@@ -29,8 +28,12 @@ class CommentsController < ApplicationController
     
   end
 
-  def delete
-    
+  def destroy
+    @comment_params = {'id' => params[:id], 'access_token' => current_token, 'place_id' => params[:place_id] }
+    @comment = Heypal::Comment.delete(@comment_params)
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
   end
 
   private

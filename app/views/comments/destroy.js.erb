@@ -1,1 +1,3 @@
-$("#qdiv-<%= @comment_params['id'] %>").remove();
+$("#qdiv-<%= @comment_params['id'] %>").hide("drop", { direction: "left" }, function() {
+  $(this).remove();
+});

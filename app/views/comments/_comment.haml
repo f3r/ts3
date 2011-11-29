@@ -8,8 +8,8 @@
           User
     %div.p
       = comment['comment']
-  %div.right
-    = link_to 'X', place_comment_path(comment), :remote => true, :method => :delete
+    %div{:style => 'float: right;'}
+      = link_to 'X', place_comment_path(comment), :remote => true, :method => :delete, :confirm => 'Delete this Question?'
 
   - if comment['replies'].blank?
     -if current_user['id'] == @owner['id']

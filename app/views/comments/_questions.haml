@@ -38,13 +38,18 @@
     showIndicator($(this));
   });
 
-  $(".open-respond-form").click(function() {
+  $(".open-respond-form").live('click', function() {
     $(this).next().show();
     $(this).hide();
   });
 
-  $(".respond-cancel").click(function() {
+  $(".respond-cancel").live('click', function() {
     var container = $(this).parents(".respond-form");
     container.prev().show();
     container.hide();
+    return false;
+  });
+
+  $(".respond-btn").click(function() {
+    showIndicator($(this));
   });

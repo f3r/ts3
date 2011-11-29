@@ -1,13 +1,6 @@
 class CommentsController < ApplicationController
+  before_filter :login_required
   before_filter :find_place
-
-  def index
-    
-  end
-
-  def show
-    
-  end
 
   def create
     comment_params = params[:comment]
@@ -25,7 +18,21 @@ class CommentsController < ApplicationController
   end
 
   def reply_to_message
-    
+    comment_params = params[:comment]
+    comment_params[:access_token] = current_token
+    comment_params[:place_id] = params[:place_id]
+    comment_params[:replying_to] = params[:comment_id]
+
+    comment = Heypal::Comment.new(comment_params)
+    saved, @comment = comment.save
+
+    if saved
+      respond_to do |format|
+        format.js { render :layout => false }
+      end
+    else
+      render :text => 'error'
+    end
   end
 
   def destroy

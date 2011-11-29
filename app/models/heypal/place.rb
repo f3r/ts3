@@ -96,6 +96,10 @@ class Heypal::Place < Heypal::Base
       p    
     end
 
+    def search(oarams = {})
+
+    end
+
   end
 
   def initialize(params = {})

@@ -7,6 +7,9 @@ en:
   ####################################################################################
   app_name:   Squarestays
   submit:     Submit
+  app_domain: Squarestays.com
+  main_page_title: Squarestays.com
+  footer_text: "&copy; <a href='/'>squarestay.com</a> 2011"
 
   ####################################################################################
   # App Menus

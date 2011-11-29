@@ -3,30 +3,27 @@
   .row
     .span12
       .search-bar
-        %form.form-stacked
-          %fieldset.clearfix
-            .clearfix
-              .input.floatLeft
-                %input{:class => 'span6', :id => 'search-key', :type => 'text', :placeholder => "What are you looking for?" }          
-                %input{:class => 'btn primary', :value =>"Search", :type => 'submit' }          
-              .loc-filter  
-                %strong in Singapore
-                %br            
-                %a{:href => "#"} not where you are? 
-        .toggle
-          %a{:href => "#", :class => "disp-gallery"} 
-          %a{:href => "#", :class => "disp-list current" }       
-  
+        .float-right
+          .toggle
+            %a{:href => "#", :class => "disp-gallery"} 
+            %a{:href => "#", :class => "disp-list current" }
+          .clearfix
+          .controls
+            %select{:class => "medium"}
+              %option Price (Lowest First)
+              %option Price (Highest First) 
+              %option Price/Size (Lowest First) 
+              %option Price/Size (Highest First) 
+              %option Reviews            
+        %h2
+          Singapore, Singapore
+        .clearfix
+          234 Results
       .results        
         .header
           .title
             %h4 About 1,430 results found for "keyword"
-          .controls
-            %select{:class => "medium"}
-              %option Price (Lowest First)
-              %option Price/Size (Lowest First) 
-              %option Price/Size (Highest First) 
-              %option Reviews
+
 
         .alert-message.info No Results Found.          
         

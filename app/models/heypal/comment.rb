@@ -32,7 +32,7 @@ class Heypal::Comment < Heypal::Base
       if result['stat'] == 'ok'
         return get_data_on(result)
       else
-        return get_errors_ond(result)
+        return get_errors_on(result)
       end
     end
   end

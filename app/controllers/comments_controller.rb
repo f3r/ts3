@@ -14,11 +14,12 @@ class CommentsController < ApplicationController
     comment_params[:access_token] = current_token
     comment_params[:place_id] = params[:place_id]
 
-    logger.info(comment_params)
-    @comment = Heypal::Comment.new(comment_params)
+    comment = Heypal::Comment.new(comment_params)
+    saved, @comment = comment.save
+    logger.info(@comment.inspect)
 
-    if @comment.save
-      render :text => 'success'
+    if saved
+      render :partial => '/comments/add_comment'
     else
       render :text => 'error'
     end
@@ -36,5 +37,6 @@ class CommentsController < ApplicationController
 
   def find_place
     @place = Heypal::Place.find(params[:place_id], current_token)
+    @owner = @place['user']
   end
 end

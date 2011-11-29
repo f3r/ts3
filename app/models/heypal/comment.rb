@@ -8,6 +8,16 @@ class Heypal::Comment < Heypal::Base
 
   class << self
 
+    def create(params)
+      result = request("/places/#{params['place_id']}/comments.json", :post, params)
+
+      if result['stat'] == 'ok'
+        return get_data_on(result)
+      else
+        return get_errors_on(result)
+      end
+    end
+
     def find_all(params, access_token)
       result = request("/places/#{params[:place_id]}/comments.json?access_token=#{access_token}")
 
@@ -24,16 +34,6 @@ class Heypal::Comment < Heypal::Base
 
     def get_errors_on(result)
       [false, result["err"]]
-    end
-
-    def create(params)
-      result = request("/places/#{params['place_id']}/comments.json", :post, params)
-
-      if result['stat'] == 'ok'
-        return get_data_on(result)
-      else
-        return get_errors_on(result)
-      end
     end
   end
 

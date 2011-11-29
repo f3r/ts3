@@ -46,21 +46,22 @@
           %li 
             %a{:href => "#calendar-tab"} Calendar
 
-
         .pill-content
           .active#photo-slider
             .viewport
               %ul.overview
-                - @place['photos'].each do |p|
+                - hacked_photo_set = @place['photos'].dup
+                - hacked_photo_set << @place['photos'][0] << @place['photos'][1] # to faken cons to still iterate and display for the last image the first and second image
+                = hacked_photo_set.each_cons(3) do |p1, p2, p3|
                   %li
                     .big
-                      .caption This is a sample caption...                
-                      = image_tag(p['photo']['medium'])
+                      .caption= p1['photo']['name']
+                      = image_tag(p1['photo']['medium'])
                     .small
                       %a{:href => "#"}
-                        = image_tag("http://placehold.it/200x165")
+                        = image_tag(p2['photo']['medium'])
                       %a{:href => "#"}              
-                        = image_tag("http://placehold.it/200x165")
+                        = image_tag(p3['photo']['medium'])
 
             .slider-nav
               %a.buttons.prev{:href => "#"} 

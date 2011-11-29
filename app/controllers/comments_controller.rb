@@ -38,6 +38,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment_params = {'id' => params[:id], 'access_token' => current_token, 'place_id' => params[:place_id] }
     @comment = Heypal::Comment.delete(@comment_params)
+    @type = params[:type]
     respond_to do |format|
       format.js { render :layout => false }
     end

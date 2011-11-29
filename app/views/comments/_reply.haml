@@ -1,4 +1,4 @@
-%div.right
+%div.right{:id => "rdiv-#{reply['id']}"}
   .user_box
     .user_photo= placehold(40,40)
     .user_data
@@ -7,3 +7,5 @@
         User
   %div.p
     = reply['comment']
+  %div{:style => 'float: right;'}
+    = link_to 'X', place_comment_path(reply.merge(:type => 'reply', :qId => comment)), :remote => true, :method => :delete, :confirm => 'Delete this Answer?'

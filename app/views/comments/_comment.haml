@@ -9,21 +9,11 @@
     %div.p
       = comment['comment']
     %div{:style => 'float: right;'}
-      = link_to 'X', place_comment_path(comment), :remote => true, :method => :delete, :confirm => 'Delete this Question?'
+      = link_to 'X', place_comment_path(comment.merge(:type => 'question')), :remote => true, :method => :delete, :confirm => 'Delete this Question?'
 
   - if comment['replies'].blank?
     -if current_user['id'] == @owner['id']
-      %a.open-respond-form.btn.primary Respond
-      = form_for 'comment', :url => place_comment_reply_to_message_path(@place.id, comment['id']), :html => {:class => 'respond-form hide', :remote => true} do |f|
-        %div
-          - unless current_user.avatar.nil?
-            %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
-          - else
-            = placehold(60,60)
-          = f.text_area :comment, :rows => 3, :class => "span10"
-        %div.buttons
-          = button_tag "Cancel", :class => 'btn respond-cancel'
-          = button_tag "Submit", :class => "btn primary respond-btn"
+      = render '/comments/form', :comment_id => comment['id']
 
   -else
-    = render '/comments/reply', :reply => comment['replies'].first
+    = render '/comments/reply', :reply => comment['replies'].first, :comment => comment['id']

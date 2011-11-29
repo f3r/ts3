@@ -1,3 +1,11 @@
-$("#qdiv-<%= @comment_params['id'] %>").hide("drop", { direction: "left" }, function() {
-  $(this).remove();
-});
+<%- if @type.eql?('question') %>
+  $("#qdiv-<%= @comment_params['id'] %>").hide("drop", { direction: "left" }, function() {
+    $(this).remove();
+  });
+<%- else %>
+  $("#rdiv-<%= @comment_params['id'] %>").hide("drop", { direction: "left" }, function() {
+    $(this).remove();
+  });
+
+  $("#qdiv-<%= @comment_params['qId'] %>").append("<%= escape_javascript(render '/comments/form', :comment_id =>  @comment_params['qId']) %>");
+<%- end %>

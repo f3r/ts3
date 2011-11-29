@@ -11,10 +11,10 @@ class Heypal::Comment < Heypal::Base
     def find_all(params, access_token)
       result = request("/places/#{params[:place_id]}/comments.json?access_token=#{access_token}")
 
-      if result["stat"] == 'ok'
+      if result["stat"] == 'ok' && result.key?("comments")
         result["comments"]
       else
-        {}
+        []
       end
     end
 

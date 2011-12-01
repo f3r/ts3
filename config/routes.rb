@@ -2,18 +2,14 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/auth/:provider/callback', to: 'sessions#auth'
   match '/auth/failure', to: 'sessions#fail'
-  get "search/index"
 
-  match '/style_guides' => 'style_guides#index'
-  match '/style_guides/:action' => 'style_guides'
+  get "search/index"
 
   match '/users/item' => 'users#items'
   match '/notifications' => 'notifications#index'
 
   match '/connect' => 'users#connect'
   match '/cities'  => 'places#get_cities'
-
-  resources :products
 
   resources :places do 
 

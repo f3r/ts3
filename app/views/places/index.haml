@@ -3,30 +3,27 @@
   .row
     .span12
       .search-bar
-        %form.form-stacked
-          %fieldset.clearfix
-            .clearfix
-              .input.floatLeft
-                %input{:class => 'span6', :id => 'search-key', :type => 'text', :placeholder => "What are you looking for?" }          
-                %input{:class => 'btn primary', :value =>"Search", :type => 'submit' }          
-              .loc-filter  
-                %strong in Singapore
-                %br            
-                %a{:href => "#"} not where you are? 
-        .toggle
-          %a{:href => "#", :class => "disp-gallery"} 
-          %a{:href => "#", :class => "disp-list current" }       
-  
+        .float-right
+          .toggle
+            %a{:href => "#", :class => "disp-gallery"} 
+            %a{:href => "#", :class => "disp-list current" }
+          .clearfix
+          .controls
+            %select{:class => "medium"}
+              %option Price (Lowest First)
+              %option Price (Highest First) 
+              %option Price/Size (Lowest First) 
+              %option Price/Size (Highest First) 
+              %option Reviews            
+        %h2
+          Singapore, Singapore
+        .clearfix
+          234 Results
       .results        
         .header
           .title
             %h4 About 1,430 results found for "keyword"
-          .controls
-            %select{:class => "medium"}
-              %option Price (Lowest First)
-              %option Price/Size (Lowest First) 
-              %option Price/Size (Highest First) 
-              %option Reviews
+
 
         .alert-message.info No Results Found.          
         
@@ -113,7 +110,7 @@
           %button{ :class=>"btn" } Rent
           %button{ :class=>"btn" } Borrow    
       
-        %form.panel-wrap
+        = form_tag'/places/search', :class => 'panel-wrap', :remote => true do
           %ul.panel-expander 
             %li
               .header 
@@ -123,21 +120,21 @@
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option1" }
                         %span Apartment
                       .right  
                         %span (320)
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option2" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option2" }
                         %span House
                       .right  
                         %span (71)
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option3" }
                         %span Villa
                       .right  
                         %span (17)
@@ -145,7 +142,7 @@
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option1" }
                         %span Room
                       .right  
                         %span (47)
@@ -153,7 +150,7 @@
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option2" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option2" }
                         %span Shared Room
                       .right  
                         %span (19)
@@ -161,7 +158,7 @@
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option3" }
                         %span Dorm
                       .right  
                         %span (87)
@@ -169,7 +166,7 @@
                   %li
                     %label
                       .left
-                        %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option3" }
+                        %input{:type => "checkbox", :name => "place_type", :value => "option3" }
                         %span Other spaces  
                       .right  
                         %span (14)                        
@@ -198,7 +195,7 @@
                     %li
                       %label
                         .left
-                          %input{:type => "checkbox", :name => "optionsCheckboxes", :value => "option1" }
+                          %input{:type => "checkbox", :name => "amenities", :value => "option1" }
                           %span Most Popular
                         .right  
                           %span (300)

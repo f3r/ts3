@@ -271,7 +271,7 @@
         },
         editable: false,
         events: <%= @availabilities.to_json %>,
-        visEnd: <%= DateTime.now.end_of_month.to_date %>
+        visEnd: <%= DateTime.now.end_of_month.to_date %>,
       });
 
       $('#second-calendar').fullCalendar({

@@ -22,6 +22,8 @@ HeyPalFrontEnd::Application.routes.draw do
       put :publish
       put :unpublish
     end
+    
+    get :search, :on => :collection
 
     resources :availabilities
     resources :comments do

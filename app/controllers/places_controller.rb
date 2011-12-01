@@ -128,6 +128,13 @@ class PlacesController < ApplicationController
     render :js => @cities.map.collect{|city| [city['name']]}
   end
 
+  #place search
+  def search
+    @results = Heypal::Place.search(params)
+    render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => @results['current_page'], :place_type_count => @results['place_type_count'],
+      :total_pages => @results['total_pages'], :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false)}
+  end
+
 protected
 
   def find_place

@@ -87,8 +87,26 @@ class Heypal::Place < Heypal::Base
       p    
     end
 
-    def search(oarams =  {})
+    def search(params)
+      q = ''
+      params.each do |k, v|
+        next if k == 'action' || k == 'controller'
 
+        if %w(sort m page per_page).include? k
+          q = "#{k}"
+        #elsif k == 'min_price'
+          #q << "q[#{k}_gteq]"
+        #elsif k == 'max_price'
+          #q << "q[#{k}_lteq]"
+        else
+          q << "q[#{k}]"
+        end
+
+        q << "=#{v}&"
+      end
+      q.chomp!('&')
+
+      request("/places/search.json?#{q}", :get)
     end
 
   end

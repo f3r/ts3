@@ -1,0 +1,74 @@
+%ul.list-display
+  -# places.each do |place|
+  - 3.times do
+    %li
+      .thumb.data-block
+        %img{:src=>"http://placehold.it/150x90"}
+      .info  
+        %h3.title
+          %a{:href => "#"} Comfy Place Near Chunling District
+        .people.data-block
+          .profile-pic
+            %img{:src=>"http://placehold.it/40x40"}
+          .details
+            .name
+              %a.title{:href => "#"} Fer Martinez
+              .micro
+                .type.verified Agent
+
+        .property.data-block
+          .title
+            .type.apartment 
+              Apartment
+          .micro
+            120ft
+            %sup 2 
+        
+        .reviews.data-block
+          .title 16
+          .micro reviews                                    
+                        
+      .price.data-block
+        .figure $198.83
+        .micro Per night
+      
+        
+        
+    
+      .items-gallery.results
+.row.show-grid
+  - 4.times do
+    .span6
+      .box
+        .clearfix
+          .feat
+            .thumb
+              %a{:href => "#"}
+                %img{ :src => "http://placehold.it/205x137" }                  
+          .side    
+            .thumb
+              %a{:href => "#"}
+                %img{ :src => "http://placehold.it/90x60" }
+            .thumb
+              %a{:href => "#"}
+                %img{ :src => "http://placehold.it/90x60" }                      
+        .desc.clearfix    
+          %h3.title
+            %a{:href => "#"} Flat in Shangri-la towers Ortigas
+          .clearfix
+          
+            .property.data-block
+              .title
+                .type.apartment 
+                  Apartment
+              .micro
+                120ft
+                %sup 2 
+
+            .reviews.data-block
+              .title 16
+              .micro reviews                                    
+
+            .price.data-block
+              .title.figure $198.83                  
+              .micro Per night

@@ -58,6 +58,14 @@ module LookupsHelper
     get_currency || 'USD'
   end
 
+  def max_guest_options
+    [['1 Guest', 1], ['2 Guests', 2]]
+  end
+
+  def sort_options
+    [['Price (Lowest First)', 'price_lowest'], ['Price (Highest First)', 'price_highest'], ['Price/Size (Lowest First)', 'price_size_lowest'], ['Price/Size (Highest First)', 'price_size_highest']]
+  end
+
   # Should be of this format:
   # {"date_end"=>[120]}
   def error_codes_to_messages(error_hash)

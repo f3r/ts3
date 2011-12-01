@@ -4,8 +4,7 @@
     .user_data
       .user_name= link_to "User #{reply['user_id']}", '#'
       .user_role
-        User
+        Agent
   %div.p
+    = link_to 'X', place_comment_path(reply.merge(:type => 'reply', :qId => comment)), :remote => true, :method => :delete, :confirm => 'Delete this Answer?', :class => "del hide"
     = reply['comment']
-  %div{:style => 'float: right;'}
-    = link_to 'X', place_comment_path(reply.merge(:type => 'reply', :qId => comment)), :remote => true, :method => :delete, :confirm => 'Delete this Answer?'

@@ -7,9 +7,9 @@
         .user_role
           User
     %div.p
+      = link_to 'X', place_comment_path(comment.merge(:type => 'question')), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
       = comment['comment']
-    %div{:style => 'float: right;'}
-      = link_to 'X', place_comment_path(comment.merge(:type => 'question')), :remote => true, :method => :delete, :confirm => 'Delete this Question?'
+      
 
   - if comment['replies'].blank?
     -if current_user['id'] == @owner['id']

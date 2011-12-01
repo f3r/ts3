@@ -562,6 +562,25 @@ form div.required label:after {
 
     div.p {
       float:left;
+      width:480px;
+      padding:10px;
+      border:1px dotted #DDD;
+      border-radius:5px;
+
+      .del {
+        position:relative;
+        right:-8px;
+        top:-8px;
+        font-weight:bold;
+        float:right;
+        background-color: lighten(@green, 20%);
+        padding:0 3px;
+        border-radius: 5px;
+        
+        &:hover {
+          text-decoration:none;
+        }
+      }
     }
 
     div {
@@ -573,6 +592,10 @@ form div.required label:after {
 
       &.left {
         margin-bottom:10px;
+
+        &:hover div.p .del {
+          display:inline;
+        }
       }
 
       &.right {
@@ -580,6 +603,10 @@ form div.required label:after {
 
         .user_box {
           float:left;
+        }
+
+        &:hover div.p .del {
+          display:inline;
         }
       }
     }

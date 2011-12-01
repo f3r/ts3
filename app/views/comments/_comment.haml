@@ -6,10 +6,13 @@
         .user_name= link_to "User #{comment['user_id']}", '#'
         .user_role
           User
+
+    - if @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
+      = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
+
     %div.p
-      - if @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
-        = link_to 'X', place_comment_path(comment.merge(:type => 'question')), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
-      = comment['comment']
+      %div= comment['comment']
+      %span.time= time_ago_in_words(comment['created_at'])
       
 
   - if comment['replies'].blank?

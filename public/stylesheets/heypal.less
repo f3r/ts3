@@ -560,6 +560,30 @@ form div.required label:after {
       }
     }
 
+    .del {
+      position:relative;
+      right:8px;
+      top:8px;
+      font-weight:bold;
+      float:right;
+      background-color: lighten(@green, 20%);
+      padding:0 3px;
+      border-radius: 5px;
+      line-height:0;
+      
+      &:hover {
+        text-decoration:none;
+      }
+    }
+
+    .save-indicator {
+      position:relative;
+      right:8px;
+      top:8px;
+      float:right;
+      line-height:0;
+    }
+
     div.p {
       float:left;
       width:480px;
@@ -567,26 +591,21 @@ form div.required label:after {
       border:1px dotted #DDD;
       border-radius:5px;
 
-      .del {
-        position:relative;
-        right:-8px;
-        top:-8px;
-        font-weight:bold;
-        float:right;
-        background-color: lighten(@green, 20%);
-        padding:0 3px;
-        border-radius: 5px;
-        
-        &:hover {
-          text-decoration:none;
-        }
+      div {
+        margin-top:20px;
       }
 
-      .save-indicator {
-        position:relative;
-        right:-8px;
-        top:-8px;
+      .owners-answer {
         float:right;
+        position:relative;
+        top: -10px;
+        right: 20px;
+      }
+
+      .time {
+        float:right;
+        font-size: @smallfont;
+        color:#AAA;
       }
     }
 
@@ -600,7 +619,7 @@ form div.required label:after {
       &.left {
         margin-bottom:10px;
 
-        &:hover div.p .del {
+        &:hover .del {
           display:inline;
         }
       }
@@ -612,7 +631,7 @@ form div.required label:after {
           float:left;
         }
 
-        &:hover div.p .del {
+        &:hover .del {
           display:inline;
         }
       }

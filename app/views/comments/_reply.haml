@@ -5,7 +5,12 @@
       .user_name= link_to "User #{reply['user_id']}", '#'
       .user_role
         Agent
+
+  - if @owner['id'] == current_user['id']
+    = link_to 'X', place_comment_path(reply['place_id'], reply['id'], :type => 'reply', :qId => question_id), :remote => true, :method => :delete, :confirm => 'Delete this Answer?', :class => "del hide"
+
   %div.p
-    - if @owner['id'] == current_user['id']
-      = link_to 'X', place_comment_path(reply.merge(:type => 'reply', :qId => question_id)), :remote => true, :method => :delete, :confirm => 'Delete this Answer?', :class => "del hide"
-    = reply['comment']
+    %span.owners-answer
+      Owner's Answer
+    %div= reply['comment']
+    %span.time= time_ago_in_words(reply['created_at'])

@@ -1,10 +1,9 @@
 %div.right{:id => "rdiv-#{reply['id']}"}
   .user_box
-    .user_photo= placehold(40,40)
+    .user_photo= reply['user']['photo'] == 'none' ? placehold(60,60) : image_tag(reply['user']['photo'], :width => 60, :height => 60)
     .user_data
-      .user_name= link_to "User #{reply['user_id']}", '#'
-      .user_role
-        Agent
+      .user_name= link_to reply['user']['name'], '#'
+      .user_role= reply['user']['role']
 
   - if @owner['id'] == current_user['id']
     = link_to 'X', place_comment_path(reply['place_id'], reply['id'], :type => 'reply', :qId => question_id), :remote => true, :method => :delete, :confirm => 'Delete this Answer?', :class => "del hide"

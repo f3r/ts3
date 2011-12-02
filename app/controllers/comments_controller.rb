@@ -21,7 +21,7 @@ class CommentsController < ApplicationController
     comment_params = params[:comment]
     comment_params[:access_token] = current_token
     comment_params[:place_id] = params[:place_id]
-    comment_params[:replying_to] = params[:comment_id]
+    comment_params[:replying_to] = @replying_to = params[:comment_id]
 
     comment = Heypal::Comment.new(comment_params)
     saved, @comment = comment.save
@@ -37,7 +37,10 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment_params = {'id' => params[:id], 'access_token' => current_token, 'place_id' => params[:place_id] }
-    @comment = Heypal::Comment.delete(@comment_params)
+    comment = Heypal::Comment.delete(@comment_params)
+
+    @question_id = params[:qId] if params.key?(:qId)
+
     @type = params[:type]
     respond_to do |format|
       format.js { render :layout => false }

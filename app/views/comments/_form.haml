@@ -1,5 +1,5 @@
 %a.open-respond-form.btn.primary Respond
-= form_for 'comment', :url => place_comment_reply_to_message_path(@place.id, comment_id), :html => {:class => 'respond-form hide', :remote => true} do |f|
+= form_for 'comment', :url => place_comment_reply_to_message_path(place.id, comment_id), :html => {:class => 'respond-form hide', :remote => true} do |f|
   %div
     - unless current_user.avatar.nil?
       %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}

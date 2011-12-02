@@ -1,19 +1,22 @@
 %div.question-container{:id => "qdiv-#{comment['id']}"}
   %div.left
     .user_box
-      .user_photo= placehold(40,40)
+      .user_photo= comment['user']['photo'] == 'none' ? placehold(60,60) : image_tag(comment['user']['photo'], :width => 60, :height => 60) 
       .user_data
-        .user_name= link_to "User #{comment['user_id']}", '#'
-        .user_role
-          User
+        .user_name= link_to comment['user']['name'], '#'
+        .user_role= comment['user']['role']
+
+    - if @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
+      = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
+
     %div.p
-      = comment['comment']
-    %div{:style => 'float: right;'}
-      = link_to 'X', place_comment_path(comment.merge(:type => 'question')), :remote => true, :method => :delete, :confirm => 'Delete this Question?'
+      %div= comment['comment']
+      %span.time= time_ago_in_words(comment['created_at'])
+      
 
   - if comment['replies'].blank?
     -if current_user['id'] == @owner['id']
-      = render '/comments/form', :comment_id => comment['id']
+      = render '/comments/form', :place => @place, :comment_id => comment['id']
 
   -else
-    = render '/comments/reply', :reply => comment['replies'].first, :comment => comment['id']
+    = render '/comments/reply', :reply => comment['replies'].first, :question_id => comment['id']

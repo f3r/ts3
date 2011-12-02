@@ -69,4 +69,11 @@ module PlacesHelper
   def location(place)
     [place['city_name'], place['country_name']].join(',')
   end
+  
+  # FIXME: collapse all availabilities so that they don't show several overlapped
+  # def cleanup_availabilities(foo)
+  #   foo.each do |f|
+  #     
+  #   end
+  # end
 end

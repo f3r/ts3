@@ -50,6 +50,10 @@
     return false;
   });
 
-  $(".respond-btn").click(function() {
+  $(".respond-btn").live('click', function() {
     showIndicator($(this));
+  });
+
+  $(".del").live('click', function() {
+    //showIndicator($(this));
   });

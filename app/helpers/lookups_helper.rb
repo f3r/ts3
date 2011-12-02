@@ -59,7 +59,7 @@ module LookupsHelper
   end
 
   def max_guest_options
-    [['1 Guest', 1], ['2 Guests', 2]]
+    [['1 Guest', 1], ['3 Guests', 3], ['5 Guests', 5], ['10 Guests', 10]]
   end
 
   def sort_options

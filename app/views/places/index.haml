@@ -9,7 +9,7 @@
             = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
           .clearfix
           .controls
-            = select_tag :max_guests_eq, options_for_select(max_guest_options), :class => 'medium' 
+            = select_tag :guests, options_for_select(max_guest_options), :class => 'medium' 
             Sort by 
             = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
         %h2
@@ -47,7 +47,7 @@
                           = check_box_tag :place_type, p_type[1], (@results['place_type_count'][id_name] > 0), :id => "#{id_name}_cbox", :class => 'place_type_cbox', :name => id_name
                           %span= p_type[0]
                         .right
-                          %span{:id => id_name }= "(#{@results['place_type_count'][id_name]})"
+                          %span{:id => id_name, :class => "place_type_counts"}= "(#{@results['place_type_count'][id_name]})"
 
             %li
               .header 
@@ -101,17 +101,13 @@
         $("#search_results").html(data.place_data);
         $("#num_search_results").html(data.results);
 
-        if(data.results == 0) {
-          $('.info').show();
-        }
-
+        $(".place_type_cbox").removeAttr('checked');
+        $(".place_type_counts").html('(0)');
         $.each(place_type_count, function(type, count) {
           $('#' + type).html("(" + count + ")");
 
           if (count > 0) {
             $('#' + type + '_cbox').attr('checked', 'checked');
-          } else {
-            $('#' + type + '_cbox').removeAttr('checked');
           }
         });
 

@@ -97,7 +97,7 @@ class Heypal::Place < Heypal::Base
         next if k == 'action' || k == 'controller'
         next if v.blank?
 
-        if %w(sort m page per_page min_price max_price currency).include? k
+        if %w(sort m page per_page min_price max_price currency guests).include? k
           q << "#{k}"
         else
           q << "q[#{k}]"

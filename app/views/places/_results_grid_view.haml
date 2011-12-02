@@ -10,10 +10,10 @@
           .side    
             .thumb
               %a{:href => "#"}
-                %img{ :src => "http://placehold.it/90x60" }
+                = image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/90x60"), :style => "width:90px;height:60px")
             .thumb
               %a{:href => "#"}
-                %img{ :src => "http://placehold.it/90x60" }
+                = image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/90x60"), :style => "width:90px;height:60px")
         .desc.clearfix
           %h3.title
             = link_to place['title'], place_path(place['id'])
@@ -25,10 +25,6 @@
               .micro
                 = place['size_sqf']
                 %sup 2 
-
-            .reviews.data-block
-              .title= place['reviews_overall']
-              .micro reviews
 
             .price.data-block
               .title.figure= "$#{place['price_per_night']}"

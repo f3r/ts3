@@ -130,14 +130,20 @@ class PlacesController < ApplicationController
 
  #place search
   def index
-    params = {"sort" => 'price_lowest', 'max_guests_eq' => '1'}
+    params = {"sort" => 'price_lowest', 'guests' => '1'}
     @results = Heypal::Place.search(params)
   end
 
   def search
     @results = Heypal::Place.search(params)
-    render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => @results['current_page'], :place_type_count => @results['place_type_count'],
-      :total_pages => @results['total_pages'], :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false)}
+
+    if @results.key?("err") # XXX: handle no results found
+      render :json => {:results => 0, :per_page => 0, :current_page => 0, :place_type_count => {},
+        :total_pages => 0, :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false)}
+    else
+      render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => @results['current_page'], :place_type_count => @results['place_type_count'],
+        :total_pages => @results['total_pages'], :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false)}
+    end
   end
 
 protected

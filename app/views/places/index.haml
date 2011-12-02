@@ -5,28 +5,25 @@
       .search-bar
         .float-right
           .toggle
-            %a{:href => "#", :class => "disp-gallery"} 
-            %a{:href => "#", :class => "disp-list current" }
+            = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
+            = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
           .clearfix
           .controls
-            = select_tag :guests, options_for_select(max_guest_options), :class => 'medium' 
+            = select_tag :max_guests_eq, options_for_select(max_guest_options), :class => 'medium' 
             Sort by 
             = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
         %h2
           Singapore, Singapore
         .clearfix
-          234 Results
-      .results        
+          %span#num_search_results
+            = @results['results']
+          Results
+      .results
         .header
-          .title
-            %h4 About 1,430 results found for "keyword"
 
+        #search_results
+          = render 'search_results', :places => @results['places']
 
-        .alert-message.info No Results Found.          
-        
-        = render :partial => 'search_results'
-                  
-                         
     .span4
       .search-aside
         .toggle.hidden
@@ -43,14 +40,15 @@
               .content
                 %ul{:class => "inputs-list"}
                   - place_types_select.each do |p_type|
+                    - id_name = p_type[0].parameterize('_').singularize
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[1]
+                          = check_box_tag :place_type, p_type[1], (@results['place_type_count'][id_name] > 0), :id => "#{id_name}_cbox", :class => 'place_type_cbox', :name => id_name
                           %span= p_type[0]
-                        .right  
-                          %span (320)
-                      
+                        .right
+                          %span{:id => id_name }= "(#{@results['place_type_count'][id_name]})"
+
             %li
               .header 
                 Price per night
@@ -86,6 +84,8 @@
 :javascript
 
   $("#search_me").click(function() {
+    var search_btn = $(this);
+    showIndicator(search_btn);
     $.ajax({
       url: '/places/search',
       data: {
@@ -94,9 +94,59 @@
         min_price: $("#min_price").val(),
         max_price: $("#max_price").val()
       },
-      success: function() {
-        console.log('I sent');
+      success: function(data) {
+        hideIndicator(search_btn);
+
+        var place_type_count = data.place_type_count;
+        $("#search_results").html(data.place_data);
+        $("#num_search_results").html(data.results);
+
+        if(data.results == 0) {
+          $('.info').show();
+        }
+
+        $.each(place_type_count, function(type, count) {
+          $('#' + type).html("(" + count + ")");
+
+          if (count > 0) {
+            $('#' + type + '_cbox').attr('checked', 'checked');
+          } else {
+            $('#' + type + '_cbox').removeAttr('checked');
+          }
+        });
+
+        if ($("#disp-gallery").hasClass('current')) {
+          $(".show-grid").show();
+          $(".list-display").hide();
+        } else {
+          $(".list-display").show();
+          $(".show-grid").hide();
+        }
       }
     });
     return false;
+  });
+
+  $("#disp-gallery").click(function() {
+    $(".show-grid").show();
+    $(".list-display").hide();
+    $(this).addClass('current');
+    $("#disp-list").removeClass('current');
+    return false;
+  });
+
+  $("#disp-list").click(function() {
+    $(".list-display").show();
+    $(".show-grid").hide();
+    $(this).addClass('current');
+    $("#disp-gallery").removeClass('current');
+    return false;
+  });
+
+  $(".place_type_cbox").change(function() {
+    if ($(this).is(":checked")) {
+      $('[data-place-type="'+ this.name  +'"]').show();
+    } else {
+      $('[data-place-type="'+ this.name +'"]').hide();
+    }
   });

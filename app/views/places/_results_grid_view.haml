@@ -1,0 +1,35 @@
+- places.each do |place|
+  .items-gallery.results
+    .span6{"data-place-type" => place['place_type']['name'].parameterize('_').singularize}
+      .box
+        .clearfix
+          .feat
+            .thumb
+              %a{:href => "#"}
+                = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+          .side    
+            .thumb
+              %a{:href => "#"}
+                %img{ :src => "http://placehold.it/90x60" }
+            .thumb
+              %a{:href => "#"}
+                %img{ :src => "http://placehold.it/90x60" }
+        .desc.clearfix
+          %h3.title
+            = link_to place['title'], place_path(place['id'])
+          .clearfix
+            .property.data-block
+              .title
+                .type.apartment 
+                  = place['place_type']['name']
+              .micro
+                = place['size_sqf']
+                %sup 2 
+
+            .reviews.data-block
+              .title= place['reviews_overall']
+              .micro reviews
+
+            .price.data-block
+              .title.figure= "$#{place['price_per_night']}"
+              .micro Per night

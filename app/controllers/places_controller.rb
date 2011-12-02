@@ -128,7 +128,12 @@ class PlacesController < ApplicationController
     render :js => @cities.map.collect{|city| [city['name']]}
   end
 
-  #place search
+ #place search
+  def index
+    params = {"sort" => 'price_lowest', 'max_guests_eq' => '1'}
+    @results = Heypal::Place.search(params)
+  end
+
   def search
     @results = Heypal::Place.search(params)
     render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => @results['current_page'], :place_type_count => @results['place_type_count'],

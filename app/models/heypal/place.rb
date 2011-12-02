@@ -87,17 +87,18 @@ class Heypal::Place < Heypal::Base
       p    
     end
 
-    def search(params)
+    def search(params = {})
+      # defaults
+      ############
+      params.merge!("currency" => "USD", "country_code_eq" => "SG")
+
       q = ''
       params.each do |k, v|
         next if k == 'action' || k == 'controller'
+        next if v.blank?
 
-        if %w(sort m page per_page).include? k
-          q = "#{k}"
-        #elsif k == 'min_price'
-          #q << "q[#{k}_gteq]"
-        #elsif k == 'max_price'
-          #q << "q[#{k}_lteq]"
+        if %w(sort m page per_page min_price max_price currency).include? k
+          q << "#{k}"
         else
           q << "q[#{k}]"
         end

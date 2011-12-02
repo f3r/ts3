@@ -31,4 +31,12 @@ module AvailabilitiesHelper
       "New Price: #{currency_sign_of(p.currency)} #{s['price_per_night']} per night"
     end
   end
+
+  def price_availability_plain_calendar(s, p) # self, place
+    if s['availability_type'] != 1
+      "#{currency_sign_of(p.currency)} #{s['price_per_night']} / night"
+    else
+      ""
+    end
+  end
 end

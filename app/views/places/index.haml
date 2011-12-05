@@ -1,5 +1,4 @@
 %section.clearfix
-  %h1 Search
   .row
     .span12
       .search-bar
@@ -9,7 +8,7 @@
             = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
           .clearfix
           .controls
-            = select_tag :guests, options_for_select(max_guest_options), :class => 'medium' 
+            = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
             Sort by 
             = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
         %h2
@@ -19,8 +18,6 @@
             = @results['results']
           Results
       .results
-        .header
-
         #search_results
           = render 'search_results', :places => @results['places']
 
@@ -33,7 +30,8 @@
           %button{ :class=>"btn" } Borrow    
 
         %form.panel-wrap
-          %ul.panel-expander 
+          -#%ul.panel-expander
+          %ul.panel-expander
             %li
               .header 
                 Type

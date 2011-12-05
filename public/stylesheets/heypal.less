@@ -122,6 +122,10 @@ body > header{
   top: 0;
   position: absolute;
   z-index: 999;
+
+  > .container {
+    margin-top:10px;
+  }
 }
 
 body {
@@ -139,7 +143,7 @@ body {
 /* The white background content wrapper */
 .content {
   background-color: #fff;
-  padding: 20px 0;
+  padding: 30px 0;
 }
 
 /* Give a quick and non-cross-browser friendly divider */
@@ -758,7 +762,8 @@ ul#wizard-selector {
 
 .wizard-aside.sticky {
   position: fixed;
-  top: 60px;
+  top: 70px;
+  
 }
 
 // Amenities
@@ -1353,7 +1358,16 @@ ul.references{
       background: transparent url(../images/icon.gallery.png) no-repeat center center;
     }    
   }
-  
+
+  &.sticky {
+    position: fixed;
+    top: 70px;
+    width: 678px;
+
+    + .results {
+      margin-top: 85px;
+    }
+  }
 }
 
 //
@@ -1663,6 +1677,12 @@ ul.references{
       margin-bottom: 3px;
     }
   }
+
+  &.sticky {
+    position: fixed;
+    top: 70px;
+    width: 218px;
+  }
 }
 
 
@@ -1680,7 +1700,7 @@ ul.references{
 	margin-top: 3px;	
 	
   .header {
-  	background: #e9e7e7 url(../images/arrow-square.gif) no-repeat right -47px;
+  	background: #e9e7e7 no-repeat right -47px;
   	padding: 10px 10px;
   	margin: 0;
   	font: bold 14px/100% Arial, Helvetica, sans-serif;

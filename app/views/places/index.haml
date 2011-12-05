@@ -53,14 +53,10 @@
               .header 
                 Price per night
               .content
-                .clearfix.textfield
-                  %label Minimum
-                  .input
-                    = text_field :min_price, '', :class => 'small', :id => 'min_price'
-                .clearfix.textfield
-                  %label Maximum
-                  .input
-                    = text_field :max_price, '', :class => 'small', :id => 'max_price'
+                #max_price.float-right 500
+                #min_price 0
+
+                #price-slider
 
             -#%li
               -#.header 
@@ -91,8 +87,8 @@
       data: {
         guests: $("#guests").val(),
         sort: $("#sort").val(),
-        min_price: $("#min_price").val(),
-        max_price: $("#max_price").val()
+        min_price: $("#min_price").html(),
+        max_price: $("#max_price").html()
       },
       success: function(data) {
         hideIndicator(search_btn);
@@ -146,3 +142,15 @@
       $('[data-place-type="'+ this.name +'"]').hide();
     }
   });
+
+  $("#price-slider").slider({
+    range: true,
+    min: 0,
+    max: 500,
+    values: [0, 500],
+    slide: function( event, ui ) {
+      $("#min_price").html(ui.values[0]);
+      $("#max_price").html(ui.values[1]);
+    }
+  });
+

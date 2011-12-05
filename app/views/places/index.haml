@@ -1,5 +1,4 @@
 %section.clearfix
-  %h1 Search
   .row
     .span12
       .search-bar
@@ -9,7 +8,7 @@
             = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
           .clearfix
           .controls
-            = select_tag :guests, options_for_select(max_guest_options), :class => 'medium' 
+            = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
             Sort by 
             = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
         %h2
@@ -19,8 +18,6 @@
             = @results['results']
           Results
       .results
-        .header
-
         #search_results
           = render 'search_results', :places => @results['places']
 
@@ -33,34 +30,33 @@
           %button{ :class=>"btn" } Borrow    
 
         %form.panel-wrap
-          %ul.panel-expander 
+          -#%ul.panel-expander
+          %ul.panel-expander
             %li
               .header 
                 Type
               .content
-                %ul{:class => "inputs-list"}
+                %ul#types-list{:class => "inputs-list"}
                   - place_types_select.each do |p_type|
                     - id_name = p_type[0].parameterize('_').singularize
+                    - next if @results['place_type_count'][id_name] == 0
+
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[1], (@results['place_type_count'][id_name] > 0), :id => "#{id_name}_cbox", :class => 'place_type_cbox', :name => id_name
+                          = check_box_tag :place_type, p_type[1], true, :id => id_name
                           %span= p_type[0]
                         .right
-                          %span{:id => id_name, :class => "place_type_counts"}= "(#{@results['place_type_count'][id_name]})"
+                          %span= "(#{@results['place_type_count'][id_name]})"
 
             %li
               .header 
                 Price per night
               .content
-                .clearfix.textfield
-                  %label Minimum
-                  .input
-                    = text_field :min_price, '', :class => 'small', :id => 'min_price'
-                .clearfix.textfield
-                  %label Maximum
-                  .input
-                    = text_field :max_price, '', :class => 'small', :id => 'max_price'
+                #max_price.float-right 500
+                #min_price 0
+
+                #price-slider
 
             -#%li
               -#.header 
@@ -78,37 +74,29 @@
                   -#%li
                     -#%a{:href => "#"} more amenities
 
-        = button_tag 'Search', :id => 'search_me', :class => 'btn primary'
-
 
 :javascript
 
-  $("#search_me").click(function() {
-    var search_btn = $(this);
-    showIndicator(search_btn);
+  var pull_data = function() {
+    showIndicator($("#search_results"));
+
     $.ajax({
       url: '/places/search',
       data: {
         guests: $("#guests").val(),
         sort: $("#sort").val(),
-        min_price: $("#min_price").val(),
-        max_price: $("#max_price").val()
+        min_price: $("#min_price").html(),
+        max_price: $("#max_price").html()
       },
       success: function(data) {
-        hideIndicator(search_btn);
+        hideIndicator($("#search_results"));
 
-        var place_type_count = data.place_type_count;
         $("#search_results").html(data.place_data);
         $("#num_search_results").html(data.results);
 
-        $(".place_type_cbox").removeAttr('checked');
-        $(".place_type_counts").html('(0)');
-        $.each(place_type_count, function(type, count) {
-          $('#' + type).html("(" + count + ")");
-
-          if (count > 0) {
-            $('#' + type + '_cbox').attr('checked', 'checked');
-          }
+        $("#types-list").empty();
+        $.each(data.place_type_count, function(type, count) {
+          type_builder(type, count);
         });
 
         if ($("#disp-gallery").hasClass('current')) {
@@ -121,6 +109,43 @@
       }
     });
     return false;
+  };
+
+  var type_builder = function(type, count) {
+    if (count == '0') {
+      return;
+    }
+
+    var list = '<li>'+
+      '<label>'+
+        '<div class="left"><input checked="checked" id="'+type+'" type="checkbox" value="1" /> <span>'+type.human_titleize()+'</span></div>' +
+        '<div class="right"><span>('+count+')</span></div>' +
+      '</label>';
+
+    $("#types-list").append(list);
+
+  };
+
+  $("#guests, #sort").change(function() {
+    pull_data();
+  });
+
+  $("#types-list input").live('click', function() {
+    pull_data();
+  });
+
+  $("#price-slider").slider({
+    range: true,
+    min: 0,
+    max: 500,
+    values: [0, 500],
+    slide: function( event, ui ) {
+      $("#min_price").html(ui.values[0]);
+      $("#max_price").html(ui.values[1]);
+    },
+    change: function() {
+      pull_data();
+    }
   });
 
   $("#disp-gallery").click(function() {
@@ -139,10 +164,12 @@
     return false;
   });
 
-  $(".place_type_cbox").change(function() {
-    if ($(this).is(":checked")) {
-      $('[data-place-type="'+ this.name  +'"]').show();
-    } else {
-      $('[data-place-type="'+ this.name +'"]').hide();
-    }
-  });
+  String.prototype.human_titleize = function() {
+    var arr = new Array();
+    $.each(this.split('_'), function(str) {
+      arr.push(this.charAt(0).toUpperCase() + this.slice(1));
+    });
+
+    return arr.join(' ');
+  };
+

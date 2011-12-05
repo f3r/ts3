@@ -1,6 +1,6 @@
 - places.each do |place|
   .items-gallery.results
-    .span6{"data-place-type" => place['place_type']['name'].parameterize('_').singularize}
+    .span6
       .box
         .clearfix
           .feat
@@ -24,7 +24,7 @@
                   = place['place_type']['name']
               .micro
                 = place['size_sqf']
-                %sup 2 
+                &sup2; 
 
             .price.data-block
               .title.figure= "$#{place['price_per_night']}"

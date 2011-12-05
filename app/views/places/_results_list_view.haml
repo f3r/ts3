@@ -1,5 +1,5 @@
 - places.each do |place|
-  %li{"data-place-type" => place['place_type']['name'].parameterize('_').singularize}
+  %li
     .thumb.data-block
       = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
     .info  

@@ -84,6 +84,9 @@ $(function() {
 
           me.hide();
           text_container.show();
+          if($('#search_results').length > 0){
+            window.location.reload();
+          }
         }
       });
     } else {

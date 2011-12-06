@@ -126,6 +126,7 @@ class UsersController < ApplicationController
 
     if logged_in?
       if Heypal::User.update(params)
+        current_user[preference.to_s] = params[preference]
         render :json => {:stat => true}
       else
         render :json => {:stat => false}

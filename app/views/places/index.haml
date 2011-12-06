@@ -13,6 +13,7 @@
             = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
         %h2
           Singapore, Singapore
+        = hidden_field_tag :currency, get_current_currency
         .clearfix
           %span#num_search_results
             = @results['results']
@@ -85,7 +86,8 @@
         guests: $("#guests").val(),
         sort: $("#sort").val(),
         min_price: $("#min_price").html(),
-        max_price: $("#max_price").html()
+        max_price: $("#max_price").html(),
+        currency: $('#currency').val()
       },
       success: function(data) {
         hideIndicator($("#search_results"));

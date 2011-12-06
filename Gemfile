@@ -23,7 +23,7 @@ end
 
 gem 'jquery-rails'
 gem 'dynamic_form'
-gem 'airbrake'
+#gem 'airbrake'
 gem 'omniauth'
 
 gem 'paperclip', :path => 'lib/paperclip', :require => 'paperclip'

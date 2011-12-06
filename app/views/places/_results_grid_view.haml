@@ -6,14 +6,14 @@
           .feat
             .thumb
               %a{:href => "#"}
-                = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+                = image_tag(place['photos'].empty? ? "http://placehold.it/216x144" : place['photos'][0]['photo']['medium'])
           .side    
             .thumb
               %a{:href => "#"}
-                = image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/90x60"), :style => "width:90px;height:60px")
+                = image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/106x70"))
             .thumb
               %a{:href => "#"}
-                = image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/90x60"), :style => "width:90px;height:60px")
+                = image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/106x70"))
         .desc.clearfix
           %h3.title
             = link_to place['title'], place_path(place['id'])

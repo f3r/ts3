@@ -29,7 +29,7 @@ class Heypal::Photo < Heypal::Base
     @photo_id
   end
 
-  has_attached_file :photo, { :styles => { :big_carousel => "451x299>", :small_carousel => "216x144>", :tiny_carousel => "106x70>", :icon_carousel => "40x40!" },
+  has_attached_file :photo, { :styles => { :large => "451x299>", :medium => "216x144>", :small => "106x70>", :tiny => "40x40!" },
                                  :path => "places/:id/photos/:uniq_id/:style.:extension",
                                  :storage => :s3, 
                                  :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",

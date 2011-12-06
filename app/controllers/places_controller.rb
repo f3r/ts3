@@ -138,7 +138,7 @@ class PlacesController < ApplicationController
 
  #place search
   def index
-    params = {"sort" => 'price_lowest', 'guests' => '1'}
+    params = {"sort" => 'price_lowest', 'guests' => '1', 'currency' => get_current_currency}
     @results = Heypal::Place.search(params)
   end
 

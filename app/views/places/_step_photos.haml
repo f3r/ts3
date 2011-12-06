@@ -105,9 +105,14 @@
     $('.active-label').inlineEdit({
       placeholder: '#{t(:click_here_to_add_caption)}',
       save: function(e, data) {
+        trunc = data.value
+        if (data.value.length > 20) {
+          trunc = data.value.substring(0, 20) + '...';
+        }
         img_div = $("#image-" + $(this).attr('data-image-id'));
         img_div.find('img.photo').attr('data-name', data.value);
-        img_div.find('~ .photo_title').html(data.value);
+        img_div.find('img.photo').attr('data-trunc-name', trunc);
+        img_div.find('~ .photo_title').html(trunc);
         syncPhotos();
       }
     });

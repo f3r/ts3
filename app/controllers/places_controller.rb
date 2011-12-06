@@ -154,6 +154,10 @@ class PlacesController < ApplicationController
     end
   end
 
+  def my_places
+    @places = Heypal::Place.my_places(current_token, get_current_currency)
+  end
+
 protected
 
   def find_place

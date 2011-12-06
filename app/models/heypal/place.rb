@@ -109,6 +109,11 @@ class Heypal::Place < Heypal::Base
 
       request("/places/search.json?#{q}", :get)
     end
+    
+    def my_places(access_token, currency)
+      result = request("/users/me/places.json?status=any&currency=#{currency}&access_token=#{access_token}", :get)
+      result['places']
+    end
 
   end
 

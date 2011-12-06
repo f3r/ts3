@@ -1,0 +1,46 @@
+-# .results ul.list-display li
+.row
+  .span16
+    .results.my_places
+      - if @places
+        %ul.list-display
+          - @places.each do |place|
+            %li
+              .span3
+                .thumb.data-block
+                  = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+              .span12
+                .info  
+                  %h3.title
+                    = link_to place['title'], place_path(place['id'])
+                  .row
+                    .span3
+                      .location
+                        = "#{place['city_name']}, #{place['country_name']}"
+                    .span3
+                      .type 
+                        = place['place_type']['name'] 
+                      .micro
+                        = get_current_size_unit == "sqf" ? place['size_sqf'].round(2) : place['size_sqm'].round(2)
+                        = get_current_size_unit
+                    .span3
+                      .price
+                        .figure= "#{get_pref_currency}#{place['price_per_night']} Per night"
+                    .span3.edit_button.hidden
+                      %a.btn.large.small{:title => 'Edit place', :href => "#{wizard_place_path(place['id'])}"}
+                        Edit place
+
+
+:javascript
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("ul.list-display li").hover(
+      function () {
+        $(this).find('.edit_button').removeClass("hidden");
+      },
+      function () {
+        $(this).find('.edit_button').addClass("hidden");
+      }
+    );
+  });
+</script>

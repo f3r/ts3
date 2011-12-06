@@ -64,6 +64,8 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/dashboard'    =>  'users#dashboard', :as => :dashboard
 
+  match '/my_places'    =>  'places#my_places', :as => :my_places
+
   match 'item/received' =>  'items#index'
   root :to => 'home#index'
 

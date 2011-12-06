@@ -7,7 +7,7 @@
           - if logged_in?
             - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
               %li
-                = link_to t(:my_places), '#'
+                = link_to t(:my_places), my_places_path
               %li
                 = link_to t(:profile), profile_path
 

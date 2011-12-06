@@ -1,6 +1,7 @@
 module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
+  SIZE_UNITS = {'sqm' => 'Square meters', 'sqf' => 'Square feet'}
 
   CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
 
@@ -50,12 +51,20 @@ module LookupsHelper
     CURRENCIES[self.get_currency] || 'US$'
   end
 
+  def get_pref_size_unit
+    CURRENCIES[self.get_size_unit] || 'Square feet'
+  end
+
   def get_current_language
     get_language || 'en'
   end
 
   def get_current_currency
     get_currency || 'USD'
+  end
+
+  def get_current_size_unit
+    get_size_unit || 'sqf'
   end
 
   def max_guest_options
@@ -86,5 +95,9 @@ module LookupsHelper
 
   def get_currency
     (current_user['pref_currency'] if logged_in? && !current_user['pref_currency'].blank?) || cookies[:pref_currency] || nil
+  end
+
+  def get_size_unit
+    (current_user['pref_size_unit'] if logged_in? && !current_user['pref_size_unit'].blank?) || cookies[:pref_size_unit] || nil
   end
 end

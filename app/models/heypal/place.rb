@@ -90,7 +90,7 @@ class Heypal::Place < Heypal::Base
     def search(params = {})
       # defaults
       ############
-      params.merge!("currency" => "USD", "country_code_eq" => "SG")
+      params.merge!("country_code_eq" => "SG")
 
       q = ''
       params.each do |k, v|

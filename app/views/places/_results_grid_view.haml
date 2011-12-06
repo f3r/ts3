@@ -4,16 +4,11 @@
       .box
         .clearfix
           .feat
-            .thumb
-              %a{:href => "#"}
-                = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+            .thumb= image_tag(place['photos'].empty? ? "http://placehold.it/216x144" : place['photos'][0]['photo']['medium'])
           .side    
-            .thumb
-              %a{:href => "#"}
-                = image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/90x60"), :style => "width:90px;height:60px")
-            .thumb
-              %a{:href => "#"}
-                = image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/90x60"), :style => "width:90px;height:60px")
+            .thumb= image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/106x70"))
+            .thumb= image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/106x70"))
+
         .desc.clearfix
           %h3.title
             = link_to place['title'], place_path(place['id'])
@@ -23,9 +18,11 @@
                 .type.apartment 
                   = place['place_type']['name']
               .micro
-                = place['size_sqf']
-                &sup2; 
+                = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} m&sup2;")
+                \/
+                = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ft&sup2;")
+
 
             .price.data-block
-              .title.figure= "$#{place['price_per_night']}"
+              .title.figure= "#{get_pref_currency}#{place['price_per_night']}"
               .micro Per night

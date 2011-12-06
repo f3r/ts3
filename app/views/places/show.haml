@@ -56,14 +56,14 @@
                   %li
                     .big
                       .caption= p1['photo']['name']
-                      = image_tag(p1['photo']['medium'], :style => "width:490px;height:340px;")
+                      = image_tag(p1['photo']['large'])
                     .small
                       - if p2.present? && p2['photo'].present? && p2['photo']['medium'].present?
                         %a{:href => "#"}
-                          = image_tag(p2['photo']['medium'], :style => "width:200px;height:165px")
+                          = image_tag(p2['photo']['medium'])
                       - if p3.present? && p3['photo'].present? && p3['photo']['medium'].present?
                         %a{:href => "#"}              
-                          = image_tag(p3['photo']['medium'], :style => "width:200px;height:165px;")
+                          = image_tag(p3['photo']['medium'])
 
             .slider-nav
               %a.buttons.prev{:href => "#"} 
@@ -72,7 +72,7 @@
                 - @place['photos'].each_with_index do |p, i|
                   %li
                     %a{:rel => "#{i}", :class => "pagenum", :href => "#"}
-                      = image_tag(p['photo']['small'], :style => "width:40px;height:40px;")
+                      = image_tag(p['photo']['tiny'])
                     
               %a.buttons.next{:href => "#"}
                 =raw('&raquo;')
@@ -151,23 +151,10 @@
                 .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
 
             .row#amenities-tab
-              .span-one-fourth
-                - amenities_group_1.each do |a|
-                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
-                    = a[0]
-              .span-one-fourth
-                - amenities_group_2.each do |a|
-                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
-                    = a[0]
-              .span-one-fourth
-                - amenities_group_4.each do |a|
-                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
-                    = a[0]
-              .span-one-fourth
-                - amenities_group_3.each do |a|
-                  %label.w-left-icon{:class => "#{@place[a[1].to_s] ? 'check' : 'ekis'}"}
-                    = a[0]
-
+              .span
+                - display_place_amenities(@place).each do |amenity|
+                  %label.w-left-icon.check
+                    = amenity 
       .tabbed-panel.other-info
         %ul.tabs
           -#%li.active

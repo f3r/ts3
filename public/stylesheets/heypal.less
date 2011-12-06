@@ -762,7 +762,7 @@ ul#wizard-selector {
 
 .wizard-aside.sticky {
   position: fixed;
-  top: 70px;
+  top: 60px;
   
 }
 
@@ -994,7 +994,7 @@ ul#wizard-selector {
   }//end header
 
   .tabs{
-    margin-bottom: 7px;
+    margin-bottom: 11px;
   }
   
   .description{
@@ -1043,7 +1043,7 @@ ul#wizard-selector {
   .thumb{
     padding: 4px;
   }  
-  .viewport { float: left; width: 700px; height: 340px; overflow: hidden; position: relative; margin-bottom: 10px; }  
+  .viewport { float: left; width: 700px; height: 299px; overflow: hidden; position: relative; margin-bottom: 11px; }  
   .disable { /*visibility: hidden;*/ opacity: .4; }
   .overview { 
     list-style: none; 
@@ -1057,21 +1057,23 @@ ul#wizard-selector {
       overflow: hidden;
       _zoom: 1;  
       float: left; 
-      margin: 0 20px 0 0; 
-      padding: 1px; 
-      height: 370px; 
+      margin-right: 20px; 
+      height: 321px; 
       width: 700px;
 
       .big, .small{
-        float: left;    
+        float: left;
+        text-align:center;
       }
       .big{
-        width: 490px;
-        margin-right: 10px;
+        width: 451px;
+        margin: 0 11px;
         position: relative;
+        background-color:#D0D0D0;
+        min-height:299px;
         
         .caption{
-          width: 470px;
+          width: 431px;
           position: absolute;
           bottom: 0;
           left: 0;
@@ -1082,15 +1084,19 @@ ul#wizard-selector {
         }
       }  
       .small{
-        width: 200px;
+        width: 216px;
 
         a{
           display: block;
+          background-color:#D0D0D0;
+          min-height: 144px;
+
           &:first-child{
-            margin-bottom: 10px;
+            margin-bottom: 11px;
           }
 
           img{
+            margin: 0 auto;
             display: block;
           }
         }
@@ -1361,11 +1367,11 @@ ul.references{
 
   &.sticky {
     position: fixed;
-    top: 70px;
+    top: 60px;
     width: 678px;
 
     + .results {
-      margin-top: 85px;
+      margin-top: 105px;
     }
   }
 }
@@ -1586,11 +1592,14 @@ ul.references{
   
   .feat{
     float: left;
-    width: 200px;
     
     .thumb{
-      float: left;      
-    }    
+      float: left;
+      width: 216px;
+      min-height: 144px;
+
+      img { margin: 0 auto }
+    }
   }
   
   .side{
@@ -1601,20 +1610,26 @@ ul.references{
     
     .thumb{
       float: left;
-      margin-bottom: 7px;
+      width: 100%;
+      min-height: 70px;
+      margin: 0 auto 4px;
       
       &:last-child{
         margin-bottom: 0;
       }
+
+      img { margin: 0 auto }
     }
     
   }
   
   .thumb{    
     float: none;
-    border: 1px solid #f2f2f2;
-    padding: 4px;
-    .border-radius(3px);
+    border: 0;
+    padding: 0;
+    background-color: #D0D0D0;
+    border-radius:0;
+
     img{ display: block; }
   }
   
@@ -1680,8 +1695,8 @@ ul.references{
 
   &.sticky {
     position: fixed;
-    top: 70px;
-    width: 218px;
+    top: 60px;
+    width: 220px;
   }
 }
 

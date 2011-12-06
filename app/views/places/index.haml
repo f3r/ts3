@@ -13,6 +13,7 @@
             = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
         %h2
           Singapore, Singapore
+        = hidden_field_tag :currency, get_current_currency
         .clearfix
           %span#num_search_results
             = @results['results']
@@ -30,7 +31,6 @@
           %button{ :class=>"btn" } Borrow    
 
         %form.panel-wrap
-          -#%ul.panel-expander
           %ul.panel-expander
             %li
               .header 
@@ -53,8 +53,8 @@
               .header 
                 Price per night
               .content
-                #max_price.float-right 500
-                #min_price 0
+                #max_price.float-right= @max_price
+                #min_price= @min_price
 
                 #price-slider
 
@@ -86,7 +86,8 @@
         guests: $("#guests").val(),
         sort: $("#sort").val(),
         min_price: $("#min_price").html(),
-        max_price: $("#max_price").html()
+        max_price: $("#max_price").html(),
+        currency: $('#currency').val()
       },
       success: function(data) {
         hideIndicator($("#search_results"));
@@ -136,9 +137,10 @@
 
   $("#price-slider").slider({
     range: true,
-    min: 0,
-    max: 500,
-    values: [0, 500],
+    min: #{@min_price},
+    max: #{@max_price},
+    values: [#{@min_price}, #{@max_price}],
+    step: 5,
     slide: function( event, ui ) {
       $("#min_price").html(ui.values[0]);
       $("#max_price").html(ui.values[1]);

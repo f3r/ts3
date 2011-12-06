@@ -58,8 +58,8 @@ module PlacesHelper
   def render_photo(photo)
     p = photo['photo']
 
-    photo_title = p['name'].present? ? p['name'] : t(:no_caption)
-    raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}'  data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' /></div><p class='photo_title'>#{photo_title}</p>"
+    photo_title = p['name'].present? ? truncate(p['name'], :length => 23) : t(:no_caption)
+    raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}'  data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' data-trunc-name='#{truncate(p['name'], :length => 23)}' /></div><p class='photo_title'>#{photo_title}</p>"
   end
   
   def render_photo_title(photo)
@@ -68,6 +68,18 @@ module PlacesHelper
 
   def location(place)
     [place['city_name'], place['country_name']].join(',')
+  end
+
+  def display_place_amenities(place)
+    place_amenities = []
+    all_amenities = amenities_group_1 + amenities_group_2 + amenities_group_3 + amenities_group_4
+    all_amenities.each do |a|
+      if place[a[1].to_s]
+        place_amenities << a[0]
+      end
+    end
+
+    place_amenities
   end
   
   # FIXME: collapse all availabilities so that they don't show several overlapped

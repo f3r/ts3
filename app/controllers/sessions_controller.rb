@@ -10,8 +10,6 @@ class SessionsController < ApplicationController
 
         sign_in @heypal_session
 
-        #save user data in session
-        session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
 
         # IF OAUTH session, create the oauth token as well.
         if params[:oauth_token].present?
@@ -23,10 +21,15 @@ class SessionsController < ApplicationController
                                     })
 
           if (current_user.avatar.nil?)
-            user_data = {'access_token' => current_token, 'avatar_url' => params[:avatar_url]}
+            avatar_pic = params[:oauth_provider].eql?('facebook') ? "#{params[:avatar_url]}?type=large" : params[:avatar_url].gsub('normal', 'bigger')
+            user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
             user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
             user = Heypal::User.update(user_data)
           end
+          session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
+        else
+          #save user data in session
+          session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         end
 
         redirect_to '/dashboard'  
@@ -56,10 +59,13 @@ class SessionsController < ApplicationController
       if @heypal_session.valid?
         sign_in @heypal_session
         #save user data in session
-        session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         if (current_user.avatar.nil?)
-          user_data = {'access_token' => current_token, 'avatar_url' => oauth_image, 'birthdate' => '1966-01-01'}
+          avatar_url = oauth_provider.eql?('facebook') ? oauth_image.gsub('square', 'large') : oauth_image.gsub('normal', 'bigger') 
+          user_data = {'access_token' => current_token, 'avatar_url' => avatar_url, 'birthdate' => '1966-01-01'}
           user = Heypal::User.update(user_data)
+          session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
+        else
+          session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         end
         redirect_to '/dashboard'
       else

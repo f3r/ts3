@@ -136,10 +136,12 @@ class PlacesController < ApplicationController
     render :js => @cities.map.collect{|city| [city['name']]}
   end
 
- #place search
+  # default place search
   def index
     params = {"sort" => 'price_lowest', 'guests' => '1', 'currency' => get_current_currency}
     @results = Heypal::Place.search(params)
+
+    @min_price, @max_price = Heypal::Geo.get_price_range(1, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
   end
 
   def search

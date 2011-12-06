@@ -1,9 +1,9 @@
 %div.question-container{:id => "qdiv-#{comment['id']}"}
   %div.left
     .user_box
-      .user_photo= comment['user']['photo'] == 'none' ? placehold(60,60) : image_tag(comment['user']['photo'], :width => 60, :height => 60) 
+      .user_photo= comment['user']['avatar'].nil? ? placehold(60,60) : image_tag(comment['user']['avatar'], :width => 60, :height => 60) 
       .user_data
-        .user_name= link_to comment['user']['name'], '#'
+        .user_name= link_to "#{comment['user']['first_name']} #{comment['user']['last_name']}", '#'
         .user_role= comment['user']['role']
 
     - if @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']

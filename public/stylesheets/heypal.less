@@ -1591,7 +1591,9 @@ ul.references{
     width: 200px;
     
     .thumb{
-      float: left;      
+      float: left;
+      width: 100%;
+      text-align: center;
     }    
   }
   
@@ -1603,7 +1605,7 @@ ul.references{
     
     .thumb{
       float: left;
-      margin-bottom: 7px;
+      margin-bottom: 4px;
       
       &:last-child{
         margin-bottom: 0;
@@ -1615,9 +1617,9 @@ ul.references{
   .thumb{    
     float: none;
     border: 1px solid #f2f2f2;
-    padding: 4px;
+    padding: 4px 4px 0 4px; /* temp fix */
     .border-radius(3px);
-    img{ display: block; }
+    img{ display: inline; }
   }
   
   h3.title{

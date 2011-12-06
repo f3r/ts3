@@ -1,7 +1,7 @@
 - places.each do |place|
   %li
     .thumb.data-block
-      = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+      = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['med_small'])
     .info  
       %h3.title
         = link_to place['title'], place_path(place['id'])
@@ -19,8 +19,9 @@
           .type.apartment 
             = place['place_type']['name'] 
         .micro
-          = place['size_sqf']
-          &sup2;  
+          = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} m&sup2;")
+          \/
+          = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ft&sup2;")
 
     .price.data-block
       .figure= "#{get_pref_currency}#{place['price_per_night']}"

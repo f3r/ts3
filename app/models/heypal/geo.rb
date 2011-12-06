@@ -22,6 +22,13 @@ class Heypal::Geo < Heypal::Base
       end
     end
 
+    def get_price_range(city_id, currency)
+      results = request("/geo/cities/#{city_id}/price_range.json?currency=#{currency}", :get)
+      if results['stat'] == 'ok'
+        return [results['min_price'], results['max_price']]
+      end
+    end
+
   end
 
 end

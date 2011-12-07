@@ -1,7 +1,7 @@
 module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
-  SIZE_UNITS = {'sqm' => 'Square meters', 'sqf' => 'Square feet'}
+  SIZE_UNITS = {'sqm' => 'm<sup>2</sup>', 'sqf' => 'ft<sup>2</sup>'}
 
   CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
 
@@ -43,6 +43,11 @@ module LookupsHelper
     select_tag :pref_currency, options_for_select(CURRENCIES.map{ |c, t| [t, c]}, current), :class => "hide preference-entry", "data-current" => current
   end
 
+  def pref_size_unit_list
+    current = self.get_current_size_unit
+    select_tag :pref_size_unit, options_for_select(SIZE_UNITS.map{ |c, t| [raw(t), c]}, current), :class => "hide preference-entry", "data-current" => current
+  end
+
   def get_pref_language
     LANGUAGES[self.get_language] || 'English'
   end
@@ -52,7 +57,7 @@ module LookupsHelper
   end
 
   def get_pref_size_unit
-    CURRENCIES[self.get_size_unit] || 'Square feet'
+    CURRENCIES[self.get_size_unit] || 'ft<sup>2</sup>'
   end
 
   def get_current_language

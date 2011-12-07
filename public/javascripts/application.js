@@ -112,7 +112,7 @@ $(function() {
     event.stopPropagation();
   });
 
-  $('.wizard-aside, .search-bar, .search-aside').waypoint(function(event, direction) {
+  $('.wizard-aside, .wrap-searchbar, .search-aside').waypoint(function(event, direction) {
     $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
 	}, {offset: 60});  

@@ -41,12 +41,16 @@
 
 - content_for :aside do
   - if @user['phone_mobile'].blank? or @user['address'].blank?
-    = image_tag("/images/i_profile.png", :style => "float:right;", :id => 'information-missing-fields', :'data-placement' => 'below', :rel => 'twipsy')
+    = image_tag("/images/i_profile.png", 
+      :style => "float:right;", 
+      :id => 'information-missing-fields', 
+      :title => "* E-Mail address<br />* Phone number<br />* Billing Address<br />")
     %br
     %br
     %br
     = "Please fill out required fields to qualify as a Squarestays renter."
-    
+
 :javascript
-  $('information-missing-fields').twipsy();
-  $('information-missing-fields').twipsy('show')
+  $(document).ready(function() {
+    $('#information-missing-fields').twipsy({html:true});
+  });

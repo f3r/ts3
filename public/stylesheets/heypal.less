@@ -1293,7 +1293,19 @@ ul.references{
 
 // Search
 // ------------
+.wrap-searchbar{
+  &.sticky {
+    background: transparent url(../images/bg.spillover.png) repeat-x left top;
+    padding: 20px 0 0;
+    position: fixed;
+    top: 40px;
+    width: 700px;
 
+    + .results {
+      margin-top: 105px;
+    }
+  }  
+}
 
 .search-bar{  
   background: #f8f8f8;
@@ -1365,15 +1377,7 @@ ul.references{
     }    
   }
 
-  &.sticky {
-    position: fixed;
-    top: 60px;
-    width: 678px;
 
-    + .results {
-      margin-top: 105px;
-    }
-  }
 }
 
 //

@@ -1,23 +1,24 @@
 %section.clearfix
   .row
     .span12
-      .search-bar
-        .float-right
-          .toggle
-            = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
-            = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+      .wrap-searchbar
+        .search-bar
+          .float-right
+            .toggle
+              = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
+              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+            .clearfix
+            .controls
+              = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
+              Sort by 
+              = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
+          %h2
+            Singapore, Singapore
+          = hidden_field_tag :currency, get_current_currency
           .clearfix
-          .controls
-            = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
-            Sort by 
-            = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
-        %h2
-          Singapore, Singapore
-        = hidden_field_tag :currency, get_current_currency
-        .clearfix
-          %span#num_search_results
-            = @results['results']
-          Results
+            %span#num_search_results
+              = @results['results']
+            Results
       .results
         #search_results
           = render 'search_results', :places => @results['places']

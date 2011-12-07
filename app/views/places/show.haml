@@ -293,7 +293,8 @@
           longitude: <%= @place['lon'] %>,
           html: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>,
           popup: true
-        }]
+        }],
+        mapType: google.maps.MapTypeId.ROADMAP
       }).css({'width' : '400px', 'height' : '400px'});
   });
   </script>

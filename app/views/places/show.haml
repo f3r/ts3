@@ -84,8 +84,7 @@
                 %a#startslider{:href => "#"} Play
 
           #map-tab
-            %h2 map
-            <div id="map"></div>
+            %div#map
           #calendar-tab
             #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
             #second-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
@@ -252,6 +251,26 @@
 
 :erb
   <script type="text/javascript">
+
+    var map;
+    function initializeMap() {
+      var mapOptions = {
+        zoom: 9,
+        center: new google.maps.LatLng(<%= @place['lat'] %>, <%= @place['lon'] %>),
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+      };
+
+      map = new google.maps.Map(document.getElementById('map'),mapOptions);
+
+
+      var marker = new google.maps.Marker({
+        position: new google.maps.LatLng(<%= @place['lat'] %>, <%= @place['lon'] %>),
+        map: map,
+        title: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>
+      });
+
+    }
+
     $(document).ready(function() {
       $('#first-calendar').fullCalendar({
         header: {
@@ -283,18 +302,12 @@
       $('#second-calendar .fc-header-right .fc-button-next').click(function() {
         $('#first-calendar').fullCalendar('next');
       });
-
-      $('#map').gMap({
-        latitude: <%= @place['lat'] %>,
-        longitude: <%= @place['lon'] %>,
-        zoom: 13,
-        markers: [{
-          latitude: <%= @place['lat'] %>,
-          longitude: <%= @place['lon'] %>,
-          html: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>,
-          popup: true
-        }],
-        mapType: google.maps.MapTypeId.ROADMAP
-      }).css({'width' : '400px', 'height' : '400px'});
   });
+
+  $('.tabs').bind('change', function (e) {
+    if ($(e.target).attr('href') == '#map-tab') {
+      initializeMap();
+    }
+  })
+
   </script>

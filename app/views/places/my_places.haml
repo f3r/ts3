@@ -8,7 +8,7 @@
             %li
               .span3
                 .thumb.data-block
-                  = image_tag(place['photos'].empty? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+                  = image_tag(place['photos'].blank? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
               .span12
                 .info  
                   %h3.title
@@ -21,11 +21,15 @@
                       .type 
                         = place['place_type']['name'] 
                       .micro
-                        = get_current_size_unit == "sqf" ? place['size_sqf'].round(2) : place['size_sqm'].round(2)
-                        =raw get_pref_size_unit
+                        - if !place['size_sqf'].nil? or !place['size_sqm'].nil?
+                          = get_current_size_unit == "sqf" ? place['size_sqf'].round(2) : place['size_sqm'].round(2)
+                          =raw get_pref_size_unit
                     .span3
                       .price
-                        .figure= "#{get_pref_currency}#{place['price_per_night']} Per night"
+                        - if !place['price_per_night'].nil?
+                          .figure= "#{get_pref_currency}#{place['price_per_night']} Per night"
+                        - else
+                          &nbsp;
                     .span3.edit_button.hidden
                       %a.btn.large.small{:title => 'Edit place', :href => "#{wizard_place_path(place['id'])}"}
                         Edit place

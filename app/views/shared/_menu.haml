@@ -2,13 +2,13 @@
   .fill
     .container
       %ul.nav
-        %li.active
+        %li{:class => @current_controller == "places" && @current_action == "index" ? "active" : ""}
           = link_to t(:find_places), '/places'
           - if logged_in?
             - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
-              %li
+              %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
                 = link_to t(:my_places), my_places_path
-              %li
+              %li{:class => @current_controller == "users" && @current_action == "show" ? "active" : ""}
                 = link_to t(:profile), profile_path
 
       - if logged_in?
@@ -16,10 +16,10 @@
           - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
             %li.add-item
               = link_to t(:add_a_place), new_place_path
-          %li.notification
-            = link_to "5", '#', :class => 'dropdown-toggle'
-            %ul.dropdown-menu
-              %li
-                = link_to 'Notification 1', '#'
-              %li
-                = link_to 'Notification 2', '#'
+          -# %li.notification
+          -#   = link_to "5", '#', :class => 'dropdown-toggle'
+          -#   %ul.dropdown-menu
+          -#     %li
+          -#       = link_to 'Notification 1', '#'
+          -#     %li
+          -#       = link_to 'Notification 2', '#'

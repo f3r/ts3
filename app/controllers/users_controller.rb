@@ -117,6 +117,8 @@ class UsersController < ApplicationController
       :pref_language
     elsif params.key?("pref_currency")
       :pref_currency
+    elsif params.key?("pref_size_unit")
+      :pref_size_unit
     end
 
     params['access_token'] = current_token

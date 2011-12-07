@@ -57,7 +57,7 @@ module LookupsHelper
   end
 
   def get_pref_size_unit
-    CURRENCIES[self.get_size_unit] || 'ft<sup>2</sup>'
+    SIZE_UNITS[self.get_size_unit] || 'ft<sup>2</sup>'
   end
 
   def get_current_language

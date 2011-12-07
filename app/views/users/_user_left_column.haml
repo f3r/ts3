@@ -1,23 +1,16 @@
 %section.span3
   - unless @user.avatar.nil?
-    %img{:src => @user.avatar, :style => "width:120px, height:90px;"}
+    %img{:src => @user.avatar, :style => "width:120px"}
   - else
-    = placehold(120,90)
+    = placehold(120,120)
   %h2
     = short_full_name @user
   %p
-    /TODO: To be provided by backend
-    is_Agent?
+    - if !@user['address'].blank?
+      = "#{@user['address']['city']}, #{@user['address']['country']}"
+  %br
   %p
-    /TODO: Retrieve from User Addresses "city, country"
-    Singapore
-  %p
-    39 
-    %span.gray= t(:reviews)
+    - if @user['role'] == "agent"
+      = image_tag "/images/agent_button.png"
   %br
   = render :partial => "user_accounts"
-  %br
-  %p
-    - unless request.fullpath.include?('edit')
-      = link_to t(:account_settings), edit_profile_path
-

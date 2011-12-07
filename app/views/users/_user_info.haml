@@ -1,6 +1,9 @@
 .span8
   /TODO: Add link to edit on the right of the section header
-  .section-header=t(:section_header_user_profile)
+  .section-header
+    =t(:section_header_user_profile)
+    - unless request.fullpath.include?('edit')
+      = link_to t(:account_settings), edit_profile_path, :class => "settings"
   .user_info
     .label_detail
       #{t(:first_name)}
@@ -17,7 +20,9 @@
     .label_detail
       #{t(:billing_address)}
     .user_detail
-      /TODO: Format Billing Address here
+      = "#{@user['address']['street']} #{@user['address']['zip']}"
+      %br
+      = "#{@user['address']['city']} #{@user['address']['country']}"
     .label_detail
       #{t(:mobile_phone)}
     .user_detail
@@ -31,3 +36,7 @@
       #{t(:birthdate)}
     .user_detail
       = date_convert @user['birthdate'] unless @user['birthdate'].blank?
+
+- content_for :aside do
+  - if @user['phone_mobile'].blank? or @user['address'].blank?
+    = "Please fill out required fields to qualify as a Squarestays renter."

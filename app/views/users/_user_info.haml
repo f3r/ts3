@@ -4,47 +4,59 @@
     =t(:section_header_user_profile)
     - unless request.fullpath.include?('edit')
       = link_to t(:account_settings), edit_profile_path, :class => "settings"
-  .user_info
-    .label_detail
-      #{t(:first_name)}
-    .user_detail
-      = @user['first_name']
-    .label_detail
-      #{t(:last_name)}
-    .user_detail
-      = @user['last_name']
-    .label_detail
-      #{t(:email)}
-    .user_detail
-      = @user['email']
-    .label_detail
-      #{t(:billing_address)}
-    .user_detail
-      = "#{@user['address']['street']}"
-      %br
-      = "#{@user['address']['zip']}, #{@user['address']['city']}"
-      %br
-      = "#{@user['address']['country']}"
-    .label_detail
-      #{t(:mobile_phone)}
-    .user_detail
-      = @user['phone_mobile']
-    .label_detail
-      #{t(:gender)}
-    .user_detail
-      /TODO: Map gender to i18n gender_male/gender_female
-      = @user['gender'].nil? ? t(:gender_undisclosed) : @user['gender'].titleize
-    .label_detail
-      #{t(:birthdate)}
-    .user_detail
-      = date_convert @user['birthdate'] unless @user['birthdate'].blank?
+
+  %table.borderless
+    %tr
+      %td.label_detail
+        #{t(:first_name)}
+      %td.user_detail
+        = @user['first_name']
+    %tr
+      %td.label_detail
+        #{t(:last_name)}
+      %td.user_detail
+        = @user['last_name']
+    %tr
+      %td.label_detail
+        #{t(:email)}
+      %td.user_detail
+        = @user['email']
+    %tr
+      %td.label_detail
+        #{t(:billing_address)}
+      %td.user_detail
+        - if !@user['address'].nil?
+          = "#{@user['address']['street']}"
+          %br
+          = "#{@user['address']['zip']}, #{@user['address']['city']}"
+          %br
+          = "#{@user['address']['country']}"
+    %tr
+      %td.label_detail
+        #{t(:mobile_phone)}
+      %td.user_detail
+        = @user['phone_mobile']
+    %tr
+      %td.label_detail
+        #{t(:gender)}
+      %td.user_detail
+        /TODO: Map gender to i18n gender_male/gender_female
+        = @user['gender'].nil? ? t(:gender_undisclosed) : @user['gender'].titleize
+    %tr
+      %td.label_detail
+        #{t(:birthdate)}
+      %td.user_detail
+        = date_convert @user['birthdate'] unless @user['birthdate'].blank?
 
 - content_for :aside do
   - if @user['phone_mobile'].blank? or @user['address'].blank?
+    - required_fields = ""
+    - required_fields = required_fields + "* Phone number<br />" if @user['phone_mobile'].blank?
+    - required_fields = required_fields + "* Billing Address<br />" if @user['address'].blank?
     = image_tag("/images/i_profile.png", 
       :style => "float:right;", 
       :id => 'information-missing-fields', 
-      :title => "* E-Mail address<br />* Phone number<br />* Billing Address<br />")
+      :title => required_fields)
     %br
     %br
     %br
@@ -52,5 +64,5 @@
 
 :javascript
   $(document).ready(function() {
-    $('#information-missing-fields').twipsy({html:true});
+    $('#information-missing-fields').twipsy({html:true,placement:"below"});
   });

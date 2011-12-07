@@ -6,7 +6,7 @@
   %h2
     = short_full_name @user
   %p
-    - if !@user['address'].blank?
+    - if !@user['address'].nil?
       = "#{@user['address']['city']}, #{@user['address']['country']}"
   %br
   %p

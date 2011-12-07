@@ -20,9 +20,11 @@
     .label_detail
       #{t(:billing_address)}
     .user_detail
-      = "#{@user['address']['street']} #{@user['address']['zip']}"
+      = "#{@user['address']['street']}"
       %br
-      = "#{@user['address']['city']} #{@user['address']['country']}"
+      = "#{@user['address']['zip']}, #{@user['address']['city']}"
+      %br
+      = "#{@user['address']['country']}"
     .label_detail
       #{t(:mobile_phone)}
     .user_detail
@@ -39,4 +41,12 @@
 
 - content_for :aside do
   - if @user['phone_mobile'].blank? or @user['address'].blank?
+    = image_tag("/images/i_profile.png", :style => "float:right;", :id => 'information-missing-fields', :'data-placement' => 'below', :rel => 'twipsy')
+    %br
+    %br
+    %br
     = "Please fill out required fields to qualify as a Squarestays renter."
+    
+:javascript
+  $('information-missing-fields').twipsy();
+  $('information-missing-fields').twipsy('show')

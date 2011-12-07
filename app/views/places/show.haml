@@ -85,6 +85,7 @@
 
           #map-tab
             %h2 map
+            <div id="map"></div>
           #calendar-tab
             #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
             #second-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
@@ -282,5 +283,17 @@
       $('#second-calendar .fc-header-right .fc-button-next').click(function() {
         $('#first-calendar').fullCalendar('next');
       });
+
+      $('#map').gMap({
+        latitude: <%= @place['lat'] %>,
+        longitude: <%= @place['lon'] %>,
+        zoom: 12,
+        markers: [{
+          latitude: <%= @place['lat'] %>,
+          longitude: <%= @place['lon'] %>,
+          html: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>,
+          popup: true
+        }]
+      }).css({'width' : '400px', 'height' : '400px'});
   });
   </script>

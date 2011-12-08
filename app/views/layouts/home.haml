@@ -24,3 +24,15 @@
     .container    
       .content
         = render 'shared/footer'      
+    
+    :javascript
+      $(document).ready(function() {
+        $('#teaser-pics') 
+          .after('<div id="nav">') 
+          .cycle({ 
+            fx:     'fade', 
+            speed:  'slow', 
+            timeout: 4000, 
+            pager:  '#nav' 
+          });
+      });

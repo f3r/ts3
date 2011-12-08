@@ -172,8 +172,17 @@ protected
     @owner = @place['user']
   end
   
+<<<<<<< HEAD
   def round5(foo=0)
     return 0 if foo.nil?
     (foo % 5) >= 2.5 ? (foo / 5).to_i * 5 + 5 : (foo / 5).to_i * 5; 
+=======
+  def round5(foo)
+    if !foo.nil?
+      (foo % 5) >= 2.5 ? (foo / 5).to_i * 5 + 5 : (foo / 5).to_i * 5; 
+    else
+      0
+    end
+>>>>>>> a82e13d61db6cfcb6d602a8e731950ea8262628b
   end
 end

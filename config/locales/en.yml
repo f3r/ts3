@@ -210,6 +210,31 @@ en:
   calendar_hint: Please let us know what dates the place is available for rent
 
   ####################################################################################
+  # Place show
+  ####################################################################################
+  preview: This is a Preview
+  per_night: Per Night
+  rent: Rent it!
+
+  map: Map
+  details: Details
+
+  bedroom: Bedrooms
+  bed: Bed
+  guest: Guests
+  bathroom: Bathrooms
+  price_per_night: Price per Night
+  price_per_week: Price per Week
+  price_per_month: Price per Month
+  cancellation: Cancellation
+
+  question: Questions
+  share: Share via
+  your_place: This is your place!
+  edit_place: Edit place
+  message_user: Message User
+
+  ####################################################################################
   # Error codes
   ####################################################################################
   errors:

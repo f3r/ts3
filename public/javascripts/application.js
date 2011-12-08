@@ -161,3 +161,15 @@ $(document).ready(function() {
       }
     });
 });
+
+function disabled_question_button() {
+  $("textarea").keyup(function() {
+    var submit_button = $(this).parents('form').find('button.primary');
+
+    if ($(this).val().length == 0) {
+      submit_button.attr('disabled', 'disabled').addClass('disabled');
+    } else {
+      submit_button.removeAttr('disabled').removeClass('disabled');
+    }
+  }).keyup();
+}

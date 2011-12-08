@@ -31,22 +31,25 @@
           = "#{@user['address']['zip']} #{@user['address']['city']}"
           %br
           = "#{@user['address']['country']}"
-    %tr
-      %td.label_detail
-        #{t(:mobile_phone)}
-      %td.user_detail
-        = @user['phone_mobile']
-    %tr
-      %td.label_detail
-        #{t(:gender)}
-      %td.user_detail
-        /TODO: Map gender to i18n gender_male/gender_female
-        = @user['gender'].nil? ? t(:gender_undisclosed) : @user['gender'].titleize
-    %tr
-      %td.label_detail
-        #{t(:birthdate)}
-      %td.user_detail
-        = date_convert @user['birthdate'] unless @user['birthdate'].blank?
+    - if !@user['mobile_phone'].nil?
+      %tr
+        %td.label_detail
+          #{t(:mobile_phone)}
+        %td.user_detail
+          = @user['phone_mobile']
+    - if !@user['gender'].nil?
+      %tr
+        %td.label_detail
+          #{t(:gender)}
+        %td.user_detail
+          /TODO: Map gender to i18n gender_male/gender_female
+          = @user['gender'].nil? ? t(:gender_undisclosed) : @user['gender'].titleize
+    - if !@user['birthdate'].nil?
+      %tr
+        %td.label_detail
+          #{t(:birthdate)}
+        %td.user_detail
+          = date_convert @user['birthdate'] unless @user['birthdate'].blank?
 
 - content_for :aside do
   - if @user['phone_mobile'].blank? or @user['address'].blank?

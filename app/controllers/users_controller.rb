@@ -115,8 +115,9 @@ class UsersController < ApplicationController
   end
 
   def update
-    params[:user][:birthdate] = "#{params[:birthdate][:day]}/#{params[:birthdate][:month]}/#{params[:birthdate][:year]}"
+    params[:user][:birthdate] = "#{params[:birthdate][:year]}/#{params[:birthdate][:month]}/#{params[:birthdate][:day]}".to_date rescue nil
     @user = Heypal::User.new(params_with_token(:user))
+    @address = Heypal::Address.show('access_token' => current_token)
 
     if @user.valid? && @user.save
       redirect_to profile_path

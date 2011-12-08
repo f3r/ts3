@@ -173,6 +173,7 @@ protected
   end
   
   def round5(foo=0)
+    return 0 if foo.nil?
     (foo % 5) >= 2.5 ? (foo / 5).to_i * 5 + 5 : (foo / 5).to_i * 5; 
   end
 end

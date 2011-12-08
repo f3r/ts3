@@ -538,6 +538,13 @@ footer {
     color: @white;
     .gradientBar(@blue, @blueDark)
   }
+  
+  &.hp-blue {
+    color: @white;
+    .gradientBar(@hp-blue, @hp-blueDark);
+    font-weight: bold;
+    letter-spacing: 0.085em;
+  }  
 
    // Transitions
   .transition(.1s linear all);
@@ -571,6 +578,9 @@ footer {
     padding: 9px 14px 9px;
     .border-radius(6px);
   }
+  
+  
+  
   &.small {
     padding: 7px 9px 7px;
     font-size: @basefont - 2px;

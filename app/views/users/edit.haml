@@ -1,79 +1,99 @@
 = render :partial => 'users/user_left_column'
-%section.span8
-  .section-header #{t(:section_header_user_information)}
-  = coded_errors_for @user
+.edit_profile_page
+  %section.span8
+    .section-header #{t(:section_header_user_information)}
+    = coded_errors_for @user
   
-  = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
-    .input
-      = f.label :first_name, t(:first_name)
-      = f.text_field :first_name
-    .input
-      = f.label :last_name, t(:last_name)
-      = f.text_field :last_name
-    /TODO: Email has a special validation process, please check with Fer
-    .input
-      = f.label :email, t(:email)
-      = f.text_field :email
-    .input
-      = f.label :gender, t(:gender)
-      = f.select :gender, [['undisclosed', 'unknown'],['Male', 'male'], ['Female', 'female']]
-    .input
-      = f.label :phone_mobile, t(:mobile_phone)
-      = f.text_field :phone_mobile
-    .input
-      = f.label :birthdate, t(:birthdate)
-      = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true
-    .clearfix
-    .span3.float-right
-      = submit_tag 'Save', :class => 'btn primary'
-      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
-    .clearfix
+    = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
+      .input
+        = f.label :first_name, t(:first_name)
+        .public
+        = f.text_field :first_name
+      .input
+        = f.label :last_name, t(:last_name)
+        .private
+        = f.text_field :last_name
+      /TODO: Email has a special validation process, please check with Fer
+      .input
+        = f.label :email, t(:email)
+        .private
+        = f.text_field :email
+      .input
+        = f.label :gender, t(:gender)
+        .private
+        = f.select :gender, [['undisclosed', 'unknown'],['Male', 'male'], ['Female', 'female']]
+      .input
+        = f.label :phone_mobile, t(:mobile_phone)
+        .private
+        = f.text_field :phone_mobile
+      .input
+        = f.label :birthdate, t(:birthdate)
+        .private
+        = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true
+      .clearfix
+      .span3.float-right
+        = submit_tag 'Save', :class => 'btn primary'
+        = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+      .clearfix
 
-    /Billing Address Section
-    .section-header #{t(:section_header_billing_address)}
-    .text
-  = form_for :address, :url => user_change_address_path((@user['id'] ? @user['id'] : params[:id])), :method => :put do |f|
-    -# FIXME: coded_errors_for is not working
-    -# = coded_errors_for @address
-    .input
-      = f.label :street, t(:street)
-      = f.text_field :street
-    .input
-      = f.label :city, t(:city)
-      = f.text_field :city
-    .input
-      = f.label :country, t(:country)
-      = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], :include_blank => true)
-    .input
-      = f.label :zip, t(:zip)
-      = f.text_field :zip
-      = f.hidden_field :id
-    .clearfix
-    .span3.float-right
-      = submit_tag 'Save', :class => 'btn primary'
-      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
-    .clearfix
+      /Billing Address Section
+      .section-header #{t(:section_header_billing_address)}
+      .text
+    = form_for :address, :url => user_change_address_path((@user['id'] ? @user['id'] : params[:id])), :method => :put do |f|
+      -# FIXME: coded_errors_for is not working
+      -# = coded_errors_for @address
+      .input
+        = f.label :street, t(:street)
+        .private
+        = f.text_field :street
+      .input
+        = f.label :city, t(:city)
+        .public
+        = f.text_field :city
+      .input
+        = f.label :country, t(:country)
+        .public
+        = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], :include_blank => true)
+      .input
+        = f.label :zip, t(:zip)
+        .private
+        = f.text_field :zip
+        = f.hidden_field :id
+      .clearfix
+      .span3.float-right
+        = submit_tag 'Save', :class => 'btn primary'
+        = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+      .clearfix
 
-  = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
+    = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
 
-    /Password Section
-    .section-header #{t(:section_header_user_password)}
-    .input
-      = label_tag 'Current Password'
-      = text_field_tag 'current_password', '', :placeholder => 'current password'
-    .input
-      = label_tag 'Password'
-      = text_field_tag 'password', ''
-    .input
-      = label_tag 'Re-type Password'
-      = text_field_tag 'password_confirmation', ''
-    .clearfix
-    .span3.float-right
-      = submit_tag 'Save', :class => 'btn primary'
-      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
-    .clearfix
+      /Password Section
+      .section-header #{t(:section_header_user_password)}
+      .input
+        = label_tag 'Current Password'
+        .private
+        = text_field_tag 'current_password', '', :placeholder => 'current password'
+      .input
+        = label_tag 'Password'
+        .private
+        = text_field_tag 'password', ''
+      .input
+        = label_tag 'Re-type Password'
+        .private
+        = text_field_tag 'password_confirmation', ''
+      .clearfix
+      .span3.float-right
+        = submit_tag 'Save', :class => 'btn primary'
+        = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+      .clearfix
 
-    -#Accounts Section
-    .section-header Linked Accounts
-    = render :partial => "users/user_accounts"
-    .clearfix
+      -#Accounts Section
+      .section-header Linked Accounts
+      = render :partial => "users/user_accounts"
+      .clearfix
+
+:javascript
+  $(document).ready(function() {
+    $('div.private').twipsy({html:true,placement:"above", title: function(){return "Private. Only visible to those that have an active transaction with you"} });
+    $('div.public').twipsy({html:true,placement:"above", title: function(){return "Public. Anyone can see this information"} });
+  });

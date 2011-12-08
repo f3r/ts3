@@ -33,8 +33,7 @@ class Heypal::Photo < Heypal::Base
                                  :path => "places/:id/photos/:uniq_id/:style.:extension",
                                  :storage => :s3, 
                                  :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
-                                 :s3_protocol => "http",
-                                 :bucket => "squarestays-img"
+                                 :s3_protocol => "http"
   }
 
 end

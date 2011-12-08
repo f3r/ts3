@@ -162,7 +162,7 @@
             -#%a{:href => '#details-reviews'} Reviews (2)
           %li.active
             %a{:href => '#details-questions'}
-              = "Questions(#{@comments.size})"
+              = "Questions (#{@comments.nil?? 0 : @comments.size})"
         .contents
           .fine-print.pill-content
             -#.row.active#details-reviews

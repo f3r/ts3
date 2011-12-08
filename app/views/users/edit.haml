@@ -44,7 +44,7 @@
       = f.text_field :city
     .input
       = f.label :country, t(:country)
-      = f.country_select(:country)
+      = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], :include_blank => true)
     .input
       = f.label :zip, t(:zip)
       = f.text_field :zip

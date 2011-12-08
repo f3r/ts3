@@ -2099,14 +2099,38 @@ pre.desc {
 
 .start{
   .hub{
-    padding-top: 90px;
+    padding: 90px 5px 0;
     
     h1{
       font-weight: normal;
-      font-size: 18px;
+      font-size: 19px;
+      font-family: 'MyriadPro Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin-bottom: 12px;
+      
+      a{
+        color: #3977b0;
+        font-weight: bold;
+        padding-right: 16px;
+        background: transparent url(../images/blue-arrow-down.png) no-repeat right center;
+        
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+    
+    input{
+      padding: 9px 8px 8px 8px;
+      margin: 0 10px 0 0;
+      float: left;
     }    
+    
+    button{
+      float: left;
+      margin: -1px 0 0 0;
+    }
+    
   }
-  
   .thumb{
     display: block;
     background: #fff;

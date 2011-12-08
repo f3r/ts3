@@ -12,11 +12,11 @@
             %button.btn.primary.large.preview-button
               %span= t(:publish)
 
-
       .preview-header
         %br
         %p= t(:this_is_preview)
         .border.span11      
+
     .accomodation-wrapper
       .header
         .title 
@@ -49,7 +49,8 @@
             .viewport
               %ul.overview
                 - hacked_photo_set = @place['photos'].dup
-                - hacked_photo_set << @place['photos'][0] << @place['photos'][1] # to faken cons to still iterate and display for the last image the first and second image
+                / to faken cons to still iterate and display for the last image the first and second image
+                - hacked_photo_set << @place['photos'][0] << @place['photos'][1]
                 = hacked_photo_set.each_cons(3) do |p1, p2, p3|
                   %li
                     .big
@@ -76,28 +77,16 @@
               %a.buttons.next{:href => "#"}
                 =raw('&raquo;')
 
-            / %a#gotoslide4{:href => "#"} Go to 4  
-            - if false
-              #photo-slider-control
-                %a#stopslider{:href => "#"} Stop
-                %a#startslider{:href => "#"} Play
-
           #map-tab
             %div#map
           #calendar-tab
             #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
             #second-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
 
-
       .description
         .row
           .span8
             %pre.desc= @place.description
-          -#.span4
-            -#.highlight
-              -#%h5 Sample Highlight
-              -#%p Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.    
-
 
       .tabbed-panel.other-info  
         %ul.tabs
@@ -168,6 +157,7 @@
             .row.active#details-questions
               .span
                 = render '/comments/questions'
+
 - content_for :aside do
   .wizard-aside
     - if @preview
@@ -214,9 +204,9 @@
 
 
 :javascript
-  // accomodation photo slider          
-  var oSlider7 = $('#photo-slider');  	
-  if(oSlider7.length > 0){    	
+  // accomodation photo slider
+  var oSlider7 = $('#photo-slider');
+  if(oSlider7.length > 0){
     oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true });
   
     $('#startslider').click(function(){ 
@@ -227,7 +217,7 @@
     $('#stopslider').click(function(){ 
       oSlider7.tinycarousel_stop();
       return false;
-    });		    		
+    });
   }
   
   // search siderbar accordion
@@ -235,7 +225,7 @@
   $(".panel-expander > li:gt(4)").hide();
   $(".panel-expander .header").click(function(){
     $(this).toggleClass("active");
-    $(this).siblings(".header").removeClass("active");      	        
+    $(this).siblings(".header").removeClass("active");
     $(this).next(".content").slideToggle(500)
     return false;
   });
@@ -261,13 +251,11 @@
 
       map = new google.maps.Map(document.getElementById('map'),mapOptions);
 
-
       var marker = new google.maps.Marker({
         position: new google.maps.LatLng(<%= @place['lat'] %>, <%= @place['lon'] %>),
         map: map,
         title: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>
       });
-
     }
 
     $(document).ready(function() {
@@ -308,5 +296,4 @@
       initializeMap();
     }
   })
-
   </script>

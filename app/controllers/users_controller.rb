@@ -43,7 +43,7 @@ class UsersController < ApplicationController
             user = Heypal::User.update(user_data)
           end
         end
-        redirect_to '/dashboard'
+        redirect_to '/places'
       else
         flash[:error] = t(:invalid_confirmation_code)
       end

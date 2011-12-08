@@ -1,16 +1,10 @@
 class SessionsController < ApplicationController
   
   def create
-
     if params[:email].present? && params[:password].present?
-
       @heypal_session = Heypal::Session.create(params)
-
       if @heypal_session.valid?
-
         sign_in @heypal_session
-
-
         # IF OAUTH session, create the oauth token as well.
         if params[:oauth_token].present?
 
@@ -19,7 +13,6 @@ class SessionsController < ApplicationController
                                     :oauth_token => { 
                                         'provider' => params['oauth_provider'], 'uid' => params[:oauth_uid], 'credentials' => {'token' => params[:oauth_token], 'secret' => ''}}
                                     })
-
           if (current_user.avatar.nil?)
             avatar_pic = params[:oauth_provider].eql?('facebook') ? "#{params[:avatar_url]}?type=large" : params[:avatar_url].gsub('normal', 'bigger')
             user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
@@ -31,18 +24,15 @@ class SessionsController < ApplicationController
           #save user data in session
           session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         end
-
-        redirect_to '/dashboard'  
+        redirect_to '/places'  
       else
         flash[:error] = t(:invalid_login)
         redirect_to login_path
       end
-
     else
       flash[:error] = t(:invalid_login)
       redirect_to login_path
     end
-
   end
   
   def auth
@@ -67,25 +57,22 @@ class SessionsController < ApplicationController
         else
           session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         end
-        redirect_to '/dashboard'
+        redirect_to '/places'
       else
         # Ask the user to connect the account
         flash[:notice] = t(:signup_needed_to_connect)
         render :template => 'users/connect'
       end
-
     else
-
       connect
       flash[:notice] = "#{oauth_provider.capitalize} is connected in your account."
-      redirect_to '/dashboard'      
+      redirect_to '/places'      
       return
     end
   end
 
   # Connect FB or TWitter to a logged in and existing Heypal account
   def connect
-
     @create_response = Heypal::Session.create_oauth({
                             :access_token => current_token,
                             :oauth_token => { 
@@ -101,7 +88,7 @@ class SessionsController < ApplicationController
   end
 
   def omniauth
-    @omniauth = request.env['omniauth.auth']    
+    @omniauth = request.env['omniauth.auth']
   end
 
   def omniauth_userinfo
@@ -145,8 +132,4 @@ class SessionsController < ApplicationController
     session[:current_user] = nil
     redirect_to root_path
   end
-
-
-
-
 end

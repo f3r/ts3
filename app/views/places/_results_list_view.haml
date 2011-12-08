@@ -1,7 +1,7 @@
 - places.each do |place|
   %li
     .thumb.data-block
-      = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['med_small'])
+      = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
     .info  
       %h3.title
         = link_to place['title'], place_path(place['id'])

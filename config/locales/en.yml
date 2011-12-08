@@ -7,9 +7,10 @@ en:
   ####################################################################################
   app_name:   Squarestays
   submit:     Submit
+  cancel:     Cancel
   app_domain: Squarestays.com
   main_page_title: Squarestays.com
-  footer_text: "&copy; <a href='/'>squarestay.com</a> 2011"
+  footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
 
   ####################################################################################
   # App Menus
@@ -184,8 +185,13 @@ en:
   unpublish: Unpublish
 
   place_published: Your place is now listed!
-  place_publish_error: Sorry, we can't publish your place because of missing information.
+  place_publish_error: Sorry, we can not publish your place because of missing information.
   place_unpublished: Your place is now invisible
+
+  ####################################################################################
+  # Questions
+  ####################################################################################
+  ask_question: Ask a question
 
   ####################################################################################
   # Photos

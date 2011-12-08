@@ -1,6 +1,6 @@
 -if logged_in?
   - unless current_user['id'] == @owner['id']
-    %a#open-ask-btn.btn.large.primary Ask a question
+    %a#open-ask-btn.btn.large.primary #{t(:ask_question)}
   #ask-form.hide
     = form_for 'comment', :url => place_comments_path(@place), :html => {:id => 'comment-form', :remote => true} do |f|
       %div
@@ -10,11 +10,11 @@
           = placehold(60,60)
         = f.text_area :comment, :rows => 3, :class => "span10"
       %div.buttons
-        = button_tag "Cancel", :id => 'ask-cancel', :class => 'btn'
-        = button_tag "Submit", :id => 'ask-btn', :class => "btn primary"
+        = button_tag t(:cancel), :id => 'ask-cancel', :class => 'btn'
+        = button_tag t(:submit), :id => 'ask-btn',    :class => "btn primary"
 -else
   %a.btn.large.primary{:href => signup_path}
-    Ask a question
+    t(:ask_question)
 
 %br
 %br

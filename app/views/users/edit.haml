@@ -22,7 +22,7 @@
       = f.text_field :phone_mobile
     .input
       = f.label :birthdate, t(:birthdate)
-      = select_date (current_user && current_user.birthdate ? Date.parse(current_user.birthdate) : Date.parse('1/1/1980')), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => Date.parse('1/1/1930').year, :end_year => Date.today.year - 18, :default => Date.parse('1/1/1980')
+      = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true
     .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'
@@ -32,8 +32,7 @@
     /Billing Address Section
     .section-header #{t(:section_header_billing_address)}
     .text
-
-  = form_for :address, :url => user_change_address_path(@user['id']), :method => :put do |f|
+  = form_for :address, :url => user_change_address_path((@user['id'] ? @user['id'] : params[:id])), :method => :put do |f|
     -# FIXME: coded_errors_for is not working
     -# = coded_errors_for @address
     .input

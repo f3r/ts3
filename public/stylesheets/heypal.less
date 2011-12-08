@@ -1433,8 +1433,9 @@ ul.references{
         float: left;
         
         > .title{
-          line-height: 1.9em;          
-          margin-bottom: 6px;
+          line-height: 1em;          
+          margin: 12px 0 6px;
+          font-size:19px;
         } /* title */
       }      
       
@@ -1453,6 +1454,10 @@ ul.references{
         
         &.thumb{
           margin-right: 10px;
+          min-width: 150px;
+          min-height: 100px;
+          
+          img { margin: 0 auto }
         }
         
         .micro{
@@ -1468,6 +1473,7 @@ ul.references{
         &.property{
           background: transparent url(../images/icons/icon.home.png) no-repeat 0 3px;
           padding-left: 25px;
+          margin-top: 25px;
         }
         
       } /* datablock */
@@ -1486,6 +1492,9 @@ ul.references{
       
       .people{
         float: left;
+        width: 225px;
+        margin-top:25px;
+
         .details,
         .profile-pic{
           float: left;

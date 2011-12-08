@@ -7,7 +7,7 @@
         = link_to place['title'], place_path(place['id'])
       .people.data-block
         .profile-pic
-          = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'])
+          = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
         .details
           .name
             = link_to "#{place['user']['first_name']} #{place['user']['last_name']}", '#', :class => 'title'

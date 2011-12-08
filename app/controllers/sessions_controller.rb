@@ -77,6 +77,7 @@ class SessionsController < ApplicationController
     else
 
       connect
+      flash[:notice] = "#{oauth_provider.capitalize} is connected in your account."
       redirect_to '/dashboard'      
       return
     end

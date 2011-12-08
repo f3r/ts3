@@ -14,12 +14,11 @@
       })();
 
   %body
-    = render 'shared/header'
-    
-    .container
-      = flash_messages                  
+    = render 'shared/header'      
+
     .container
       .content
+        = flash_messages                  
         = yield
     .container    
       .content

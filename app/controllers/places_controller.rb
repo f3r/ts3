@@ -57,6 +57,8 @@ class PlacesController < ApplicationController
 
   def preview
     @preview = true
+    @comments = Heypal::Comment.find_all({:place_id => @place.to_param}, current_token)
+
     render(:template => 'places/show', :layout => 'application')
   end
 
@@ -107,7 +109,9 @@ class PlacesController < ApplicationController
                 :filename => params[:Filename],
                 :large => p.photo.url(:large, false),
                 :medium => p.photo.url(:medium, false),
+                :medsmall => p.photo.url(:medsmall, false),
                 :small => p.photo.url(:small, false),
+                :tiny => p.photo.url(:tiny, false),
                 :original => p.photo.url(:original, false)
               }
             }

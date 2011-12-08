@@ -51,6 +51,7 @@ en:
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.
   signup_needed_to_connect:   We need to connect the details to your heypal account, please provide us the following.
   i_have_an_account:          Already a SquareStays member?
+
   ####################################################################################
   # General field names and validation errors
   ####################################################################################
@@ -59,6 +60,7 @@ en:
   password:         Password
   confirm_password: Confirm Password
   terms_and_conditions: Terms and Conditions
+  registration_warning: SquareStays won't publish anything without your prior consent
   
   ####################################################################################
   # Section Headers

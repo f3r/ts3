@@ -864,36 +864,32 @@ ul#wizard-selector {
   .clearfix();
   overflow: hidden;
   
-  a, .label{
+  label{
     float: left;
-  }
-  
-  .label{
     background: none;
     text-transform: none;
     font-weight: normal;
     color: #999;
     font-size: 13px;
     padding: 0;
+    width: auto;
+    margin-right: 5px;
   }
   
-  a{
+  span.st{
     width: 16px;
     height: 16px;
-    display: block;
     text-indent: -9999px;
-    margin-left: 5px;
-    background: #f0f0f0;   
-    
-    &.fb{
-      background: transparent url(../images/icons/facebook.png) 0 0;      
+    margin: 3px 5px 0 0;
+    background: #f0f0f0;
+    float: left; 
+
+    &.st_facebook_custom{
+      background: transparent url(../images/icons/facebook.png) 0 0;
     } 
-    &.tw{
-      background: transparent url(../images/icons/twitter.png) 0 0;      
+    &.st_twitter_custom{
+      background: transparent url(../images/icons/twitter.png) 0 0;
     } 
-    &.gplus{
-      background: transparent url(../images/icons/google.png) 0 0;      
-    }     
   }
 }
 

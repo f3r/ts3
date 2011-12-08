@@ -15,7 +15,7 @@
 
       .preview-header
         %br
-        %p= t(:preview)
+        %p= t(:this_is_preview)
         .border.span11      
     .accomodation-wrapper
       .header
@@ -25,11 +25,10 @@
             %p= "#{@place.city_name}, #{@place.country_name}"
 
             .share
-              %span.label= t(:share)
-              %a.fb{:href => "#"} Facebook
-              %a.tw{:href => "#"} Twitter
-              %a.gplus{:href => "#"} Google Plus
-
+              %label= t(:share)
+              %span.st.st_facebook_custom
+              %span.st.st_twitter_custom
+              %span.st_plusone{:style => 'float:left'}
         .focal
           %h1.price
             = number_to_currency @place.price_per_night 

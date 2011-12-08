@@ -15,8 +15,8 @@ en:
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:    Search
-  my_places:      My Properties
+  find_places:    Find Places
+  my_places:      My Places
   profile:        Profile
   notifications:  Notifications
   add_a_place:    Add a Place
@@ -212,7 +212,7 @@ en:
   ####################################################################################
   # Place show
   ####################################################################################
-  preview: This is a Preview
+  this_is_preview: This is a Preview
   per_night: Per Night
   rent: Rent it!
 

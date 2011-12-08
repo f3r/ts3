@@ -27,10 +27,23 @@ class UsersController < ApplicationController
 
   def confirm
     if params['confirmation_token']
-
-      if params['confirmation_token'].present? && Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
+      result = Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
+      logger.info("CONFIRMATION RESULTS--------- #{result.inspect}")
+      if params['confirmation_token'].present? && result['stat'].eql?('ok') 
         flash[:notice] = t(:user_confirmed) 
-        redirect_to login_path
+        sign_in result
+        #if sign up using fb/twitter
+        auth = Heypal::User.list('access_token' => current_token)
+        unless auth['authentications'].blank?
+          user_auth = auth['authentications'][0]
+          if current_user.avatar.nil?
+            avatar_pic = user_auth['provider'].eql?('facebook') ? "https://graph.facebook.com/#{user_auth['uid']}/picture?type=large" : "http://api.twitter.com/1/users/profile_image/#{user_auth['uid']}.jpg?size=bigger"
+            user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
+            user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
+            user = Heypal::User.update(user_data)
+          end
+        end
+        redirect_to '/dashboard'
       else
         flash[:error] = t(:invalid_confirmation_code)
       end

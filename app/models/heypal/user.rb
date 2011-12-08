@@ -18,7 +18,6 @@ class Heypal::User < Heypal::Base
 
     def confirm(params = {})
       result = request("/users/confirmation.json?confirmation_token=#{params['confirmation_token']}", :get)
-      result['stat'] == 'ok'
     end
 
     def resend_confirmation(params = {})

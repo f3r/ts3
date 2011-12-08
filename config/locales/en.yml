@@ -7,15 +7,12 @@ en:
   ####################################################################################
   app_name:   Squarestays
   submit:     Submit
-  app_domain: Squarestays.com
-  main_page_title: Squarestays.com
-  footer_text: "&copy; <a href='/'>squarestay.com</a> 2011"
 
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:    Search
-  my_places:      My Properties
+  find_places:    Find Places
+  my_places:      My Places
   profile:        Profile
   notifications:  Notifications
   add_a_place:    Add a Place

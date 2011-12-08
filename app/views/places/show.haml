@@ -26,11 +26,12 @@
               Manila, Philippines 
 
             .share
-              %span.label Share via
-              %a.fb{:href => "#"} Facebook
-              %a.tw{:href => "#"} Twitter
-              %a.gplus{:href => "#"} Google Plus
-
+              %label Share via
+              -#%a.fb{:href => "#"} Facebook
+              -#%a.tw{:href => "#"} Twitter
+              %span.st.st_facebook_custom
+              %span.st.st_twitter_custom
+              %span.st_plusone{:style => 'float:left'}
         .focal
           %h1.price
             = number_to_currency @place.price_per_night 

@@ -73,16 +73,17 @@ en:
   ####################################################################################
   # User Profile Data
   ####################################################################################
-  first_name:         First Name
-  last_name:          Last Name
-  gender:             Gender
-  gender_undisclosed: Undisclosed
-  gender_male:        Male
-  gender_female:      Female
-  mobile_phone:       Mobile Phone Number
-  birthdate:          Birthdate
-  billing_address:    Billing Address
-  reviews:            Reviews
+  first_name:          First Name
+  last_name:           Last Name
+  gender:              Gender
+  gender_undisclosed:  Undisclosed
+  gender_male:         Male
+  gender_female:       Female
+  mobile_phone:        Mobile Phone Number
+  birthdate:           Birthdate
+  billing_address:     Billing Address
+  reviews:             Reviews
+  profile_req_message: Please click Account Settings to enter additional information needed to make reservations on SquareStays.
 
   ####################################################################################
   # Authentications
@@ -239,6 +240,18 @@ en:
   ####################################################################################
   sort_by: Sort by
   results: Results
+
+  ####################################################################################
+  # Home page
+  ####################################################################################  
+  homepage_search_but: Find a Place
+  teaser_center_title: Why should you use SquareStays?
+  teaser_1_title:      Flexibility
+  teaser_1_content:    SquareStays offers a variety of properties for stays as short as 1 month or as long as a year
+  teaser_2_title:      Trust
+  teaser_2_content:    SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience
+  teaser_3_title:      Price
+  teaser_3_content:    Squarestays offers great savings compared to staying at a Hotel or Serviced appartment
 
   ####################################################################################
   # Error codes

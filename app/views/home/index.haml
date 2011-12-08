@@ -7,41 +7,38 @@
           = link_to "Singapore", "#"          
         %form  
           .clearfix
-            <input type="text" placeholder="Arriving on" />
-            <button class="btn primary">Find a Place</button>
+            = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'big from-to-picker', "data-date" => :from
+            = button_to t(:homepage_search_but), search_index_path, :class => "btn primary"
     
     .span8
       %a.thumb{:href => "/"}
         = image_tag("http://placehold.it/450x299", :class => 'setblock')
       
 
-
 .tease-blurb
   
   .tease-header
-    Why should you use SquareStays?
+    t(:teaser_center_title)
   
   .row
     .span4
       .wrapper
-        %h4.title Flexibility
+        %h4.title= t(:teaser_1_title)
         %p 
           = image_tag('/images/suitcase.png')
-          SquareStays offers a variety of properties for stays as short as 1 month or as long as a year          
-        
+          = t(:teaser_1_content)
     .span4
       .wrapper
-        %h4.title Trust
+        %h4.title= t(:teaser_2_title)
         %p
-          = image_tag('/images/shield.png')        
-          SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience          
-        
+          = image_tag('/images/shield.png')
+          = t(:teaser_2_content)
     .span4
       .wrapper
-        %h4.title Price
+        %h4.title= t(:teaser_3_title)
         %p
           = image_tag('/images/building.png')
-          Squarestays offers great savings compared to staying at a Hotel or Serviced appartment
+          = t(:teaser_3_content)
         
 .tease-featurette
   .row

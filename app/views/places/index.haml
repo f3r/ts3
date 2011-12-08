@@ -10,7 +10,7 @@
             .clearfix
             .controls
               = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
-              Sort by 
+              = t(:sort_by)
               = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
           %h2
             Singapore, Singapore
@@ -18,7 +18,7 @@
           .clearfix
             %span#num_search_results
               = @results['results']
-            Results
+            = t(:results)
       .results
         #search_results
           = render 'search_results', :places => @results['places']
@@ -34,8 +34,7 @@
         %form.panel-wrap
           %ul.panel-expander
             %li
-              .header 
-                Type
+              .header= t(:type)
               .content
                 %ul#types-list{:class => "inputs-list"}
                   - place_types_select.each do |p_type|
@@ -51,8 +50,7 @@
                           %span= "(#{@results['place_type_count'][id_name]})"
 
             %li
-              .header 
-                Price per night
+              .header= t(:price_per_night)
               .content
                 #max_price.float-right= @max_price
                 #min_price= @min_price

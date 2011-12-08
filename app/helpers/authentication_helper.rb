@@ -5,7 +5,7 @@ module AuthenticationHelper
   end
 
   def sign_in(_session)
-    session['authentication_token'] = _session.authentication_token
+    session['authentication_token'] = _session['authentication_token']
   end
 
   def sign_out

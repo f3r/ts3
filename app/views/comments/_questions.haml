@@ -18,9 +18,10 @@
 
 %br
 %br
-%section.item-questions
-  - @comments.each do |comment|
-    = render '/comments/comment', :comment => comment
+- if !@comments.nil?
+  %section.item-questions
+    - @comments.each do |comment|
+      = render '/comments/comment', :comment => comment
 
 :javascript
   $("#open-ask-btn").click(function() {

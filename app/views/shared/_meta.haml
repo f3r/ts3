@@ -17,6 +17,7 @@
 %link{:rel => "stylesheet", :href => "/stylesheets/south-street/jquery-ui-1.8.16.custom.css"}
 
 %script{:src => '/javascripts/jquery.tinycarousel.min.js', :type => 'text/javascript'}
+%script{:src => '/javascripts/jquery.cycle.all.js', :type => 'text/javascript'}
   
 %script{:src => "/javascripts/jquery.calendar.js", :type => "text/javascript"}
 %link{:rel => "stylesheet", :href => "/stylesheets/jquery.calendar.css", :type => "text/css"}
@@ -44,8 +45,10 @@
 %script{:src => '/javascripts/bootstrap-twipsy.js', :type => 'text/javascript'}
 %script{:src => '/javascripts/bootstrap-tabs.js', :type => 'text/javascript'}
 
+
 %link{:rel => 'stylesheet', :href => '/stylesheets/fullcalendar.css'}
 %script{:src => '/javascripts/fullcalendar.min.js', :type => 'text/javascript'}
+  
 
 = csrf_meta_tag
 
@@ -53,4 +56,12 @@
 = yield :stylesheets
 - if controller_name.eql?('places') && action_name.eql?('show')
   %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
-
+  <meta property="og:title" content="SquareStays" />
+  <meta property="og:type" content="Sharing Place" />
+  <meta property="og:url" content="http://frontend-heypal.heroku.com/" />
+  <meta property="og:image" content="http://frontend-heypal.heroku.com/images/SquareStays.png?1323326660" />
+  <meta property="og:description" content="Sharing place!" />
+  <meta property="og:site_name" content="SquareStay.com" />
+  %script{:type => "text/javascript", :src =>"http://w.sharethis.com/button/buttons.js"}
+  %script{:type => "text/javascript"}
+    stLight.options({publisher: '1137f463-04eb-4f6e-92a9-0fecb345ab69', popup: true});

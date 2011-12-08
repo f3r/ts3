@@ -1,13 +1,13 @@
 - places.each do |place|
   %li
     .thumb.data-block
-      = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['med_small'])
+      = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
     .info  
       %h3.title
         = link_to place['title'], place_path(place['id'])
       .people.data-block
         .profile-pic
-          = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'])
+          = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
         .details
           .name
             = link_to "#{place['user']['first_name']} #{place['user']['last_name']}", '#', :class => 'title'

@@ -7,15 +7,16 @@ en:
   ####################################################################################
   app_name:   Squarestays
   submit:     Submit
+  cancel:     Cancel
   app_domain: Squarestays.com
   main_page_title: Squarestays.com
-  footer_text: "&copy; <a href='/'>squarestay.com</a> 2011"
+  footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
 
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:    Search
-  my_places:      My Properties
+  find_places:    Find Places
+  my_places:      My Places
   profile:        Profile
   notifications:  Notifications
   add_a_place:    Add a Place
@@ -50,6 +51,7 @@ en:
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.
   signup_needed_to_connect:   We need to connect the details to your heypal account, please provide us the following.
   i_have_an_account:          Already a SquareStays member?
+
   ####################################################################################
   # General field names and validation errors
   ####################################################################################
@@ -58,6 +60,7 @@ en:
   password:         Password
   confirm_password: Confirm Password
   terms_and_conditions: Terms and Conditions
+  registration_warning: SquareStays won't publish anything without your prior consent
   
   ####################################################################################
   # Section Headers
@@ -70,16 +73,17 @@ en:
   ####################################################################################
   # User Profile Data
   ####################################################################################
-  first_name:         First Name
-  last_name:          Last Name
-  gender:             Gender
-  gender_undisclosed: Undisclosed
-  gender_male:        Male
-  gender_female:      Female
-  mobile_phone:       Mobile Phone Number
-  birthdate:          Birthdate
-  billing_address:    Billing Address
-  reviews:            Reviews
+  first_name:          First Name
+  last_name:           Last Name
+  gender:              Gender
+  gender_undisclosed:  Undisclosed
+  gender_male:         Male
+  gender_female:       Female
+  mobile_phone:        Mobile Phone Number
+  birthdate:           Birthdate
+  billing_address:     Billing Address
+  reviews:             Reviews
+  profile_req_message: Please click Account Settings to enter additional information needed to make reservations on SquareStays.
 
   ####################################################################################
   # Authentications
@@ -184,8 +188,13 @@ en:
   unpublish: Unpublish
 
   place_published: Your place is now listed!
-  place_publish_error: Sorry, we can't publish your place because of missing information.
+  place_publish_error: Sorry, we can not publish your place because of missing information.
   place_unpublished: Your place is now invisible
+
+  ####################################################################################
+  # Questions
+  ####################################################################################
+  ask_question: Ask a question
 
   ####################################################################################
   # Photos
@@ -200,6 +209,49 @@ en:
 
   calendar: Calendar
   calendar_hint: Please let us know what dates the place is available for rent
+
+  ####################################################################################
+  # Place show
+  ####################################################################################
+  this_is_preview: This is a Preview
+  per_night: Per Night
+  rent: Rent it!
+
+  map: Map
+  details: Details
+
+  bedroom: Bedrooms
+  bed: Bed
+  guest: Guests
+  bathroom: Bathrooms
+  price_per_night: Price per Night
+  price_per_week: Price per Week
+  price_per_month: Price per Month
+  cancellation: Cancellation
+
+  question: Questions
+  share: Share via
+  your_place: This is your place!
+  edit_place: Edit place
+  message_user: Message User
+
+  ####################################################################################
+  # Place index/search
+  ####################################################################################
+  sort_by: Sort by
+  results: Results
+
+  ####################################################################################
+  # Home page
+  ####################################################################################  
+  homepage_search_but: Find a Place
+  teaser_center_title: Why should you use SquareStays?
+  teaser_1_title:      Flexibility
+  teaser_1_content:    SquareStays offers a variety of properties for stays as short as 1 month or as long as a year
+  teaser_2_title:      Trust
+  teaser_2_content:    SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience
+  teaser_3_title:      Price
+  teaser_3_content:    Squarestays offers great savings compared to staying at a Hotel or Serviced appartment
 
   ####################################################################################
   # Error codes

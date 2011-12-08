@@ -15,36 +15,34 @@
 
       .preview-header
         %br
-        %p This is a Preview
+        %p= t(:this_is_preview)
         .border.span11      
     .accomodation-wrapper
       .header
         .title 
           %h1= @place.title
           .meta
-            %p 
-              Manila, Philippines 
+            %p= "#{@place.city_name}, #{@place.country_name}"
 
             .share
-              %span.label Share via
-              %a.fb{:href => "#"} Facebook
-              %a.tw{:href => "#"} Twitter
-              %a.gplus{:href => "#"} Google Plus
-
+              %label= t(:share)
+              %span.st.st_facebook_custom
+              %span.st.st_twitter_custom
+              %span.st_plusone{:style => 'float:left'}
         .focal
           %h1.price
             = number_to_currency @place.price_per_night 
-            %span.sub  Per Night 
-          %a.btn.large.primary Rent it!  
+            %span.sub= t(:per_night) 
+          %a.btn.large.primary= t(:rent)  
 
       .tabbed-panel  
         %ul.tabs
           %li.active  
-            %a{:href => "#photo-slider"} Photos  
+            %a{:href => "#photo-slider"}= t(:photos)
           %li
-            %a{:href => "#map-tab"} Map
+            %a{:href => "#map-tab"}= t(:map)
           %li 
-            %a{:href => "#calendar-tab"} Calendar
+            %a{:href => "#calendar-tab"}= t(:calendar)
 
         .pill-content
           .active#photo-slider
@@ -55,7 +53,8 @@
                 = hacked_photo_set.each_cons(3) do |p1, p2, p3|
                   %li
                     .big
-                      .caption= p1['photo']['name']
+                      - unless p1['photo']['name'].blank?
+                        .caption= p1['photo']['name']
                       = image_tag(p1['photo']['large'])
                     .small
                       - if p2.present? && p2['photo'].present? && p2['photo']['medium'].present?
@@ -103,51 +102,51 @@
       .tabbed-panel.other-info  
         %ul.tabs
           %li.active  
-            %a{:href => "#details-tab"} Details  
+            %a{:href => "#details-tab"}= t(:details)
           %li
-            %a{:href => "#amenities-tab"} Amenities
+            %a{:href => "#amenities-tab"}= t(:amenities)
         .contents
           .fine-print.pill-content
             .row.active#details-tab
               .span3.col
-                %label Type
+                %label= t(:type)
                 .value= @place.place_type
-                %label Size
+                %label= t(:size)
                 .value= raw("#{number_with_precision @place.size_sqm, :strip_insignificant_zeros => true, :precision => 1} m&sup2;")
                 %label &nbsp;
                 .value= raw("#{number_with_precision @place.size_sqf, :strip_insignificant_zeros => true, :precision => 1} ft&sup2;")
               .span2.col
                 - unless @place.num_bedrooms.blank?
-                  %label.sm Bedrooms
+                  %label.sm= t(:bedroom)
                   .value.sm= @place.num_bedrooms
                 - unless @place.num_beds.blank?
-                  %label.sm Bed
+                  %label.sm= t(:bed)
                   .value.sm= @place.num_beds
-                %label.sm Guests
+                %label.sm= t(:guest)
                 .value.sm
                   1
                   = " - #{@place.max_guests}" if @place.max_guests > 1
                 - unless @place.num_bathrooms.blank?
-                  %label.sm Bathrooms
+                  %label.sm= t(:bathroom)
                   .value.sm= @place.num_bathrooms
               .span3.col
-                %label Price per Night
+                %label= t(:price_per_night)
                 .value= number_to_currency @place.price_per_night, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
 
                 - unless @place.price_per_week.blank?
-                  %label Price per Week
+                  %label= t(:price_per_week)
                   .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
                 - unless @place.price_per_month.blank?
-                  %label Price per Month
+                  %label= t(:price_per_month)
                   .value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
               .span4.col
                 - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
-                  %label Final Cleanup
+                  %label= t(:final_cleanup)
                   .value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
                 - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
-                  %label Security Deposit
+                  %label= t(:security_deposit)
                   .value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-                %label Cancellation
+                %label= t(:cancellation)
                 .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
 
             .row#amenities-tab
@@ -161,7 +160,7 @@
             -#%a{:href => '#details-reviews'} Reviews (2)
           %li.active
             %a{:href => '#details-questions'}
-              = "Questions(#{@comments.size})"
+              = "#{t(:question)} (#{@comments.nil?? 0 : @comments.size})"
         .contents
           .fine-print.pill-content
             -#.row.active#details-reviews
@@ -200,9 +199,9 @@
             = t(:calendar)
     - else
       - if logged_in? && @owner['id'].eql?(current_user['id'])
-        %p This is your place!
+        %p= t(:your_place)
         %a.btn.large.primary{:title => 'Edit place', :href => "#{wizard_place_path(@place)}"}
-          Edit place
+          = t(:edit_place)
       - else
         %ul.references
           %li
@@ -211,7 +210,7 @@
           %li.check= @owner['role'].capitalize
           -#%li.reviews 71 reviews
           %li
-            %a.btn.large.primary Message User
+            %a.btn.large.primary= t(:message_user)
 
 
 :javascript

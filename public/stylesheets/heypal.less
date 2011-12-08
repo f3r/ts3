@@ -864,36 +864,32 @@ ul#wizard-selector {
   .clearfix();
   overflow: hidden;
   
-  a, .label{
+  label{
     float: left;
-  }
-  
-  .label{
     background: none;
     text-transform: none;
     font-weight: normal;
     color: #999;
     font-size: 13px;
     padding: 0;
+    width: auto;
+    margin-right: 5px;
   }
   
-  a{
+  span.st{
     width: 16px;
     height: 16px;
-    display: block;
     text-indent: -9999px;
-    margin-left: 5px;
-    background: #f0f0f0;   
-    
-    &.fb{
-      background: transparent url(../images/icons/facebook.png) 0 0;      
+    margin: 3px 5px 0 0;
+    background: #f0f0f0;
+    float: left; 
+
+    &.st_facebook_custom{
+      background: transparent url(../images/icons/facebook.png) 0 0;
     } 
-    &.tw{
-      background: transparent url(../images/icons/twitter.png) 0 0;      
+    &.st_twitter_custom{
+      background: transparent url(../images/icons/twitter.png) 0 0;
     } 
-    &.gplus{
-      background: transparent url(../images/icons/google.png) 0 0;      
-    }     
   }
 }
 
@@ -1437,8 +1433,9 @@ ul.references{
         float: left;
         
         > .title{
-          line-height: 1.9em;          
-          margin-bottom: 6px;
+          line-height: 1em;          
+          margin: 12px 0 6px;
+          font-size:19px;
         } /* title */
       }      
       
@@ -1457,6 +1454,10 @@ ul.references{
         
         &.thumb{
           margin-right: 10px;
+          min-width: 150px;
+          min-height: 100px;
+          
+          img { margin: 0 auto }
         }
         
         .micro{
@@ -1472,6 +1473,7 @@ ul.references{
         &.property{
           background: transparent url(../images/icons/icon.home.png) no-repeat 0 3px;
           padding-left: 25px;
+          margin-top: 25px;
         }
         
       } /* datablock */
@@ -1490,6 +1492,9 @@ ul.references{
       
       .people{
         float: left;
+        width: 225px;
+        margin-top:25px;
+
         .details,
         .profile-pic{
           float: left;
@@ -2096,4 +2101,179 @@ pre.desc {
 #map {
   height: 400px !important;
   width: 690px !important;
+}
+
+
+// index
+
+.start{
+  .hub{
+    padding: 90px 5px 0;
+    
+    h1{
+      font-weight: normal;
+      font-size: 19px;
+      font-family: 'MyriadPro Regular', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      margin-bottom: 12px;
+      
+      a{
+        color: #3977b0;
+        font-weight: bold;
+        padding-right: 16px;
+        background: transparent url(../images/blue-arrow-down.png) no-repeat right center;
+        
+        &:hover{
+          text-decoration: none;
+        }
+      }
+    }
+    
+    input.textbox{
+      padding: 9px 8px 8px 8px;
+      margin: 0 10px 0 0;
+      float: left;
+    }    
+    
+    .btn{
+      float: left;
+      margin: -1px 0 0 0;
+      padding: 9px 14px 9px;
+      width: auto;
+    }
+    
+  }
+  
+  #teaser-pics{
+    height: 309px;
+    
+    .thumb{      
+      display: block;
+      background: #fff;
+      -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+      padding: 4px;
+      border: 1px solid #c0c0c0;
+      position: relative;
+      width: 450px;
+      height: 296px;
+      overflow: hidden;
+      
+      img{
+        display: block;
+        width: 450px;
+        height: 296px;        
+      }
+      
+      .description{
+        color: #f0f0f0;
+        background: transparent url(../images/glass.black.png) repeat 0 0;
+        width: 430px;
+        height: 40px;
+        padding: 10px;        
+        position: absolute;
+        left: 4px;
+        font-size: 12px;
+        bottom: 4px;
+        z-index: 2;
+      }
+    }    
+  }
+
+  #nav{
+    text-align: center;
+    padding: 10px 195px;
+    overflow: hidden;
+    a{
+      height: 10px;
+      width: 10px;
+      background:  transparent url(../images/dot.normal.png) no-repeat center center;
+      text-indent: -9999px;
+      float: left;
+      margin: 0 2px;
+      &.activeSlide{
+        background:  transparent url(../images/dot.em.png) no-repeat center center;
+      }
+    }
+  }
+  
+}
+
+.tease-blurb{
+  border: 1px solid #c0c0c0;
+  -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+  margin-top: 40px;
+  padding: 40px 19px 19px 19px;
+  position: relative ;
+  
+  .tease-header{
+    position: absolute;
+    top: -20px;
+    left: 116px;
+    background: transparent url(../images/teaser-header.png) no-repeat 0 0;
+    text-indent: -9999px;
+    z-index: 1;
+    width: 710px;
+    height: 49px;
+  }
+  
+  .row{
+    padding: 0 100px;
+  }
+    
+  .wrapper{
+    background: #ebebeb;
+    border: 1px solid #c0c0c0;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+    overflow: hidden;
+    padding: 5px 13px 13px 13px;
+    height: 184px;
+    
+    .title{
+      text-align: center;
+      font-weight: normal;
+    }
+    
+    img{
+      float: right;
+      margin-left: 10px;
+    }
+  }
+}
+
+.tease-featurette{
+  margin-top: 30px;
+  .wrapper{
+    background: #fff;
+    border: 1px solid #c0c0c0;
+    -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
+    overflow: hidden;
+    padding: 10px 19px 19px 19px;
+    
+    p{
+      margin-bottom: 0;
+    }
+    
+    p + p{
+      margin: 10px 0;
+    }
+    
+    .title{
+      font-weight: normal;
+      background: none;
+      padding: 0;
+      width: auto;
+      text-align: left;
+      margin-bottom: 5px;
+    }
+    
+  &.feat-place img{
+    margin-top: 10px;
+    display: block;
+  }  
+    
+   &.about img{
+      float: right;
+      display: block;
+      margin-left: 10px;
+    }
+  }
 }

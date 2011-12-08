@@ -53,6 +53,8 @@ HeyPalFrontEnd::Application.routes.draw do
       post :publish
     end
 
+    match '/change_address' => "addresses#update"
+
   end
 
   resources :sessions

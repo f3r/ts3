@@ -1,4 +1,4 @@
-= render :partial => 'user_left_column'
+= render :partial => 'users/user_left_column'
 %section.span8
   .section-header #{t(:section_header_user_information)}
   = coded_errors_for @user
@@ -24,12 +24,38 @@
       = f.label :birthdate, t(:birthdate)
       = select_date (current_user && current_user.birthdate ? Date.parse(current_user.birthdate) : Date.parse('1/1/1980')), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => Date.parse('1/1/1930').year, :end_year => Date.today.year - 18, :default => Date.parse('1/1/1980')
     .clearfix
+    .span3.float-right
+      = submit_tag 'Save', :class => 'btn primary'
+      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+    .clearfix
 
     /Billing Address Section
     .section-header #{t(:section_header_billing_address)}
     .text
-      Please include your address edit here
+
+  = form_for :address, :url => user_change_address_path(@user['id']), :method => :put do |f|
+    -# FIXME: coded_errors_for is not working
+    -# = coded_errors_for @address
+    .input
+      = f.label :street, t(:street)
+      = f.text_field :street
+    .input
+      = f.label :city, t(:city)
+      = f.text_field :city
+    .input
+      = f.label :country, t(:country)
+      = f.country_select(:country)
+    .input
+      = f.label :zip, t(:zip)
+      = f.text_field :zip
+      = f.hidden_field :id
     .clearfix
+    .span3.float-right
+      = submit_tag 'Save', :class => 'btn primary'
+      = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+    .clearfix
+
+  = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
 
     /Password Section
     .section-header #{t(:section_header_user_password)}
@@ -43,11 +69,12 @@
       = label_tag 'Re-type Password'
       = text_field_tag 'password_confirmation', ''
     .clearfix
-
-    -#Accounts Section
-    .section-header Linked Accounts
-    = render :partial => "user_accounts"
-    .clearfix
     .span3.float-right
       = submit_tag 'Save', :class => 'btn primary'
       = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+    .clearfix
+
+    -#Accounts Section
+    .section-header Linked Accounts
+    = render :partial => "users/user_accounts"
+    .clearfix

@@ -21,16 +21,14 @@
         #{t(:email)}
       %td.user_detail
         = @user['email']
-    %tr
-      %td.label_detail
-        #{t(:billing_address)}
-      %td.user_detail
-        - if !@user['address'].nil?
+    - if !@user['address'].nil?
+      %tr
+        %td.label_detail
+          #{t(:billing_address)}
+        %td.user_detail
           = "#{@user['address']['street']}"
           %br
-          = "#{@user['address']['zip']}, #{@user['address']['city']}"
-          %br
-          = "#{@user['address']['country']}"
+          = "#{@user['address']['zip']}, #{@user['address']['city']}, #{@user['address']['country']}"
     %tr
       %td.label_detail
         #{t(:mobile_phone)}

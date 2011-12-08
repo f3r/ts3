@@ -206,7 +206,7 @@
         %ul.references
           %li
             %img{:src => @owner['avatar'], :style => "width: 100px; height: 100px;"}
-          %li= short_full_name @owner
+          %li= link_to short_full_name(@owner), user_path(@owner['id'])
           %li.check= @owner['role'].capitalize
           -#%li.reviews 71 reviews
           %li

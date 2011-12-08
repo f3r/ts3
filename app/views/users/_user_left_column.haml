@@ -12,5 +12,8 @@
   %p
     - if @user['role'] == "agent"
       = image_tag "/images/agent_button.png"
-  %br
-  = render :partial => "users/user_accounts"
+  - if logged_in? && !params[:id] && current_user['id'] == @user['id']
+    %br
+    = render :partial => "users/user_accounts"
+  - elsif logged_in? && params[:id] && current_user['id'] != @user['id']
+    %a.btn.medium.primary= t(:message_user)

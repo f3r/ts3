@@ -40,6 +40,16 @@ class Heypal::User < Heypal::Base
       self.new(result['user'])
     end
 
+    def info(params = {})
+      result = request("/users/#{params['id']}/info.json", :get, params)
+      self.new(result['user'])
+    end
+    
+    def places(params = {})
+      result = request("/users/#{params['id']}/places.json?status=published", :get, params)
+      result['places']
+    end
+
     def update(params = {})
       result = request("/users.json?access_token=#{params['access_token']}", :put, params)
       result['stat'] == 'ok'

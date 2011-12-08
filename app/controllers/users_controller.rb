@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-
   def new
     @user = Heypal::User.new
   end
@@ -104,8 +103,14 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = Heypal::User.show('access_token' => current_token)
-    @user_auth = Heypal::User.list('access_token' => current_token)
+    if logged_in? && params['id'].blank?
+      @user = Heypal::User.show('access_token' => current_token)
+      @user_auth = Heypal::User.list('access_token' => current_token)
+    else
+      @user = Heypal::User.info('id' => params[:id])
+      @places = Heypal::User.places('id' => params[:id])
+      render :layout => 'plain'
+    end
   end
 
   def edit

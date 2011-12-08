@@ -1,0 +1,19 @@
+.span15
+  %span3.float-left
+    %a{:href => "/users/#{m['from']['id']}"} 
+      - unless m['from']['avatar'].nil?
+        %img{:src => m['from']['avatar'], :style => "width:60px"}
+      - else
+        = placehold(60,60)
+
+  .span12
+    %div{:class => "alert-message info"}
+      %b= m['from']['first_name'][0] + ". " + m['from']['last_name']
+      %br
+      = m['message']
+
+    %div.float-right{:style => "margin-top: -20px; margin-bottom:15px"}
+      %span.created_at
+        %i 
+          %span.time= time_ago_in_words(Time.parse(m['date']))
+      

@@ -1,0 +1,14 @@
+.span15
+  %h4.section-header 
+    %a{:href => "/messages"}
+      Messages
+    &raquo; Conversation with
+    = @with_name
+
+  - if !@messages.blank?
+    - @messages['messages'].each do |m|
+      = render 'conversation_message', :m => m
+  - else
+    No messages
+    
+  = render 'new_message', :with => @with_id

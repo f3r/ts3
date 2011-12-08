@@ -28,7 +28,9 @@
         %td.user_detail
           = "#{@user['address']['street']}"
           %br
-          = "#{@user['address']['zip']}, #{@user['address']['city']}, #{@user['address']['country']}"
+          = "#{@user['address']['zip']} #{@user['address']['city']}"
+          %br
+          = "#{@user['address']['country']}"
     %tr
       %td.label_detail
         #{t(:mobile_phone)}

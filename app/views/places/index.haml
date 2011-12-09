@@ -79,14 +79,22 @@
   var pull_data = function() {
     showIndicator($("#search_results"));
 
+    var place_type_ids = new Array;
+    $.each($("#types-list input"), function() {
+      if ($(this).is(":checked")) {
+        place_type_ids.push(this.id);
+      }
+    });
+
     $.ajax({
       url: '/places/search',
       data: {
         guests: $("#guests").val(),
         sort: $("#sort").val(),
         min_price: $("#min_price").html(),
-        max_price: $("#max_price").html(),
-        currency: $('#currency').val()
+        max_price_lteq: $("#max_price").html(),
+        currency: $('#currency').val(),
+        place_type_ids: place_type_ids
       },
       success: function(data) {
         hideIndicator($("#search_results"));

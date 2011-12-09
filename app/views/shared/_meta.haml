@@ -56,7 +56,7 @@
 
 = yield :javascripts
 = yield :stylesheets
-- if controller_name.eql?('places') && action_name.eql?('show')
+- if controller_name.eql?('places') && (action_name.eql?('show') || action_name.eql?('preview'))
   %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
   <meta property="og:title" content="SquareStays" />
   <meta property="og:type" content="Sharing Place" />

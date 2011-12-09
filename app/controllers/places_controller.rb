@@ -150,6 +150,17 @@ class PlacesController < ApplicationController
   end
 
   def search
+    unless params[:place_type_ids].empty?
+      place_ids = place_types_select
+      new_ids = []
+      params[:place_type_ids].each do |p|
+        place_ids.each do |id_|
+          new_ids << id_[1] if id_[0].eql?(p.gsub('_', ' ').titleize)
+        end
+      end
+      params[:place_type_ids] = new_ids
+    end
+    logger.info("SEARCH PARAMS----------#{params.inspect}")
     @results = Heypal::Place.search(params)
 
     if @results.key?("err") # XXX: handle no results found

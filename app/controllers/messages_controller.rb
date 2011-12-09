@@ -18,8 +18,8 @@ class MessagesController < ApplicationController
     message_params = {}
     message_params.merge!({:access_token => current_token, :id => params['id'], :message => params['message']['message']})
     @message = Heypal::Message.create(message_params)
-
-    render :partial => '/comments/add_message'
+    #must have show action for message to render single message
+    render :partial => '/messages/add_message'
   end
 
   def delete_conversation

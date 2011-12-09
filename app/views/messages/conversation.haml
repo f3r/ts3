@@ -7,7 +7,8 @@
 
   - if !@messages.blank?
     - @messages['messages'].each do |m|
-      = render 'conversation_message', :m => m
+      %div.message
+        = render 'conversation_message', :m => m
   - else
     No messages
 

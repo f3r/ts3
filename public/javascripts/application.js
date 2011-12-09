@@ -153,13 +153,19 @@ function add_datepicker() {
 }
 
 $(document).ready(function() {
-    $("#registerForm").submit(function(e) {
-      var isChecked = $('#terms_and_conditions').is(':checked');
-      if(!isChecked) {
-        alert("Please check 'I accept the terms and conditions' to continue");
-        e.preventDefault();
-      }
-    });
+  $("#registerForm").submit(function(e) {
+    var isChecked = $('#terms_and_conditions').is(':checked');
+    if(!isChecked) {
+      alert("Please check 'I accept the terms and conditions' to continue");
+      e.preventDefault();
+    }
+  });
+
+  $("#open-country-select").click(function() {
+    $("#country-select").toggle();
+  });
+
+  $('#my-modal').modal()
 });
 
 function disabled_question_button() {

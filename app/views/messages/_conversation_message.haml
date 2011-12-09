@@ -10,7 +10,7 @@
     %div{:class => "alert-message info"}
       %b= m['from']['first_name'][0] + ". " + m['from']['last_name']
       %br
-      = m['message']
+      = simple_format h(m['message'])
 
     %div.float-right{:style => "margin-top: -20px; margin-bottom:15px"}
       %span.created_at

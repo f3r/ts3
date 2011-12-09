@@ -7,8 +7,14 @@ class CommentsController < ApplicationController
     comment_params[:access_token] = current_token
     comment_params[:place_id] = params[:place_id]
 
+    place = Heypal::Place.find(params[:place_id], current_token)
+    
     if params[:comment][:pm] == '1'
-      message_params = {:id => @owner['id'], :message => params[:comment][:comment], :access_token => current_token}
+      message_params = {
+        :id           => @owner['id'], 
+        :message      => t(:pm_prepend_pre) + place['title'] + t(:pm_prepend_post) + params[:comment][:comment], 
+        :access_token => current_token
+      }
       saved, message = Heypal::Message.create(message_params)
 
       render :partial => '/comments/send_privately', :locals => {:saved => saved}

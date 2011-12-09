@@ -156,7 +156,7 @@ class PlacesController < ApplicationController
       new_ids = []
       params[:place_type_ids].each do |p|
         place_ids.each do |id_|
-          new_ids << id_[1] if id_[0].eql?(p.gsub('_', ' ').titleize)
+          new_ids << id_[1] if id_[0].parameterize('_').singularize.eql?(p)
         end
       end
       params[:place_type_ids] = new_ids

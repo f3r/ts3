@@ -146,7 +146,8 @@ class PlacesController < ApplicationController
     @results = Heypal::Place.search(params)
 
     min, max = Heypal::Geo.get_price_range(1, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
-    @min_price, @max_price = round5(min), round5(max)
+    @min_price = (min / 5).floor.to_i * 5 
+    @max_price = (max / 5).ceil.to_i * 5 + 5 
   end
 
   def search
@@ -170,13 +171,5 @@ protected
   def find_place
     @place = Heypal::Place.find(params[:id], current_token)
     @owner = @place['user']
-  end
-  
-  def round5(foo)
-    if !foo.nil?
-      (foo % 5) >= 2.5 ? (foo / 5).to_i * 5 + 5 : (foo / 5).to_i * 5; 
-    else
-      0
-    end
   end
 end

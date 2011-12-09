@@ -11,7 +11,17 @@ class Heypal::Message < Heypal::Base
 
     def create(params = {})
       result = request("/messages/#{params[:id]}.json", :post, params)
-      
+
+      if result['stat'] == 'ok'
+        return get_data_on(result)
+      else
+        return get_errors_on(result)
+      end
+    end
+
+    def delete(params)
+      result = request("/conversations/#{params['user_id']}.json?access_token=#{params['access_token']}", :delete)
+
       if result['stat'] == 'ok'
         return get_data_on(result)
       else

@@ -4,7 +4,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/connect'       => 'users#connect'
   match '/cities'        => 'places#get_cities'
 
-  resources :places do 
+  resources :places do
     member do
       get :wizard
       get :preview
@@ -27,6 +27,7 @@ HeyPalFrontEnd::Application.routes.draw do
   get  '/messages'      => 'messages#index',        :as => :messages
   get  '/messages/:id'  => 'messages#conversation', :as => :conversation
   post '/messages/:id'  => 'messages#create',       :as => :new_message
+  delete '/messages/:id' => 'messages#delete_conversation', :as => :delete_conversation
 
   ###########################################################################################
   # Profile
@@ -36,13 +37,13 @@ HeyPalFrontEnd::Application.routes.draw do
 
   resources :users do
     collection do
-      get  :confirm 
-      post :resend_confirmation 
+      get  :confirm
+      post :resend_confirmation
       post :reset_password
       get  :reset_password
       get  :confirm_reset_password
       post :confirm_reset_password
-      put  :change_preference      
+      put  :change_preference
     end
     member do
       post :publish

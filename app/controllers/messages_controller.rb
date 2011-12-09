@@ -21,4 +21,12 @@ class MessagesController < ApplicationController
 
     render :partial => '/comments/add_message'
   end
+
+  def delete_conversation
+    @with = Heypal::User.info("id" => params[:id])
+    @deleted, @result = Heypal::Message.delete('user_id' => params['id'], 'access_token' => current_token)
+
+    flash[:notice] = "Conversation with #{@with['first_name'].chr}. #{@with['last_name']} deleted."
+    redirect_to messages_path
+  end
 end

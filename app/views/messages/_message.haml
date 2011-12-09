@@ -13,9 +13,9 @@
         - else
           = placehold(60,60)
 
-  .span12
-    .float-right.delete-conversation
-      = link_to '[x]', delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => 'Are you sure?'
+  .span12.conversations
+    .float-right.delete-conversations
+      = link_to image_tag('/images/icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => 'Are you sure?'
 
     %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"}
       %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }

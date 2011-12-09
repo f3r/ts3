@@ -1732,14 +1732,25 @@ ul.references{
 
 /*
 /* Message */
-.delete-conversations {
-  position:relative;
-  z-index:2;
-  margin-right:5px;
-}
-.mark-as {
-  margin-top: -20px;
-  margin-bottom:15px
+.conversations {
+  a:hover {
+    text-decoration: none;
+  }
+  &:hover .delete-conversations {
+    display: inline;
+  }
+
+  .delete-conversations {
+    position:relative;
+    z-index:2;
+    margin: 5px 5px 0;
+    display: none;
+  }
+
+  .mark-as {
+    margin-top: -20px;
+    margin-bottom:15px
+  }
 }
 
 

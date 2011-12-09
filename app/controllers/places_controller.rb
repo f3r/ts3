@@ -151,7 +151,7 @@ class PlacesController < ApplicationController
   end
 
   def search
-    unless params[:place_type_ids].empty?
+    unless params[:place_type_ids].nil?
       place_ids = place_types_select
       new_ids = []
       params[:place_type_ids].each do |p|

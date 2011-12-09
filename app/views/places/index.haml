@@ -39,12 +39,11 @@
                 %ul#types-list{:class => "inputs-list"}
                   - place_types_select.each do |p_type|
                     - id_name = p_type[0].parameterize('_').singularize
-                    - next if @results['place_type_count'][id_name] == 0
 
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[1], true, :id => id_name
+                          = check_box_tag :place_type, p_type[1], (0 < @results['place_type_count'][id_name]), :id => id_name
                           %span= p_type[0]
                         .right
                           %span= "(#{@results['place_type_count'][id_name]})"
@@ -120,13 +119,13 @@
   };
 
   var type_builder = function(type, count) {
-    if (count == '0') {
-      return;
+    var checked_ = ''
+    if(count != 0) {
+      checked_ = ' checked="checked" ';
     }
-
     var list = '<li>'+
       '<label>'+
-        '<div class="left"><input checked="checked" id="'+type+'" type="checkbox" value="1" /> <span>'+type.human_titleize()+'</span></div>' +
+        '<div class="left"><input'+checked_+' id="'+type+'" type="checkbox" value="1" /> <span>'+type.human_titleize()+'</span></div>' +
         '<div class="right"><span>('+count+')</span></div>' +
       '</label>';
 

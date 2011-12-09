@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
   layout 'plain'
-  before_filter :login_required, :only => [:new, :wizard, :create]
+  before_filter :login_required, :only => [:new, :create]
 
   # Retrieves all conversations
   def index
@@ -27,6 +27,22 @@ class MessagesController < ApplicationController
     @deleted, @result = Heypal::Message.delete('user_id' => params['id'], 'access_token' => current_token)
 
     flash[:notice] = "Conversation with #{@with['first_name'].chr}. #{@with['last_name']} deleted."
+    redirect_to messages_path
+  end
+
+  #mark as read
+  def mark_as_read
+    @message = Heypal::Message.mark_as_read('user_id' => params[:id], 'access_token' => current_token)
+
+    flash[:notice] = 'Message is mark as read'
+    redirect_to messages_path
+  end
+
+  #mark as unread
+  def mark_as_unread
+    @message = Heypal::Message.mark_as_unread('user_id' => params[:id], 'access_token' => current_token)
+
+    flash[:notice] = 'Message is mark as unread'
     redirect_to messages_path
   end
 end

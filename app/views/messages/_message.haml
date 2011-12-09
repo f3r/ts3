@@ -31,4 +31,8 @@
     %span.float-right{:style => "margin-top: -20px; margin-bottom:15px"}
       %i
         %span.time= time_ago_in_words(Time.parse(m['date']))
+      - if m['isread']
+        = link_to 'mark read', mark_as_read_path(from ? m['to']['id'] : m['from']['id'])
+      - else
+        = link_to 'mark unread', mark_as_unread_path(from ? m['to']['id'] : m['from']['id'])
 

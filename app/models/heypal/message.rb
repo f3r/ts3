@@ -29,6 +29,19 @@ class Heypal::Message < Heypal::Base
       end
     end
 
+    def message_count(params)
+      result = request("/conversations/unread_count.json?access_token=#{params}", :get) 
+      result['count']
+    end
+
+    def mark_as_unread(params)
+      result = request("/conversations/#{params['user_id']}/mark_as_unread.json", :put, params)
+    end
+
+    def mark_as_read(params)
+      result = request("/conversations/#{params['user_id']}/mark_as_read.json", :put, params)
+    end
+
     def get_data_on(result)
       [true, result["address"]]
     end

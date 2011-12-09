@@ -28,6 +28,8 @@ HeyPalFrontEnd::Application.routes.draw do
   get  '/messages/:id'  => 'messages#conversation', :as => :conversation
   post '/messages/:id'  => 'messages#create',       :as => :new_message
   delete '/messages/:id' => 'messages#delete_conversation', :as => :delete_conversation
+  get '/messages/:id/mark_as_read' => 'messages#mark_as_read', :as => :mark_as_read
+  get '/messages/:id/mark_as_unread' => 'messages#mark_as_unread', :as => :mark_as_unread
 
   ###########################################################################################
   # Profile

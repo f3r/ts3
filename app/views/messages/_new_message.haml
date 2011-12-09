@@ -1,0 +1,13 @@
+.span15
+  = form_for 'message', :url => new_message_path(@with_id), :html => {:class => 'respond-form show', :remote => true} do |f|
+    %span3.float-left
+      - unless current_user.avatar.nil?
+        %img{:src => current_user.avatar, :style => "width:60px"}
+      - else
+        = placehold(60,60)
+
+    .span12
+      = f.text_area :message, :rows => 4, :class => "span12"
+      %div.float-right{:style => "margin-top: 10px;"}
+        = button_tag "Cancel", :class => 'btn respond-cancel'
+        = button_tag "Submit", :class => "btn primary respond-btn"

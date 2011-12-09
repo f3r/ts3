@@ -1,0 +1,35 @@
+.span15
+  %span3.float-left
+    - if from
+      %a{:href => "/users/#{m['to']['id']}"} 
+        - unless m['to']['avatar'].nil?
+          %img{:src => m['to']['avatar'], :style => "width:60px"}
+        - else
+          = placehold(60,60)
+    - else
+      %a{:href => "/users/#{m['from']['id']}"} 
+        - unless m['from']['avatar'].nil?
+          %img{:src => m['from']['avatar'], :style => "width:60px"}
+        - else
+          = placehold(60,60)
+
+  .span12
+    %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"}
+      %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }
+        - if from
+          %b= m['to']['first_name'][0]   + ". " + m['to']['last_name']
+        - else
+          %b= m['from']['first_name'][0] + ". " + m['from']['last_name']
+        %span.float-right
+          / - if m['isread']
+          /   %a  [mark unread]
+          / - else
+          /   %a  [mark read]
+          [x]
+        %br
+        = m['message'][0..80] + " ..."
+    %span.float-right{:style => "margin-top: -20px; margin-bottom:15px"}
+      %i 
+        %span.time= time_ago_in_words(Time.parse(m['date']))
+      
+    

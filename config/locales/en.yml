@@ -192,9 +192,11 @@ en:
   place_unpublished: Your place is now invisible
 
   ####################################################################################
-  # Questions
+  # Questions & Messages
   ####################################################################################
-  ask_question: Ask a question
+  ask_question:    Ask a question
+  pm_prepend_pre:  "Private question regarding your property ["
+  pm_prepend_post: "]\n\n"
 
   ####################################################################################
   # Photos

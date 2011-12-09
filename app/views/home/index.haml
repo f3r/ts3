@@ -4,8 +4,30 @@
       .hub
         %h1
           Search for a place to stay in
-          = link_to "Singapore", "#"          
-        %form  
+          = link_to "Singapore", "#", :id => "open-country-select"
+        %ul#country-select
+          %li Singapore
+          %li= link_to "Not going to Singapore", "#", "data-controls-modal" => "my-modal"
+
+        #my-modal.hide.modal.fade
+          .modal-header
+            Can't find the city you were hoping to go?
+          .modal-body
+            We're working hard on expanding SquareStays to more<br>
+            You can gelp us by telling us what city you would like to see next.<br><br><br>
+            %label City
+            %input
+
+            <br><br>
+            %label Leave us your E-Mail address so we can notify you when we add the city you were looking for
+            %input
+            <br><br><br><br>
+
+          .modal-footer
+            %button.btn.primary Submit
+            %button.btn Cancel
+
+        %form{:action => '/places'}
           .clearfix
             = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'textbox big from-to-picker', "data-date" => :from
             = button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"

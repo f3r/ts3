@@ -44,16 +44,20 @@ module ApplicationHelper
       end
       msgs.flatten!
 
-      ret = "<h5>#{pluralize(msgs.size, 'error')} prohibited this to save.</h5>"
+      ret = "<h5 style='color: #fff;'>#{pluralize(msgs.size, 'error')} prohibited this to save.</h5>"
       ret << '<ul class="coded_error">'
 
       msgs.each do |msg|
-        ret << "<li>#{msg}</li>"
+        ret << "<li style='color: #fff;'>#{msg}</li>"
       end
 
       ret << '</ul>'
     end
 
     raw ret
+  end
+
+  def message_count
+    Heypal::Message.message_count(current_token)
   end
 end

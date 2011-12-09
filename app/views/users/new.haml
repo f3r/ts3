@@ -1,5 +1,7 @@
 .span12.offset2
-  = coded_errors_for @user
+  - unless coded_errors_for(@user).blank?
+    %div{:class => 'alert-message error'}
+      = coded_errors_for @user
   .registration.row
     %br
     .section.span6.bored

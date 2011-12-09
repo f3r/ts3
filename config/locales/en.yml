@@ -15,8 +15,8 @@ en:
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:    Find Places
-  my_places:      My Places
+  find_places:    Search
+  my_places:      My Properties
   profile:        Profile
   notifications:  Notifications
   add_a_place:    Add a Place

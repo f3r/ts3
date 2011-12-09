@@ -18,10 +18,14 @@
                 .type.apartment 
                   = place['place_type']['name']
               .micro
-                = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} m&sup2;")
-                \/
-                = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ft&sup2;")
-
+                - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
+                  .label{:style => "color:black; text-transform:lowercase;"}
+                    = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
+                    sqf
+                -else
+                  .label{:style => "color:black; text-transform:lowercase;"}
+                    = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
+                    sqm
 
             .price.data-block
               .title.figure= "#{get_pref_currency}#{place['price_per_night']}"

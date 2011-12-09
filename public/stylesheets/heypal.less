@@ -539,10 +539,20 @@ form div.required label:after {
 } 
 
 // Questions
-// blah
 #ask-form .buttons, .respond-form .buttons {
   margin-top:10px;
   float:right;
+
+  .float-left {
+    input {
+      float:left;
+      margin: 5px 0 3px 0;
+    }
+    label { 
+      padding:0 0 0 5px;
+      margin-right:210px;
+    }
+  }
 }
 .item-questions {
   .question-container {
@@ -1719,6 +1729,19 @@ ul.references{
 	  margin: 0;
 	}		
 }
+
+/*
+/* Message */
+.delete-conversations {
+  position:relative;
+  z-index:2;
+  margin-right:5px;
+}
+.mark-as {
+  margin-top: -20px;
+  margin-bottom:15px
+}
+
 
 // 
 // My Places

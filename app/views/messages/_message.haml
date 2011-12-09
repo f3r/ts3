@@ -14,25 +14,23 @@
           = placehold(60,60)
 
   .span12
+    .float-right.delete-conversation
+      = link_to '[x]', delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => 'Are you sure?'
+
     %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"}
       %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }
         - if from
-          %b= m['to']['first_name'][0]   + ". " + m['to']['last_name']
+          %b= "#{m['to']['first_name'].chr}. #{m['to']['last_name']}"
         - else
-          %b= m['from']['first_name'][0] + ". " + m['from']['last_name']
-        %span.float-right
-          / - if m['isread']
-          /   %a  [mark unread]
-          / - else
-          /   %a  [mark read]
-          = link_to '[x]', delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => 'Are you sure?'
+          %b= "#{m['from']['first_name'].chr}. #{m['from']['last_name']}"
+
         %br
-        = m['message'][0..80] + " ..."
-    %span.float-right{:style => "margin-top: -20px; margin-bottom:15px"}
+        = truncate(m['message'], :length => 80)
+
+    %span.float-right.mark-as
       %i
         %span.time= time_ago_in_words(Time.parse(m['date']))
-      - if m['isread']
+      - unless m['isread']
         = link_to 'mark read', mark_as_read_path(from ? m['to']['id'] : m['from']['id'])
       - else
         = link_to 'mark unread', mark_as_unread_path(from ? m['to']['id'] : m['from']['id'])
-

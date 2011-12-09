@@ -10,11 +10,14 @@
           = placehold(60,60)
         = f.text_area :comment, :rows => 3, :class => "span10"
       %div.buttons
+        .float-left
+          = f.check_box "pm"
+          = f.label "pm", t(:pm)
         = button_tag t(:cancel), :id => 'ask-cancel', :class => 'btn'
         = button_tag t(:submit), :id => 'ask-btn',    :class => "btn primary"
 -else
   %a.btn.large.primary{:href => signup_path}
-    t(:ask_question)
+    = t(:ask_question)
 
 %br
 %br

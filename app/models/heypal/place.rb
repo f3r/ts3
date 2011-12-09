@@ -91,19 +91,26 @@ class Heypal::Place < Heypal::Base
       # defaults
       ############
       params.merge!("country_code_eq" => "SG")
-
       q = ''
       params.each do |k, v|
         next if k == 'action' || k == 'controller'
         next if v.blank?
 
-        if %w(sort m page per_page min_price max_price currency guests).include? k
-          q << "#{k}"
+        if v.class.eql?(Array)
+          if k == 'place_type_ids'
+            v.each do |id_|
+              q << "q[place_type_id_eq_any][]=#{id_}&"
+            end
+          end
         else
-          q << "q[#{k}]"
-        end
+          if %w(sort m page per_page min_price max_price_lteq currency guests).include? k
+            q << "#{k}"
+          else
+            q << "q[#{k}]"
+          end
 
-        q << "=#{v}&"
+          q << "=#{v}&"
+        end
       end
       q.chomp!('&')
 

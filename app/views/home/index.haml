@@ -9,6 +9,18 @@
           .clearfix
             = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'textbox big from-to-picker', "data-date" => :from
             = button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"
+            
+        / .nav
+        /   #toggle-preferences.dropdown{"data-dropdown" => "dropdown"}
+        /     %a.dropdown-toggle{:href => "#"} $ USD
+        /     %ul.dropdown-menu
+        /       %li
+        /         %a{:href => "#"} Secondary link
+        /       %li
+        /         %a{:href => "#"} Something else here
+        /       %li.divider
+        /       %li
+        /         %a{:href => "#"} Another link        
     
     .span8
       #teaser-pics

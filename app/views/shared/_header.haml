@@ -3,42 +3,66 @@
     .row
       .span5
         = link_to image_tag('/images/SquareStays.png', :height => 68), root_path, :title => t(:app_name)
-      .span5.offset4.user_box
-        .row
-          - if logged_in?
-            .span3
-              .user_name
-                = link_to full_name(current_user), profile_path
-                .small
-                  = link_to t(:sign_out), logout_path
-            .span2
+      - if logged_in?
+        .user_box.logged-in
+          .row
+            .thumb
               - if !current_user.avatar.nil?
                 - avatar = current_user.avatar
               - else
                 - avatar = placehold(60,60, true)
               = image_tag(avatar, :width => 60, :height => 60)
-          - else
-            .span4
-              .links
-                = link_to t(:sign_in), login_path
-                |
-                = link_to t(:register), signup_path
+            .user_name
+              = link_to full_name(current_user), profile_path
+              .small
+                = link_to t(:sign_out), logout_path  
+      - else
+        .user_box
+          .row    
+            .links
+              = link_to t(:sign_in), login_path
+              %span.separator /
+              = link_to t(:register), signup_path
 
-      .span2
-        .row
-          .preference
-            %span.text= get_pref_language
-            / %span.edit-icon
-          = pref_language_list
+      %ul.tab.preference-wrapper
+        %li#toggle-preferences.dropdown
+          %a.dropdown-toggle{:href => "#"} $ USD
+          %ul.dropdown-menu
+            %li.arrow
+            %li.divider-title Choose language...
+            %li.divider
+            %li
+              %a{:href => "#"} English
+            %li
+              %a{:href => "#"} Español
+            %li.divider              
+            %li.divider-title Choose Currency...
+            %li.divider            
+            %li
+              %a{:href => "#"} 
+                %span.em $ 
+                USD
+            %li
+              %a{:href => "#"} 
+                %span.em £
+                GBP              
+            %li
+              %a{:href => "#"}
+                %span.em $
+                SGD
+            %li
+              %a{:href => "#"} ...
 
-          .small.preference
-            %span.text= get_pref_currency
-            / %span.edit-icon
-          = pref_currency_list
-
-          .small.preference
-            %span.text=raw get_pref_size_unit
-            / %span.edit-icon
-          = pref_size_unit_list
+            %li.divider              
+            %li.divider-title Choose Unit...
+            %li.divider            
+            %li
+              %a{:href => "#"}
+                %span.em m²
+                Sq. meter
+            %li
+              %a{:href => "#"}
+                %span.em ft²
+                Sq. foot
 
   = render 'shared/menu'

@@ -1,7 +1,11 @@
 module ApplicationHelper
 
-  def placehold(width = 60, height = 60)
-    raw "<img src='http://placehold.it/#{width}x#{height}' />"
+  def placehold(width = 60, height = 60, url = false)
+    if url
+      "http://placehold.it/#{width}x#{height}"
+    else
+      raw "<img src='http://placehold.it/#{width}x#{height}' />"
+    end
   end 
 
   def flash_messages

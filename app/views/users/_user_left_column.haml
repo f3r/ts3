@@ -1,8 +1,13 @@
 %section.span3
-  - unless @user.avatar.nil?
-    %img{:src => @user.avatar, :style => "width:120px"}
-  - else
-    = placehold(120,120)
+  - if !@user.avatar.nil?
+    - @avatar = @user.avatar
+    - else
+    - @avatar = placehold(120,120, true)
+    
+  = image_tag(@avatar, :width => 120)
+  - if @current_action == "edit"
+    = link_to "Change photo", "", { "data-controls-modal"=>"avatar-modal", "data-backdrop"=>"static", :class => "change_avatar"}
+
   %h2
     = short_full_name @user
   %p

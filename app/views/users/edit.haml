@@ -92,8 +92,71 @@
       = render :partial => "users/user_accounts"
       .clearfix
 
+    #avatar-modal.modal.hide.fade
+      = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
+        .modal-header
+          = link_to "x", '#', :class => "close"
+          %h3 Edit your Photo
+        .modal-body
+          .row
+            .span2
+              %p
+                = image_tag(@avatar, :class => "avatar_placeholder", :width => 100)
+                .preview
+                  Preview
+            .span7
+              %p= "Uploading a current photo helps renters evaluate your profile. While its not required, it helps build trust with property owners if you complete your profile."
+              %p
+                %a.btn.medium.facebook_avatar= "Use Facebook Photo"
+                - @user_auth['authentications'].each{|x| @facebook_uid = x['uid'] if x['provider'] == "facebook" }
+                = f.hidden_field(:facebook_image, :value => "http://graph.facebook.com/#{@facebook_uid}/picture?type=large") if !@facebook_uid.blank?
+                = f.hidden_field :avatar_url
+              %p
+                %a.btn.medium.upload_avatar= "Upload a new Photo"
+                .upload_field
+                  = f.file_field :avatar, :onchange => "readURL(this);", :style=>"display:none;"
+        .modal-footer
+          = button_tag 'Save', :class => 'btn primary',  "data-loading-text" => "Saving photo...", :id => "save-btn"
+
+<!--[if IE]>
+<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
 :javascript
   $(document).ready(function() {
     $('div.private').twipsy({html:true,placement:"above", title: function(){return "Private. Only visible to those that have an active transaction with you"} });
     $('div.public').twipsy({html:true,placement:"above", title: function(){return "Public. Anyone can see this information"} });
   });
+
+  $(document).ready(function() {
+    $('a.facebook_avatar').click(function() {
+      facebook_image = $('input#user_facebook_image').val();
+      $('input#user_avatar_url').val(facebook_image);
+      $('.avatar_placeholder').attr('src', facebook_image).width(100);
+      $('input#user_avatar').hide();
+    });
+    $('a.upload_avatar').click(function() {
+      $('input#user_avatar').show();
+      $('input#user_avatar_url').val("");
+    });
+
+    var btn = $('#save-btn').click(function () {
+      btn.button('loading');
+    })
+
+  });
+
+  function readURL(input) {
+         if (input.files && input.files[0]) {
+             var reader = new FileReader();
+             reader.onload = function (e) {
+                 $('.avatar_placeholder')
+                     .attr('src', e.target.result)
+                     .width(100)
+             };
+             reader.readAsDataURL(input.files[0]);
+         }
+  }
+:css
+  article, aside, figure, footer, header, hgroup, 
+  menu, nav, section { display: block; }

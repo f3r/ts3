@@ -12,7 +12,7 @@ module ApplicationHelper
     $flash_keys ||= [:error, :notice, :warning, :alert]
     return unless messages = flash.keys.select{|k| $flash_keys.include?(k)}
     formatted_messages = messages.map do |type|      
-      content_tag :div, :class => "alert-message #{type.to_s}", :style => "margin-top:10px" do
+      content_tag :div, :class => "alert-message #{type.to_s}", :style => "margin:25px 0 0" do
         message_for_item(flash[type], flash["#{type}_item".to_sym])
       end
     end

@@ -199,8 +199,7 @@
           %li= link_to short_full_name(@owner), user_path(@owner['id'])
           %li.check= @owner['role'].capitalize
           -#%li.reviews 71 reviews
-          %li
-            %a.btn.large.primary= t(:message_user)
+          %li= link_to t(:message_user), logged_in? ? new_message_path(@owner['id']) : login_path, :class => 'btn large primary'
 
 
 :javascript

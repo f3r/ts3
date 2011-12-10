@@ -1,0 +1,118 @@
+%ul.breadcrumb
+  %li
+    = link_to @place['title'], place_path(@place["id"])
+    %span.divider= "/"
+  %li
+    = link_to t(:rent), rent_place_path(@place["id"])
+    %span.divider= "/"
+  %li.active
+    =t(:availability)
+
+.row
+  .span16
+    .panel
+      .panel-wrapper
+        %h2.title
+          = t(:payment_details)
+    = form_for :confirm_rental, :url => confirm_rental_place_path, :method => :post do |f|
+      %table.borderless
+        %tr
+          %td.label_detail
+            #{t(:length_of_stay)}
+          %td.user_detail
+            = @availability['total_days']
+        %tr
+          %td.label_detail
+            #{t(:sub_total)}
+          %td.user_detail
+            = @availability['sub_total']
+        %tr
+          %td.label_detail
+            #{t(:price_final_cleanup)}
+          %td.user_detail
+            = @availability['price_final_cleanup']
+        %tr
+          %td.label_detail
+            #{t(:price_security_deposit)}
+          %td.user_detail
+            = @availability['price_security_deposit']
+
+      .panel
+        .panel-wrapper
+          %h2.title
+            = t(:billing_address)
+
+      - if !current_user['address'].nil?
+
+        %p= "#{t(:billed_address)}:"
+        %p= link_to "Change address", "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
+
+        %table.borderless
+          %tr
+            %td.label_detail
+              #{t(:country)}
+            %td.user_detail
+              = current_user['address']['country']
+          %tr
+            %td.label_detail
+              #{t(:city)}
+            %td.user_detail
+              = current_user['address']['city']
+          %tr
+            %td.label_detail
+              #{t(:street)}
+            %td.user_detail
+              = current_user['address']['street']
+          %tr
+            %td.label_detail
+              #{t(:zip)}
+            %td.user_detail
+              = current_user['address']['zip']
+      - else
+        %p= link_to t(:add_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
+      
+        .clearfix
+
+      = f.hidden_field(:check_in, :value => params[:check_in])
+      = f.hidden_field(:check_out, :value => params[:check_out])
+
+      %p
+        %button.btn.large.primary= t(:confirm_rental)
+
+
+#address-modal.modal.hide.fade
+  = form_for :address, :url => user_change_address_path(current_user['id']), :method => :put do |f|
+    .modal-header
+      = link_to "x", '#', :class => "close"
+      %h3= t(:change_address)
+    .modal-body
+      .row
+        .span10
+
+          -# FIXME: coded_errors_for is not working
+          -# = coded_errors_for @address
+          .input
+            = f.label :street, t(:street)
+            .private
+            = f.text_field :street
+          .input
+            = f.label :city, t(:city)
+            .public
+            = f.text_field :city
+          .input
+            = f.label :country, t(:country)
+            .public
+            = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], :include_blank => true)
+          .input
+            = f.label :zip, t(:zip)
+            .private
+            = f.text_field :zip
+            = f.hidden_field :id
+
+            = f.hidden_field(:place_id, :value => params[:id])
+            = f.hidden_field(:check_in, :value => params[:check_in])
+            = f.hidden_field(:check_out, :value => params[:check_out])
+
+          
+    .modal-footer
+      = button_tag 'Save', :class => 'btn primary',  "data-loading-text" => "Saving address...", :id => "save-btn"

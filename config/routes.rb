@@ -13,6 +13,9 @@ HeyPalFrontEnd::Application.routes.draw do
       put :update_currency
       put :publish
       put :unpublish
+      get :rent
+      match :availability
+      post :confirm_rental
     end
     get :search, :on => :collection
     resources :availabilities

@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
   layout 'plain'
   before_filter :login_required, :only => [:new, :wizard, :create]
-  before_filter :find_place, :only => [:wizard, :show, :preview, :photos]
+  before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability]
 
   def new
     @place = Heypal::Place.new
@@ -175,6 +175,20 @@ class PlacesController < ApplicationController
 
   def my_places
     @places = Heypal::Place.my_places(current_token, get_current_currency)
+  end
+  
+  def rent
+    render :layout => 'plain'
+  end
+  
+  def availability
+    @availability = Heypal::Place.availability(params[:id], params[:check_in], params[:check_out], get_current_currency, current_token)
+    render :layout => 'plain'
+  end
+
+  def confirm_rental
+    # mail! mail! mail!
+    render :layout => 'plain'
   end
 
 protected

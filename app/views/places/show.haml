@@ -33,7 +33,8 @@
           %h1.price
             = number_to_currency @place.price_per_night 
             %span.sub= t(:per_night) 
-          %a.btn.large.primary= t(:rent)  
+          -# %a.btn.large.primary= t(:rent)  
+          = link_to t(:rent), rent_place_path(@place), :class => "btn large primary"
 
       .tabbed-panel  
         %ul.tabs

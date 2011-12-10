@@ -66,6 +66,10 @@ class Heypal::Place < Heypal::Base
       end
     end
 
+    def availability(id, check_in, check_out, currency, access_token)
+      result = request("/places/#{id}/check_availability.json?access_token=#{access_token}&currency=#{currency}&check_in=#{check_in}&check_out=#{check_out}", :get)
+    end
+
     def normalize_place(result)
       # merge the place hash for now
       p = {}

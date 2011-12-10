@@ -2,7 +2,7 @@ class Heypal::User < Heypal::Base
 
   set_resource_path '/users.json'
 
-  @@attributes = %w(first_name last_name gender email password password_confirmation terms oauth_provider oauth_token oauth_uid phone_mobile birthdate access_token avatar_url avatar)
+  @@attributes = %w(first_name last_name gender email password password_confirmation terms oauth_provider oauth_token oauth_uid phone_mobile passport_number birthdate access_token avatar_url avatar)
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
   define_attribute_methods = @@attributes

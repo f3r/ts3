@@ -239,6 +239,33 @@ en:
   message_user: Message User
 
   ####################################################################################
+  # Place rent
+  ####################################################################################
+  
+  place_details: Place details
+  stay_details: Stay details
+  arriving: Arriving
+  departing: Departing
+  duration: Duration
+  contact_information: Contact Information
+  mobile_phone_number: Mobile phone number
+  passport_number: Passport number
+  payment_details: Payment details
+  lenght_of_stay: Length of Stay
+  sub_total: Subtotal
+  price_final_cleanup: Cleanup Fee
+  price_security_deposit: Deposit
+  billing_address: Billing Address
+  change_billing_address: Change billing address
+  billed_address: You will be billed at this address
+  confirm_rental: Confirm rental
+  add_address: Add address
+  change_address: Change address
+  continue: Continue
+  read_agreement: I have read and agree to the lease agreement
+  availability: Availability
+
+  ####################################################################################
   # Place index/search
   ####################################################################################
   sort_by: Sort by

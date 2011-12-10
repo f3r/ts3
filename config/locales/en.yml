@@ -85,7 +85,7 @@ en:
   birthdate:           Birthdate
   billing_address:     Billing Address
   reviews:             Reviews
-  profile_req_message: Please click Account Settings to enter additional information needed to make reservations on SquareStays.
+  profile_req_message: Please click Edit on your profile to enter additional information needed to make reservations on SquareStays.
   profile_current_pwd: Current Password
   profile_retype_pwd:  Re-type Password'
 

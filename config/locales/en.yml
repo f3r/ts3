@@ -9,6 +9,7 @@ en:
   site_title: SquareStays - Trusted Stays
   submit:     Submit
   cancel:     Cancel
+  save:       Save
   app_domain: Squarestays.com
   main_page_title: Squarestays.com
   footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
@@ -85,6 +86,8 @@ en:
   billing_address:     Billing Address
   reviews:             Reviews
   profile_req_message: Please click Account Settings to enter additional information needed to make reservations on SquareStays.
+  profile_current_pwd: Current Password
+  profile_retype_pwd:  Re-type Password'
 
   ####################################################################################
   # Authentications

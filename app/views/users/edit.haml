@@ -32,8 +32,8 @@
         = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true
       .clearfix
       .span3.float-right
-        = submit_tag 'Save', :class => 'btn primary'
-        = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+        = submit_tag t(:save), :class => 'btn primary'
+        = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
       /Billing Address Section
@@ -61,8 +61,8 @@
         = f.hidden_field :id
       .clearfix
       .span3.float-right
-        = submit_tag 'Save', :class => 'btn primary'
-        = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+        = submit_tag t(:save), :class => 'btn primary'
+        = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
     = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
@@ -70,21 +70,21 @@
       /Password Section
       .section-header #{t(:section_header_user_password)}
       .input
-        = label_tag 'Current Password'
+        = label_tag t(:profile_current_pwd)
         .private
-        = text_field_tag 'current_password', '', :placeholder => 'current password'
+        = password_field_tag 'current_password', '', :placeholder => t(:profile_current_pwd)
       .input
-        = label_tag 'Password'
+        = label_tag t(:password)
         .private
-        = text_field_tag 'password', ''
+        = password_field_tag t(:password), ''
       .input
-        = label_tag 'Re-type Password'
+        = label_tag t(:profile_retype_pwd)
         .private
-        = text_field_tag 'password_confirmation', ''
+        = password_field_tag t(:profile_retype_pwd), ''
       .clearfix
       .span3.float-right
-        = submit_tag 'Save', :class => 'btn primary'
-        = link_to (button_tag 'Cancel', :class => 'btn secondary'), profile_path
+        = submit_tag t(:save), :class => 'btn primary'
+        = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
       -#Accounts Section
@@ -116,7 +116,7 @@
                 .upload_field
                   = f.file_field :avatar, :onchange => "readURL(this);", :style=>"display:none;"
         .modal-footer
-          = button_tag 'Save', :class => 'btn primary',  "data-loading-text" => "Saving photo...", :id => "save-btn"
+          = button_tag t(:save), :class => 'btn primary',  "data-loading-text" => "Saving photo...", :id => "save-btn"
 
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>

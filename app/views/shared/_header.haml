@@ -31,10 +31,18 @@
             %li.arrow
             %li.divider-title Choose language...
             %li.divider
-            %li
-              %a{:href => "#"} English
-            %li
-              %a{:href => "#"} Español
+            - if get_current_language == "en"
+              %li.active
+                %a{:href => "#"} &#10003; English
+            - else
+              %li
+                %a{:href => "#"} English
+            - if get_current_language == "es"
+              %li.active
+                %a{:href => "#"} &#10003; Español
+            - else
+              %li
+                %a{:href => "#"} Español
             %li.divider              
             %li.divider-title Choose Currency...
             %li.divider            
@@ -56,13 +64,28 @@
             %li.divider              
             %li.divider-title Choose Unit...
             %li.divider            
-            %li
-              %a{:href => "#"}
-                %span.em m²
-                Sq. meter
-            %li
-              %a{:href => "#"}
-                %span.em ft²
-                Sq. foot
+            - if get_current_size_unit == "sqm"
+              %li.active
+                %a{:href => "#"}
+                  &#10003;
+                  %span.em m²
+                  Sq. meter
+            - else
+              %li
+                %a{:href => "#"}
+                  %span.em m²
+                  Sq. meter
+
+            - if get_current_size_unit == "sqf"
+              %li.active
+                %a{:href => "#"}
+                  &#10003;
+                  %span.em ft²
+                  Sq. foot
+            - else
+              %li
+                %a{:href => "#"}
+                  %span.em ft²
+                  Sq. foot
 
   = render 'shared/menu'

@@ -6,6 +6,7 @@ en:
   # App General Stuff
   ####################################################################################
   app_name:   Squarestays
+  site_title: SquareStays - Trusted Stays
   submit:     Submit
   cancel:     Cancel
   app_domain: Squarestays.com
@@ -275,13 +276,19 @@ en:
   # Home page
   ####################################################################################  
   homepage_search_but: Find a Place
+  homepage_seo_text:   SquareStays is ideal for frequent travellers on extended stays. SquareStays is perfect for families relocating or in the process of relocation to Singapore, Hong Kong, Kuala Lumpur, Beijing, Shanghai, Tokyo or Seoul. SquareStays connects you to  luxury and quality apartments, condominiums and housing located in various locations around the markets in which SquareStays operates.
+  homepage_seo_text2:  "SquareStays is a great alternative to serviced apartments or hotels. SquareStays provides flexible accommodation, especialy for short-term stays. Whether you need to book short-term accommodation in Singapore, short-term accommodation in Hong Kong, short-term accommodation in Kuala Lumpur, short-term accommodation in Beijing, short-term accommodation in Shanghai, short-term accommodation in Tokyo or short-term accommodation in Seoul, SquareStays can help. Properties listed on SquareStays will often be of similar quality and convenice as serviced apartments in Singapore, serviced apartments in Hong Kong, serviced apartments in Kuala Lumpur, serviced apartments in Beijing, serviced apartments in Shanghai, serviced apartments in Tokyo or serviced apartments in Seoul."
   teaser_center_title: Why should you use SquareStays?
   teaser_1_title:      Flexibility
-  teaser_1_content:    SquareStays offers a variety of properties for stays as short as 1 month or as long as a year
-  teaser_2_title:      Trust
-  teaser_2_content:    SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience
-  teaser_3_title:      Price
-  teaser_3_content:    Squarestays offers great savings compared to staying at a Hotel or Serviced appartment
+  teaser_1_content:    "SquareStays offers flexible, high-quality accommodations for you. Squarestays is the destination site to find your perfect short-term or medium-term stay."
+  teaser_2_title:      Quality
+  teaser_2_content:    "SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust."
+  teaser_3_title:      Affordability
+  teaser_3_content:    "Squarestays offers high quality and distinct properties - have your own home away from home for less then the price of a 5 star hotel."
+  homepage_life_sg_title: Business Growth in Asia
+  homepage_life_sg_content: "With business travel to Asia increasing and hotel prices sky-rocketing, finding a place to stay for business travel has become increasingly difficult.  As a hub that connects the east and the west, Singapore is an important market in the Asian business economy with sustained growth and top-rated business environment.  SquareStays is now available in Singapore and plans to expand in other major cities across Asia and worldwide."
+  homepage_about:      About SquareStays
+  homepage_about_content: "SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay."
 
   ####################################################################################
   # Error codes

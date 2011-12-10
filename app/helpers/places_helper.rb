@@ -10,7 +10,7 @@ module PlacesHelper
       ['Heating', :amenities_heating],
       ['Handicap accessible', :amenities_handicap],
       ['Doorman', :amenities_doorman],
-      ['Airconditioning', :amenities_aircon], 
+      ['Air Conditioning', :amenities_aircon], 
       ['Buzzer/Intercom', :amenities_buzzer_intercom],
     ]
   end

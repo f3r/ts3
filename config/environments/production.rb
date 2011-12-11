@@ -64,5 +64,5 @@ Heypal::base_url = 'http://squarestays-backend.heroku.com'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '201854953233705', '5a773c1f43daaaefb0a169fc388ba1e0'
-  provider :twitter, '7IhUH1SkVKa7VNVDY5Bdw', 'iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc'
+  provider :twitter, 'KkHFOnyPPPFjUYcjVpyLA', 'rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA'
 end

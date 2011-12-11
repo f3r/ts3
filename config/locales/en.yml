@@ -274,6 +274,9 @@ en:
   bedrooms: Bedrooms
   house_rules: House rules
   days: days
+  length_of_stay: Length of stay
+  street: Street
+  zip: Zip
 
   ####################################################################################
   # Place index/search

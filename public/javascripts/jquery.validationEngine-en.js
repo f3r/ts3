@@ -128,6 +128,15 @@
 	                    // speaks by itself
 	                    "alertTextLoad": "* Validating, please wait"
 	                },
+				 "ajaxCheckAvailability": {
+	                    // remote json service location
+	                    "url": "/check_availability.json",
+						"extraDataDynamic": ['#check_out', '#check_in', '#place_id'],
+	                    // error
+	                    "alertText": "* This name is already taken",
+	                    // speaks by itself
+	                    "alertTextLoad": "* Validating, please wait"
+	                },
                 "validate2fields": {
                     "alertText": "* Please input HELLO"
                 }

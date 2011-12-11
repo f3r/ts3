@@ -7,7 +7,10 @@
             %li
               .span3
                 .thumb.data-block
-                  = image_tag(place['photos'].blank? ? "http://placehold.it/150x90" : place['photos'][0]['photo']['small'])
+                  - if place['photos'].blank?
+                    = image_tag( "/images/photo-missing.png", :size => "160x110")
+                  - else
+                    = image_tag(place['photos'][0]['photo']['small'])
               .span12
                 .info  
                   %h3.title

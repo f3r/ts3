@@ -1,11 +1,12 @@
+%br
 .span12.offset2
   .row
     .span
+      %img{:src => "#{profile_picture_url(@oauth_uid, @oauth_provider)}"}
+    .span
       %h1
         Hello
-    .span
-      %img{:src => "#{profile_picture_url(@oauth_uid, @oauth_provider)}"}
-    .span4{:style => "line-height: 40px;"}
+    .span4{:style => "line-height: 40px; font-size: 2em;"}
       = @oauth_name
   .registration.row
     %br

@@ -224,7 +224,9 @@ class PlacesController < ApplicationController
   end
 
   def confirm_rental
-    # mail! mail! mail!
+    @confirm_rental = Heypal::Place.confirm_rental(params[:id], params[:confirm_rental][:check_in], params[:confirm_rental][:check_out], current_token)
+    @place = Heypal::Place.find(params[:id], current_token)
+    @owner = @place['user']
     render :layout => 'plain'
   end
 

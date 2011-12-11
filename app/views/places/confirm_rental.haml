@@ -1,3 +1,28 @@
-confirmed!
+.row
+  .span16
+    %h2
+      = t(:success)
+    %p
+      Your Request has been submitted to
+      = full_name @owner
+    %p
+      Within 24 hours etc etc.
+    %p
+      You can send 
+      = full_name @owner
+      a message to etc etc
+            
+.row
+  .span16
+    = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show', :remote => true} do |f|
+      %span3.float-left
+        - unless current_user.avatar.nil?
+          %img{:src => current_user.avatar, :style => "width:60px"}
+        - else
+          = placehold(60,60)
 
-= params
+      .span12
+        = f.text_area :message, :rows => 4, :class => "span12"
+        %div.float-right{:style => "margin-top: 10px;"}
+          = button_tag "Cancel", :class => 'btn respond-cancel'
+          = button_tag "Submit", :class => "btn primary respond-btn"

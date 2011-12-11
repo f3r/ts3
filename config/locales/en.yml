@@ -27,6 +27,7 @@ en:
   # Account creation & management
   ####################################################################################
   create_new_account:         Create New Account
+  create_an_account_using:    Create an Account using
   user_confirmed:             Your account has been successfully confirmed!
   invalid_confirmation_code:  Invalid Confirmation Code
   enter_confirmation_code:    Enter Confirmation Code

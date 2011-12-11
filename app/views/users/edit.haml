@@ -4,20 +4,20 @@
     .section-header #{t(:section_header_user_information)}
     = coded_errors_for @user
   
-    = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
+    = form_for :user, :url => user_path(@user['id']), :method => :put, :html => {:id => "update_user"} do |f|
       .input
         = f.label :first_name, t(:first_name)
         .public
-        = f.text_field :first_name
+        = f.text_field :first_name, :class => "validate[required]"
       .input
         = f.label :last_name, t(:last_name)
         .private
-        = f.text_field :last_name
+        = f.text_field :last_name, :class => "validate[required]"
       /TODO: Email has a special validation process, please check with Fer
       .input
         = f.label :email, t(:email)
         .private
-        = f.text_field :email
+        = f.text_field :email, :class => "validate[required]"
       .input
         = f.label :gender, t(:gender)
         .private
@@ -39,25 +39,25 @@
       /Billing Address Section
       .section-header #{t(:section_header_billing_address)}
       .text
-    = form_for :address, :url => user_change_address_path((@user['id'] ? @user['id'] : params[:id])), :method => :put do |f|
+    = form_for :address, :url => user_change_address_path((@user['id'] ? @user['id'] : params[:id])), :method => :put, :html => {:id => "change_address"} do |f|
       -# FIXME: coded_errors_for is not working
       -# = coded_errors_for @address
       .input
         = f.label :street, t(:street)
         .private
-        = f.text_field :street
+        = f.text_field :street, :class => "validate[required]"
       .input
         = f.label :city, t(:city)
         .public
-        = f.text_field :city
+        = f.text_field :city, :class => "validate[required]"
       .input
         = f.label :country, t(:country)
         .public
-        = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], :include_blank => true)
+        = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], {:include_blank => true}, { :class => "validate[required]" } )
       .input
         = f.label :zip, t(:zip)
         .private
-        = f.text_field :zip
+        = f.text_field :zip, :class => "validate[required]"
         = f.hidden_field :id
       .clearfix
       .span3.float-right
@@ -65,25 +65,25 @@
         = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
-    = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
+    = form_for :new_password, :url => user_change_password_path(@user['id']), :method => :put, :html => {:id => "new_password"} do |f|
 
       /Password Section
       .section-header #{t(:section_header_user_password)}
+      -# .input
+      -#   = f.label t(:profile_current_pwd)
+      -#   .private
+      -#   = f.password_field 'current_password', {:placeholder => t(:profile_current_pwd), :class => "validate[required]"}
       .input
-        = label_tag t(:profile_current_pwd)
+        = f.label t(:password)
         .private
-        = password_field_tag 'current_password', '', :placeholder => t(:profile_current_pwd)
+        = f.password_field :password, :class => "validate[required,minSize[6]]"
       .input
-        = label_tag t(:password)
+        = f.label t(:profile_retype_pwd)
         .private
-        = password_field_tag t(:password), ''
-      .input
-        = label_tag t(:profile_retype_pwd)
-        .private
-        = password_field_tag t(:profile_retype_pwd), ''
+        = f.password_field :password_confirmation, :class => "validate[required,equals[new_password_password]]"
       .clearfix
       .span3.float-right
-        = submit_tag t(:save), :class => 'btn primary'
+        = f.submit t(:save), :class => 'btn primary'
         = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
@@ -126,6 +126,7 @@
   $(document).ready(function() {
     $('div.private').twipsy({html:true,placement:"above", title: function(){return "Private. Only visible to those that have an active transaction with you"} });
     $('div.public').twipsy({html:true,placement:"above", title: function(){return "Public. Anyone can see this information"} });
+    $("#new_password, #change_address, #update_user").validationEngine();
   });
 
   $(document).ready(function() {

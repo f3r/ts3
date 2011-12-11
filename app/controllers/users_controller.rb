@@ -133,6 +133,18 @@ class UsersController < ApplicationController
     end
   end
 
+  def change_password
+    @user = Heypal::User.new(params_with_token(:new_password))
+    @address = Heypal::Address.show('access_token' => current_token)
+
+    if @user.valid? && @user.save
+      redirect_to profile_path
+    else
+      @user_auth = Heypal::User.list('access_token' => current_token)
+      render :action => :edit
+    end
+  end
+
   def change_preference
     preference = if params.key?("pref_language")
       :pref_language

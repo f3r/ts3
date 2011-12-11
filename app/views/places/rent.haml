@@ -1,3 +1,9 @@
+- content_for :javascripts do
+  %link{:rel => "stylesheet", :href => "/javascripts/datepicker/css/datepicker.css", :type => "text/css"}
+  %script{:src => '/javascripts/datepicker/js/datepicker.js', :type => 'text/javascript'}
+  %script{:src => '/javascripts/datepicker/js/eye.js', :type => 'text/javascript'}
+  %script{:src => '/javascripts/datepicker/js/utils.js', :type => 'text/javascript'}
+
 %ul.breadcrumb
   %li
     = link_to @place['title'], place_path(@place["id"])
@@ -5,114 +11,122 @@
   %li.active
     =t(:rent)
 
+.rent_place_page
+  .row
+    .span16
 
-.row
-  .span16
+      = form_tag(availability_place_path, :method => :post, :id => "check_availability") do
 
-    = form_tag(availability_place_path, :method => :post) do
+        .panel
+          .panel-wrapper
+            %h2.title
+              = t(:place_details)
 
-      .panel
-        .panel-wrapper
-          %h2.title
-            = t(:place_details)
+        .row.info
+          .span4
+            .thumb
+              = image_tag(@place['photos'].blank? ? "http://placehold.it/150x90" : @place['photos'][0]['photo']['medium'])
+          .span12
+            %h3= @place.title
+            .clearfix
+            .span4
+              .location
+                = "#{@place.city_name}, #{@place.country_name}"
+            .span4
+              .type
+                = @place.place_type 
+              .micro
+                - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
+                  = get_current_size_unit == "sqf" ? @place['size_sqf'].round(2) : @place['size_sqm'].round(2)
+                  =raw get_pref_size_unit
+            .span3
+              .price
+                - if !@place['price_per_night'].nil?
+                  .figure
+                    = "#{get_pref_currency}#{@place['price_per_night']}"
+                  = t(:per_night)
+                - else
+                  &nbsp;
 
-      .row
-        .span3
-          .thumb.data-block
-            = image_tag(@place['photos'].blank? ? "http://placehold.it/150x90" : @place['photos'][0]['photo']['small'])
-        .span3
-          %h3= @place.title
-          = "#{@place.city_name}, #{@place.country_name}"
-        .span3
-          .type 
-            = @place.place_type 
-          .micro
-            - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
-              = get_current_size_unit == "sqf" ? @place['size_sqf'].round(2) : @place['size_sqm'].round(2)
-              =raw get_pref_size_unit
-        .span3
-          .price
-            - if !@place['price_per_night'].nil?
-              .figure= "#{get_pref_currency}#{@place['price_per_night']} Per night"
-            - else
-              &nbsp;
+        .row.details
+          .span3.offset2
+            .check_in
+              %strong= t(:check_in)
+              %br= @place['check_in_after']
+          .span3.offset2
+            .check_out
+              %strong= t(:check_out)
+              %br= @place['check_out_before']
+          .span3.offset2
+            .cancellation_policy
+              %strong= t(:cancellation_policy)
+              %br= @place['cancellation_policy']
 
-      .row
-        .span3
-          .check_in
-            check-in
-            = @place['check_in_after']
-        .span3
-          .check_out
-            check-out
-            = @place['check_out_before']
-        .span3
-          .cancellation_policy
-            Cancellation Policy
-            = @place['cancellation_policy']
+        .row.details
+          .span3.offset2
+            .guests
+              %strong= t(:guests)
+              %br= @place['max_guests']
+          .span3.offset2
+            .bedrooms
+              %strong= t(:bedrooms)
+              %br= @place['num_bedrooms']
+          .span3.offset2
+            .house_rules
+              %strong= t(:house_rules)
+              %br= @place['house_rules']
 
-      .row
-        .span3
-          .guests
-            Guests
-            = @place['max_guests']
-        .span3
-          .bedrooms
-            Bedrooms
-            = @place['bedrooms']
-        .span3
-          .house_rules
-            House Rules
-            = @place['house_rules']
+        .panel
+          .panel-wrapper
+            %h2.title
+              = t(:stay_details)
 
-      .panel
-        .panel-wrapper
-          %h2.title
-            = t(:stay_details)
+        .row
+          .span16
+            %fieldset
+              .clearfix
+              <p id="date_picker"></p>
+              <p><a href="#" id="clearSelection">Clear selection</a></p>
+              .clearfix
+                .input.required
+                  = label_tag :arriving, t(:arriving)
+                  = text_field_tag :check_in, (!params['check_in'].blank? ? params['check_in'] : Date.today), :class => "validate[custom[date],future[NOW]]"
+                .input.required
+                  = label_tag :check_out, t(:departing)
+                  = text_field_tag :check_out, (!params['check_out'].blank? ? params['check_out'] : Date.today), :class => "validate[custom[date],future[NOW]]"
+                .input
+                  = label_tag :duration, t(:duration)
+                  .duration
+                    %span 0
+                    =t(:days)
 
+        .panel
+          .panel-wrapper
+            %h2.title
+              = t(:contact_information)
+        %fieldset
+          .clearfix
+            .input.required
+              = label_tag :mobile_phone_number, t(:mobile_phone_number)
+              = text_field_tag :phone_mobile, current_user.phone_mobile, :class => "validate[required]"
+            .input.required
+              = label_tag :passport_number, t(:passport_number)
+              = text_field_tag :passport_number, current_user.passport_number, :class => "validate[required]"
+          .clearfix
+            = check_box_tag :terms, 1, false, :class => "validate[required]"
+            = t(:read_agreement)
+            = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank        
 
-      %fieldset
-        .clearfix
-        <p id="date3"></p>
-        <p><a href="#" id="clearSelection">Clear selection</a></p>
-        .clearfix
-          .input.required
-            = label_tag :arriving, t(:arriving)
-            = hidden_field_tag :check_in
-            .check_in_preview
-          .input.required
-            = label_tag :check_out, t(:departing)
-            = hidden_field_tag :check_out
-            .check_out_preview
-          .input
-            = label_tag :duration, t(:duration)
-            .duration
-              0 days
-      .panel
-        .panel-wrapper
-          %h2.title
-            = t(:contact_information)
-      %fieldset
-        .clearfix
-          .input.required
-            = label_tag :mobile_phone_number, t(:mobile_phone_number)
-            = text_field_tag :phone_mobile, current_user.phone_mobile
-          .input.required
-            = label_tag :passport_number, t(:passport_number)
-            = text_field_tag :passport_number, current_user.passport_number
-
-        .clearfix
-          = t(:read_agreement)
-        %button.btn
-          = t(:continue)
-
-%link{:rel => "stylesheet", :href => "/javascripts/datepicker/css/datepicker.css", :type => "text/css"}
-%script{:src => '/javascripts/datepicker/js/datepicker.js', :type => 'text/javascript'}
-%script{:src => '/javascripts/datepicker/js/eye.js', :type => 'text/javascript'}
-%script{:src => '/javascripts/datepicker/js/utils.js', :type => 'text/javascript'}
+          %button.btn
+            = t(:continue)
 
 
 :javascript
+
+  $(document).ready(function() {
+    $("#check_availability").validationEngine();
+    update_dates();
+  });
 
   function daydiff(first, second) {
     return (second-first)/(1000*60*60*24)
@@ -120,8 +134,20 @@
   
   function update_duration(start,end) {
     diff = daydiff(start, end);
-    $('div.duration').html(Math.round(diff));
+    $('div.duration span').html(Math.round(diff));
   }
+  
+  function update_dates() {
+    check_in = $('#check_in').val();
+    check_out = $('#check_out').val();
+    date = [check_in,check_out];
+    update_duration(new Date(check_in),new Date(check_out))
+    $('#date_picker').DatePickerSetDate(date, 1);
+  }
+  
+  $('#check_in,#check_out').change(function() {
+    update_dates();
+  });
   
   (function($){
   	var initLayout = function() {
@@ -134,12 +160,12 @@
       if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} var today = yyyy+'/'+mm+'/'+dd;
 
   		$('#clearSelection').bind('click', function(){
-  			$('#date3').DatePickerClear();
+  			$('#date_picker').DatePickerClear();
+  			$('#check_in,#check_out').val("");
   			return false;
   		});
-  		$('#date3').DatePicker({
+  		$('#date_picker').DatePicker({
   			flat: true,
-        // date: ['2011-12-01','2011-12-23'],
         date: [today,today],
   			current: today,
   			calendars: 2,
@@ -148,8 +174,6 @@
       	onChange: function(formated, dates){
       	  $('#check_in').val(formated[0]);
       	  $('#check_out').val(formated[1]);
-      	  $('.check_in_preview').html(formated[0]);
-      	  $('.check_out_preview').html(formated[1]);
       	  update_duration(dates[0],dates[1])
       	}
   		});

@@ -183,7 +183,13 @@ class PlacesController < ApplicationController
   
   def availability
     @availability = Heypal::Place.availability(params[:id], params[:check_in], params[:check_out], get_current_currency, current_token)
-    render :layout => 'plain'
+    if @availability.key?("err")
+      @errors = @availability["err"]
+      puts @errors
+      render 'rent'
+    else
+      render :layout => 'plain'
+    end
   end
 
   def confirm_rental

@@ -10,7 +10,7 @@
           = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
         .details
           .name
-            = link_to "#{place['user']['first_name']} #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
+            = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
             .micro
               .type.verified Agent
 

@@ -33,6 +33,7 @@ en:
   resend_confirmation:        Resend Confirmation
   enter_your_email:           Enter your Email
   reset_password:             Reset Password
+  forgot_password:            Forgot Password
   confirmation_code:          Confirmation code
   confirmation_email_sent:    Confirmation email sent
   register:                   Register

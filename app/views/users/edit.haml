@@ -29,7 +29,7 @@
       .input
         = f.label :birthdate, t(:birthdate)
         .private
-        = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true
+        = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
       .clearfix
       .span3.float-right
         = submit_tag t(:save), :class => 'btn primary'

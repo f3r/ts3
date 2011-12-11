@@ -1,33 +1,38 @@
-- places.each do |place|
+- if places
+  - places.each do |place|
+    %li
+      .thumb.data-block
+        = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
+      .info  
+        %h3.title
+          = link_to place['title'], place_path(place['id'])
+        .people.data-block
+          .profile-pic
+            = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
+          .details
+            .name
+              = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
+              .micro
+                .type.verified Agent
+
+        .property.data-block
+          .title
+            .type.apartment 
+              = place['place_type']['name'] 
+          .micro
+            - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
+              .label{:style => "color:black; text-transform:lowercase;"}
+                = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
+                sqf
+            -else
+              .label{:style => "color:black; text-transform:lowercase;"}
+                = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
+                sqm
+
+      .price.data-block
+        .figure= "#{get_pref_currency}#{place['price_per_night']}"
+        .micro Per night
+- else
   %li
     .thumb.data-block
-      = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
-    .info  
-      %h3.title
-        = link_to place['title'], place_path(place['id'])
-      .people.data-block
-        .profile-pic
-          = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
-        .details
-          .name
-            = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
-            .micro
-              .type.verified Agent
-
-      .property.data-block
-        .title
-          .type.apartment 
-            = place['place_type']['name'] 
-        .micro
-          - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
-            .label{:style => "color:black; text-transform:lowercase;"}
-              = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
-              sqf
-          -else
-            .label{:style => "color:black; text-transform:lowercase;"}
-              = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
-              sqm
-
-    .price.data-block
-      .figure= "#{get_pref_currency}#{place['price_per_night']}"
-      .micro Per night
+      Sorry, there are no properties that match your criteria

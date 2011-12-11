@@ -165,7 +165,11 @@ $(document).ready(function() {
     $("#country-select").toggle();
   });
 
-  $('#my-modal').modal()
+  $('#my-modal').modal({backdrop:true})
+  
+  $('#my-modal').bind('hidden', function () {
+    $("#country-select").toggle();
+  })
 });
 
 function disabled_question_button() {

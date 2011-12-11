@@ -42,7 +42,7 @@
           %h2.title
             = t(:billing_address)
 
-      - if !current_user['address'].nil?
+      - if !@user['address'].nil?
 
         %p= "#{t(:billed_address)}:"
         %p= link_to "Change address", "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
@@ -52,22 +52,22 @@
             %td.label_detail
               #{t(:country)}
             %td.user_detail
-              = current_user['address']['country']
+              = @user['address']['country']
           %tr
             %td.label_detail
               #{t(:city)}
             %td.user_detail
-              = current_user['address']['city']
+              = @user['address']['city']
           %tr
             %td.label_detail
               #{t(:street)}
             %td.user_detail
-              = current_user['address']['street']
+              = @user['address']['street']
           %tr
             %td.label_detail
               #{t(:zip)}
             %td.user_detail
-              = current_user['address']['zip']
+              = @user['address']['zip']
       - else
         %p= link_to t(:add_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
       
@@ -76,12 +76,16 @@
       = f.hidden_field(:check_in, :value => params[:check_in])
       = f.hidden_field(:check_out, :value => params[:check_out])
 
-      %p
-        %button.btn.large.primary= t(:confirm_rental)
+      .row
+        .span4.offset7
+          - if @user['address'].nil?
+            %button.btn.large.primary.confirm_rental{:disabled => 'disabled'}= t(:confirm_rental)
+          - else
+            %button.btn.large.primary.confirm_rental= t(:confirm_rental)
 
 
 #address-modal.modal.hide.fade
-  = form_for :address, :url => user_change_address_path(current_user['id']), :method => :put do |f|
+  = form_for :address, :url => user_change_address_path(@user['id']), :method => :put do |f|
     .modal-header
       = link_to "x", '#', :class => "close"
       %h3= t(:change_address)

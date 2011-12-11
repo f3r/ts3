@@ -178,10 +178,12 @@ class PlacesController < ApplicationController
   end
   
   def rent
+    @user = Heypal::User.show('access_token' => current_token)
     render :layout => 'plain'
   end
   
   def availability
+    @user = Heypal::User.show('access_token' => current_token)
     @availability = Heypal::Place.availability(params[:id], params[:check_in], params[:check_out], get_current_currency, current_token)
     if @availability.key?("err")
       @errors = @availability["err"]
@@ -189,6 +191,30 @@ class PlacesController < ApplicationController
       render 'rent'
     else
       render :layout => 'plain'
+    end
+  end
+  
+  def check_availability
+    @availability = Heypal::Place.availability(params[:place_id], params[:check_in], params[:check_out], get_current_currency, current_token)
+    if @availability.key?("err")
+      # @errors = @availability["err"]
+      puts @availability["err"].inspect
+      # puts @availability['err'].inspect
+      error = [params[:fieldId], true]
+      if @availability['err'][params[:fieldId]]
+        error = [params[:fieldId], false, 'date must be future, after today'] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(119)
+        error = [params[:fieldId], false, 'end date must be after initial date'] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(120)
+        error = [params[:fieldId], false, 'occupied'] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
+      end
+      error = [params[:fieldId], false, 'occupied'] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
+      # errors = []      
+      # errors = errors << ['check_in', false, 'date must be future, after today'] if @availability["err"]['check_in'] && @availability["err"]['check_in'].include?(119)
+      # errors = errors << ['check_out', false, 'end date must be after initial date'] if @availability["err"]['check_out'] && @availability["err"]['check_out'].include?(120)
+      # puts error.inspect
+      
+      render :inline => error.to_json
+    else
+      render :inline => [params[:fieldId], true].to_json
     end
   end
 

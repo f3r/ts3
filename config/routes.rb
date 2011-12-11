@@ -24,6 +24,8 @@ HeyPalFrontEnd::Application.routes.draw do
       post :reply_to_message
     end
   end
+  
+  get '/check_availability' => 'places#check_availability'
 
   ###########################################################################################
   # Messaging

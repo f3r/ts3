@@ -4,4 +4,6 @@ module Heypal
   
 end
 
-Heypal::base_url = 'https://backend-heypal.heroku.com'
+# FIXME: Remove from here and figure a way to make it work with environments/*.rb
+#Heypal::base_url = 'https://backend-heypal.heroku.com'
+Heypal::base_url = 'http://squarestays-backend.heroku.com'

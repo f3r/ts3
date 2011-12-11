@@ -75,6 +75,10 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/my_places'    =>  'places#my_places', :as => :my_places
 
   root :to => 'home#index'
+  
+  # Error matching
+  # http://techoctave.com/c7/posts/36-rails-3-0-rescue-from-routing-error-solution
+  match '*a', :to => 'errors#routing'
 
   ###########################################################################################
   # Deprecated or Future routes

@@ -16,13 +16,12 @@
   %body
     = render 'shared/header'
     .container
-
       .content
         .row
           %section.span12
-            = flash_messages            
+            = flash_messages
             = yield
           %aside.span4
             = yield :aside
 
-      = render 'shared/footer'      
+      = render 'shared/footer'

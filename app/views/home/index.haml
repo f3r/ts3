@@ -7,7 +7,7 @@
           = link_to "Singapore", "#", :id => "open-country-select"
         %ul#country-select
           %li Singapore
-          %li= link_to "Not going to Singapore", "#", "data-controls-modal" => "my-modal"
+          %li= link_to "Not going to Singapore?", "#", "data-controls-modal" => "my-modal"
 
         #my-modal.hide.modal.fade
           = form_tag '/cities/suggest', :html => {:remote => true} do

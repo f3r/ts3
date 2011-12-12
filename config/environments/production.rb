@@ -59,7 +59,7 @@ HeyPalFrontEnd::Application.configure do
   config.active_support.deprecation = :notify
 end
 
-Heypal::base_url = 'http://squarestays-backend.heroku.com'
+Heypal::base_url = 'http://backend-heypal.heroku.com'
 
 
 Rails.application.config.middleware.use OmniAuth::Builder do

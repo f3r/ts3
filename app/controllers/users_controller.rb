@@ -126,6 +126,7 @@ class UsersController < ApplicationController
     @address = Heypal::Address.show('access_token' => current_token)
 
     if @user.valid? && @user.save
+      flash[:notice] = 'You successfully updated your profile.'
       redirect_to profile_path
     else
       @user_auth = Heypal::User.list('access_token' => current_token)
@@ -138,6 +139,7 @@ class UsersController < ApplicationController
     @address = Heypal::Address.show('access_token' => current_token)
 
     if @user.valid? && @user.save
+      flash[:notice] = 'You successfully updated your password.'
       redirect_to profile_path
     else
       @user_auth = Heypal::User.list('access_token' => current_token)

@@ -80,6 +80,9 @@ module LookupsHelper
     [['Price (Lowest First)', 'price_lowest'], ['Price (Highest First)', 'price_highest'], ['Price/Size (Lowest First)', 'price_size_lowest'], ['Price/Size (Highest First)', 'price_size_highest']]
   end
 
+  def empty_place_type
+    {"apartment"=>0, "house"=>0, "villa"=>0, "room"=>0, "other_space"=>0}
+  end
   # Should be of this format:
   # {"date_end"=>[120]}
   def error_codes_to_messages(error_hash)

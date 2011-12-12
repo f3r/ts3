@@ -170,7 +170,7 @@ class PlacesController < ApplicationController
     @results = Heypal::Place.search(params)
 
     if @results.key?("err") # XXX: handle no results found
-      render :json => {:results => 0, :per_page => 0, :current_page => 0, :place_type_count => {},
+      render :json => {:results => 0, :per_page => 0, :current_page => 0, :place_type_count => empty_place_type,
         :total_pages => 0, :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false)}
     else
       render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => @results['current_page'], :place_type_count => @results['place_type_count'],

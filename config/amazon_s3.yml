@@ -4,6 +4,6 @@ development:
   secret_access_key: KDVOzSmFzzZiNMkuPDOJ60WURpSSCXIz8R72dMUe
 
 production:
-  bucket: squarestays-img-staging
+  bucket: squarestays-img-production
   access_key_id: AKIAICSWWKMXN4NP7FIQ
   secret_access_key: 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

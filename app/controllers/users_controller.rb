@@ -121,7 +121,7 @@ class UsersController < ApplicationController
 
   def update
     birthdate = "#{params[:birthdate][:year]}/#{params[:birthdate][:month]}/#{params[:birthdate][:day]}".to_date rescue nil
-    params[:user][:birthdate] if birthdate
+    params[:user][:birthdate] = birthdate if birthdate
     @user = Heypal::User.new(params_with_token(:user))
     @address = Heypal::Address.show('access_token' => current_token)
 

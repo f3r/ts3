@@ -31,61 +31,35 @@
             %li.arrow
             %li.divider-title Choose language...
             %li.divider
-            - if get_current_language == "en"
-              %li.active
-                %a{:href => "#", "data-type" => "language", "data-value" => "en"} &#10003; English
-            - else
-              %li
-                %a{:href => "#", "data-type" => "language", "data-value" => "en"} English
-            - if get_current_language == "es"
-              %li.active
-                %a{:href => "#", "data-type" => "language", "data-value" => "es"} &#10003; Español
-            - else
-              %li
-                %a{:href => "#", "data-type" => "language", "data-value" => "es"} Español
-            %li.divider              
+              %li{ get_current_language == "en" ? {:class => "active"} : {} }
+                %a{:href => "#", "data-type" => "language", "data-value" => "en"} <span class="check">&#10003;</span> English
+              %li{ get_current_language == "es" ? {:class => "active"} : {} }
+                %a{:href => "#", "data-type" => "language", "data-value" => "es"} <span class="check">&#10003;</span>Español
+            %li.divider
             %li.divider-title Choose Currency...
             %li.divider            
-            %li
+            %li{ get_current_currency == "USD" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "USD"} 
-                %span.em $ 
+                %span.em <span class="check">&#10003;</span> $ 
                 USD
-            %li
+            %li{ get_current_currency == "GBP" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "GBP"} 
-                %span.em £
+                %span.em <span class="check">&#10003;</span> £
                 GBP              
-            %li
+            %li{ get_current_currency == "SGD" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "SGD"}
-                %span.em $
+                %span.em <span class="check">&#10003;</span> $
                 SGD
-            %li
-              %a{:href => "#"} ...
-
             %li.divider              
             %li.divider-title Choose Unit...
             %li.divider            
-            - if get_current_size_unit == "sqm"
-              %li.active
+              %li{ get_current_size_unit == "sqm" ? {:class => "active"} : {} }
                 %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqm"}
-                  &#10003;
-                  %span.em m²
+                  %span.em <span class="check">&#10003;</span> m²
                   Sq. meter
-            - else
-              %li
-                %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqm"}
-                  %span.em m²
-                  Sq. meter
-
-            - if get_current_size_unit == "sqf"
-              %li.active
+              %li{ get_current_size_unit == "sqf" ? {:class => "active"} : {} }
                 %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqf"}
-                  &#10003;
-                  %span.em ft²
-                  Sq. foot
-            - else
-              %li
-                %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqf"}
-                  %span.em ft²
+                  %span.em <span class="check">&#10003;</span> ft²
                   Sq. foot
 
   = render 'shared/menu'

@@ -59,12 +59,12 @@
 = yield :stylesheets
 - if controller_name.eql?('places') && (action_name.eql?('show') || action_name.eql?('preview'))
   %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
-  <meta property="og:title" content="SquareStays" />
-  <meta property="og:type" content="Sharing Place" />
-  <meta property="og:url" content="http://frontend-heypal.heroku.com/" />
-  <meta property="og:image" content="http://frontend-heypal.heroku.com/images/SquareStays.png?1323326660" />
-  <meta property="og:description" content="Sharing place!" />
-  <meta property="og:site_name" content="SquareStay.com" />
+  <meta property="og:title"       content="SquareStays" />
+  <meta property="og:type"        content="Trusted Stays Worldwide" />
+  <meta property="og:url"         content="http://squarestays.com/" />
+  <meta property="og:image"       content="http://squarestays.com/images/SquareStays.png" />
+  <meta property="og:description" content="Trusted Stays Worldwide" />
+  <meta property="og:site_name"   content="SquareStays.com" />
   %script{:type => "text/javascript", :src =>"http://w.sharethis.com/button/buttons.js"}
   %script{:type => "text/javascript"}
     stLight.options({publisher: '1137f463-04eb-4f6e-92a9-0fecb345ab69', popup: true});

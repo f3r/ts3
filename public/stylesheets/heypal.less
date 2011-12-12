@@ -814,17 +814,22 @@ ul#wizard-selector {
 .amenities {
   .amenity {
     display: block;
-    width: 166px;
+    width: 200px;
     font-size: 14px;
     float: left;
-    margin-right: 10px;
+    margin: 0 10px 10px 0;
     padding: 10px 0;
     text-align:right;
+
+    &:nth-child(3n+3) .save-indicator {
+      margin-bottom:4px; // Note: Don't know why but this is needed on every last (3rd) on the amenities list, if not, it destroys layout on un/check
+    }
   }
 
   input[type="checkbox"] {
     float:right;
-    margin:3px 0 0 5px;
+    margin:3px 0 10px 9px;
+    padding-right:5px;
   }
 
   a { float: right }
@@ -2054,6 +2059,10 @@ h4.year-header {
 
 .save-indicator {
   margin-left: 5px;
+
+  &.right {
+    float:right;
+  }
 }
 
 .counter {

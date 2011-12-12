@@ -5,31 +5,29 @@
         %h1
           Search for a place to stay in
           = link_to "Singapore", "#", :id => "open-country-select"
-        %ul#country-select
+        %ul#country-select.dropdown
           %li Singapore
           %li= link_to "Not going to Singapore?", "#", "data-controls-modal" => "my-modal"
 
         #my-modal.hide.modal.fade
-          = form_tag '/cities/suggest', :html => {:remote => true} do
+          = form_tag '/cities/suggest', :html => {:remote => true}, :style => "margin-bottom:0" do
             .modal-header
-              %b Can't find the city you were hoping to go?
+              %h3 Can't find the city you were hoping to go?
             .modal-body
               We're working hard on expanding SquareStays to more<br>
-              You can gelp us by telling us what city you would like to see next.<br><br><br>
+              You can help us by telling us what city you would like to see next.<br><br>
               .input
                 %label{:style => "text-align:right; width:65px; margin-right:20px;"} City
                 = text_field_tag 'city', ''
-              <br><br>
               .input
                 %label{:style => "text-align:right; width:65px; margin-right:20px;"} Email
                 = text_field_tag 'email', ''
-              <br><br>
-              %i Leave us your E-Mail address so we can notify you when we add the city you were looking for
-              <br><br>
-
+              <br>
+              %i Leave us your E-Mail address so we can notify you when we add the city you were looking for.
+              <br>
             .modal-footer
               %button.btn.primary Submit
-              %button.btn{:onclick => "$('#my-modal').modal('hide');"} Cancel
+              %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"} Cancel
 
         %form{:action => '/places'}
           .clearfix

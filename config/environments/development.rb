@@ -29,7 +29,7 @@ HeyPalFrontEnd::Application.configure do
   config.assets.debug = true
 end
 
-Heypal::base_url = 'https://backend-heypal.heroku.com'
+Heypal::base_url = 'http://localhost:3000'
 
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, '289917857692700', 'e21346334029581a59ea6d0ddcfb7dfe'

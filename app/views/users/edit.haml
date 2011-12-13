@@ -2,8 +2,10 @@
 .edit_profile_page
   %section.span8
     .section-header #{t(:section_header_user_information)}
-    = coded_errors_for @user
-  
+    - unless coded_errors_for(@user).blank?
+      %div{:class => 'alert-message error'}
+        = coded_errors_for @user
+
     = form_for :user, :url => user_path(@user['id']), :method => :put, :html => {:id => "update_user"} do |f|
       .input
         = f.label :first_name, t(:first_name)
@@ -65,7 +67,7 @@
         = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
-    = form_for :new_password, :url => user_change_password_path(@user['id']), :method => :put, :html => {:id => "new_password"} do |f|
+    = form_for :new_password, :url => user_change_password_path((@user['id'] ? @user['id'] : params[:id])), :method => :put, :html => {:id => "new_password"} do |f|
 
       /Password Section
       .section-header #{t(:section_header_user_password)}

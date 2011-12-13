@@ -11,6 +11,9 @@
 function showIndicator(elem) {
   elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
 }
+function showRightIndicator(elem) {
+  elem.after("<span class='save-indicator right'><img src='/images/loading.gif' alt='' /></span>");
+}
 
 function showSavedIndicator(elem) {
   elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
@@ -161,15 +164,24 @@ $(document).ready(function() {
     }
   });
 
+  var inside_country = false;
   $("#open-country-select").click(function() {
-    $("#country-select").toggle();
+    $("#country-select").show();
   });
 
-  $('#my-modal').modal({backdrop:true})
-  
+  $("#country-select").hover(function() {
+    inside_country = true;
+  }, function() {
+    inside_country = false;
+  });
+  $("body").mouseup(function() {
+    if (!inside_country) $("#country-select").hide();
+  });
+
+  $('#my-modal').modal({backdrop:true});
   $('#my-modal').bind('hidden', function () {
-    $("#country-select").toggle();
-  })
+    $("#country-select").hide();
+  });
 });
 
 function disabled_question_button() {

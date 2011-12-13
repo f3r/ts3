@@ -333,7 +333,7 @@ var sendPlaceSizeUpdate = function () {
 var sendCheckBoxUpdate = function() {
   var elem = $(this);
   hideIndicator(elem);
-  showIndicator(elem);
+  showRightIndicator(elem);
 
   elem.hide();
 
@@ -355,7 +355,7 @@ var sendCheckBoxUpdate = function() {
     url: '/places/' + place_id + '.json',
     data: post_data,
     success: function() {
-      hideIndicator(elem);
+      showSavedIndicator(elem);
       elem.show();
     }
   });

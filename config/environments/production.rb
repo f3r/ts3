@@ -59,15 +59,9 @@ HeyPalFrontEnd::Application.configure do
   config.active_support.deprecation = :notify
 end
 
-Heypal::base_url = 'http://squarestays-backend.heroku.com'
-
+Heypal::base_url = ENV['BACKEND_PATH']
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  # Production (squarestays.com)
-  provider :facebook, '201854953233705', '5a773c1f43daaaefb0a169fc388ba1e0'
-  provider :twitter, 'KkHFOnyPPPFjUYcjVpyLA', 'rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA'
-
-  # Integration (frontend-heypal.heroku.com)
-  # provider :facebook, '294052747281058', 'c8fbc31a070e9aa9bcbba3d702d5ec1a'
-  # provider :twitter, '7IhUH1SkVKa7VNVDY5Bdw', 'iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc'
+  provider :facebook, ENV['FB_APP_ID'], ENV['FB_APP_SECRET']
+  provider :twitter,  ENV['TW_APP_ID'], ENV['TW_APP_SECRET']
 end

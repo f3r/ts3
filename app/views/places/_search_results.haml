@@ -1,5 +1,5 @@
 - if places.blank?
-  .alert-message.info No Results Found.
+  .alert-message.info= t(:no_result)
 - else
   %ul.list-display
     = render 'results_list_view', :places => places

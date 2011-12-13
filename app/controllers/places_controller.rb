@@ -183,8 +183,13 @@ class PlacesController < ApplicationController
   end
   
   def rent
-    @user = Heypal::User.show('access_token' => current_token)
-    render :layout => 'plain'
+    if logged_in?
+      @user = Heypal::User.show('access_token' => current_token)
+      render :layout => 'plain'
+    else
+      flash[:error] = 'You must logged in to rent a place'
+      redirect_to login_path
+    end
   end
   
   def availability

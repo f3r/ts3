@@ -1,34 +1,33 @@
-.span12.offset2
-  .registration.row
-    %br
-    .section.span6.bored
-      %h2= t(:login)
+.registration
+  %br
+  .section.span6.bored
+    %h2= t(:login)
 
-      = form_tag sessions_path do 
-        .input
-          = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
-        .input
-          = password_field_tag :password, '', :placeholder => 'Password'
-        %button.btn.float-right{:type => 'submit primary'}
-          Login
+    = form_tag sessions_path do 
+      .input
+        = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
+      .input
+        = password_field_tag :password, '', :placeholder => 'Password'
+      %button.btn.float-right{:type => 'submit primary'}
+        Login
 
-      %br.clearfix
-      = link_to t(:forgot_password), reset_password_users_path
-      %br
-      = link_to 'Resend confirmation email', confirm_users_path      
-    .section.span5
-      %h2= t(:login_using)
-      %a{:href => "/auth/facebook"}
-        %img{:src => '/images/signin_facebook.png'}      
-      %br
-      %a{:href => "/auth/twitter"}
-        %img{:src => '/images/sign-in-with-twitter-l.png'}        
-      %br
-      %br
-      %br
-      %p
-        This will allow you to log in to SquareStays
-        %br
-        using your existing accounts!      
     %br.clearfix
+    = link_to t(:forgot_password), reset_password_users_path
     %br
+    = link_to 'Resend confirmation email', confirm_users_path      
+  .section.span5
+    %h2= t(:login_using)
+    %a{:href => "/auth/facebook"}
+      %img{:src => '/images/signin_facebook.png'}      
+    %br
+    %a{:href => "/auth/twitter"}
+      %img{:src => '/images/sign-in-with-twitter-l.png'}        
+    %br
+    %br
+    %br
+    %p
+      This will allow you to log in to SquareStays
+      %br
+      using your existing accounts!      
+  %br.clearfix
+  %br

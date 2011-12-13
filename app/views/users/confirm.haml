@@ -1,22 +1,21 @@
-.span12.offset2
-  .registration.row
-    %br
-    .section.span6.bored
-      %h2= t(:enter_confirmation_code)
+.registration
+  %br
+  .section.span6.bored
+    %h2= t(:enter_confirmation_code)
 
-      = form_tag '/users/confirm', :method => :get do 
-        .input
-          = text_field_tag 'confirmation-token', '',  :placeholder => t(:confirmation_code)
-        %button.btn.float-right{:type => 'submit primary'}
-          = t(:submit)
+    = form_tag '/users/confirm', :method => :get do 
+      .input
+        = text_field_tag 'confirmation-token', '',  :placeholder => t(:confirmation_code)
+      %button.btn.float-right{:type => 'submit primary'}
+        = t(:submit)
 
-    .section.span5
-      %h2= t(:resend_confirmation_code)
-      = form_tag '/users/confirm', :method => :get do 
-        .input
-          = text_field_tag 'email', '',  :placeholder => t(:enter_your_email)
-        %button.btn.float-right{:type => 'submit primary'}
-          = t(:resend_confirmation)
+  .section.span5
+    %h2= t(:resend_confirmation_code)
+    = form_tag '/users/confirm', :method => :get do 
+      .input
+        = text_field_tag 'email', '',  :placeholder => t(:enter_your_email)
+      %button.btn.float-right{:type => 'submit primary'}
+        = t(:resend_confirmation)
 
-    %br.clearfix
-    %br
+  %br.clearfix
+  %br

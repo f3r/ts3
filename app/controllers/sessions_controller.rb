@@ -1,5 +1,6 @@
 class SessionsController < ApplicationController
-  
+  layout 'single'
+
   def create
     if params[:email].present? && params[:password].present?
       @heypal_session = Heypal::Session.create(params)

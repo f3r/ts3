@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   def new
     @user = Heypal::User.new
+    render :layout => 'single'
   end
 
   def create
@@ -20,7 +21,7 @@ class UsersController < ApplicationController
       redirect_to signup_complete_path
     else
       #error_message = error_messages(@user.result).join(', ') 
-      render :action => :new
+      render :action => :new, :layout => 'single'
     end
   end
 
@@ -57,10 +58,11 @@ class UsersController < ApplicationController
       end
 
     end
+
+    render :layout => 'single'
   end
 
   def reset_password
-
     if request.post?
       if params['email']
         if params['email'].present? && Heypal::User.reset_password({:email => params[:email]})
@@ -74,6 +76,7 @@ class UsersController < ApplicationController
       end
     end
 
+    render :layout => 'single'
   end
 
   def items
@@ -86,7 +89,6 @@ class UsersController < ApplicationController
   end
 
   def confirm_reset_password
-
     if request.post?
       if params['reset_password_token'].present? && Heypal::User.confirm_reset_password(params)
         flash[:notice] = t(:password_reset_success)
@@ -96,6 +98,7 @@ class UsersController < ApplicationController
       end
     end
 
+    render :layout => 'single'
   end
 
   def signup_complete

@@ -8,10 +8,8 @@
     .container
       .content
         .row
-          %section.span12
+          %section.span12.offset2
             = flash_messages
             = yield
-          %aside.span4
-            = yield :aside
 
       = render 'shared/footer'

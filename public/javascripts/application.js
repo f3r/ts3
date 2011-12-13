@@ -118,7 +118,7 @@ $(function() {
   $('.wizard-aside, .wrap-searchbar, .search-aside').waypoint(function(event, direction) {
     $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
-	}, {offset: 60});  
+	}, {offset: 52});  // NOTE: when you change this, goto heypal.less -> .sticky and change top attr
 
 
 });

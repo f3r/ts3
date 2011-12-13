@@ -417,16 +417,14 @@ var computeWeeklyMonthlyPay = function() {
   var per_month = $(this).val() * 30;
   var total_per_week;
   var total_per_month;
-  // var currency_sign = $('.currency-sign-id').last().text();
+  var currency_sign = $('.currency-sign-id').last().text();
   total_per_week = Math.floor(per_week * RATE_DISCOUNT_PER_WEEK);
   total_per_month = Math.floor(per_month * RATE_DISCOUNT_PER_MONTH);
 
   // FIX ME: Currency selection gets repeated
   if($(this).val() != 0 || $(this).val() != ''){
-    // $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
-    // $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
-    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'> $</span>" + total_per_week);
-    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'> $</span>" + total_per_month);
+    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 
@@ -435,14 +433,14 @@ function showComputeWeeklyMonthlyPay(elem) {
   var per_month = elem * 30;
   var total_per_week;
   var total_per_month;
-  // var currency_sign = $('.currency-sign-id').last().text();
+  var currency_sign = $('.currency-sign-id').last().text();
   total_per_week = Math.floor(per_week * 0.95);
   total_per_month = Math.floor(per_month * 0.95);
 
   // FIXME: Same as previous function
   if(elem != 0 || elem != ''){
-    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'> $</span>" + total_per_week);
-    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'> $</span>" + total_per_month);
+    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 

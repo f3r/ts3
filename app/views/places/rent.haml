@@ -199,7 +199,13 @@
       var today = new Date();
       var dd = today.getDate();
       var mm = today.getMonth()+1; //January is 0!
-
+      if (today.getMonth() == 11) {
+        next_month = new Date(today.getFullYear() + 1, 0, 1);
+      } else {
+        next_month = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+      }
+      console.log(next_month);
+      console.log(today.getYear());
       var yyyy = today.getFullYear();
       if(dd<10){dd='0'+dd} if(mm<10){mm='0'+mm} var today = yyyy+'/'+mm+'/'+dd;
 
@@ -210,8 +216,8 @@
   		});
   		$('#date_picker').DatePicker({
   			flat: true,
-        date: [today,today],
-  			current: today,
+        date: [today,next_month],
+  			current: '2012-01-01',
   			calendars: 2,
   			mode: 'range',
   			starts: 1,

@@ -34,7 +34,7 @@ class Heypal::Photo < Heypal::Base
                                  :storage => :s3, 
                                  :s3_credentials => {
                                    :access_key_id => S3_ACCESS_KEY_ID,
-                                   :secret_access_key => S3_SECRET_ACCESS_KEY
+                                   :secret_access_key => S3_SECRET_ACCESS_KEY,
                                    :bucket => S3_BUCKET,
                                  },
                                  :s3_protocol => "http"

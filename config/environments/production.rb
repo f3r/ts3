@@ -59,8 +59,6 @@ HeyPalFrontEnd::Application.configure do
   config.active_support.deprecation = :notify
 end
 
-Heypal::base_url = BACKEND_PATH
-
 Rails.application.config.middleware.use OmniAuth::Builder do
   provider :facebook, FB_APP_ID, FB_APP_SECRET
   provider :twitter,  TW_APP_ID, TW_APP_SECRET

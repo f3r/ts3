@@ -212,7 +212,7 @@ en:
   you_can_sort: You can sort your photos by drag and drop
   primary: Primary
   upload_photo: Upload Photo
-  upload_photo_hint: We support jpg and png images.
+  upload_photo_hint: We support jpg and png images. You must upload a minimum of 3 images.
   click_here_to_add_caption: Click here to add caption
 
   calendar: Calendar

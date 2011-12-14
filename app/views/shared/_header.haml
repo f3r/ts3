@@ -26,7 +26,7 @@
 
       %ul.tab.preference-wrapper
         %li#toggle-preferences.dropdown
-          %a.dropdown-toggle{:href => "#"} $ USD
+          %a.dropdown-toggle{:href => "#"} <span class="selector_label">$ USD</span>
           %ul.dropdown-menu
             %li.arrow
             %li.divider-title Choose language...
@@ -40,16 +40,16 @@
             %li.divider            
             %li{ get_current_currency == "USD" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "USD"} 
-                %span.em <span class="check">&#10003;</span> $ 
-                USD
+                %span.em <span class="check">&#10003;</span>
+                %span.option-label $ USD
             %li{ get_current_currency == "GBP" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "GBP"} 
-                %span.em <span class="check">&#10003;</span> £
-                GBP              
+                %span.em <span class="check">&#10003;</span> 
+                %span.option-label £ GBP
             %li{ get_current_currency == "SGD" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "SGD"}
-                %span.em <span class="check">&#10003;</span> $
-                SGD
+                %span.em <span class="check">&#10003;</span> 
+                %span.option-label $ SGD
             %li.divider              
             %li.divider-title Choose Unit...
             %li.divider            

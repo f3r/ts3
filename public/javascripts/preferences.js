@@ -9,9 +9,11 @@ $(document).ready(function() {
 	        url: '/users/change_preference.json',
 	        data: data,
 	        success: function() {
-				console.log(type);
-				$('#toggle-preferences a[data-type=' + type + ']').parent('.dropdown-menu li').removeClass('active');
-				$('#toggle-preferences a[data-type=' + type + '][data-value='+ value +']').parent('.dropdown-menu li').addClass('active');
+						$('#toggle-preferences a[data-type=' + type + ']').parent('.dropdown-menu li').removeClass('active');
+						$('#toggle-preferences a[data-type=' + type + '][data-value='+ value +']').parent('.dropdown-menu li').addClass('active');
+						if(type=="currency"){
+							$('.selector_label').html($('#toggle-preferences a[data-type=' + type + '][data-value='+ value +']').children('.option-label').text());
+						}
 	        }
       	});
       

@@ -29,9 +29,9 @@ HeyPalFrontEnd::Application.configure do
   config.assets.debug = true
 end
 
-Heypal::base_url = 'http://localhost:3000'
+# Heypal::base_url = BACKEND_PATH
 
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :facebook, '289917857692700', 'e21346334029581a59ea6d0ddcfb7dfe'
-  provider :twitter, '7IhUH1SkVKa7VNVDY5Bdw', 'iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc'
+  provider :facebook, FB_APP_ID, FB_APP_SECRET
+  provider :twitter,  TW_APP_ID, TW_APP_SECRET
 end

@@ -32,7 +32,11 @@ class Heypal::Photo < Heypal::Base
   has_attached_file :photo, { :styles => { :large => "451x299>", :medium => "216x144>", :medsmall => "150x100>", :small => "106x70>", :tiny => "40x40!" },
                                  :path => "places/:id/photos/:uniq_id/:style.:extension",
                                  :storage => :s3, 
-                                 :s3_credentials => "#{Rails.root}/config/amazon_s3.yml",
+                                 :s3_credentials => {
+                                   :access_key_id => S3_ACCESS_KEY_ID,
+                                   :secret_access_key => S3_SECRET_ACCESS_KEY
+                                   :bucket => S3_BUCKET,
+                                 },
                                  :s3_protocol => "http"
   }
 

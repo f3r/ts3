@@ -1,0 +1,19 @@
+defaults: &defaults
+  S3_ACCESS_KEY_ID: 
+  S3_SECRET_ACCESS_KEY: 
+  FB_APP_ID: 
+  FB_APP_SECRET: 
+  TW_APP_ID: 
+  TW_APP_SECRET: 
+  BACKEND_PATH: http://localhost:3000
+  SECRET_TOKEN: b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
+
+development:
+  <<: *defaults
+  S3_BUCKET: squarestays-img-dev
+  COOKIE_STORE_KEY: _SquareStaysDevelopmentFrontEnd_session
+
+test:
+  <<: *defaults
+  S3_BUCKET: squarestays-img-test
+  COOKIE_STORE_KEY: _SquareStaysTestFrontEnd_session

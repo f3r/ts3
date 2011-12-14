@@ -34,6 +34,7 @@ gem 'paperclip', :path => 'lib/paperclip', :require => 'paperclip'
 
 group :development do
   gem 'thin'
+  gem 'heroku_san'
 end
 
 group :test do

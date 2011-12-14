@@ -7,3 +7,5 @@ tmp/
 config/database.yml
 public/system/**
 .rvmrc
+config/heroku.yml
+config/local.yml

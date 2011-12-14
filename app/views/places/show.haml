@@ -86,8 +86,18 @@
 
       .description
         .row
-          .span8
+          .span9
             %pre.desc= @place.description
+          .span3.right.span-below
+            .title
+              Minimum Stay
+            .micro
+              = month_count @place.minimum_stay_days
+          .span3.right
+            .title
+              Maximum Stay
+            .micro
+              = month_count @place.maximum_stay_days
 
       .tabbed-panel.other-info  
         %ul.tabs

@@ -88,4 +88,8 @@ module PlacesHelper
   #     
   #   end
   # end
+
+  def month_count(month)
+    month.nil? || month.eql?(0) ? 'none' : pluralize(month, 'month')
+  end
 end

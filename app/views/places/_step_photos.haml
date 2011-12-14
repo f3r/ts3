@@ -55,7 +55,7 @@
   };
 
   var deletePhoto = function(elem) {
-    if(confirm("#{t(:are_you_sure)}")) {
+    if(confirm("#{t(:are_you_sure_delete_photo)}")) {
       elem.parent().parent().fadeOut('slow', function(){
         $(this).remove();
         afterSort();

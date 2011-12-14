@@ -25,17 +25,17 @@
           %td.label_detail
             #{t(:sub_total)}
           %td.user_detail
-            = @availability['sub_total']
+            = number_to_currency @availability['sub_total'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
         %tr
           %td.label_detail
             #{t(:price_final_cleanup)}
           %td.user_detail
-            = @availability['price_final_cleanup']
+            = number_to_currency @availability['price_final_cleanup'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
         %tr
           %td.label_detail
             #{t(:price_security_deposit)}
           %td.user_detail
-            = @availability['price_security_deposit']
+            = number_to_currency @availability['price_security_deposit'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
 
       .panel
         .panel-wrapper

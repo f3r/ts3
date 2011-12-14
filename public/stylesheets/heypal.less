@@ -95,6 +95,7 @@ section {
 .span-one-third     { width: 33%; }
 .span-one-fourth    { width: 22%; }
 .span-two-thirds    { width: 66%; }
+.offset-one-fourth  { margin-left: 15%; }
 .offset-one-third   { margin-left: 33%; }
 .offset-two-thirds  { margin-left: 66%; }
 
@@ -1842,17 +1843,26 @@ select#address_country {width:200px;}
 ul.breadcrumb .divider { color:#666; }
 ul.breadcrumb a {color:#333;}
 
-.rent_place_page .info {margin-top:20px;}
+.rent_place_page .info {margin-top:20px; padding-bottom: 15px;}
 .rent_place_page .info .thumb {width: 216px;}
 .rent_place_page .info h3 { border-bottom: 1px solid #eee;font-size: 24px;margin-left: 20px;margin-top: 19px;}
+.rent_place_page .info .price-data-block {float: right}
 .rent_place_page .info .price {font-size:16px;color:#888;}
 .rent_place_page .info .price .figure {font-size:24px;font-weight:bold;color:#333;margin-bottom:5px;}
+.rent_place_page .info .price .micro-price {font-size:12px;color:#888;margin-bottom:5px; text-align: right;}
 .rent_place_page .info .location,
 .rent_place_page .info .type {font-size:16px; color:#888;line-height:30px;}
+.rent_place_page .guests_div,
+.rent_place_page .info .type {background: url('/images/icons/icon.home.png') no-repeat 0 5px;}
 .rent_place_page .info .micro {font-size:18px;}
+.rent_place_page .info .micro {background: url('/images/icon.pencil.png') no-repeat 0 5px;}
+.rent_place_page .info .micro .title,
+.rent_place_page .info .type .title{margin-left: 25px;}
 
-.rent_place_page .details {font-size:15px;line-height:30px;margin:10px 0 20px 0;}
+.rent_place_page .details {font-size:15px;line-height:30px;margin:10px 0 20px 200px;}
 .rent_place_page .details strong {font-size:12px;color:#888;font-weight:normal;margin-bottom:10px;}
+.rent_place_page .check_in,
+.rent_place_page .guests {margin-left: 25px;}
 
 .rent_place_page .duration {color: #777777;font-size: 16px;padding-top: 9px;}
 .rent_place_page .duration span {font-weight: bold;}
@@ -2537,3 +2547,7 @@ pre.desc {
     }   
   }  
 }
+
+.description .title {color: gray; font-size: 13px;}
+.description .span-below {padding-bottom: 20px;}
+.description .span9 {min-height: 100px;}

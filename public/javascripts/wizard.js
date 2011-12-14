@@ -17,7 +17,7 @@ var il8nStrings = {
   not_listed: 'Your place is ready for listing',
   place_listed: 'Your place is listed. Click here to remove it from the directory',
   form_error: 'Please fix the error on the form first before we can proceed.',
-  cannot_preview: 'Sorry. You have to fill up the necessary info before you can preview',
+  cannot_preview: 'Sorry. You have to fill up the necessary info before you can preview.',
   categories_left: 'more categories must be completed',
   listed: 'Listed',
   preview: 'Preview',
@@ -264,7 +264,20 @@ var validatePreview = function() {
   if(_panelStatus.general && _panelStatus.photos && _panelStatus.amenities && _panelStatus.price && _panelStatus.calendar) {
     return true;
   } else {
-    alert(t('cannot_preview'));
+    categories = '';
+    ctr = 0;
+    if(!_panelStatus.general) {categories += ' General Info,'; ctr += 1;}
+    if(!_panelStatus.photos) {categories += ' Photos,'; ctr += 1;}
+    if(!_panelStatus.amenities) {categories += ' Amenities,'; ctr += 1;}
+    if(categories != '') {
+      categories = categories.substring(0, categories.length-1);
+      if(ctr == 1) {
+        categories += ' is required.'
+      } else {
+        categories += ' are required.'
+      }
+    }
+    alert(t('cannot_preview') + categories);
     return false;
   }
 
@@ -556,23 +569,6 @@ $(document).ready(function() {
   $("#days_maximum_stay").change(hideShowInputStay);
   showHideInitialDefaultInput();
 
-  $("a[rel=twipsy]").twipsy({
-    live:true,
-    animate: false,
-    placement: 'below',
-    html: true
-  });
-
-  $("a[rel=twipsy-link]").twipsy({
-    live:true,
-    animate: false,
-    placement:'below',
-    delayOut: 3000,
-    html: true
-  });
-
-
   $('#preview_button, #listing-status').click(validatePreview);
-
 
 });

@@ -182,6 +182,22 @@ $(document).ready(function() {
   $('#my-modal').bind('hidden', function () {
     $("#country-select").hide();
   });
+
+  $("a[rel=twipsy]").twipsy({
+      live:true,
+      animate: false,
+      placement: 'below',
+      html: true
+  });
+
+  $("a[rel=twipsy-link]").twipsy({
+    live:true,
+    animate: false,
+    placement:'below',
+    delayOut: 3000,
+    html: true
+  });
+
 });
 
 function disabled_question_button() {
@@ -195,3 +211,5 @@ function disabled_question_button() {
     }
   }).keyup();
 }
+
+

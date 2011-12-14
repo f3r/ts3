@@ -138,6 +138,7 @@ en:
   next_step: Next Step &raquo;
   previous_step: "&laquo; Previous Step"
   are_you_sure: Are you sure?
+  are_you_sure_delete_photo: Are you sure you want to remove this photo?
 
   amenities: Amenities
   place_and_building_facilities: Place & Building facilities

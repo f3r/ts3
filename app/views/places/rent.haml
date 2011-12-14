@@ -5,12 +5,12 @@
   %script{:src => '/javascripts/datepicker/js/utils.js', :type => 'text/javascript'}
   %script{:src => '/javascripts/date_format.js', :type => 'text/javascript'}
 
-%ul.breadcrumb
-  %li
-    = link_to @place['title'], place_path(@place["id"])
-    %span.divider= "/"
-  %li.active
-    =t(:rent)
+-#%ul.breadcrumb
+  -#%li
+    -#= link_to @place['title'], place_path(@place["id"])
+    -#%span.divider= "/"
+  -#%li.active
+    -#=t(:rent)
 
 .rent_place_page
   .row
@@ -35,47 +35,58 @@
                 = "#{@place.city_name}, #{@place.country_name}"
             .span4
               .type
-                = @place.place_type 
+                .title= @place.place_type 
               .micro
-                - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
-                  = get_current_size_unit == "sqf" ? @place['size_sqf'].round(2) : @place['size_sqm'].round(2)
-                  =raw get_pref_size_unit
-            .span3
+                .title
+                  - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
+                    = get_current_size_unit == "sqf" ? @place['size_sqf'].round(2) : @place['size_sqm'].round(2)
+                    =raw get_pref_size_unit
+            .price-data-block
               .price
                 - if !@place['price_per_night'].nil?
                   .figure
                     = "#{get_pref_currency}#{@place['price_per_night']}"
-                  = t(:per_night)
+                  .micro-price
+                    = t(:per_night)
                 - else
                   &nbsp;
 
         .row.details
-          .span3.offset2
+          .span4
             .check_in
               %strong= t(:check_in)
-              %br= @place['check_in_after']
-          .span3.offset2
+            .offset-one-fourth
+              = @place['check_in_after']
+          .span4
             .check_out
               %strong= t(:check_out)
-              %br= @place['check_out_before']
-          .span3.offset2
+            .offset-one-fourth
+              = @place['check_out_before']
+          .span4
             .cancellation_policy
               %strong= t(:cancellation_policy)
-              %br= @place['cancellation_policy']
+            .offset-one-fourth
+              - policy = LookupsHelper::CANCELLATION_POLICIES[@place['cancellation_policy']]
+              = policy
+              = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t("#{policy}_cancellation".to_sym))
 
         .row.details
-          .span3.offset2
+          .span4.guests_div
             .guests
               %strong= t(:guests)
-              %br= @place['max_guests']
-          .span3.offset2
+            .offset-one-fourth
+              = @place['max_guests']
+          .span4
             .bedrooms
               %strong= t(:bedrooms)
-              %br= @place['num_bedrooms']
-          .span3.offset2
+            .offset-one-fourth
+              = @place['num_bedrooms']
+          .span4
             .house_rules
               %strong= t(:house_rules)
-              %br= @place['house_rules']
+            .offset-one-fourth
+              -#= @place['house_rules']
+              = link_to 'View House Rules', '#'
 
         .panel
           .panel-wrapper

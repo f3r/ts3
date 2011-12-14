@@ -26,7 +26,7 @@
         .row.info
           .span4
             .thumb
-              = image_tag(@place['photos'].blank? ? "http://placehold.it/150x90" : @place['photos'][0]['photo']['medium'])
+              = image_tag(@place['photos'].blank? ? "photo-missing.png" : @place['photos'][0]['photo']['medium'])
           .span12
             %h3= @place.title
             .clearfix

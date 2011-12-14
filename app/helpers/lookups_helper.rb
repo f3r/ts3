@@ -1,3 +1,4 @@
+#coding: utf-8
 module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
@@ -66,6 +67,20 @@ module LookupsHelper
 
   def get_current_currency
     get_currency || 'USD'
+  end
+
+  def get_currency_with_symbol(currency)
+    case currency
+    when "USD"
+      symbol = "$"
+    when "GBP"
+      symbol = "£"
+    when "SGD"
+      symbol = "$"
+    else
+      symbol = ""
+    end
+    "#{symbol} #{currency}"
   end
 
   def get_current_size_unit

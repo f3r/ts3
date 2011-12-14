@@ -26,7 +26,9 @@
 
       %ul.tab.preference-wrapper
         %li#toggle-preferences.dropdown
-          %a.dropdown-toggle{:href => "#"} <span class="selector_label">$ USD</span>
+          %a.dropdown-toggle{:href => "#"}
+            %span.selector_label
+              = get_currency_with_symbol(get_current_currency)
           %ul.dropdown-menu
             %li.arrow
             %li.divider-title Choose language...
@@ -41,15 +43,15 @@
             %li{ get_current_currency == "USD" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "USD"} 
                 %span.em <span class="check">&#10003;</span>
-                %span.option-label $ USD
+                %span.option-label= get_currency_with_symbol("USD")
             %li{ get_current_currency == "GBP" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "GBP"} 
                 %span.em <span class="check">&#10003;</span> 
-                %span.option-label £ GBP
+                %span.option-label= get_currency_with_symbol("GBP")
             %li{ get_current_currency == "SGD" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "currency", "data-value" => "SGD"}
                 %span.em <span class="check">&#10003;</span> 
-                %span.option-label $ SGD
+                %span.option-label= get_currency_with_symbol("SGD")
             %li.divider              
             %li.divider-title Choose Unit...
             %li.divider            

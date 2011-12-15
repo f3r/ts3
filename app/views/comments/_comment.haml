@@ -1,10 +1,13 @@
 %div.question-container{:id => "qdiv-#{comment['id']}"}
   %div.left
     .user_box
-      .user_photo= comment['user']['avatar'].nil? ? placehold(60,60) : image_tag(comment['user']['avatar'], :width => 60, :height => 60) 
-      .user_data
-        .user_name= link_to "#{comment['user']['first_name'][0]}. #{comment['user']['last_name']}", '#'
-        .user_role= comment['user']['role']
+      -if !comment['user'].nil?
+        .user_photo= comment['user']['avatar'].nil? ? placehold(60,60) : image_tag(comment['user']['avatar'], :width => 60, :height => 60) 
+        .user_data
+          .user_name= link_to "#{comment['user']['first_name'][0]}. #{comment['user']['last_name']}", '#'
+          .user_role= comment['user']['role']
+      -else
+        =t(:unknown)
 
     - if @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
       = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"

@@ -1,2 +1,9 @@
 %footer
- .seo= t(:homepage_seo_text) +  t(:homepage_seo_text2)
+  .seo= t(:homepage_seo_text) +  t(:homepage_seo_text2)
+
+-unless logged_in?
+  #popup-registration.modal.hide{:style => 'width: 700px; height: 340px;'}
+    = link_to 'x', '#', :class => 'close', :style => 'margin-right: 15px;'
+    .modal-body
+      = render 'users/form'
+

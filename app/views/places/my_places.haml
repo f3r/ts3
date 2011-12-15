@@ -32,19 +32,20 @@
                           .figure= "#{get_pref_currency}#{place['price_per_night']} Per night"
                         - else
                           &nbsp;
-                    .span3.edit_button.hidden
+                    .span3.edit_delete_buttons.hidden
                       %a.btn.large.small{:title => 'Edit place', :href => "#{wizard_place_path(place['id'])}"}
                         Edit place
+                      = link_to 'Delete place', place_path(place['id']), :method => :delete, :confirm => t(:are_you_sure), :class => 'btn large small'
 
 
 :javascript
   $(document).ready(function() {
     $("ul.list-display li").hover(
       function () {
-        $(this).find('.edit_button').removeClass("hidden");
+        $(this).find('.edit_delete_buttons').removeClass("hidden");
       },
       function () {
-        $(this).find('.edit_button').addClass("hidden");
+        $(this).find('.edit_delete_buttons').addClass("hidden");
       }
     );
   });

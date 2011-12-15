@@ -130,6 +130,10 @@ class Heypal::Place < Heypal::Base
       result['places']
     end
 
+    def delete(id, access_token)
+      result = request("/places/#{id}.json?access_token=#{access_token}", :delete)
+    end
+
   end
 
   def initialize(params = {})

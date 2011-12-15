@@ -10,74 +10,75 @@
 
 .row
   .span16
-    .panel
-      .panel-wrapper
-        %h2.title
-          = t(:payment_details)
     = form_for :confirm_rental, :url => confirm_rental_place_path, :method => :post do |f|
-      %table.borderless
-        %tr
-          %td.label_detail
-            #{t(:length_of_stay)}
-          %td.user_detail
-            = @availability['total_days']
-        %tr
-          %td.label_detail
-            #{t(:sub_total)}
-          %td.user_detail
-            = number_to_currency @availability['sub_total'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
-        %tr
-          %td.label_detail
-            #{t(:price_final_cleanup)}
-          %td.user_detail
-            = number_to_currency @availability['price_final_cleanup'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
-        %tr
-          %td.label_detail
-            #{t(:price_security_deposit)}
-          %td.user_detail
-            = number_to_currency @availability['price_security_deposit'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
-
+      .panel
+        .panel-wrapper
+          %h2.title
+            = t(:payment_details)
+      .span12.right
+        %table.borderless
+          %tr
+            %td.label_detail
+              #{t(:length_of_stay)}
+            %td.user_detail
+              = @availability['total_days']
+          %tr
+            %td.label_detail
+              #{t(:sub_total)}
+            %td.user_detail
+              = number_to_currency @availability['sub_total'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
+          %tr
+            %td.label_detail
+              #{t(:price_final_cleanup)}
+            %td.user_detail
+              = number_to_currency @availability['price_final_cleanup'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
+          %tr
+            %td.label_detail
+              #{t(:price_security_deposit)}
+            %td.user_detail
+              = number_to_currency @availability['price_security_deposit'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
+      .clearfix
       .panel
         .panel-wrapper
           %h2.title
             = t(:billing_address)
 
-      - if !@user['address'].nil?
+      .span12.right
+        - if !@user['address'].nil?
 
-        %p= "#{t(:billed_address)}:"
-        %p= link_to "Change address", "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
+          %p= "#{t(:billed_address)}:"
+          %p= link_to "Change address", "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
 
-        %table.borderless
-          %tr
-            %td.label_detail
-              #{t(:country)}
-            %td.user_detail
-              = @user['address']['country']
-          %tr
-            %td.label_detail
-              #{t(:city)}
-            %td.user_detail
-              = @user['address']['city']
-          %tr
-            %td.label_detail
-              #{t(:street)}
-            %td.user_detail
-              = @user['address']['street']
-          %tr
-            %td.label_detail
-              #{t(:zip)}
-            %td.user_detail
-              = @user['address']['zip']
-      - else
-        %p= link_to t(:add_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
-      
+          %table.borderless
+            %tr
+              %td.label_detail
+                #{t(:country)}
+              %td.user_detail
+                = @user['address']['country']
+            %tr
+              %td.label_detail
+                #{t(:city)}
+              %td.user_detail
+                = @user['address']['city']
+            %tr
+              %td.label_detail
+                #{t(:street)}
+              %td.user_detail
+                = @user['address']['street']
+            %tr
+              %td.label_detail
+                #{t(:zip)}
+              %td.user_detail
+                = @user['address']['zip']
+        - else
+          %p= link_to t(:add_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
         .clearfix
 
       = f.hidden_field(:check_in, :value => params[:check_in])
       = f.hidden_field(:check_out, :value => params[:check_out])
 
       .row
-        .span4.offset7
+        .span4.right
           - if @user['address'].nil?
             %button.btn.large.primary.confirm_rental{:disabled => 'disabled'}= t(:confirm_rental)
           - else

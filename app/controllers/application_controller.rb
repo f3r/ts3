@@ -4,6 +4,11 @@ class ApplicationController < ActionController::Base
   include LookupsHelper
   include AvailabilitiesHelper
   before_filter :instantiate_controller_and_action_names
+  before_filter :set_locale
+
+  def set_locale
+    I18n.locale = get_current_language
+  end
 
   def params_with_token(resource)
     p = params[resource]

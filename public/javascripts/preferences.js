@@ -13,6 +13,8 @@ $(document).ready(function() {
 						$('#toggle-preferences a[data-type=' + type + '][data-value='+ value +']').parent('.dropdown-menu li').addClass('active');
 						if(type=="currency"){
 							$('.selector_label').html($('#toggle-preferences a[data-type=' + type + '][data-value='+ value +']').children('.option-label').text());
+						} else if(type=="language") {
+							window.location.reload();
 						}
 	        }
       	});

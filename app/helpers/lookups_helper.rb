@@ -1,6 +1,6 @@
 #coding: utf-8
 module LookupsHelper
-  CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$'}
+  CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
   SIZE_UNITS = {'sqm' => 'm<sup>2</sup>', 'sqf' => 'ft<sup>2</sup>'}
 
@@ -14,8 +14,12 @@ module LookupsHelper
     currencies
   end
 
-  def currency_sign_of(country)
-    CURRENCIES[country]
+  def currency_sign_of(currency)
+    if CURRENCIES[currency]
+      return CURRENCIES[currency]
+    else
+      return currency
+    end
   end
 
   def cities

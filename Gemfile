@@ -1,36 +1,20 @@
 source :rubygems
 
 gem 'rails', '3.1.0'
-
-# Bundle edge Rails instead:
-# gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
 gem 'sqlite3'
-
 gem 'haml'
-
+gem 'jquery-rails'
+gem 'dynamic_form'
+gem 'omniauth'
 gem 'rest-client', :require => 'rest_client'
+gem 'aws-s3',      :require => 'aws/s3'
+gem 'paperclip',   :require => 'paperclip',  :path => 'lib/paperclip'
 
-gem 'aws-s3', :require => 'aws/s3'
-
-# Gems used only for assets and not required
-# in production environments by default.
 group :assets do
   gem 'sass-rails', "  ~> 3.1.0"
   gem 'coffee-rails', "~> 3.1.0"
   gem 'uglifier'
 end
-
-gem 'jquery-rails'
-gem 'dynamic_form'
-#gem 'airbrake'
-gem 'omniauth'
-
-gem 'paperclip', :path => 'lib/paperclip', :require => 'paperclip'
-
-# To use debugger
-# gem 'ruby-debug19', :require => 'ruby-debug'
-#
 
 group :development do
   gem 'thin'
@@ -38,8 +22,7 @@ group :development do
 end
 
 group :test do
-  # Pretty printed test output
-  gem 'turn', :require => false
+  gem 'turn', :require => false  # Pretty printed test output
 end
 
 group :development, :test do

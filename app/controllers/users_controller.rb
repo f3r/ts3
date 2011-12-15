@@ -46,20 +46,21 @@ class UsersController < ApplicationController
         redirect_to '/places'
       else
         flash[:error] = t(:invalid_confirmation_code)
+        render :layout => 'single'
       end
 
     elsif params['email']
 
       if params['email'].present? &&  Heypal::User.resend_confirmation({:email => params['email']})
         flash[:notice] = t(:confirmation_email_sent)
-        redirect_to login_path
+        redirect_to login_path, :layout => 'single'
       else
         flash[:error] = t(:invalid_email)
+        render :layout => 'single'
       end
 
     end
 
-    render :layout => 'single'
   end
 
   def reset_password

@@ -111,7 +111,7 @@ class Heypal::Place < Heypal::Base
             end
           end
         else
-          if %w(sort m page per_page min_price max_price_lteq currency guests).include? k
+          if %w(sort m page per_page min_price max_price currency guests).include? k
             q << "#{k}"
           else
             q << "q[#{k}]"

@@ -1,10 +1,8 @@
 .panel-wrapper
-  %h2.title= t(:photos)
   .clearfix
 
   .photo_wrapper
 
-  %hr
   .photos_wrapper
     %h3= t(:photos)
     %p= t(:you_can_sort)
@@ -19,7 +17,6 @@
         .clearfix
 
   .upload_wrapper
-    %h3= t(:upload_photo)
     %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :value => 'Select files', :id => "photo_uploader" }
 
     %p= t(:upload_photo_hint)

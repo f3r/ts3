@@ -131,6 +131,7 @@ class UsersController < ApplicationController
 
     if @user.valid? && @user.save
       flash[:notice] = 'You successfully updated your profile.'
+      session['current_user'] = Heypal::User.show('access_token' => current_token)
       redirect_to profile_path
     else
       @user_auth = Heypal::User.list('access_token' => current_token)

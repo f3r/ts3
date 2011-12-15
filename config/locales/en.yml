@@ -13,6 +13,9 @@ en:
   app_domain: Squarestays.com
   main_page_title: Squarestays.com
   footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
+  terms_of_service: Terms of Service |
+  privacy_policy: Privacy Policy |
+  contact: Contact
 
   ####################################################################################
   # App Menus

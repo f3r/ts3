@@ -1,4 +1,8 @@
 %footer
+  .seo.center
+    = link_to t(:terms_of_service), terms_path
+    = link_to t(:privacy_policy), privacy_path
+    = link_to t(:contact), contact_path
   .seo= t(:homepage_seo_text) +  t(:homepage_seo_text2)
 
 -unless logged_in?

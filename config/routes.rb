@@ -76,6 +76,10 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/my_places'    =>  'places#my_places', :as => :my_places
 
+  match '/terms'        => 'home#terms'
+  match '/privacy'      => 'home#privacy'
+  match '/contact'      => 'home#contact'
+
   root :to => 'home#index'
   
   # Error matching

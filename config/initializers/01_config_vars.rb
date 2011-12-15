@@ -1,7 +1,7 @@
 # LOAD LOCAL CONFIGURATION
 if Rails.env.test? or Rails.env.development?
   APP_CONFIG = YAML.load_file("#{Rails.root}/config/local.yml")[Rails.env]
-end
+end 
 
 # SET VARIABLES, DEVELOPMENT, TEST FALLBACKS
 S3_ACCESS_KEY_ID =      ENV['S3_ACCESS_KEY_ID']       || APP_CONFIG['S3_ACCESS_KEY_ID']

@@ -54,8 +54,8 @@
 - content_for :aside do
   - if @user['phone_mobile'].blank? or @user['address'].blank?
     - required_fields = ""
-    - required_fields = required_fields + "* Phone number<br />" if @user['phone_mobile'].blank?
-    - required_fields = required_fields + "* Billing Address<br />" if @user['address'].blank?
+    - required_fields = required_fields + "* #{t(:mobile_phone)}<br />" if @user['phone_mobile'].blank?
+    - required_fields = required_fields + "* #{t(:billing_address)}<br />" if @user['address'].blank?
     = image_tag("/images/i_profile.png", 
       :style => "float:right;", 
       :id => 'information-missing-fields', 

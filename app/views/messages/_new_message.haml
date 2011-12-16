@@ -9,5 +9,5 @@
     .span12
       = f.text_area :message, :rows => 4, :class => "span12"
       %div.float-right{:style => "margin-top: 10px;"}
-        = button_tag "Cancel", :class => 'btn respond-cancel'
-        = button_tag "Submit", :class => "btn primary respond-btn"
+        = button_tag t(:cancel), :class => 'btn respond-cancel'
+        = button_tag t(:submit), :class => "btn primary respond-btn"

@@ -1,15 +1,17 @@
-.span15
-  %h4.section-header
-    %a{:href => "/messages"}
-      Messages
-    &raquo; Conversation with
-    = "#{@with['first_name'].chr}. #{@with['last_name']}"
+.row
+  .span16
+    %h4.section-header
+      %a{:href => "/messages"}
+        =t(:messages)
+      &raquo;
+      =t(:conversation_with)
+      = "#{@with['first_name'].chr}. #{@with['last_name']}"
 
-  - if !@messages.blank?
-    - @messages['messages'].each do |m|
-      %div.message
-        = render 'conversation_message', :m => m
-  - else
-    No messages
+    - if !@messages.blank?
+      - @messages['messages'].each do |m|
+        %div.message
+          = render 'conversation_message', :m => m
+    - else
+      =t(:no_messages)
 
-  = render 'new_message', :with => @with['id']
+    = render 'new_message', :with => @with['id']

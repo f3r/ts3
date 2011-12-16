@@ -27,6 +27,10 @@ HeyPalFrontEnd::Application.configure do
 
   # Expands the lines which load the assets
   config.assets.debug = true
+
+  config.from_locales = [:en]
+  config.to_locales = [:es]
+
 end
 
 # Heypal::base_url = BACKEND_PATH

@@ -1,25 +1,94 @@
-# Spanish translations for Rails
-# by Francisco Fernando García Nieto (ffgarcianieto@gmail.com)
-# contributors:
-#  - Tsutomu Kuroda - http://github.com/kuroda (t-kuroda@oiax.jp)
-# Corrected by Eloy Serra Labán: http://goo.gl/i9Kts, /nQ928, /XfKaX
-
-"es":
-  date:
-    formats:
-      default: "%d/%m/%Y"
-      short: "%d de %b"
-      long: "%d de %B de %Y"
-
-    day_names:
-      - domingo
-      - lunes
-      - martes
-      - miércoles
-      - jueves
-      - viernes
-      - sábado
-    abbr_day_names:
+--- 
+es: 
+  account_settings: Editar
+  activerecord: 
+    errors: 
+      full_messages: 
+        format: "%{attribute} %{message}"
+      messages: 
+        accepted: "debe ser aceptado"
+        blank: "no puede estar en blanco"
+        confirmation: "no coincide con la confirmación"
+        empty: "no puede estar vacío"
+        equal_to: "debe ser igual a %{count}"
+        even: "debe ser par"
+        exclusion: "está reservado"
+        greater_than: "debe ser mayor que %{count}"
+        greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
+        inclusion: "no está incluido en la lista"
+        invalid: "no es válido"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+        not_a_number: "no es un número"
+        not_an_integer: "debe ser un entero"
+        odd: "debe ser impar"
+        record_invalid: "La validación falló: %{errors}"
+        taken: "ya está en uso"
+        too_long: "es demasiado largo (%{count} caracteres máximo)"
+        too_short: "es demasiado corto (%{count} caracteres mínimo)"
+        wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
+      template: 
+        body: "Se encontraron problemas con los siguientes campos:"
+        header: 
+          one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
+          other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
+  add_a_place: "Nuevo Apartamento"
+  add_address: "Agregar dirección"
+  add_new: "Agregar nuevo"
+  address: Dirección
+  address_1_help: "Calle, Empresa"
+  address_2_help: "Apartmento / Número"
+  amenities: Instalaciones
+  app_domain: Squarestays.com
+  app_name: Squarestays
+  are_you_sure: "¿Estás seguro?"
+  are_you_sure_delete_photo: "¿Está seguro que desea eliminar esta foto?"
+  arriving: Llegando
+  ask_question: "Haga una pregunta"
+  authentication_fail: "No hemos podido autenticarte. Te rogamos lo intentes de nuevo"
+  availability: Disponibilidad
+  bathroom: Baños
+  bed: Cama
+  bedroom: Dormitorios
+  bedrooms: Dormitorios
+  billed_address: "Se le facturará en esta dirección"
+  billing_address: "Dirección para Facturación"
+  birthdate: "Fecha de Nacimiento"
+  calendar: Calendar
+  calendar_hint: "Please let us know what dates the place is available for rent"
+  cancel: Cancelar
+  cancellation: Cancelación
+  cancellation_policy: "Cancellation Policy"
+  cant_find_city: "¿No encuentra la ciudad a la cual deseaba ir?"
+  categories_left: "more categories must be completed"
+  change_address: "Cambiar dirección"
+  change_billing_address: "Cambiar la dirección de facturación"
+  change_photo: "Cambiar foto"
+  change_photo_description: ""
+  check_in: Check-in
+  check_in_before: "Check In Before"
+  check_out: Check-out
+  check_out_before: "Check Out Before"
+  choose_currency: "Elija la moneda"
+  choose_language: "Elija el idioma"
+  choose_unit: "Elija la unidad"
+  city: Ciudad
+  click_here_to_add_caption: "Click here to add caption"
+  confirm_password: "Confirmar Contraseña"
+  confirm_rental: "Confirmar el alquiler"
+  confirm_reset_password: "Confirma tu cambio de contraseña"
+  confirmation_code: "Código de Confirmación"
+  confirmation_email_sent: "Email con el Código de Confirmation enviado"
+  contact: Contacto
+  contact_information: "Información de contacto"
+  continue: Continuar
+  conversation_with: "Conversación con"
+  country: Pais
+  create_an_account_using: "Crear una cuenta usando"
+  create_new_account: "Crear nueva cuenta"
+  currency: Currency
+  date: 
+    abbr_day_names: 
       - dom
       - lun
       - mar
@@ -27,22 +96,7 @@
       - jue
       - vie
       - sáb
-
-    month_names:
-      - ~
-      - enero
-      - febrero
-      - marzo
-      - abril
-      - mayo
-      - junio
-      - julio
-      - agosto
-      - septiembre
-      - octubre
-      - noviembre
-      - diciembre
-    abbr_month_names:
+    abbr_month_names: 
       - ~
       - ene
       - feb
@@ -56,404 +110,418 @@
       - oct
       - nov
       - dic
-    order:
-      - :day
-      - :month
-      - :year
-
-  time:
-    formats:
-      default: "%A, %d de %B de %Y %H:%M:%S %z"
-      short: "%d de %b %H:%M"
-      long: "%d de %B de %Y %H:%M"
-    am: "am"
-    pm: "pm"
-
-  support:
-    array:
-      words_connector: ", "
-      two_words_connector: " y "
-      last_word_connector: ", y "
-
-    select:
+    day_names: 
+      - domingo
+      - lunes
+      - martes
+      - miércoles
+      - jueves
+      - viernes
+      - sábado
+    formats: 
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names: 
+      - ~
+      - enero
+      - febrero
+      - marzo
+      - abril
+      - mayo
+      - junio
+      - julio
+      - agosto
+      - septiembre
+      - octubre
+      - noviembre
+      - diciembre
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "alrededor de 1 hora"
+        other: "alrededor de %{count} horas"
+      about_x_months: 
+        one: "alrededor de 1 mes"
+        other: "alrededor de %{count} meses"
+      about_x_years: 
+        one: "alrededor de 1 año"
+        other: "alrededor de %{count} años"
+      almost_x_years: 
+        one: "casi 1 año"
+        other: "casi %{count} años"
+      half_a_minute: "medio minuto"
+      less_than_x_minutes: 
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds: 
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      over_x_years: 
+        one: "más de 1 año"
+        other: "más de %{count} años"
+      x_days: 
+        one: "1 día"
+        other: "%{count} días"
+      x_minutes: 
+        one: "1 minuto"
+        other: "%{count} minutos"
+      x_months: 
+        one: "1 mes"
+        other: "%{count} meses"
+      x_seconds: 
+        one: "1 segundo"
+        other: "%{count} segundos"
+    prompts: 
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Año
+  days: días
+  departing: Salida
+  description: Descripción
+  details: Detalles
+  do_you_allow_smoking: "Do you allow smoking in your apartment/balcony?"
+  duration: Duración
+  edit_account: "Editar cuenta"
+  edit_place: "Editar lugar"
+  email: Email
+  enter_confirmation_code: "Introduce tu código de confirmación"
+  enter_your_email: "Introduce tu Email"
+  enter_your_new_password: "Introduce nueva contraseña"
+  errors: 
+    ? "100"
+    : "has already been taken"
+    ? "101"
+    : "can't be blank"
+    ? "102"
+    : "too short"
+    ? "103"
+    : "is invalid"
+    ? "104"
+    : "doesn't match"
+    ? "105"
+    : "invalid access token"
+    ? "106"
+    : "not found"
+    ? "107"
+    : unconfirmed
+    ? "108"
+    : unauthenticated
+    ? "109"
+    : "invalid email or password"
+    ? "110"
+    : "must sign up"
+    ? "111"
+    : "invalid oauth request"
+    ? "112"
+    : "This user doesn't have a linked Facebook account"
+    ? "113"
+    : "invalid date"
+    ? "114"
+    : "Amazon API error"
+    ? "115"
+    : "no results"
+    ? "116"
+    : duplicate
+    ? "117"
+    : "invalid oauth token"
+    ? "118"
+    : "must be a number"
+    ? "119"
+    : "must be future, after today"
+    ? "120"
+    : "end date must be after initial date"
+    ? "121"
+    : "interval overlaps with existing interval for the place"
+    ? "122"
+    : "unmatching parent resource and child resource"
+    ? "123"
+    : "not enough pictures"
+    ? "124"
+    : "description is too short"
+    ? "125"
+    : "no availability"
+    ? "126"
+    : "no price"
+    ? "127"
+    : "no currency"
+    ? "128"
+    : "no security deposit"
+    ? "129"
+    : "invalid size unit"
+    ? "130"
+    : "not activated"
+    ? "131"
+    : "invalid json"
+    ? "132"
+    : "invalid city (not on the cities table)"
+    dynamic_format: "%{message}"
+    format: "%{attribute} %{message}"
+    messages: 
+      accepted: "debe aceptarse"
+      blank: "no puede estar vacío"
+      confirmation: "no coincide con la confirmación"
+      empty: "no puede estar vacío"
+      equal_to: "debe ser igual a %{count}"
+      even: "debe ser par"
+      exclusion: "está reservado"
+      greater_than: "debe ser mayor que %{count}"
+      greater_than_or_equal_to: "debe ser mayor o igual a %{count}"
+      inclusion: "no está incluido en la lista"
+      invalid: "no es válido"
+      less_than: "debe ser menor que %{count}"
+      less_than_or_equal_to: "debe ser menor o igual a %{count}"
+      not_a_number: "no es un número"
+      not_an_integer: "debe ser un entero"
+      odd: "debe ser impar"
+      too_long: "es demasiado largo (máximo es de %{count} caracteres)"
+      too_short: "es demasiado corto (el mínimo es %{count} caracteres)"
+      wrong_length: "es la longitud incorrecta (debe %{count} caracteres)"
+  facebook_connected: "Has conectado correctamente tu cuenta en Facebook!"
+  final_cleanup: "Final Cleanup"
+  final_cleanup_hint: "The cost of cleaning the place once rental is finished"
+  find_places: "Buscar Apartamento"
+  first_name: Nombre
+  flexible: Flexible
+  flexible_cancellation: "full refund 1 day prior to arrival, except fees"
+  footer_text: ""
+  forgot_password: "¿Olvidó su contraseña?"
+  form_error: "Please fix the error on the form first before we can proceed."
+  furnishings: Conveniences
+  gender: Sexo
+  gender_female: Mujer
+  gender_male: Hombre
+  gender_undisclosed: "No revelado"
+  general_info: "Información General"
+  general_information: "Información General"
+  guest: Invitados
+  guests: Invitados
+  helpers: 
+    select: 
       prompt: "Por favor seleccione"
-
-  number:
-    format:
-      separator: ","
-      delimiter: "."
-      precision: 3
-      significant: false
-      strip_insignificant_zeros: false
-
-    currency:
-      format:
-        format: "%n %u"
-        unit: "€"
-        separator: ","
+    submit: 
+      create: "Crear %{model}"
+      submit: "Guardar %{model}"
+      update: "Actualizar %{model}"
+  homepage_about: "Acerca de SquareStays"
+  homepage_about_content: "SquareStays ofrece una mezcla única de exactamente lo que necesita en alojamiento profesional flexible - calidad y confianza a un precio razonable. Todos los anuncios de SquareStays están diseñados para proporcionar la comodidad que usted espera de tener un lugar propio con la flexibilidad de una estancia de corto plazo. SquareStays sólo permite propietarios profesionales, propietarios, agentes y gerentes de propiedad lista de lugares. Esto le asegura un alto nivel de confianza, servicio y calidad para su estancia."
+  homepage_life_sg_content: ""
+  homepage_life_sg_title: "Crecimiento del negocio en Asia"
+  homepage_search_but: "Encontrar un lugar"
+  homepage_seo_text: ""
+  homepage_seo_text2: ""
+  house_rules: "Normas de la casa"
+  how_many_bedrooms: "¿Cuántas habitaciones?"
+  i_agree_to_the: "Acepto los"
+  i_have_an_account: "¿Ya es miembro de SquareStays?"
+  invalid_confirmation_code: "Código de confirmación inválido"
+  invalid_email: "Email Inválido"
+  invalid_login: "Usuario y/o contrasela inválidas"
+  invisible: Invisible
+  last_name: Apellido
+  leave_us_email: "Déjenos su dirección de correo electrónico para que podamos notificarle cuando añadimos la ciudad que buscabas."
+  lenght_of_stay: "Duración de la estadía"
+  length_of_stay: "Duración de la estadía"
+  link_accounts: "+ conectar cuentas"
+  linked_accounts: "Cuentas vinculadas"
+  list_your_place: "Nuevo Apartamento"
+  listed: Listed
+  login: "Entrar a SquareStays"
+  login_using: Entrar
+  main_page_title: "Squarestays.com "
+  map: Mapa
+  max_guests: "Número de Invitados"
+  maximum_of: "Maximum Of"
+  maximum_stay: "Maximum Stay"
+  message_user: "Mensaje al Usuario"
+  messages: Mensajes
+  minimum_of: "Minimum Of"
+  minimum_stay: "Minimum Stay"
+  miscellaneous: Miscellaneous
+  mobile_phone: "Número de Teléfono Móvil"
+  mobile_phone_number: "Número de teléfono móvil"
+  moderate: Moderate
+  moderate_cancellation: "full refund 5 days prior to arrival, except fees"
+  my_places: "Mis Apartamentos"
+  next_step: "Siguiente &raquo;"
+  nights: Nights
+  no_caption: "No Caption"
+  no_maximum: "No Maximum"
+  no_messages: "No hay mensajes"
+  no_minimum: "No Minimum"
+  no_result: "No se encontraron resultados. Pruebe a cambiar algunas de sus opciones de búsqueda."
+  not_going_to_singapore: "¿No va a Singapur?"
+  not_listed_yet: "Your place is not listed yet!"
+  notifications: Notificationes
+  num_bathrooms: "Número de Baños"
+  num_bedrooms: "Número de Habitaciones"
+  num_beds: "Número de Camas"
+  number: 
+    currency: 
+      format: 
         delimiter: "."
+        format: "%n %u"
         precision: 2
+        separator: ","
         significant: false
         strip_insignificant_zeros: false
-
-    percentage:
-      format:
-        delimiter: ""
-
-    precision:
-      format:
-        delimiter: ""
-
-    human:
-      format:
+        unit: €
+    format: 
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: "mil millones"
+          million: millón
+          quadrillion: "mil billones"
+          thousand: mil
+          trillion: billón
+          unit: ""
+      format: 
         delimiter: ""
         precision: 1
         significant: true
         strip_insignificant_zeros: true
-      storage_units:
+      storage_units: 
         format: "%n %u"
-        units:
-          byte:
-            one:   "Byte"
-            other: "Bytes"
-          kb: "KB"
-          mb: "MB"
-          gb: "GB"
-          tb: "TB"
-      decimal_units:
-        format: "%n %u"
-        units:
-          unit: ""
-          thousand: "mil"
-          million: "millón"
-          billion: "mil millones"
-          trillion: "billón"
-          quadrillion: "mil billones"
-
-  datetime:
-    distance_in_words:
-      half_a_minute: "medio minuto"
-      less_than_x_seconds:
-        one:  "menos de 1 segundo"
-        other: "menos de %{count} segundos"
-      x_seconds:
-        one:  "1 segundo"
-        other: "%{count} segundos"
-      less_than_x_minutes:
-        one:  "menos de 1 minuto"
-        other: "menos de %{count} minutos"
-      x_minutes:
-        one:  "1 minuto"
-        other: "%{count} minutos"
-      about_x_hours:
-        one:  "alrededor de 1 hora"
-        other: "alrededor de %{count} horas"
-      x_days:
-        one:  "1 día"
-        other: "%{count} días"
-      about_x_months:
-        one:  "alrededor de 1 mes"
-        other: "alrededor de %{count} meses"
-      x_months:
-        one:  "1 mes"
-        other: "%{count} meses"
-      about_x_years:
-        one:  "alrededor de 1 año"
-        other: "alrededor de %{count} años"
-      over_x_years:
-        one:  "más de 1 año"
-        other: "más de %{count} años"
-      almost_x_years:
-        one: "casi 1 año"
-        other: "casi %{count} años"
-    prompts:
-      year:   "Año"
-      month:  "Mes"
-      day:    "Día"
-      hour:   "Hora"
-      minute: "Minutos"
-      second: "Segundos"
-
-  helpers:
-    select:
-      prompt: "Por favor seleccione"
-
-    submit:
-      create: 'Crear %{model}'
-      update: 'Actualizar %{model}'
-      submit: 'Guardar %{model}'
-
-  errors:
-    format: "%{attribute} %{message}"
-
-    messages: &errors_messages
-      inclusion: "no está incluido en la lista"
-      exclusion: "está reservado"
-      invalid: "no es válido"
-      confirmation: "no coincide con la confirmación"
-      accepted: "debe ser aceptado"
-      empty: "no puede estar vacío"
-      blank: "no puede estar en blanco"
-      too_long: "es demasiado largo (%{count} caracteres máximo)"
-      too_short: "es demasiado corto (%{count} caracteres mínimo)"
-      wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
-      not_a_number: "no es un número"
-      not_an_integer: "debe ser un entero"
-      greater_than: "debe ser mayor que %{count}"
-      greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
-      equal_to: "debe ser igual a %{count}"
-      less_than: "debe ser menor que %{count}"
-      less_than_or_equal_to: "debe ser menor que o igual a %{count}"
-      odd: "debe ser impar"
-      even: "debe ser par"
-      taken: "ya está en uso"
-      record_invalid: "La validación falló: %{errors}"
-    template: &errors_template
-      header:
-        one:   "No se pudo guardar este/a %{model} porque se encontró 1 error"
-        other:  "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
-      body: "Se encontraron problemas con los siguientes campos:"
-
-  activerecord:
-    errors:
-      messages:
-        <<: *errors_messages
-      template:
-        <<: *errors_template
-
-      full_messages:
-        format: "%{attribute} %{message}"
-
-  ####################################################################################
-  # App General Stuff
-  ####################################################################################
-  app_name:   Squarestays
-  submit:     Enviar
-
-  ####################################################################################
-  # App Menus
-  ####################################################################################
-  find_places:    Buscar Apartamento
-  my_places:      Mis Apartamentos
-  profile:        Perfil
-  notifications:  Notificationes
-  add_a_place:    Nuevo Apartamento
-
-  ####################################################################################
-  # Account creation & management
-  ####################################################################################
-  create_new_account:         Crear nueva cuenta
-  user_confirmed:             Tu cuenta se ha confirmado correctamente!
-  invalid_confirmation_code:  Código de confirmación inválido
-  enter_confirmation_code:    Introduce tu código de confirmación
-  resend_confirmation:        Reenviar confirmación
-  enter_your_email:           Introduce tu Email
-  reset_password:             Restablecer Contraseña
-  confirmation_code:          Código de Confirmación
-  confirmation_email_sent:    Email con el Código de Confirmation enviado
-  register:                   Registro
-  login:                      Entrar a SquareStays
-  login_using:                Entrar
-  sign_in:                    Iniciar Sesión
-  sign_out:                   Terminar Sesión
-  invalid_login:              Usuario y/o contrasela inválidas
-  password_reset_instruction_sent: Email enviado con las instrucciones para restablecer tu contraseña
-  password_reset_failed:      El restablecimiento de tu contraseña ha fallado.
-  signup_complete:            Registro completado
-  signup_complete_text:       Gracias por registrarte! Sin embargo, todavía tienes que confirmar tu cuenta. Comprueba tu email y activa tu cuenta con el enlace que te hemos enviado.
-  confirm_reset_password:     Confirma tu cambio de contraseña
-  enter_your_new_password:    Introduce nueva contraseña
-  password_reset_success:     Cambio de contraseña correcto!
-  facebook_connected:         Has conectado correctamente tu cuenta en Facebook!
-  twitter_connected:          Has conectado correctamente tu cuenta en Twitter!
-  authentication_fail:        No hemos podido autenticarte. Te rogamos lo intentes de nuevo
-  signup_needed_to_connect:   Para conectar tu cuenta con tu red social, proveenos de la siguientes información
-
-  ####################################################################################
-  # General field names and validation errors
-  ####################################################################################
-  email:            Email
-  invalid_email:    Email Inválido
-  password:         Contraseña
-  confirm_password: Confirmar Contraseña
-  terms_and_conditions: Términos y Condiciones
-
-  ####################################################################################
-  # Section Headers
-  ####################################################################################
-  section_header_user_profile:      Information Personal
-  section_header_user_information:  Information Personal
-  section_header_billing_address:   Dirección para Facturación
-  section_header_user_password:     Contraseña
-
-  ####################################################################################
-  # User Profile Data
-  ####################################################################################
-  first_name:         Nombre
-  last_name:          Apellidos
-  gender:             Sexo
-  gender_undisclosed: No revelado
-  gender_male:        Hombre
-  gender_female:      Mujer
-  mobile_phone:       Número de Teléfono Móvil
-  birthdate:          Fecha de Nacimiento
-  billing_address:    Dirección para Facturación
-  reviews:            Comentarios
-
-  ####################################################################################
-  # Authentications
-  ####################################################################################  
-  link_accounts:      + conectar cuentas
-  edit_account:       Editar cuenta
-
-
-  ####################################################################################
-  # Wizard
-  ####################################################################################
-
-  general_info: Información General
-  general_information: Información General
-  photos: Fotos
-  amenities: Instalaciones
-  calendar: Calendario
-  price_and_conditions: Precio y Condiciones
-
-  ####################################################################################
-  # Places Wizard
-  ####################################################################################
-  list_your_place: Nuevo Apartamento
-  what_city: ¿En qué ciudad está tu Apartamento?
-  place_type: ¿Qué tipo de apartamento es?
-  how_many_bedrooms: ¿Cuántas habitaciones?
-  max_guests: Máximo número de invitados
-  save_and_continue: Guardar y Continuar &raquo;
-  title: Título
-  type: Tipo
-  i_agree_to_the: Acepto los
-  terms_and_conditions: Términos y condiciones
-  description: Descripción
-  address: Dirección
-  max_guests: Número de Invitados
-  num_bedrooms: Número de Habitaciones
-  num_beds: Número de Camas
-  num_bathrooms: Número de Baños
-  address_1_help: Calle, Empresa
-  address_2_help: Apartmento / Número
-  size: Tamaño
-  city: Ciudad
-  state: Estado/Provincia
-  zip_code: Código Postal
-  country: Pais
-  next_step: Siguiente &raquo;
-  previous_step: "&laquo; Anterior"
-  are_you_sure: ¿Estás seguro?
-
-  amenities: Instalaciones
-  place_and_building_facilities: Place & Building facilities
-  furnishings: Conveniences
-  miscellaneous: Miscellaneous
-  sports_and_recreation: Sports & Recreation
-
-  preview_button: Preview &raquo;
-
-  final_cleanup: Final Cleanup 
-  final_cleanup_hint: The cost of cleaning the place once rental is finished
-  security_deposit: Security Deposit
-  security_deposit_hint: The wireframe has this but I don't have the text yer
-
-  size: Size
-
-  terms: Terms
-
-  check_in_before: Check In Before
-  check_out_before: Check Out Before
-
-  currency: Currency
-  minimum_stay: Minimum Stay
-  maximum_stay: Maximum Stay
-  minimum_of: Minimum Of
-  maximum_of: Maximum Of
-
-  no_maximum: No Maximum
-  no_minimum: No Minimum
-  nights: Nights
-
-  cancellation_policy: Cancellation Policy
-
-  flexible: Flexible
-  moderate: Moderate
-  strict: Strict
-
-  strict_cancellation: 50% refund up until 1 week prior, except fees
-  moderate_cancellation: full refund 5 days prior to arrival, except fees
-  flexible_cancellation: full refund 1 day prior to arrival, except fees
-
-  do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
-
-  not_listed_yet: Your place is not listed yet!
-  preview: Preview
-
-  invisible: Invisible
-  place_listed: Place listed
-  form_error: Please fix the error on the form first before we can proceed.
-  categories_left: more categories must be completed
-  listed: Listed
-
-  publish: Publish
-  unpublish: Unpublish
-
-  place_published: Your place is now listed!
-  place_publish_error: Sorry, we can't publish your place because of missing information.
-  place_unpublished: Your place is now invisible
-
-  ####################################################################################
-  # Photos
-  ####################################################################################
+        units: 
+          byte: 
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage: 
+      format: 
+        delimiter: ""
+    precision: 
+      format: 
+        delimiter: ""
+  passport_number: "Número de pasaporte"
+  password: Contraseña
+  password_reset_failed: "El restablecimiento de tu contraseña ha fallado."
+  password_reset_instruction_sent: "Email enviado con las instrucciones para restablecer tu contraseña"
+  password_reset_success: "Cambio de contraseña correcto!"
+  payment_details: "Detalles de pago"
+  per_night: "Por noche"
   photos: Photos
-  no_caption: No Caption
-  you_can_sort: You can sort your photos by drag and drop
+  place_and_building_facilities: "Place & Building facilities"
+  place_details: "Detalles de lugar"
+  place_listed: "Place listed"
+  place_publish_error: "Sorry, we can't publish your place because of missing information."
+  place_published: "Your place is now listed!"
+  place_type: "¿Qué tipo de apartamento es?"
+  place_unpublished: "Your place is now invisible"
+  pm: "enviar privado"
+  pm_prepend_post: "]"
+  pm_prepend_pre: "Pregunta privada sobre propiedad ["
+  preview: "Vista previa"
+  preview_button: "Preview &raquo;"
+  previous_step: "&laquo; Anterior"
+  price_and_conditions: "Precio y Condiciones"
+  price_final_cleanup: "Tasa de limpieza"
+  price_per_month: "Precio por mes"
+  price_per_night: "Precio por noche"
+  price_per_week: "Precio por semana"
+  price_security_deposit: Depósito
   primary: Primary
-  upload_photo: Upload Photo
-  upload_photo_hint: We support jpg and png images.
-  click_here_to_add_caption: Click here to add caption
-
-  calendar: Calendar
-  calendar_hint: Please let us know what dates the place is available for rent
-
-  ####################################################################################
-  # Error codes
-  ####################################################################################
-  errors:
-   "100": has already been taken
-   "101": can't be blank
-   "102": too short
-   "103": is invalid
-   "104": doesn't match
-   "105": invalid access token
-   "106": not found
-   "107": unconfirmed
-   "108": unauthenticated
-   "109": invalid email or password
-   "110": must sign up
-   "111": invalid oauth request
-   "112": This user doesn't have a linked Facebook account
-   "113": invalid date
-   "114": Amazon API error
-   "115": no results
-   "116": duplicate
-   "117": invalid oauth token
-   "118": must be a number
-   "119": must be future, after today
-   "120": end date must be after initial date
-   "121": interval overlaps with existing interval for the place
-   "122": unmatching parent resource and child resource
-   "123": not enough pictures
-   "124": description is too short
-   "125": no availability
-   "126": no price
-   "127": no currency
-   "128": no security deposit
-   "129": invalid size unit
-   "130": not activated
-   "131": invalid json
-   "132": invalid city (not on the cities table)
+  privacy_policy: "Política de privacidad |"
+  private_field: "Privada. Visible sólo para aquellos que tienen una transacción activa con usted"
+  profile: Perfil
+  profile_current_pwd: "Contraseña actual"
+  profile_req_message: "Por favor, haga clic en Editar en tu perfil para introducir información adicional necesaria para realizar reservas en SquareStays."
+  profile_retype_pwd: "Vuelva a escribir la contraseña'"
+  public_field: "Público. Cualquiera puede ver esta información"
+  publish: Publish
+  question: Preguntas
+  read_agreement: "He leído y estoy de acuerdo con el contrato de arrendamiento"
+  register: Registro
+  registration_warning: "SquareStays no publicará nada sin su consentimiento"
+  rent: Alquilarlo!
+  resend_confirmation: "Reenviar confirmación"
+  reset_password: "Restablecer Contraseña"
+  results: Resultados
+  reviews: Comentarios
+  save: Guardar
+  save_and_continue: "Guardar y Continuar &raquo;"
+  saving_photo: "Guardando la foto"
+  search_place_stay_in: "Buscar un lugar para quedarse"
+  section_header_billing_address: "Dirección para Facturación"
+  section_header_user_information: "Información Personal"
+  section_header_user_password: Contraseña
+  section_header_user_profile: "Información Personal"
+  security_deposit: "Security Deposit"
+  security_deposit_hint: "The wireframe has this but I don't have the text yer"
+  share: "Compartir a través de"
+  sign_in: "Iniciar Sesión"
+  sign_out: "Terminar Sesión"
+  signup_complete: "Registro completado"
+  signup_complete_text: "Gracias por registrarte! Sin embargo, todavía tienes que confirmar tu cuenta. Comprueba tu email y activa tu cuenta con el enlace que te hemos enviado."
+  signup_needed_to_connect: "Para conectar tu cuenta con tu red social, proveenos de la siguientes información"
+  site_title: "SquareStays - Trusted Stays"
+  size: Size
+  sort_by: "Ordenar por"
+  sports_and_recreation: "Sports & Recreation"
+  square_feet: "Pies cuadrados"
+  square_meters: "Metros cuadrados"
+  state: Estado/Provincia
+  stay_details: "Detalles de la estadía"
+  street: Calle
+  strict: Strict
+  strict_cancellation: "50% refund up until 1 week prior, except fees"
+  sub_total: Subtotal
+  submit: Enviar
+  success: Éxito!
+  support: 
+    array: 
+      last_word_connector: ", y "
+      two_words_connector: " y "
+      words_connector: ", "
+    select: 
+      prompt: "Por favor seleccione"
+  teaser_1_content: "SquareStays ofrece alojamiento flexible y de alta calidad para usted. Squarestays es el sitio de destino para encontrar la perfecta estancia a corto o mediano plazo."
+  teaser_1_title: Flexibilidad
+  teaser_2_content: "SquareStays trabaja con agentes profesionales y propietarios para garantizar una experiencia cómoda y profesional que puede confiar."
+  teaser_2_title: Calidad
+  teaser_3_content: "Squarestays ofrece alta calidad y distintas propiedades - tienen su propia casa por menos del precio de un hotel de 5 estrellas."
+  teaser_3_title: Asequibilidad
+  teaser_center_title: "¿Por qué debería usar SquareStays?"
+  terms: Terms
+  terms_and_conditions: "Términos y condiciones"
+  terms_of_service: "Términos de servicio |"
+  this_is_preview: "Esta es una vista previa"
+  time: 
+    am: am
+    formats: 
+      default: "%A, %d de %B de %Y %H:%M:%S %z"
+      long: "%d de %B de %Y %H:%M"
+      short: "%d de %b %H:%M"
+    pm: pm
+  title: Título
+  twitter_connected: "Has conectado correctamente tu cuenta en Twitter!"
+  type: Tipo
+  unpublish: Unpublish
+  upload_a_new_photo: "Subir una foto nueva"
+  upload_photo: "Upload Photo"
+  upload_photo_hint: "We support jpg and png images."
+  use_facebook_photo: "Usar la foto de Facebook"
+  user_confirmed: "Tu cuenta se ha confirmado correctamente!"
+  what_city: "¿En qué ciudad está tu Apartamento?"
+  working_on_expanding: "Estamos trabajando en la expansión de SquareStays. Para ayudarnos, puede decirnos qué ciudad gustaría ver a continuación."
+  you_can_sort: "You can sort your photos by drag and drop"
+  your_place: "Este es tu lugar!"
+  zip: "Código postal"
+  zip_code: "Código Postal"

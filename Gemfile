@@ -19,6 +19,7 @@ end
 group :development do
   gem 'thin'
   gem 'heroku_san'
+  gem 'translate-rails3', :require => 'translate'
 end
 
 group :test do

@@ -3,31 +3,31 @@
     .span8
       .hub
         %h1
-          Search for a place to stay in
+          =t(:search_place_stay_in)
           = link_to "Singapore", "#", :id => "open-country-select"
         %ul#country-select.dropdown
           %li Singapore
-          %li= link_to "Not going to Singapore?", "#", "data-controls-modal" => "my-modal"
+          %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
 
         #my-modal.hide.modal.fade
           = form_tag '/cities/suggest', :html => {:remote => true}, :style => "margin-bottom:0" do
             .modal-header
-              %h3 Can't find the city you were hoping to go?
+              %h3=t(:cant_find_city)
             .modal-body
-              We're working hard on expanding SquareStays to more<br>
-              You can help us by telling us what city you would like to see next.<br><br>
+              =t(:working_on_expanding)
+              <br><br>
               .input
-                %label{:style => "text-align:right; width:65px; margin-right:20px;"} City
+                %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:city)
                 = text_field_tag 'city', ''
               .input
-                %label{:style => "text-align:right; width:65px; margin-right:20px;"} Email
+                %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:email)
                 = text_field_tag 'email', ''
               <br>
-              %i Leave us your E-Mail address so we can notify you when we add the city you were looking for.
+              %i=t(:leave_us_email)
               <br>
             .modal-footer
-              %button.btn.primary Submit
-              %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"} Cancel
+              %button.btn.primary=t(:submit)
+              %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
 
         %form{:action => '/places'}
           .clearfix

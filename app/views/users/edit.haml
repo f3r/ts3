@@ -33,7 +33,7 @@
         .private
         = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
       .clearfix
-      .span3.float-right
+      .span4.float-right
         = submit_tag t(:save), :class => 'btn primary'
         = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
@@ -62,7 +62,7 @@
         = f.text_field :zip, :class => "validate[required]"
         = f.hidden_field :id
       .clearfix
-      .span3.float-right
+      .span4.float-right
         = submit_tag t(:save), :class => 'btn primary'
         = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
@@ -84,13 +84,13 @@
         .private
         = f.password_field :password_confirmation, :class => "validate[required,equals[new_password_password]]"
       .clearfix
-      .span3.float-right
+      .span4.float-right
         = f.submit t(:save), :class => 'btn primary'
         = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
       .clearfix
 
       -#Accounts Section
-      .section-header Linked Accounts
+      .section-header=t(:linked_accounts)
       = render :partial => "users/user_accounts"
       .clearfix
 
@@ -98,27 +98,27 @@
       = form_for :user, :url => user_path(@user['id']), :method => :put do |f|
         .modal-header
           = link_to "x", '#', :class => "close"
-          %h3 Edit your Photo
+          %h3=t(:change_photo)
         .modal-body
           .row
             .span2
               %p
                 = image_tag(@avatar, :class => "avatar_placeholder", :width => 100)
                 .preview
-                  Preview
+                  =t(:preview)
             .span7
-              %p= "Uploading a current photo helps renters evaluate your profile. While its not required, it helps build trust with property owners if you complete your profile."
+              %p=t(:change_photo_description)
               %p
-                %a.btn.medium.facebook_avatar= "Use Facebook Photo"
+                %a.btn.medium.facebook_avatar=t(:use_facebook_photo)
                 - @user_auth['authentications'].each{|x| @facebook_uid = x['uid'] if x['provider'] == "facebook" }
                 = f.hidden_field(:facebook_image, :value => "http://graph.facebook.com/#{@facebook_uid}/picture?type=large") if !@facebook_uid.blank?
                 = f.hidden_field :avatar_url
               %p
-                %a.btn.medium.upload_avatar= "Upload a new Photo"
+                %a.btn.medium.upload_avatar=t(:upload_a_new_photo)
                 .upload_field
                   = f.file_field :avatar, :onchange => "readURL(this);", :style=>"display:none;"
         .modal-footer
-          = button_tag t(:save), :class => 'btn primary',  "data-loading-text" => "Saving photo...", :id => "save-btn"
+          = button_tag t(:save), :class => 'btn primary',  "data-loading-text" => "#{t(:saving_photo)}...", :id => "save-btn"
 
 <!--[if IE]>
 <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -126,8 +126,8 @@
 
 :javascript
   $(document).ready(function() {
-    $('div.private').twipsy({html:true,placement:"above", title: function(){return "Private. Only visible to those that have an active transaction with you"} });
-    $('div.public').twipsy({html:true,placement:"above", title: function(){return "Public. Anyone can see this information"} });
+    $('div.private').twipsy({html:true,placement:"above", title: function(){return "#{t(:private_field)}"} });
+    $('div.public').twipsy({html:true,placement:"above", title: function(){return "#{t(:public_field)}"} });
     $("#new_password, #change_address, #update_user").validationEngine();
   });
 

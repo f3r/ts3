@@ -58,6 +58,11 @@ en:
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.
   signup_needed_to_connect:   We need to connect the details to your SquareStays account, please provide us the following.
   i_have_an_account:          Already a SquareStays member?
+  choose_language:            Choose language
+  choose_currency:            Choose currency
+  choose_unit:                Choose unit
+  square_meters:              Square meters
+  square_feet:                Square feet
 
   ####################################################################################
   # General field names and validation errors
@@ -93,6 +98,14 @@ en:
   profile_req_message: Please click Edit on your profile to enter additional information needed to make reservations on SquareStays.
   profile_current_pwd: Current Password
   profile_retype_pwd:  Re-type Password'
+  change_photo:        Change photo
+  change_photo_description: Uploading a current photo helps renters evaluate your profile. While its not required, it helps build trust with property owners if you complete your profile.
+  use_facebook_photo:   Use Facebook Photo
+  upload_a_new_photo:   Upload a new Photo
+  saving_photo:         Saving photo
+  private_field:        Private. Only visible to those that have an active transaction with you
+  public_field:         Public. Anyone can see this information
+  linked_accounts:      Linked Accounts
 
   ####################################################################################
   # Authentications
@@ -207,6 +220,9 @@ en:
   ask_question:    Ask a question
   pm_prepend_pre:  "Private question regarding your property ["
   pm_prepend_post: "]\n\n"
+  messages:         Messages
+  conversation_with: Conversation with
+  no_messages:      No messages
 
   ####################################################################################
   # Photos
@@ -310,6 +326,11 @@ en:
   homepage_life_sg_content: "With business travel to Asia increasing and hotel prices sky-rocketing, finding a place to stay for business travel has become increasingly difficult.  As a hub that connects the east and the west, Singapore is an important market in the Asian business economy with sustained growth and top-rated business environment.  SquareStays is now available in Singapore and plans to expand in other major cities across Asia and worldwide."
   homepage_about:      About SquareStays
   homepage_about_content: "SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay."
+  search_place_stay_in: Search for a place to stay in
+  cant_find_city: Can't find the city you were hoping to go?
+  leave_us_email: Leave us your E-Mail address so we can notify you when we add the city you were looking for.
+  working_on_expanding: We're working hard on expanding SquareStays to more. You can help us by telling us what city you would like to see next.
+  not_going_to_singapore: Not going to Singapore?
 
   ####################################################################################
   # Error codes

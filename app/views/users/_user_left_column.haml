@@ -6,7 +6,7 @@
     
   = image_tag(@avatar, :width => 120)
   - if @current_action == "edit"
-    = link_to "Change photo", "", { "data-controls-modal"=>"avatar-modal", "data-backdrop"=>"static", :class => "change_avatar"}
+    = link_to t(:change_photo), "", { "data-controls-modal"=>"avatar-modal", "data-backdrop"=>"static", :class => "change_avatar"}
 
   %h2
     = short_full_name @user

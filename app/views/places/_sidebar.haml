@@ -1,17 +1,17 @@
 .wizard-aside
   %ul#wizard-selector
     %li#general
-      .indicator
+      .indicator#generalInfo
         = image_tag('/images/check-disabled.png')
       %a{:href => "#1", :title => t(:general_information), :class => 'active'}
         = t(:general_info)
     %li#photos
-      .indicator
+      .indicator#photoInfo
         = image_tag('/images/check-disabled.png')
       %a{:href => "#2", :title => t(:photos)}
         = t(:photos)
     %li#amenities
-      .indicator
+      .indicator#amenitiesInfo
         = image_tag('/images/check-disabled.png')
       %a{:href => "#3", :title => t(:amenities)}
         = t(:amenities)

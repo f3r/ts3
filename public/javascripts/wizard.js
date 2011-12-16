@@ -266,18 +266,15 @@ var validatePreview = function() {
   } else {
     categories = '';
     ctr = 0;
-    if(!_panelStatus.general) {categories += ' General Info,'; ctr += 1;}
-    if(!_panelStatus.photos) {categories += ' Photos,'; ctr += 1;}
-    if(!_panelStatus.amenities) {categories += ' Amenities,'; ctr += 1;}
-    if(categories != '') {
-      categories = categories.substring(0, categories.length-1);
-      if(ctr == 1) {
-        categories += ' is required.'
-      } else {
-        categories += ' are required.'
-      }
-    }
-    alert(t('cannot_preview') + categories);
+    if(!_panelStatus.general) {$('#generalInfo').validationEngine('showPrompt', 'General Info needed', 'load', 'centerLeft');}
+    if(!_panelStatus.photos) {$('#photoInfo').validationEngine('showPrompt', 'Upload at least 3 photos', 'load', 'centerLeft');}
+    if(!_panelStatus.amenities) {$('#amenitiesInfo').validationEngine('showPrompt', 'Select at least 1 Amenity', 'load', 'centerLeft');}
+    //alert(t('cannot_preview') + categories);
+
+    setTimeout(function() {
+      $('.indicator').validationEngine('hideAll');
+    }, 10000);
+
     return false;
   }
 
@@ -570,5 +567,6 @@ $(document).ready(function() {
   showHideInitialDefaultInput();
 
   $('#preview_button, #listing-status').click(validatePreview);
+
 
 });

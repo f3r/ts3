@@ -291,6 +291,7 @@ en:
   ####################################################################################
   sort_by: Sort by
   results: Results
+  no_result: No results found. Try changing some of your search options.
 
   ####################################################################################
   # Home page

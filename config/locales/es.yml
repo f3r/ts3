@@ -223,3 +223,237 @@
 
       full_messages:
         format: "%{attribute} %{message}"
+
+  ####################################################################################
+  # App General Stuff
+  ####################################################################################
+  app_name:   Squarestays
+  submit:     Enviar
+
+  ####################################################################################
+  # App Menus
+  ####################################################################################
+  find_places:    Buscar Apartamento
+  my_places:      Mis Apartamentos
+  profile:        Perfil
+  notifications:  Notificationes
+  add_a_place:    Nuevo Apartamento
+
+  ####################################################################################
+  # Account creation & management
+  ####################################################################################
+  create_new_account:         Crear nueva cuenta
+  user_confirmed:             Tu cuenta se ha confirmado correctamente!
+  invalid_confirmation_code:  Código de confirmación inválido
+  enter_confirmation_code:    Introduce tu código de confirmación
+  resend_confirmation:        Reenviar confirmación
+  enter_your_email:           Introduce tu Email
+  reset_password:             Restablecer Contraseña
+  confirmation_code:          Código de Confirmación
+  confirmation_email_sent:    Email con el Código de Confirmation enviado
+  register:                   Registro
+  login:                      Entrar a SquareStays
+  login_using:                Entrar
+  sign_in:                    Iniciar Sesión
+  sign_out:                   Terminar Sesión
+  invalid_login:              Usuario y/o contrasela inválidas
+  password_reset_instruction_sent: Email enviado con las instrucciones para restablecer tu contraseña
+  password_reset_failed:      El restablecimiento de tu contraseña ha fallado.
+  signup_complete:            Registro completado
+  signup_complete_text:       Gracias por registrarte! Sin embargo, todavía tienes que confirmar tu cuenta. Comprueba tu email y activa tu cuenta con el enlace que te hemos enviado.
+  confirm_reset_password:     Confirma tu cambio de contraseña
+  enter_your_new_password:    Introduce nueva contraseña
+  password_reset_success:     Cambio de contraseña correcto!
+  facebook_connected:         Has conectado correctamente tu cuenta en Facebook!
+  twitter_connected:          Has conectado correctamente tu cuenta en Twitter!
+  authentication_fail:        No hemos podido autenticarte. Te rogamos lo intentes de nuevo
+  signup_needed_to_connect:   Para conectar tu cuenta con tu red social, proveenos de la siguientes información
+
+  ####################################################################################
+  # General field names and validation errors
+  ####################################################################################
+  email:            Email
+  invalid_email:    Email Inválido
+  password:         Contraseña
+  confirm_password: Confirmar Contraseña
+  terms_and_conditions: Términos y Condiciones
+
+  ####################################################################################
+  # Section Headers
+  ####################################################################################
+  section_header_user_profile:      Information Personal
+  section_header_user_information:  Information Personal
+  section_header_billing_address:   Dirección para Facturación
+  section_header_user_password:     Contraseña
+
+  ####################################################################################
+  # User Profile Data
+  ####################################################################################
+  first_name:         Nombre
+  last_name:          Apellidos
+  gender:             Sexo
+  gender_undisclosed: No revelado
+  gender_male:        Hombre
+  gender_female:      Mujer
+  mobile_phone:       Número de Teléfono Móvil
+  birthdate:          Fecha de Nacimiento
+  billing_address:    Dirección para Facturación
+  reviews:            Comentarios
+
+  ####################################################################################
+  # Authentications
+  ####################################################################################  
+  link_accounts:      + conectar cuentas
+  edit_account:       Editar cuenta
+
+
+  ####################################################################################
+  # Wizard
+  ####################################################################################
+
+  general_info: Información General
+  general_information: Información General
+  photos: Fotos
+  amenities: Instalaciones
+  calendar: Calendario
+  price_and_conditions: Precio y Condiciones
+
+  ####################################################################################
+  # Places Wizard
+  ####################################################################################
+  list_your_place: Nuevo Apartamento
+  what_city: ¿En qué ciudad está tu Apartamento?
+  place_type: ¿Qué tipo de apartamento es?
+  how_many_bedrooms: ¿Cuántas habitaciones?
+  max_guests: Máximo número de invitados
+  save_and_continue: Guardar y Continuar &raquo;
+  title: Título
+  type: Tipo
+  i_agree_to_the: Acepto los
+  terms_and_conditions: Términos y condiciones
+  description: Descripción
+  address: Dirección
+  max_guests: Número de Invitados
+  num_bedrooms: Número de Habitaciones
+  num_beds: Número de Camas
+  num_bathrooms: Número de Baños
+  address_1_help: Calle, Empresa
+  address_2_help: Apartmento / Número
+  size: Tamaño
+  city: Ciudad
+  state: Estado/Provincia
+  zip_code: Código Postal
+  country: Pais
+  next_step: Siguiente &raquo;
+  previous_step: "&laquo; Anterior"
+  are_you_sure: ¿Estás seguro?
+
+  amenities: Instalaciones
+  place_and_building_facilities: Place & Building facilities
+  furnishings: Conveniences
+  miscellaneous: Miscellaneous
+  sports_and_recreation: Sports & Recreation
+
+  preview_button: Preview &raquo;
+
+  final_cleanup: Final Cleanup 
+  final_cleanup_hint: The cost of cleaning the place once rental is finished
+  security_deposit: Security Deposit
+  security_deposit_hint: The wireframe has this but I don't have the text yer
+
+  size: Size
+
+  terms: Terms
+
+  check_in_before: Check In Before
+  check_out_before: Check Out Before
+
+  currency: Currency
+  minimum_stay: Minimum Stay
+  maximum_stay: Maximum Stay
+  minimum_of: Minimum Of
+  maximum_of: Maximum Of
+
+  no_maximum: No Maximum
+  no_minimum: No Minimum
+  nights: Nights
+
+  cancellation_policy: Cancellation Policy
+
+  flexible: Flexible
+  moderate: Moderate
+  strict: Strict
+
+  strict_cancellation: 50% refund up until 1 week prior, except fees
+  moderate_cancellation: full refund 5 days prior to arrival, except fees
+  flexible_cancellation: full refund 1 day prior to arrival, except fees
+
+  do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
+
+  not_listed_yet: Your place is not listed yet!
+  preview: Preview
+
+  invisible: Invisible
+  place_listed: Place listed
+  form_error: Please fix the error on the form first before we can proceed.
+  categories_left: more categories must be completed
+  listed: Listed
+
+  publish: Publish
+  unpublish: Unpublish
+
+  place_published: Your place is now listed!
+  place_publish_error: Sorry, we can't publish your place because of missing information.
+  place_unpublished: Your place is now invisible
+
+  ####################################################################################
+  # Photos
+  ####################################################################################
+  photos: Photos
+  no_caption: No Caption
+  you_can_sort: You can sort your photos by drag and drop
+  primary: Primary
+  upload_photo: Upload Photo
+  upload_photo_hint: We support jpg and png images.
+  click_here_to_add_caption: Click here to add caption
+
+  calendar: Calendar
+  calendar_hint: Please let us know what dates the place is available for rent
+
+  ####################################################################################
+  # Error codes
+  ####################################################################################
+  errors:
+   "100": has already been taken
+   "101": can't be blank
+   "102": too short
+   "103": is invalid
+   "104": doesn't match
+   "105": invalid access token
+   "106": not found
+   "107": unconfirmed
+   "108": unauthenticated
+   "109": invalid email or password
+   "110": must sign up
+   "111": invalid oauth request
+   "112": This user doesn't have a linked Facebook account
+   "113": invalid date
+   "114": Amazon API error
+   "115": no results
+   "116": duplicate
+   "117": invalid oauth token
+   "118": must be a number
+   "119": must be future, after today
+   "120": end date must be after initial date
+   "121": interval overlaps with existing interval for the place
+   "122": unmatching parent resource and child resource
+   "123": not enough pictures
+   "124": description is too short
+   "125": no availability
+   "126": no price
+   "127": no currency
+   "128": no security deposit
+   "129": invalid size unit
+   "130": not activated
+   "131": invalid json
+   "132": invalid city (not on the cities table)

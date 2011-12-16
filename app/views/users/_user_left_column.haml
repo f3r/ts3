@@ -21,4 +21,4 @@
     %br
     = render :partial => "users/user_accounts"
   - elsif logged_in? && params[:id] && current_user['id'] != @user['id']
-    %a.btn.medium.primary{:href => "/messages/#{@user['id']}" }= t(:message_user)
+    %a.btn.medium.primary{:href => "/messages/#{@user['id']}", :style => 'margin-top: 50px' }= t(:message_user)

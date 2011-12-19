@@ -169,7 +169,9 @@ class UsersController < ApplicationController
     if logged_in?
       if Heypal::User.update(params)
         current_user[preference.to_s] = params[preference]
-        render :json => {:stat => true}
+        #render :json => {:stat => true}
+        session['current_user'] = Heypal::User.show('access_token' => current_token)
+        render :js => %w(window.location.reload();)
       else
         render :json => {:stat => false}
       end

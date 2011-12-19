@@ -89,7 +89,21 @@ module PlacesHelper
   #   end
   # end
 
-  def month_count(month)
-    month.nil? || month.eql?(0) ? 'none' : pluralize(month, 'month')
+  def month_count(days)
+    date = Date.today
+    days_count = Time.days_in_month(date.month, date.year)
+    months = 'none'
+    unless days.nil? || days.eql?(0)
+      if days < days_count
+        months = pluralize(days, 'day')
+      elsif days == days_count
+        months = pluralize((days/days_count), 'month')
+      elsif days > days_count
+        month = days/days_count
+        days_count = (date - Date.today.advance(:months => "-#{month}".to_i)).to_i
+        months = "#{pluralize((days - days_count), 'day')}, #{pluralize((month), 'month')}"
+      end
+    end
+    months
   end
 end

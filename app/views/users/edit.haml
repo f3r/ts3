@@ -8,16 +8,16 @@
 
     = form_for :user, :url => user_path(@user['id']), :method => :put, :html => {:id => "update_user"} do |f|
       .input
-        = f.label :first_name, t(:first_name)
+        = f.label :first_name, "#{t(:first_name)}*"
         .public
         = f.text_field :first_name, :class => "validate[required]"
       .input
-        = f.label :last_name, t(:last_name)
+        = f.label :last_name, "#{t(:last_name)}*"
         .private
         = f.text_field :last_name, :class => "validate[required]"
       /TODO: Email has a special validation process, please check with Fer
       .input
-        = f.label :email, t(:email)
+        = f.label :email, "#{t(:email)}*"
         .private
         = f.text_field :email, :class => "validate[required]"
       .input
@@ -29,7 +29,7 @@
         .private
         = f.text_field :phone_mobile
       .input
-        = f.label :birthdate, t(:birthdate)
+        = f.label :birthdate, "#{t(:birthdate)}*"
         .private
         = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
       .clearfix
@@ -45,19 +45,19 @@
       -# FIXME: coded_errors_for is not working
       -# = coded_errors_for @address
       .input
-        = f.label :street, t(:street)
+        = f.label :street, "#{t(:street)}*"
         .private
         = f.text_field :street, :class => "validate[required]"
       .input
-        = f.label :city, t(:city)
+        = f.label :city, "#{t(:city)}*"
         .public
         = f.text_field :city, :class => "validate[required]"
       .input
-        = f.label :country, t(:country)
+        = f.label :country, "#{t(:country)}*"
         .public
         = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], {:include_blank => true}, { :class => "validate[required]" } )
       .input
-        = f.label :zip, t(:zip)
+        = f.label :zip, "#{t(:zip)}*"
         .private
         = f.text_field :zip, :class => "validate[required]"
         = f.hidden_field :id

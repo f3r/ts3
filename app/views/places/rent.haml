@@ -25,15 +25,15 @@
 
         .row.info
           .span4
-            .thumb
+            .thumb.center
               = image_tag(@place['photos'].blank? ? "photo-missing.png" : @place['photos'][0]['photo']['medium'])
-          .span12
+          .span11
             %h3= @place.title
             .clearfix
-            .span4
+            .span3
               .location
                 = "#{@place.city_name}, #{@place.country_name}"
-            .span4
+            .span3
               .type
                 .title= @place.place_type 
               .micro
@@ -52,36 +52,36 @@
                   &nbsp;
 
         .row.details
-          .span4
+          .span3
             .check_in
               %strong= t(:check_in)
             .offset-one-fourth
               = @place['check_in_after']
-          .span4
+          .span3
             .check_out
               %strong= t(:check_out)
             .offset-one-fourth
               = @place['check_out_before']
-          .span4
+          .span3
             .cancellation_policy
               %strong= t(:cancellation_policy)
             .offset-one-fourth
               - policy = LookupsHelper::CANCELLATION_POLICIES[@place['cancellation_policy']]
-              = policy
+              = cancellation_desc(@place)
               = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t("#{policy}_cancellation".to_sym))
 
         .row.details
-          .span4.guests_div
+          .span3.guests_div
             .guests
               %strong= t(:guests)
             .offset-one-fourth
               = @place['max_guests']
-          .span4
+          .span3
             .bedrooms
               %strong= t(:bedrooms)
             .offset-one-fourth
               = @place['num_bedrooms']
-          .span4
+          .span3
             .house_rules
               %strong= t(:house_rules)
             .offset-one-fourth
@@ -166,7 +166,7 @@
     if (check_in && check_out) {
       date = [check_in,check_out];
       update_duration(new Date(check_in),new Date(check_out))
-      $('#date_picker').DatePickerSetDate(date, 1);
+      $('#date_picker').DatePickerSetDate(date, 0);
     } else {
       $('#date_picker').DatePickerClear();
     }
@@ -228,7 +228,7 @@
   		$('#date_picker').DatePicker({
   			flat: true,
         date: [today,next_month],
-  			current: '2012-01-01',
+  			current: next_month,
   			calendars: 2,
   			mode: 'range',
   			starts: 1,

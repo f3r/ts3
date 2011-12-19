@@ -147,7 +147,7 @@
                   %label= t(:security_deposit)
                   .value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
                 %label= t(:cancellation)
-                .value= LookupsHelper::CANCELLATION_POLICIES[@place.cancellation_policy]
+                .value= cancellation_desc(@place)
 
             .row#amenities-tab
               .span

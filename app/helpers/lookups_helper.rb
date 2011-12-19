@@ -103,6 +103,10 @@ module LookupsHelper
   def empty_place_type
     {"apartment"=>0, "house"=>0, "villa"=>0, "room"=>0, "other_space"=>0}
   end
+
+  def cancellation_desc(place)
+    t(LookupsHelper::CANCELLATION_POLICIES[place.cancellation_policy])
+  end
   # Should be of this format:
   # {"date_end"=>[120]}
   def error_codes_to_messages(error_hash)

@@ -156,7 +156,7 @@
 				cal.find('td>table tbody').remove();
 				for (var i = 0; i < options.calendars; i++) {
 					date = new Date(options.current);
-					date.addMonths((-currentCal + i) + 1);
+					date.addMonths(-currentCal + i);
 					tblCal = cal.find('table').eq(i+1);
 					switch (tblCal[0].className) {
 						case 'datepickerViewDays':

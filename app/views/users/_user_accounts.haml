@@ -1,15 +1,14 @@
 - unless @user_auth['authentications'].blank?
   - for auth in @user_auth['authentications']
-    .span3
-      .user_box
-        .user_photo.float-left
-          = image_tag("/images/icons/facebook.png", :size => "30x30") if auth['provider'] == "facebook"
-          = image_tag("/images/icons/twitter.png", :size => "30x30")  if auth['provider'] == "twitter"
-          &nbsp;
-          %img{:src => "#{profile_picture_url(auth['uid'], auth['provider'])}", :style => "width:30px; height:30px; padding-right:5px;"}
-        .user_data
-          .user_name
-            = link_to "#{full_name @user}", "#"
-            / = "(#{auth['provider']})"
+    .user_box{:style => 'height: 40px;'}
+      .user_photo.float-left
+        = image_tag("/images/icons/facebook.png", :size => "30x30") if auth['provider'] == "facebook"
+        = image_tag("/images/icons/twitter.png", :size => "30x30")  if auth['provider'] == "twitter"
+        &nbsp;
+        %img{:src => "#{profile_picture_url(auth['uid'], auth['provider'])}", :style => "width:30px; height:30px; padding-right:5px;"}
+      .user_data
+        .user_name
+          = link_to "#{full_name @user}", "#"
+          / = "(#{auth['provider']})"
 .clearfix
 = render :partial => "users/user_linked_accounts"

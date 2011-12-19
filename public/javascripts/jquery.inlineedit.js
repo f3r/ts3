@@ -82,7 +82,7 @@ $.inlineEdit.defaults = {
     hover: 'inline-edit-hover',
     value: '',
     save: '',
-    buttons: '<button class="save">save</button> <button class="cancel">cancel</button>',
+    buttons: '<button class="btn primary save">save</button> <button class="btn cancel">cancel</button>',
     placeholder: 'Click to edit',
     control: 'input',
     cancelOnBlur: false,

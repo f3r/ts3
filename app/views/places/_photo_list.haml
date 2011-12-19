@@ -1,6 +1,6 @@
 - if @photos && @photos.any?
   - @photos.each do |photo|
     %li 
-      .photo_action{:style => "display:none;position:absolute;margin-left:85px;"}
+      .photo_action
         = link_to "[x]", "javascript:void(0);", :onclick => "return deletePhoto($(this));"      
       = render_photo(photo)

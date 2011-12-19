@@ -167,6 +167,7 @@ $(document).ready(function() {
   var inside_country = false;
   $("#open-country-select").click(function() {
     $("#country-select").show();
+    return false;
   });
 
   $("#country-select").hover(function() {

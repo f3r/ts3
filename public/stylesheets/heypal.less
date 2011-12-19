@@ -2140,26 +2140,41 @@ ul#photos_list {
     margin: 3px 3px 30px 0;
     padding: 8px 8px 10px 8px;
     float: left;
-    width: 100px;
-    height: 110px;
     font-size: 4em;
     text-align: center;
+    width:115px;
 
     .photo_image {
-      min-height: 105px;margin-bottom: 15px;
+      margin-bottom: 15px;
+      width:106px;
+      height:70px;
+      border: 1px solid #000;
+      background-color: #F2F2F2;
+      padding:3px;
     }
 
     .photo_action {
-      font-size: 13px;z-index:999;
+      font-size: 13px;
+      z-index:999;
+      display:none;
+      position:absolute;
+      margin-left:95px;
+      margin-top:-10px;
+
       a {
-        color:red;font-weight:bold;font-size:13px;
+        cursor:pointer;
+        color:red;
+        font-weight:bold;
+        font-size:13px;
+
+        &:hover {
+          text-decoration:none;
+        }
       }
     }
   }
   li.active {
-    background:#999;
     .photo_image {
-      height: 92px;  width: 100px; background: #FFF;
     }
   }
 }

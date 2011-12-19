@@ -16,13 +16,12 @@
           = render 'photo_list'
         .clearfix
 
+  #photoQueue
+
   .upload_wrapper
     %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :value => 'Select files', :id => "photo_uploader" }
 
     %p= t(:upload_photo_hint)
-
-  .clearfix
-    #photoQueue
 
 .arrows.clearfix
   .float-left
@@ -48,7 +47,7 @@
       $(this).find(".photo_action").hide();      
     });
 
-    $('#photos_list li img').click(showPhoto);    
+    $('#photos_list li').click(showPhoto);    
   };
 
   var deletePhoto = function(elem) {
@@ -64,7 +63,7 @@
   };
 
   var showPhoto = function() {
-    setPhoto($(this));
+    setPhoto($(this).find('img'));
   }
 
   var showLatestPhoto = function() {
@@ -184,8 +183,5 @@
 
     afterSort();
     showLatestPhoto();
-
   });
-
-
 

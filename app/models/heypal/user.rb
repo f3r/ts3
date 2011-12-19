@@ -47,7 +47,11 @@ class Heypal::User < Heypal::Base
     
     def places(params = {})
       result = request("/users/#{params['id']}/places.json?status=published", :get, params)
-      result['places']
+      if result['stat'] == 'ok' && result.key?("places")
+        result['places']
+      else
+        []
+      end
     end
 
     def update(params = {})

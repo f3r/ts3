@@ -61,8 +61,10 @@ class Heypal::Place < Heypal::Base
 
     def find(id, access_token)
       result = request("/places/#{id}.json?access_token=#{access_token}", :get)
-      if result['stat'] == 'ok'
+      if result['stat'] == 'ok' && result.key?("place")
         return self.new(normalize_place(result))
+      else
+        []
       end
     end
 

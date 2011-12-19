@@ -822,13 +822,11 @@ ul#wizard-selector {
 // -----------
 .amenities {
   .amenity {
-    display: block;
+    display: inline;
     width: 200px;
     font-size: 14px;
-    float: left;
-    margin: 0 10px 10px 0;
-    padding: 10px 0;
-    text-align:right;
+    text-align: right;
+    height: 50px;
 
     &:nth-child(3n+3) .save-indicator {
       margin-bottom:4px; // Note: Don't know why but this is needed on every last (3rd) on the amenities list, if not, it destroys layout on un/check
@@ -2564,3 +2562,11 @@ pre.desc {
 .description .title {color: gray; font-size: 13px;}
 .description .span-below {padding-bottom: 20px;}
 .description .span9 {min-height: 100px;}
+
+
+.btn.close {
+  color:@white;
+  .gradientBar(@blue, @blueDark);
+  opacity:1;
+  margin-bottom: 15px;
+}

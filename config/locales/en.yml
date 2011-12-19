@@ -188,13 +188,14 @@ en:
 
   cancellation_policy: Cancellation Policy
 
-  flexible: Flexible
+  flexible: Flexible 30-Day
   moderate: Moderate
-  strict: Strict
+  strict: Strict 7-Day
 
-  strict_cancellation: 50% refund up until 1 week prior, except fees
+  head_cancellation: If you wish to cancel your SquareStays reservation
+  strict_cancellation: at least 7 days before the reservation date, you will be charged 10% of the security deposit.
   moderate_cancellation: full refund 5 days prior to arrival, except fees
-  flexible_cancellation: full refund 1 day prior to arrival, except fees
+  flexible_cancellation: at least 30 days before the reservation date, you will not be charged and any security deposit you have paid will be refunded to you.
 
   do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
 

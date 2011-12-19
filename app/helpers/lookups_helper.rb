@@ -4,7 +4,8 @@ module LookupsHelper
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
   SIZE_UNITS = {'sqm' => 'm<sup>2</sup>', 'sqf' => 'ft<sup>2</sup>'}
 
-  CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
+  #CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
+  CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
   def currencies
     CURRENCIES.keys

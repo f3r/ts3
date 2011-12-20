@@ -185,7 +185,7 @@ class PlacesController < ApplicationController
   def rent
     if logged_in?
       @user = Heypal::User.show('access_token' => current_token)
-      render :layout => 'plain'
+      render :layout => 'single'
     else
       flash[:error] = 'You must be logged in to rent a place'
       redirect_to login_path

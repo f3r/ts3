@@ -5,16 +5,16 @@
   %script{:src => '/javascripts/datepicker/js/utils.js', :type => 'text/javascript'}
   %script{:src => '/javascripts/date_format.js', :type => 'text/javascript'}
 
--#%ul.breadcrumb
-  -#%li
-    -#= link_to @place['title'], place_path(@place["id"])
-    -#%span.divider= "/"
-  -#%li.active
-    -#=t(:rent)
+%ul.breadcrumb
+  %li
+    = link_to @place['title'], place_path(@place["id"])
+    %span.divider &raquo;
+  %li.active
+    =t(:rent)
 
 .rent_place_page
   .row
-    .span16
+    .span12
 
       = form_tag(availability_place_path, :method => :post, :id => "check_availability") do
 
@@ -25,9 +25,9 @@
 
         .row.info
           .span4
-            .thumb.center
+            .thumb.center-div-image
               = image_tag(@place['photos'].blank? ? "photo-missing.png" : @place['photos'][0]['photo']['medium'])
-          .span11
+          .span8
             %h3= @place.title
             .clearfix
             .span3

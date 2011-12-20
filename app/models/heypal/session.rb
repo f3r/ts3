@@ -25,7 +25,6 @@ class Heypal::Session < Heypal::Base
   end
 
   def valid?
-    puts self.inspect
     self['stat'] == 'ok'
   end
 

@@ -206,7 +206,11 @@
       - else
         %ul.references
           %li.center
-            %img{:src => @owner['avatar'], :style => "width: 100px; height: 100px;"}
+            - if @owner['avatar'].nil?
+              - avatar = placehold(200, 200, true)
+            - else
+              - avatar = @owner['avatar'].gsub('thumb', 'large')
+            %img{:src => avatar, :style => "width: 200px;"}
           %li.center= link_to short_full_name(@owner), user_path(@owner['id'])
           %hr
           %li.check{:style => 'margin-left: 90px;'}= @owner['role'].capitalize

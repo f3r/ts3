@@ -29,7 +29,7 @@ HeyPalFrontEnd::Application.configure do
   config.assets.debug = true
 
   config.from_locales = [:en]
-  config.to_locales = [:es]
+  config.to_locales = [:es, :de]
 
 end
 

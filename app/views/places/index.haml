@@ -32,15 +32,13 @@
               .content
                 %ul#types-list{:class => "inputs-list"}
                   - place_types_select.each do |p_type|
-                    - id_name = p_type[0].parameterize('_').singularize
-
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[1], (0 < @results['place_type_count'][id_name]), :id => id_name
-                          %span= p_type[0]
+                          = check_box_tag :place_type, p_type[1], (0 < @results['place_type_count'][p_type[2]]), :id => p_type[2]
+                          %span=p_type[0]
                         .right
-                          %span= "(#{@results['place_type_count'][id_name]})"
+                          %span= "(#{@results['place_type_count'][p_type[2]]})"
 
             %li
               .header= t(:price_per_night)

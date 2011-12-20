@@ -2,7 +2,7 @@
 module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
-  SIZE_UNITS = {'sqm' => 'm<sup>2</sup>', 'sqf' => 'ft<sup>2</sup>'}
+  SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_meters_short)}
 
   #CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
@@ -36,7 +36,7 @@ module LookupsHelper
   end
 
   def place_types_select
-    Heypal::Place.place_types.map {|p| [p['name'], p['id']]}
+    Heypal::Place.place_types.map {|p| [I18n.t(p['name'].parameterize('_').singularize), p['id'], p['name'].parameterize('_').singularize]}
   end
 
   def pref_language_list
@@ -93,15 +93,19 @@ module LookupsHelper
   end
 
   def max_guest_options
-    [['1 Guest', 1], ['3 Guests', 3], ['5 Guests', 5], ['10 Guests', 10]]
+    [["1 #{t(:guest)}", 1], ["3 #{t(:guests)}", 3], ["5 #{t(:guests)}", 5], ["10 #{t(:guests)}", 10]]
   end
 
   def sort_options
-    [['Price (Lowest First)', 'price_lowest'], ['Price (Highest First)', 'price_highest'], ['Price/Size (Lowest First)', 'price_size_lowest'], ['Price/Size (Highest First)', 'price_size_highest']]
+    [[t(:price_lowest), 'price_lowest'], [t(:price_highest), 'price_highest'], [t(:price_size_lowest), 'price_size_lowest'], [t(:price_size_highest), 'price_size_highest']]
   end
 
   def empty_place_type
     {"apartment"=>0, "house"=>0, "villa"=>0, "room"=>0, "other_space"=>0}
+  end
+
+  def cancellation_desc(place)
+    t(LookupsHelper::CANCELLATION_POLICIES[place.cancellation_policy])
   end
   # Should be of this format:
   # {"date_end"=>[120]}

@@ -13,7 +13,7 @@
             .name
               = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
               .micro
-                .type.verified Agent
+                .type.verified=t(:agent)
 
         .property.data-block
           .title
@@ -23,16 +23,16 @@
             - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
               .label{:style => "color:black; text-transform:lowercase;"}
                 = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
-                sqf
+                =t(:square_feet_short)
             -else
               .label{:style => "color:black; text-transform:lowercase;"}
                 = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
-                sqm
+                =t(:square_meters_short)
 
       .price.data-block
         .figure= "#{get_pref_currency}#{place['price_per_night']}"
-        .micro Per night
+        .micro= t(:per_night)
 - else
   %li
     .thumb.data-block
-      Sorry, there are no properties that match your criteria
+      =t(:sorry_no_matches)

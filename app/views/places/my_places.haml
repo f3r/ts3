@@ -21,7 +21,7 @@
                         = "#{place['city_name']}, #{place['country_name']}"
                     .span3
                       .type 
-                        = place['place_type']['name'] 
+                        = I18n.t(place['place_type']['name'].parameterize('_')) 
                       .micro
                         - if !place['size_sqf'].nil? or !place['size_sqm'].nil?
                           = get_current_size_unit == "sqf" ? place['size_sqf'].round(2) : place['size_sqm'].round(2)
@@ -29,13 +29,13 @@
                     .span3
                       .price
                         - if !place['price_per_night'].nil?
-                          .figure= "#{get_pref_currency}#{place['price_per_night']} Per night"
+                          .figure= "#{get_pref_currency}#{place['price_per_night']} #{t(:per_night)}"
                         - else
                           &nbsp;
                     .span3.edit_delete_buttons.hidden
-                      %a.btn.large.small{:title => 'Edit place', :href => "#{wizard_place_path(place['id'])}"}
-                        Edit place
-                      = link_to 'Delete place', place_path(place['id']), :method => :delete, :confirm => t(:are_you_sure), :class => 'btn large small'
+                      %a.btn.large.small{:title => t(:edit_place), :href => "#{wizard_place_path(place['id'])}"}
+                        =t(:edit_place)
+                      = link_to t(:delete_place), place_path(place['id']), :method => :delete, :confirm => t(:are_you_sure), :class => 'btn large small'
 
 
 :javascript

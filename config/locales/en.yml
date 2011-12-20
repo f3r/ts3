@@ -63,6 +63,8 @@ en:
   choose_unit:                Choose unit
   square_meters:              Square meters
   square_feet:                Square feet
+  square_meters_short:        "m²"
+  square_feet_short:          "ft²"
 
   ####################################################################################
   # General field names and validation errors
@@ -124,6 +126,59 @@ en:
   amenities: Amenities
   calendar: Calendar
   price_and_conditions: Price and Conditions
+  what_city_is_your_place_in: What city is your place in?
+  additional_costs: Additional Costs
+  pricing: Pricing
+  something_went_wrong: Something went wrong. Please check again later.
+  you_can_add_dates: "You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to"
+  add: Add
+  close: Close
+  new_price: New price
+  unavailable: Unavailable
+  to: To
+  address_1: Address 1
+  address_2: Address 2
+  directions: Directions
+
+  ####################################################################################
+  # Place types
+  ####################################################################################
+  
+  apartment: Apartment
+  house: House
+  villa: Villa
+  room: Room
+  other_space: Other space
+
+  ####################################################################################
+  # Amenities
+  ####################################################################################
+  
+  kitchen: Kitchen
+  hot_water: Hot Water
+  hot_tub: Hot Tub
+  elevator: Elevator 
+  parking_included: Parking Space 
+  heating: Heating
+  handicap: Handicap accessible
+  doorman: Doorman
+  aircon: Air Conditioning
+  buzzer_intercom: Buzzer/Intercom
+  internet: Internet 
+  tv: TV
+  dryer: Dryer
+  internet_wifi: Wifi
+  cable_tv: Cable TV 
+  washer: Washer 
+  pets_allowed: Pets Allowed
+  breakfast: Breakfast
+  smoking_allowed: Smoking Allowed
+  suitable_events: Suitable for Events
+  family_friendly: Family Friendly
+  gym: Gym
+  jacuzzi: Jacuzzi
+  tennis: Tennis 
+  pool: Pool
 
   ####################################################################################
   # Places Wizard
@@ -190,7 +245,10 @@ en:
 
   flexible: Flexible 30-Day
   moderate: Moderate
-  strict: Strict 7-Day
+  strict: Strict
+  strict_7_day: Strict 7-Day
+  see_our: See our
+  for_more_info: for more info
 
   head_cancellation: If you wish to cancel your SquareStays reservation
   strict_cancellation: at least 7 days before the reservation date, you will be charged 10% of the security deposit.
@@ -224,6 +282,8 @@ en:
   messages:         Messages
   conversation_with: Conversation with
   no_messages:      No messages
+  mark_read: Mark read
+  mark_unread: Mark unread
 
   ####################################################################################
   # Photos
@@ -252,7 +312,7 @@ en:
 
   bedroom: Bedrooms
   bed: Bed
-  guest: Guests
+  guest: Guest
   bathroom: Bathrooms
   price_per_night: Price per Night
   price_per_week: Price per Week
@@ -264,6 +324,7 @@ en:
   share: Share via
   your_place: This is your place!
   edit_place: Edit place
+  delete_place: Delete place
   message_user: Message User
 
   ####################################################################################
@@ -309,6 +370,12 @@ en:
   sort_by: Sort by
   results: Results
   no_result: No results found. Try changing some of your search options.
+  price_lowest: Price (Lowest First)
+  price_highest: Price (Highest First)
+  price_size_lowest: Price/Size (Lowest First)
+  price_size_highest: Price/Size (Highest First)
+  sorry_no_matches: "Sorry, there are no properties that match your criteria"
+  agent: Agent
 
   ####################################################################################
   # Home page

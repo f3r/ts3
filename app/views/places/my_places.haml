@@ -5,6 +5,10 @@
         %ul.list-display
           - @places.each do |place|
             %li
+              .float-right
+                -#= link_to t(:invisible), '#', :class => 'btn secondary', :id => 'listing-status', :rel => 'twipsy'
+                %p{:id => 'listing-status', :class => 'place_status'}= t(:invisible)
+                %p.hidden{:id => 'place_published'}= "#{place['published']}"
               .span3
                 .thumb.data-block
                   - if place['photos'].blank?
@@ -48,4 +52,11 @@
         $(this).find('.edit_delete_buttons').addClass("hidden");
       }
     );
+
+    if($('#place_published').text() == 'false') {
+      $('#listing-status').text('Invisible');
+    } else {
+      $('#listing-status').text('Listed');
+    }
+
   });

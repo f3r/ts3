@@ -265,7 +265,6 @@ var validatePreview = function() {
     return true;
   } else {
     categories = '';
-    ctr = 0;
     if(!_panelStatus.general) {$('#generalInfo').validationEngine('showPrompt', 'General Info needed', 'load', 'centerLeft');}
     if(!_panelStatus.photos) {$('#photoInfo').validationEngine('showPrompt', 'Upload at least 3 photos', 'load', 'centerLeft');}
     if(!_panelStatus.amenities) {$('#amenitiesInfo').validationEngine('showPrompt', 'Select at least 1 Amenity', 'load', 'centerLeft');}

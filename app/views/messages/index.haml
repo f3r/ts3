@@ -1,9 +1,10 @@
-.span15
-  %h4.section-header=t(:messages)
+.row
+  .span16
+    %h4.section-header=t(:messages)
 
-  - if @results.blank?
+    - if @results.blank?
 
-  - else
-    - @results['conversations'].each do |m|
-      - from = (current_user['id'] == m['from']['id'])
-      = render 'message', :m => m, :from => from
+    - else
+      - @results['conversations'].each do |m|
+        - from = (current_user['id'] == m['from']['id'])
+        = render 'message', :m => m, :from => from

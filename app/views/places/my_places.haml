@@ -21,7 +21,7 @@
                         = "#{place['city_name']}, #{place['country_name']}"
                     .span3
                       .type 
-                        = place['place_type']['name'] 
+                        = I18n.t(place['place_type']['name'].parameterize('_')) 
                       .micro
                         - if !place['size_sqf'].nil? or !place['size_sqm'].nil?
                           = get_current_size_unit == "sqf" ? place['size_sqf'].round(2) : place['size_sqm'].round(2)

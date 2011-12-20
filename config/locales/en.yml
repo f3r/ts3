@@ -282,6 +282,8 @@ en:
   messages:         Messages
   conversation_with: Conversation with
   no_messages:      No messages
+  mark_read: Mark read
+  mark_unread: Mark unread
 
   ####################################################################################
   # Photos

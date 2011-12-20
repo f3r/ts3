@@ -15,7 +15,7 @@
 
   .span12.conversations
     .float-right.delete-conversations
-      = link_to image_tag('/images/icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => 'Are you sure?'
+      = link_to image_tag('/images/icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => t(:are_you_sure)
 
     %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"}
       %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }
@@ -31,6 +31,6 @@
       %i
         %span.time= time_ago_in_words(Time.parse(m['date']))
       - unless m['isread']
-        = link_to 'mark read', mark_as_read_path(from ? m['to']['id'] : m['from']['id'])
+        = link_to t(:mark_read), mark_as_read_path(from ? m['to']['id'] : m['from']['id'])
       - else
-        = link_to 'mark unread', mark_as_unread_path(from ? m['to']['id'] : m['from']['id'])
+        = link_to t(:mark_unread), mark_as_unread_path(from ? m['to']['id'] : m['from']['id'])

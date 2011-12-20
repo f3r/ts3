@@ -23,7 +23,7 @@
       .input
         = f.label :gender, t(:gender)
         .private
-        = f.select :gender, [['undisclosed', 'unknown'],['Male', 'male'], ['Female', 'female']]
+        = f.select :gender, [[t(:gender_undisclosed), 'unknown'],[t(:gender_male), 'male'], [t(:gender_female), 'female']]
       .input
         = f.label :phone_mobile, t(:mobile_phone)
         .private

@@ -314,8 +314,8 @@ es:
   form_error: "Por favor, corrija el error en el formulario primero antes de que podamos proceder."
   furnishings: Comodidades
   gender: Sexo
-  gender_female: Mujer
-  gender_male: Hombre
+  gender_female: Femenino
+  gender_male: Masculino
   gender_undisclosed: "No revelado"
   general_info: "Información General"
   general_information: "Información General"
@@ -366,6 +366,8 @@ es:
   login_using: Entrar
   main_page_title: "Squarestays.com "
   map: Mapa
+  mark_read: "Marcar como leído"
+  mark_unread: "Marcar como no leído"
   max_guests: "Número de Invitados"
   maximum_of: "Máximo de"
   maximum_stay: "Estadía máxima"

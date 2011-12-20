@@ -124,6 +124,8 @@ linked_accounts: "Linked Accounts"
 listed: Listed
 main_page_title: Squarestays.com
 map: Map
+mark_read: "Mark read"
+mark_unread: "Mark unread"
 maximum_of: "Maximum Of"
 maximum_stay: "Maximum Stay"
 message_user: "Message User"

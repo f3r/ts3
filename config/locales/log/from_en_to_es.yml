@@ -7,13 +7,20 @@ activerecord:
       header: 
         one: "1 error prohibited this %{model} from being saved"
         other: "%{count} errors prohibited this %{model} from being saved"
+add: Add
 add_a_place: "Add a Place"
 add_address: "Add address"
 add_new: "Add New"
+additional_costs: "Additional Costs"
 address: Address
+address_1: "Address 1"
 address_1_help: "Street Address, Company"
+address_2: "Address 2"
 address_2_help: "Apartment / Unit Number / Suite"
+agent: Agent
+aircon: "Air Conditioning"
 amenities: Amenities
+apartment: Apartment
 app_domain: Squarestays.com
 app_name: Squarestays
 are_you_sure: "Are you sure?"
@@ -29,6 +36,9 @@ bedrooms: Bedrooms
 billed_address: "You will be billed at this address"
 billing_address: "Billing Address"
 birthdate: Birthdate
+breakfast: Breakfast
+buzzer_intercom: Buzzer/Intercom
+cable_tv: "Cable TV"
 calendar: Calendar
 calendar_hint: "Please let us know what dates the place is available for rent"
 cancel: Cancel
@@ -48,7 +58,9 @@ choose_currency: "Choose currency"
 choose_language: "Choose language"
 choose_unit: "Choose unit"
 city: City
+click_here_caption: "click here to add caption"
 click_here_to_add_caption: "Click here to add caption"
+close: Close
 confirm_password: "Confirm Password"
 confirm_rental: "Confirm rental"
 confirm_reset_password: "Confirm your password reset"
@@ -60,18 +72,35 @@ continue: Continue
 conversation_with: "Conversation with"
 country: Country
 create_an_account_using: "Create an Account using"
+currency: Currency
 days: days
+delete_place: "Delete place"
 departing: Departing
 details: Details
+directions: Directions
+do_you_allow_smoking: "Do you allow smoking in your apartment/balcony?"
+doorman: Doorman
+dryer: Dryer
 duration: Duration
 edit_place: "Edit place"
+elevator: Elevator
 errors: 
   dynamic_format: "%{message}"
   format: "%{attribute} %{message}"
+family_friendly: "Family Friendly"
+final_cleanup: "Final Cleanup"
+final_cleanup_hint: "The cost of cleaning the place once rental is finished"
 footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
+for_more_info: "for more info"
 forgot_password: "Forgot Password"
+form_error: "Please fix the error on the form first before we can proceed."
+furnishings: Conveniences
 guest: Guests
 guests: Guests
+gym: Gym
+handicap: "Handicap accessible"
+head_cancellation: "If you wish to cancel your SquareStays reservation"
+heating: Heating
 homepage_about: "About SquareStays"
 homepage_about_content: "SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay."
 homepage_life_sg_content: "With business travel to Asia increasing and hotel prices sky-rocketing, finding a place to stay for business travel has become increasingly difficult.  As a hub that connects the east and the west, Singapore is an important market in the Asian business economy with sustained growth and top-rated business environment.  SquareStays is now available in Singapore and plans to expand in other major cities across Asia and worldwide."
@@ -79,58 +108,109 @@ homepage_life_sg_title: "Business Growth in Asia"
 homepage_search_but: "Find a Place"
 homepage_seo_text: "SquareStays is ideal for frequent travellers on extended stays. SquareStays is perfect for families relocating or in the process of relocation to Singapore, Hong Kong, Kuala Lumpur, Beijing, Shanghai, Tokyo or Seoul. SquareStays connects you to  luxury and quality apartments, condominiums and housing located in various locations around the markets in which SquareStays operates."
 homepage_seo_text2: "SquareStays is a great alternative to serviced apartments or hotels. SquareStays provides flexible accommodation, especialy for short-term stays. Whether you need to book short-term accommodation in Singapore, short-term accommodation in Hong Kong, short-term accommodation in Kuala Lumpur, short-term accommodation in Beijing, short-term accommodation in Shanghai, short-term accommodation in Tokyo or short-term accommodation in Seoul, SquareStays can help. Properties listed on SquareStays will often be of similar quality and convenice as serviced apartments in Singapore, serviced apartments in Hong Kong, serviced apartments in Kuala Lumpur, serviced apartments in Beijing, serviced apartments in Shanghai, serviced apartments in Tokyo or serviced apartments in Seoul."
+hot_tub: "Hot Tub"
+hot_water: "Hot Water"
+house: House
 house_rules: "House rules"
 i_have_an_account: "Already a SquareStays member?"
+internet: Internet
+internet_wifi: Wifi
+jacuzzi: Jacuzzi
+kitchen: Kitchen
 leave_us_email: "Leave us your E-Mail address so we can notify you when we add the city you were looking for."
 lenght_of_stay: "Length of Stay"
 length_of_stay: "Length of stay"
 linked_accounts: "Linked Accounts"
+listed: Listed
 main_page_title: Squarestays.com
 map: Map
+maximum_of: "Maximum Of"
+maximum_stay: "Maximum Stay"
 message_user: "Message User"
 messages: Messages
+minimum_of: "Minimum Of"
+minimum_stay: "Minimum Stay"
+miscellaneous: Miscellaneous
 mobile_phone_number: "Mobile phone number"
+moderate: Moderate
+moderate_cancellation: "full refund 5 days prior to arrival, except fees"
+new_price: "New price"
+nights: Nights
+no_maximum: "No Maximum"
 no_messages: "No messages"
+no_minimum: "No Minimum"
 no_result: "No results found. Try changing some of your search options."
 not_going_to_singapore: "Not going to Singapore?"
+not_listed_yet: "Your place is not listed yet!"
+other_space: "Other space"
+parking_included: "Parking Space"
 passport_number: "Passport number"
 payment_details: "Payment details"
 per_night: "Per Night"
+pets_allowed: "Pets Allowed"
+photos: Photos
+place_and_building_facilities: "Place & Building facilities"
 place_details: "Place details"
+place_listed: "Place listed"
+place_publish_error: "Sorry, we can not publish your place because of missing information."
+place_published: "Your place is now listed!"
+place_unpublished: "Your place is now invisible"
 pm: "send private"
 pm_prepend_post: |+
     ]
     
 pm_prepend_pre: "Private question regarding your property ["
+pool: Pool
 preview: Preview
 price_final_cleanup: "Cleanup Fee"
+price_highest: "Price (Highest First)"
+price_lowest: "Price (Lowest First)"
 price_per_month: "Price per Month"
 price_per_night: "Price per Night"
 price_per_week: "Price per Week"
 price_security_deposit: Deposit
+price_size_highest: "Price/Size (Highest First)"
+price_size_lowest: "Price/Size (Lowest First)"
+pricing: Pricing
+primary: Primary
 privacy_policy: "Privacy Policy |"
 private_field: "Private. Only visible to those that have an active transaction with you"
 profile_current_pwd: "Current Password"
 profile_req_message: "Please click Edit on your profile to enter additional information needed to make reservations on SquareStays."
 profile_retype_pwd: "Re-type Password'"
 public_field: "Public. Anyone can see this information"
+publish: Publish
 question: Questions
 read_agreement: "I have read and agree to the lease agreement"
 registration_warning: "SquareStays won't publish anything without your prior consent"
 rent: "Rent it!"
 results: Results
+room: Room
 save: Save
 saving_photo: "Saving photo"
 search_place_stay_in: "Search for a place to stay in"
+security_deposit: "Security Deposit"
+security_deposit_hint: "The wireframe has this but I don't have the text yer"
+see_our: "See our"
 share: "Share via"
 site_title: "SquareStays - Trusted Stays"
+smoking_allowed: "Smoking Allowed"
+something_went_wrong: "Something went wrong. Please check again later."
+sorry_no_matches: "Sorry, there are no properties that match your criteria"
 sort_by: "Sort by"
+sports_and_recreation: "Sports & Recreation"
 square_feet: "Square feet"
+square_feet_short: ft²
 square_meters: "Square meters"
+square_meters_short: m²
 stay_details: "Stay details"
 street: Street
+strict: Strict
+strict_7_day: "Strict 7-Day"
+strict_cancellation: "at least 7 days before the reservation date, you will be charged 10% of the security deposit."
 sub_total: Subtotal
 success: Success!
+suitable_events: "Suitable for Events"
 teaser_1_content: "SquareStays offers flexible, high-quality accommodations for you. Squarestays is the destination site to find your perfect short-term or medium-term stay."
 teaser_1_title: Flexibility
 teaser_2_content: "SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust."
@@ -138,10 +218,23 @@ teaser_2_title: Quality
 teaser_3_content: "Squarestays offers high quality and distinct properties - have your own home away from home for less then the price of a 5 star hotel."
 teaser_3_title: Affordability
 teaser_center_title: "Why should you use SquareStays?"
+tennis: Tennis
+terms: Terms
 terms_of_service: "Terms of Service |"
 this_is_preview: "This is a Preview"
+to: To
+tv: TV
+unavailable: Unavailable
+unpublish: Unpublish
 upload_a_new_photo: "Upload a new Photo"
+upload_photo: "Upload Photo"
+upload_photo_hint: "We support jpg and png images. You must upload a minimum of 3 images."
 use_facebook_photo: "Use Facebook Photo"
+villa: Villa
+washer: Washer
+what_city_is_your_place_in: "What city is your place in?"
 working_on_expanding: "We're working hard on expanding SquareStays to more. You can help us by telling us what city you would like to see next."
+you_can_add_dates: "You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to"
+you_can_sort: "You can sort your photos by drag and drop"
 your_place: "This is your place!"
 zip: Zip

@@ -32,13 +32,20 @@ es:
         header: 
           one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
           other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
+  add: Añadir
   add_a_place: "Nuevo Apartamento"
   add_address: "Agregar dirección"
   add_new: "Agregar nuevo"
+  additional_costs: "Gastos adicionales"
   address: Dirección
+  address_1: "Dirección 1"
   address_1_help: "Calle, Empresa"
+  address_2: "Dirección 2"
   address_2_help: "Apartmento / Número"
+  agent: Agente
+  aircon: "Aire acondicionado"
   amenities: Instalaciones
+  apartment: Apartamento
   app_domain: Squarestays.com
   app_name: Squarestays
   are_you_sure: "¿Estás seguro?"
@@ -49,31 +56,35 @@ es:
   availability: Disponibilidad
   bathroom: Baños
   bed: Cama
-  bedroom: Dormitorios
+  bedroom: Dormitorio
   bedrooms: Dormitorios
   billed_address: "Se le facturará en esta dirección"
   billing_address: "Dirección para Facturación"
   birthdate: "Fecha de Nacimiento"
-  calendar: Calendar
-  calendar_hint: "Please let us know what dates the place is available for rent"
+  breakfast: Desayuno
+  buzzer_intercom: Buzzer/Intercom
+  cable_tv: "TV por cable"
+  calendar: Calendario
+  calendar_hint: "Por favor háganos saber qué fechas, el lugar está disponible para alquiler"
   cancel: Cancelar
   cancellation: Cancelación
-  cancellation_policy: "Cancellation Policy"
+  cancellation_policy: "Política de cancelación"
   cant_find_city: "¿No encuentra la ciudad a la cual deseaba ir?"
-  categories_left: "more categories must be completed"
+  categories_left: "deben completarse más categorías"
   change_address: "Cambiar dirección"
   change_billing_address: "Cambiar la dirección de facturación"
   change_photo: "Cambiar foto"
-  change_photo_description: ""
+  change_photo_description: "Subir una foto actual ayuda a inquilinos evaluar tu perfil. Mientras no es obligatorio, ayuda a construir confianza con los dueños si completa su perfil."
   check_in: Check-in
-  check_in_before: "Check In Before"
+  check_in_before: "Registrar antes"
   check_out: Check-out
-  check_out_before: "Check Out Before"
+  check_out_before: "Retirar antes de"
   choose_currency: "Elija la moneda"
   choose_language: "Elija el idioma"
   choose_unit: "Elija la unidad"
   city: Ciudad
-  click_here_to_add_caption: "Click here to add caption"
+  click_here_to_add_caption: "Haga clic aquí para agregar título"
+  close: Cerrar
   confirm_password: "Confirmar Contraseña"
   confirm_rental: "Confirmar el alquiler"
   confirm_reset_password: "Confirma tu cambio de contraseña"
@@ -86,7 +97,7 @@ es:
   country: Pais
   create_an_account_using: "Crear una cuenta usando"
   create_new_account: "Crear nueva cuenta"
-  currency: Currency
+  currency: Moneda
   date: 
     abbr_day_names: 
       - dom
@@ -184,13 +195,18 @@ es:
       second: Segundos
       year: Año
   days: días
+  delete_place: "Eliminar el apartamento"
   departing: Salida
   description: Descripción
   details: Detalles
-  do_you_allow_smoking: "Do you allow smoking in your apartment/balcony?"
+  directions: Direcciones
+  do_you_allow_smoking: "¿Se permite fumar en su apartamento/balcón?"
+  doorman: Portero
+  dryer: Secadora
   duration: Duración
   edit_account: "Editar cuenta"
   edit_place: "Editar lugar"
+  elevator: Ascensor
   email: Email
   enter_confirmation_code: "Introduce tu código de confirmación"
   enter_your_email: "Introduce tu Email"
@@ -285,24 +301,30 @@ es:
       too_short: "es demasiado corto (el mínimo es %{count} caracteres)"
       wrong_length: "es la longitud incorrecta (debe %{count} caracteres)"
   facebook_connected: "Has conectado correctamente tu cuenta en Facebook!"
-  final_cleanup: "Final Cleanup"
-  final_cleanup_hint: "The cost of cleaning the place once rental is finished"
+  family_friendly: "Ambiente familiar"
+  final_cleanup: "Limpieza final"
+  final_cleanup_hint: "El costo de la limpieza del lugar una vez finalizado el alquiler"
   find_places: "Buscar Apartamento"
   first_name: Nombre
   flexible: Flexible
   flexible_cancellation: "full refund 1 day prior to arrival, except fees"
   footer_text: ""
+  for_more_info: "para obtener más información"
   forgot_password: "¿Olvidó su contraseña?"
-  form_error: "Please fix the error on the form first before we can proceed."
-  furnishings: Conveniences
+  form_error: "Por favor, corrija el error en el formulario primero antes de que podamos proceder."
+  furnishings: Comodidades
   gender: Sexo
   gender_female: Mujer
   gender_male: Hombre
   gender_undisclosed: "No revelado"
   general_info: "Información General"
   general_information: "Información General"
-  guest: Invitados
+  guest: Invitado
   guests: Invitados
+  gym: Gimnasio
+  handicap: "Accesible para discapacitados"
+  head_cancellation: "Si desea cancelar su reserva de SquareStays"
+  heating: Calefacción
   helpers: 
     select: 
       prompt: "Por favor seleccione"
@@ -317,14 +339,21 @@ es:
   homepage_search_but: "Encontrar un lugar"
   homepage_seo_text: ""
   homepage_seo_text2: ""
+  hot_tub: "Tina caliente"
+  hot_water: "Agua caliente"
+  house: Casa
   house_rules: "Normas de la casa"
   how_many_bedrooms: "¿Cuántas habitaciones?"
   i_agree_to_the: "Acepto los"
   i_have_an_account: "¿Ya es miembro de SquareStays?"
+  internet: Internet
+  internet_wifi: WiFi
   invalid_confirmation_code: "Código de confirmación inválido"
   invalid_email: "Email Inválido"
   invalid_login: "Usuario y/o contrasela inválidas"
   invisible: Invisible
+  jacuzzi: Jacuzzi
+  kitchen: Cocina
   last_name: Apellido
   leave_us_email: "Déjenos su dirección de correo electrónico para que podamos notificarle cuando añadimos la ciudad que buscabas."
   lenght_of_stay: "Duración de la estadía"
@@ -332,33 +361,34 @@ es:
   link_accounts: "+ conectar cuentas"
   linked_accounts: "Cuentas vinculadas"
   list_your_place: "Nuevo Apartamento"
-  listed: Listed
+  listed: Listado
   login: "Entrar a SquareStays"
   login_using: Entrar
   main_page_title: "Squarestays.com "
   map: Mapa
   max_guests: "Número de Invitados"
-  maximum_of: "Maximum Of"
-  maximum_stay: "Maximum Stay"
+  maximum_of: "Máximo de"
+  maximum_stay: "Estadía máxima"
   message_user: "Mensaje al Usuario"
   messages: Mensajes
-  minimum_of: "Minimum Of"
-  minimum_stay: "Minimum Stay"
-  miscellaneous: Miscellaneous
+  minimum_of: "Mínimo de"
+  minimum_stay: "Estadía mínima"
+  miscellaneous: Varios
   mobile_phone: "Número de Teléfono Móvil"
   mobile_phone_number: "Número de teléfono móvil"
-  moderate: Moderate
-  moderate_cancellation: "full refund 5 days prior to arrival, except fees"
+  moderate: Moderada
+  moderate_cancellation: "reembolso completo 5 días antes de la llegada, excepto las tasas"
   my_places: "Mis Apartamentos"
+  new_price: "Nuevo precio"
   next_step: "Siguiente &raquo;"
-  nights: Nights
-  no_caption: "No Caption"
-  no_maximum: "No Maximum"
+  nights: Noches
+  no_caption: "sin título"
+  no_maximum: "No hay máximo"
   no_messages: "No hay mensajes"
-  no_minimum: "No Minimum"
+  no_minimum: "No hay mínimo"
   no_result: "No se encontraron resultados. Pruebe a cambiar algunas de sus opciones de búsqueda."
   not_going_to_singapore: "¿No va a Singapur?"
-  not_listed_yet: "Your place is not listed yet!"
+  not_listed_yet: "Su lugar no está listado todavía!"
   notifications: Notificationes
   num_bathrooms: "Número de Baños"
   num_bedrooms: "Número de Habitaciones"
@@ -410,6 +440,8 @@ es:
     precision: 
       format: 
         delimiter: ""
+  other_space: "Otro espacio"
+  parking_included: "Espacio de estacionamiento"
   passport_number: "Número de pasaporte"
   password: Contraseña
   password_reset_failed: "El restablecimiento de tu contraseña ha fallado."
@@ -417,27 +449,34 @@ es:
   password_reset_success: "Cambio de contraseña correcto!"
   payment_details: "Detalles de pago"
   per_night: "Por noche"
-  photos: Photos
-  place_and_building_facilities: "Place & Building facilities"
+  pets_allowed: Mascotas
+  photos: Fotos
+  place_and_building_facilities: "Lugar y las instalaciones"
   place_details: "Detalles de lugar"
-  place_listed: "Place listed"
-  place_publish_error: "Sorry, we can't publish your place because of missing information."
-  place_published: "Your place is now listed!"
+  place_listed: "Lugar listado"
+  place_publish_error: "Lo sentimos, podemos no publicar su lugar debido a falta de información."
+  place_published: "Su apartamento ahora está listado!"
   place_type: "¿Qué tipo de apartamento es?"
-  place_unpublished: "Your place is now invisible"
+  place_unpublished: "Su apartamento ahora es invisible"
   pm: "enviar privado"
   pm_prepend_post: "]"
   pm_prepend_pre: "Pregunta privada sobre propiedad ["
+  pool: Piscina
   preview: "Vista previa"
   preview_button: "Preview &raquo;"
   previous_step: "&laquo; Anterior"
   price_and_conditions: "Precio y Condiciones"
   price_final_cleanup: "Tasa de limpieza"
+  price_highest: "Precio (más alto primero)"
+  price_lowest: "Precio (más bajo primero)"
   price_per_month: "Precio por mes"
   price_per_night: "Precio por noche"
   price_per_week: "Precio por semana"
   price_security_deposit: Depósito
-  primary: Primary
+  price_size_highest: "Precio y tamaño (más alto primero)"
+  price_size_lowest: "Precio y tamaño (más bajo primero)"
+  pricing: Precios
+  primary: Principal
   privacy_policy: "Política de privacidad |"
   private_field: "Privada. Visible sólo para aquellos que tienen una transacción activa con usted"
   profile: Perfil
@@ -445,7 +484,7 @@ es:
   profile_req_message: "Por favor, haga clic en Editar en tu perfil para introducir información adicional necesaria para realizar reservas en SquareStays."
   profile_retype_pwd: "Vuelva a escribir la contraseña'"
   public_field: "Público. Cualquiera puede ver esta información"
-  publish: Publish
+  publish: Publicar
   question: Preguntas
   read_agreement: "He leído y estoy de acuerdo con el contrato de arrendamiento"
   register: Registro
@@ -455,6 +494,7 @@ es:
   reset_password: "Restablecer Contraseña"
   results: Resultados
   reviews: Comentarios
+  room: Habitación
   save: Guardar
   save_and_continue: "Guardar y Continuar &raquo;"
   saving_photo: "Guardando la foto"
@@ -463,8 +503,9 @@ es:
   section_header_user_information: "Información Personal"
   section_header_user_password: Contraseña
   section_header_user_profile: "Información Personal"
-  security_deposit: "Security Deposit"
-  security_deposit_hint: "The wireframe has this but I don't have the text yer"
+  security_deposit: "Depósito de garantía"
+  security_deposit_hint: ""
+  see_our: "Consulte nuestra"
   share: "Compartir a través de"
   sign_in: "Iniciar Sesión"
   sign_out: "Terminar Sesión"
@@ -472,19 +513,26 @@ es:
   signup_complete_text: "Gracias por registrarte! Sin embargo, todavía tienes que confirmar tu cuenta. Comprueba tu email y activa tu cuenta con el enlace que te hemos enviado."
   signup_needed_to_connect: "Para conectar tu cuenta con tu red social, proveenos de la siguientes información"
   site_title: "SquareStays - Trusted Stays"
-  size: Size
+  size: Tamaño
+  smoking_allowed: "Fumar permitido"
+  something_went_wrong: "Algo salió mal. Intente de nuevo más tarde."
+  sorry_no_matches: "Lo sentimos, no hay propiedades que coinciden con los criterios"
   sort_by: "Ordenar por"
-  sports_and_recreation: "Sports & Recreation"
+  sports_and_recreation: "Deportes y recreación"
   square_feet: "Pies cuadrados"
+  square_feet_short: pies²
   square_meters: "Metros cuadrados"
+  square_meters_short: m²
   state: Estado/Provincia
   stay_details: "Detalles de la estadía"
   street: Calle
-  strict: Strict
-  strict_cancellation: "50% refund up until 1 week prior, except fees"
+  strict: Estricto
+  strict_7_day: "7-Días estricto"
+  strict_cancellation: "al menos 7 días antes de la fecha de reserva, se le cobrará el 10% de los depósitos de seguridad."
   sub_total: Subtotal
   submit: Enviar
   success: Éxito!
+  suitable_events: "Apto para eventos"
   support: 
     array: 
       last_word_connector: ", y "
@@ -499,7 +547,8 @@ es:
   teaser_3_content: "Squarestays ofrece alta calidad y distintas propiedades - tienen su propia casa por menos del precio de un hotel de 5 estrellas."
   teaser_3_title: Asequibilidad
   teaser_center_title: "¿Por qué debería usar SquareStays?"
-  terms: Terms
+  tennis: Tenis
+  terms: Términos
   terms_and_conditions: "Términos y condiciones"
   terms_of_service: "Términos de servicio |"
   this_is_preview: "Esta es una vista previa"
@@ -511,17 +560,24 @@ es:
       short: "%d de %b %H:%M"
     pm: pm
   title: Título
+  to: hasta
+  tv: TV
   twitter_connected: "Has conectado correctamente tu cuenta en Twitter!"
   type: Tipo
-  unpublish: Unpublish
+  unavailable: "No disponible"
+  unpublish: "Anular la publicación"
   upload_a_new_photo: "Subir una foto nueva"
-  upload_photo: "Upload Photo"
-  upload_photo_hint: "We support jpg and png images."
+  upload_photo: "Subir foto"
+  upload_photo_hint: "Soportamos imágenes jpg y png. Debes enviar un mínimo de 3 imágenes."
   use_facebook_photo: "Usar la foto de Facebook"
   user_confirmed: "Tu cuenta se ha confirmado correctamente!"
+  villa: Villa
+  washer: Lavadora
   what_city: "¿En qué ciudad está tu Apartamento?"
+  what_city_is_your_place_in: "¿En qué ciudad está su apartamento?"
   working_on_expanding: "Estamos trabajando en la expansión de SquareStays. Para ayudarnos, puede decirnos qué ciudad gustaría ver a continuación."
-  you_can_sort: "You can sort your photos by drag and drop"
+  you_can_add_dates: "Puede agregar fechas o un intervalo de fechas cuando su lugar esté disponible, o si le gustaría cambiar la tarifa diaria, que actualmente se establece en"
+  you_can_sort: "Puede ordenar sus fotos mediante arrastrar y soltar"
   your_place: "Este es tu lugar!"
   zip: "Código postal"
   zip_code: "Código Postal"

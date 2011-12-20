@@ -4,23 +4,23 @@
       .input.required
         = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
         = f.select :currency, currencies_select, {}, :class => 'validate[required]'
-  %h2.title Pricing
+  %h2.title=t(:pricing)
   %fieldset      
     .input.required
-      = f.label :price_per_night
+      = f.label :price_per_night, t(:price_per_night)
       %span.currency-sign-id= currency_sign_of(@place.currency)
       = f.text_field :price_per_night, :class => "validate[required,custom[number],min[1]] span2 autosave"
     .input
-      = f.label :price_per_week
+      = f.label :price_per_week, t(:price_per_week)
       %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_per_week, :class => "validate[custom[number],min[1]] span2 autosave"
       %span#estimated_amount_weekly
     .input
-      = f.label :price_per_month
+      = f.label :price_per_month, t(:price_per_month)
       %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_per_month, :class => "validate[custom[number],min[1]] span2 autosave"
       %span#estimated_amount_monthly
-  %h2.title Additional Costs
+  %h2.title=t(:additional_costs)
   %fieldset
     .input
       = f.label :price_final_cleanup, t(:final_cleanup)
@@ -43,7 +43,7 @@
 
     .input
       = f.label :minimum_stay_days, t(:minimum_stay)
-      = select 'days', 'minimum_stay', [[t(:no_minimum), 1], [t(:minumum_of), 0]]
+      = select 'days', 'minimum_stay', [[t(:no_minimum), 1], [t(:minimum_of), 0]]
       = f.text_field :minimum_stay_days, :class => "span2 autosave"
       %span.help-inline= t(:nights)
     .input
@@ -55,9 +55,9 @@
       = f.label :cancellation_policy, t(:cancellation_policy)
       = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
       = link_to '?', '#', :rel => 'twipsy-link',
-        :title => "#{t(:head_cancellation)}<br><br><b>#{t(:flexible)}</b>: #{t(:flexible_cancellation)}<br><b>#{t(:strict)}</b>: #{t(:strict_cancellation)}<br><br> See our <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>Cancellation Policy</a> for more info."
+        :title => "#{t(:head_cancellation)}<br><br><b>#{t(:flexible)}</b>: #{t(:flexible_cancellation)}<br><b>#{t(:strict)}</b>: #{t(:strict_cancellation)}<br><br> #{t(:see_our)} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t(:cancellation_policy)}</a> #{t(:for_more_info)}."
     .input
-      = f.label :house_rules
+      = f.label :house_rules, t(:house_rules)
       = f.text_area :house_rules, :class => "span8 autosave", :rows => 5
 
 
@@ -70,7 +70,7 @@
 #cancellation_policy_text.modal.hide
   .modal-body
     = link_to 'x', '#', :class => 'close'
-    %h3 Cancellation Policies
+    %h3=t(:cancellation_policy)
     %p How is the Place's price calculated?
 
     %p SquareStays pricing depends on the length of your reservation. Reservations can be daily, weekly or monthly.

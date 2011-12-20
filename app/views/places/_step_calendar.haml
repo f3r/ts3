@@ -73,7 +73,7 @@
         }
       },
       error: function() {
-        alert('Something went wrong. Please check again later.');
+        alert("#t(:something_went_wrong)");
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }
@@ -104,6 +104,6 @@
       }
     })
     .live("ajax:error", function() {
-      alert('Something went wrong. Please check again later.');
+      alert("#t(:something_went_wrong)");
       hideIndicator($(this));
     });

@@ -3,27 +3,27 @@ module PlacesHelper
   # Amenities
   def amenities_group_1 
     [
-      ['Kitchen', :amenities_kitchen],
-      ['Hot Tub', :amenities_hot_water], 
-      ['Elevator', :amenities_elevator],
-      ['Parking Space', :amenities_parking_included],
-      ['Heating', :amenities_heating],
-      ['Handicap accessible', :amenities_handicap],
-      ['Doorman', :amenities_doorman],
-      ['Air Conditioning', :amenities_aircon], 
-      ['Buzzer/Intercom', :amenities_buzzer_intercom],
+      [t(:kitchen), :amenities_kitchen],
+      [t(:hot_water), :amenities_hot_water], 
+      [t(:elevator), :amenities_elevator],
+      [t(:parking_included), :amenities_parking_included],
+      [t(:heating), :amenities_heating],
+      [t(:handicap), :amenities_handicap],
+      [t(:doorman), :amenities_doorman],
+      [t(:aircon), :amenities_aircon], 
+      [t(:buzzer_intercom), :amenities_buzzer_intercom],
     ]
   end
 
   # Furnishings 
   def amenities_group_2
     [
-      ['Internet', :amenities_internet],
-      ['TV', :amenities_tv],
-      ['Dryer', :amenities_dryer],    
-      ['Wifi', :amenities_internet_wifi],
-      ['Cable TV', :amenities_cable_tv],
-      ['Washer', :amenities_washer],
+      [t(:internet), :amenities_internet],
+      [t(:tv), :amenities_tv],
+      [t(:dryer), :amenities_dryer],    
+      [t(:internet_wifi), :amenities_internet_wifi],
+      [t(:cable_tv), :amenities_cable_tv],
+      [t(:washer), :amenities_washer],
     ]
     #
     #[
@@ -38,20 +38,21 @@ module PlacesHelper
   # Misc
   def amenities_group_3
     [
-      ['Pets Allowed', :amenities_pets_allowed],
-      ['Breakfast', :amenities_breakfast],
-      ['Smoking Allowed', :amenities_smoking_allowed],
-      ['Suitable for Events', :amenities_suitable_events],      
-      ['Family Friendly', :amenities_family_friendly],
+      [t(:pets_allowed), :amenities_pets_allowed],
+      [t(:breakfast), :amenities_breakfast],
+      [t(:smoking_allowed), :amenities_smoking_allowed],
+      [t(:suitable_events), :amenities_suitable_events],      
+      [t(:family_friendly), :amenities_family_friendly],
     ]   
   end
 
   def amenities_group_4
     [
-      ['Gym', :amenities_gym],
-      ['Jacuzzi', :amenities_jacuzzi],      
-      ['Tennis', :amenities_tennis],
-      ['Pool', :amenities_pool],
+      [t(:gym), :amenities_gym],
+      [t(:jacuzzi), :amenities_jacuzzi],      
+      [t(:hot_tub), :amenities_hot_tub],      
+      [t(:tennis), :amenities_tennis],
+      [t(:pool), :amenities_pool],
     ]
   end
 

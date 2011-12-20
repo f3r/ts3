@@ -89,7 +89,7 @@
     if(large_photo.attr('data-name') != "") {
       large_photo_label_text = large_photo.attr('data-name');
     } else {
-      large_photo_label_text = "click here to add caption";
+      large_photo_label_text = "#{t(:click_here_to_add_caption)}";
     }
 
     var large_photo_label = $("<div class='active-label' data-image-id='" + large_photo.attr("data-id") + "'>" + large_photo_label_text + "</div>");

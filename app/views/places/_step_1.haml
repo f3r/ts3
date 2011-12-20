@@ -4,7 +4,7 @@
   %fieldset
     .clearfix
       .input.required
-        = f.label :city_id, 'What city is your place in?'
+        = f.label :city_id, t(:what_city_is_your_place_in)
         = f.select :city_id, cities_select, :class => "validate[required] span6"
       .input.required
         = f.label :title, t(:title)

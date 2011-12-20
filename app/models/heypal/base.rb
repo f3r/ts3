@@ -42,6 +42,7 @@ class Heypal::Base < Hash
           destroy(resource_url(path), options)
       end
 
+      Rails.logger.info "Result ------- #{result}"
       @results = parse_json(result)
 
       Rails.logger.info "Result #{@results}"

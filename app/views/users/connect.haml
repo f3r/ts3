@@ -9,7 +9,7 @@
 .registration
   %br
   .section.span6.bored
-    %h2= t(:create_new_account)
+    %h2.offset-one-eight= t(:create_new_account)
 
     = form_for :user, :url => users_path, :html => {:id => 'registerForm'} do |f|
       = f.hidden_field :oauth_provider, :value => @oauth_provider

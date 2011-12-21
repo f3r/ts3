@@ -31,14 +31,14 @@
               .header= t(:type)
               .content
                 %ul#types-list{:class => "inputs-list"}
-                  - place_types_select.each do |p_type|
+                  - place_types_list.each do |p_type|
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[0], (@results['place_type_count'][p_type[0].downcase].to_i > 0), :id => p_type[2]
+                          = check_box_tag :place_type, p_type[0], (@results['place_type_count'][p_type[2]].to_i > 0), :id => p_type[2]
                           %span= p_type[0]
                         .right
-                          %span= "(#{@results['place_type_count'][p_type[0].downcase.gsub(/ /,'_')]})"
+                          %span= "(#{@results['place_type_count'][p_type[2]]})"
 
             %li
               .header= t(:price_per_night)

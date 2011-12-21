@@ -68,7 +68,8 @@
 :javascript
 
   var pull_data = function() {
-    showIndicator($("#search_results"));
+    $(".results").append("<span id='search-load-indicator'><img src='/images/loading.gif' alt='loading...' /></span>");
+    $("#search_results").css('opacity', '.3');
 
     var place_type_ids = new Array;
     $.each($("#types-list input"), function() {
@@ -88,7 +89,8 @@
         place_type_ids: place_type_ids
       },
       success: function(data) {
-        hideIndicator($("#search_results"));
+        $('.results > #search-load-indicator').remove();
+        $('#search_results').css('opacity', '1');
 
         $("#search_results").html(data.place_data);
         $("#num_search_results").html(data.results);

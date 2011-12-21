@@ -1,10 +1,10 @@
-%section.span3
+%section.span-one-fourth
   - if !@user.avatar.nil?
-    - @avatar = @user.avatar
+    - @avatar = large_avatar(@user)
     - else
-    - @avatar = placehold(120,120, true)
+    - @avatar = placehold(200,120, true)
     
-  = image_tag(@avatar, :width => 120)
+  = image_tag(@avatar, :width => 200)
   - if @current_action == "edit"
     = link_to t(:change_photo), "", { "data-controls-modal"=>"avatar-modal", "data-backdrop"=>"static", :class => "change_avatar"}
 

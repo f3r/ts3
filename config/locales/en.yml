@@ -24,7 +24,7 @@ en:
   my_places:      My Properties
   profile:        Profile
   notifications:  Notifications
-  add_a_place:    Add a Place
+  add_a_place:    Add a Property
 
   ####################################################################################
   # Account creation & management
@@ -359,6 +359,7 @@ en:
   guests: Guests
   bedrooms: Bedrooms
   house_rules: House rules
+  view_house_rules: View House Rules
   days: days
   length_of_stay: Length of stay
   street: Street

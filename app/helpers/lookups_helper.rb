@@ -36,7 +36,8 @@ module LookupsHelper
   end
 
   def place_types_select
-    Heypal::Place.place_types.map {|p| [I18n.t(p['name'].parameterize('_').singularize), p['id'], p['name'].parameterize('_').singularize]}
+    #Heypal::Place.place_types.map {|p| [I18n.t(p['name'].parameterize('_').singularize), p['id'], p['name'].parameterize('_').singularize]}
+    Heypal::Place.place_types.map {|p| [p['name'], p['id']]}
   end
 
   def pref_language_list

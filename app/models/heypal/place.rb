@@ -79,22 +79,21 @@ class Heypal::Place < Heypal::Base
     def normalize_place(result)
       # merge the place hash for now
       p = {}
-      p = p.merge(result['place']['amenities']) if result['place']['amenities'].present?
-      p = p.merge(result['place']['details']) if result['place']['details'].present?
-      p = p.merge(result['place']['location']) if result['place']['location'].present?
+      p = p.merge(result['place']['amenities'])      if result['place']['amenities'].present?
+      p = p.merge(result['place']['details'])        if result['place']['details'].present?
+      p = p.merge(result['place']['location'])       if result['place']['location'].present?
       p = p.merge(result['place']['terms_of_offer']) if result['place']['terms_of_offer'].present?
-      p = p.merge(result['place']['pricing']) if result['place']['pricing'].present?
+      p = p.merge(result['place']['pricing'])        if result['place']['pricing'].present?
       p = p.merge(result['place'])
 
       # cleanup, messy but this should work for now
-      #
       p.delete('details')
       p.delete('location')
       p.delete('place_type')
 
       p['user_id'] = result['place']['user']['id']
       p['place_type_id'] = result['place']['place_type']['id']
-      p    
+      p
     end
 
     def search(params = {})

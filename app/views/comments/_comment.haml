@@ -9,7 +9,7 @@
       -else
         =t(:unknown)
 
-    - if @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
+    - if logged_in? && @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
       = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
 
     %div.p

@@ -1,6 +1,6 @@
 .section.span6.bored
-  %h2= t(:create_new_account)
-
+  %h2.offset-one-eight= t(:create_new_account)
+  %br 
   = form_for :user, :url => users_path, :html => {:id => 'registerForm'} do |f|
     .input
       = f.text_field :first_name, :placeholder => 'First Name'
@@ -22,17 +22,13 @@
       Create account
 
 .section.span5
-  %h2= t(:create_an_account_using)
+  %h2.bottom-large= t(:create_an_account_using)
   %a{:href => "/auth/facebook"}
-    %img{:src => '/images/signin_facebook.png'}      
+    %img.bottom{:src => '/images/signin_facebook.png'}      
   %br
   %a{:href => "/auth/twitter"}
     %img{:src => '/images/sign-in-with-twitter-l.png'}
-  %br
-  %br
-  %br
-  %br
-  %p
+  %p.bottom-part
     This will allow you to log in to SquareStays
     %br
     using your existing accounts!

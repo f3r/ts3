@@ -5,7 +5,7 @@
       .user_name= link_to "#{reply['user']['first_name'][0]}. #{reply['user']['last_name']}", '#'
       .user_role= reply['user']['role']
 
-  - if @owner['id'] == current_user['id']
+  - if logged_in? && @owner['id'] == current_user['id']
     = link_to 'X', place_comment_path(reply['place_id'], reply['id'], :type => 'reply', :qId => question_id), :remote => true, :method => :delete, :confirm => 'Delete this Answer?', :class => "del hide"
 
   %div.p

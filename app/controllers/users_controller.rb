@@ -176,8 +176,7 @@ class UsersController < ApplicationController
         render :json => {:stat => false}
       end
     else
-      # render :json => {}
-      render :js => %w($('#popup-registration').modal({show: true, backdrop: 'static', keyboard: true});)
+      render :js => %w($('#popup-registration').modal({show: true, backdrop: 'static', keyboard: true}); return false;)
     end
   end
 end

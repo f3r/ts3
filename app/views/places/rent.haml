@@ -85,8 +85,13 @@
             .house_rules
               %strong= t(:house_rules)
             .offset-one-fourth
-              -#= @place['house_rules']
-              = link_to 'View House Rules', '#'
+              = link_to t(:view_house_rules), '#', "data-controls-modal" => "house-rules-modal"
+              #house-rules-modal.hide.modal.fade
+                .modal-header
+                  %h3= t(:house_rules)
+                .modal-body= @place['house_rules']
+                .modal-footer
+                  %button.btn{:onclick => "$('#house-rules-modal').modal('hide'); return false;"}= t(:close)
 
         .panel
           .panel-wrapper

@@ -7,20 +7,17 @@ class UsersController < ApplicationController
   def create
     @user = Heypal::User.new(params[:user])
 
-    #if params[:user][:oauth_token].present?
-      @user.oauth_token = {'provider' => params['oauth_provider'],
-        'uid' => params[:oauth_uid],
-        'credentials' => {
-          'token' => params[:oauth_token],
-          'secret' => ''
-        }
+    @user.oauth_token = {'provider' => params['oauth_provider'],
+      'uid' => params[:oauth_uid],
+      'credentials' => {
+        'token' => params[:oauth_token],
+        'secret' => ''
       }
-    #end
+    }
 
     if @user.valid? && @user.save
       redirect_to signup_complete_path
     else
-      #error_message = error_messages(@user.result).join(', ') 
       render :action => :new, :layout => 'single'
     end
   end
@@ -28,7 +25,6 @@ class UsersController < ApplicationController
   def confirm
     if params['confirmation_token']
       result = Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
-      logger.info("CONFIRMATION RESULTS--------- #{result.inspect}")
       if params['confirmation_token'].present? && result['stat'].eql?('ok') 
         flash[:notice] = t(:user_confirmed) 
         sign_in result

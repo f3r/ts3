@@ -324,8 +324,8 @@ en:
   pm: send private
   share: Share via
   your_place: This is your place!
-  edit_place: Edit place
-  delete_place: Delete place
+  edit_place: Edit
+  delete_place: Delete
   message_user: Message User
 
   ####################################################################################

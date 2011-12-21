@@ -61,4 +61,8 @@ module ApplicationHelper
   def message_count
     Heypal::Message.message_count(current_token)
   end
+
+  def large_avatar(avatar)
+    avatar['avatar'].gsub('thumb', 'large')
+  end
 end

@@ -29,7 +29,7 @@ class Heypal::Photo < Heypal::Base
     @photo_id
   end
 
-  has_attached_file :photo, { :styles => { :large => "451x299>", :medium => "216x144>", :medsmall => "150x100>", :small => "106x70>", :tiny => "40x40!" },
+  has_attached_file :photo, { :styles => { :large => "451x301>", :medium => "216x144>", :medsmall => "150x100>", :small => "105x70>", :tiny => "40x40!" },
                                  :path => "places/:id/photos/:uniq_id/:style.:extension",
                                  :storage => :s3, 
                                  :s3_credentials => {

@@ -35,10 +35,10 @@
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[1], (0 < @results['place_type_count'][p_type[2]]), :id => p_type[2]
-                          %span=p_type[0]
+                          = check_box_tag :place_type, p_type[0], (@results['place_type_count'][p_type[0].downcase].to_i > 0), :id => p_type[2]
+                          %span= p_type[0]
                         .right
-                          %span= "(#{@results['place_type_count'][p_type[2]]})"
+                          %span= "(#{@results['place_type_count'][p_type[0].downcase.gsub(/ /,'_')]})"
 
             %li
               .header= t(:price_per_night)
@@ -47,23 +47,6 @@
                 #min_price= @min_price
 
                 #price-slider
-
-            -#%li
-              -#.header 
-                -#Amenities
-              -#.content
-                -#%ul{:class => "inputs-list"}
-                  -#- 3.times do 
-                    -#%li
-                      -#%label
-                        -#.left
-                          -#%input{:type => "checkbox", :name => "amenities", :value => "option1" }
-                          -#%span Most Popular
-                        -#.right  
-                          -#%span (300)
-                  -#%li
-                    -#%a{:href => "#"} more amenities
-
 
 :javascript
 

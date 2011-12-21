@@ -238,7 +238,7 @@ class PlacesController < ApplicationController
 protected
 
   def find_place
-    @place = Heypal::Place.find(params[:id], current_token)
+    @place = Heypal::Place.find(params[:id], current_token, get_current_currency)
     @owner = @place['user']
   end
 end

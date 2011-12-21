@@ -59,8 +59,8 @@ class Heypal::Place < Heypal::Base
       result
     end
 
-    def find(id, access_token)
-      result = request("/places/#{id}.json?access_token=#{access_token}", :get)
+    def find(id, access_token, currency="USD")
+      result = request("/places/#{id}.json?access_token=#{access_token}&currency=#{currency}", :get)
       if result['stat'] == 'ok' && result.key?("place")
         return self.new(normalize_place(result))
       else

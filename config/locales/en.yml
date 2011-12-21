@@ -231,6 +231,7 @@ en:
 
   check_in_before: Check In Before
   check_out_before: Check Out Before
+  check_in_flexible: Flexible
 
   currency: Currency
   minimum_stay: Minimum Stay

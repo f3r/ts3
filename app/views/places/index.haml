@@ -35,7 +35,7 @@
                     %li
                       %label
                         .left
-                          = check_box_tag :place_type, p_type[1], (0 < (@results['place_type_count'][p_type[2]] || 0)), :id => p_type[2]
+                          = check_box_tag :place_type, p_type[1], (0 < @results['place_type_count'][p_type[2]]), :id => p_type[2]
                           %span=p_type[0]
                         .right
                           %span= "(#{@results['place_type_count'][p_type[2]]})"

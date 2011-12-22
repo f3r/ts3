@@ -49,10 +49,8 @@
           .active#photo-slider
             .viewport
               %ul.overview
-                - hacked_photo_set = @place['photos'].dup
-                / to faken cons to still iterate and display for the last image the first and second image
-                - hacked_photo_set << @place['photos'][0] << @place['photos'][1]
-                = hacked_photo_set.each_cons(3) do |p1, p2, p3|
+
+                = get_carousel_photoset(@place).each_cons(3) do |p1, p2, p3|
                   %li
                     .big
                       - unless p1['photo']['name'].blank?
@@ -60,10 +58,10 @@
                       = image_tag(p1['photo']['large'])
                     .small
                       - if p2.present? && p2['photo'].present? && p2['photo']['medium'].present?
-                        %a{:href => "#", :class => "pagenum", :rel => 3}
+                        %a{:href => "#", :class => "extra-paginator", "data-page" => @place['photos'].index(p2) + 1}
                           = image_tag(p2['photo']['medium'])
                       - if p3.present? && p3['photo'].present? && p3['photo']['medium'].present?
-                        %a{:href => "#"}              
+                        %a{:href => "#", :class => "extra-paginator", "data-page" => @place['photos'].index(p3) + 1}
                           = image_tag(p3['photo']['medium'])
 
             .slider-nav
@@ -239,6 +237,12 @@
   
     $('#stopslider').click(function(){ 
       oSlider7.tinycarousel_stop();
+      return false;
+    });
+
+    $('.extra-paginator').click(function() {
+      console.log($(this).attr('data-page'));
+      oSlider7.tinycarousel_move($(this).attr('data-page'));
       return false;
     });
   }

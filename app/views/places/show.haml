@@ -49,10 +49,8 @@
           .active#photo-slider
             .viewport
               %ul.overview
-                - hacked_photo_set = @place['photos'].dup
-                / to faken cons to still iterate and display for the last image the first and second image
-                - hacked_photo_set << @place['photos'][0] << @place['photos'][1]
-                = hacked_photo_set.each_cons(3) do |p1, p2, p3|
+
+                = get_carousel_photoset(@place).each_cons(3) do |p1, p2, p3|
                   %li
                     .big
                       - unless p1['photo']['name'].blank?
@@ -60,10 +58,10 @@
                       = image_tag(p1['photo']['large'])
                     .small
                       - if p2.present? && p2['photo'].present? && p2['photo']['medium'].present?
-                        %a{:href => "#", :class => "pagenum", :rel => 3}
+                        %a{:href => "#", :class => "extra-paginator", "data-page" => @place['photos'].index(p2) + 1}
                           = image_tag(p2['photo']['medium'])
                       - if p3.present? && p3['photo'].present? && p3['photo']['medium'].present?
-                        %a{:href => "#"}              
+                        %a{:href => "#", :class => "extra-paginator", "data-page" => @place['photos'].index(p3) + 1}
                           = image_tag(p3['photo']['medium'])
 
             .slider-nav
@@ -105,6 +103,8 @@
             %a{:href => "#details-tab"}= t(:details)
           %li
             %a{:href => "#amenities-tab"}= t(:amenities)
+          %li
+            %a{:href => "#house-rules-tab"}= t(:house_rules)
         .contents
           .fine-print.pill-content
             .row.active#details-tab
@@ -153,7 +153,12 @@
               .span
                 - display_place_amenities(@place).each do |amenity|
                   %label.w-left-icon.check
-                    = amenity 
+                    = amenity
+
+            .row#house-rules-tab
+              .span
+                %pre.desc= @place.house_rules
+
       .tabbed-panel.other-info
         %ul.tabs
           -#%li.active
@@ -213,7 +218,7 @@
             %img{:src => avatar, :style => "width: 200px;"}
           %li.center= link_to short_full_name(@owner), user_path(@owner['id'])
           %hr
-          %li.check{:style => 'margin-left: 90px;'}= @owner['role'].capitalize
+          %li.center= image_tag "/images/agent_button.png"
           -#%li.reviews 71 reviews
           %li.center{:style => 'margin-top: 20px;'}
             = link_to t(:message_user), logged_in? ? new_message_path(@owner['id']) : login_path, :class => 'btn large primary'
@@ -232,6 +237,12 @@
   
     $('#stopslider').click(function(){ 
       oSlider7.tinycarousel_stop();
+      return false;
+    });
+
+    $('.extra-paginator').click(function() {
+      console.log($(this).attr('data-page'));
+      oSlider7.tinycarousel_move($(this).attr('data-page'));
       return false;
     });
   }

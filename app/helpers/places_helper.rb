@@ -82,6 +82,14 @@ module PlacesHelper
 
     place_amenities
   end
+
+  def get_carousel_photoset(place)
+    hacked_photo_set = place['photos'].dup
+    # to faken cons to still iterate and display for the last image the first and second image
+    hacked_photo_set << place['photos'][0] << place['photos'][1]
+
+    return hacked_photo_set
+  end
   
   # FIXME: collapse all availabilities so that they don't show several overlapped
   # def cleanup_availabilities(foo)

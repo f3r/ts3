@@ -105,6 +105,8 @@
             %a{:href => "#details-tab"}= t(:details)
           %li
             %a{:href => "#amenities-tab"}= t(:amenities)
+          %li
+            %a{:href => "#house-rules-tab"}= t(:house_rules)
         .contents
           .fine-print.pill-content
             .row.active#details-tab
@@ -153,7 +155,12 @@
               .span
                 - display_place_amenities(@place).each do |amenity|
                   %label.w-left-icon.check
-                    = amenity 
+                    = amenity
+
+            .row#house-rules-tab
+              .span
+                %pre.desc= @place.house_rules
+
       .tabbed-panel.other-info
         %ul.tabs
           -#%li.active

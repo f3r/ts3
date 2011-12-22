@@ -16,7 +16,7 @@
             .property.data-block
               .title
                 .type.apartment 
-                  = place['place_type']['name']
+                  = I18n.t(place['place_type']['name'].parameterize('_'))
               .micro
                 - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
                   .label{:style => "color:black; text-transform:lowercase;"}

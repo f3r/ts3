@@ -1,7 +1,7 @@
 .registration
   %br
   .section.span6.bored
-    %h2= t(:login)
+    %h2.offset-one-eight= t(:login)
 
     = form_tag sessions_path do 
       .input
@@ -18,7 +18,7 @@
   .section.span5
     %h2= t(:login_using)
     %a{:href => "/auth/facebook"}
-      %img{:src => '/images/signin_facebook.png'}      
+      %img{:src => '/images/signin_facebook.png', :style => 'margin-top: 10px'}
     %br
     %a{:href => "/auth/twitter"}
       %img{:src => '/images/sign-in-with-twitter-l.png'}        

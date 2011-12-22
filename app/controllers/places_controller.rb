@@ -157,11 +157,11 @@ class PlacesController < ApplicationController
 
   def search
     unless params[:place_type_ids].nil?
-      place_ids = place_types_select
+      place_ids = place_types_list
       new_ids = []
       params[:place_type_ids].each do |p|
         place_ids.each do |id_|
-          new_ids << id_[1] if id_[0].parameterize('_').singularize.eql?(p)
+          new_ids << id_[1] if id_[2].eql?(p)
         end
       end
       params[:place_type_ids] = new_ids
@@ -238,7 +238,7 @@ class PlacesController < ApplicationController
 protected
 
   def find_place
-    @place = Heypal::Place.find(params[:id], current_token)
+    @place = Heypal::Place.find(params[:id], current_token, get_current_currency)
     @owner = @place['user']
   end
 end

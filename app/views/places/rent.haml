@@ -56,12 +56,12 @@
             .check_in
               %strong= t(:check_in)
             .offset-one-fourth
-              = @place['check_in_after']
+              = @place['check_in_after'].blank? ? t(:check_in_flexible) : @place['check_out_before']
           .span3
             .check_out
               %strong= t(:check_out)
             .offset-one-fourth
-              = @place['check_out_before']
+              = @place['check_out_before'].blank? ? t(:check_in_flexible) : @place['check_out_before']
           .span3
             .cancellation_policy
               %strong= t(:cancellation_policy)
@@ -81,17 +81,18 @@
               %strong= t(:bedrooms)
             .offset-one-fourth
               = @place['num_bedrooms']
-          .span3
-            .house_rules
-              %strong= t(:house_rules)
-            .offset-one-fourth
-              = link_to t(:view_house_rules), '#', "data-controls-modal" => "house-rules-modal"
-              #house-rules-modal.hide.modal.fade
-                .modal-header
-                  %h3= t(:house_rules)
-                .modal-body= @place['house_rules']
-                .modal-footer
-                  %button.btn{:onclick => "$('#house-rules-modal').modal('hide'); return false;"}= t(:close)
+          - if !@place['house_rules'].blank?
+            .span3
+              .house_rules
+                %strong= t(:house_rules)
+              .offset-one-fourth
+                = link_to t(:view_house_rules), '#', "data-controls-modal" => "house-rules-modal"
+                #house-rules-modal.hide.modal.fade
+                  .modal-header
+                    %h3= t(:house_rules)
+                  .modal-body= @place['house_rules']
+                  .modal-footer
+                    %button.btn{:onclick => "$('#house-rules-modal').modal('hide'); return false;"}= t(:close)
 
         .panel
           .panel-wrapper

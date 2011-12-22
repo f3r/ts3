@@ -218,7 +218,7 @@
             %img{:src => avatar, :style => "width: 200px;"}
           %li.center= link_to short_full_name(@owner), user_path(@owner['id'])
           %hr
-          %li.check{:style => 'margin-left: 90px;'}= @owner['role'].capitalize
+          %li.center= image_tag "/images/agent_button.png"
           -#%li.reviews 71 reviews
           %li.center{:style => 'margin-top: 20px;'}
             = link_to t(:message_user), logged_in? ? new_message_path(@owner['id']) : login_path, :class => 'btn large primary'

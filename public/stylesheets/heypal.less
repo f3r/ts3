@@ -95,6 +95,7 @@ section {
 .span-one-third     { width: 33%; }
 .span-one-fourth    { width: 22%; }
 .span-two-thirds    { width: 66%; }
+.offset-smallest    { margin-left: 8%; }
 .offset-one-eight   { margin-left: 12%; }
 .offset-one-fourth  { margin-left: 15%; }
 .offset-one-third   { margin-left: 33%; }
@@ -130,8 +131,7 @@ a.sup {
 }
 
 .bottom-part {
-  position: absolute;
-  top: 475px;
+  margin-top: 180px;
 }
 span.strong,
 p.strong {
@@ -2639,4 +2639,31 @@ pre.desc {
   .gradientBar(@blue, @blueDark);
   opacity:1;
   margin-bottom: 15px;
+}
+
+.error {
+  margin-top: 60px;
+}
+
+.error-header {
+  font-weight: normal;
+  color: #3977B0;
+}
+
+.error-text, .error-subhead {
+  color: @gray;
+}
+
+.error-text {
+  line-height: 5;
+}
+
+.error-image, .error-image-top {
+  width: 350px;
+  float: right;
+  margin-top: -70px;
+}
+
+.error-image-top {
+  margin-top: -95px;
 }

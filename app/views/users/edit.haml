@@ -39,7 +39,7 @@
             .clearfix
             .span4.float-right
               = submit_tag t(:save), :class => 'btn primary'
-              = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
+              = link_to t(:cancel), profile_path, :class => 'btn secondary'
             .clearfix
 
             /Billing Address Section
@@ -68,7 +68,7 @@
             .clearfix
             .span4.float-right
               = submit_tag t(:save), :class => 'btn primary'
-              = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
+              = link_to t(:cancel), profile_path, :class => 'btn secondary'
             .clearfix
 
           = form_for :new_password, :url => user_change_password_path((@user['id'] ? @user['id'] : params[:id])), :method => :put, :html => {:id => "new_password"} do |f|
@@ -90,7 +90,7 @@
             .clearfix
             .span4.float-right
               = f.submit t(:save), :class => 'btn primary'
-              = link_to (button_tag t(:cancel), :class => 'btn secondary'), profile_path
+              = link_to t(:cancel), profile_path, :class => 'btn secondary'
             .clearfix
 
             -#Accounts Section

@@ -1893,42 +1893,108 @@ select#address_country {width:200px;}
 ul.breadcrumb .divider { color:#666; }
 ul.breadcrumb a {color:#333;}
 
-.rent_place_page .info {margin-top:20px; padding-bottom: 15px;}
-.rent_place_page .info .thumb {width: 216px;}
-.rent_place_page .info .clearfix {margin-top: 15px;}
-.rent_place_page .info h3 { border-bottom: 1px solid #eee;font-size: 24px;margin-left: 20px;}
-.rent_place_page .info .price-data-block {float: right; margin-top:
--15px;}
-.rent_place_page .info .price {font-size:16px;color:#888;}
-.rent_place_page .info .price .figure {font-size:24px;font-weight:bold;color:#333;margin-bottom:5px;}
-.rent_place_page .info .price .micro-price {font-size:12px;color:#888;margin-bottom:5px; text-align: right;}
-.rent_place_page .info .location,
-.rent_place_page .info .type {font-size:12px; color:#888;line-height:30px;}
-.rent_place_page .guests_div,
-.rent_place_page .info .type {background: url('/images/icons/icon.home.png') no-repeat 0 5px;}
-.rent_place_page .info .micro {font-size:16px;}
-.rent_place_page .info .micro {background: url('/images/icon.pencil.png') no-repeat 0 3px;}
-.rent_place_page .info .micro .title,
-.rent_place_page .info .type .title{margin-left: 25px;}
+.rent_place_page {
+  .row .span12 {
+    border: 2px solid #F2F2F2;
+    border-radius: 3px;
+  }
 
-.rent_place_page .details {font-size:15px;line-height:30px;margin:10px 0 20px 100px;}
-.rent_place_page .details strong {font-size:12px;color:#888;font-weight:normal;margin-bottom:10px;}
-.rent_place_page .check_in,
-.rent_place_page .guests {margin-left: 25px;}
+  .info {
+    margin-top: 20px;
+    padding-bottom: 15px;
 
-.rent_place_page .duration {color: #777777;font-size: 16px;padding-top: 9px;}
-.rent_place_page .duration span {font-weight: bold;}
+    .clearfix { margin-top: 15px }
 
-.translation_missing {color:#f00;}
+    h3 {
+      border-bottom: 1px solid #F2F2F2;
+      font-size: 24px;
+      margin-left: 20px;
+    }
+    .span4 { 
+      margin-left: 25px;
 
-.rent_place_page tbody.datepickerDays td.datepickerSelected a {	color:#fff; }
-.rent_place_page .datepickerContainer {	background: #fff; }
-.rent_place_page div.datepicker a { color: #333; }
-.rent_place_page table.datepickerViewDays {margin:0}
-.rent_place_page td.datepickerNotInMonth {background-color:#f6f6f6;}
-.rent_place_page a#clearSelection {font-size:11px}
+      .thumb {
+        width: 216px;
+      }
+    }
+    .span8 { margin-left: 10px }
 
-.rent_place_page td.occupied {background-color:#ffa0a0;}
+    .price-data-block {
+      float: right;
+      margin-top: -15px
+    }
+
+    .price {
+      font-size: 16px;
+      color: #888;
+
+      .figure {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .micro-price {
+        font-size: 12px;
+        color: #888;
+        margin-bottom: 5px;
+        text-align: right;
+      }
+    }
+
+    .location, .type {
+      font-size: 12px;
+      color: #888;
+      line-height: 30px;
+    }
+
+    .micro {
+      font-size: 16px;
+      background: url('/images/icon.pencil.png') no-repeat 0 3px;
+    }
+
+    .micro .title, .type .title { margin-left: 25px }
+  }
+  .info .type, .guests_div { background: url('/images/icons/icon.home.png') no-repeat 0 5px }
+
+  .details {
+    font-size: 15px;
+    line-height: 30px;
+    margin: 10px 0 20px 100px;
+
+    strong {
+      font-size: 12px;
+      color:# 888;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+
+    .check_in, .guests { margin-left: 25px }
+  }
+
+  .duration {
+    color: #777;
+    font-size: 16px;
+    padding-top: 9px;
+
+    span {
+      font-weight: bold;
+    }
+  }
+
+  fieldset { margin-left: 5px }
+  tbody.datepickerDays td.datepickerSelected a { color: #FFF }
+  .datepickerContainer { background: #FFF }
+  div.datepicker a { color: #333 }
+  table.datepickerViewDays { margin: 0 }
+  td.datepickerNotInMonth { background-color: #F6F6F6 }
+  a#clearSelection { font-size: 11px }
+
+  td.occupied { background-color: #FFA0A0 }
+}
+.translations_missing { color: #F00 }
+
 
 .center-div-image img {
   margin: 0 auto;

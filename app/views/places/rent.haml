@@ -102,7 +102,6 @@
         .row
           .span16
             %fieldset
-              .clearfix
               <p id="date_picker"></p>
               <p><a href="#" id="clearSelection">Clear selection</a></p>
               .clearfix
@@ -123,14 +122,13 @@
             %h2.title
               = t(:contact_information)
         %fieldset
-          .clearfix
-            =fields_for "user", @user do |f|
-              .input.required
-                = f.label :mobile_phone_number, t(:mobile_phone_number)
-                = f.text_field :phone_mobile, :class => "validate[required]"
-              .input.required
-                = f.label :passport_number, t(:passport_number)
-                = f.text_field :passport_number, :class => "validate[required]"
+          =fields_for "user", @user do |f|
+            .input.required
+              = f.label :mobile_phone_number, t(:mobile_phone_number)
+              = f.text_field :phone_mobile, :class => "validate[required]"
+            .input.required
+              = f.label :passport_number, t(:passport_number)
+              = f.text_field :passport_number, :class => "validate[required]"
           .clearfix
             = check_box_tag :terms, 1, false, :class => "validate[required]"
             = t(:read_agreement)

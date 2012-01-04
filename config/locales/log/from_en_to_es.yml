@@ -42,9 +42,15 @@ cable_tv: "Cable TV"
 calendar: Calendar
 calendar_hint: "Please let us know what dates the place is available for rent"
 cancel: Cancel
+cancel_email_change: "Cancel email change"
 cancellation: Cancellation
 cancellation_policy: "Cancellation Policy"
 cant_find_city: "Can't find the city you were hoping to go?"
+car_five: "Singapore, the first destination available on SquareStays"
+car_four: "SquareStays offers affordable, flexible living"
+car_one: "Singapore - a rising global business powerhouse"
+car_three: "Hong Kong, coming soon"
+car_two: "Singapore offers luxurious living"
 categories_left: "more categories must be completed"
 change_address: "Change address"
 change_billing_address: "Change billing address"
@@ -52,6 +58,7 @@ change_photo: "Change photo"
 change_photo_description: "Uploading a current photo helps renters evaluate your profile. While its not required, it helps build trust with property owners if you complete your profile."
 check_in: "Check in"
 check_in_before: "Check In Before"
+check_in_flexible: Flexible
 check_out: "Check out"
 check_out_before: "Check Out Before"
 choose_currency: "Choose currency"
@@ -84,6 +91,7 @@ dryer: Dryer
 duration: Duration
 edit_place: "Edit place"
 elevator: Elevator
+email_confirmed: "Your email address has been successfully confirmed!"
 errors: 
   dynamic_format: "%{message}"
   format: "%{attribute} %{message}"
@@ -194,6 +202,7 @@ search_place_stay_in: "Search for a place to stay in"
 security_deposit: "Security Deposit"
 security_deposit_hint: "The wireframe has this but I don't have the text yer"
 see_our: "See our"
+select_one: "Please select at least one"
 share: "Share via"
 site_title: "SquareStays - Trusted Stays"
 smoking_allowed: "Smoking Allowed"
@@ -227,11 +236,13 @@ this_is_preview: "This is a Preview"
 to: To
 tv: TV
 unavailable: Unavailable
+unconfirmed_email: "Unconfirmed email"
 unpublish: Unpublish
 upload_a_new_photo: "Upload a new Photo"
 upload_photo: "Upload Photo"
 upload_photo_hint: "We support jpg and png images. You must upload a minimum of 3 images."
 use_facebook_photo: "Use Facebook Photo"
+view_house_rules: "View House Rules"
 villa: Villa
 washer: Washer
 what_city_is_your_place_in: "What city is your place in?"

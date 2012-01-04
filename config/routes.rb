@@ -68,6 +68,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/signup_complete' => 'users#signup_complete', :as => :signup_complete
   match '/login'           =>  'sessions#new',         :as => :login
   match '/logout'          =>  'sessions#destroy',     :as => :logout
+  match '/users/confirmation/cancel'  => 'users#cancel_email_change', :as => :cancel_email_change
   match '/users/confirmation/:confirmation_token'  => 'users#confirm'
   match '/users/password/:reset_password_token'    => 'users#confirm_reset_password'
   match '/auth/:provider/callback',  to: 'sessions#auth'

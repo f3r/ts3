@@ -24,6 +24,12 @@
               = f.label :email, "#{t(:email)}*"
               .private
               = f.text_field :email, :class => "validate[required]"
+            - if !@user['unconfirmed_email'].blank?
+              .input.unconfirmed_email
+                = f.label :unconfirmed_email, "#{t(:unconfirmed_email)}*"
+                %span
+                  = @user['unconfirmed_email']
+                = link_to "x", cancel_email_change_path, :method => :get, :remote => true, :rel => 'twipsy', :title => t(:cancel_email_change)
             .input
               = f.label :gender, t(:gender)
               .private

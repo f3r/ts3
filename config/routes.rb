@@ -90,6 +90,7 @@ HeyPalFrontEnd::Application.routes.draw do
   
   # Error matching
   # http://techoctave.com/c7/posts/36-rails-3-0-rescue-from-routing-error-solution
+  get '/robots.txt' => 'home#robot'
   match '*a', :to => 'errors#routing'
 
   ###########################################################################################

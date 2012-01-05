@@ -33,7 +33,7 @@
             .span3
               .location
                 = "#{@place.city_name}, #{@place.country_name}"
-            .span3
+            .span2
               .type
                 .title= @place.place_type 
               .micro
@@ -41,7 +41,7 @@
                   - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
                     = get_current_size_unit == "sqf" ? @place['size_sqf'].round(2) : @place['size_sqm'].round(2)
                     =raw get_pref_size_unit
-            .price-data-block
+            .span2.price-data-block
               .price
                 - if !@place['price_per_night'].nil?
                   .figure
@@ -52,40 +52,40 @@
                   &nbsp;
 
         .row.details
-          .span3
+          .span2#checkin-div
             .check_in
               %strong= t(:check_in)
-            .offset-one-fourth
+            %span
               = @place['check_in_after'].blank? ? t(:check_in_flexible) : @place['check_out_before']
-          .span3
+          .span2#checkout-div
             .check_out
               %strong= t(:check_out)
-            .offset-one-fourth
+            %span
               = @place['check_out_before'].blank? ? t(:check_in_flexible) : @place['check_out_before']
           .span3
             .cancellation_policy
               %strong= t(:cancellation_policy)
-            .offset-one-fourth
+            %span
               - policy = LookupsHelper::CANCELLATION_POLICIES[@place['cancellation_policy']]
               = cancellation_desc(@place)
               = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t("#{policy}_cancellation".to_sym))
 
         .row.details
-          .span3.guests_div
+          .span2#guests-div
             .guests
               %strong= t(:guests)
-            .offset-one-fourth
+            %span
               = @place['max_guests']
-          .span3
+          .span2#rooms-div
             .bedrooms
               %strong= t(:bedrooms)
-            .offset-one-fourth
+            %span
               = @place['num_bedrooms']
           - if !@place['house_rules'].blank?
             .span3
               .house_rules
                 %strong= t(:house_rules)
-              .offset-one-fourth
+              %span
                 = link_to t(:view_house_rules), '#', "data-controls-modal" => "house-rules-modal"
                 #house-rules-modal.hide.modal.fade
                   .modal-header

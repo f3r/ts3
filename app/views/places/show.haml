@@ -70,7 +70,7 @@
               %ul.pager
                 - @place['photos'].each_with_index do |p, i|
                   %li
-                    %a{:class => "pagenum", :href => "#"}
+                    %a{:rel => i, :class => "pagenum", :href => "#"}
                       = image_tag(p['photo']['tiny'])
 
               %a.buttons.next{:href => "#"}
@@ -103,8 +103,9 @@
             %a{:href => "#details-tab"}= t(:details)
           %li
             %a{:href => "#amenities-tab"}= t(:amenities)
-          %li
-            %a{:href => "#house-rules-tab"}= t(:house_rules)
+          - unless @place.house_rules.blank?
+            %li
+              %a{:href => "#house-rules-tab"}= t(:house_rules)
         .contents
           .fine-print.pill-content
             .row.active#details-tab
@@ -215,7 +216,7 @@
               - avatar = placehold(200, 200, true)
             - else
               - avatar = large_avatar(@owner)
-            %img{:src => avatar, :style => "width: 200px;"}
+            %img{:src => avatar, :style => "width: 200px;", :alt => "#{short_full_name(@owner)}"}
           %li.center= link_to short_full_name(@owner), user_path(@owner['id'])
           %hr
           %li.center= image_tag "/images/agent_button.png"
@@ -228,17 +229,7 @@
   // accomodation photo slider
   var oSlider7 = $('#photo-slider');
   if(oSlider7.length > 0){
-    oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true });
-  
-    $('#startslider').click(function(){ 
-      oSlider7.tinycarousel_start();
-      return false;
-    });
-  
-    $('#stopslider').click(function(){ 
-      oSlider7.tinycarousel_stop();
-      return false;
-    });
+    oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true, animation: false, fading: true });
 
     $('.extra-paginator').click(function() {
       console.log($(this).attr('data-page'));

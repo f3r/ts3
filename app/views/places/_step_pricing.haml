@@ -68,9 +68,9 @@
     %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:next_step)
 
 #cancellation_policy_text.modal.hide
-  .modal-body
-    = link_to 'x', '#', :class => 'close'
+  .modal-header
     %h3=t(:cancellation_policy)
+  .modal-body
     %p How is the Place's price calculated?
 
     %p SquareStays pricing depends on the length of your reservation. Reservations can be daily, weekly or monthly.
@@ -91,7 +91,8 @@
       %li
         %b Strict 7-Day Cancellation Policy
         %p If you wish to cancel your SquareStays reservation at least 7 days before the reservation date, you will be charged 10% of the security deposit. If you cancel your SquareStays reservation less than 7 days before the reservation date, you will be charged the entire security deposit.
-    .right= link_to 'Cancel', '#', :class => 'close btn primary'
+    .modal-footer
+      %button.btn{:onclick => "$('#cancellation_policy_text').modal('hide'); return false;"}= t(:close)
 
 :javascript
   $('#place_currency').val("#{@place.currency}");

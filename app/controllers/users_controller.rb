@@ -41,6 +41,7 @@ class UsersController < ApplicationController
             user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
             # FIXME: 1966?
             # user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
+            user_data = user_data.merge('birthdate' => oauth_birthday) if current_user.birthdate.nil? && user_auth['provider'].eql?('facebook')
             user = Heypal::User.update(user_data)
           end
         end

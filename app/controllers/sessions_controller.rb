@@ -19,6 +19,7 @@ class SessionsController < ApplicationController
             user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
             # FIXME: 1966?
             # user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
+            user_data = user_data.merge('birthdate' => oauth_birthday) if current_user.birthdate.nil? && params[:oauth_provider].eql?('facebook')
             user = Heypal::User.update(user_data)
           end
           session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
@@ -53,7 +54,9 @@ class SessionsController < ApplicationController
         #save user data in session
         if (current_user.avatar.nil?)
           avatar_url = oauth_provider.eql?('facebook') ? oauth_image.gsub('square', 'large') : oauth_image.gsub('normal', 'bigger') 
-          user_data = {'access_token' => current_token, 'avatar_url' => avatar_url, 'birthdate' => '1966-01-01'}
+          user_data = {
+            'access_token' => current_token, 'avatar_url' => avatar_url, 'birthdate' => oauth_birthday
+          }
           user = Heypal::User.update(user_data)
           session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         else
@@ -123,6 +126,10 @@ class SessionsController < ApplicationController
 
   def oauth_email
     @oauth_email = omniauth_userinfo['email']
+  end
+
+  def oauth_birthday
+    @oauth_birthday = omniauth_userinfo['birthday']
   end
 
   def oauth_image

@@ -103,8 +103,9 @@
             %a{:href => "#details-tab"}= t(:details)
           %li
             %a{:href => "#amenities-tab"}= t(:amenities)
-          %li
-            %a{:href => "#house-rules-tab"}= t(:house_rules)
+          - unless @place.house_rules.blank?
+            %li
+              %a{:href => "#house-rules-tab"}= t(:house_rules)
         .contents
           .fine-print.pill-content
             .row.active#details-tab

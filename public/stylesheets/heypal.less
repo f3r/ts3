@@ -1948,8 +1948,7 @@ ul.breadcrumb a {color:#333;}
     .span8 { margin-left: 10px }
 
     .price-data-block {
-      float: right;
-      margin-top: -15px
+      margin: 7px 0 0 60px;
     }
 
     .price {
@@ -1966,8 +1965,6 @@ ul.breadcrumb a {color:#333;}
       .micro-price {
         font-size: 12px;
         color: #888;
-        margin-bottom: 5px;
-        text-align: right;
       }
     }
 
@@ -1975,6 +1972,9 @@ ul.breadcrumb a {color:#333;}
       font-size: 12px;
       color: #888;
       line-height: 30px;
+    }
+    .type {
+      background: url('/images/icons/icon.home.png') no-repeat 0 5px
     }
 
     .micro {
@@ -1984,21 +1984,27 @@ ul.breadcrumb a {color:#333;}
 
     .micro .title, .type .title { margin-left: 25px }
   }
-  .info .type, .guests_div { background: url('/images/icons/icon.home.png') no-repeat 0 5px }
 
   .details {
     font-size: 15px;
     line-height: 30px;
-    margin: 10px 0 20px 100px;
+    margin: 10px 0 20px 80px;
 
     strong {
       font-size: 12px;
-      color:# 888;
+      color: #888;
       font-weight: normal;
       margin-bottom: 10px;
     }
 
-    .check_in, .guests { margin-left: 25px }
+    #checkin-div { background: url('/images/icons/checkin.png') no-repeat 0 8px }
+    #checkout-div { background: url('/images/icons/checkout.png') no-repeat 0 8px }
+    #guests-div { background: url('/images/icons/maxguests.png') no-repeat 0 8px }
+    #rooms-div { background: url('/images/icons/bedrooms.png') no-repeat 0 8px }
+
+    #checkin-div, #checkout-div, #guests-div, #rooms-div {
+      padding-left: 60px;
+    }
   }
 
   .duration {

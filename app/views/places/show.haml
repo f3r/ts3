@@ -70,7 +70,7 @@
               %ul.pager
                 - @place['photos'].each_with_index do |p, i|
                   %li
-                    %a{:class => "pagenum", :href => "#"}
+                    %a{:rel => i, :class => "pagenum", :href => "#"}
                       = image_tag(p['photo']['tiny'])
 
               %a.buttons.next{:href => "#"}
@@ -228,17 +228,7 @@
   // accomodation photo slider
   var oSlider7 = $('#photo-slider');
   if(oSlider7.length > 0){
-    oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true });
-  
-    $('#startslider').click(function(){ 
-      oSlider7.tinycarousel_start();
-      return false;
-    });
-  
-    $('#stopslider').click(function(){ 
-      oSlider7.tinycarousel_stop();
-      return false;
-    });
+    oSlider7.tinycarousel({ interval: true, intervaltime: 6000, pager: true, animation: false, fading: true });
 
     $('.extra-paginator').click(function() {
       console.log($(this).attr('data-page'));

@@ -32,6 +32,7 @@ en:
   create_new_account:         Create New Account
   create_an_account_using:    Create an Account using
   user_confirmed:             Your account has been successfully confirmed!
+  email_confirmed:            Your email address has been successfully confirmed!
   invalid_confirmation_code:  Invalid Confirmation Code
   enter_confirmation_code:    Enter Confirmation Code
   resend_confirmation:        Resend Confirmation
@@ -69,12 +70,14 @@ en:
   ####################################################################################
   # General field names and validation errors
   ####################################################################################
-  email:            Email
-  invalid_email:    Invalid Email
-  password:         Password
-  confirm_password: Confirm Password
+  email:                Email
+  unconfirmed_email:    Unconfirmed email
+  invalid_email:        Invalid Email
+  password:             Password
+  confirm_password:     Confirm Password
   terms_and_conditions: Terms and Conditions
   registration_warning: SquareStays won't publish anything without your prior consent
+  cancel_email_change:  Cancel email change
   
   ####################################################################################
   # Section Headers
@@ -402,6 +405,11 @@ en:
   leave_us_email: Leave us your email address and we will tell you when new cities are added to SquareStays.
   working_on_expanding: We're working hard to expand SquareStays. Please tell us which cities you would like to see next in SquareStays.
   not_going_to_singapore: Not going to Singapore?
+
+  fp_one: SquareStays
+  fp_two_a: connects you with
+  fp_two_b: trusted, professional, short-term
+  fp_three: accomodations
 
   car_one: Singapore - a rising global business powerhouse
   car_two: Singapore offers luxurious living

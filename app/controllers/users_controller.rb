@@ -23,10 +23,14 @@ class UsersController < ApplicationController
   end
 
   def confirm
-    if params['confirmation_token']
+     if params['confirmation_token']
       result = Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
-      if params['confirmation_token'].present? && result['stat'].eql?('ok') 
-        flash[:notice] = t(:user_confirmed) 
+      if params['confirmation_token'].present? && result['stat'].eql?('ok')
+        if result['email_change'] == true
+          flash[:notice] = t(:email_confirmed)
+        else
+          flash[:notice] = t(:user_confirmed)
+        end
         sign_in result
         #if sign up using fb/twitter
         auth = Heypal::User.list('access_token' => current_token)
@@ -126,8 +130,13 @@ class UsersController < ApplicationController
     @address = Heypal::Address.show('access_token' => current_token)
 
     if @user.valid? && @user.save
-      flash[:notice] = 'You successfully updated your profile.'
-      session['current_user'] = Heypal::User.show('access_token' => current_token)
+      user = Heypal::User.show('access_token' => current_token)
+      session['current_user'] = user
+      if !user['unconfirmed_email'].blank?
+        flash[:notice] = 'You successfully updated your profile! However, you need to confirm your email. Please check your email and click the link to verify it.'
+      else
+        flash[:notice] = 'You successfully updated your profile.'
+      end
       redirect_to profile_path
     else
       @user_auth = Heypal::User.list('access_token' => current_token)
@@ -175,4 +184,14 @@ class UsersController < ApplicationController
       render :js => %w($('#popup-registration').modal({show: true, backdrop: 'static', keyboard: true}); return false;)
     end
   end
+  
+  def cancel_email_change
+    if Heypal::User.cancel_email_change('access_token' => current_token)
+      session['current_user'] = Heypal::User.show('access_token' => current_token)
+      render :js => %w(window.location.reload();)
+    else
+      render :json => {:stat => false}
+    end
+  end
+  
 end

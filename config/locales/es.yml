@@ -67,9 +67,15 @@ es:
   calendar: Calendario
   calendar_hint: "Por favor háganos saber qué fechas, el lugar está disponible para alquiler"
   cancel: Cancelar
+  cancel_email_change: "Cancelar el cambio de correo electrónico"
   cancellation: Cancelación
   cancellation_policy: "Política de cancelación"
   cant_find_city: "¿No encuentra la ciudad a la cual deseaba ir?"
+  car_five: ""
+  car_four: ""
+  car_one: ""
+  car_three: ""
+  car_two: ""
   categories_left: "deben completarse más categorías"
   change_address: "Cambiar dirección"
   change_billing_address: "Cambiar la dirección de facturación"
@@ -77,6 +83,7 @@ es:
   change_photo_description: "Subir una foto actual ayuda a inquilinos evaluar tu perfil. Mientras no es obligatorio, ayuda a construir confianza con los dueños si completa su perfil."
   check_in: Check-in
   check_in_before: "Registrar antes"
+  check_in_flexible: ""
   check_out: Check-out
   check_out_before: "Retirar antes de"
   choose_currency: "Elija la moneda"
@@ -208,6 +215,7 @@ es:
   edit_place: "Editar lugar"
   elevator: Ascensor
   email: Email
+  email_confirmed: "Se ha confirmado correctamente tu dirección de correo electrónico!"
   enter_confirmation_code: "Introduce tu código de confirmación"
   enter_your_email: "Introduce tu Email"
   enter_your_new_password: "Introduce nueva contraseña"
@@ -508,6 +516,7 @@ es:
   security_deposit: "Depósito de garantía"
   security_deposit_hint: ""
   see_our: "Consulte nuestra"
+  select_one: ""
   share: "Compartir a través de"
   sign_in: "Iniciar Sesión"
   sign_out: "Terminar Sesión"
@@ -567,12 +576,14 @@ es:
   twitter_connected: "Has conectado correctamente tu cuenta en Twitter!"
   type: Tipo
   unavailable: "No disponible"
+  unconfirmed_email: "Sin confirmar correo electrónico"
   unpublish: "Anular la publicación"
   upload_a_new_photo: "Subir una foto nueva"
   upload_photo: "Subir foto"
   upload_photo_hint: "Soportamos imágenes jpg y png. Debes enviar un mínimo de 3 imágenes."
   use_facebook_photo: "Usar la foto de Facebook"
   user_confirmed: "Tu cuenta se ha confirmado correctamente!"
+  view_house_rules: ""
   villa: Villa
   washer: Lavadora
   what_city: "¿En qué ciudad está tu Apartamento?"

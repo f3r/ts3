@@ -215,7 +215,7 @@
               - avatar = placehold(200, 200, true)
             - else
               - avatar = large_avatar(@owner)
-            %img{:src => avatar, :style => "width: 200px;"}
+            %img{:src => avatar, :style => "width: 200px;", :alt => "#{short_full_name(@owner)}"}
           %li.center= link_to short_full_name(@owner), user_path(@owner['id'])
           %hr
           %li.center= image_tag "/images/agent_button.png"

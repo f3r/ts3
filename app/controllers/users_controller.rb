@@ -39,7 +39,8 @@ class UsersController < ApplicationController
           if current_user.avatar.nil?
             avatar_pic = user_auth['provider'].eql?('facebook') ? "https://graph.facebook.com/#{user_auth['uid']}/picture?type=large" : "http://api.twitter.com/1/users/profile_image/#{user_auth['uid']}.jpg?size=bigger"
             user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
-            user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
+            # FIXME: 1966?
+            # user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
             user = Heypal::User.update(user_data)
           end
         end
@@ -120,6 +121,7 @@ class UsersController < ApplicationController
   def edit
     @user = Heypal::User.show('access_token' => current_token)
     @address = Heypal::Address.show('access_token' => current_token)
+    # @bank_account = Heypal::BankAccount.show('access_token' => current_token)
     @user_auth = Heypal::User.list('access_token' => current_token)
   end
 
@@ -128,6 +130,7 @@ class UsersController < ApplicationController
     params[:user][:birthdate] = birthdate if birthdate
     @user = Heypal::User.new(params_with_token(:user))
     @address = Heypal::Address.show('access_token' => current_token)
+    # @bank_account = Heypal::BankAccount.show('access_token' => current_token)
 
     if @user.valid? && @user.save
       user = Heypal::User.show('access_token' => current_token)

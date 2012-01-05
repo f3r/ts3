@@ -17,7 +17,8 @@ class SessionsController < ApplicationController
           if (current_user.avatar.nil?)
             avatar_pic = params[:oauth_provider].eql?('facebook') ? "#{params[:avatar_url]}?type=large" : params[:avatar_url].gsub('normal', 'bigger')
             user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
-            user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
+            # FIXME: 1966?
+            # user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
             user = Heypal::User.update(user_data)
           end
           session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])

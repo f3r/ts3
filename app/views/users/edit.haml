@@ -65,7 +65,7 @@
             .input
               = f.label :country, "#{t(:country)}*"
               .public
-              = f.localized_country_select(:country, [], :include_blank => t(:choose_country), :class => "validate[required]")
+              = f.localized_country_select(:country, [], {:include_blank => t(:choose_country)}, {:class => "validate[required]"})
             .input
               = f.label :zip, "#{t(:zip)}*"
               .private
@@ -96,7 +96,7 @@
               .input
                 = f.label :holder_country_code, "#{t(:country)}*"
                 .fully-private
-                = f.localized_country_select(:holder_country_code, [], :include_blank => t(:choose_country))
+                = f.localized_country_select(:holder_country_code, [], {:include_blank => t(:choose_country)}, {:class => "validate[required]"})
                 = f.hidden_field :holder_country_name
               .input
                 = f.label :holder_city_name, "#{t(:city)}*"

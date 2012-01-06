@@ -3,7 +3,7 @@
     .row
       %br
       .profile_page
-        = render  :partial => "user_left_column"
+        = render "user_left_column", :user => @user
         - if logged_in? && !params[:id] && current_user['id'] == @user['id']
           = render  :partial => "user_info"
         - elsif params[:id]

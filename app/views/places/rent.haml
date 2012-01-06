@@ -68,7 +68,7 @@
             %span
               - policy = LookupsHelper::CANCELLATION_POLICIES[@place['cancellation_policy']]
               = cancellation_desc(@place)
-              = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t("#{policy}_cancellation".to_sym))
+              = link_to '?', '#', :rel => 'twipsy-link', 'data-original-title' => raw(t("#{policy}_cancellation".to_sym) + "<br/><br/>#{t(:see_our)} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t(:cancellation_policy)}</a> #{t(:for_more_info)}.")
 
         .row.details
           .span2#guests-div
@@ -140,6 +140,7 @@
           %button.btn.primary
             = t(:continue)
 
+= render :partial => 'cancellation_policy'
 
 :javascript
 

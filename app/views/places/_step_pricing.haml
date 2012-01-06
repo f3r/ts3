@@ -67,32 +67,7 @@
   .float-right
     %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t(:next_step)
 
-#cancellation_policy_text.modal.hide
-  .modal-header
-    %h3=t(:cancellation_policy)
-  .modal-body
-    %p How is the Place's price calculated?
-
-    %p SquareStays pricing depends on the length of your reservation. Reservations can be daily, weekly or monthly.
-    %ul
-      %li <b>Daily</b>: Reservations for less than a week
-      %li <b>Weekly</b>: Reservations longer than a week but shorter than a month
-      %li <b>Monthly</b>: Reservations longer than a month
-
-    %p Property owners and agents can sometimes offer discount rates for weekly and monthly stays. If your reservation is weekly or monthly, and the agent has introduced a discount, you will be charged at the discounted price for all the days of your stay!
-
-    %p What cancellation policies are available?
-
-    %p There are 2 cancellation policies on SquareStays:
-    %ul
-      %li 
-        %b Flexible 30-Day Cancellation Policy
-        %p If you wish to cancel your SquareStays reservation at least 30 days before the reservation date, you will not be charged and any security deposit you have paid will be refunded to you. If you wish to cancel your SquareStays reservation less than 30 days but at least 7 days before the reservation date, you will be charged 10% of the security deposit. If you cancel your SquareStays reservation less than 7 days before the reservation date, you will be charged the entire security deposit.
-      %li
-        %b Strict 7-Day Cancellation Policy
-        %p If you wish to cancel your SquareStays reservation at least 7 days before the reservation date, you will be charged 10% of the security deposit. If you cancel your SquareStays reservation less than 7 days before the reservation date, you will be charged the entire security deposit.
-    .modal-footer
-      %button.btn{:onclick => "$('#cancellation_policy_text').modal('hide'); return false;"}= t(:close)
+= render :partial => 'cancellation_policy'
 
 :javascript
   $('#place_currency').val("#{@place.currency}");
@@ -100,4 +75,4 @@
 
 :css
   #estimated_amount_weekly, #estimated_amount_monthly {font-size: 12px;}
-  #cancellation_policy_text {width: 700px; height: 500px; overflow-y: scroll; overflow-x: hidden;}
+  -##cancellation_policy_text {width: 700px; height: 500px; overflow-y: scroll; overflow-x: hidden;}

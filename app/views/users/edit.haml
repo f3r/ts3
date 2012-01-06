@@ -2,7 +2,7 @@
   .span16
     .row
       %br
-      = render :partial => 'users/user_left_column'
+      = render 'users/user_left_column', :user => current_user
       .edit_profile_page
         .span8
           .section-header #{t(:section_header_user_information)}

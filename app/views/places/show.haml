@@ -300,12 +300,23 @@
         visStart: false
       });
 
+
+      $('.fc-header-left .fc-button-inner').hide();
+
       $('#first-calendar .fc-header-left .fc-button-prev').click(function() {
         $('#second-calendar').fullCalendar('prev');
+        var first_cal = $('#first-calendar').fullCalendar('getDate');
+        var cur_date = new Date();
+        if (first_cal.getMonth() == cur_date.getMonth()) {
+          $('.fc-header-left .fc-button-inner').hide();
+        } else{
+          $('.fc-header-left .fc-button-inner').show();
+        }
       });
 
       $('#second-calendar .fc-header-right .fc-button-next').click(function() {
         $('#first-calendar').fullCalendar('next');
+        $('.fc-header-left .fc-button-inner').show();
       });
   });
 

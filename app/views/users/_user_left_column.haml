@@ -1,6 +1,6 @@
 %section.span-one-fourth
-  - if !@user.avatar.nil?
-    - @avatar = large_avatar(@user)
+  - if !user.avatar.nil?
+    - @avatar = large_avatar(user)
     - else
     - @avatar = placehold(200,120, true)
     
@@ -9,16 +9,16 @@
     = link_to t(:change_photo), "", { "data-controls-modal"=>"avatar-modal", "data-backdrop"=>"static", :class => "change_avatar"}
 
   %h2
-    = short_full_name @user
+    = short_full_name user
   %p
-    - if !@user['address'].nil?
-      = "#{@user['address']['city']}, #{@user['address']['country']}"
+    - if !user['address'].nil?
+      = "#{user['address']['city']}, #{user['address']['country']}"
   %br
   %p
-    - if @user['role'] == "agent"
+    - if user['role'] == "agent"
       = image_tag "/images/agent_button.png"
-  - if logged_in? && !params[:id] && current_user['id'] == @user['id']
+  - if logged_in? && current_user['id'] == user['id']
     %br
     = render :partial => "users/user_accounts"
-  - elsif logged_in? && params[:id] && current_user['id'] != @user['id']
-    %a.btn.medium.primary{:href => "/messages/#{@user['id']}", :style => 'margin-top: 50px' }= t(:message_user)
+  - elsif logged_in? && params[:id] && current_user['id'] != user['id']
+    %a.btn.medium.primary{:href => "/messages/#{user['id']}", :style => 'margin-top: 50px' }= t(:message_user)

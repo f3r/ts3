@@ -1,5 +1,6 @@
 --- 
 es: 
+  account_number: "Número de cuenta"
   account_settings: Editar
   activerecord: 
     errors: 
@@ -54,6 +55,7 @@ es:
   ask_question: "Haga una pregunta"
   authentication_fail: "No hemos podido autenticarte. Te rogamos lo intentes de nuevo"
   availability: Disponibilidad
+  bank_code: "Código del Banco"
   bathroom: Baños
   bed: Cama
   bedroom: Dormitorio
@@ -61,6 +63,7 @@ es:
   billed_address: "Se le facturará en esta dirección"
   billing_address: "Dirección para Facturación"
   birthdate: "Fecha de Nacimiento"
+  branch_code: "Código de sucursal"
   breakfast: Desayuno
   buzzer_intercom: Buzzer/Intercom
   cable_tv: "TV por cable"
@@ -71,11 +74,11 @@ es:
   cancellation: Cancelación
   cancellation_policy: "Política de cancelación"
   cant_find_city: "¿No encuentra la ciudad a la cual deseaba ir?"
-  car_five: ""
-  car_four: ""
-  car_one: ""
-  car_three: ""
-  car_two: ""
+  car_five: "Singapur, el primer destino disponible en SquareStays"
+  car_four: "SquareStays ofrece vida asequible y flexible"
+  car_one: "Singapur - una creciente potencia global de negocios"
+  car_three: "Hong Kong, próximamente"
+  car_two: "Singapur ofrece vida lujosa"
   categories_left: "deben completarse más categorías"
   change_address: "Cambiar dirección"
   change_billing_address: "Cambiar la dirección de facturación"
@@ -83,9 +86,10 @@ es:
   change_photo_description: "Subir una foto actual ayuda a inquilinos evaluar tu perfil. Mientras no es obligatorio, ayuda a construir confianza con los dueños si completa su perfil."
   check_in: Check-in
   check_in_before: "Registrar antes"
-  check_in_flexible: ""
+  check_in_flexible: Flexible
   check_out: Check-out
   check_out_before: "Retirar antes de"
+  choose_country: "Elija un país"
   choose_currency: "Elija la moneda"
   choose_language: "Elija el idioma"
   choose_unit: "Elija la unidad"
@@ -101,6 +105,274 @@ es:
   contact_information: "Información de contacto"
   continue: Continuar
   conversation_with: "Conversación con"
+  countries: 
+    AD: Andorra
+    AE: "Emiratos Árabes Unidos"
+    AF: Afganistán
+    AG: "Antigua y Barbuda"
+    AI: Anguila
+    AL: Albania
+    AM: Armenia
+    AN: "Antillas Neerlandesas"
+    AO: Angola
+    AQ: "La Antártida"
+    AR: Argentina
+    AS: "Samoa Americana"
+    AT: Austria
+    AU: Australia
+    AW: Aruba
+    AX: "Islas Aland"
+    AZ: Azerbaiyán
+    BA: Bosnia-Herzegovina
+    BB: Barbados
+    BD: Bangladesh
+    BE: Bélgica
+    BF: "Burkina Faso"
+    BG: Bulgaria
+    BH: Bahrein
+    BI: Burundi
+    BJ: Benin
+    BL: "Saint Barthélemy"
+    BM: Bermudas
+    BN: Brunei
+    BO: Bolivia
+    BQ: "Territorio Antártico británico"
+    BR: Brasil
+    BS: Bahamas
+    BT: Bután
+    BV: "Isla Bouvet"
+    BW: Botswana
+    BY: Bielorrusia
+    BZ: Belice
+    CA: Canadá
+    CC: "Islas Cocos"
+    CD: "Congo - Kinshasa"
+    CF: "República Centroafricana"
+    CG: "Congo - Brazzaville"
+    CH: Suiza
+    CI: "Costa de Marfil"
+    CK: "Islas Cook"
+    CL: Chile
+    CM: Camerún
+    CN: China
+    CO: Colombia
+    CR: "Costa Rica"
+    CS: "Serbia y Montenegro"
+    CT: "Cantón y Enderbury islas"
+    CU: Cuba
+    CV: "Cabo Verde"
+    CX: "Isla de Navidad"
+    CY: Chipre
+    CZ: "República Checa"
+    DD: "Alemania Oriental"
+    DE: Alemania
+    DJ: Djibouti
+    DK: Dinamarca
+    DM: Dominica
+    DO: "República Dominicana"
+    DZ: Argelia
+    EC: Ecuador
+    EE: Estonia
+    EG: Egipto
+    EH: "Sáhara Occidental"
+    ER: Eritrea
+    ES: España
+    ET: Etiopía
+    FI: Finlandia
+    FJ: Fiji
+    FK: "Islas Malvinas"
+    FM: Micronesia
+    FO: "Islas Faroe"
+    FQ: "Francés meridional y territorios de la Antártida"
+    FR: Francia
+    FX: "Francia Metropolitana"
+    GA: Gabón
+    GB: "Reino Unido"
+    GD: Granada
+    GE: Georgia
+    GF: "Guayana francesa"
+    GG: Guernsey
+    GH: Ghana
+    GI: Gibraltar
+    GL: Groenlandia
+    GM: Gambia
+    GN: Guinea
+    GP: Guadalupe
+    GQ: "Guinea Ecuatorial"
+    GR: Grecia
+    GS: "Georgia del Sur y las Islas Sandwich del sur"
+    GT: Guatemala
+    GU: Guam
+    GW: Guinea-Bissau
+    GY: Guyana
+    HK: "Hong Kong"
+    HM: "Islas Heard y McDonald"
+    HN: Honduras
+    HR: Croacia
+    HT: Haití
+    HU: Hungría
+    ID: Indonesia
+    IE: Irlanda
+    IL: Israel
+    IM: "Isla de Man"
+    IN: India
+    IO: "Territorio británico del Océano Índico"
+    IQ: Irak
+    IR: Irán
+    IS: Islandia
+    IT: Italia
+    JE: Jersey
+    JM: Jamaica
+    JO: Jordania
+    JP: Japón
+    JT: "Isla de Johnston"
+    KE: Kenia
+    KG: Kirguizistán
+    KH: Camboya
+    KI: Kiribati
+    KM: Comoras
+    KN: "Saint Kitts y Nevis"
+    KP: "Corea del Norte"
+    KR: "Corea del sur"
+    KW: Kuwait
+    KY: "Islas Caimán"
+    KZ: Kazajstán
+    LA: Laos
+    LB: Líbano
+    LC: "Santa Lucía"
+    LI: Liechtenstein
+    LK: "Sri Lanka"
+    LR: Liberia
+    LS: Lesotho
+    LT: Lituania
+    LU: Luxemburgo
+    LV: Letonia
+    LY: Libia
+    MA: Marruecos
+    MC: Mónaco
+    MD: Moldova
+    ME: Montenegro
+    MF: "San Martín"
+    MG: Madagascar
+    MH: "Islas Marshall"
+    MI: "Islas Midway"
+    MK: Macedonia
+    ML: Malí
+    MM: Myanmar
+    MN: Mongolia
+    MO: Macao
+    MP: "Islas Marianas del Norte"
+    MQ: Martinica
+    MR: Mauritania
+    MS: Montserrat
+    MT: Malta
+    MU: Mauricio
+    MV: Maldivas
+    MW: Malawi
+    MX: México
+    MY: Malasia
+    MZ: Mozambique
+    NA: Namibia
+    NC: "Nueva Caledonia"
+    NE: Níger
+    NF: "Isla Norfolk"
+    NG: Nigeria
+    NI: Nicaragua
+    NL: "Países Bajos"
+    ? "NO"
+    : Noruega
+    NP: Nepal
+    NQ: "Dronning Maud Land"
+    NR: Nauru
+    NT: "Zona neutral"
+    NU: Niue
+    NZ: "Nueva Zelanda"
+    OM: Omán
+    PA: Panamá
+    PC: "Fideicomiso de las islas del Pacífico"
+    PE: Perú
+    PF: "Polinesia francesa"
+    PG: "Papua Nueva Guinea"
+    PH: Filipinas
+    PK: Pakistán
+    PL: Polonia
+    PM: "Saint Pierre y Miquelon"
+    PN: Pitcairn
+    PR: "Puerto Rico"
+    PS: "Territorio palestino"
+    PT: Portugal
+    PU: "Varias islas del Pacífico de Estados Unidos"
+    PW: Palau
+    PY: Paraguay
+    PZ: "Zona del Canal de Panamá"
+    QA: Qatar
+    QO: "Oceanía periféricas"
+    QU: "Unión Europea"
+    RE: Reunion
+    RO: Rumania
+    RS: Serbia
+    RU: Rusia
+    RW: Rwanda
+    SA: "Arabia Saudí"
+    SB: "Islas Salomón"
+    SC: Seychelles
+    SD: Sudán
+    SE: Suecia
+    SG: Singapur
+    SH: "Santa Helena"
+    SI: Eslovenia
+    SJ: "Svalbard y Jan Mayen"
+    SK: Eslovaquia
+    SL: "Sierra Leona"
+    SM: "San Marino"
+    SN: Senegal
+    SO: Somalia
+    SR: Surinam
+    ST: "Santo Tomé y Príncipe"
+    SU: "Unión de Repúblicas Socialistas Soviéticas"
+    SV: "El Salvador"
+    SY: Siria
+    SZ: Swazilandia
+    TC: "Islas Turcas y Caicos"
+    TD: Chad
+    TF: "Territorios australes franceses"
+    TG: Togo
+    TH: Tailandia
+    TJ: Tayikistán
+    TK: Tokelau
+    TL: "Timor Oriental"
+    TM: Turkmenistán
+    TN: Túnez
+    TO: Tonga
+    TR: Turquía
+    TT: "Trinidad y Tobago"
+    TV: Tuvalu
+    TW: Taiwán
+    TZ: Tanzania
+    UA: Ucrania
+    UG: Uganda
+    UM: "Islas menores de Estados Unidos"
+    US: "Estados Unidos"
+    UY: Uruguay
+    UZ: Uzbekistán
+    VA: Vaticano
+    VC: "San Vicente y las Granadinas"
+    VD: "Vietnam del Norte"
+    VE: Venezuela
+    VG: "Islas Vírgenes Británicas"
+    VI: "Islas Vírgenes"
+    VN: Vietnam
+    VU: Vanuatu
+    WF: "Wallis y Futuna"
+    WK: "Isla Wake"
+    WS: Samoa
+    YD: "República Democrática del Yemen popular"
+    YE: Yemen
+    YT: Mayotte
+    ZA: Sudáfrica
+    ZM: Zambia
+    ZW: Zimbabue
+    ZZ: "Desconocido o región invalida"
   country: Pais
   create_an_account_using: "Crear una cuenta usando"
   create_new_account: "Crear nueva cuenta"
@@ -320,6 +592,11 @@ es:
   for_more_info: "para obtener más información"
   forgot_password: "¿Olvidó su contraseña?"
   form_error: "Por favor, corrija el error en el formulario primero antes de que podamos proceder."
+  fp_one: SquareStays
+  fp_three: Alojamientos
+  fp_two_a: "le conecta con"
+  fp_two_b: "a corto plazo, profesional y confiable"
+  fully_private_field: ""
   furnishings: Comodidades
   gender: Sexo
   gender_female: Femenino
@@ -340,6 +617,7 @@ es:
       create: "Crear %{model}"
       submit: "Guardar %{model}"
       update: "Actualizar %{model}"
+  holder_name: ""
   homepage_about: "Acerca de SquareStays"
   homepage_about_content: "SquareStays ofrece una mezcla única de exactamente lo que necesita en alojamiento profesional flexible - calidad y confianza a un precio razonable. Todos los anuncios de SquareStays están diseñados para proporcionar la comodidad que usted espera de tener un lugar propio con la flexibilidad de una estancia de corto plazo. SquareStays sólo permite propietarios profesionales, propietarios, agentes y gerentes de propiedad lista de lugares. Esto le asegura un alto nivel de confianza, servicio y calidad para su estancia."
   homepage_life_sg_content: ""
@@ -354,6 +632,7 @@ es:
   how_many_bedrooms: "¿Cuántas habitaciones?"
   i_agree_to_the: "Acepto los"
   i_have_an_account: "¿Ya es miembro de SquareStays?"
+  iban: IBAN
   internet: Internet
   internet_wifi: WiFi
   invalid_confirmation_code: "Código de confirmación inválido"
@@ -509,6 +788,7 @@ es:
   save_and_continue: "Guardar y Continuar &raquo;"
   saving_photo: "Guardando la foto"
   search_place_stay_in: "Buscar un lugar para quedarse"
+  section_header_bank_account: "Cuenta bancaria"
   section_header_billing_address: "Dirección para Facturación"
   section_header_user_information: "Información Personal"
   section_header_user_password: Contraseña
@@ -516,7 +796,7 @@ es:
   security_deposit: "Depósito de garantía"
   security_deposit_hint: ""
   see_our: "Consulte nuestra"
-  select_one: ""
+  select_one: "Por favor, seleccione al menos uno"
   share: "Compartir a través de"
   sign_in: "Iniciar Sesión"
   sign_out: "Terminar Sesión"
@@ -551,6 +831,7 @@ es:
       words_connector: ", "
     select: 
       prompt: "Por favor seleccione"
+  swift: SWIFT
   teaser_1_content: "SquareStays ofrece alojamiento flexible y de alta calidad para usted. Squarestays es el sitio de destino para encontrar la perfecta estancia a corto o mediano plazo."
   teaser_1_title: Flexibilidad
   teaser_2_content: "SquareStays trabaja con agentes profesionales y propietarios para garantizar una experiencia cómoda y profesional que puede confiar."
@@ -583,7 +864,7 @@ es:
   upload_photo_hint: "Soportamos imágenes jpg y png. Debes enviar un mínimo de 3 imágenes."
   use_facebook_photo: "Usar la foto de Facebook"
   user_confirmed: "Tu cuenta se ha confirmado correctamente!"
-  view_house_rules: ""
+  view_house_rules: "Ver reglas de casa"
   villa: Villa
   washer: Lavadora
   what_city: "¿En qué ciudad está tu Apartamento?"

@@ -1,4 +1,5 @@
 --- 
+account_number: "Account number"
 account_settings: Edit
 activerecord: 
   errors: 
@@ -29,6 +30,7 @@ arriving: Arriving
 ask_question: "Ask a question"
 authentication_fail: "We are unable to authenticate you at the moment. Please try again."
 availability: Availability
+bank_code: "Bank code"
 bathroom: Bathrooms
 bed: Bed
 bedroom: Bedrooms
@@ -36,6 +38,7 @@ bedrooms: Bedrooms
 billed_address: "You will be billed at this address"
 billing_address: "Billing Address"
 birthdate: Birthdate
+branch_code: "Branch code"
 breakfast: Breakfast
 buzzer_intercom: Buzzer/Intercom
 cable_tv: "Cable TV"
@@ -61,6 +64,7 @@ check_in_before: "Check In Before"
 check_in_flexible: Flexible
 check_out: "Check out"
 check_out_before: "Check Out Before"
+choose_country: "Choose a country"
 choose_currency: "Choose currency"
 choose_language: "Choose language"
 choose_unit: "Choose unit"
@@ -77,6 +81,8 @@ contact: Contact
 contact_information: "Contact Information"
 continue: Continue
 conversation_with: "Conversation with"
+countries: 
+  VN: Vietnam
 country: Country
 create_an_account_using: "Create an Account using"
 currency: Currency
@@ -102,6 +108,11 @@ footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
 for_more_info: "for more info"
 forgot_password: "Forgot Password"
 form_error: "Please fix the error on the form first before we can proceed."
+fp_one: SquareStays
+fp_three: accomodations
+fp_two_a: "connects you with"
+fp_two_b: "trusted, professional, short-term"
+fully_private_field: "Private. Only visible to SquareStays"
 furnishings: Conveniences
 guest: Guests
 guests: Guests
@@ -109,6 +120,7 @@ gym: Gym
 handicap: "Handicap accessible"
 head_cancellation: "If you wish to cancel your SquareStays reservation"
 heating: Heating
+holder_name: "Holder Name"
 homepage_about: "About SquareStays"
 homepage_about_content: "SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay."
 homepage_life_sg_content: "With business travel to Asia increasing and hotel prices sky-rocketing, finding a place to stay for business travel has become increasingly difficult.  As a hub that connects the east and the west, Singapore is an important market in the Asian business economy with sustained growth and top-rated business environment.  SquareStays is now available in Singapore and plans to expand in other major cities across Asia and worldwide."
@@ -121,6 +133,7 @@ hot_water: "Hot Water"
 house: House
 house_rules: "House rules"
 i_have_an_account: "Already a SquareStays member?"
+iban: IBAN
 internet: Internet
 internet_wifi: Wifi
 jacuzzi: Jacuzzi
@@ -199,6 +212,7 @@ room: Room
 save: Save
 saving_photo: "Saving photo"
 search_place_stay_in: "Search for a place to stay in"
+section_header_bank_account: "Bank Account"
 security_deposit: "Security Deposit"
 security_deposit_hint: "The wireframe has this but I don't have the text yer"
 see_our: "See our"
@@ -222,6 +236,7 @@ strict_cancellation: "at least 7 days before the reservation date, you will be c
 sub_total: Subtotal
 success: Success!
 suitable_events: "Suitable for Events"
+swift: Swift
 teaser_1_content: "SquareStays offers flexible, high-quality accommodations for you. Squarestays is the destination site to find your perfect short-term or medium-term stay."
 teaser_1_title: Flexibility
 teaser_2_content: "SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust."

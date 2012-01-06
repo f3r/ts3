@@ -1882,10 +1882,12 @@ table.borderless,
 table.borderless td {border:0}
 table.borderless td {width:50%}
 table.borderless td.label_detail {color:#777;text-align:right;}
+select#bank_account_holder_country_code,
 select#address_country {width:200px;}
 
 .edit_profile_page form label {width:190px;}
 .edit_profile_page form .public,
+.edit_profile_page form .fully-private,
 .edit_profile_page form .private {
   width:16px;
   height:16px;
@@ -1894,6 +1896,7 @@ select#address_country {width:200px;}
   float:left;
   margin:7px 4px 0 0;
 }
+.edit_profile_page form .fully-private,
 .edit_profile_page form .private {
   background-image: url("../images/icon_private.png");
 }

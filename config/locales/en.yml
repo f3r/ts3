@@ -86,7 +86,7 @@ en:
   section_header_user_information:  User Information
   section_header_billing_address:   Billing Address
   section_header_user_password:     Password
-
+  section_header_bank_account:   Bank Account
   ####################################################################################
   # User Profile Data
   ####################################################################################
@@ -109,8 +109,16 @@ en:
   upload_a_new_photo:   Upload a new Photo
   saving_photo:         Saving photo
   private_field:        Private. Only visible to those that have an active transaction with you
+  fully_private_field:  Private. Only visible to SquareStays
   public_field:         Public. Anyone can see this information
   linked_accounts:      Linked Accounts
+  holder_name:          Holder Name
+  account_number:       Account number
+  bank_code:            Bank code
+  branch_code:          Branch code
+  iban:                 IBAN
+  swift:                Swift
+  choose_country:       Choose a country
 
   ####################################################################################
   # Authentications

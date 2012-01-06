@@ -57,6 +57,7 @@ HeyPalFrontEnd::Application.routes.draw do
       post :publish
     end
     match '/change_address' => "addresses#update"
+    match '/change_bank_account' => "bank_accounts#update"
     put '/change_password' => "users#change_password"
   end
 

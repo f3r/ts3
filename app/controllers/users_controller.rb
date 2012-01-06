@@ -130,7 +130,7 @@ class UsersController < ApplicationController
   def edit
     @user = Heypal::User.show('access_token' => current_token)
     @address = Heypal::Address.show('access_token' => current_token)
-    # @bank_account = Heypal::BankAccount.show('access_token' => current_token)
+    @bank_account = Heypal::BankAccount.show('access_token' => current_token)
     @user_auth = Heypal::User.list('access_token' => current_token)
   end
 

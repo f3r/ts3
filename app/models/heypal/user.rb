@@ -62,6 +62,15 @@ class Heypal::User < Heypal::Base
     def list(params = {})
       result = request("/authentications.json?access_token=#{params['access_token']}", :get, params)
     end
+
+    def facebook_info(params = {})
+      result = request("/users/facebook/info.json?access_token=#{params['access_token']}", :get, params)
+      if result['stat'] == 'ok'
+        result['user_info']
+      else
+        nil
+      end
+    end
     
     def cancel_email_change(params = {})
       result = request("/users/confirmation.json?access_token=#{params['access_token']}", :delete)

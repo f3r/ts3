@@ -47,22 +47,19 @@ class SessionsController < ApplicationController
                                                            'email' => oauth_email, 'first_name' => oauth_firstname, 'last_name' => oauth_lastname,
                                                            'image' => oauth_image}
                                                          }})
-
       # IF it's existing it should log in the user
       if @heypal_session.valid?
         sign_in @heypal_session
         #save user data in session
         if (current_user.avatar.nil?)
-          avatar_url = oauth_provider.eql?('facebook') ? oauth_image.gsub('square', 'large') : oauth_image.gsub('normal', 'bigger') 
+          avatar_url = oauth_provider.eql?('facebook') ? oauth_image.gsub('square', 'large') : oauth_image.gsub('normal', 'bigger')
           user_data = {
-            'access_token' => current_token, 'avatar_url' => avatar_url, 'birthdate' => oauth_birthday
+            'access_token' => current_token, 'avatar_url' => avatar_url
           }
           user = Heypal::User.update(user_data)
-          session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
-        else
-          session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         end
-        redirect_to '/places'
+        session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
+        redirect_to '/profile'
       else
         # Ask the user to connect the account
         flash[:notice] = t(:signup_needed_to_connect)
@@ -71,7 +68,7 @@ class SessionsController < ApplicationController
     else
       connect
       flash[:notice] = "#{oauth_provider.capitalize} is connected in your account."
-      redirect_to '/places'      
+      redirect_to '/profile'
       return
     end
   end
@@ -129,7 +126,7 @@ class SessionsController < ApplicationController
   end
 
   def oauth_birthday
-    @oauth_birthday = omniauth_userinfo['birthday']
+    @oauth_birthday = omniauth['extra']['user_hash']['birthday']
   end
 
   def oauth_image

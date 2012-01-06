@@ -26,24 +26,32 @@ class UsersController < ApplicationController
      if params['confirmation_token']
       result = Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
       if params['confirmation_token'].present? && result['stat'].eql?('ok')
+        sign_in result
         if result['email_change'] == true
           flash[:notice] = t(:email_confirmed)
         else
           flash[:notice] = t(:user_confirmed)
-        end
-        sign_in result
-        #if sign up using fb/twitter
-        auth = Heypal::User.list('access_token' => current_token)
-        unless auth['authentications'].blank?
+          #if sign up using fb/twitter
+          auth = Heypal::User.list('access_token' => current_token)
           user_auth = auth['authentications'][0]
-          if current_user.avatar.nil?
-            avatar_pic = user_auth['provider'].eql?('facebook') ? "https://graph.facebook.com/#{user_auth['uid']}/picture?type=large" : "http://api.twitter.com/1/users/profile_image/#{user_auth['uid']}.jpg?size=bigger"
-            user_data = {'access_token' => current_token, 'avatar_url' => avatar_pic}
-            # FIXME: 1966?
-            # user_data = user_data.merge('birthdate' => '1966-01-01') if current_user.birthdate.nil?
-            user_data = user_data.merge('birthdate' => oauth_birthday) if current_user.birthdate.nil? && user_auth['provider'].eql?('facebook')
-            user = Heypal::User.update(user_data)
+          if user_auth['provider'].eql?('facebook')
+            facebook_info = Heypal::User.facebook_info('access_token' => current_token)
+            if facebook_info
+              user_data = {
+                'access_token' => current_token, 
+                'avatar_url' => facebook_info['avatar_url'],
+                'birthdate' => facebook_info['birthdate'],
+                'gender' => facebook_info['gender']
+              }
+              user = Heypal::User.update(user_data)
+            end
+          elsif user_auth['provider'].eql?('twitter')
+            user = Heypal::User.update({
+              'access_token' => current_token,
+              :avatar_url=>"http://api.twitter.com/1/users/profile_image/#{user_auth['uid']}.jpg?size=bigger"
+            })
           end
+
         end
         redirect_to '/places'
       else

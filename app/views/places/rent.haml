@@ -107,10 +107,10 @@
               .clearfix
                 .input.required
                   = label_tag :arriving, t(:arriving)
-                  = text_field_tag :check_in, (!params['check_in'].blank? ? params['check_in'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability]]"
+                  = text_field_tag :check_in, (!params['check_in'].blank? ? params['check_in'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability],past[NOW]]"
                 .input.required
                   = label_tag :check_out, t(:departing)
-                  = text_field_tag :check_out, (!params['check_out'].blank? ? params['check_out'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability]]"
+                  = text_field_tag :check_out, (!params['check_out'].blank? ? params['check_out'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability],past[NOW]]"
                 .input
                   = label_tag :duration, t(:duration)
                   .duration
@@ -132,7 +132,7 @@
           .clearfix
             = check_box_tag :terms, 1, false, :class => "validate[required]"
             = t(:read_agreement)
-            = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank        
+            = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank
 
             = hidden_field_tag :user_id, current_user['id']
             = hidden_field_tag :place_id, @place["id"]
@@ -149,9 +149,30 @@
     update_dates();
 
     $('form#check_availability input#user_phone_mobile, form#check_availability input#user_passport_number').change(trackChange).blur(sendFieldUpdate);
-    
-  });
+    //hide and show past date
+    $('.datepickerGoPrev a').hide();
+    $('.datepickerGoNext a:first').hide();
+    var cur_date = new Date();
+    $('.datepickerGoNext a').click(function() {
+      var first_cal_month = $('.datepickerMonth span:first').text();
+      var cur_month = new Date(first_cal_month);
+      if (cur_date.getMonth() == cur_month.getMonth() + 1) {
+        $('.datepickerGoPrev a:first').hide();
+      } else {
+        $('.datepickerGoPrev a:first').show();
+      }
+    });
+    $('.datepickerGoPrev a').click(function() {
+      var first_cal_month = $('.datepickerMonth span:first').text();
+      var cur_month = new Date(first_cal_month);
+      if (cur_date.getMonth() == cur_month.getMonth() - 1) {
+        $('.datepickerGoPrev a:first').hide();
+      } else {
+        $('.datepickerGoPrev a:first').show();
+      }
+    });
 
+  });
   function daydiff(first, second) {
     return (second-first)/(1000*60*60*24)
   }
@@ -237,6 +258,7 @@
   			calendars: 2,
   			mode: 'range',
   			starts: 1,
+        formated: true,
   			onRender: function(date) {
           date = date.format('Y-m-d')
       		return {

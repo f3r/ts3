@@ -32,7 +32,7 @@
           = f.check_box :terms, :id => 'terms_and_conditions'
           I accept the
           = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank
-      %button.btn.float-right{:type => 'submit primary'}
+      %button.btn.float-right{:type => 'submit'}
         Create account
 
   .section.span5
@@ -49,7 +49,7 @@
         = text_field_tag :email, '',  :placeholder => t(:email)
       .input
         = password_field_tag :password, '', :placeholder => t(:password)
-      %button.btn.float-right{:type => 'submit primary'}
+      %button.btn.float-right{:type => 'submit'}
         Login
     %br.clearfix
     = link_to t(:forgot_password), reset_password_users_path

@@ -6,7 +6,7 @@
     = form_tag '/users/confirm', :method => :get do 
       .input
         = text_field_tag 'confirmation-token', '',  :placeholder => t(:confirmation_code)
-      %button.btn.float-right{:type => 'submit primary'}
+      %button.btn.float-right{:type => 'submit'}
         = t(:submit)
 
   .section.span5
@@ -14,7 +14,7 @@
     = form_tag '/users/confirm', :method => :get do 
       .input
         = text_field_tag 'email', '',  :placeholder => t(:enter_your_email)
-      %button.btn.float-right{:type => 'submit primary'}
+      %button.btn.float-right{:type => 'submit'}
         = t(:resend_confirmation)
 
   %br.clearfix

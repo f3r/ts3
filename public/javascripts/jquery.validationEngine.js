@@ -1072,12 +1072,12 @@
                     rule: rule,
                     methods: methods,
                     options: options,
-                    beforeSend: function() {
-                        // build the loading prompt
-                        var loadingText = rule.alertTextLoad;
-                        if (loadingText)
-                            methods._showPrompt(field, loadingText, "load", true, options);
-                    },
+                    /*beforeSend: function() {*/
+                        //// build the loading prompt
+                        //var loadingText = rule.alertTextLoad;
+                        //if (loadingText)
+                            //methods._showPrompt(field, loadingText, "load", true, options);
+                    /*},*/
                     error: function(data, transport) {
                         methods._ajaxError(data, transport);
                     },

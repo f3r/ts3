@@ -427,6 +427,8 @@ var computeWeeklyMonthlyPay = function() {
   var total_per_week;
   var total_per_month;
   var currency_sign = $('.currency-sign-id').last().text();
+  var place_currency = $('#place_currency').val();
+  var field = $('#place_currency').attr('name');
   total_per_week = Math.floor(per_week * RATE_DISCOUNT_PER_WEEK);
   total_per_month = Math.floor(per_month * RATE_DISCOUNT_PER_MONTH);
 
@@ -435,6 +437,12 @@ var computeWeeklyMonthlyPay = function() {
     $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
     $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
+
+  $.ajax({
+    type: 'PUT',
+    url: '/places/' + place_id + '.json',
+    data: field + '=' + place_currency
+  });
 };
 
 function showComputeWeeklyMonthlyPay(elem) {

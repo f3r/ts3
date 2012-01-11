@@ -27,6 +27,16 @@
         = t(:calendar)
 
   .clearfix
-  %a.btn.primary.large.preview-button{:href => preview_place_path(@place), :id => "preview_button"}
-    %span
-      = t(:preview)
+  - unless @place.published
+    %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "setTimeout(goToPreview(#{@place.id}), 5000)"}
+      %span
+        = t(:preview)
+  - else
+    %a.btn.primary.large.preview-button{:href => place_path(@place), :id => "preview_button"}
+      %span
+        = t(:back_to_place_details)
+
+:javascript
+  function goToPreview(place) {
+    window.location = '/places/' + place + '/preview';
+  }

@@ -28,7 +28,7 @@
 
   .clearfix
   - unless @place.published
-    %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "setTimeout(goToPreview(#{@place.id}), 30000)"}
+    %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
       %span
         = t(:preview)
   - else
@@ -38,5 +38,7 @@
 
 :javascript
   function goToPreview(place) {
-    window.location = '/places/' + place + '/preview';
+    setTimeout( function() {
+      window.location = '/places/' + place + '/preview';
+    }, 5000)
   }

@@ -11,7 +11,7 @@
           %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
 
         #my-modal.hide.modal.fade
-          = form_tag '/cities/suggest', :html => {:remote => true}, :style => "margin-bottom:0" do
+          = form_tag '/cities/suggest', :html => {:remote => true}, :class => 'cities_suggest_form' do
             .modal-header
               %h3=t(:cant_find_city)
             .modal-body
@@ -30,10 +30,11 @@
               %button.btn.primary=t(:submit)
               %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
 
-        %form{:action => '/places'}
+        %form{:action => places_path}
           .clearfix
             = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'textbox big from-to-picker', "data-date" => :from
-            = button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"
+            -#= button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"
+            = submit_tag "#{t(:homepage_search_but)}", :class => 'btn hp-blue large'
 
         #fp-liner{:style => 'color:#3977b0'}
           %p 

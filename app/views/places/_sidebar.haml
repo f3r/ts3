@@ -28,7 +28,7 @@
 
   .clearfix
   - unless @place.published
-    %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "setTimeout(goToPreview(#{@place.id}), 10000)"}
+    %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "setTimeout(goToPreview(#{@place.id}), 30000)"}
       %span
         = t(:preview)
   - else

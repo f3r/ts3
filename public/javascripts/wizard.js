@@ -509,7 +509,7 @@ $(document).ready(function() {
 
   // proof of concept - save on update feature
   $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)
-        .blur(sendFieldUpdate);
+        .focusout(sendFieldUpdate);
 
   $('#wizard_form input[type=text].autosave_place_unit,  #wizard_form select.autosave_place_unit').change(trackChange)
         .blur(sendPlaceSizeUpdate);

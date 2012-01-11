@@ -34,10 +34,10 @@
                   - place_types_list.each do |p_type|
                     %li
                       %label
-                        .left
+                        %span.left
                           = check_box_tag :place_type, p_type[0], (@results['place_type_count'][p_type[2]].to_i > 0), :id => p_type[2]
                           %span= p_type[0]
-                        .right
+                        %span.right
                           %span= "(#{@results['place_type_count'][p_type[2]]})"
 
             %li

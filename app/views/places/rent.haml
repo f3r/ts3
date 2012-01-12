@@ -180,7 +180,7 @@
   function update_duration(start,end) {
     diff = daydiff(start, end);
     if (diff > 0) {
-      $('div.duration span').html(Math.round(diff));
+      $('div.duration span').html(Math.round(diff)-1);
     } else {
       $('div.duration span').html(0);
     }

@@ -155,7 +155,7 @@
               .private
               = f.password_field :password, :class => "validate[required,minSize[6]]"
             .input
-              = f.label t(:profile_retype_pwd)
+              = f.label :password_confirmation, t(:profile_retype_pwd)
               .private
               = f.password_field :password_confirmation, :class => "validate[required,equals[new_password_password]]"
             .clearfix

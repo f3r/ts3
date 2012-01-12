@@ -30,7 +30,7 @@
     - amenities_group_3.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
         -if a[0] == 'Smoking Allowed'
-          = link_to '?', '#', :rel => 'twipsy', :title => raw(t(:do_you_allow_smoking))
+          = link_to '?', '#', :class => 'twipsy', :title => raw(t(:do_you_allow_smoking))
           = f.check_box a[1], :value => 'true'
           = a[0]
         -else

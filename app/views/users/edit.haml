@@ -29,7 +29,7 @@
                 = f.label :unconfirmed_email, "#{t(:unconfirmed_email)}*"
                 %span
                   = @user['unconfirmed_email']
-                = link_to "x", cancel_email_change_path, :method => :get, :remote => true, :rel => 'twipsy', :title => t(:cancel_email_change)
+                = link_to "x", cancel_email_change_path, :method => :get, :remote => true, :class => 'twipsy', :title => t(:cancel_email_change)
             .input
               = f.label :gender, t(:gender)
               .private

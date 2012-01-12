@@ -70,7 +70,7 @@
               %ul.pager
                 - @place['photos'].each_with_index do |p, i|
                   %li
-                    %a{:rel => i, :class => "pagenum", :href => "#"}
+                    %a{"data-page" => i, :class => "pagenum", :href => "#"}
                       = image_tag(p['photo']['tiny'])
 
               %a.buttons.next{:href => "#"}

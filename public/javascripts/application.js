@@ -184,14 +184,14 @@ $(document).ready(function() {
     $("#country-select").hide();
   });
 
-  $("a[rel=twipsy]").twipsy({
+  $("a.twipsy, a[rel=twipsy]").twipsy({
       live:true,
       animate: false,
       placement: 'below',
       html: true
   });
 
-  $("a[rel=twipsy-link]").twipsy({
+  $("a.twipsy-link").twipsy({
     live:true,
     animate: false,
     placement:'below',

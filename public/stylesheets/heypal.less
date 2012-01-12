@@ -2395,12 +2395,14 @@ h2.title {
   background: @red;
 }
 
-a[rel="twipsy"], a[rel="twipsy-link"], .place_status  {
+a.twipsy, a.twipsy-link, .place_status  {
   border:1px solid;
   border-radius:5px;
   margin-left:10px;
   line-height:1;
   padding:0 2px;
+  display: inline-block;
+  position: relative;
 
   &:hover {
     text-decoration:none;

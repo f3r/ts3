@@ -26,12 +26,12 @@
       = f.label :price_final_cleanup, t(:final_cleanup)
       %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_final_cleanup, :class => "span2 autosave"
-      = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t(:final_cleanup_hint))      
+      = link_to '?', '#', :class => 'twipsy', 'data-original-title' => raw(t(:final_cleanup_hint))      
     .input
       = f.label :price_security_deposit, t(:security_deposit)
       %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_security_deposit, :class => "span2 autosave"
-      = link_to '?', '#', :rel => 'twipsy', 'data-original-title' => raw(t(:security_deposit_hint))            
+      = link_to '?', '#', :class => 'twipsy', 'data-original-title' => raw(t(:security_deposit_hint))            
   %h2.title= t(:terms)
   %fieldset
     .input
@@ -54,7 +54,7 @@
     .input.required
       = f.label :cancellation_policy, t(:cancellation_policy)
       = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
-      = link_to '?', '#', :rel => 'twipsy-link',
+      = link_to '?', '#', :class => 'twipsy-link',
         :title => "#{t(:head_cancellation)}<br><br><b>#{t(:flexible)}</b>: #{t(:flexible_cancellation)}<br><b>#{t(:strict)}</b>: #{t(:strict_cancellation)}<br><br> #{t(:see_our)} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t(:cancellation_policy)}</a> #{t(:for_more_info)}."
     .input
       = f.label :house_rules, t(:house_rules)

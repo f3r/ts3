@@ -15,7 +15,7 @@
 .row
   .span16
     = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show', :remote => true} do |f|
-      %span3.float-left
+      %span.float-left
         - unless current_user.avatar.nil?
           %img{:src => current_user.avatar, :style => "width:60px"}
         - else

@@ -7,9 +7,9 @@
             %li
               .float-right
                 - if place['published']
-                  %p{:id => 'listing-status', :class => 'place_status'}=  t(:listed)
+                  %p{:class => 'place_status'}=  t(:listed)
                 - else
-                  %p{:id => 'listing-status', :class => 'place_status'}=  t(:invisible)
+                  %p{:class => 'place_status'}=  t(:invisible)
               .span3
                 .thumb.data-block
                   - if place['photos'].blank?
@@ -56,9 +56,9 @@
     );
 
     if($('#place_published').text() == 'false') {
-      $('#listing-status').text('Invisible');
+      $('.place_status').text('Invisible');
     } else {
-      $('#listing-status').text('Listed');
+      $('.place-status').text('Listed');
     }
 
   });

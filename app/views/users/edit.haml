@@ -151,7 +151,7 @@
             -#   .private
             -#   = f.password_field 'current_password', {:placeholder => t(:profile_current_pwd), :class => "validate[required]"}
             .input
-              = f.label t(:password)
+              = label_tag '', t(:password)
               .private
               = f.password_field :password, :class => "validate[required,minSize[6]]"
             .input
@@ -177,10 +177,9 @@
               .modal-body
                 .row
                   .span2
-                    %p
-                      = image_tag(@avatar, :class => "avatar_placeholder", :width => 100)
-                      .preview
-                        =t(:preview)
+                    = image_tag(@avatar, :class => "avatar_placeholder", :width => 100)
+                    .preview
+                      =t(:preview)
                   .span7
                     %p=t(:change_photo_description)
                     %p
@@ -190,7 +189,7 @@
                       = f.hidden_field :avatar_url
                     %span
                       %a.btn.medium.upload_avatar=t(:upload_a_new_photo)
-                      .upload_field
+                      %span.upload_field
                         = f.file_field :avatar, :onchange => "readURL(this);", :style=>"display:none;"
               .modal-footer
                 = button_tag t(:save), :class => 'btn primary',  "data-loading-text" => "#{t(:saving_photo)}...", :id => "save-btn"

@@ -5,7 +5,7 @@
     = form_for 'comment', :url => place_comments_path(@place), :html => {:id => 'comment-form', :remote => true} do |f|
       %div
         - unless current_user.avatar.nil?
-          %img{:src => current_user.avatar, :style => "width:60px; height:60px;"}
+          %img{:src => current_user.avatar, :style => "width:60px; height:60px;", :alt => 'user_avatar'}
         - else
           = placehold(60,60)
         = f.text_area :comment, :rows => 3, :class => "span10"

@@ -60,7 +60,7 @@ module PlacesHelper
     p = photo['photo']
 
     photo_title = p['name'].present? ? truncate(p['name'], :length => 23) : t(:no_caption)
-    raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}' data-medsmall='#{p['medsmall']}' data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' data-trunc-name='#{truncate(p['name'], :length => 23)}' /></div><p class='photo_title'>#{photo_title}</p>"
+    raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}' data-medsmall='#{p['medsmall']}' data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' data-trunc-name='#{truncate(p['name'], :length => 23)}' alt='#{p['filename']}'/></div><p class='photo_title'>#{photo_title}</p>"
   end
   
   def render_photo_title(photo)

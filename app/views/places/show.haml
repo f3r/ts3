@@ -218,7 +218,7 @@
               - avatar = large_avatar(@owner)
             %img{:src => avatar, :style => "width: 200px;", :alt => "#{short_full_name(@owner)}"}
           %li.center= link_to short_full_name(@owner), user_path(@owner['id'])
-          %hr
+          %li.hr_line
           %li.center= image_tag "/images/agent_button.png"
           -#%li.reviews 71 reviews
           %li.center{:style => 'margin-top: 20px;'}

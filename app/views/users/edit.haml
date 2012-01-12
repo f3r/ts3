@@ -39,7 +39,7 @@
               .private
               = f.text_field :phone_mobile
             .input
-              = f.label :birthdate, "#{t(:birthdate)}*"
+              = label_tag '', "#{t(:birthdate)}*"
               .private
               = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
             .clearfix
@@ -151,11 +151,11 @@
             -#   .private
             -#   = f.password_field 'current_password', {:placeholder => t(:profile_current_pwd), :class => "validate[required]"}
             .input
-              = f.label t(:password)
+              = label_tag '', t(:password)
               .private
               = f.password_field :password, :class => "validate[required,minSize[6]]"
             .input
-              = f.label t(:profile_retype_pwd)
+              = label_tag '', t(:profile_retype_pwd)
               .private
               = f.password_field :password_confirmation, :class => "validate[required,equals[new_password_password]]"
             .clearfix
@@ -177,10 +177,9 @@
               .modal-body
                 .row
                   .span2
-                    %p
-                      = image_tag(@avatar, :class => "avatar_placeholder", :width => 100)
-                      .preview
-                        =t(:preview)
+                    = image_tag(@avatar, :class => "avatar_placeholder", :width => 100)
+                    .preview
+                      =t(:preview)
                   .span7
                     %p=t(:change_photo_description)
                     %p
@@ -188,9 +187,9 @@
                       - @user_auth['authentications'].each{|x| @facebook_uid = x['uid'] if x['provider'] == "facebook" }
                       = f.hidden_field(:facebook_image, :value => "http://graph.facebook.com/#{@facebook_uid}/picture?type=large") if !@facebook_uid.blank?
                       = f.hidden_field :avatar_url
-                    %p
+                    %span
                       %a.btn.medium.upload_avatar=t(:upload_a_new_photo)
-                      .upload_field
+                      %span.upload_field
                         = f.file_field :avatar, :onchange => "readURL(this);", :style=>"display:none;"
               .modal-footer
                 = button_tag t(:save), :class => 'btn primary',  "data-loading-text" => "#{t(:saving_photo)}...", :id => "save-btn"
@@ -252,6 +251,7 @@
              reader.readAsDataURL(input.files[0]);
          }
   }
+//TODO what is this for? it causing error in validation of HTML5
 :css
   article, aside, figure, footer, header, hgroup, 
   menu, nav, section { display: block; }

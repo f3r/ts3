@@ -1,8 +1,8 @@
 .span15
-  %span3.float-left
+  %span.float-left
     %a{:href => "/users/#{m['from']['id']}"} 
       - unless m['from']['avatar'].nil?
-        %img{:src => m['from']['avatar'], :style => "width:60px"}
+        %img{:src => m['from']['avatar'], :style => "width:60px", :alt => 'user_avatar'}
       - else
         = placehold(60,60)
 

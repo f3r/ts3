@@ -106,13 +106,13 @@
               <p><a href="#" id="clearSelection">Clear selection</a></p>
               .clearfix
                 .input.required
-                  = label_tag :arriving, t(:arriving)
+                  = label_tag :check_in, t(:arriving)
                   = text_field_tag :check_in, (!params['check_in'].blank? ? params['check_in'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability],past[NOW]]"
                 .input.required
                   = label_tag :check_out, t(:departing)
                   = text_field_tag :check_out, (!params['check_out'].blank? ? params['check_out'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability],past[NOW]]"
                 .input
-                  = label_tag :duration, t(:duration)
+                  = label_tag t(:duration)
                   .duration
                     %span 0
                     =t(:days)
@@ -124,7 +124,7 @@
         %fieldset
           =fields_for "user", @user do |f|
             .input.required
-              = f.label :mobile_phone_number, t(:mobile_phone_number)
+              = f.label :phone_number, t(:mobile_phone_number)
               = f.text_field :phone_mobile, :class => "validate[required]"
             .input.required
               = f.label :passport_number, t(:passport_number)

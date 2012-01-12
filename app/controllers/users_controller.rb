@@ -196,7 +196,11 @@ class UsersController < ApplicationController
         render :json => {:stat => false}
       end
     else
-      render :js => %w($('#popup-registration').modal({show: true, backdrop: 'static', keyboard: true}); return false;)
+      unless request.referer.include?('signup')
+        render :js => %w($('#popup-registration').modal({show: true, backdrop: 'static', keyboard: true}); return false;)
+      else
+        render :js => %w(window.location.reload();)
+      end
     end
   end
   

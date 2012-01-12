@@ -32,13 +32,19 @@
       %span
         = t(:preview)
   - else
-    %a.btn.primary.preview-button{:href => place_path(@place), :id => "preview_button"}
+    %a.btn.primary.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
       %span
         = t(:back_to_place_details)
 
 :javascript
-  function goToPreview(place) {
+  function goToPreview(placeId) {
     setTimeout( function() {
-      window.location = '/places/' + place + '/preview';
-    }, 5000)
+      window.location = '/places/' + placeId + '/preview';
+    }, 4000)
+  }
+  
+  function goToPlace(placeId) {
+    setTimeout( function() {
+      window.location = '/places/' + placeId;
+    }, 4000)
   }

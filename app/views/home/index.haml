@@ -11,7 +11,7 @@
           %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
 
         #my-modal.hide.modal.fade
-          = form_tag '/cities/suggest', :html => {:remote => true}, :class => 'cities_suggest_form' do
+          = form_tag '/cities/suggest', :class => 'cities_suggest_form' do
             .modal-header
               %h3=t(:cant_find_city)
             .modal-body

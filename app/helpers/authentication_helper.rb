@@ -13,7 +13,7 @@ module AuthenticationHelper
   end
 
   def current_token
-    session['authentication_token'] = '5XMpHUHZQ1K6VNsPKWUK'
+    session['authentication_token']
   end
 
   def login_required

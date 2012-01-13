@@ -26,9 +26,7 @@
 
             .share
               %label= t(:share)
-              %span.st.st_facebook_custom{:st_title => @place.title, :st_url => request.url}
-              %span.st.st_twitter_custom{:st_title => @place.title,  :st_url => request.url}
-              %span.st_plusone{:st_title => @place.title, :st_url => request.url, :style => 'float:left'}
+              .sharePlace
         .focal
           %h1.price
             = "#{get_pref_currency}#{@place.price_per_night}"
@@ -325,4 +323,13 @@
       initializeMap();
     }
   })
+
+  $('.sharePlace').bookmark({
+    sites: ['facebook', 'twitter', 'google'],
+    description: <%= "\'#{@place['description']}\'" %>,
+    showAllText: 'Show all ({n})',
+    title: <%= "\'#{@place['title']}\'" %>,
+    hint: 'Share this place',
+    url: <%= "\'http://frontend-heypal.heroku.com/places/#{@place['id']}\'" %>
+  });
   </script>

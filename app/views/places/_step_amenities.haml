@@ -6,8 +6,9 @@
   %fieldset
     - amenities_group_1.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        = f.check_box a[1], :value => 'true'
-        = a[0]
+        %span
+          = f.check_box a[1], :value => 'true'
+          = a[0]
   
   %h2.title= t(:furnishings)
   %fieldset

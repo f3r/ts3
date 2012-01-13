@@ -13,14 +13,14 @@
   %fieldset
     - amenities_group_2.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        = f.check_box a[1], :value => 'true'
+        = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
         = a[0]
 
   %h2.title= t(:sports_and_recreation)
   %fieldset
     - amenities_group_4.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        = f.check_box a[1], :value => 'true'
+        = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
         = a[0]
 
 
@@ -31,10 +31,10 @@
       %label.amenity{:for => "place_#{a[1]}"}
         -if a[0] == 'Smoking Allowed'
           = link_to '?', '#', :class => 'twipsy', :title => raw(t(:do_you_allow_smoking))
-          = f.check_box a[1], :value => 'true'
+          = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
           = a[0]
         -else
-          = f.check_box a[1], :value => 'true'
+          = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
           = a[0]
 
 .arrows.clearfix

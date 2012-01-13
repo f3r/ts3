@@ -41,7 +41,7 @@
                     .span3.edit_delete_buttons.hidden
                       %a.btn.large.small{:title => t(:edit_place), :href => "#{wizard_place_path(place['id'])}"}
                         =t(:edit_place)
-                      = link_to t(:delete_place), place_path(place['id']), :method => :delete, :confirm => t(:are_you_sure), :class => 'btn large small'
+                      = link_to t(:delete_place), place_path(place['id']), :method => :delete,  :class => 'btn large small'
 
 
 :javascript
@@ -60,5 +60,11 @@
     } else {
       $('.place-status').text('Listed');
     }
+
+    $("a[data-method='delete']").confirmDialog({
+      message: '<strong>Do you really want to delete this entry</strong>',
+      cancelButton: 'Cancel'
+    });
+
 
   });

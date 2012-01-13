@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   layout 'plain'
-  #before_filter :login_required, :only => [:new, :wizard, :create]
+  before_filter :login_required, :only => [:new, :wizard, :create]
   before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability]
 
   def new

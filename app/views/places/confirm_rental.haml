@@ -3,15 +3,19 @@
     %h2
       = t(:success)
     %p
-      Your Request has been submitted to
+      You have successfully inquired on
+      = @place['title']
+      to
       = full_name @owner
     %p
-      Within 24 hours etc etc.
+      Typically, you should get a reply with 24-48 hours.
     %p
-      You can send 
+      If you have any questions for 
       = full_name @owner
-      a message to etc etc
-            
+      , you can ask them below. Similarly, you may get questions back from
+      = full_name @owner
+      . Please be sure to check SquareStays in the next days for updates!
+                  
 .row
   .span16
     = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show'} do |f|

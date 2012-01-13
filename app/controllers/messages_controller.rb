@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   layout 'plain'
   before_filter :login_required, :only => [:new, :create]
+  respond_to :html, :json, :js
 
   # Retrieves all conversations
   def index
@@ -18,8 +19,16 @@ class MessagesController < ApplicationController
     message_params = {}
     message_params.merge!({:access_token => current_token, :id => params['id'], :message => params['message']['message']})
     @message = Heypal::Message.create(message_params)
-    #must have show action for message to render single message
-    render :partial => '/messages/add_message'
+    respond_with do |format|
+      format.html {
+        place = Heypal::Place.find(params[:place_id], current_token, get_current_currency)
+        redirect_to place_path(place)
+      }
+      format.js {
+        #must have show action for message to render single message
+        render :partial => '/messages/add_message'
+      }
+    end
   end
 
   def delete_conversation

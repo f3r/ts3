@@ -14,7 +14,7 @@
             
 .row
   .span16
-    = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show', :remote => true} do |f|
+    = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show'} do |f|
       %span.float-left
         - unless current_user.avatar.nil?
           %img{:src => current_user.avatar, :style => "width:60px"}
@@ -22,6 +22,7 @@
           = placehold(60,60)
 
       .span12
+        = hidden_field_tag 'place_id', params[:id]
         = f.text_area :message, :rows => 4, :class => "span12"
         %div.float-right{:style => "margin-top: 10px;"}
           = button_tag "Cancel", :class => 'btn respond-cancel'

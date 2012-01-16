@@ -32,10 +32,12 @@
             - if !place['num_bedrooms'].nil?
               .type.bedroom
                 = place['num_bedrooms']
+                = t(:bedroom)
             - if !place['num_bathrooms'].nil?
               .type.bathroom
                 = place['num_bathrooms']
-              
+                = t(:bathroom)
+                
       .price.data-block
         .figure= "#{get_pref_currency}#{place['price_per_night']}"
         .micro= t(:per_night)

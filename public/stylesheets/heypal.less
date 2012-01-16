@@ -1576,12 +1576,12 @@ ul.references{
         }
         
         .title{
-          font-weight: bold;
+/*          font-weight: bold;*/
           color: #454545;
+          font-size: 12px;
         }
         
         &.thumb{
-
           margin-right: 10px;
           min-width: 150px;
           min-height: 100px;
@@ -1711,10 +1711,6 @@ ul.references{
       display: block;
     }
   }
-  
-  
-  
-  
 }// results
 
 //
@@ -1802,15 +1798,16 @@ ul.references{
     
   .data-block{
     float: left;
-    margin-right: 30px;
+    margin-right: 10px;
     line-height: 20px;        
     &:last-child{
       margin-right: 0;
     }
     
     .title{
-      font-weight: bold;
+/*      font-weight: bold;*/
       color: #454545;
+      font-size: 12px;
     }
     
     &.thumb{
@@ -1828,8 +1825,32 @@ ul.references{
     }
 
     &.property{
-      background: transparent url(../images/icons/houseicon.png) no-repeat 0 3px;
-      padding-left: 25px;
+      .house {
+        background: transparent url(../images/icons/houseicon.png) no-repeat 0 3px;
+        padding-left: 25px;
+        margin-top: 5px;
+      }
+      .size {
+        background: transparent url(../images/icons/sizeicon.png) no-repeat 0 3px;
+        padding-left: 25px;
+        margin-top: 5px;
+      }
+
+    }
+    
+    &.property2 {
+      .bedroom {
+        padding-left: 25px;
+        margin-left: 0px;
+        margin-top: 5px;
+        background: transparent url(../images/icons/bedroomicon.png) no-repeat 0 3px;            
+      }
+      .bathroom {
+        padding-left: 25px;
+        margin-left: 0px;
+        margin-top: 5px;
+        background: transparent url(../images/icons/bathroomicon.png) no-repeat 0 3px;
+      }
     }
     
   } // end data-block

@@ -15,3 +15,14 @@
       =t(:no_messages)
 
     = render 'new_message', :with => @with['id']
+    
+%br
+
+.row
+  .span16
+    %h4.section-header
+      %a{:href => "/messages"}
+        =t(:messages)
+      &raquo;
+      =t(:conversation_with)
+      = "#{@with['first_name'].chr}. #{@with['last_name']}"

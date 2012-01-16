@@ -326,7 +326,7 @@
 
   $('.sharePlace').bookmark({
     sites: ['facebook', 'twitter', 'google'],
-    description: <%= "\'#{@place['description']}\'" %>,
+    description: <%= "\'#{@place['description'].split("\n").first.slice! '\n' }\'" %>,
     showAllText: 'Show all ({n})',
     title: <%= "\'#{@place['title']}\'" %>,
     hint: 'Share this place',

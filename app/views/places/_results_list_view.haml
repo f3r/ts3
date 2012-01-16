@@ -6,29 +6,36 @@
       .info  
         %h3.title
           = link_to place['title'], place_path(place['id'])
-        .people.data-block
-          .profile-pic
-            = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
-          .details
-            .name
-              = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
-              .micro
-                .type.verified=t(:agent)
+        / .people.data-block
+        /   .profile-pic
+        /     = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
+        /   .details
+        /     .name
+        /       = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
+        /       .micro
+        /         .type.verified=t(:agent)
 
         .property.data-block
           .title
-            .type.apartment 
+            .type.house 
               = I18n.t(place['place_type']['name'].parameterize('_'))
-          .micro
-            - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
-              .label{:style => "color:black; text-transform:lowercase;"}
+            .type.size
+              - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
                 = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
                 =t(:square_feet_short)
-            -else
-              .label{:style => "color:black; text-transform:lowercase;"}
+              -else
                 = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
                 =t(:square_meters_short)
 
+        .property2.data-block
+          .title
+            - if !place['num_bedrooms'].nil?
+              .type.bedroom
+                = place['num_bedrooms']
+            - if !place['num_bathrooms'].nil?
+              .type.bathroom
+                = place['num_bathrooms']
+              
       .price.data-block
         .figure= "#{get_pref_currency}#{place['price_per_night']}"
         .micro= t(:per_night)

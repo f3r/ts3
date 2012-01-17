@@ -41,7 +41,9 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							'<div class="inner">' +
 							  	'<div class="content">' +
 							  		'<p class="message"></p>' +
-									'<p class="button-group"><a href="#" class="btn small danger"></a><a href="#" class="btn small"></a></p>' +
+									'<p class="button-group">' +
+                    '<a href="#" class="btn small danger"></a>' +
+                    '<a href="#" class="btn small"></a></p>' +
 							  	'</div>' +
 							'</div>' +
 						'</div>',
@@ -65,7 +67,6 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 				}
 				
 				$elem.bind('click', function(e) {
-					e.preventDefault();
 					if(!$('#confirm-dialog').length) {
 						
 						var offset = $elem.offset();
@@ -100,13 +101,16 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 						
 						$dialog.find('p.message').html(o.message);
 						
-						$dialog.find('a.btn:eq(0)').text($elem.text()).bind('click', function(e) {
+						/*$dialog.find('a.btn:eq(0)').text($elem.text()).bind('click', function(e) {
 							$dialog.remove();
 							targetClickFun();
-						});
+						});*/
+            $dialog.find('a.btn:eq(0)').replaceWith($elem.clone());
+            $dialog.find('a.btn:eq(0)').removeClass().addClass('btn small danger');
 						
 						$dialog.find('a.btn:eq(1)').text(o.cancelButton).bind('click', function(e) {
 							$dialog.remove();
+              return false;
 						});
 						
 						$dialog.bind('mouseleave', function() {
@@ -115,6 +119,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							});
 						});
 					}
+
+          return false;
 				});
 			});
 		}

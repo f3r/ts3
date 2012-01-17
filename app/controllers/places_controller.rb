@@ -226,12 +226,12 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-   @place = Heypal::Place.delete(params[:id], current_token)
-    if @place['stat'] == 'ok'
-      flash[:notice] = 'Place successfully deleted'
-    else
-      flash[:error] = 'error deleting place'
-   end
+    @place = Heypal::Place.delete(params[:id], current_token)
+      if @place['stat'] == 'ok'
+        flash[:notice] = 'Place successfully deleted'
+      else
+        flash[:error] = 'error deleting place'
+    end
     redirect_to my_places_path
   end
 

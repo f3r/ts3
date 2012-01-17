@@ -43,7 +43,6 @@
                         =t(:edit_place)
                       = link_to t(:delete_place), place_path(place['id']), :method => :delete,  :class => 'btn large small'
 
-
 :javascript
   $(document).ready(function() {
     $("ul.list-display li").hover(
@@ -60,11 +59,10 @@
     } else {
       $('.place-status').text('Listed');
     }
-
-    $("a[data-method='delete']").confirmDialog({
-      message: '<strong>Do you really want to delete this entry</strong>',
-      cancelButton: 'Cancel'
-    });
-
-
   });
+
+  $("a[data-method='delete']").confirmDialog({
+    message: '<strong>Do you really want to delete this place?</strong>',
+    cancelButton: 'Cancel'
+  });
+

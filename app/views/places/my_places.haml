@@ -61,8 +61,11 @@
     }
   });
 
-  $("a[data-method='delete']").confirmDialog({
-    message: '<strong>Do you really want to delete this place?</strong>',
-    cancelButton: 'Cancel'
-  });
+:erb
+  <script type='text/javascript'>
+    $("a[data-method='delete']").confirmDialog({
+      message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>,
+      cancelButton: 'Cancel'
+    });
+  </script>
 

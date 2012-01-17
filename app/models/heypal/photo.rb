@@ -29,15 +29,27 @@ class Heypal::Photo < Heypal::Base
     @photo_id
   end
 
-  has_attached_file :photo, { :styles => { :large => "451x301>", :medium => "216x144>", :medsmall => "150x100>", :small => "105x70>", :tiny => "40x40!" },
-                                 :path => "places/:id/photos/:uniq_id/:style.:extension",
-                                 :storage => :s3, 
-                                 :s3_credentials => {
-                                   :access_key_id => S3_ACCESS_KEY_ID,
-                                   :secret_access_key => S3_SECRET_ACCESS_KEY,
-                                   :bucket => S3_BUCKET,
-                                 },
-                                 :s3_protocol => "http"
+  has_attached_file :photo, {
+    :styles => {
+      :large => {
+        :geometry => "451x301>",
+        :watermark_path => "#{Rails.root}/public/images/watermark_icon.png",
+        :position => "northeast"
+      },
+      :medium => "216x144>",
+      :medsmall => "150x100>",
+      :small => "105x70>",
+      :tiny => "40x40!"
+    },
+    :path => "places/:id/photos/:uniq_id/:style.:extension",
+    :storage => :s3, 
+    :s3_credentials => {
+      :access_key_id => S3_ACCESS_KEY_ID,
+      :secret_access_key => S3_SECRET_ACCESS_KEY,
+      :bucket => S3_BUCKET,
+    },
+    :s3_protocol => "http",
+    :processors => [:watermark]
   }
 
 end

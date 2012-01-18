@@ -39,7 +39,7 @@
               .micro
                 .title
                   - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
-                    = get_current_size_unit == "sqf" ? @place['size_sqf'].round(2) : @place['size_sqm'].round(2)
+                    = get_current_size_unit == "sqf" ? @place['size_sqf'].round() : @place['size_sqm'].round()
                     =raw get_pref_size_unit
             .span2.price-data-block
               .price

@@ -2,7 +2,7 @@
 module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£'}
   LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
-  SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_meters_short)}
+  SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
 
   #CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}

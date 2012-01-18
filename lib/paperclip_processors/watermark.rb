@@ -40,7 +40,14 @@ module Paperclip
 
         if watermark_path
           command = "composite"
-          params = "-gravity #{@position} #{watermark_path} #{fromfile} #{transformation_command} #{tofile(dst)}"
+          # params = "-gravity #{@position} #{watermark_path} #{fromfile} #{transformation_command} #{tofile(dst)}"
+          @position = if @current_geometry.horizontal?
+            "NorthEast"
+          elsif @current_geometry.vertical?
+            "SouthEast"
+          end
+
+          params = "-gravity #{@position} -geometry +0+30 #{watermark_path} #{fromfile} #{transformation_command} #{tofile(dst)}"
         else
           command = "convert"
           params = "#{fromfile} #{transformation_command} #{tofile(dst)}"

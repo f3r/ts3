@@ -33,8 +33,8 @@ class Heypal::Photo < Heypal::Base
     :styles => {
       :large => {
         :geometry => "451x301>",
-        :watermark_path => "#{Rails.root}/public/images/watermark_icon.png",
-        :position => "northeast"
+        :watermark_path => "#{Rails.root}/public/images/watermark_icon.png"
+        #:position => "northeast" # :position is on /lib/paperclip_processor/watermark.rb
       },
       :medium => "216x144>",
       :medsmall => "150x100>",

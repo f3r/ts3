@@ -10,19 +10,19 @@
     .modal-body
       .clearfix
         %label Name
-        - if !current_user.nil?
+        - if logged_in?
           = f.text_field :email, :value => "#{full_name(current_user)}", :class => 'span6'
         - else
           = f.text_field :email, :placeholder => "Michael Smith", :class => 'span6'
       .clearfix
         %label Email address
-        - if !current_user.nil?
+        - if logged_in?
           = f.text_field :email, :value => "#{current_user.email}", :class => 'span6'
         - else
           = f.text_field :email, :placeholder => "sample@email.com", :class => 'span6'
       .clearfix
         %label Mobile phone number
-        - if !current_user.nil?
+        - if logged_in?
           = f.text_field :mobile, :class => 'span3', :value => "#{current_user.phone_mobile}"
         - else
           = f.text_field :mobile, :class => 'span3', :placeholder => "+65 1234 5678"

@@ -30,7 +30,8 @@
               %button.btn.primary=t(:submit)
               %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
 
-        %form{:action => places_path}
+        - #%form{:action => places_path}
+        %form{:action => singapore_places_path}
           .clearfix
             = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'textbox big from-to-picker', "data-date" => :from
             -#= button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"

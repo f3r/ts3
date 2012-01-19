@@ -32,7 +32,7 @@
             = "#{get_pref_currency}#{@place.price_per_night}"
             %span.sub= t(:per_night) 
           -# %a.btn.large.primary= t(:rent)  
-          = link_to t(:rent), rent_place_path(@place), :class => "btn large primary"
+          %a{:class => 'btn large primary', 'data-controls-modal' => 'inquire_place', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true', :href => '#'}= t(:rent)
 
       .tabbed-panel  
         %ul.tabs
@@ -222,6 +222,7 @@
           %li.center{:style => 'margin-top: 20px;'}
             = link_to t(:message_user), logged_in? ? new_message_path(@owner['id']) : login_path, :class => 'btn large primary'
 
+= render :partial => 'inquire_place'
 
 :javascript
   // accomodation photo slider
@@ -273,7 +274,7 @@
         title: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>
       });
     }
-
+    
     $(document).ready(function() {
       $('#first-calendar').fullCalendar({
         header: {
@@ -322,7 +323,7 @@
     if ($(e.target).attr('href') == '#map-tab') {
       initializeMap();
     }
-  })
+  });
 
   $('.sharePlace').bookmark({
     sites: ['facebook', 'twitter', 'google'],

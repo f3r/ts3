@@ -1,0 +1,54 @@
+#inquire_place.modal.hide.fade
+  = form_for 'places', :url => places_path do |f|
+    .modal-header
+      %a{:href => '#', :class => 'close'}x
+      %h3 Tell us about your stay
+
+    .modal-header.optional-section
+      %h5 Contact information
+
+    .modal-body
+      .clearfix
+        %label Name
+        - if !current_user.nil?
+          = f.text_field :email, :value => "#{full_name(current_user)}", :class => 'span6'
+        - else
+          = f.text_field :email, :placeholder => "Michael Smith", :class => 'span6'
+      .clearfix
+        %label Email address
+        - if !current_user.nil?
+          = f.text_field :email, :value => "#{current_user.email}", :class => 'span6'
+        - else
+          = f.text_field :email, :placeholder => "sample@email.com", :class => 'span6'
+      .clearfix
+        %label Mobile phone number
+        - if !current_user.nil?
+          = f.text_field :mobile, :class => 'span3', :value => "#{current_user.phone_mobile}"
+        - else
+          = f.text_field :mobile, :class => 'span3', :placeholder => "+65 1234 5678"
+        = f.check_box :call_me, :id => 'call_me', :checked => true
+        %label.for-checkbox{:for => 'call_me'} Request agent to call me
+
+    .modal-header.optional-section
+      %h5 
+        Optional information
+        %a{:href => "#", :onclick => "$('#optional').toggle();"} +
+
+    .modal-body.optional-body{:id => 'optional'}
+      .clearfix
+        %label When are you arriving?
+        = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'textbox medium from-to-picker', "data-date" => :from
+      .clearfix
+        %label How long are you staying?
+        = f.select(:length_stay, ["1", "2", "3","4","5","6","7","8","9","10","More"], :class => 'small')
+        = f.select(:length_stay_type, ["month(s)", "week(s)"])
+
+      .clearfix
+        %label Other questions
+        = f.text_area :questions, :rows => 5, :placeholder => 'Please tell us if you have any further questions. Questions can be for this property or for any properties listed by this agent', :class => 'span7'
+    .modal-footer
+      %button.btn{:onclick => "$('#my-inquire_place').modal('hide'); return false;"}=t(:cancel)
+      %button.btn.primary{:onclick => "$('#inquire_place').modal('hide'); return false;"} Submit
+      
+:javascript
+  $('#optional').hide();

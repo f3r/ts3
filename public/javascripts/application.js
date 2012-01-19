@@ -7,7 +7,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require_tree .
-
 function showIndicator(elem) {
   elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
 }
@@ -16,7 +15,7 @@ function showRightIndicator(elem) {
 }
 
 function showSavedIndicator(elem) {
-  elem.parent().find('.save-indicator').html("<span class='label success'>saved</span>");
+  elem.parent().find('.save-indicator').html("<span class='label success'>" + t('save') + "</span>");
   window.setTimeout(function() {
     hideIndicator(elem);
   }, 2000);

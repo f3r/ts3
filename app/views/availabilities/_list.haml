@@ -4,7 +4,7 @@
   %div.data-container
     %span= "#{date_formatted(a['date_start'])} - #{date_formatted(a['date_end'])}"
     %span= price_availability(a, place)
-    %span= link_to "Edit", '#', :class => 'open-edit-availability hide'
+    %span= link_to t(:edit), '#', :class => 'open-edit-availability hide'
 
   %div.edit-data-container.hide
     = hidden_field_tag "id", a['id'], :id => "id-#{a['id']}"

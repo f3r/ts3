@@ -54,18 +54,19 @@
       }
     );
 
-    if($('#place_published').text() == 'false') {
-      $('.place_status').text('Invisible');
-    } else {
-      $('.place-status').text('Listed');
-    }
   });
 
 :erb
   <script type='text/javascript'>
     $("a[data-method='delete']").confirmDialog({
-      message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>,
-      cancelButton: 'Cancel'
+      message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>
     });
+
+    if($('#place_published').text() == 'false') {
+      $('.place_status').text(<%= "\'#{t(:invisible)}\'" %>);
+    } else {
+      $('.place-status').text(<%= "\'#{t(:listed)}\'" %>);
+    }
+
   </script>
 

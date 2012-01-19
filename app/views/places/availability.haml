@@ -48,7 +48,7 @@
         - if !@user['address'].nil?
 
           %p= "#{t(:billed_address)}:"
-          %p= link_to "Change address", "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
+          %p= link_to t(:change_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
 
           %table.borderless
             %tr

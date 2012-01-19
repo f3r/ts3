@@ -19,6 +19,7 @@ HeyPalFrontEnd::Application.routes.draw do
       post :confirm_rental
     end
     get :search, :on => :collection
+    get '/singapore' => 'places#index', :on => :collection
     resources :availabilities
     resources :comments do
       post :reply_to_message

@@ -317,6 +317,11 @@
         $('#first-calendar').fullCalendar('next');
         $('.fc-header-left .fc-button-inner').show();
       });
+
+      $("a[data-method='delete']").confirmDialog({
+        message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>
+      });
+
   });
 
   $('.tabs').bind('change', function (e) {

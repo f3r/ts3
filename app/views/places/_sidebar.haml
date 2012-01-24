@@ -37,14 +37,20 @@
         = t(:back_to_place_details)
 
 :javascript
+  var timeCount = 0;
+  $(document).ready(function() {
+    $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').focus(function() {
+      timeCount = 3000;
+    });
+  });
+
   function goToPreview(placeId) {
     setTimeout( function() {
       window.location = '/places/' + placeId + '/preview';
-    }, 3000)
+    }, timeCount)
   }
-  
   function goToPlace(placeId) {
     setTimeout( function() {
       window.location = '/places/' + placeId;
-    }, 3000)
+    }, timeCount)
   }

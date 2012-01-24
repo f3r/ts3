@@ -126,11 +126,11 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
               return false;
 						});
 						
-						/*$dialog.bind('mouseleave', function() {
+						$dialog.bind('mouseleave', function() {
 							$dialog.fadeOut('slow', function() {
 								$dialog.remove();
 							});
-						});*/
+						});
 					}
 
           return false;

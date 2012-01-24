@@ -17,6 +17,7 @@ HeyPalFrontEnd::Application.routes.draw do
       get :rent
       match :availability
       post :confirm_rental
+      post :confirm_inquiry
     end
     get :search, :on => :collection
     get '/singapore' => 'places#index', :on => :collection

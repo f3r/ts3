@@ -378,6 +378,11 @@ en:
   street: Street
   zip: Zip
   success: Success!
+  
+  # inquiry
+  
+  inquiry_success:             Your inquiry has been successfully sent
+  inquiry_error:               "There was a problem processing you inquiry, please try again"
 
   ####################################################################################
   # Place index/search

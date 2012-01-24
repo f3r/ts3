@@ -225,6 +225,30 @@ class PlacesController < ApplicationController
     render :layout => 'plain'
   end
 
+  def confirm_inquiry
+    @confirm_inquiry = Heypal::Place.confirm_inquiry(
+      params[:id], 
+      {
+        :name => params[:name],
+        :email => params[:email],
+        :mobile => params[:mobile],
+        :date_start => params[:date_start],
+        :length_stay => params[:length_stay],
+        :length_stay_type => params[:length_stay_type],
+        :questions => params[:questions]
+      },
+      current_token
+    )
+    if @confirm_inquiry['stat'] == 'ok'
+      @response = "success"
+    else
+      @response = "error"
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
+    end    
+  end
+
   def destroy
     @place = Heypal::Place.delete(params[:id], current_token)
       if @place['stat'] == 'ok'

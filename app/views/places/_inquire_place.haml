@@ -1,5 +1,5 @@
 #inquire_place.modal.hide.fade
-  = form_tag("#{BACKEND_PATH}/places/#{@place.id}/confirm_inquiry.json", {:method => :post, :remote => true, :id => "inquire_form"}) do
+  = form_tag(confirm_inquiry_place_path, {:method => :post, :remote => true, :id => "inquire_form"}) do
     .modal-header
       %a{:href => '#', :class => 'close'}x
       %h3 Tell us about your stay
@@ -11,21 +11,21 @@
       .clearfix
         %label Name
         - if logged_in?
-          = text_field_tag :name, full_name(current_user), :class => 'span6'
+          = text_field_tag :name, full_name(current_user), :class => 'span6 validate[required]'
         - else
-          = text_field_tag :name, nil, :placeholder => "Michael Smith", :class => 'span6'
+          = text_field_tag :name, nil, :placeholder => "Michael Smith", :class => 'span6 validate[required]'
       .clearfix
         %label Email address
         - if logged_in?
-          = text_field_tag :email, current_user.email, :class => 'span6'
+          = text_field_tag :email, current_user.email, :class => 'span6 validate[required,custom[email]]'
         - else
-          = text_field_tag :email, nil, :placeholder => 'sample@email.com', :class => 'span6'
+          = text_field_tag :email, nil, :placeholder => 'sample@email.com', :class => 'span6 validate[required]'
       .clearfix
         %label Mobile phone number
         - if logged_in?
-          = text_field_tag :mobile, current_user.phone_mobile, :class => 'span3'
+          = text_field_tag :mobile, current_user.phone_mobile, :class => 'span3 validate[required]'
         - else
-          = text_field_tag :mobile, nil, :placeholder => "+65 1234 5678", :class => 'span3'
+          = text_field_tag :mobile, nil, :placeholder => "+65 1234 5678", :class => 'span3 validate[required]'
         = check_box_tag :call_me, 'yes', true
         %span{:style => 'font-size: 13px'} Request agent to call me
 
@@ -42,7 +42,7 @@
       .clearfix
         %label How long are you staying?
         = select_tag :length_stay, '<option selected="selected">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>More</option>'.html_safe, :class => 'small'
-        = select_tag :length_stay_type, '<option>week(s)</option><option selected="selected">month(s)</option>'.html_safe, :class => 'small'
+        = select_tag :length_stay_type, '<option value="weeks">week(s)</option><option selected="selected" value="months">month(s)</option>'.html_safe, :class => 'small'
 
       .clearfix
         %label Comments / Questions
@@ -51,10 +51,17 @@
     .modal-footer
       = #%button.btn.primary{:onclick => "$('#inquire_place').modal('hide');"}= t(:submit)
       %button.btn.primary=t(:submit)
-      %button.btn{        :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
+      %div.btn{        :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
 
 :javascript
   $('#optional').hide();
   $('#optional-header').click(function(){
     $('#optional').toggle()
   });
+  $('#inquire_place').bind('shown', function () {
+    $('.alert-message').remove();
+    $("#inquire_form").validationEngine({
+      promptPosition : "bottomLeft:0,30",
+      relative: true      
+    });
+  })

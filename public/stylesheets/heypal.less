@@ -2853,7 +2853,7 @@ pre.desc {
   width: 650px; 
 /*  height: 372px; */
   height: auto;
-  overflow-y: scroll; 
+  overflow-y: hidden;
   overflow-x: hidden;
   margin-left: -300px;
   top:40%;
@@ -2887,10 +2887,16 @@ pre.desc {
     background-color: #eef;
     h5 {
       line-height: 20px;
-      a {
-        float:right;
-        text-decoration: none;
+      img:first-child {
+        float:left;
+        margin-top: 8px;
+        margin-right: 10px;
       }
+      img:last-child {
+        float:right;
+        margin-top:8px;
+      }
+
 
     }
   }

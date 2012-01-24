@@ -98,6 +98,7 @@ module PlacesHelper
   #   end
   # end
 
+  # TODO: unused, delete? 
   def month_count(days)
     date = Date.today
     days_count = Time.days_in_month(date.month, date.year)

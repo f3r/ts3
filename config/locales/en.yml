@@ -332,6 +332,9 @@ en:
   price_per_week: Price per Week
   price_per_month: Price per Month
   cancellation: Cancellation
+  months: Months
+  days: Days
+  weeks: Weeks
 
   question: Questions
   pm: send private
@@ -463,3 +466,13 @@ en:
    "130": not activated
    "131": invalid json
    "132": invalid city (not on the cities table)
+   "133": not allowed to do that
+   "134": doesn't have access to resource
+   "135": Invalid currency
+   "136": occupied
+   "137": invalid place request, check availability
+   "138": already cancelled
+   "139": date must be on the past
+   "140": must be greater than
+   "141": minimum stay not met
+   "142": over maximum stay

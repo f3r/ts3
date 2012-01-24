@@ -88,13 +88,18 @@
             .title
               =t(:minimum_stay)
             .micro
-              = month_count @place.minimum_stay_days
+              -if @place.minimum_stay == "0"
+                = "#{@place.minimum_stay} #{t(@place.stay_unit)}"
+              -else
+                = t(:no_minimum)
           .span3.right
             .title
               =t(:maximum_stay)
             .micro
-              = month_count @place.maximum_stay_days
-
+              -if @place.maximum_stay == "0"
+                = "#{@place.maximum_stay} #{t(@place.stay_unit)}"
+              -else
+                = t(:no_maximum)
       .tabbed-panel.other-info  
         %ul.tabs
           %li.active  

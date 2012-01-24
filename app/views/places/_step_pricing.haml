@@ -6,19 +6,15 @@
         = f.select :currency, currencies_select, {}, :class => 'validate[required]'
   %h2.title=t(:pricing)
   %fieldset      
-    .input.required
-      = f.label :price_per_night, t(:price_per_night)
-      %span.currency-sign-id= currency_sign_of(@place.currency)
-      = f.text_field :price_per_night, :class => "validate[required,custom[number],min[1]] span2 autosave"
     .input
       = f.label :price_per_week, t(:price_per_week)
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_week, :class => "validate[custom[number],min[1]] span2 autosave"
+      = f.text_field :price_per_week, :class => "validate[custom[number],min[1]] span2 autosave_pricing"
       %span#estimated_amount_weekly
     .input
       = f.label :price_per_month, t(:price_per_month)
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_month, :class => "validate[custom[number],min[1]] span2 autosave"
+      = f.text_field :price_per_month, :class => "validate[custom[number],min[1]] span2 autosave_pricing"
       %span#estimated_amount_monthly
   %h2.title=t(:additional_costs)
   %fieldset
@@ -43,14 +39,18 @@
 
     .input
       = f.label :minimum_stay_days, t(:minimum_stay)
-      = select 'days', 'minimum_stay', [[t(:no_minimum), 1], [t(:minimum_of), 0]]
-      = f.text_field :minimum_stay_days, :class => "span2 autosave"
-      %span.help-inline= t(:nights)
+      = f.text_field :minimum_stay, :class => "span2 autosave_pricing", :disabled => @place.minimum_stay == 0
+      = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_1 validate[required] autosave_pricing'
+      %label.no_minimum_stay
+        = check_box_tag "no_minimum_stay", 1, @place.minimum_stay == 0
+        = t(:no_minimum)
     .input
       = f.label :maximum_stay_days, t(:maximum_stay)
-      = select 'days', 'maximum_stay', [[t(:no_maximum), 1], [t(:maximum_of), 0]]
-      = f.text_field :maximum_stay_days, :class => "span2 autosave"
-      %span.help-inline= t(:nights)
+      = f.text_field :maximum_stay, :class => "span2 autosave_pricing", :disabled => @place.maximum_stay == 0
+      = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_2 validate[required] autosave_pricing'
+      %label.no_maximum_stay
+        = check_box_tag "no_maximum_stay", 1, @place.maximum_stay == 0
+        = t(:no_maximum)
     .input.required
       = f.label :cancellation_policy, t(:cancellation_policy)
       = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'

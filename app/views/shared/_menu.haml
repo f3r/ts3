@@ -8,8 +8,6 @@
           - if (current_user['role'] == 'superadmin' || current_user['role'] == 'agent')
             %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
               = link_to t(:my_places), my_places_path
-          %li{:class => @current_controller == "users" && @current_action == "show" ? "active" : ""}
-            = link_to t(:profile), profile_path
 
       - if logged_in?
         %ul.nav.secondary-nav

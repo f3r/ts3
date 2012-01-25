@@ -20,7 +20,7 @@ en:
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:    Search
+  find_places:    Find a Place
   my_places:      My Properties
   profile:        Profile
   notifications:  Notifications

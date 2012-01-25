@@ -59,6 +59,11 @@ class Heypal::Place < Heypal::Base
       result
     end
 
+    def publish_check(id, access_token)
+      result = request("/places/#{id}/publish_check.json?access_token=#{access_token}", :get)
+      result
+    end
+
     def find(id, access_token, currency="USD")
       result = request("/places/#{id}.json?access_token=#{access_token}&currency=#{currency}", :get)
       if result['stat'] == 'ok' && result.key?("place")

@@ -194,6 +194,13 @@ var validatePanels = function(target) {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
   }
 
+  // Amenities
+  if(panelErrors.amenities) {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
   // Price
   if(panelErrors.price) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
@@ -205,73 +212,41 @@ var validatePanels = function(target) {
   return panelErrors;
 }
 
-var panelStatuses = function(target) {
-
+var panelStatuses = function() {
   var errors = {};
-
-  // General errors
-  errors.general = ($('#place_title').val() != "" && $('#place_max_guests').val() != "" && $('#place_place_size').val() != "" && $('#place_description').val() != "" && $('#place_description').val().length >= 20);
-
-  // For a better UX. Highlight those fields.
-  if($('#place_title').val() == "") { $('#place_title').addClass('error'); } else { $('#place_title').removeClass('error');  }
-  if($('#place_max_guests').val() == "") { $('#place_max_guests').addClass('error'); } else { $('#place_max_guests').removeClass('error'); }
-  if($('#place_place_size').val() == "") { $('#place_place_size').addClass('error'); } else { $('#place_place_size').removeClass('error'); }
-  if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
-  if($('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else { $('#place_description').removeClass('error'); }
-
-  // Photos
-  errors.photos = ($('#photos_list li').size() >= 3);
-
-  // Price
-  // errors.price = ($('#place_price_per_night').val() != "" && $('#place_currency').val() != "" && $('#place_cancellation_policy').val() != "");
-
-  price_errors = []
-  
-  if ($('#place_currency').val() == "" || $('#place_cancellation_policy').val() == "") {
-    price_errors.push("error")
-  }
-
-  if ($('#minimum_stay').val() != "" && $('#stay_unit').val() != "") {
-    console.log("woo");
-  }
-  
-  if (true) {
-    price_errors.push("error")
-  }
-  
-  // errors.price = ( ( $('#place_price_per_night').val() != "" || $('#place_price_per_week').val() != "" || $('#place_price_per_month').val() != ""  ) && $('#place_currency').val() != "" && $('#place_cancellation_policy').val() != "");
-  errors.price = price_errors.length < 1
-
-  // if($('#place_price_per_night').val() == "") { $('#place_price_per_night').addClass('error'); } else { $('#place_price_per_night').removeClass('error');  }
-  if($('#place_currency').val() == "") { $('#place_currency').addClass('error'); } else { $('#place_currency').removeClass('error'); }
-  if($('#place_cancellation_policy').val() == "") { $('#place_cancellation_policy').addClass('error'); } else { $('#place_cancellation_policy').removeClass('error'); }
-
-  // Amenities
-  errors.amenities = validateAmenitiesPanel();
-
-  // Calendar
+  errors.general = true;
+  errors.photos = true;
+  errors.price = true;
+  errors.amenities = true;
   errors.calendar = true;
 
-  return errors;
-}
-
-var validateAmenitiesPanel = function(target) {
-  var wizard_aside = $('.wizard-aside');
-  // Amenities
-  var hasAmenity = false;
-  $('.amenity input[type=checkbox]').each(function() {
-    if($(this).attr('checked') == 'checked') {
-      hasAmenity = true;
-      wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
-      return hasAmenity;
+  $.ajax({
+    type: 'GET',
+    async: false,
+    cache: false,
+    url: '/places/' + $("#place_id").val() + '/publish_check.json',
+    success: function(data) {
+      publish_errors = data.err['publish'];
+      if (publish_errors) {
+        if ($.inArray(126, publish_errors) > -1) {
+          errors.price = false;
+        }
+        if ($.inArray(124, publish_errors) > -1) {
+          if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
+          errors.general = false;
+        }
+        if ($.inArray(143, publish_errors) > -1) {
+          errors.amenities = false;
+        }
+        if ($.inArray(123, publish_errors) > -1) {
+          errors.photos = false;
+        }
+      }
     }
   });
 
-  if(hasAmenity == false) {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');
-  }
+  return errors;
 
-  return hasAmenity;
 }
 
 var validatePreview = function() {
@@ -318,12 +293,12 @@ var sendFieldUpdate = function() {
         success: function() {
           showSavedIndicator(elem);
           elem.attr('data-changed', '0');
+          validatePanels();
         }
       });
     } else {
       showErrorIndicator(elem);
     }
-    validatePanels();
   }
 };
 
@@ -348,10 +323,9 @@ var sendPlaceSizeUpdate = function () {
       success: function() {
         showSavedIndicator(elem);
         elem.attr('data-changed', '0');
+        validatePanels();
       }
     });
-
-    validatePanels();
   }
 
 }
@@ -389,6 +363,7 @@ var sendPricingUpdate = function () {
         if (data.stat == "ok") {
           showSavedIndicator(elem);
           elem.attr('data-changed', '0');
+          validatePanels();
         } else {
           var error_labels = data.error_label.split(',');
           var error_fields = []
@@ -402,8 +377,6 @@ var sendPricingUpdate = function () {
         }
       }
     });
-  
-    validatePanels();
   }
 
 }
@@ -438,9 +411,9 @@ var sendCheckBoxUpdate = function() {
     success: function() {
       showSavedIndicator(elem);
       elem.show();
+      validatePanels();
     }
   });
-  validatePanels();
 };
 
 var trackChange = function() {

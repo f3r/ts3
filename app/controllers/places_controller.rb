@@ -53,6 +53,16 @@ class PlacesController < ApplicationController
     redirect_to preview_place_path(:id => params[:id])
   end
 
+  def publish_check
+    result = Heypal::Place.publish_check(params[:id], current_token)
+    if result['stat'] == "ok"
+      response = {:stat => "ok"}
+    else
+      response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
+    end
+    render :json => response, :layout => false
+  end
+
   def wizard
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)

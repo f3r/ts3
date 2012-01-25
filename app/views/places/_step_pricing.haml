@@ -39,14 +39,14 @@
 
     .input
       = f.label :minimum_stay_days, t(:minimum_stay)
-      = f.text_field :minimum_stay, :class => "span2 autosave_pricing", :disabled => @place.minimum_stay == 0
+      = f.text_field :minimum_stay, :class => "span2 validate[required] autosave_pricing", :disabled => @place.minimum_stay == 0
       = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_1 validate[required] autosave_pricing'
       %label.no_minimum_stay
         = check_box_tag "no_minimum_stay", 1, @place.minimum_stay == 0
         = t(:no_minimum)
     .input
       = f.label :maximum_stay_days, t(:maximum_stay)
-      = f.text_field :maximum_stay, :class => "span2 autosave_pricing", :disabled => @place.maximum_stay == 0
+      = f.text_field :maximum_stay, :class => "span2 validate[required] autosave_pricing", :disabled => @place.maximum_stay == 0
       = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_2 validate[required] autosave_pricing'
       %label.no_maximum_stay
         = check_box_tag "no_maximum_stay", 1, @place.maximum_stay == 0

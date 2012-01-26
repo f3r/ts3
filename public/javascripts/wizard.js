@@ -26,7 +26,7 @@ var il8nStrings = {
   not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!',
   based_on_your_daily_price: "Based on your daily price, we recommend ",
   photo_limit_error: 'We need a minimum of 3 photos before we can publish your place',
-  save: 'Save'
+  save: 'Saved'
 };
 
 var t = function(key) {

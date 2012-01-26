@@ -21,5 +21,11 @@
                 -#= link_to 'Notification 1', '#'
               -#%li
                 -#= link_to 'Notification 2', '#'
-          %li.unread-message
-            = link_to message_count, messages_path
+
+          - if message_count == 0
+            %li.read-message
+              %a{:href => "#{messages_path}"}
+                %img{:src => 'https://s3.amazonaws.com/squarestays-static/msgicon_read.png', :height => 40, :width => 42}
+          - else
+            %li.unread-message
+              = link_to message_count, messages_path

@@ -27,5 +27,5 @@
               %a{:href => "#{messages_path}"}
                 %img{:src => 'https://s3.amazonaws.com/squarestays-static/msgicon_read.png', :height => 40, :width => 42}
           - else
-            %li.unread-message
+            %li.unread-message{:onclick => "location.href='#{messages_path}';"}
               = link_to message_count, messages_path

@@ -134,9 +134,9 @@
                   %label.sm= t(:bathroom)
                   .value.sm= @place.num_bathrooms
               .span3.col
-                %label= t(:price_per_night)
-                .value= "#{get_pref_currency}#{@place.price_per_night}"
-
+                - unless @place.price_per_night.blank?
+                  %label= t(:price_per_night)
+                  .value= "#{get_pref_currency}#{@place.price_per_night}"
                 - unless @place.price_per_week.blank?
                   %label= t(:price_per_week)
                   .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true

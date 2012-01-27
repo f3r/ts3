@@ -2,23 +2,32 @@
   .row
     .span12
       .wrap-searchbar
-        .search-bar
+        .search-bar.search-bar1
+
+          .float-left
+            %h2
+              Singapore, Singapore
+            = hidden_field_tag :currency, get_current_currency
+
           .float-right
-            .toggle
-              = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
-              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-            .clearfix
             .controls
               = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
-              = t(:sort_by)
-              = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
-          %h2
-            Singapore, Singapore
-          = hidden_field_tag :currency, get_current_currency
-          .clearfix
+              = t(:arriving_on)
+              = text_field_tag "check_in", @results['check_in'], :placeholder => "Arriving on", :class => 'textbox big check-in-picker', "data-date" => :from
+
+        .search-bar.search-bar2
+          .buttons
+            .toggle
+              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+              = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
+          .results
             %span#num_search_results
-              = @results['results']
-            = t(:results)
+              %span.results_count= @results['results']
+              = t(:results)
+          .sorting
+            = t(:sort_by)
+            = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
+
       .results
         #search_results
           = render 'search_results', :places => @results['places']
@@ -69,6 +78,8 @@
         min_price: $("#min_price").html(),
         max_price: $("#max_price").html(),
         currency: $('#currency').val(),
+        check_in: $('#check_in').val(),
+        check_out: $('#check_out').val(),
         place_type_ids: place_type_ids
       },
       success: function(data) {
@@ -76,7 +87,7 @@
         $('#search_results').css('opacity', '1');
 
         $("#search_results").html(data.place_data);
-        $("#num_search_results").html(data.results);
+        $("#num_search_results .results_count").html(data.results);
 
         $("#types-list").empty();
         $.each(data.place_type_count, function(type, count) {
@@ -113,6 +124,14 @@
   $("#guests, #sort").change(function() {
     pull_data();
   });
+
+  $('input#check_in').datepicker().change(function() {
+    console.log("ehhh");
+  });
+
+  // $("input#check_in").change(function() {
+  //   console.log($(this).val());
+  // });
 
   $("#types-list input").live('click', function() {
     pull_data();
@@ -157,4 +176,12 @@
 
     return arr.join(' ');
   };
+  
+  $('.check-in-picker').datepicker('destroy').datepicker({
+    dateFormat: 'yy-mm-dd',
+    minDate: +1,
+    onSelect: function() {
+      pull_data();
+    }
+  });
 

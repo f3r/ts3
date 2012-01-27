@@ -37,10 +37,29 @@
               .type.bathroom
                 = place['num_bathrooms']
                 = t(:bathroom)
-                
+
       .price.data-block
-        .figure= "#{get_pref_currency}#{place['price_per_night']}"
-        .micro= t(:per_night)
+        -if @results['total_days']
+          -if @results['total_days'] < 7
+            .figure= "#{get_pref_currency}#{place['price_per_night']}"
+            .micro= t(:per_night)
+          -if @results['total_days'] >= 7 && @results['total_days'] <= 28
+            .figure= "#{get_pref_currency}#{place['price_per_week']}"
+            .micro= t(:per_week)      
+          -if @results['total_days'] > 28
+            .figure= "#{get_pref_currency}#{place['price_per_month']}"
+            .micro= t(:per_month)
+        -else
+          -if !place['price_per_month'].blank?
+            .figure= "#{get_pref_currency}#{place['price_per_month']}"
+            .micro= t(:per_month)
+          -elsif !place['price_per_week'].blank?
+            .figure= "#{get_pref_currency}#{place['price_per_week']}"
+            .micro= t(:per_week)
+          -elsif !place['price_per_night'].blank?
+            .figure= "#{get_pref_currency}#{place['price_per_night']}"
+            .micro= t(:per_night)
+
 - else
   %li
     .thumb.data-block

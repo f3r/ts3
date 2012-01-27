@@ -131,7 +131,8 @@ function add_datepicker() {
   //  $(this).datepicker({
 
   $('.from-to-picker').datepicker('destroy').datepicker({
-    dateFormat: 'dd/mm/yy',
+    // dateFormat: 'dd/mm/yy',
+    dateFormat: 'yy-mm-dd',
     minDate: +1,
     onSelect: function(selectedDate) {
       var me = $(this);

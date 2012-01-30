@@ -363,7 +363,6 @@ var sendPricingUpdate = function () {
         if (data.stat == "ok") {
           showSavedIndicator(elem);
           elem.attr('data-changed', '0');
-          validatePanels();
         } else {
           var error_labels = data.error_label.split(',');
           var error_fields = []
@@ -372,11 +371,13 @@ var sendPricingUpdate = function () {
           }
           for(i=0; i < error_labels.length; i++) {
             hideIndicator(elem);
+            $('#place_price_per_night, #place_price_per_week, #place_price_per_month').validationEngine('hidePrompt');
             $('#place_' + error_fields[i]).validationEngine('showPrompt', error_labels[i], 'load', 'centerLeft');
           }
         }
       }
     });
+    validatePanels();
   }
 
 }

@@ -27,9 +27,11 @@ app_name: Squarestays
 are_you_sure: "Are you sure?"
 are_you_sure_delete_photo: "Are you sure you want to remove this photo?"
 arriving: Arriving
+arriving_on: "Arriving on"
 ask_question: "Ask a question"
 authentication_fail: "We are unable to authenticate you at the moment. Please try again."
 availability: Availability
+back_to_place_details: "Back to Property"
 bank_code: "Bank code"
 bathroom: Bathrooms
 bed: Bed
@@ -89,6 +91,7 @@ currency: Currency
 days: days
 delete_place: "Delete place"
 departing: Departing
+departing_on: "Departing on"
 details: Details
 directions: Directions
 do_you_allow_smoking: "Do you allow smoking in your apartment/balcony?"
@@ -99,8 +102,26 @@ edit_place: "Edit place"
 elevator: Elevator
 email_confirmed: "Your email address has been successfully confirmed!"
 errors: 
-  dynamic_format: "%{message}"
-  format: "%{attribute} %{message}"
+  ? "133"
+  : "not allowed to do that"
+  ? "134"
+  : "doesn't have access to resource"
+  ? "135"
+  : "Invalid currency"
+  ? "136"
+  : occupied
+  ? "137"
+  : "invalid place request, check availability"
+  ? "138"
+  : "already cancelled"
+  ? "139"
+  : "date must be on the past"
+  ? "140"
+  : "must be greater than"
+  ? "141"
+  : "minimum stay not met"
+  ? "142"
+  : "over maximum stay"
 family_friendly: "Family Friendly"
 final_cleanup: "Final Cleanup"
 final_cleanup_hint: "The cost of cleaning the place once rental is finished"
@@ -157,6 +178,7 @@ miscellaneous: Miscellaneous
 mobile_phone_number: "Mobile phone number"
 moderate: Moderate
 moderate_cancellation: "full refund 5 days prior to arrival, except fees"
+months: Months
 new_price: "New price"
 nights: Nights
 no_maximum: "No Maximum"
@@ -260,6 +282,7 @@ use_facebook_photo: "Use Facebook Photo"
 view_house_rules: "View House Rules"
 villa: Villa
 washer: Washer
+weeks: Weeks
 what_city_is_your_place_in: "What city is your place in?"
 working_on_expanding: "We're working hard on expanding SquareStays to more. You can help us by telling us what city you would like to see next."
 you_can_add_dates: "You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to"

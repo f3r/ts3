@@ -352,6 +352,8 @@ en:
   stay_details: Stay details
   arriving: Arriving
   departing: Departing
+  arriving_on: Arriving on
+  departing_on: Departing on
   duration: Duration
   contact_information: Contact Information
   mobile_phone_number: Mobile phone number

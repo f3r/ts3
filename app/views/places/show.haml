@@ -29,8 +29,17 @@
               .sharePlace
         .focal
           %h1.price
-            = "#{get_pref_currency}#{@place.price_per_night}"
-            %span.sub= t(:per_night) 
+
+            -if !@place['price_per_month'].blank?
+              = "#{get_pref_currency}#{@place['price_per_month']}"
+              %span.sub= t(:per_month)
+            -elsif !@place['price_per_week'].blank?
+              = "#{get_pref_currency}#{@place['price_per_week']}"
+              %span.sub= t(:per_week)
+            -elsif !@place['price_per_night'].blank?
+              = "#{get_pref_currency}#{@place['price_per_night']}"
+              %span.sub= t(:per_night)
+
           -# %a.btn.large.primary= t(:rent)  
           = link_to t(:rent), rent_place_path(@place), :class => "btn large primary"
 

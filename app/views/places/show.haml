@@ -101,9 +101,13 @@
             %a{:href => "#details-tab"}= t(:details)
           %li
             %a{:href => "#amenities-tab"}= t(:amenities)
+          - unless @place.directions.blank?
+            %li
+              %a{:href => "#directions-tab"}= t(:directions)
           - unless @place.house_rules.blank?
             %li
               %a{:href => "#house-rules-tab"}= t(:house_rules)
+
         .contents
           .fine-print.pill-content
             .row.active#details-tab
@@ -153,6 +157,10 @@
                 - display_place_amenities(@place).each do |amenity|
                   %label.w-left-icon.check
                     = amenity
+		
+            .row#directions-tab
+              .span
+                %pre.desc= @place.directions
 
             .row#house-rules-tab
               .span

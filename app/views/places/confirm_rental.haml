@@ -15,7 +15,7 @@
       , you can ask them below. Similarly, you may get questions back from
       = "#{full_name @owner}. "
       Please be sure to check SquareStays in the next days for updates!
-                  
+
 .row
   .span16
     = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show'} do |f|
@@ -29,5 +29,5 @@
         = hidden_field_tag 'place_id', params[:id]
         = f.text_area :message, :rows => 4, :class => "span12"
         %div.float-right{:style => "margin-top: 10px;"}
-          = button_tag "Cancel", :class => 'btn respond-cancel'
-          = button_tag "Submit", :class => "btn primary respond-btn"
+          = button_tag t(:cancel), :class => 'btn respond-cancel'
+          = button_tag t(:submit), :class => "btn primary respond-btn"

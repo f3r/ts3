@@ -8,3 +8,4 @@
       - @results['conversations'].each do |m|
         - from = (current_user['id'] == m['from']['id'])
         = render 'message', :m => m, :from => from
+

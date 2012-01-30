@@ -30,7 +30,8 @@
               %button.btn.primary=t(:submit)
               %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
 
-        %form{:action => places_path}
+        - #%form{:action => places_path}
+        %form{:action => singapore_places_path}
           .clearfix
             = text_field_tag "check_in", "", :placeholder => t(:arriving_on), :class => 'textbox big from-to-picker', "data-date" => :from
             = text_field_tag "check_out", "", :placeholder => t(:departing_on), :class => 'textbox big from-to-picker', "data-date" => :to
@@ -62,19 +63,19 @@
       #teaser-pics
         %a.thumb{:href => "#"}
           .description= t(:car_one)
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/car01.jpg"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/car01.jpg"}
         %a.thumb{:href => "#"}
           .description= t(:car_two)
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/car02.jpg"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/car02.jpg"}
         %a.thumb{:href => "#"}
           .description= t(:car_three)
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/car03.jpg"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/car03.jpg"}
         %a.thumb{:href => "#"}
           .description= t(:car_four)
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/car04.jpg"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/car04.jpg"}
         %a.thumb{:href => "#"}
           .description= t(:car_five)
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/car05.jpg"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/car05.jpg"}
       
 .tease-blurb
   
@@ -86,19 +87,19 @@
       .wrapper
         %h4.title= t(:teaser_1_title)
         %p 
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/suitcase.png"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/suitcase.png"}
           = t(:teaser_1_content)
     .span4
       .wrapper
         %h4.title= t(:teaser_2_title)
         %p
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/shield.png"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/shield.png"}
           = t(:teaser_2_content)
     .span4
       .wrapper
         %h4.title= t(:teaser_3_title)
         %p
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/building.png"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/building.png"}
           = t(:teaser_3_content)
         
 .tease-featurette
@@ -108,11 +109,11 @@
         %h2.title= t(:homepage_life_sg_title)
         %p 
           = t(:homepage_life_sg_content)
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/sg.jpg"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/sg.jpg"}
         
     .span8
       .wrapper.about
         %h2.title= t(:homepage_about)
         %p
-          %img{:src => "https://s3.amazonaws.com/squarestays-static/feat.logo.png"}
+          %img{:src => "http://s3.amazonaws.com/squarestays-static/feat.logo.png"}
           = t(:homepage_about_content)

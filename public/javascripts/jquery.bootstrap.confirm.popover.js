@@ -105,7 +105,20 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 							$dialog.remove();
 							targetClickFun();
 						});*/
-            $dialog.find('a.btn:eq(0)').replaceWith($elem.clone());
+
+            console.log($elem.clone());
+            if ($elem.clone().text() != 'Delete' || $elem.clone().text() == 'XX') {
+              console.log('has image');
+              a_link = $elem;
+              if (a_link.attr('data-remote')){
+                del_button = "<a class='btn small danger' href='"+ a_link.attr('href') + "' data-method='" + a_link.attr('data-method') + "' rel='"+ a_link.attr('rel') + "' data-remote='"+ a_link.attr('data-remote')+"'>Delete</a>";
+              } else {
+                del_button = "<a class='btn small danger' href='"+ a_link.attr('href') + "' data-method='" + a_link.attr('data-method') + "' rel='"+ a_link.attr('rel') + "'>Delete</a>";
+              }
+               $dialog.find('a.btn:eq(0)').replaceWith(del_button);
+            } else {
+              $dialog.find('a.btn:eq(0)').replaceWith($elem.clone());
+            }
             $dialog.find('a.btn:eq(0)').removeClass().addClass('btn small danger');
 						
 						$dialog.find('a.btn:eq(1)').text(o.cancelButton).bind('click', function(e) {

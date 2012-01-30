@@ -1,4 +1,4 @@
-.row
+.row.place_info
   .span12
     - if @preview
       %div{:style => "float:right"}
@@ -15,7 +15,7 @@
       .preview-header
         %br
         %p= t(:this_is_preview)
-        .border.span11      
+        .border.span11
 
     .accomodation-wrapper
       .header
@@ -41,7 +41,7 @@
               %span.sub= t(:per_night)
 
           -# %a.btn.large.primary= t(:rent)  
-          = link_to t(:rent), rent_place_path(@place), :class => "btn large primary"
+          %a{:class => 'btn large primary', 'data-controls-modal' => 'inquire_place', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true', :href => '#'}= t(:rent)
 
       .tabbed-panel  
         %ul.tabs
@@ -115,9 +115,13 @@
             %a{:href => "#details-tab"}= t(:details)
           %li
             %a{:href => "#amenities-tab"}= t(:amenities)
+          - unless @place.directions.blank?
+            %li
+              %a{:href => "#directions-tab"}= t(:directions)
           - unless @place.house_rules.blank?
             %li
               %a{:href => "#house-rules-tab"}= t(:house_rules)
+
         .contents
           .fine-print.pill-content
             .row.active#details-tab
@@ -167,6 +171,10 @@
                 - display_place_amenities(@place).each do |amenity|
                   %label.w-left-icon.check
                     = amenity
+		
+            .row#directions-tab
+              .span
+                %pre.desc= @place.directions
 
             .row#house-rules-tab
               .span
@@ -236,6 +244,7 @@
           %li.center{:style => 'margin-top: 20px;'}
             = link_to t(:message_user), logged_in? ? new_message_path(@owner['id']) : login_path, :class => 'btn large primary'
 
+= render :partial => 'inquire_place'
 
 :javascript
   // accomodation photo slider
@@ -287,7 +296,7 @@
         title: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>
       });
     }
-
+    
     $(document).ready(function() {
       $('#first-calendar').fullCalendar({
         header: {
@@ -312,7 +321,6 @@
         visStart: false
       });
 
-
       $('.fc-header-left .fc-button-inner').hide();
 
       $('#first-calendar .fc-header-left .fc-button-prev').click(function() {
@@ -330,13 +338,18 @@
         $('#first-calendar').fullCalendar('next');
         $('.fc-header-left .fc-button-inner').show();
       });
+
+      $("a[data-method='delete']").confirmDialog({
+        message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>
+      });
+
   });
 
   $('.tabs').bind('change', function (e) {
     if ($(e.target).attr('href') == '#map-tab') {
       initializeMap();
     }
-  })
+  });
 
   $('.sharePlace').bookmark({
     sites: ['facebook', 'twitter', 'google'],

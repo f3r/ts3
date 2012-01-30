@@ -81,6 +81,10 @@ class Heypal::Place < Heypal::Base
       result = request("/places/#{id}/confirm_rental.json?access_token=#{access_token}&check_in=#{check_in}&check_out=#{check_out}", :post)
     end
 
+    def confirm_inquiry(id, options, access_token)
+      result = request("/places/#{id}/confirm_inquiry.json?access_token=#{access_token}", :post, options)
+    end
+
     def normalize_place(result)
       # merge the place hash for now
       p = {}

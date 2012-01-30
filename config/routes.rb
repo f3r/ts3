@@ -1,9 +1,9 @@
 HeyPalFrontEnd::Application.routes.draw do
 
   get   'search/index'
-  match '/connect'        => 'users#connect'
-  match '/cities'         => 'places#get_cities'
-  match  '/cities/suggest' => 'home#suggest', :as => :city_suggest
+  match '/connect'         => 'users#connect'
+  match '/cities'          => 'places#get_cities'
+  match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
 
   resources :places do
     member do
@@ -18,8 +18,10 @@ HeyPalFrontEnd::Application.routes.draw do
       get :rent
       match :availability
       post :confirm_rental
+      post :confirm_inquiry
     end
     get :search, :on => :collection
+    get '/singapore' => 'places#index', :on => :collection
     resources :availabilities
     resources :comments do
       post :reply_to_message

@@ -1,8 +1,8 @@
 module Paperclip
   class Watermark < Processor
-    # Handles watermarking of images that are uploaded.    
+    # Handles watermarking of images that are uploaded.
     attr_accessor :current_geometry, :target_geometry, :format, :whiny, :convert_options, :watermark_path, :overlay, :position
-    
+
     def initialize file, options = {}, attachment = nil
        super
        geometry          = options[:geometry]
@@ -19,9 +19,9 @@ module Paperclip
        @current_format   = File.extname(@file.path)
        @basename         = File.basename(@file.path, @current_format)
      end
-     
+
      # TODO: extend watermark
-     
+
      # Returns true if the +target_geometry+ is meant to crop.
       def crop?
         @crop
@@ -40,7 +40,6 @@ module Paperclip
 
         if watermark_path
           command = "composite"
-          # params = "-gravity #{@position} #{watermark_path} #{fromfile} #{transformation_command} #{tofile(dst)}"
           @position = if @current_geometry.horizontal?
             "NorthEast"
           elsif @current_geometry.vertical?
@@ -68,7 +67,7 @@ module Paperclip
 
       def tofile(destination)
         "\"#{ File.expand_path(destination.path) }[0]\""
-      end    
+      end
 
       def transformation_command
         scale, crop = @current_geometry.transformation_to(@target_geometry, crop?)

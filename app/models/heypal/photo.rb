@@ -34,7 +34,6 @@ class Heypal::Photo < Heypal::Base
       :large => {
         :geometry => "451x301>",
         :watermark_path => "#{Rails.root}/public/images/watermark_icon.png"
-        #:position => "northeast" # :position is on /lib/paperclip_processor/watermark.rb
       },
       :medium => "216x144>",
       :medsmall => "150x100>",
@@ -49,7 +48,7 @@ class Heypal::Photo < Heypal::Base
       :bucket => S3_BUCKET,
     },
     :s3_protocol => "http",
-    :processors => [:watermark]
+    :processors => [:rationize, :watermark]
   }
 
 end

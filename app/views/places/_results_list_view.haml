@@ -20,7 +20,7 @@
             .type.house 
               = I18n.t(place['place_type']['name'].parameterize('_'))
             .type.size
-              - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
+              - if get_current_size_unit == "sqf"
                 = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
                 =t(:square_feet_short)
               -else

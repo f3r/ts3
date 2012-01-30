@@ -9,7 +9,7 @@
 
       %span.wrap.hide
         %small.currency-sign= currency_sign_of(@place.currency)
-        = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => 'small validate[custom[number],min[0]]'
+        = text_field_tag "price_per_night", "", :placeholder => t(:new_price), :class => 'small validate[custom[number],min[0]]'
 
     %small.help-block
       =t(:you_can_add_dates)

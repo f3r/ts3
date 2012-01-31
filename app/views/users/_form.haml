@@ -2,6 +2,10 @@
   %h2.offset-one-eight= t(:create_new_account)
   %br 
   = form_for :user, :url => users_path, :html => {:id => 'registerForm'} do |f|
+    = f.hidden_field :oauth_provider
+    = f.hidden_field :oauth_token
+    = f.hidden_field :oauth_uid
+    = f.hidden_field :avatar_url
     .input
       = f.text_field :first_name, :placeholder => 'First Name'
     .input
@@ -20,17 +24,3 @@
           = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank
     %button.btn.float-right{:type => 'submit'}
       Create account
-
-.section.span5
-  %h2.bottom-large= t(:create_an_account_using)
-  %a{:href => "/auth/facebook"}
-    %img.bottom{:src => '/images/signin_facebook.png', :alt => 'Sign in with Facebook'}
-  %br
-  %a{:href => "/auth/twitter"}
-    %img{:src => '/images/sign-in-with-twitter-l.png', :alt => 'Sign in with twitter'}
-  %p.bottom-part
-    This will allow you to log in to SquareStays
-    %br
-    using your existing accounts!
-%br.clearfix
-%br

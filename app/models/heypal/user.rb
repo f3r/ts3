@@ -119,4 +119,21 @@ class Heypal::User < Heypal::Base
     result = request("/users/#{self['user_id']}/info.json")
   end
 
+  def full_name
+    [first_name,last_name].join(' ')
+  end
+  
+  def avatar_url
+    @avatar_url ||= fetch_profile_picture_url
+  end
+  
+  def fetch_profile_picture_url
+    if oauth_provider == "facebook"
+      avatar = "https://graph.facebook.com/#{oauth_uid}/picture"
+    elsif oauth_provider == "twitter"
+      user = RestClient.get("https://api.twitter.com/1/users/show.json?user_id=#{oauth_uid}")
+      user_info = JSON.parse(user)
+      avatar = user_info['profile_image_url']
+    end
+  end  
 end

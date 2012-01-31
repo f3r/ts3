@@ -18,7 +18,13 @@ class UsersController < ApplicationController
     if @user.valid? && @user.save
       redirect_to signup_complete_path
     else
-      render :action => :new, :layout => 'single'
+      if params[:user][:oauth_uid]
+        @oauth_provider = params[:user][:oauth_provider]
+        @oauth_uid = params[:user][:oauth_uid]
+        render :template => 'users/connect', :layout => 'single'
+      else
+        render :action => :new, :layout => 'single'
+      end
     end
   end
 

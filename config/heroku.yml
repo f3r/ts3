@@ -17,6 +17,7 @@ production:
     S3_BUCKET:            squarestays-img-production
     FB_APP_ID:            201854953233705
     FB_APP_SECRET:        5a773c1f43daaaefb0a169fc388ba1e0
+    FRONTEND_PATH:        http://www.squarestays.com
     TW_APP_ID:            KkHFOnyPPPFjUYcjVpyLA
     TW_APP_SECRET:        rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA
     BACKEND_PATH:         https://squarestays-backend.heroku.com
@@ -33,6 +34,7 @@ staging:
     S3_BUCKET:            squarestays-img-staging
     FB_APP_ID:            294052747281058
     FB_APP_SECRET:        c8fbc31a070e9aa9bcbba3d702d5ec1a
+    FRONTEND_PATH:        http://frontend-heypal.heroku.com
     TW_APP_ID:            7IhUH1SkVKa7VNVDY5Bdw
     TW_APP_SECRET:        iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc
     BACKEND_PATH:         https://backend-heypal.heroku.com

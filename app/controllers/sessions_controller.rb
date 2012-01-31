@@ -69,6 +69,14 @@ class SessionsController < ApplicationController
         redirect_to after_sign_in_path
       else
         # Ask the user to connect the account
+        @user = Heypal::User.new(
+          :email => oauth_email, 
+          :first_name => oauth_firstname, 
+          :last_name => oauth_lastname,
+          :oauth_provider => oauth_provider,
+          :oauth_token => oauth_token,
+          :oauth_uid => oauth_uid
+        )
         flash[:notice] = t(:signup_needed_to_connect)
         render :template => 'users/connect'
       end

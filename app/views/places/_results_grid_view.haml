@@ -18,7 +18,7 @@
                 .type.house 
                   = I18n.t(place['place_type']['name'].parameterize('_'))
                 .type.size
-                  - if "ft<sup>2</sup>".casecmp(get_pref_size_unit) == 0
+                  - if get_current_size_unit == "sqf"
                     = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
                     =t(:square_feet_short)
                   -else
@@ -35,7 +35,25 @@
                   .type.bathroom
                     = place['num_bathrooms']
                     = t(:bathroom)
-                    
+
             .price.data-block
-              .title.figure= "#{get_pref_currency}#{place['price_per_night']}"
-              .micro=t(:per_night)
+              -if @results['total_days']
+                -if @results['total_days'] < 7
+                  .figure= "#{get_pref_currency}#{place['price_per_night']}"
+                  .micro= t(:per_night)
+                -if @results['total_days'] >= 7 && @results['total_days'] <= 28
+                  .figure= "#{get_pref_currency}#{place['price_per_week']}"
+                  .micro= t(:per_week)      
+                -if @results['total_days'] > 28
+                  .figure= "#{get_pref_currency}#{place['price_per_month']}"
+                  .micro= t(:per_month)
+              -else
+                -if !place['price_per_month'].blank?
+                  .figure= "#{get_pref_currency}#{place['price_per_month']}"
+                  .micro= t(:per_month)
+                -elsif !place['price_per_week'].blank?
+                  .figure= "#{get_pref_currency}#{place['price_per_week']}"
+                  .micro= t(:per_week)
+                -elsif !place['price_per_night'].blank?
+                  .figure= "#{get_pref_currency}#{place['price_per_night']}"
+                  .micro= t(:per_night)

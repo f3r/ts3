@@ -23,8 +23,12 @@ class PlacesController < ApplicationController
 
   def update
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
-
-    render :text => "", :layout => false
+    if result['stat'] == "ok"
+      response = {:stat => "ok"}
+    else
+      response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
+    end
+    render :json => response, :layout => false
   end
 
   def update_currency
@@ -47,6 +51,16 @@ class PlacesController < ApplicationController
     place = Heypal::Place.unpublish(params[:id], current_token)
     flash[:notice] = t(:place_unpublished)
     redirect_to preview_place_path(:id => params[:id])
+  end
+
+  def publish_check
+    result = Heypal::Place.publish_check(params[:id], current_token)
+    if result['stat'] == "ok"
+      response = {:stat => "ok"}
+    else
+      response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
+    end
+    render :json => response, :layout => false
   end
 
   def wizard
@@ -141,7 +155,9 @@ class PlacesController < ApplicationController
 
   # default place search
   def index
-    params = {"sort" => 'price_lowest', 'guests' => '1', 'currency' => get_current_currency}
+    check_in = params[:check_in] rescue nil
+    check_out = params[:check_out] rescue nil
+    params = {'check_in' => check_in, 'check_out' => check_out, "sort" => 'price_lowest', 'guests' => '1', 'currency' => get_current_currency}
     @results = Heypal::Place.search(params)
 
     min, max = Heypal::Geo.get_price_range(1, get_current_currency) #1 is Sing. Line:28 of LookupsHelper

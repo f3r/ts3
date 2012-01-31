@@ -2,23 +2,34 @@
   .row
     .span12
       .wrap-searchbar
-        .search-bar
+        .search-bar.search-bar1
+
+          .float-left
+            %h2
+              Singapore, Singapore
+            = hidden_field_tag :currency, get_current_currency
+
           .float-right
-            .toggle
-              = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
-              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-            .clearfix
             .controls
               = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
-              = t(:sort_by)
-              = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
-          %h2
-            Singapore, Singapore
-          = hidden_field_tag :currency, get_current_currency
-          .clearfix
+              = t(:from)
+              = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from
+              = t(:to)
+              = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to
+
+        .search-bar.search-bar2
+          .buttons
+            .toggle
+              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+              = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
+          .results
             %span#num_search_results
-              = @results['results']
-            = t(:results)
+              %span.results_count= @results['results']
+              = t(:results)
+          .sorting
+            = t(:sort_by)
+            = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
+
       .results
         #search_results
           = render 'search_results', :places => @results['places']
@@ -35,10 +46,10 @@
                     %li
                       %label
                         %span.left
-                          = check_box_tag :place_type, p_type[0], (@results['place_type_count'][p_type[2]].to_i > 0), :id => p_type[2]
+                          = check_box_tag :place_type, p_type[0], (!@results['place_type_count'].blank? && @results['place_type_count'][p_type[2]].to_i > 0), :id => p_type[2]
                           %span= p_type[0]
                         %span.right
-                          %span= "(#{@results['place_type_count'][p_type[2]]})"
+                          %span= "(#{@results['place_type_count'][p_type[2]]})" if !@results['place_type_count'].blank?
 
             %li
               .header= t(:price_per_night)
@@ -69,6 +80,8 @@
         min_price: $("#min_price").html(),
         max_price: $("#max_price").html(),
         currency: $('#currency').val(),
+        check_in: $('#check_in').val(),
+        check_out: $('#check_out').val(),
         place_type_ids: place_type_ids
       },
       success: function(data) {
@@ -76,7 +89,7 @@
         $('#search_results').css('opacity', '1');
 
         $("#search_results").html(data.place_data);
-        $("#num_search_results").html(data.results);
+        $("#num_search_results .results_count").html(data.results);
 
         $("#types-list").empty();
         $.each(data.place_type_count, function(type, count) {
@@ -157,4 +170,28 @@
 
     return arr.join(' ');
   };
+  
+  $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
+    // dateFormat: 'dd/mm/yy',
+    dateFormat: 'yy-mm-dd',
+    minDate: +1,
+    onSelect: function(selectedDate) {
+      pull_data();
+      var me = $(this);
+      var who = me.attr("data-date");
+      var instance = me.data("datepicker");
 
+      var date = $.datepicker.parseDate(
+            instance.settings.dateFormat ||
+            $.datepicker._defaults.dateFormat,
+            selectedDate, instance.settings);
+
+      if (who == 'from') {
+        from = me.next();
+        from.datepicker("option", "minDate", date);
+      } else {
+        to = me.prev();
+        to.datepicker("option", "maxDate", date);
+      }
+    }
+  });

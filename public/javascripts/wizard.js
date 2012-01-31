@@ -195,6 +195,13 @@ var validatePanels = function(target) {
     wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
   }
 
+  // Amenities
+  if(panelErrors.amenities) {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
+  } else {
+    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');
+  }
+
   // Price
   if(panelErrors.price) {
     wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
@@ -206,56 +213,41 @@ var validatePanels = function(target) {
   return panelErrors;
 }
 
-var panelStatuses = function(target) {
-
+var panelStatuses = function() {
   var errors = {};
-
-  // General errors
-  errors.general = ($('#place_title').val() != "" && $('#place_max_guests').val() != "" && $('#place_place_size').val() != "" && $('#place_description').val() != "" && $('#place_description').val().length >= 20);
-
-  // For a better UX. Highlight those fields.
-  if($('#place_title').val() == "") { $('#place_title').addClass('error'); } else { $('#place_title').removeClass('error');  }
-  if($('#place_max_guests').val() == "") { $('#place_max_guests').addClass('error'); } else { $('#place_max_guests').removeClass('error'); }
-  if($('#place_place_size').val() == "") { $('#place_place_size').addClass('error'); } else { $('#place_place_size').removeClass('error'); }
-  if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
-  if($('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else { $('#place_description').removeClass('error'); }
-
-  // Photos
-  errors.photos = ($('#photos_list li').size() >= 3);
-
-  // Price
-  errors.price = ($('#place_price_per_night').val() != "" && $('#place_currency').val() != "" && $('#place_cancellation_policy').val() != "");
-
-  if($('#place_price_per_night').val() == "") { $('#place_price_per_night').addClass('error'); } else { $('#place_price_per_night').removeClass('error');  }
-  if($('#place_currency').val() == "") { $('#place_currency').addClass('error'); } else { $('#place_currency').removeClass('error'); }
-  if($('#place_cancellation_policy').val() == "") { $('#place_cancellation_policy').addClass('error'); } else { $('#place_cancellation_policy').removeClass('error'); }
-
-  // Amenities
-  errors.amenities = validateAmenitiesPanel();
-
-  // Calendar
+  errors.general = true;
+  errors.photos = true;
+  errors.price = true;
+  errors.amenities = true;
   errors.calendar = true;
 
-  return errors;
-}
-
-var validateAmenitiesPanel = function(target) {
-  var wizard_aside = $('.wizard-aside');
-  // Amenities
-  var hasAmenity = false;
-  $('.amenity input[type=checkbox]').each(function() {
-    if($(this).attr('checked') == 'checked') {
-      hasAmenity = true;
-      wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
-      return hasAmenity;
+  $.ajax({
+    type: 'GET',
+    async: false,
+    cache: false,
+    url: '/places/' + $("#place_id").val() + '/publish_check.json',
+    success: function(data) {
+      publish_errors = data.err['publish'];
+      if (publish_errors) {
+        if ($.inArray(126, publish_errors) > -1) {
+          errors.price = false;
+        }
+        if ($.inArray(124, publish_errors) > -1) {
+          if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
+          errors.general = false;
+        }
+        if ($.inArray(143, publish_errors) > -1) {
+          errors.amenities = false;
+        }
+        if ($.inArray(123, publish_errors) > -1) {
+          errors.photos = false;
+        }
+      }
     }
   });
 
-  if(hasAmenity == false) {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');
-  }
+  return errors;
 
-  return hasAmenity;
 }
 
 var validatePreview = function() {
@@ -302,12 +294,12 @@ var sendFieldUpdate = function() {
         success: function() {
           showSavedIndicator(elem);
           elem.attr('data-changed', '0');
+          validatePanels();
         }
       });
     } else {
       showErrorIndicator(elem);
     }
-    validatePanels();
   }
 };
 
@@ -332,13 +324,67 @@ var sendPlaceSizeUpdate = function () {
       success: function() {
         showSavedIndicator(elem);
         elem.attr('data-changed', '0');
+        validatePanels();
       }
     });
+  }
 
+}
+
+
+
+
+var sendPricingUpdate = function () {
+
+  var elem = $(this);
+  var put_data;
+  
+  // Check if we have changed values
+  if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
+  
+    hideIndicator(elem);
+    showIndicator(elem);
+  
+    place_id = $("#place_id").val(); // TODO: Quick update for now
+  
+    put_data = 
+      // 'place[price_per_night]='+ $('#place_price_per_night').val() + "&" + 
+      'place[price_per_week]='+ $('#place_price_per_week').val() + "&" + 
+      'place[price_per_month]='+ $('#place_price_per_month').val() + "&" + 
+      'place[minimum_stay]='+ $('#place_minimum_stay').val() + "&" + 
+      'place[maximum_stay]='+ $('#place_maximum_stay').val() + "&" + 
+      'place[stay_unit]='+ $('#place_stay_unit').val()
+      ;
+  
+    $.ajax({
+      type: 'PUT',
+      url: '/places/' + place_id + '.json',
+      data: put_data,
+      success: function(data) {
+        if (data.stat == "ok") {
+          showSavedIndicator(elem);
+          elem.attr('data-changed', '0');
+        } else {
+          var error_labels = data.error_label.split(',');
+          var error_fields = []
+          for (error in data.err) {
+            error_fields.push(error)
+          }
+          for(i=0; i < error_labels.length; i++) {
+            hideIndicator(elem);
+            $('#place_price_per_night, #place_price_per_week, #place_price_per_month').validationEngine('hidePrompt');
+            $('#place_' + error_fields[i]).validationEngine('showPrompt', error_labels[i], 'load', 'centerLeft');
+          }
+        }
+      }
+    });
     validatePanels();
   }
 
 }
+
+
+
 
 var sendCheckBoxUpdate = function() {
   var elem = $(this);
@@ -367,9 +413,9 @@ var sendCheckBoxUpdate = function() {
     success: function() {
       showSavedIndicator(elem);
       elem.show();
+      validatePanels();
     }
   });
-  validatePanels();
 };
 
 var trackChange = function() {
@@ -435,8 +481,8 @@ var computeWeeklyMonthlyPay = function() {
 
   // FIX ME: Currency selection gets repeated
   if($(this).val() != 0 || $(this).val() != ''){
-    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
-    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
+    // $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    // $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 
   $.ajax({
@@ -457,8 +503,8 @@ function showComputeWeeklyMonthlyPay(elem) {
 
   // FIXME: Same as previous function
   if(elem != 0 || elem != ''){
-    $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
-    $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
+    // $('#estimated_amount_weekly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_week);
+    // $('#estimated_amount_monthly').html(t('based_on_your_daily_price') + "<span class='currency-sign-id'>" + currency_sign + "</span>" + total_per_month);
   }
 };
 
@@ -515,7 +561,10 @@ $(document).ready(function() {
   $('#wizard_form input[type=text].autosave_place_unit,  #wizard_form select.autosave_place_unit').change(trackChange)
         .blur(sendPlaceSizeUpdate);
 
-  $("#wizard_form input[type='checkbox']").change(sendCheckBoxUpdate);
+  $('#wizard_form input[type=text].autosave_pricing, #wizard_form textarea.autosave_pricing, #wizard_form select.autosave_pricing').change(trackChange)
+        .blur(sendPricingUpdate);
+
+  $("#wizard_form .amenity input[type='checkbox']").change(sendCheckBoxUpdate);
 
   // Validate the zip code
   $('#place_zip').change(validateZipCode);
@@ -576,5 +625,38 @@ $(document).ready(function() {
 
   $('#preview_button, #listing-status').click(validatePreview);
 
+  $('.stay_unit_sync_1, .stay_unit_sync_2').change(function(){
+    $('select.stay_unit_sync').val($(this).val());
+  });
+
+  $("#wizard_form .no_minimum_stay input[type='checkbox']").change(function(){
+    if($(this).attr("checked")) {
+      old_value = $('input#place_minimum_stay').val();
+      $('input#place_minimum_stay').val(0);
+      if ($('input#place_minimum_stay').val() != old_value) {
+        $('input#place_minimum_stay').attr('data-changed', 1);
+      }
+      $('input#place_minimum_stay').attr("disabled", "disabled");
+      $('input#place_minimum_stay').trigger('blur');
+    } else {
+      $('input#place_minimum_stay').removeAttr("disabled");
+    }
+    $(this).trackChange
+  });
+
+  $("#wizard_form .no_maximum_stay input[type='checkbox']").change(function(){
+    if($(this).attr("checked")) {
+      old_value = $('input#place_maximum_stay').val();
+      $('input#place_maximum_stay').val(0);
+      if ($('input#place_maximum_stay').val() != old_value) {
+        $('input#place_maximum_stay').attr('data-changed', 1);
+      }
+      $('input#place_maximum_stay').attr("disabled", "disabled");
+      $('input#place_maximum_stay').trigger('blur');
+    } else {
+      $('input#place_maximum_stay').removeAttr("disabled");
+    }
+    $(this).trackChange
+  });
 
 });

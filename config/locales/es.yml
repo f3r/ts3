@@ -52,9 +52,11 @@ es:
   are_you_sure: "¿Estás seguro?"
   are_you_sure_delete_photo: "¿Está seguro que desea eliminar esta foto?"
   arriving: Llegando
+  arriving_on: "Llegando el"
   ask_question: "Haga una pregunta"
   authentication_fail: "No hemos podido autenticarte. Te rogamos lo intentes de nuevo"
   availability: Disponibilidad
+  back_to_place_details: ""
   bank_code: "Código del Banco"
   bathroom: Baños
   bed: Cama
@@ -476,6 +478,7 @@ es:
   days: días
   delete_place: "Eliminar el apartamento"
   departing: Salida
+  departing_on: "Partiendo el"
   description: Descripción
   details: Detalles
   directions: Direcciones
@@ -558,6 +561,26 @@ es:
     : "invalid json"
     ? "132"
     : "invalid city (not on the cities table)"
+    ? "133"
+    : ""
+    ? "134"
+    : ""
+    ? "135"
+    : "Moneda no válida"
+    ? "136"
+    : ocupado
+    ? "137"
+    : "solicitud de lugar no válido, consultar disponibilidad"
+    ? "138"
+    : "ya ha sido cancelada"
+    ? "139"
+    : "la fecha debe ser en el pasado"
+    ? "140"
+    : "debe ser mayor que"
+    ? "141"
+    : ""
+    ? "142"
+    : ""
     dynamic_format: "%{message}"
     format: "%{attribute} %{message}"
     messages: 
@@ -617,7 +640,7 @@ es:
       create: "Crear %{model}"
       submit: "Guardar %{model}"
       update: "Actualizar %{model}"
-  holder_name: ""
+  holder_name: "Nombre del titular"
   homepage_about: "Acerca de SquareStays"
   homepage_about_content: "SquareStays ofrece una mezcla única de exactamente lo que necesita en alojamiento profesional flexible - calidad y confianza a un precio razonable. Todos los anuncios de SquareStays están diseñados para proporcionar la comodidad que usted espera de tener un lugar propio con la flexibilidad de una estancia de corto plazo. SquareStays sólo permite propietarios profesionales, propietarios, agentes y gerentes de propiedad lista de lugares. Esto le asegura un alto nivel de confianza, servicio y calidad para su estancia."
   homepage_life_sg_content: ""
@@ -667,6 +690,7 @@ es:
   mobile_phone_number: "Número de teléfono móvil"
   moderate: Moderada
   moderate_cancellation: "reembolso completo 5 días antes de la llegada, excepto las tasas"
+  months: Meses
   my_places: "Mis Apartamentos"
   new_price: "Nuevo precio"
   next_step: "Siguiente &raquo;"
@@ -867,6 +891,7 @@ es:
   view_house_rules: "Ver reglas de casa"
   villa: Villa
   washer: Lavadora
+  weeks: Semanas
   what_city: "¿En qué ciudad está tu Apartamento?"
   what_city_is_your_place_in: "¿En qué ciudad está su apartamento?"
   working_on_expanding: "Estamos trabajando en la expansión de SquareStays. Para ayudarnos, puede decirnos qué ciudad gustaría ver a continuación."

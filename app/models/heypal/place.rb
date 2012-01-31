@@ -10,7 +10,7 @@ class Heypal::Place < Heypal::Base
 
   @@pricing_attributes = ["currency", "price_per_night", "price_per_week", "price_per_month", "price_final_cleanup", "price_security_deposit"] 
 
-  @@terms_attributes = ["check_in_after", "check_out_before", "minimum_stay_days", "maximum_stay_days", "house_rules", "cancellation_policy"] 
+  @@terms_attributes = ["check_in_after", "check_out_before", "minimum_stay", "maximum_stay", "stay_unit", "house_rules", "cancellation_policy"] 
 
   @@attributes = @@general_attributes + @@geo_attributes + @@amenities_attributes + @@pricing_attributes + @@terms_attributes
 
@@ -56,6 +56,11 @@ class Heypal::Place < Heypal::Base
 
     def unpublish(id, access_token)
       result = request("/places/#{id}/unpublish.json?access_token=#{access_token}", :get)
+      result
+    end
+
+    def publish_check(id, access_token)
+      result = request("/places/#{id}/publish_check.json?access_token=#{access_token}", :get)
       result
     end
 
@@ -116,7 +121,7 @@ class Heypal::Place < Heypal::Base
             end
           end
         else
-          if %w(sort m page per_page min_price max_price currency guests).include? k
+          if %w(sort m page per_page min_price max_price currency guests check_in check_out total_days).include? k
             q << "#{k}"
           else
             q << "q[#{k}]"
@@ -191,7 +196,7 @@ class Heypal::Place < Heypal::Base
 
   # Am i really valid?
   def attributes_valid?
-    title.present? && max_guests.present? && place_size.present? && description.present? && description.length > 20 && photos.length >= 3 && price_per_night.to_s.present? && currency.present? && cancellation_policy.present?
+    title.present? && max_guests.present? && place_size.present? && description.present? && description.length > 20 && photos.length >= 3 && (price_per_night.to_s.present? or price_per_week.to_s.present? or price_per_month.to_s.present?) && currency.present? && cancellation_policy.present?
   end
 
   # Virtual attribute for size (sqm/sqf) and size type

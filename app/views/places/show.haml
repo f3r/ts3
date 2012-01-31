@@ -29,8 +29,17 @@
               .sharePlace
         .focal
           %h1.price
-            = "#{get_pref_currency}#{@place.price_per_night}"
-            %span.sub= t(:per_night) 
+
+            -if !@place['price_per_month'].blank?
+              = "#{get_pref_currency}#{@place['price_per_month']}"
+              %span.sub= t(:per_month)
+            -elsif !@place['price_per_week'].blank?
+              = "#{get_pref_currency}#{@place['price_per_week']}"
+              %span.sub= t(:per_week)
+            -elsif !@place['price_per_night'].blank?
+              = "#{get_pref_currency}#{@place['price_per_night']}"
+              %span.sub= t(:per_night)
+
           -# %a.btn.large.primary= t(:rent)  
           %a{:class => 'btn large primary', 'data-controls-modal' => 'inquire_place', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true', :href => '#'}= t(:rent)
 
@@ -88,13 +97,18 @@
             .title
               =t(:minimum_stay)
             .micro
-              = month_count @place.minimum_stay_days
+              -if @place.minimum_stay == "0"
+                = "#{@place.minimum_stay} #{t(@place.stay_unit)}"
+              -else
+                = t(:no_minimum)
           .span3.right
             .title
               =t(:maximum_stay)
             .micro
-              = month_count @place.maximum_stay_days
-
+              -if @place.maximum_stay == "0"
+                = "#{@place.maximum_stay} #{t(@place.stay_unit)}"
+              -else
+                = t(:no_maximum)
       .tabbed-panel.other-info  
         %ul.tabs
           %li.active  
@@ -133,9 +147,9 @@
                   %label.sm= t(:bathroom)
                   .value.sm= @place.num_bathrooms
               .span3.col
-                %label= t(:price_per_night)
-                .value= "#{get_pref_currency}#{@place.price_per_night}"
-
+                - unless @place.price_per_night.blank?
+                  %label= t(:price_per_night)
+                  .value= "#{get_pref_currency}#{@place.price_per_night}"
                 - unless @place.price_per_week.blank?
                   %label= t(:price_per_week)
                   .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true

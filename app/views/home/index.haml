@@ -33,7 +33,8 @@
         - #%form{:action => places_path}
         %form{:action => singapore_places_path}
           .clearfix
-            = text_field_tag "date_start", "", :placeholder => "Arriving on", :class => 'textbox big from-to-picker', "data-date" => :from
+            = text_field_tag "check_in", "", :placeholder => t(:arriving_on), :class => 'textbox big from-to-picker', "data-date" => :from
+            = text_field_tag "check_out", "", :placeholder => t(:departing_on), :class => 'textbox big from-to-picker', "data-date" => :to
             -#= button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"
             = submit_tag "#{t(:homepage_search_but)}", :class => 'btn hp-blue large'
 

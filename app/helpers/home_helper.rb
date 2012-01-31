@@ -9,4 +9,12 @@ module HomeHelper
       login_path
     end
   end
+  
+  def menu_link_to(label, path)
+    current_path = request.path
+    active_class = (request.path == path)? 'active' : ''
+    content_tag :li, :class => active_class do
+      link_to label, path
+    end
+  end
 end

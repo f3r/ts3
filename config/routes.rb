@@ -81,6 +81,8 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/my_places'    =>  'places#my_places', :as => :my_places
 
+  match '/why'          => 'home#why', :as => :home_why
+  match '/how-it-works' => 'home#how', :as => :home_how
   match '/terms'        => 'home#terms'
   match '/privacy'      => 'home#privacy'
   match '/contact'      => 'home#contact'

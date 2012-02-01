@@ -33,5 +33,10 @@ group :development, :test do
   gem 'capybara'
   gem 'steak'
   gem 'launchy'
+
+  # Debugger, for installation see: http://pastie.org/3293194
+  gem 'linecache19', '0.5.13'
+  gem 'ruby-debug-base19', '0.11.26'
+  gem "ruby-debug19", :require => 'ruby-debug'
 end
 

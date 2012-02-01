@@ -83,6 +83,7 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/why'          => 'home#why', :as => :home_why
   match '/how-it-works' => 'home#how', :as => :home_how
+  match '/photography-faq' => 'home#photo_faq', :as => :home_photo_faq
   match '/terms'        => 'home#terms'
   match '/privacy'      => 'home#privacy'
   match '/contact'      => 'home#contact'

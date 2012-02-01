@@ -4,6 +4,12 @@ module AuthenticationHelper
     session['authentication_token'].present? && current_user
   end
 
+  def is_agent?
+    return false unless logged_in?
+    user = current_user
+    user && user['role'] == 'agent'
+  end
+  
   def sign_in(_session)
     session['authentication_token'] = _session['authentication_token']
   end

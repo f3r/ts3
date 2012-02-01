@@ -37,8 +37,8 @@ class PlacesController < ApplicationController
   end
 
   def publish
-    @place = Heypal::Place.find(params[:id], current_token)
-    if @place.attributes_valid?
+    result = Heypal::Place.publish_check(params[:id], current_token)
+    if result['stat'] == "ok"
       result = Heypal::Place.publish(params[:id], current_token)
       flash[:notice] = t(:place_published)
     else

@@ -194,11 +194,6 @@ class Heypal::Place < Heypal::Base
     photos.first
   end
 
-  # Am i really valid?
-  def attributes_valid?
-    title.present? && max_guests.present? && place_size.present? && description.present? && description.length > 20 && photos.length >= 3 && (price_per_night.to_s.present? or price_per_week.to_s.present? or price_per_month.to_s.present?) && currency.present? && cancellation_policy.present?
-  end
-
   # Virtual attribute for size (sqm/sqf) and size type
   def place_size
     if size_unit == 'meters'

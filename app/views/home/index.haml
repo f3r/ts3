@@ -83,37 +83,13 @@
     t(:teaser_center_title)
   
   .row
-    .span4
-      .wrapper
-        %h4.title= t(:teaser_1_title)
-        %p 
-          %img{:src => "http://s3.amazonaws.com/squarestays-static/suitcase.png"}
-          = t(:teaser_1_content)
-    .span4
-      .wrapper
-        %h4.title= t(:teaser_2_title)
-        %p
-          %img{:src => "http://s3.amazonaws.com/squarestays-static/shield.png"}
-          = t(:teaser_2_content)
-    .span4
-      .wrapper
-        %h4.title= t(:teaser_3_title)
-        %p
-          %img{:src => "http://s3.amazonaws.com/squarestays-static/building.png"}
-          = t(:teaser_3_content)
-        
-.tease-featurette
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg", :alt => t(:teaser_1_content)}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/qlty.jpg", :alt => t(:teaser_2_content)}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/afrd.jpg", :alt => t(:teaser_3_content)}            
+
+.trust
   .row
-    .span8
-      .wrapper.feat-place
-        %h2.title= t(:homepage_life_sg_title)
-        %p 
-          = t(:homepage_life_sg_content)
-          %img{:src => "http://s3.amazonaws.com/squarestays-static/sg.jpg"}
-        
-    .span8
-      .wrapper.about
-        %h2.title= t(:homepage_about)
-        %p
-          %img{:src => "http://s3.amazonaws.com/squarestays-static/feat.logo.png"}
-          = t(:homepage_about_content)
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/swg.jpg", :title => "Small World Group"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg", :title => "National Research Foundation"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => "PropNex"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg", :title => "Far East Organization"}

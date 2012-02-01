@@ -10,8 +10,9 @@
       %li All places are available for short-term, some as short as one week, most from one month to six months.
       %li All places should tell you up-front what amenities, furniture and facilities are available for your use.
       %li You should get a very clear and precise listing of all the costs involved, from deposits to rent to utilities for places on SquareStays. There are no hidden fees or extras.
-    .get-started
-      = button_to 'Get Started!', signup_path, :class => "btn primary large", :method => :get
+    - if !logged_in?
+      .get-started
+        = button_to 'Get Started!', signup_path, :class => "btn primary large", :method => :get
   .span16
     .well
       %h4 Trust

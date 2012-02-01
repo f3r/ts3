@@ -66,7 +66,7 @@ class SessionsController < ApplicationController
           user = Heypal::User.update(user_data)
         end
         session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
-        redirect_to '/profile'
+        redirect_to after_sign_in_path
       else
         # Ask the user to connect the account
         flash[:notice] = t(:signup_needed_to_connect)

@@ -60,30 +60,6 @@ var switchPanel = function() {
       break;
   }
 
-  // Second, Also check the target panel if it is valid then allow.
-
-  /*
-  switch(_this.attr('href')) {
-    case '#1':
-      if(_panelStatus.general) { switchMe = true };
-      break;
-    case '#2':
-      if(_panelStatus.photos) { switchMe = true };
-      break;
-    case '#3':
-      if(_panelStatus.amenities) { switchMe = true };
-      break;
-    case '#4':
-      if(_panelStatus.price) { switchMe = true };
-      break;
-    case '#5':
-      if(_panelStatus.calendar) { switchMe = true };
-      break;
-    default:
-      break;
-  }
-  */
-
   switchMe = true;
   if(switchMe) {
     $('.wizard-wrapper .panel').hide();
@@ -121,11 +97,11 @@ var validatePlace = function(panelStatus) {
   var validCategories = 0;
 
   // Count valid categories
-  if(panelStatus.general) { validCategories++; }
-  if(panelStatus.photos) { validCategories++; }
+  if(panelStatus.general)   { validCategories++; }
+  if(panelStatus.photos)    { validCategories++; }
   if(panelStatus.amenities) { validCategories++; }
-  if(panelStatus.price) { validCategories++; }
-  if(panelStatus.calendar) { validCategories++; }
+  if(panelStatus.price)     { validCategories++; }
+  if(panelStatus.calendar)  { validCategories++; }
 
   var validMarkers = $('.preview-button, #listing-status');
 
@@ -215,11 +191,11 @@ var validatePanels = function(target) {
 
 var panelStatuses = function() {
   var errors = {};
-  errors.general = true;
-  errors.photos = true;
-  errors.price = true;
+  errors.general   = true;
+  errors.photos    = true;
+  errors.price     = true;
   errors.amenities = true;
-  errors.calendar = true;
+  errors.calendar  = true;
 
   $.ajax({
     type: 'GET',

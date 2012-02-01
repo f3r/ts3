@@ -97,7 +97,7 @@
             .title
               =t(:minimum_stay)
             .micro
-              -if @place.minimum_stay == "0"
+              -if @place.minimum_stay != "0"
                 = "#{@place.minimum_stay} #{t(@place.stay_unit)}"
               -else
                 = t(:no_minimum)
@@ -105,7 +105,7 @@
             .title
               =t(:maximum_stay)
             .micro
-              -if @place.maximum_stay == "0"
+              -if @place.maximum_stay != "0"
                 = "#{@place.maximum_stay} #{t(@place.stay_unit)}"
               -else
                 = t(:no_maximum)

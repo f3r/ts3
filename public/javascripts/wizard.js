@@ -209,7 +209,7 @@ var panelStatuses = function() {
           errors.price = false;
         }
         if ($.inArray(124, publish_errors) > -1) {
-          if($('#place_description').val() == "") { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
+          if($('#place_description').val() != "" && $('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
           errors.general = false;
         }
         if ($.inArray(143, publish_errors) > -1) {

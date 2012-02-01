@@ -24,7 +24,7 @@
                   -else
                     = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
                     =t(:square_meters_short)
-                    
+
             .property2.data-block
               .title
                 - if !place['num_bedrooms'].nil?

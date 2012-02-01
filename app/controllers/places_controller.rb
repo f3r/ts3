@@ -157,7 +157,9 @@ class PlacesController < ApplicationController
   def index
     check_in = params[:check_in] rescue nil
     check_out = params[:check_out] rescue nil
+    page = params[:page]
     params = {'check_in' => check_in, 'check_out' => check_out, "sort" => 'price_lowest', 'guests' => '1', 'currency' => get_current_currency}
+    params.merge!('per_page' => 5, 'page' => page)
     @results = Heypal::Place.search(params)
 
     min, max = Heypal::Geo.get_price_range(1, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
@@ -168,9 +170,15 @@ class PlacesController < ApplicationController
       @min_price = 0
       @max_price = 0
     end
+
+    respond_to do |format|
+      format.html
+      format.js { render :partial => 'javascript_place' }
+    end
   end
 
   def search
+    page = params[:page]
     unless params[:place_type_ids].nil?
       place_ids = place_types_list
       new_ids = []
@@ -181,13 +189,15 @@ class PlacesController < ApplicationController
       end
       params[:place_type_ids] = new_ids
     end
+    params.merge!('per_page' => 5, 'page' => page)
     @results = Heypal::Place.search(params)
 
     if @results.key?("err") # TODO: handle no results found
       render :json => {:results => 0, :per_page => 0, :current_page => 0, :place_type_count => empty_place_type,
         :total_pages => 0, :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false)}
     else
-      render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => @results['current_page'], :place_type_count => @results['place_type_count'],
+      cur_page = @results['current_page'].nil? ? 1 : @results['current_page']
+      render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => cur_page, :place_type_count => @results['place_type_count'],
         :total_pages => @results['total_pages'], :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false)}
     end
   end

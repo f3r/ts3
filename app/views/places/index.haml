@@ -33,7 +33,7 @@
       .results
         #search_results
           = render 'search_results', :places => @results['places']
-
+      .loading.center.hide= image_tag('/images/loading.gif')
     .span4
       .search-aside
         %form.panel-wrap
@@ -58,12 +58,20 @@
                 #min_price= @min_price
 
                 #price-slider
+#place_result_pages.hide
+  .page_num= 1
+  .current_page= @results['current_page']
+  .total_page= @results['total_pages']
+  .from_index= true
 
 :javascript
 
   var pull_data = function() {
     $(".results").append("<span id='search-load-indicator'><img src='/images/loading.gif' alt='loading...' /></span>");
+    $('html, body').animate({scrollTop: 0}, '1000');
     $("#search_results").css('opacity', '.3');
+    $('#place_result_pages .from_index').html('false');
+    $('#place_result_pages .page_num').html(1);
 
     var place_type_ids = new Array;
     $.each($("#types-list input"), function() {
@@ -103,6 +111,8 @@
           $(".list-display").show();
           $(".show-grid").hide();
         }
+        $('#place_result_pages .current_page').html(data.current_page);
+        $('#place_result_pages .total_page').html(data.total_pages);
       }
     });
     return false;
@@ -195,3 +205,96 @@
       }
     }
   });
+
+  (function() {
+    var loading = false;
+
+    function nearBottomOfPage() {
+      return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
+    }
+
+    function lastPage() {
+      return $('#place_result_pages .current_page').text() == $('#place_result_pages .total_page').text();
+    }
+
+    $(window).scroll(function() {
+      if (loading) {
+        return;
+      }
+
+      if(nearBottomOfPage() && !lastPage()) {
+        loading = true;
+        page = parseInt($('#place_result_pages .page_num').text());
+        page++;
+        if($('#place_result_pages .from_index').text() == 'true') {
+          $.ajax({
+            url: '/places?page=' + page,
+            type: 'get',
+            dataType: 'script',
+            beforeSend: function() {
+              $('.loading').show();
+            },
+            success: function() {
+              $(window).sausage('draw');
+              $('#place_result_pages .page_num').html(page);
+              loading = false;
+              $('.loading').hide();
+            }
+          });
+        } else {
+          page = parseInt($('#place_result_pages .page_num').text());
+          page++;
+           var place_type_ids = new Array;
+            $.each($("#types-list input"), function() {
+              if ($(this).is(":checked")) {
+                place_type_ids.push(this.id);
+              }
+            });
+
+            $.ajax({
+              url: '/places/search',
+              data: {
+                guests: $("#guests").val(),
+                sort: $("#sort").val(),
+                min_price: $("#min_price").html(),
+                max_price: $("#max_price").html(),
+                currency: $('#currency').val(),
+                check_in: $('#check_in').val(),
+                check_out: $('#check_out').val(),
+                place_type_ids: place_type_ids,
+                page: page
+              },
+              beforeSend: function() {
+                $('.loading').show();
+              },
+              success: function(data) {
+                $("#search_results").append(data.place_data);
+                $("#num_search_results .results_count").html(data.results);
+
+                $("#types-list").empty();
+                $.each(data.place_type_count, function(type, count) {
+                  type_builder(type, count);
+                });
+
+                if ($("#disp-gallery").hasClass('current')) {
+                  $(".show-grid").show();
+                  $(".list-display").hide();
+                } else {
+                  $(".list-display").show();
+                  $(".show-grid").hide();
+                }
+                $('#place_result_pages .from_index').html('false');
+                $('#place_result_pages .page_num').html(page);
+                $('#place_result_pages .current_page').html(data.current_page);
+                $('#place_result_pages .total_page').html(data.total_pages);
+                $(window).sausage('draw');
+                loading = false;
+                $('.loading').hide();
+              }
+            });
+        }
+      }
+    });
+
+    $(window).sausage();
+  }());

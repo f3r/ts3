@@ -2,5 +2,5 @@
   - @photos.each do |photo|
     %li 
       .photo_action
-        = link_to "[x]", "javascript:void(0);", :onclick => "return deletePhoto($(this));"      
+        = link_to "[x]", "javascript:void(0);", :onclick => "return deletePhoto($(this));"
       = render_photo(photo)

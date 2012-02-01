@@ -17,7 +17,7 @@
     .float-right.delete-conversations
       = link_to image_tag('/images/icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => t(:are_you_sure)
 
-    %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"}
+    %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"} 
       %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }
         - if from
           %b= "#{m['to']['first_name'].chr}. #{m['to']['last_name']}"
@@ -34,3 +34,12 @@
         = link_to t(:mark_read), mark_as_read_path(from ? m['to']['id'] : m['from']['id'])
       - else
         = link_to t(:mark_unread), mark_as_unread_path(from ? m['to']['id'] : m['from']['id'])
+
+:erb
+  <script type='text/javascript'>
+    $("a[data-method='delete']").confirmDialog({
+      message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>,
+      cancelButton: 'Cancel'
+    });
+  </script>
+

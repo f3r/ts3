@@ -8,27 +8,23 @@
             %h2
               Singapore, Singapore
             = hidden_field_tag :currency, get_current_currency
-
-          .float-right
-            .controls
-              = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
-              = t(:from)
-              = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from
-              = t(:to)
-              = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to
-
-        .search-bar.search-bar2
-          .buttons
-            .toggle
-              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-              = link_to '', '#', :class => 'disp-gallery', :id => 'disp-gallery'
-          .results
-            %span#num_search_results
+            %br
               %span.results_count= @results['results']
               = t(:results)
-          .sorting
-            = t(:sort_by)
-            = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
+
+          .float-right
+            = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
+            = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from
+            = "-"
+            = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to
+
+            %br
+            .toggle
+              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+              = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
+              .sorting
+                = t(:sort_by)
+                = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
 
       .results
         #search_results
@@ -126,7 +122,7 @@
   $("#guests, #sort").change(function() {
     pull_data();
   });
-
+  
   $("#types-list input").live('click', function() {
     pull_data();
   });
@@ -176,7 +172,15 @@
     dateFormat: 'yy-mm-dd',
     minDate: +1,
     onSelect: function(selectedDate) {
-      pull_data();
+
+      // we only refresh results if both calendar pickers are not empty
+      var checkin  = $('.check-in-picker').val();
+      var checkout = $('.check-out-picker').val();
+      
+      if ((checkin != "") && (checkout != "")) {
+        pull_data();
+      }
+        
       var me = $(this);
       var who = me.attr("data-date");
       var instance = me.data("datepicker");

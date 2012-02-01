@@ -12,9 +12,9 @@
       = f.text_field :price_per_week, :class => "validate[custom[number],min[1]] span2 autosave_pricing"
       %span#estimated_amount_weekly
     .input
-      = f.label :price_per_month, t(:price_per_month)
+      = f.label :price_per_month, t(:price_per_month) + '*' 
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_month, :class => "validate[custom[number],min[1]] span2 autosave_pricing"
+      = f.text_field :price_per_month, :class => "validate[custom[number],min[1],required] span2 autosave_pricing"
       %span#estimated_amount_monthly
   %h2.title=t(:additional_costs)
   %fieldset

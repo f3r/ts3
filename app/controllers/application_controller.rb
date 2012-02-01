@@ -17,8 +17,18 @@ class ApplicationController < ActionController::Base
   end
 
   private
+  
   def instantiate_controller_and_action_names
     @current_action = action_name
     @current_controller = controller_name
   end
+  
+  def store_location
+    session[:user_return_to] = request.url unless params[:controller] == "sessions"
+  end
+
+  def after_sign_in_path
+    session[:user_return_to] || '/places'
+  end
+  
 end

@@ -1,6 +1,13 @@
 class SessionsController < ApplicationController
   layout 'single'
 
+  def new
+    # Store the referral URL for redirecting after login
+    if params[:ref]
+      session[:user_return_to] = params[:ref]
+    end
+  end
+  
   def create
     if params[:email].present? && params[:password].present?
       @heypal_session = Heypal::Session.create(params)
@@ -27,7 +34,7 @@ class SessionsController < ApplicationController
           #save user data in session
           session['current_user'] = Heypal::User.show('access_token' => current_token).merge('role' => @heypal_session['role'])
         end
-        redirect_to '/places'  
+        redirect_to after_sign_in_path
       else
         flash[:error] = t(:invalid_login)
         redirect_to login_path

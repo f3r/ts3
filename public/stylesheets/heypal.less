@@ -2937,7 +2937,15 @@ div.start div.hub form input#check_in.textbox,
 div.start div.hub form input#check_out.textbox {width:118px;}
 
 
-/* Home */
+/* Public Site Pages */
+.help.dropdown {
+  cursor: pointer;
+  ul {
+    width: 180px;
+ background: none repeat scroll 0 0 rgba(255, 255, 255, 0.05);
+  }
+}
+
 .why form, .how form {
   margin: 0;
 }
@@ -2971,4 +2979,29 @@ div.start div.hub form input#check_out.textbox {width:118px;}
 
 .singapore-first img {
   width: 900px;
+}
+
+#photo_faq {
+  .intro {
+    margin-bottom: 20px;
+  }
+  
+  .expandable {
+	position: relative;
+    padding: 5px 20px;
+  }
+
+  .well.expandable.collapsed {
+    cursor: pointer;
+
+    &:hover {
+	  background-color: #bfe0f2;
+    }
+  }
+
+  .expandable .read-more {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+  }
 }

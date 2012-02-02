@@ -48,7 +48,7 @@
                           %span= "(#{@results['place_type_count'][p_type[2]]})" if !@results['place_type_count'].blank?
 
             %li
-              .header= t(:price_per_night)
+              .header= t(:price_per_month)
               .content
                 #max_price.float-right= @max_price
                 #min_price= @min_price
@@ -142,7 +142,7 @@
     min: #{@min_price},
     max: #{@max_price},
     values: [#{@min_price}, #{@max_price}],
-    step: 5,
+    step: 100,
     slide: function( event, ui ) {
       $("#min_price").html(ui.values[0]);
       $("#max_price").html(ui.values[1]);

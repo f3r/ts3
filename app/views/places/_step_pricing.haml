@@ -6,11 +6,11 @@
         = f.select :currency, currencies_select, {}, :class => 'validate[required]'
   %h2.title=t(:pricing)
   %fieldset      
-    .input
-      = f.label :price_per_week, t(:price_per_week)
-      %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_per_week, :class => "validate[custom[number],min[1]] span2 autosave_pricing"
-      %span#estimated_amount_weekly
+    / .input
+    /   = f.label :price_per_week, t(:price_per_week)
+    /   %span.currency-sign= currency_sign_of(@place.currency)
+    /   = f.text_field :price_per_week, :class => "validate[custom[number],min[1]] span2 autosave_pricing"
+    /   %span#estimated_amount_weekly
     .input
       = f.label :price_per_month, t(:price_per_month) + '*' 
       %span.currency-sign= currency_sign_of(@place.currency)

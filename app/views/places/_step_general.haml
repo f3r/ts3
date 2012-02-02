@@ -9,9 +9,9 @@
       = f.label :place_type_id, t(:type)
       = f.select :place_type_id, place_types_select, {}, :class => 'validate[required] autosave'
 
-    .input.required
+    .input
       = f.label :description, t(:description)
-      = f.text_area :description, :class => "validate[required,minSize[20]] span8 autosave", :rows => 5, :style => "width: 440px;"
+      = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"
     .input.required
       = f.label :max_guests, t(:max_guests)
       = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1 autosave"
@@ -27,7 +27,7 @@
 
     .input.required
       = f.label :place_size, t(:size)
-      = f.text_field :place_size, :class => "validate[required,custom[integer],min[0]] span2"
+      = f.text_field :place_size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
       = f.text_field :size_sqm, :class => 'autosave_place_unit', :style => 'display:none'
       = f.text_field :size_sqf, :class => 'autosave_place_unit', :style => 'display:none'
       

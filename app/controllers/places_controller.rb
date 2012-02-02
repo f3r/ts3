@@ -164,8 +164,8 @@ class PlacesController < ApplicationController
 
     min, max = Heypal::Geo.get_price_range(1, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
     if !min.nil? && !max.nil?
-      @min_price = (min / 5).floor.to_i * 5 
-      @max_price = (max / 5).ceil.to_i * 5 + 5 
+      @min_price = min
+      @max_price = max
     else
       @min_price = 0
       @max_price = 0

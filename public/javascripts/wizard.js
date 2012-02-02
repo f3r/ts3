@@ -1,28 +1,27 @@
-var place_id = $('#place_id').val();
-var token = $('#token').val();
+var place_id     = $('#place_id').val();
+var token        = $('#token').val();
 var access_token = $('#accessToken').val();
-var zipCodeVal = true;
-var firstLoad = true;
+var zipCodeVal   = true;
+var firstLoad    = true;
 
-var RATE_DISCOUNT_PER_WEEK = 0.95;
+var RATE_DISCOUNT_PER_WEEK  = 0.95;
 var RATE_DISCOUNT_PER_MONTH = 0.95;
 
 /*********************
 * Panels
 **********************/
 
-
 var il8nStrings = {
-  not_listed_yet: 'Your place is not listed yet!',
-  not_listed: 'Your place is ready for listing',
-  place_listed: 'Your place is listed. Click here to remove it from the directory',
-  form_error: 'Please fix the error on the form first before we can proceed.',
-  cannot_preview: 'Sorry. You have to fill up the necessary info before you can preview.',
-  categories_left: 'more categories must be completed',
-  listed: 'Listed',
-  preview: 'Preview',
-  unpublish: 'Unpublish',
-  invisible: 'Invisible',
+  not_listed_yet:   'Your place is not listed yet!',
+  not_listed:       'Your place is ready for listing',
+  place_listed:     'Your place is listed. Click here to remove it from the directory',
+  form_error:       'Please fix the error on the form first before we can proceed.',
+  cannot_preview:   'Sorry. You have to fill up the necessary info before you can preview.',
+  categories_left:  'more categories must be completed',
+  listed:           'Listed',
+  preview:          'Preview',
+  unpublish:        'Unpublish',
+  invisible:        'Invisible',
   not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!',
   based_on_your_daily_price: "Based on your daily price, we recommend ",
   photo_limit_error: 'We need a minimum of 3 photos before we can publish your place',
@@ -41,32 +40,19 @@ var switchPanel = function() {
 
   // First, Check the current panel if it is valid
   switch(currentPanel()) {
-    case '#1':
-      switchMe = _panelStatus.general;
-      break;
-    case '#2':
-      switchMe = _panelStatus.photos;
-      break;
-    case '#3':
-      switchMe = _panelStatus.amenities;
-      break;
-    case '#4':
-      switchMe = _panelStatus.price;
-      break;
-    case '#5':
-      switchMe = _panelStatus.calendar;
-      break;
-    default:
-      break;
+    case '#1': switchMe = _panelStatus.general;   break;
+    case '#2': switchMe = _panelStatus.photos;    break;
+    case '#3': switchMe = _panelStatus.amenities; break;
+    case '#4': switchMe = _panelStatus.price;     break;
+    case '#5': switchMe = _panelStatus.calendar;  break;
+    default: break;
   }
 
   switchMe = true;
   if(switchMe) {
     $('.wizard-wrapper .panel').hide();
     $(_this.attr('href')).fadeIn('fast');
-
     $('.section_title').html(_this.attr('title'));
-
     _this.parent().parent().find('a').removeClass('active');
     _this.addClass('active');
 
@@ -131,7 +117,6 @@ var validatePlace = function(panelStatus) {
     } else {
 
       $('#listing-status').html(t('listed'));
-
       $('#listing-status').hover(function() {
         $('#listing-status').html(t('preview'));
       }, function() {
@@ -154,36 +139,16 @@ var validatePlace = function(panelStatus) {
 
 var validatePanels = function(target) {
   var wizard_aside = $('.wizard-aside');
-
   var panelErrors = panelStatuses(target);
 
-  // General Validation
-  if(panelErrors.general) {
-    wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');
-  } else {
-    wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');
-  }
-
-  // Photos
-  if(panelErrors.photos) {
-    wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');
-  } else {
-    wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');
-  }
-
-  // Amenities
-  if(panelErrors.amenities) {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');
-  } else {
-    wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png');
-  }
-
-  // Price
-  if(panelErrors.price) {
-    wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');
-  } else {
-    wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');
-  }
+  if(panelErrors.general)   { wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');            }
+  else                      { wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');   }
+  if(panelErrors.photos)    { wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');             }
+  else                      { wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');    }
+  if(panelErrors.amenities) { wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');          }
+  else                      { wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png'); }
+  if(panelErrors.price)     { wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');              }
+  else                      { wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');     }
 
   validatePlace(panelErrors);
   return panelErrors;
@@ -209,7 +174,8 @@ var panelStatuses = function() {
           errors.price = false;
         }
         if ($.inArray(124, publish_errors) > -1) {
-          if($('#place_description').val() != "" && $('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } else {  $('#place_description').removeClass('error'); }
+          if($('#place_description').val() != "" && $('#place_description').val().length >= 20) { $('#place_description').addClass('error'); } 
+          else {  $('#place_description').removeClass('error'); }
           errors.general = false;
         }
         if ($.inArray(143, publish_errors) > -1) {
@@ -223,7 +189,6 @@ var panelStatuses = function() {
   });
 
   return errors;
-
 }
 
 var validatePreview = function() {
@@ -234,10 +199,9 @@ var validatePreview = function() {
     return true;
   } else {
     categories = '';
-    if(!_panelStatus.general) {$('#generalInfo').validationEngine('showPrompt', 'General Info needed', 'load', 'centerLeft');}
-    if(!_panelStatus.photos) {$('#photoInfo').validationEngine('showPrompt', 'Upload at least 3 photos', 'load', 'centerLeft');}
+    if(!_panelStatus.general)   {$('#generalInfo').validationEngine(  'showPrompt', 'General Info needed',       'load', 'centerLeft');}
+    if(!_panelStatus.photos)    {$('#photoInfo').validationEngine(    'showPrompt', 'Upload at least 3 photos',  'load', 'centerLeft');}
     if(!_panelStatus.amenities) {$('#amenitiesInfo').validationEngine('showPrompt', 'Select at least 1 Amenity', 'load', 'centerLeft');}
-    //alert(t('cannot_preview') + categories);
 
     setTimeout(function() {
       $('.indicator').validationEngine('hideAll');
@@ -245,7 +209,6 @@ var validatePreview = function() {
 
     return false;
   }
-
 }
 
 /*********************
@@ -304,10 +267,7 @@ var sendPlaceSizeUpdate = function () {
       }
     });
   }
-
 }
-
-
 
 
 var sendPricingUpdate = function () {
@@ -325,7 +285,7 @@ var sendPricingUpdate = function () {
   
     put_data = 
       // 'place[price_per_night]='+ $('#place_price_per_night').val() + "&" + 
-      'place[price_per_week]='+ $('#place_price_per_week').val() + "&" + 
+      // 'place[price_per_week]='+ $('#place_price_per_week').val() + "&" + 
       'place[price_per_month]='+ $('#place_price_per_month').val() + "&" + 
       'place[minimum_stay]='+ $('#place_minimum_stay').val() + "&" + 
       'place[maximum_stay]='+ $('#place_maximum_stay').val() + "&" + 
@@ -356,10 +316,7 @@ var sendPricingUpdate = function () {
     });
     validatePanels();
   }
-
 }
-
-
 
 
 var sendCheckBoxUpdate = function() {
@@ -373,11 +330,8 @@ var sendCheckBoxUpdate = function() {
   var field = $(this).attr("name");
   var value = "1";
 
-  if($(this).attr("checked") == "checked") {
-    value = "1";
-  } else {
-    value = "0";
-  }
+  if($(this).attr("checked") == "checked") { value = "1"; }
+  else                                     { value = "0"; }
 
   post_data = field + "=" + value;
   place_id = $("#place_id").val(); // TODO: Quick update for now

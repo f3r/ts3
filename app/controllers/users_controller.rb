@@ -80,6 +80,7 @@ class UsersController < ApplicationController
         if params['email'].present? && Heypal::User.reset_password({:email => params[:email]})
           flash[:notice] = t(:password_reset_instruction_sent)
           redirect_to login_path
+          return
         else
           flash[:error] = t(:password_reset_failed)
         end
@@ -105,6 +106,7 @@ class UsersController < ApplicationController
       if params['reset_password_token'].present? && Heypal::User.confirm_reset_password(params)
         flash[:notice] = t(:password_reset_success)
         redirect_to login_path
+        return
       else
         flash[:error] = t(:password_reset_failed)
       end

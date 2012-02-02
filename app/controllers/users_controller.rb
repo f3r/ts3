@@ -88,7 +88,7 @@ class UsersController < ApplicationController
       end
     end
 
-    render :layout => 'single'
+    render :layout => 'singel'
   end
 
   def items

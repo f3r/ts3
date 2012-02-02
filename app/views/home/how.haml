@@ -6,7 +6,7 @@
     %p SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay.
     .well
       %h3 Listing members
-      %p If you would like to list a property on SquareStays, please contact us at places@squarestays.com. The SquareStays team will then work with you to ensure that you understand the requirements for listings on SquareStays.
+      %p= t(:how_list_your_properties, :places_email => mail_to('places@squarestays.com')).html_safe
       - if !logged_in?
         = button_to 'List your properties', signup_path, :class => "btn primary large", :method => :get
       - elsif is_agent?
@@ -16,10 +16,10 @@
       %p Simply use the place search and filter page on SquareStays to find a place that’s right for you. You can narrow your search criteria by type of accommodation, price, and location.
       %p Once you have found place that looks good for you, you can either make a reservation or make an inquiry. An inquiry is like a reservation, including the dates that you are looking for, as well as helping you understand the costs, but allows you to ask any further questions you might want to ask before making a reservation. A reservation, is, naturally, a reserved set of dates that you will stay at the place.
       %p The place owner or listing member will typically answer your request within 24-48 hours. The owner may have some follow-up questions for you, so please remember to check in on the site regularly when you have inquiries pending.
-      %p Of course, you can always send general messages or questions to any other member on the site using the “Send Message” link on the member’s profile page or when viewing the details of any place. If you ever have any problems or questions in communicating with other members, please contact us at support@squarestays.com
+      %p= t(:how_travelers_4th, :support_email => mail_to('support@squarestays.com')).html_safe
       = button_to 'Find a place', '/places/singapore', :class => "btn primary large", :method => :get
       
     .well
       %h3 Payments
-      %p SquareStays listings are designed to have full disclosure and no hidden fees! When you make an inquiry or a reservation, you should know exactly how much it will cost. All SquareStays fees are built into the prices shown on the site.
-      %p SquareStays offers payments by credit card, PayPal and bank transfer. Please contact us at support@squarestays.com with any questions.
+      %p= t(:how_payments_1st) 
+      %p= t(:how_payments_2nd, :support_email => mail_to('support@squarestays.com')).html_safe

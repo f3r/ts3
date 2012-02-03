@@ -300,6 +300,10 @@ en:
   no_messages:      No messages
   mark_read: Mark read
   mark_unread: Mark unread
+  marked_as_unread: The message was marked as unread
+  marked_as_read: The message was marked as read
+  failed_unread: Failed to mark as unread
+  failed_read: Failed to mark as read
 
   ####################################################################################
   # Photos

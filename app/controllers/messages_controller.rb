@@ -42,16 +42,22 @@ class MessagesController < ApplicationController
   #mark as read
   def mark_as_read
     @message = Heypal::Message.mark_as_read('user_id' => params[:id], 'access_token' => current_token)
-
-    flash[:notice] = 'Message is mark as read'
+    if @message['stat'] == "ok"
+      flash[:notice] = t(:marked_as_read)
+    else
+      flash[:error] = t(:failed_read)
+    end
     redirect_to messages_path
   end
 
   #mark as unread
   def mark_as_unread
     @message = Heypal::Message.mark_as_unread('user_id' => params[:id], 'access_token' => current_token)
-
-    flash[:notice] = 'Message is mark as unread'
+    if @message['stat'] == "ok"
+      flash[:notice] = t(:marked_as_unread)
+    else
+      flash[:error] = t(:failed_unread)
+    end
     redirect_to messages_path
   end
 end

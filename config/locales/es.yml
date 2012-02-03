@@ -678,6 +678,10 @@ es:
   map: Mapa
   mark_read: "Marcar como leído"
   mark_unread: "Marcar como no leído"
+  marked_as_unread: El mensaje fue marcado como no leído
+  marked_as_read: El mensaje fue marcado como leído
+  failed_unread: No se ha podido marcar como no leído
+  failed_read: No se ha podido marcar como leídos
   max_guests: "Número de Invitados"
   maximum_of: "Máximo de"
   maximum_stay: "Estadía máxima"

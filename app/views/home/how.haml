@@ -1,17 +1,21 @@
-.how
-  .intro.span16 
-    %h3 How SquareStays works?
-    %p SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. 
-    %p All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. 
-    %p SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay.
+#how.info
+  .span16
+    .intro
+      %h3 How SquareStays works?
+      %p SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. 
+      %p All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. 
+      %p SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay.
     .well
+      %img{:src => "http://s3.amazonaws.com/squarestays-static/listing_members.jpg"}
       %h3 Listing members
       %p= t(:how_list_your_properties, :places_email => mail_to('places@squarestays.com')).html_safe
+
       - if !logged_in?
         = button_to 'List your properties', signup_path, :class => "btn primary large", :method => :get
       - elsif is_agent?
         = button_to 'List your properties', new_place_path, :class => "btn primary large", :method => :get
     .well
+      %img{:src => "http://s3.amazonaws.com/squarestays-static/travelers.jpg"}
       %h3 Travelers
       %p Simply use the place search and filter page on SquareStays to find a place that’s right for you. You can narrow your search criteria by type of accommodation, price, and location.
       %p Once you have found place that looks good for you, you can either make a reservation or make an inquiry. An inquiry is like a reservation, including the dates that you are looking for, as well as helping you understand the costs, but allows you to ask any further questions you might want to ask before making a reservation. A reservation, is, naturally, a reserved set of dates that you will stay at the place.

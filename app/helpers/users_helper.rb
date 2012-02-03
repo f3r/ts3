@@ -31,8 +31,8 @@ module UsersHelper
   end
   
   def avatar_image(user)
-    if user && user.avatar
-      image_tag user.avatar, :style => "width:60px; height:60px;"
+    if user && user['avatar']
+      image_tag user['avatar'], :style => "width:60px; height:60px;"
     else
       image_tag "https://s3.amazonaws.com/squarestays-static/missing_userpic.png", :style => "width:60px; height:60px;"
     end

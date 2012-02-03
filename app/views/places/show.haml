@@ -356,6 +356,7 @@
     showAllText: 'Show all ({n})',
     title: <%= "\'#{@place['title']}\'" %>,
     hint: 'Share this place',
-    url: <%= "\'http://frontend-heypal.heroku.com/places/#{@place['id']}\'" %>
+    url: <%= "\'#{place_url @place.id}\'" %>
   });
+  
   </script>

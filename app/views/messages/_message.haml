@@ -2,16 +2,10 @@
   %span.float-left
     - if from
       %a{:href => "/users/#{m['to']['id']}"}
-        - unless m['to']['avatar'].nil?
-          %img{:src => m['to']['avatar'], :style => "width:60px", :alt => 'user_avatar'}
-        - else
-          = placehold(60,60)
+        = avatar_image(m['to'])
     - else
       %a{:href => "/users/#{m['from']['id']}"}
-        - unless m['from']['avatar'].nil?
-          %img{:src => m['from']['avatar'], :style => "width:60px", :alt => 'user_avatar'}
-        - else
-          = placehold(60,60)
+        = avatar_image(m['from'])
 
   .span12.conversations
     .float-right.delete-conversations

@@ -1,10 +1,7 @@
 .span15
   %span.float-left
     %a{:href => "/users/#{m['from']['id']}"} 
-      - unless m['from']['avatar'].nil?
-        %img{:src => m['from']['avatar'], :style => "width:60px", :alt => 'user_avatar'}
-      - else
-        = placehold(60,60)
+      = avatar_image(m['from'])
 
   .span12
     %div{:class => "alert-message info"}

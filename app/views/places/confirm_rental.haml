@@ -20,11 +20,8 @@
   .span16
     = form_for 'message', :url => new_message_path(@owner['id']), :html => {:class => 'respond-form show'} do |f|
       %span.float-left
-        - unless current_user.avatar.nil?
-          %img{:src => current_user.avatar, :style => "width:60px"}
-        - else
-          = placehold(60,60)
-
+        = avatar_image(current_user)
+      
       .span12
         = hidden_field_tag 'place_id', params[:id]
         = f.text_area :message, :rows => 4, :class => "span12"

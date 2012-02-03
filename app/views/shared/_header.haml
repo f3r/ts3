@@ -7,11 +7,7 @@
         .user_box.logged-in
           .row
             .thumb
-              - if !current_user.avatar.nil?
-                - avatar = current_user.avatar
-              - else
-                - avatar = placehold(60,60, true)
-              = image_tag(avatar, :width => 60, :height => 60)
+              = avatar_image(current_user)
             .user_name
               = link_to full_name(current_user), profile_path
               .small
@@ -36,9 +32,9 @@
             %li{ get_current_language == "en" ? {:class => "active"} : {} }
               %a{:href => "#", "data-type" => "language", "data-value" => "en"} <span class="check">&#10003;</span> English
             %li{ get_current_language == "es" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "language", "data-value" => "es"} <span class="check">&#10003;</span>Español
+              %a{:href => "#", "data-type" => "language", "data-value" => "es"} <span class="check">&#10003;</span> Español
             %li{ get_current_language == "de" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "language", "data-value" => "de"} <span class="check">&#10003;</span>Deutsch
+              %a{:href => "#", "data-type" => "language", "data-value" => "de"} <span class="check">&#10003;</span> Deutsch
             %li.divider
             %li.divider-title= "#{t(:choose_currency)}..."
             %li.divider            

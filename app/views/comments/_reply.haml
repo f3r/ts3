@@ -1,6 +1,6 @@
 %div.right{:id => "rdiv-#{reply['id']}"}
   .user_box
-    .user_photo= reply['user']['avatar'].nil? ? placehold(60,60) : image_tag(reply['user']['avatar'], :width => 60, :height => 60)
+    .user_photo= avatar_image(reply['user'])
     .user_data
       .user_name= link_to "#{reply['user']['first_name'][0]}. #{reply['user']['last_name']}", '#'
       .user_role= reply['user']['role']

@@ -2,7 +2,7 @@
   %div.left
     .user_box
       -if !comment['user'].nil?
-        .user_photo= comment['user']['avatar'].nil? ? placehold(60,60) : image_tag(comment['user']['avatar'], :width => 60, :height => 60) 
+        .user_photo= avatar_image(comment['user'])
         .user_data
           .user_name= link_to "#{comment['user']['first_name'][0]}. #{comment['user']['last_name']}", '#'
           .user_role= comment['user']['role']

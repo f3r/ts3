@@ -37,4 +37,13 @@ module UsersHelper
       image_tag "https://s3.amazonaws.com/squarestays-static/missing_userpic.png", :style => "width:60px; height:60px;"
     end
   end
+
+  def avatar_image_by_id(user_id)
+    user = Heypal::User.info(user_id)
+    if user && user.avatar
+      image_tag user.avatar, :style => "width:60px; height:60px;"
+    else
+      image_tag "https://s3.amazonaws.com/squarestays-static/missing_userpic.png", :style => "width:60px; height:60px;"
+    end
+  end
 end

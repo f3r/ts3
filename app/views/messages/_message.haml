@@ -2,10 +2,10 @@
   %span.float-left
     - if from
       %a{:href => "/users/#{m['to']['id']}"}
-        = avatar_image(m['to'])
+        = avatar_image_by_id(m['to'])
     - else
       %a{:href => "/users/#{m['from']['id']}"}
-        = avatar_image(m['from'])
+        = avatar_image_by_id(m['from'])
 
   .span12.conversations
     .float-right.delete-conversations

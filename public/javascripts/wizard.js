@@ -24,7 +24,10 @@ var il8nStrings = {
   invisible:        'Invisible',
   not_listed_yet_click_to_preview: 'Your place is ready for listing. Click here to preview then publish!',
   based_on_your_daily_price: "Based on your daily price, we recommend ",
-  photo_limit_error: 'We need a minimum of 3 photos before we can publish your place',
+  photo_limit_error: 'We need a minimum of 3 photos before we can publish your place. ',
+  amenities_error: '1 Amenity must be selected. ',
+  price_error: 'Price & Conditions form should be filled in. ',
+  general_error: 'General Info required Field needs to filled in',
   save: 'Saved'
 };
 
@@ -129,7 +132,13 @@ var validatePlace = function(panelStatus) {
   } else {
     validMarkers.attr('disabled', true);
     validMarkers.attr('rel', 'twipsy');
-    validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');
+    remaining_error = t('not_listed_yet') + '. ';
+    //validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');
+    if(!panelStatus.general) { remaining_error += t('general_error'); }
+    if(!panelStatus.photos) { remaining_error += t('photo_limit_error'); }
+    if(!panelStatus.amenities) { remaining_error += t('amenities_error'); }
+    if(!panelStatus.price) { remaining_error += t('price_error'); }
+    validMarkers.attr('data-original-title', remaining_error);
 
     $('#listing-status').attr('href', '#');
   }

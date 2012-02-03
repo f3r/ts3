@@ -76,6 +76,10 @@ class Heypal::User < Heypal::Base
       result = request("/users/confirmation.json?access_token=#{params['access_token']}", :delete)
       result['stat'] == 'ok'
     end
+    
+    def feedback(params = {})
+      request('/users/feedback.json', :post, params)
+    end
 
   end
 

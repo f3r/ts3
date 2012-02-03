@@ -20,9 +20,10 @@
               .input
                 %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:city)
                 = text_field_tag 'city', ''
-              .input
-                %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:email)
-                = text_field_tag 'email', ''
+              - unless logged_in?
+                .input
+                  %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:email)
+                  = text_field_tag 'email'
               <br>
               %i=t(:leave_us_email)
               <br>

@@ -685,7 +685,7 @@ es:
   max_guests: "Número de Invitados"
   maximum_of: "Máximo de"
   maximum_stay: "Estadía máxima"
-  message_user: "Mensaje al Usuario"
+  message_user: "Enviar un mensaje"
   messages: Mensajes
   minimum_of: "Mínimo de"
   minimum_stay: "Estadía mínima"

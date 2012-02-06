@@ -18,10 +18,10 @@
   #photoQueue
 
   .upload_wrapper
-    %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :id => "photo_uploader" }
-
+    .alert.alert-info
+      = link_to t(:read_photo_faq), home_photo_faq_path
+    %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :id => "photo_uploader" } 
     %p= t(:upload_photo_hint)
-
 .arrows.clearfix
   .float-left
     %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t(:previous_step)

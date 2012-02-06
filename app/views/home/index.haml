@@ -10,34 +10,8 @@
           %li Singapore
           %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
 
-        #my-modal.hide.modal.fade
-          = form_tag '/cities/suggest', :class => 'cities_suggest_form' do
-            .modal-header
-              %h3=t(:cant_find_city)
-            .modal-body
-              =t(:working_on_expanding)
-              <br><br>
-              .input
-                %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:city)
-                = text_field_tag 'city', ''
-              - unless logged_in?
-                .input
-                  %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:email)
-                  = text_field_tag 'email'
-              <br>
-              %i=t(:leave_us_email)
-              <br>
-            .modal-footer
-              %button.btn.primary=t(:submit)
-              %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
-
-        - #%form{:action => places_path}
-        %form{:action => singapore_places_path}
-          .clearfix
-            / = text_field_tag "check_in", "", :placeholder => t(:arriving_on), :class => 'textbox big from-to-picker', "data-date" => :from
-            / = text_field_tag "check_out", "", :placeholder => t(:departing_on), :class => 'textbox big from-to-picker', "data-date" => :to
-            -#= button_to t(:homepage_search_but), search_index_path, :class => "btn hp-blue large"
-            = submit_tag "#{t(:homepage_search_but)}", :class => 'btn hp-blue large', :style => 'margin-left:100px; margin-bottom:25px;'
+        %p
+          %a{:class => 'btn hp-blue large', :style => 'margin-left:100px; margin-bottom:25px;', :href => '/singapore'}= t(:homepage_search_but)
 
         #fp-liner{:style => 'color:#3977b0'}
           %p 
@@ -47,18 +21,6 @@
             %b= t(:fp_two_b)
           %p
             %b= t(:fp_three)
-            
-        / .nav
-        /   #toggle-preferences.dropdown{"data-dropdown" => "dropdown"}
-        /     %a.dropdown-toggle{:href => "#"} $ USD
-        /     %ul.dropdown-menu
-        /       %li
-        /         %a{:href => "#"} Secondary link
-        /       %li
-        /         %a{:href => "#"} Something else here
-        /       %li.divider
-        /       %li
-        /         %a{:href => "#"} Another link
     
     .span8
       #teaser-pics
@@ -78,11 +40,9 @@
           .description= t(:car_five)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car05.jpg"}
       
-.tease-blurb
-  
+.tease-blurb  
   .tease-header
     t(:teaser_center_title)
-  
   .row
     %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg", :alt => t(:teaser_1_content)}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/qlty.jpg", :alt => t(:teaser_2_content)}
@@ -94,3 +54,25 @@
     %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg", :title => "National Research Foundation"}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => "PropNex"}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg", :title => "Far East Organization"}
+    
+#my-modal.hide.modal.fade
+  = form_tag '/cities/suggest', :class => 'cities_suggest_form' do
+    .modal-header
+      %h3=t(:cant_find_city)
+    .modal-body
+      =t(:working_on_expanding)
+      <br><br>
+      .input
+        %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:city)
+        = text_field_tag 'city', ''
+      - unless logged_in?
+        .input
+          %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:email)
+          = text_field_tag 'email'
+      <br>
+      %i=t(:leave_us_email)
+      <br>
+    .modal-footer
+      %button.btn.primary=t(:submit)
+      %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
+

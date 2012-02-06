@@ -2988,11 +2988,6 @@ div.start div.hub form input#check_out.textbox {width:118px;}
 }
 
 #photo_faq {
-  .expandable {
-	position: relative;
-    padding: 5px 20px;
-  }
-
   .well.expandable.collapsed {
     cursor: pointer;
 
@@ -3001,9 +2996,22 @@ div.start div.hub form input#check_out.textbox {width:118px;}
     }
   }
 
-  .expandable .read-more {
-    position: absolute;
-    right: 20px;
-    top: 15px;
+  .expandable {
+	position: relative;
+    padding: 5px 20px;
+    overflow: hidden;
+
+	.read-more {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    }
+ 	
+	img {
+	  float: right;
+	  width: 400px;
+	  margin-left: 10px;
+	  margin-bottom: 10px;
+	}
   }
 }

@@ -177,60 +177,62 @@ var panelStatuses = function() {
     cache: false,
     url: '/places/' + $("#place_id").val() + '/publish_check.json',
     success: function(data) {
-      publish_errors = data.err['publish'];
-      if (publish_errors) {
-        if ($.inArray(126, publish_errors) > -1) {
-          errors.price = false;
-        }
-        if ($.inArray(124, publish_errors) > -1) {
-          errors.general = false;
-          if($('#place_description').val() != "" && $('#place_description').val().length >= 20) {
-            $('#place_description').addClass('error');
-          } else {
-            $('#place_description').removeClass('error');
+      if (data.stat=="fail") {
+        publish_errors = data.err['publish'];
+        if (publish_errors) {
+          if ($.inArray(126, publish_errors) > -1) {
+            errors.price = false;
           }
-        }
+          if ($.inArray(124, publish_errors) > -1) {
+            errors.general = false;
+            if($('#place_description').val() != "" && $('#place_description').val().length >= 20) {
+              $('#place_description').addClass('error');
+            } else {
+              $('#place_description').removeClass('error');
+            }
+          }
 
-        if ($.inArray(144, publish_errors) > -1) {
-          errors.general = false;
-          if($('#place_address_1').val() == "") {
-            $('#place_address_1').addClass('error');
-          } else {
-            $('#place_address_1').removeClass('error');
+          if ($.inArray(144, publish_errors) > -1) {
+            errors.general = false;
+            if($('#place_address_1').val() == "") {
+              $('#place_address_1').addClass('error');
+            } else {
+              $('#place_address_1').removeClass('error');
+            }
           }
-        }
 
-        if ($.inArray(144, publish_errors) > -1) {
-          errors.general = false;
-          if($('#place_address_1').val() == "") {
-            $('#place_address_1').addClass('error');
-          } else {
-            $('#place_address_1').removeClass('error');
+          if ($.inArray(144, publish_errors) > -1) {
+            errors.general = false;
+            if($('#place_address_1').val() == "") {
+              $('#place_address_1').addClass('error');
+            } else {
+              $('#place_address_1').removeClass('error');
+            }
           }
-        }
-        if ($.inArray(145, publish_errors) > -1) {
-          errors.general = false;
-          if($('#place_zip').val() == "") {
-            $('#place_zip').addClass('error');
-          } else {
-            $('#place_zip').removeClass('error');
+          if ($.inArray(145, publish_errors) > -1) {
+            errors.general = false;
+            if($('#place_zip').val() == "") {
+              $('#place_zip').addClass('error');
+            } else {
+              $('#place_zip').removeClass('error');
+            }
           }
-        }
-        if ($.inArray(146, publish_errors) > -1) {
-          errors.general = false;
-          if($('#place_place_size').val() == "") {
-            $('#place_place_size').addClass('error');
-          } else {
-            $('#place_place_size').removeClass('error');
+          if ($.inArray(146, publish_errors) > -1) {
+            errors.general = false;
+            if($('#place_place_size').val() == "") {
+              $('#place_place_size').addClass('error');
+            } else {
+              $('#place_place_size').removeClass('error');
+            }
           }
-        }
 
 
-        if ($.inArray(143, publish_errors) > -1) {
-          errors.amenities = false;
-        }
-        if ($.inArray(123, publish_errors) > -1) {
-          errors.photos = false;
+          if ($.inArray(143, publish_errors) > -1) {
+            errors.amenities = false;
+          }
+          if ($.inArray(123, publish_errors) > -1) {
+            errors.photos = false;
+          }
         }
       }
     }

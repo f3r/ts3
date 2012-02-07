@@ -20,13 +20,14 @@ en:
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:    Find a Place
-  my_places:      My Properties
-  profile:        Profile
-  notifications:  Notifications
-  add_a_place:    Add a Property
+  find_places:     Find a Place
+  my_places:       My Properties
+  profile:         Profile
+  notifications:   Notifications
+  add_a_place:     Add a Property
   why_squarestays: Why SquareStays?
-  how_it_works:   How it works
+  how_it_works:    How it works
+  photography_faq: Photography FAQ
 
   ####################################################################################
   # Account creation & management

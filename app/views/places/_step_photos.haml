@@ -1,4 +1,6 @@
 .panel-wrapper
+  .alert.alert-info
+    = link_to t(:read_photo_faq), home_photo_faq_path
   .clearfix
   .photo_wrapper
 
@@ -18,8 +20,6 @@
   #photoQueue
 
   .upload_wrapper
-    .alert.alert-info
-      = link_to t(:read_photo_faq), home_photo_faq_path
     %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :id => "photo_uploader" } 
     %p= t(:upload_photo_hint)
 .arrows.clearfix

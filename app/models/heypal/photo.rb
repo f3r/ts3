@@ -32,10 +32,10 @@ class Heypal::Photo < Heypal::Base
   has_attached_file :photo, {
     :styles => {
       :large => {
-        :geometry => "610x405>",
+        :geometry => "580x435>",
         :watermark_path => "#{Rails.root}/public/images/watermark_icon.png"
       },
-      :medium => "302x202#",
+      :medium => "331x217#",
       :medsmall => "150x100#",
       :small => "105x70#",
       :tiny => "40x40#"

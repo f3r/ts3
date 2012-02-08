@@ -404,7 +404,7 @@ var trackChange = function() {
 
 var validateZipCode = function() {
   var country_id = $('#place_city_id').val();
-  var zip = $(this).val();
+  var zip = $('#place_zip').val();
   if(zip.match(/^\d{6}$/) && country_id == '1') {
     zipCodeVal = true;
   } else if(country_id == '2') {
@@ -423,9 +423,11 @@ var toggleZipCode = function() {
 
   if (city_id == '2') {
 	$("#zip_input").hide();
+	$(".place_zipformError").hide();
 	$("#place_zip").val('999077')
   } else {
 	$("#zip_input").show();
+    $('.place_zipformError').show();
   }
 
   validateZipCode();

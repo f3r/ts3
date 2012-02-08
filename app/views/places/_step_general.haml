@@ -60,9 +60,9 @@
       = f.text_field :address_2, :class => "span5 autosave"
       %p.help-inline
         = t(:address_2_help)
-    .input.required
+    .input.required#zip_input
       = f.label :zip, t(:zip_code)
-      = f.text_field :zip, :class => "span3 autosave"
+      = f.text_field :zip, :class => "validate[required] span3 autosave"
     .input
       = f.label :directions, t(:directions)
       = f.text_area :directions, :class => "span8 autosave", :rows => 5       

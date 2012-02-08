@@ -407,6 +407,8 @@ var validateZipCode = function() {
   var zip = $(this).val();
   if(zip.match(/^\d{6}$/) && country_id == '1') {
     zipCodeVal = true;
+  } else if(country_id == '2') {
+	zipCodeVal = true;
   } else if(zip.match(/^\d{5}$/) && country_id == '4065') {
     zipCodeVal = true;
   } else if(country_id == '13984' && zip.match(/^\d{2,}$/)){
@@ -415,6 +417,19 @@ var validateZipCode = function() {
     zipCodeVal = false;
   }
 };
+
+var toggleZipCode = function() {
+  var city_id = $('#place_city_id').val();
+
+  if (city_id == '2') {
+	$("#zip_input").hide();
+	$("#place_zip").val('999077')
+  } else {
+	$("#zip_input").show();
+  }
+
+  validateZipCode();
+}
 
 //for minimum and maximum days
 var hideShowInputStay = function() {
@@ -546,6 +561,8 @@ $(document).ready(function() {
 
   $("#wizard_form .amenity input[type='checkbox']").change(sendCheckBoxUpdate);
 
+  $("#place_city_id").change(toggleZipCode);
+  toggleZipCode();
   // Validate the zip code
   $('#place_zip').change(validateZipCode);
 

@@ -3,11 +3,8 @@
     - if @preview && logged_in? && @owner['id'].eql?(current_user['id'])
       .preview-header
         .row.place_options
-          .span12
+          .span16
             %p= t(:this_is_preview)
-          .span4.buttons
-            = render 'place_options_buttons'
-
         .border.span11
     .accomodation-wrapper
       .header

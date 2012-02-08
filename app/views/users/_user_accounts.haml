@@ -1,4 +1,4 @@
-- unless @user_auth['authentications'].blank?
+- if @user_auth && !@user_auth['authentications'].nil?
   - for auth in @user_auth['authentications']
     .user_box{:style => 'height: 40px;'}
       .user_photo.float-left

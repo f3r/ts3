@@ -2,7 +2,7 @@
   - if !user.avatar.nil?
     - @avatar = large_avatar(user)
     - else
-    - @avatar = placehold(200,120, true)
+    - @avatar = "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
     
   = image_tag(@avatar, :width => 200)
   - if @current_action == "edit"

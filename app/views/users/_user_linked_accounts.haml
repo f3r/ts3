@@ -1,4 +1,4 @@
-- unless @user_auth['authentications'].size == 0
+- if @user_auth && !@user_auth['authentications'].size == 0
   .span8
     - if @user_auth['authentications'].size == 1
       #{t(:link_accounts)}

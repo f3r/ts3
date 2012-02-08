@@ -233,7 +233,7 @@
         %ul.references
           %li.center
             - if @owner['avatar'].nil?
-              - avatar = placehold(200, 200, true)
+              - avatar = "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
             - else
               - avatar = large_avatar(@owner)
             %img{:src => avatar, :style => "width: 200px;", :alt => "#{short_full_name(@owner)}"}

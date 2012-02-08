@@ -179,26 +179,19 @@ class PlacesController < ApplicationController
 
   def search
     page = params[:page]
-    unless params[:place_type_ids].nil?
-      place_ids = place_types_list
-      new_ids = []
-      params[:place_type_ids].each do |p|
-        place_ids.each do |id_|
-          new_ids << id_[1] if id_[2].eql?(p)
-        end
-      end
-      params[:place_type_ids] = new_ids
-    end
     params.merge!('per_page' => 5, 'page' => page)
     @results = Heypal::Place.search(params)
 
     if @results.key?("err") # TODO: handle no results found
-      render :json => {:results => 0, :per_page => 0, :current_page => 0, :place_type_count => empty_place_type,
-        :total_pages => 0, :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false)}
+      render :json => {:results => 0, :per_page => 0, :current_page => 0, :total_pages => 0, 
+        :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
+        :place_filters => ''}
     else
       cur_page = @results['current_page'].nil? ? 1 : @results['current_page']
       render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => cur_page, :place_type_count => @results['place_type_count'],
-        :total_pages => @results['total_pages'], :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false)}
+        :total_pages => @results['total_pages'], 
+        :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
+        :place_filters => render_to_string(:_place_type_filters, :layout => false)}
     end
   end
 

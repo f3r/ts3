@@ -41,6 +41,3 @@ HeyPalFrontEnd::Application.configure do
   config.assets.allow_debugging = true
 end
 
-
-Heypal::base_url = 'http://localhost:3006/samples'
-

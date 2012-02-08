@@ -427,6 +427,9 @@ var toggleZipCode = function() {
 	$("#place_zip").val('999077')
   } else {
 	$("#zip_input").show();
+	if ($("#place_zip").val() == '999077'){
+	  $("#place_zip").val('');
+	};
     $('.place_zipformError').show();
   }
 

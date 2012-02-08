@@ -34,18 +34,18 @@
       .search-aside
         %form.panel-wrap
           %ul.panel-expander
-            %li
-              .header= t(:type)
-              .content
-                %ul#types-list{:class => "inputs-list"}
-                  - place_types_list.each do |p_type|
-                    %li
-                      %label
-                        %span.left
-                          = check_box_tag :place_type, p_type[0], (!@results['place_type_count'].blank? && @results['place_type_count'][p_type[2]].to_i > 0), :id => p_type[2]
-                          %span= p_type[0]
-                        %span.right
-                          %span= "(#{@results['place_type_count'][p_type[2]]})" if !@results['place_type_count'].blank?
+            / %li
+            / .header= t(:type)
+            / .content
+            /   %ul#types-list{:class => "inputs-list"}
+            /     - place_types_list.each do |p_type|
+            /       %li
+            /         %label
+            /           %span.left
+            /             = check_box_tag :place_type, p_type[0], (!@results['place_type_count'].blank? && @results['place_type_count'][p_type[2]].to_i > 0), :id => p_type[2]
+            /             %span= p_type[0]
+            /           %span.right
+            /             %span= "(#{@results['place_type_count'][p_type[2]]})" if !@results['place_type_count'].blank?
 
             %li
               .header= t(:price_per_month)

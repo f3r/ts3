@@ -1024,7 +1024,7 @@ ul#wizard-selector {
   p {
     width: 280px;
     background: #FFF;
-    margin: 0 auto 10px auto;
+    margin: 5px auto 5px;
     display:block;
     color: @red;
     text-align: center;
@@ -1035,8 +1035,24 @@ ul#wizard-selector {
   .border {
     z-index: 99;
     border-top: 2px solid #999;
+    margin:0;
+    width:100%;
   }
   margin-bottom: 25px;
+  .place_options {
+    .buttons {margin-bottom:10px;}
+    form {margin:0}
+    .edit,
+    .publish,
+    .unpublish {
+      float:right;
+    }
+    .edit {margin-right:4px;}
+    .publish,
+    .unpublish {
+      margin-right:8px;
+    }
+  }
 }
 
 .accomodation-wrapper{
@@ -1051,7 +1067,7 @@ ul#wizard-selector {
     border-top: 1px solid #eee;
     
     .title{
-      width: 70%;      
+      width: 78%;
       float: left;      
       
       h1{
@@ -1060,7 +1076,14 @@ ul#wizard-selector {
         border-bottom: 1px solid #eee;
         padding-bottom: 10px;
       }
-      
+      .buttons {
+        position:absolute;left:550px;top:14px;
+        form {margin:0;float:right;}
+        .btn {
+          float:right;
+          margin-right:2px;
+        }
+      }
       .meta{
         .clearfix();
         overflow: hidden;
@@ -1165,7 +1188,7 @@ ul#wizard-selector {
     padding: 4px;
     background-color: #3e3e3e;
   }  
-  .viewport { float: left; width: 700px; height: 299px; overflow: hidden; position: relative; margin-bottom: 11px; }  
+  .viewport { float: left; width: 930px; height: 410px; overflow: hidden; position: relative; margin: 0 10px 10px 10px; }  
   .disable { /*visibility: hidden;*/ opacity: .4; }
   .overview { 
     list-style: none; 
@@ -1180,19 +1203,19 @@ ul#wizard-selector {
       _zoom: 1;  
       float: left; 
       margin-right: 20px; 
-      height: 321px; 
-      width: 700px;
+      height: 405px; 
+      width: 930px;
 
       .big, .small{
         float: left;
         text-align:center;
       }
       .big{
-        width: 451px;
-        margin: 0 11px;
+        width: 610px;
+        margin: 0 1px;
         position: relative;
         background-color:#3e3e3e;
-        min-height:299px;
+        min-height:405px;
         
         .caption{
           width: 431px;
@@ -1206,15 +1229,15 @@ ul#wizard-selector {
         }
       }  
       .small{
-        width: 216px;
+        width: 302px;
 
         a{
           display: block;
           background-color:#3e3e3e;
-          min-height: 144px;
+          min-height: 202px;
 
           &:first-child{
-            margin-bottom: 11px;
+            margin-bottom: 1px;
           }
 
           img{
@@ -1268,7 +1291,7 @@ ul#wizard-selector {
       
       li { 
         float: left; 
-        margin: 0 7px 10px;
+        margin: 0 4px 10px;
       }
       .pagenum { 
         background-color: #fff; 
@@ -1368,7 +1391,7 @@ ul#wizard-selector {
     }
 
     label.sm {
-      width:35px;
+      width:40%;
       height:20px;
     }
     
@@ -1379,7 +1402,7 @@ ul#wizard-selector {
       font-weight: normal;
     }
     .value.sm {
-      width:35px;
+      width:50%;
       height:20px;
     }
     .value.bigger{

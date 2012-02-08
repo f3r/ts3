@@ -32,13 +32,13 @@ class Heypal::Photo < Heypal::Base
   has_attached_file :photo, {
     :styles => {
       :large => {
-        :geometry => "451x301>",
+        :geometry => "610x405>",
         :watermark_path => "#{Rails.root}/public/images/watermark_icon.png"
       },
-      :medium => "216x144>",
-      :medsmall => "150x100>",
-      :small => "105x70>",
-      :tiny => "40x40!"
+      :medium => "302x202#",
+      :medsmall => "150x100#",
+      :small => "105x70#",
+      :tiny => "40x40#"
     },
     :path => "places/:id/photos/:uniq_id/:style.:extension",
     :storage => :s3, 

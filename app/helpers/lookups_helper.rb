@@ -32,7 +32,14 @@ module LookupsHelper
   end 
 
   def cities_select
-    [['Singapore', '1'], ['Hong Kong', '2']]
+    [['Singapore',                    '1'], 
+     ['Hong Kong',                    '2'], 
+     ['Sydney, Australia',            '3'], 
+     ['Kuala Lumpur, Malaysia',       '4'],
+     ['New York, United States',      '5'],
+     ['San Francisco, United States', '6'],
+     ['Los Angeles, United States',   '7']
+    ]
   end
 
   def place_types_select

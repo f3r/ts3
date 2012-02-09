@@ -22,10 +22,22 @@ module Paperclip
 
       if @current_geometry.vertical?
         new_width = @current_geometry.width
-        new_height = new_width * 4 / 3
+        new_height = new_width * 1.5
       elsif @current_geometry.horizontal?
         new_height = @current_geometry.height
-        new_width = new_height * 4 / 3
+        new_width = new_height * 1.5
+      end
+
+      # check if the new width is bigger than the original
+      if new_width > @current_geometry.width
+        new_width = @current_geometry.width
+        new_height =  @current_geometry.width / 1.5
+      end
+
+      # check if the new height is bigger than the original
+      if new_height > @current_geometry.height
+        new_height = @current_geometry.height
+        new_width =  @current_geometry.height / 1.5
       end
 
       params = "#{fromfile} -gravity Center -crop #{new_width.to_i}x#{new_height.to_i}+0+0 +repage #{tofile(dst)}"

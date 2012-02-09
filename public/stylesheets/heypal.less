@@ -1609,7 +1609,10 @@ ul.references{
           min-width: 150px;
           min-height: 100px;
           background-color: #3e3e3e;
-          img { margin: 0 auto }
+          border:0;
+          padding:0;
+          border-radius:0;
+          img { margin: 0 auto; }
         }
         
         .micro{
@@ -1773,13 +1776,19 @@ ul.references{
   
   .feat{
     float: left;
+    margin-left:2px;
     
     .thumb{
       float: left;
-      width: 216px;
-      min-height: 144px;
+      width: 217px;
+      min-height: 141px;
       background-color: #3e3e3e;
-      img { margin: 0 auto }
+      margin:0;
+      img {
+        margin: 0 auto;
+        max-width:217px;
+        max-height:141px;
+      }
     }
   }
   
@@ -1788,12 +1797,13 @@ ul.references{
     width: 102px;
     overflow: hidden;
     _zoom: 1;
+    margin-right:2px;
     
     .thumb{
       float: left;
       width: 100%;
       min-height: 70px;
-      margin: 0 auto 4px;
+      margin: 0 auto 1px;
       
       &:last-child{
         margin-bottom: 0;

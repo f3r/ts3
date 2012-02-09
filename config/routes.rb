@@ -1,5 +1,10 @@
 HeyPalFrontEnd::Application.routes.draw do
-
+  # Redirect http://squarestays.com to http://www.squarestays.com
+  constraints(:host => /^squarestays.com/) do
+    root :to => redirect("http://www.squarestays.com")
+    match '/*path', :to => redirect {|params| "http://www.squarestays.com/#{params[:path]}"}
+  end
+  
   get   'search/index'
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'

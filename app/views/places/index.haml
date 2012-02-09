@@ -25,7 +25,7 @@
               = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
               .sorting
                 = t(:sort_by)
-                = select_tag :sort, options_for_select(sort_options), :class => 'medium' 
+                = select_tag :sort, options_for_select(sort_options, 'price_highest'), :class => 'medium' 
 
       .results
         #search_results

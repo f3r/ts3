@@ -3,11 +3,12 @@
     .span6
       .box
         .clearfix
-          .feat
-            .thumb{:style => "background-color:#3e3e3e"}= image_tag(place['photos'].empty? ? "http://placehold.it/216x144" : place['photos'][0]['photo']['medium'])
-          .side    
-            .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/106x70"))
-            .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/106x70"))
+          =  link_to seo_place_path(place) do
+            .feat
+              .thumb{:style => "background-color:#3e3e3e"}= image_tag(place['photos'].empty? ? "http://placehold.it/216x144" : place['photos'][0]['photo']['medium'])
+            .side    
+              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place['photos'].empty? && place['photos'][1] ? place['photos'][1]['photo']['small'] : "http://placehold.it/106x70"))
+              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place['photos'].empty? && place['photos'][2] ? place['photos'][2]['photo']['small'] : "http://placehold.it/106x70"))
 
         .desc.clearfix
           %h3.title

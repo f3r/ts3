@@ -64,6 +64,7 @@ class PlacesController < ApplicationController
   end
 
   def wizard
+    @place = Heypal::Place.find(params[:id], current_token, nil) # no currency conversion
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)

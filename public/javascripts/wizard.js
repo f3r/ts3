@@ -133,11 +133,10 @@ var validatePlace = function(panelStatus) {
     validMarkers.attr('disabled', true);
     validMarkers.attr('rel', 'twipsy');
     remaining_error = t('not_listed_yet') + '</br> ';
-    //validMarkers.attr('data-original-title', t('not_listed_yet') + '. ' + (5 - validCategories) + ' ' + t('categories_left') + '!');
-    if(!panelStatus.general) { remaining_error += t('general_error'); }
-    if(!panelStatus.photos) { remaining_error += t('photo_limit_error'); }
+    if(!panelStatus.general)   { remaining_error += t('general_error'); }
+    if(!panelStatus.photos)    { remaining_error += t('photo_limit_error'); }
     if(!panelStatus.amenities) { remaining_error += t('amenities_error'); }
-    if(!panelStatus.price) { remaining_error += t('price_error'); }
+    if(!panelStatus.price)     { remaining_error += t('price_error'); }
     validMarkers.attr('data-original-title', remaining_error);
 
     $('#listing-status').attr('href', '#');
@@ -150,14 +149,14 @@ var validatePanels = function(target) {
   var wizard_aside = $('.wizard-aside');
   var panelErrors = panelStatuses(target);
 
-  if(panelErrors.general)   { wizard_aside.find('li#general .indicator img').attr('src', '/images/check.png');            }
-  else                      { wizard_aside.find('li#general .indicator img').attr('src', '/images/check-disabled.png');   }
-  if(panelErrors.photos)    { wizard_aside.find('li#photos .indicator img').attr('src', '/images/check.png');             }
-  else                      { wizard_aside.find('li#photos .indicator img').attr('src', '/images/check-disabled.png');    }
+  if(panelErrors.general)   { wizard_aside.find('li#general .indicator img').attr('src',   '/images/check.png');          }
+  else                      { wizard_aside.find('li#general .indicator img').attr('src',   '/images/check-disabled.png'); }
+  if(panelErrors.photos)    { wizard_aside.find('li#photos .indicator img').attr('src',    '/images/check.png');          }
+  else                      { wizard_aside.find('li#photos .indicator img').attr('src',    '/images/check-disabled.png'); }
   if(panelErrors.amenities) { wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check.png');          }
   else                      { wizard_aside.find('li#amenities .indicator img').attr('src', '/images/check-disabled.png'); }
-  if(panelErrors.price)     { wizard_aside.find('li#price .indicator img').attr('src', '/images/check.png');              }
-  else                      { wizard_aside.find('li#price .indicator img').attr('src', '/images/check-disabled.png');     }
+  if(panelErrors.price)     { wizard_aside.find('li#price .indicator img').attr('src',     '/images/check.png');          }
+  else                      { wizard_aside.find('li#price .indicator img').attr('src',     '/images/check-disabled.png'); }
 
   validatePlace(panelErrors);
   return panelErrors;
@@ -225,7 +224,6 @@ var panelStatuses = function() {
               $('#place_place_size').removeClass('error');
             }
           }
-
 
           if ($.inArray(143, publish_errors) > -1) {
             errors.amenities = false;
@@ -334,8 +332,6 @@ var sendPricingUpdate = function () {
     place_id = $("#place_id").val(); // TODO: Quick update for now
   
     put_data = 
-      // 'place[price_per_night]='+ $('#place_price_per_night').val() + "&" + 
-      // 'place[price_per_week]='+ $('#place_price_per_week').val() + "&" + 
       'place[price_per_month]='+ $('#place_price_per_month').val() + "&" + 
       'place[minimum_stay]='+ $('#place_minimum_stay').val() + "&" + 
       'place[maximum_stay]='+ $('#place_maximum_stay').val() + "&" + 
@@ -422,14 +418,14 @@ var toggleZipCode = function() {
   var city_id = $('#place_city_id').val();
 
   if (city_id == '2') {
-	$("#zip_input").hide();
-	$(".place_zipformError").hide();
-	$("#place_zip").val('999077')
+    $("#zip_input").hide();
+    $(".place_zipformError").hide();
+    $("#place_zip").val('999077')
   } else {
-	$("#zip_input").show();
-	if ($("#place_zip").val() == '999077'){
-	  $("#place_zip").val('');
-	};
+    $("#zip_input").show();
+    if ($("#place_zip").val() == '999077'){
+      $("#place_zip").val('');
+    };
     $('.place_zipformError').show();
   }
 
@@ -464,8 +460,6 @@ var hideShowInputStay = function() {
       data: post_data
     });
   }
-
-
 };
 
 var computeWeeklyMonthlyPay = function() {
@@ -554,11 +548,10 @@ $(document).ready(function() {
   // Do we need a limit on place description?
   //$('#place_description').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
 
-  // proof of concept - save on update feature
   $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').change(trackChange)
         .blur(sendFieldUpdate);
 
-  $('#wizard_form input[type=text].autosave_place_unit,  #wizard_form select.autosave_place_unit').change(trackChange)
+  $('#wizard_form input[type=text].autosave_place_unit, #wizard_form select.autosave_place_unit').change(trackChange)
         .blur(sendPlaceSizeUpdate);
 
   $('#wizard_form input[type=text].autosave_pricing, #wizard_form textarea.autosave_pricing, #wizard_form select.autosave_pricing').change(trackChange)
@@ -568,6 +561,7 @@ $(document).ready(function() {
 
   $("#place_city_id").change(toggleZipCode);
   toggleZipCode();
+
   // Validate the zip code
   $('#place_zip').change(validateZipCode);
 

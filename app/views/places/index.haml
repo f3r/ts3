@@ -43,7 +43,7 @@
                 #max_price.float-right= @max_price
                 #min_price= @min_price
 
-                #price-slider
+                #price-slider{:style => "z-index:1;"}
 #place_result_pages.hide
   .page_num= 1
   .current_page= @results['current_page']

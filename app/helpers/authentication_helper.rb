@@ -13,7 +13,7 @@ module AuthenticationHelper
   def is_admin?
     return false unless logged_in?
     user = current_user
-    user && user['role'] == 'admin'
+    user && (user['role'] == 'admin' or user['role'] == 'superadmin')
   end
     
   def sign_in(_session)

@@ -19,45 +19,5 @@
               = link_to t(:sign_in), login_path_with_ref
               %span.separator /
               = link_to t(:register), signup_path
-
-      %ul.tab.preference-wrapper
-        %li#toggle-preferences.dropdown
-          %a.dropdown-toggle{:href => "#"}
-            %span.selector_label
-              = get_currency_with_symbol(get_current_currency)
-          %ul.dropdown-menu
-            %li.arrow
-            %li.divider-title= "#{t(:choose_language)}..."
-            %li.divider
-            %li{ get_current_language == "en" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "language", "data-value" => "en"} <span class="check">&#10003;</span> English
-            %li{ get_current_language == "es" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "language", "data-value" => "es"} <span class="check">&#10003;</span> Español
-            %li.divider
-            %li.divider-title= "#{t(:choose_currency)}..."
-            %li.divider            
-            %li{ get_current_currency == "USD" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "currency", "data-value" => "USD"} 
-                %span.em <span class="check">&#10003;</span>
-                %span.option-label= get_currency_with_symbol("USD")
-            %li{ get_current_currency == "GBP" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "currency", "data-value" => "GBP"} 
-                %span.em <span class="check">&#10003;</span> 
-                %span.option-label= get_currency_with_symbol("GBP")
-            %li{ get_current_currency == "SGD" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "currency", "data-value" => "SGD"}
-                %span.em <span class="check">&#10003;</span> 
-                %span.option-label= get_currency_with_symbol("SGD")
-            %li.divider              
-            %li.divider-title= "#{t(:choose_unit)}..."
-            %li.divider            
-            %li{ get_current_size_unit == "sqm" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqm"}
-                %span.em <span class="check">&#10003;</span> m²
-                =t("square_meters")
-            %li{ get_current_size_unit == "sqf" ? {:class => "active"} : {} }
-              %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqf"}
-                %span.em <span class="check">&#10003;</span> ft²
-                =t("square_feet")
-
+      = render 'shared/preferences'
   = render 'shared/menu'

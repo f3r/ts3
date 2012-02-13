@@ -2,7 +2,7 @@ class Heypal::User < Heypal::Base
 
   set_resource_path '/users.json'
 
-  @@attributes = %w(first_name last_name gender email password password_confirmation terms oauth_provider oauth_token oauth_uid phone_mobile passport_number birthdate access_token avatar_url avatar)
+  @@attributes = %w(first_name last_name gender email password password_confirmation terms oauth_provider oauth_token oauth_uid phone_mobile passport_number birthdate access_token avatar_url avatar current_token)
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
   define_attribute_methods = @@attributes
@@ -37,7 +37,7 @@ class Heypal::User < Heypal::Base
 
     def show(params = {})
       result = request("/users.json?access_token=#{params['access_token']}", :get, params)
-      self.new(result['user'])
+      self.new(result['user'].merge('current_token' => params['access_token']))
     end
 
     def info(params = {})
@@ -80,7 +80,6 @@ class Heypal::User < Heypal::Base
     def feedback(params = {})
       request('/users/feedback.json', :post, params)
     end
-
   end
 
   def initialize(params = {})
@@ -135,5 +134,12 @@ class Heypal::User < Heypal::Base
       user_info = JSON.parse(user)
       avatar = user_info['profile_image_url']
     end
-  end  
+  end
+  
+  def change_preference(preference, value)
+    if self.class.update('access_token' => self.current_token, preference => value)
+      self[preference] = value
+      self.class.show('access_token' => self.current_token)
+    end
+  end
 end

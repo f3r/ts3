@@ -12,7 +12,7 @@
       %li You should get a very clear and precise listing of all the costs involved, from deposits to rent to utilities for places on SquareStays. There are no hidden fees or extras.
     - if !logged_in?
       .get-started
-        = button_to 'Get Started!', signup_path, :class => "btn primary large", :method => :get
+        = link_to 'Get Started!', {:trigger_signup => true}, :class => 'btn primary large', :style => 'width: 210px'
   .span16
     .well
       %h4 Trust

@@ -9,7 +9,13 @@ module AuthenticationHelper
     user = current_user
     user && user['role'] == 'agent'
   end
-  
+
+  def is_admin?
+    return false unless logged_in?
+    user = current_user
+    user && user['role'] == 'admin'
+  end
+    
   def sign_in(_session)
     session['authentication_token'] = _session['authentication_token']
   end

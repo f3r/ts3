@@ -19,7 +19,7 @@
 
 -unless logged_in? 
   - unless controller_name.eql?('users') && (action_name.eql?('new') || action_name.eql?('connect'))
-    #popup-registration.modal.hide{:style => 'width: 725px'}
+    #popup-registration.modal.hide{:style => 'margin-left: -362px; width: 725px'}
       .modal-body.registration
         = link_to 'x', '#', :class => 'close', :style => 'margin-right: 15px;'
         = render 'users/signup_or_connect'

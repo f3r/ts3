@@ -19,25 +19,25 @@
       %li.divider-title= "#{t(:choose_currency)}..."
       %li.divider            
       %li{ get_current_currency == "USD" ? {:class => "active"} : {} }
-        %a{:href => "#", "data-type" => "currency", "data-value" => "USD"} 
+        = link_to :change_preference => true, :pref_currency => 'USD' do
           %span.em <span class="check">&#10003;</span>
           %span.option-label= get_currency_with_symbol("USD")
       %li{ get_current_currency == "GBP" ? {:class => "active"} : {} }
-        %a{:href => "#", "data-type" => "currency", "data-value" => "GBP"} 
+        = link_to :change_preference => true, :pref_currency => 'GBP' do 
           %span.em <span class="check">&#10003;</span> 
           %span.option-label= get_currency_with_symbol("GBP")
       %li{ get_current_currency == "SGD" ? {:class => "active"} : {} }
-        %a{:href => "#", "data-type" => "currency", "data-value" => "SGD"}
+        = link_to :change_preference => true, :pref_currency => 'SGD' do
           %span.em <span class="check">&#10003;</span> 
           %span.option-label= get_currency_with_symbol("SGD")
       %li.divider              
       %li.divider-title= "#{t(:choose_unit)}..."
       %li.divider            
       %li{ get_current_size_unit == "sqm" ? {:class => "active"} : {} }
-        %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqm"}
+        = link_to :change_preference => true, :pref_size_unit => 'sqm' do
           %span.em <span class="check">&#10003;</span> m²
           =t("square_meters")
       %li{ get_current_size_unit == "sqf" ? {:class => "active"} : {} }
-        %a{:href => "#", "data-type" => "size_unit", "data-value" => "sqf"}
+        = link_to :change_preference => true, :pref_size_unit => 'sqf' do
           %span.em <span class="check">&#10003;</span> ft²
           =t("square_feet")

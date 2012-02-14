@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
       cookies[preference] = value
 
       if logged_in?
-        session['current_user'] = current_user.change_preference(preference, value)
+        session['current_user'] = current_user.change_preference(preference, value, current_token)
         redirect_to params
       else
         redirect_to params.merge(:trigger_signup => true)

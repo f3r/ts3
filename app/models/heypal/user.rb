@@ -136,8 +136,9 @@ class Heypal::User < Heypal::Base
     end
   end
   
-  def change_preference(preference, value)
-    if self.class.update('access_token' => self.current_token, preference => value)
+  def change_preference(preference, value, token = nil)
+    access_token = self.current_token || token
+    if self.class.update('access_token' => access_token, preference => value)
       self[preference] = value
       self.class.show('access_token' => self.current_token)
     end

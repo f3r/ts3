@@ -13,19 +13,19 @@
         - if logged_in?
           = text_field_tag :name, full_name(current_user), :class => 'span6 validate[required]'
         - else
-          = text_field_tag :name, nil, :placeholder => "Michael Smith", :class => 'span6 validate[required]'
+          = text_field_tag :name, nil, :placeholder => "e.g. John Smith", :class => 'span6 validate[required]'
       .clearfix
         %label Email address
         - if logged_in?
           = text_field_tag :email, current_user.email, :class => 'span6 validate[required,custom[email]]'
         - else
-          = text_field_tag :email, nil, :placeholder => 'sample@email.com', :class => 'span6 validate[required]'
+          = text_field_tag :email, nil, :placeholder => 'e.g. mail@mail.com', :class => 'span6 validate[required]'
       .clearfix
         %label Mobile phone number
         - if logged_in?
           = text_field_tag :mobile, current_user.phone_mobile, :class => 'span3 validate[required]'
         - else
-          = text_field_tag :mobile, nil, :placeholder => "+65 1234 5678", :class => 'span3 validate[required]'
+          = text_field_tag :mobile, nil, :placeholder => "e.g. +65 1111 1111", :class => 'span3 validate[required]'
         = check_box_tag :call_me, 'yes', true
         %span{:style => 'font-size: 13px'} I would like someone to call me
 
@@ -49,19 +49,18 @@
         = text_area_tag :questions, nil, :rows => 5, :placeholder => 'Please tell us if you have any further questions. Questions can be for this property or for any properties listed by this agent', :class => 'span7'
       
     .modal-footer
-      = #%button.btn.primary{:onclick => "$('#inquire_place').modal('hide');"}= t(:submit)
       %button.btn.primary=t(:submit)
-      %div.btn{        :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
+      %div.btn{ :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
 
 :javascript
   $('#optional').hide();
   $('#optional-header').click(function(){
     $('#optional').toggle()
   });
-  $('#inquire_place').bind('shown', function () {
+  $('#inquire_place').bind('show', function () {
     $('.alert-message').remove();
     $("#inquire_form").validationEngine({
-      promptPosition : "bottomLeft:0,30",
+      promptPosition : "bottomRight:-50,30",
       relative: true      
     });
   })

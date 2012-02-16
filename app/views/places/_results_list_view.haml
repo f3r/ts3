@@ -3,7 +3,7 @@
     %li
       .thumb.data-block
         =  link_to seo_place_path(place) do
-          = image_tag(place['photos'].empty? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
+          = image_tag(place['photos'].blank? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
       .info  
         %h3.title
           = link_to place['title'], seo_place_path(place)

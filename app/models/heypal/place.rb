@@ -143,7 +143,10 @@ class Heypal::Place < Heypal::Base
     def delete(id, access_token)
       result = request("/places/#{id}.json?access_token=#{access_token}", :delete)
     end
-
+    
+    def upload_photo(id, photo, access_token)
+      result = request("/places/#{id}/photos.json?access_token=#{access_token}", :post, :photo => phot)
+    end
   end
 
   def initialize(params = {})

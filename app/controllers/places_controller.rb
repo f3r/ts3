@@ -107,7 +107,7 @@ class PlacesController < ApplicationController
   def upload_photo
     #@place = Heypal::Place.find(params[:id], params[:token])
 
-    Heypal::Place.upload_photo(params[:id], :filename => params[:Filename], :file => params[:file])
+    Heypal::Photo.create(params[:id], params[:file], params[:token])
     # p = Heypal::Photo.new
     # p.place_id = params[:id]
     # p.photo_id = Time.now.to_i

@@ -104,7 +104,7 @@
         img_div.find('img.photo').attr('data-name', data.value);
         img_div.find('img.photo').attr('data-trunc-name', trunc);
         img_div.find('~ .photo_title').html(trunc);
-        syncPhotos();
+        updatePhotoLabel($(this).attr('data-image-id'), data.value)
       }
     });
 
@@ -139,6 +139,14 @@
       success: function() {
         validatePanels();
       }
+    });
+  };
+
+  var updatePhotoLabel = function(photo_id, label) {
+    $.ajax({
+      type: 'PUT',
+      url: '/places/#{@place.id}/photos/' + photo_id + '.json',
+      data: {name: label}
     });
   };
 

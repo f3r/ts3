@@ -104,10 +104,10 @@ class PlacesController < ApplicationController
     render :template => 'places/_photo_list', :layout => false
   end
 
-  def upload_photo
-    #@place = Heypal::Place.find(params[:id], params[:token])
-
-    Heypal::Photo.create(params[:id], params[:file], params[:token])
+  # def upload_photo
+  #   #@place = Heypal::Place.find(params[:id], params[:token])
+  # 
+  #   Heypal::Photo.create(params[:id], params[:file], params[:token])
     # p = Heypal::Photo.new
     # p.place_id = params[:id]
     # p.photo_id = Time.now.to_i
@@ -140,11 +140,11 @@ class PlacesController < ApplicationController
     # post_params = {:photos => @photos.to_json}
     # 
     # result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
-
-    @place = Heypal::Place.find(params[:id], params[:token])
-    @photos = @place.photos
-    render :template => 'places/_photo_list', :layout => false
-  end
+  # 
+  #   @place = Heypal::Place.find(params[:id], params[:token])
+  #   @photos = @place.photos
+  #   render :template => 'places/_photo_list', :layout => false
+  # end
 
   def get_cities
     @cities = Heypal::Geo.get_all_cities(params[:query])

@@ -47,21 +47,18 @@
     });
   };
 
-  var deletePhoto = function(elem) {
-    if(confirm("#{t(:are_you_sure_delete_photo)}")) {
-      elem.parent().parent().fadeOut('slow', function(){
-        $(this).remove();
-        afterSort();
-        syncPhotos();
-        showLatestPhoto();
-      });
-
-    }
+  var deletePhoto = function(photo) {
+    photo.fadeOut('slow', function(){
+      photo.parent().remove();
+      afterSort();
+      showLatestPhoto();
+      validatePanels();
+    });
   };
 
   var showPhoto = function() {
     setPhoto($(this).find('img'));
-  }
+  };
 
   var showLatestPhoto = function() {
     var photo = $('#photos_list li img').last();
@@ -158,7 +155,7 @@
 
     $('#photo_uploader').uploadify({
       'uploader'        : '/javascripts/uploadify/uploadify.swf',
-      'script'          : "/places/#{@place.id}/upload_photo",
+      'script'          : "/places/#{@place.id}/photos",
       'cancelImg'       : '/images/close.png',
       'buttonImg'       : '/images/browse-button.png',
       'auto'            : true,

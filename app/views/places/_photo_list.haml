@@ -2,5 +2,6 @@
   - @photos.each do |photo|
     %li 
       .photo_action
-        = link_to "[x]", "javascript:void(0);", :onclick => "return deletePhoto($(this));"
+        = link_to "[x]", "/places/#{@place.id}/photos/#{photo['photo']['id']}", :method => :delete, :remote => true,
+          :confirm => t(:are_you_sure_delete_photo)
       = render_photo(photo)

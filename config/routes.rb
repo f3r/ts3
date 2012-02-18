@@ -30,7 +30,11 @@ HeyPalFrontEnd::Application.routes.draw do
       post  :confirm_rental
       post  :confirm_inquiry
     end
-    resources :photos, :only => [:create, :update, :destroy]
+    resources :photos, :only => [:create, :update, :destroy] do
+      collection do
+        put :sort
+      end
+    end
     
     get :search, :on => :collection
     get '/singapore' => 'places#index', :on => :collection

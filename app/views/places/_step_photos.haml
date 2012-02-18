@@ -50,7 +50,6 @@
   var deletePhoto = function(photo) {
     photo.fadeOut('slow', function(){
       photo.parent().remove();
-      afterSort();
       showLatestPhoto();
       validatePanels();
     });
@@ -128,17 +127,6 @@
     return photoArray;
   };
 
-  var syncPhotos = function() {
-    $.ajax({
-      type: 'PUT',
-      url: '/places/#{@place.id}.json',
-      data: {place: {photos: JSON.stringify(photoMetadata())}}, 
-      success: function() {
-        validatePanels();
-      }
-    });
-  };
-
   var updatePhotoLabel = function(photo_id, label) {
     $.ajax({
       type: 'PUT',
@@ -171,7 +159,7 @@
       'scriptData'      : { 'photo_album_id' : #{@place.id}, '_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
       'onComplete'  : function(event, ID, fileObj, response, data) {
         $('#photos_list').html(response);
-        afterSort();
+        //afterSort();
         showLatestPhoto();
         validatePanels();        
       }
@@ -183,8 +171,16 @@
           $(event.currentTarget).addClass('noclick');
         },
         stop: function(event, ui) {
-          afterSort(); 
-          syncPhotos();
+          afterSort();
+
+          $.ajax({
+            type: 'PUT',
+            url: '/places/#{@place.id}/photos/sort.json',
+            data: $('#photos_list').sortable('serialize'), 
+            success: function() {
+              validatePanels();
+            }
+          });
         }
     });
 

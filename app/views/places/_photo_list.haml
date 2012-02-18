@@ -1,6 +1,6 @@
 - if @photos && @photos.any?
   - @photos.each do |photo|
-    %li 
+    %li{:id => "photo_ids-#{photo['photo']['id']}"}
       .photo_action
         = link_to "[x]", "/places/#{@place.id}/photos/#{photo['photo']['id']}", :method => :delete, :remote => true,
           :confirm => t(:are_you_sure_delete_photo)

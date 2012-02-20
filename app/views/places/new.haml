@@ -3,23 +3,71 @@
   .span12
     = form_for :place, :url => places_path, :class => 'form-stacked', :html => {:id => 'wizard_form'} do |f|
       .panel
-        = render 'step_1', :f => f
+      .panel-wrapper
+        %h2.title
+          = t(:list_your_place)
+        %fieldset
+          .clearfix
+            .input.required
+              = f.label :city_id, t(:what_city_is_your_place_in)
+              = f.select :city_id, cities_select, :class => "validate[required] span6"
+            .input.required
+              = f.label :title, t(:title)
+              = f.text_field :title, :class => "validate[required] span7"
+
+            .input
+              = f.label :place_type_id, t(:place_type)
+              = f.select :place_type_id, place_types_select
+            .input.required
+              = f.label :num_bedrooms, t(:how_many_bedrooms)
+              = f.text_field :num_bedrooms, :class => "validate[required,custom[integer],min[0]] span2"
+            .input.required
+              = f.label :max_guests, t(:max_guests)
+              = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span2"
+            %br.clearfix
+            %br.clearfix
+            .input
+              %div.reset-width
+                = f.check_box :terms, :class => "validate[required]"
+                = t(:i_agree_to_the)
+                = link_to t(:terms_and_conditions), terms_path, :target => :blank        
+
+      .arrows.clearfix
+        .coda-nav-right
+          %button.btn.primary{:type => "submit", :id => "submit_button"}=raw t(:save_and_continue)
 
 :javascript
 
-    $(document).ready(function() {
+  $(function() {
+    function validateStep1Form() {
+      if( $('#place_title').val() && $('#place_num_bedrooms').val() && $('#place_max_guests').val() ) {
+        $('#submit_button').attr('disabled', null);
+      } else {
+        $('#submit_button').attr('disabled', 'true');
+      }
+    }
 
-      $('#wizard_form').validationEngine();
-      $("#wizard_form").submit(function(e) {
-        var isChecked = $('#place_terms').is(':checked');
-        if(!isChecked) {
-          alert("Please check 'I accept the terms and conditions' to continue");
-          e.preventDefault();
-         }
-        });
-
-
-      // Character count
-      $('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
-
+    $('form input').change(function(){
+      validateStep1Form();
+    }).keypress(function() {
+      validateStep1Form();
     });
+
+    validateStep1Form();
+  });
+
+  $(document).ready(function() {
+
+    $('#wizard_form').validationEngine();
+    $("#wizard_form").submit(function(e) {
+      var isChecked = $('#place_terms').is(':checked');
+      if(!isChecked) {
+        alert("Please check '#{t(:terms_and_conditions)}' to continue");
+        e.preventDefault();
+       }
+      });
+
+    // Character count
+    $('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
+
+  });

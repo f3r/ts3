@@ -10,8 +10,9 @@
         - else
           = menu_link_to t(:how_it_works), home_how_path
           = menu_link_to t(:why_squarestays), home_why_path
-      - if logged_in?
-        %ul.nav.secondary-nav
+
+      %ul.nav.secondary-nav
+        - if logged_in?
           - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
             %li.add-item
               = link_to t(:add_a_place), new_place_path
@@ -30,14 +31,17 @@
           - else
             %li.unread-message{:onclick => "location.href='#{messages_path}';"}
               = link_to message_count, messages_path
-          %li.dropdown.help
-            %a.dropdown-toggle{'data-toggle' => "dropdown"}
-              Help
-              %b.caret
-            - if logged_in?
-              %ul.dropdown-menu
-                %li= link_to t(:how_it_works), home_how_path
-                %li= link_to t(:why_squarestays), home_why_path
-                - if is_agent? or is_admin?
-                  %li= link_to t(:photography_faq), home_photo_faq_path
+
+        %li.dropdown.help
+          %a.dropdown-toggle{'data-toggle' => "dropdown"}
+            Help
+            %b.caret
+          %ul.dropdown-menu{:style => 'width:200px'}
+            %li= link_to t(:how_it_works),    home_how_path
+            %li= link_to t(:why_squarestays), home_why_path
+            %li= link_to t(:cityguide_sg),    cityguide_sg_path
+            %li= link_to t(:cityguide_hk),    cityguide_hk_path
+            %li= link_to t(:community_support), 'javascript: $("#fdbk_tab").click();'
+            - if is_agent? or is_admin?
+              %li= link_to t(:photography_faq), home_photo_faq_path
                   

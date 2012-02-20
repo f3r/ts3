@@ -33,10 +33,10 @@
         %a.thumb{:href => "http://www.squarestays.com/singapore/6-the-clift-cool-2-bedroom-downtown-loft"}
           .description= t(:car_three)
           %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/6/photos/1326721102/large.jpg"}
-        %a.thumb{:href => "#"}
+        %a.thumb{:href => "#{cityguide_sg_path}"}
           .description= t(:car_four)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car05.jpg"}
-        %a.thumb{:href => "#"}
+        %a.thumb{:href => "#{cityguide_hk_path}"}
           .description= t(:car_five)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car03.jpg"}
       
@@ -58,16 +58,16 @@
   .tease-header
     t(:teaser_center_title)
   .row
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg", :alt => t(:teaser_1_content)}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg",  :alt => t(:teaser_1_content)}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/qlty.jpg", :alt => t(:teaser_2_content)}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/afrd.jpg", :alt => t(:teaser_3_content)}            
 
 .trust
   .row
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/swg.jpg", :title => "Small World Group"}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg", :title => "National Research Foundation"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/swg.jpg",  :title => "Small World Group"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg",  :title => "National Research Foundation"}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => "PropNex"}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg", :title => "Far East Organization"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => "Far East Organization"}
     
 #my-modal.hide.modal.fade
   = form_tag '/cities/suggest', :class => 'cities_suggest_form' do

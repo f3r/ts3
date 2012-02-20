@@ -35,6 +35,6 @@ class PhotosController < ApplicationController
 protected
 
   def find_place
-    @place = Heypal::Place.find(params[:place_id], params[:token])
+    @place = Heypal::Place.find(params[:place_id], current_token)
   end
 end

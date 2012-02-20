@@ -1,3 +1,6 @@
+- content_for(:title) do
+  - "#{@place.title} - #{@place.city_name}"
+
 .row.place_info
   .span16
     - if @preview && logged_in? && @owner['id'].eql?(current_user['id'])

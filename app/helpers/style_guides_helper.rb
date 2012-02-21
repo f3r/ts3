@@ -1,2 +1,0 @@
-module StyleGuidesHelper
-end

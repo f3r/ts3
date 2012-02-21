@@ -4,9 +4,31 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
+// require less-1.1.3.min
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui-1.8.16.custom.min
+//= require jquery.ui.touch.punch.min
+//= require jquery.tinycarousel.min
+//= require jquery.cycle.all
+//= require jquery.calendar
+//= require jquery.waypoints.min
+//= require jquery.charcounter
+//= require jquery.validationEngine-en
+//= require jquery.validationEngine
+//= require jquery.sausage
+//= require jquery.bootstrap.confirm.popover
+//= require jquery.bookmark
+//= require jquery.bookmark.ext
+//= require modernizr
+//= require preferences
+//= require fullcalendar.min
+//= require twitter/bootstrap
+
 //= require_tree .
+
+// %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
+
 function showIndicator(elem) {
   elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
 }
@@ -197,6 +219,7 @@ $(document).ready(function() {
     html: true
   });
 
+  $('.dropdown').dropdown();
 });
 
 function disabled_question_button() {

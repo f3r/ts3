@@ -18,7 +18,7 @@
 // require jquery.sausage
 //= require jquery.bootstrap.confirm.popover
 //= require jquery.bookmark
-//= require jquery.bookmark.ext
+// require jquery.bookmark.ext
 //= require modernizr
 //= require preferences
 //= require fullcalendar.min

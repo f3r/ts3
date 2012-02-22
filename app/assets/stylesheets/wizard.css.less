@@ -1,0 +1,42 @@
+
+.wizard-wrapper .panel {
+  display: none;
+}
+
+ul#wizard-selector {
+  list-style: none;
+  padding:0;
+  margin:0 0 35px 0;
+  li {
+    /* padding: 5px; */
+    .indicator {
+      float: left;
+      height: 32px;
+      padding: 4px;
+      width: 32px;
+      margin-right: 10px;
+    }
+    a {
+      padding: 10px;
+      display:block;
+      color: @red;
+    }
+    a.active {
+      background: @grayLight;
+      color: #000;
+    }
+  }
+
+}
+
+.wizard-aside {
+  /*position: fixed;*/
+  width: 240px;
+  top: auto;
+}
+
+.wizard-aside.sticky {
+  position: fixed;
+  top: 52px;
+  
+}

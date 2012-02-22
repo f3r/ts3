@@ -1,6 +1,6 @@
 source :rubygems
 
-gem 'rails', '3.1.0'
+gem 'rails', '3.2.0'
 gem 'sqlite3'
 gem 'dynamic_form'
 gem 'omniauth'
@@ -11,9 +11,9 @@ gem 'haml'
 gem 'jquery-rails',  '~>1.0.18'
 
 group :assets do
-  gem 'sass-rails', "  ~> 3.1.0"
-  gem 'coffee-rails', "~> 3.1.0"
-  gem 'uglifier'
+  gem 'sass-rails',   "~> 3.2.3"
+  gem 'coffee-rails', "~> 3.2.1"
+  gem 'uglifier',     ">= 1.0.3"
   gem 'less-rails-bootstrap'
 end
 
@@ -40,4 +40,3 @@ group :development, :test do
   gem 'ruby-debug-base19', '0.11.26'
   gem "ruby-debug19", :require => 'ruby-debug'
 end
-

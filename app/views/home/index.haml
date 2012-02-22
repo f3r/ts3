@@ -1,6 +1,6 @@
 .start
   .row
-    .span8
+    .span6
       .hub
         %h1
           =t(:search_place_stay_in)
@@ -11,7 +11,7 @@
           %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
 
         %p
-          %a{:class => 'btn hp-blue large', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center', :href => '/singapore'}= t(:homepage_search_but)
+          %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center', :href => '/singapore'}= t(:homepage_search_but)
 
         #fp-liner{:style => 'color:#3977b0'}
           %p 
@@ -22,7 +22,7 @@
           %p
             %b= t(:fp_three)
     
-    .span8
+    .span6
       #teaser-pics
         %a.thumb{:href => "http://www.squarestays.com/singapore/5-the-clift-prime-location-loft-with-view"}
           .description= t(:car_one)

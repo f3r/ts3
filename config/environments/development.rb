@@ -31,6 +31,11 @@ HeyPalFrontEnd::Application.configure do
   config.from_locales = [:en]
   config.to_locales = [:es, :de]
 
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+  
+  # Log the query plan for queries taking longer than this
+  config.active_record.auto_explain_threshold_in_seconds = 0.5
 end
 
 # Heypal::base_url = BACKEND_PATH

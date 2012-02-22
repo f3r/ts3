@@ -7,7 +7,6 @@
 // require less-1.1.3.min
 //= require jquery
 //= require jquery_ujs
-//= require jquery-ui-1.8.16.custom.min
 //= require jquery.ui.touch.punch.min
 //= require jquery.tinycarousel.min
 //= require jquery.cycle.all
@@ -16,7 +15,7 @@
 //= require jquery.charcounter
 //= require jquery.validationEngine-en
 //= require jquery.validationEngine
-//= require jquery.sausage
+// require jquery.sausage
 //= require jquery.bootstrap.confirm.popover
 //= require jquery.bookmark
 //= require jquery.bookmark.ext
@@ -24,8 +23,6 @@
 //= require preferences
 //= require fullcalendar.min
 //= require twitter/bootstrap
-
-//= require_tree .
 
 // %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
 
@@ -55,25 +52,6 @@ function hideIndicator(elem) {
   elem.parent().find('.save-indicator').detach();
 }
 
-$(function() {
-  $('.generic-datepicker').datepicker({
-    dateFormat: 'dd/mm/yy'
-  });
-
-  add_datepicker();
-
-  $('input#hasGrayedDate.datepicker').datepicker({
-    minDate: -0,
-    maxDate: '3M',
-    dateFormat: 'yy-mm-dd'
-  });
-  $('input#birthDate.datepicker').datepicker({
-    dateFormat: 'd/M/yy',
-    changeMonth: true,
-    changeYear: true,
-    yearRange: '1930:'+(new Date().getFullYear() - 18),
-    defaultDate: new Date("1/1/1980")
-  });
 
   $('span#date-input-1').calendar({
     parentElement: 'div#date-input-1-container',
@@ -140,7 +118,7 @@ $(function() {
     $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
 	}, {offset: 52});  // NOTE: when you change this, goto heypal.less -> .sticky and change top attr
-});
+
 
 function add_datepicker() {
   // TODO: hack now. to make datepicker from-to live. focus only work "on"-focus (duh). So hasDatepicker class isn't assigned on load and from-to doesn't work.
@@ -184,34 +162,14 @@ $(document).ready(function() {
     }
   });
 
-  var inside_country = false;
-  $("#open-country-select").click(function() {
-    $("#country-select").show();
-    return false;
-  });
-
-  $("#country-select").hover(function() {
-    inside_country = true;
-  }, function() {
-    inside_country = false;
-  });
-  $("body").mouseup(function() {
-    if (!inside_country) $("#country-select").hide();
-  });
-
-  $('#my-modal').modal({backdrop:true});
-  $('#my-modal').bind('hidden', function () {
-    $("#country-select").hide();
-  });
-
-  $("a.twipsy, a[rel=twipsy]").twipsy({
+  $("a.tooltip, a[rel=tooltip]").tooltip({
       live:true,
       animate: false,
       placement: 'below',
       html: true
   });
 
-  $("a.twipsy-link").twipsy({
+  $("a.tooltip-link").tooltip({
     live:true,
     animate: false,
     placement:'below',
@@ -219,7 +177,7 @@ $(document).ready(function() {
     html: true
   });
 
-  $('.dropdown').dropdown();
+  $('.dropdown-toggle').dropdown();
 });
 
 function disabled_question_button() {
@@ -257,3 +215,6 @@ var Expandable = {
 	})
   }
 }
+
+//= require self
+//= require_tree .

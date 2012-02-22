@@ -109,7 +109,7 @@ class SessionsController < ApplicationController
   end
 
   def omniauth_userinfo
-    @omniauth_userinfo = omniauth['user_info']
+    @omniauth_userinfo = omniauth['info']
   end
 
   def oauth_token

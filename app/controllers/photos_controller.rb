@@ -21,7 +21,7 @@ class PhotosController < ApplicationController
   def sort
     Heypal::Photo.sort(@place.id, params[:photo_ids], current_token)
     respond_to do |format|
-      format.js{ render :template => 'photos/destroy.js.erb', :layout => false }
+      format.js{ render :template => 'photos/sort.js.erb', :layout => false }
     end
   end
 

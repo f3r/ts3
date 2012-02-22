@@ -18,8 +18,8 @@
 
           $.ajax({
             type: 'PUT',
-            url: '/places/#{@place.id}/photos/sort.json',
-            data: $('#photos_list').sortable('serialize'), 
+            url: '/places/#{@place.id}/photos/sort',
+            data: $('#photos_list').sortable('serialize'),
             success: function() {
               validatePanels();
             }

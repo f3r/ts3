@@ -11,9 +11,11 @@
  *= require jquery/jquery.bookmark.css
  *= require fullcalendar.css
  *
- *= require_self
- *= require_tree . 
 */
+
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+@smallfont: 10px;
 
 /********************************************************************************************************* 
  * HEADER
@@ -131,3 +133,8 @@
     line-height: 95%;
     margin-bottom: 12px;
 }
+
+/*
+ *= require_self
+ *= require_tree . 
+ */

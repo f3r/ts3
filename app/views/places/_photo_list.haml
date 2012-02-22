@@ -5,3 +5,35 @@
         = link_to "[x]", "/places/#{@place.id}/photos/#{photo['photo']['id']}", :method => :delete, :remote => true,
           :confirm => t(:are_you_sure_delete_photo)
       = render_photo(photo)
+
+:javascript
+  $(function() {
+    $('#photos_list').sortable({ 
+        grid: [8,2],
+        start: function(event, ui) {
+          $(event.currentTarget).addClass('noclick');
+        },
+        stop: function(event, ui) {
+          afterSort();
+
+          $.ajax({
+            type: 'PUT',
+            url: '/places/#{@place.id}/photos/sort.json',
+            data: $('#photos_list').sortable('serialize'), 
+            success: function() {
+              validatePanels();
+            }
+          });
+        }
+    });
+
+    afterSort();
+    showLatestPhoto();
+
+    $('#photos_list li').click(function(){
+      if(!$(this).parent().hasClass('noclick')){
+       setPhoto($(this).find('img'));
+      }
+      $(this).parent().removeClass('noclick');
+    });
+  });

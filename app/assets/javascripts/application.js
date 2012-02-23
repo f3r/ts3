@@ -26,6 +26,12 @@
 
 // %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
 
+
+// HOMEPAGE
+
+function customerSupportDialog() {
+ $("#fdbk_tab").click(); 
+}
 function showIndicator(elem) {
   elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
 }

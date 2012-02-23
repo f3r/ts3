@@ -35,7 +35,7 @@
               %li= link_to t(:why_squarestays), home_why_path
               %li= link_to t(:cityguide_sg),    cityguide_sg_path
               %li= link_to t(:cityguide_hk),    cityguide_hk_path
-              %li= link_to t(:community_support), 'javascript: $("#fdbk_tab").click();'
+              %li= link_to t(:community_support), 'javascript: customerSupportDialog();'
               - if is_agent? or is_admin?
                 %li= link_to t(:photography_faq), home_photo_faq_path
                   

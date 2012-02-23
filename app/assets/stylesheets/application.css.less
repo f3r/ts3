@@ -19,12 +19,15 @@
 
 @import "twitter/bootstrap/variables";
 @import "twitter/bootstrap/mixins";
-@grayDark: "#999";
+
+@grayDark: #333;
 @smallfont: 10px;
+@linkColor: #3977B0;
 
 /********************************************************************************************************* 
  * HELPERS ADDED FROM HEYPAL.CSS.LESS
  *********************************************************************************************************/
+a { color: @linkColor}
 
 .hidden             { display: none !important; }
 .textCenter()       { text-align: center; }
@@ -1159,6 +1162,59 @@ div.start div.hub form input#check_out.textbox {width:118px;}
 /********************************************************************************************************* 
  * HEADER
  *********************************************************************************************************/
+.header {
+  > .container {
+    height: 65px;
+    margin-top: 5px;
+  }
+  .container {
+    font-size: 14px;
+  }
+  .user_box {
+
+     .user_name {
+       font-weight: bold;
+       font-size: 1.2em;
+       color: @grayDark;
+     }
+
+     .small, .small a {
+       font-weight: normal;
+       font-size: 11px;
+       color: #888;
+     }
+
+     .links {
+       text-align:right
+     }
+   }
+
+   .preference {
+     cursor:pointer;
+     text-align: right;
+     font-color: #00ff00;
+
+     span.edit-icon {
+      height:13px;
+       width:13px;
+       display:inline-block;
+       background: transparent url(../images/icon.pencil.png) 0 0;
+     }
+   }
+ }
+
+.navbar{
+  .sticky {
+     position: fixed;
+     top: 0;
+     width: 100%;
+  }
+  ul.nav > li > a {
+    color: white;
+    font-size: 16px;
+  }  
+}
+
 .preference-wrapper{
   float: right;
   border: none;
@@ -1221,46 +1277,6 @@ div.start div.hub form input#check_out.textbox {width:118px;}
      }
    }   
   }  
-}
-
-.header {
-  .user_box {
-    
-    .user_name {
-      font-weight: bold;
-      font-size: 1.2em;
-      color: @grayDark;
-    }
-
-    .small, .small a {
-      font-weight: normal;
-      font-size: 11px;
-      color: #888;
-    }
-
-    .links {
-      text-align:right
-    }
-  }
-
-  .preference {
-    cursor:pointer;
-    text-align: right;
-    font-color: #00ff00;
-
-    span.edit-icon {
-     height:13px;
-      width:13px;
-      display:inline-block;
-      background: transparent url(../images/icon.pencil.png) 0 0;
-    }
-  }
-}
-
-.navbar.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
 }
 
 /********************************************************************************************************* 

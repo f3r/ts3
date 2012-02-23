@@ -21,12 +21,12 @@
     .input
       = f.label :price_final_cleanup, t(:final_cleanup)
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_final_cleanup, :class => "span2 autosave"
+      = f.text_field :price_final_cleanup, :class => "span2 autosave validate[custom[number]]"
       = link_to '?', '#', :class => 'twipsy', 'data-original-title' => raw(t(:final_cleanup_hint))      
     .input
       = f.label :price_security_deposit, t(:security_deposit)
       %span.currency-sign= currency_sign_of(@place.currency)
-      = f.text_field :price_security_deposit, :class => "span2 autosave"
+      = f.text_field :price_security_deposit, :class => "span2 autosave validate[custom[number]]"
       = link_to '?', '#', :class => 'twipsy', 'data-original-title' => raw(t(:security_deposit_hint))            
   %h2.title= t(:terms)
   %fieldset

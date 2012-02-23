@@ -35,11 +35,27 @@ var t = function(key) {
   return il8nStrings[key];
 }
 
+// reset field values
+var resetUnsaved = function() {
+  var current_values = JSON.parse($('#place_current').val());
+  if (current_values) {
+    changed_fields = $('#wizard_form input[data-changed|="1"]');
+    for(i=0; i < changed_fields.length; i++) {
+      var s = changed_fields[i];
+      $('#' + s.id).removeClass("error");
+      id = s.id.replace(/^place_/,'');
+      $('#' + s.id).val(current_values[id]);
+    }
+  }
+  
+}
+
 var switchPanel = function() {
 
   var _panelStatus = validatePanels();
   var switchMe = true;
   var _this = $(this);
+  resetUnsaved();
 
   // First, Check the current panel if it is valid
   switch(currentPanel()) {
@@ -58,7 +74,6 @@ var switchPanel = function() {
     $('.section_title').html(_this.attr('title'));
     _this.parent().parent().find('a').removeClass('active');
     _this.addClass('active');
-
   } else {
     if(firstLoad == false) {
       if(currentPanel() == '#2') {
@@ -264,11 +279,9 @@ var validatePreview = function() {
 **********************/
 
 var sendFieldUpdate = function() {
-
   var elem = $(this);
   // Check if we have changed values
   if(elem.attr('data-changed') == "1" && !validateElement(elem)) {
-    if(zipCodeVal){
       hideIndicator(elem);
       showIndicator(elem);
 
@@ -278,15 +291,33 @@ var sendFieldUpdate = function() {
         type: 'PUT',
         url: '/places/' + place_id + '.json',
         data: $(this).serialize(),
-        success: function() {
-          showSavedIndicator(elem);
-          elem.attr('data-changed', '0');
-          validatePanels();
+        success: function(data) {
+          if (data.stat=="ok") {
+            $('#place_current').val(JSON.stringify(data.place));
+            showSavedIndicator(elem);
+            elem.attr('data-changed', '0');
+            elem.removeClass("error");
+            elem.validationEngine('hidePrompt');
+          } else {
+            elem.addClass("error");
+            var error_labels = data.error_label.split(',');
+            var error_fields = []
+            for (error in data.err) {
+              error_fields.push(error);
+            }
+            for(i=0; i < error_labels.length; i++) {
+              hideIndicator(elem);
+              // $('#place_price_per_month').validationEngine('hidePrompt');
+              $('#place_' + error_fields[i]).validationEngine('showPrompt', error_labels[i], 'load', 'centerLeft');
+            }
+
+
+            hideIndicator(elem);
+            // showErrorIndicator(elem);
+          }
+          validatePanels();            
         }
       });
-    } else {
-      showErrorIndicator(elem);
-    }
   }
 };
 
@@ -308,12 +339,13 @@ var sendPlaceSizeUpdate = function () {
       type: 'PUT',
       url: '/places/' + place_id + '.json',
       data: put_data,
-      success: function() {
+      success: function(data) {
         showSavedIndicator(elem);
         elem.attr('data-changed', '0');
-        validatePanels();
+        $('#place_current').val(JSON.stringify(data.place));
       }
     });
+    validatePanels();
   }
 }
 
@@ -346,16 +378,18 @@ var sendPricingUpdate = function () {
         if (data.stat == "ok") {
           showSavedIndicator(elem);
           elem.attr('data-changed', '0');
+          elem.removeClass("error");
+          $('#place_current').val(JSON.stringify(data.place));
         } else {
           var error_labels = data.error_label.split(',');
           var error_fields = []
           for (error in data.err) {
-            error_fields.push(error)
+            error_fields.push(error);
           }
           for(i=0; i < error_labels.length; i++) {
             hideIndicator(elem);
-            $('#place_price_per_night, #place_price_per_week, #place_price_per_month').validationEngine('hidePrompt');
             $('#place_' + error_fields[i]).validationEngine('showPrompt', error_labels[i], 'load', 'centerLeft');
+            $('#place_' + error_fields[i]).addClass("error");
           }
         }
       }
@@ -386,12 +420,13 @@ var sendCheckBoxUpdate = function() {
     type: 'PUT',
     url: '/places/' + place_id + '.json',
     data: post_data,
-    success: function() {
+    success: function(data) {
       showSavedIndicator(elem);
       elem.show();
-      validatePanels();
+      $('#place_current').val(JSON.stringify(data.place));
     }
   });
+  validatePanels();
 };
 
 var trackChange = function() {
@@ -531,16 +566,25 @@ function showHideInitialDefaultInput() {
   showComputeWeeklyMonthlyPay(nightPrice);
 };
 
+
+function markFields(form, status){
+  console.log(status);
+  if (status === true) {
+     alert("the form is valid!");
+  }
+}
+
 /*********************
 * Initialize here
 **********************/
+
 $(document).ready(function() {
 
   // Wizard Selector
   $('ul#wizard-selector li a').die().bind('click', switchPanel);
 
   // Validation engine
-  $('#wizard_form').validationEngine();
+  $('#wizard_form').validationEngine();  
 
   // Character count
   $('#place_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
@@ -589,6 +633,7 @@ $(document).ready(function() {
       success: function(data) {
         $(".currency-sign, .currency-sign-id").html(data.currency_sign);
         showSavedIndicator(elem);
+        $('#place_current').val(JSON.stringify(data.place));
       }
     });
   });

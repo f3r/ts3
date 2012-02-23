@@ -24,7 +24,12 @@ class PlacesController < ApplicationController
   def update
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
     if result['stat'] == "ok"
-      response = {:stat => "ok"}
+      place = result['place']
+      # filter data
+      [:place_type, :user, :photos].each do |k|
+        place[k] = nil
+      end
+      response = {:stat => "ok", :place => place}
     else
       response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
     end
@@ -65,6 +70,13 @@ class PlacesController < ApplicationController
 
   def wizard
     @place = Heypal::Place.find(params[:id], current_token, nil) # no currency conversion
+    
+    # filter data
+    @place_basic_info = @place
+    [:place_type, :user, :photos].each do |k|
+      @place_basic_info[k] = nil
+    end
+
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)

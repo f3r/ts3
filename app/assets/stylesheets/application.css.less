@@ -24,6 +24,9 @@
 @smallfont: 10px;
 @linkColor: #3977B0;
 
+@logoColorDark: #3977b0;
+@logoColorLight: #91cef7;
+
 /********************************************************************************************************* 
  * HELPERS ADDED FROM HEYPAL.CSS.LESS
  *********************************************************************************************************/
@@ -139,10 +142,11 @@ label.for-checkbox {
 
 label {
   padding-top: 6px;
-  font-size: @baseFontSize;
+  font-size: @baseFontSize + 1;
   float: left;
   width: 200px;
-  text-align: left;
+  text-align: right;
+  margin-right: 10px;
   color: @grayDark;
 }
 
@@ -921,11 +925,13 @@ h1.title {
 }
 
 h2.title {
-  background: @grayLight;
-  padding: 5px 20px ;
-  width: 50%;
-  text-align: right;
-
+  padding: 2px 20px;
+  text-align: left;
+  background: #1F517F;
+  border: 1px solid @logoColorDark;
+  color: #EDEDED;
+  margin-bottom: 20px;
+  -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
 }
 
 .preview-button {
@@ -1209,10 +1215,17 @@ div.start div.hub form input#check_out.textbox {width:118px;}
      top: 0;
      width: 100%;
   }
+  /* Links in the menu */
   ul.nav > li > a {
     color: white;
     font-size: 16px;
-  }  
+  }
+
+  /* Inbox message icon*/
+  ul.nav > .read-message > a{
+    padding:0;
+    height: 40px;
+  }
 }
 
 .preference-wrapper{

@@ -29,7 +29,7 @@
                 = f.label :unconfirmed_email, "#{t(:unconfirmed_email)}*"
                 %span
                   = @user['unconfirmed_email']
-                = link_to "x", cancel_email_change_path, :method => :get, :remote => true, :class => 'twipsy', :title => t(:cancel_email_change)
+                = link_to "x", cancel_email_change_path, :method => :get, :remote => true, :class => 'tooltip', :title => t(:cancel_email_change)
             .input
               = f.label :gender, t(:gender)
               .private
@@ -200,9 +200,9 @@
 
 :javascript
   $(document).ready(function() {
-    $('div.private').twipsy({html:true,placement:"above", title: function(){return "#{t(:private_field)}"} });
-    $('div.fully-private').twipsy({html:true,placement:"above", title: function(){return "#{t(:fully_private_field)}"} });
-    $('div.public').twipsy({html:true,placement:"above", title: function(){return "#{t(:public_field)}"} });
+    $('div.private').tooltip({html:true,placement:"above", title: function(){return "#{t(:private_field)}"} });
+    $('div.fully-private').tooltip({html:true,placement:"above", title: function(){return "#{t(:fully_private_field)}"} });
+    $('div.public').tooltip({html:true,placement:"above", title: function(){return "#{t(:public_field)}"} });
     $("#new_password, #change_address, #update_user, #change_bank_account").validationEngine();
   });
 

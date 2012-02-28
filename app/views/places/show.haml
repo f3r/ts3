@@ -245,6 +245,49 @@
       });
     }
     
+    var markFreeDays = function(){
+      $(this).find('.fc-content td').removeClass('free');
+      $(this).find('.fc-content td').removeClass('busy');
+
+      events = $(this).fullCalendar('clientEvents');
+      var isBusy = function(date){
+        for(var i in events){
+          var event = events[i];
+          if(event.color == "red" && (date.getTime() >= event.start.getTime()) && (date.getTime() <= event.end.getTime())){
+            return true;
+          }
+        }
+        return false;
+      };
+      
+      var today = $(this).fullCalendar('getDate');
+      var viewData = $(this).fullCalendar('getView');
+      cMonth = today.getMonth();
+      cYear = today.getFullYear();
+      lYear = parseInt(cYear);
+      
+      $(this).find('.fc-day-number').each(function(){
+        var cell = $(this).parent().parent();
+
+        if(!cell.hasClass('fc-other-month')){
+          lDay = parseInt($(this).text());
+          lMonth = parseInt(cMonth);
+          lDate = new Date(lYear,lMonth,lDay);
+          if(isBusy(lDate)){
+            cell.addClass('busy');
+          } else {
+            cell.addClass('free');
+          }
+        }
+      });
+    };
+    
+    var onEventRender= function(event, element, view){
+      if(event.color == 'red'){
+        return false;
+      }
+    };
+    
     $(document).ready(function() {
       $('#first-calendar').fullCalendar({
         header: {
@@ -255,6 +298,8 @@
         editable: false,
         events: <%= @availabilities.to_json %>,
         visEnd: <%= DateTime.now.end_of_month.to_date %>,
+        eventRender: onEventRender,
+        viewDisplay: markFreeDays
       });
 
       $('#second-calendar').fullCalendar({
@@ -266,7 +311,9 @@
         editable: false,
         events: <%= @availabilities.to_json %>,
         month: <%= Date.today.month %>,
-        visStart: false
+        visStart: false,
+        eventRender: onEventRender,
+        viewDisplay: markFreeDays
       });
 
       $('.fc-header-left .fc-button-inner').hide();

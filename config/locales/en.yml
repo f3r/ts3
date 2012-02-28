@@ -29,8 +29,8 @@ en:
   how_it_works:      How it works
   photography_faq:   Photography FAQ
   community_support: Community Support
-  cityguide_sg:      City Guide Singapore
-  cityguide_hk:      City Guide Hong-Kong
+  cityguide_sg:      "City Guide: Singapore"
+  cityguide_hk:      "City Guide: Hong-Kong"
   
   ####################################################################################
   # Account creation & management

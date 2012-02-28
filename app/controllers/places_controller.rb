@@ -161,11 +161,13 @@ class PlacesController < ApplicationController
 
   # default place search2
   def index
-
-    if params[:city] == 'hong_kong'
-      @city_id = 2 
-    else
-      @city_id = 1
+    @city_id = params[:city_id]
+    unless @city_id
+      if params[:city] == 'hong_kong'
+        @city_id = 2 
+      else
+        @city_id = 1
+      end
     end
     
     check_in  = params[:check_in]  rescue nil
@@ -199,20 +201,31 @@ class PlacesController < ApplicationController
 
   # User
   def search
+    debugger
     page = params[:page]
     params.merge!('per_page' => 5, 'page' => page)
     @results = Heypal::Place.search(params)
 
     if @results.key?("err")
-      render :json => {:results => 0, :per_page => 0, :current_page => 0, :total_pages => 0, 
-        :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
-        :place_filters => ''}
+      render :json => {
+        :results       => 0, 
+        :per_page      => 0, 
+        :current_page  => 0, 
+        :total_pages   => 0, 
+        :place_data    => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
+        :place_filters => ''
+      }
     else
       cur_page = @results['current_page'].nil? ? 1 : @results['current_page']
-      render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => cur_page, :place_type_count => @results['place_type_count'],
-        :total_pages => @results['total_pages'], 
-        :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
-        :place_filters => render_to_string(:_place_type_filters, :layout => false)}
+      render :json => {
+        :results          => @results['results'], 
+        :per_page         => @results['per_page'], 
+        :current_page     => cur_page, 
+        :place_type_count => @results['place_type_count'],
+        :total_pages      => @results['total_pages'], 
+        :place_data       => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
+        :place_filters    => render_to_string(:_place_type_filters, :layout => false)
+      }
     end
   end
 
@@ -268,13 +281,13 @@ class PlacesController < ApplicationController
     @confirm_inquiry = Heypal::Place.confirm_inquiry(
       params[:id], 
       {
-        :name => params[:name],
-        :email => params[:email],
-        :mobile => params[:mobile],
-        :date_start => params[:date_start],
-        :length_stay => params[:length_stay],
+        :name             => params[:name],
+        :email            => params[:email],
+        :mobile           => params[:mobile],
+        :date_start       => params[:date_start],
+        :length_stay      => params[:length_stay],
         :length_stay_type => params[:length_stay_type],
-        :questions => params[:questions]
+        :questions        => params[:questions]
       },
       current_token
     )

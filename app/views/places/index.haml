@@ -228,7 +228,7 @@
         page++;
         if($('#place_result_pages .from_index').text() == 'true') {
           $.ajax({
-            url: '/places?page=' + page,
+            url: '/places?page=' + page + '&city_id=' + $("#city_id").val(),
             type: 'get',
             dataType: 'script',
             beforeSend: function() {

@@ -5,26 +5,20 @@ class Heypal::Place < Heypal::Base
 
   @@general_attributes = ["title", "description", "place_type_id", "city_id", "num_bedrooms", "num_beds", "num_bathrooms", "size_sqm", "size_sqf", "max_guests", "size_unit", "access_token", "published"]
   @@geo_attributes = ["address_1", "address_2", "zip", "directions", "state_id", "country_id", "city_name", "country_name"]
-
   @@amenities_attributes = ["amenities_aircon", "amenities_breakfast", "amenities_buzzer_intercom", "amenities_cable_tv", "amenities_dryer", "amenities_doorman", "amenities_elevator", "amenities_family_friendly", "amenities_gym", "amenities_hot_tub", "amenities_kitchen", "amenities_handicap", "amenities_heating", "amenities_hot_water", "amenities_internet", "amenities_internet_wifi", "amenities_jacuzzi", "amenities_parking_included", "amenities_pets_allowed", "amenities_pool", "amenities_smoking_allowed", "amenities_suitable_events", "amenities_tennis", "amenities_tv", "amenities_washer"] 
-
   @@pricing_attributes = ["currency", "price_per_night", "price_per_week", "price_per_month", "price_final_cleanup", "price_security_deposit"] 
-
   @@terms_attributes = ["check_in_after", "check_out_before", "minimum_stay", "maximum_stay", "stay_unit", "house_rules", "cancellation_policy"] 
-
   @@attributes = @@general_attributes + @@geo_attributes + @@amenities_attributes + @@pricing_attributes + @@terms_attributes
 
   @@attributes.each { |attr| attr_accessor attr.to_sym }
 
-  attr_accessor :place_size
+  attr_accessor :place_size, :photos
 
   define_attribute_methods = @@attributes
 
   validates :title, :place_type_id, :num_bedrooms, :num_beds, :max_guests, :city_id, :presence => true
-
   validates :terms, :acceptance => true
 
-  attr_accessor :photos
 
   class << self 
 
@@ -106,9 +100,6 @@ class Heypal::Place < Heypal::Base
     end
 
     def search(params = {})
-      # defaults
-      ############
-      params.merge!("country_code_eq" => "SG")
       q = ''
       params.each do |k, v|
         next if k == 'action' || k == 'controller'
@@ -121,7 +112,7 @@ class Heypal::Place < Heypal::Base
             end
           end
         else
-          if %w(sort m page per_page min_price max_price currency guests check_in check_out total_days).include? k
+          if %w(sort m page city per_page min_price max_price currency guests check_in check_out total_days).include? k
             q << "#{k}"
           else
             q << "q[#{k}]"

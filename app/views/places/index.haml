@@ -1,5 +1,5 @@
 - content_for(:title) do
-  - "Singapore"
+  - city_name(@city_id)
   
 %section.clearfix
   .row
@@ -8,13 +8,16 @@
         .search-bar.search-bar1
 
           .float-left
-            %h2
-              Singapore, Singapore
+            %h2{:style => 'display:inline; '}
+              = city_name(@city_id)
             = hidden_field_tag :currency, get_current_currency
+            = hidden_field_tag :city_id, @city_id
             %br
             #num_search_results
               %span.results_count= @results['results']
               = t(:results)
+            %br
+            = link_to "Not going to #{city_name(@city_id)}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 
           .float-right
             = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px"
@@ -73,12 +76,13 @@
     $.ajax({
       url: '/places/search',
       data: {
-        guests: $("#guests").val(),
-        sort: $("#sort").val(),
+        guests:    $("#guests").val(),
+        sort:      $("#sort").val(),
         min_price: $("#min_price").html(),
         max_price: $("#max_price").html(),
-        currency: $('#currency').val(),
-        check_in: $('#check_in').val(),
+        currency:  $('#currency').val(),
+        city:      $('#city_id').val(),
+        check_in:  $('#check_in').val(),
         check_out: $('#check_out').val(),
         place_type_ids: place_type_ids
       },

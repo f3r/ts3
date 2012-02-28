@@ -39,6 +39,7 @@ GEM
       multi_json (~> 1.0)
     addressable (2.2.7)
     ansi (1.3.0)
+    archive-tar-minitar (0.5.2)
     arel (3.0.2)
     aws-s3 (0.6.2)
       builder
@@ -62,6 +63,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.2.0)
+    columnize (0.3.6)
     commonjs (0.2.0)
       therubyracer (~> 0.9.9)
     database_cleaner (0.6.7)
@@ -109,6 +111,8 @@ GEM
     less-rails-bootstrap (2.0.6)
       less-rails (~> 2.1.0)
     libv8 (3.3.10.4)
+    linecache19 (0.5.13)
+      ruby_core_source (>= 0.1.4)
     mail (2.4.1)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -175,6 +179,16 @@ GEM
       activesupport (~> 3.0)
       railties (~> 3.0)
       rspec (~> 2.7.0)
+    ruby-debug-base19 (0.11.26)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby_core_source (>= 0.1.4)
+    ruby-debug19 (0.11.6)
+      columnize (>= 0.3.1)
+      linecache19 (>= 0.5.11)
+      ruby-debug-base19 (>= 0.11.19)
+    ruby_core_source (0.1.5)
+      archive-tar-minitar (>= 0.5.2)
     rubyzip (0.9.4)
     sass (3.1.15)
     sass-rails (3.2.4)
@@ -230,6 +244,7 @@ DEPENDENCIES
   jquery-rails (~> 1.0.18)
   launchy
   less-rails-bootstrap
+  linecache19 (= 0.5.13)
   omniauth
   omniauth-facebook
   omniauth-twitter
@@ -237,6 +252,8 @@ DEPENDENCIES
   rails (= 3.2.0)
   rest-client
   rspec-rails
+  ruby-debug-base19 (= 0.11.26)
+  ruby-debug19
   sass-rails (~> 3.2.3)
   sqlite3
   steak

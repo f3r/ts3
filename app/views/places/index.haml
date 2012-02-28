@@ -3,7 +3,7 @@
   
 %section.clearfix
   .row
-    .span12
+    .span9
       .wrap-searchbar
         .search-bar.search-bar1
 
@@ -34,7 +34,7 @@
         #search_results
           = render 'search_results', :places => @results['places']
       .loading.center.hide= image_tag('/images/loading.gif')
-    .span4
+    .span3
       .search-aside
         %form.panel-wrap
           %ul.panel-expander

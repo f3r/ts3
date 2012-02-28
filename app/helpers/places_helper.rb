@@ -125,7 +125,7 @@ module PlacesHelper
     result.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
     result.downcase!
     
-    if !request.fullpath.match('hong_kong').nil?
+    if !request.fullpath.match('hong_kong').nil? || params[:city_id] == 2
       "/hong_kong/#{place['id']}-#{result}"
     else
       "/singapore/#{place['id']}-#{result}"

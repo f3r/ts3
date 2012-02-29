@@ -1,5 +1,6 @@
 $('#search_result_list').append("<%= escape_javascript(render 'results_list_view', :places => @results['places'])%>");
 $('#search_result_grid').append("<%= escape_javascript(render 'results_grid_view', :places => @results['places'])%>");
+
 if ($("#disp-gallery").hasClass('current')) {
   $(".show-grid").show();
   $(".list-display").hide();

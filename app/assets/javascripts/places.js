@@ -73,6 +73,8 @@ $("#types-list input").live('click', function() {
 
 PlaceFilters = {
   initialize: function(minPrice, maxPrice){
+
+    // Initialize Price Sliders
     $("#price-slider").slider({
       range: true,
       min: minPrice,
@@ -86,25 +88,16 @@ PlaceFilters = {
       change: function() {
         pull_data();
       }
-    });    
+    });
+    
+    // Initialize the date pickers
+    $('.check-in-picker').datepicker();   
+    $('.check-out-picker').datepicker();   
+    
   }
 }
 
-$("#disp-gallery").click(function() {
-  $(".show-grid").show();
-  $(".list-display").hide();
-  $(this).addClass('current');
-  $("#disp-list").removeClass('current');
-  return false;
-});
 
-$("#disp-list").click(function() {
-  $(".list-display").show();
-  $(".show-grid").hide();
-  $(this).addClass('current');
-  $("#disp-gallery").removeClass('current');
-  return false;
-});
 
 String.prototype.human_titleize = function() {
   var arr = new Array();
@@ -147,7 +140,7 @@ $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
   }
 });
 
-(function() {
+$(function() {
   var loading = false;
 
   function nearBottomOfPage() {
@@ -157,7 +150,22 @@ $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
   function lastPage() {
     return $('#place_result_pages .current_page').text() == $('#place_result_pages .total_page').text();
   }
+  $("#disp-gallery").click(function() {
+    $(".show-grid").show();
+    $(".list-display").hide();
+    $(this).addClass('current');
+    $("#disp-list").removeClass('current');
+    return false;
+  });
 
+  $("#disp-list").click(function() {
+    $(".list-display").show();
+    $(".show-grid").hide();
+    $(this).addClass('current');
+    $("#disp-gallery").removeClass('current');
+    return false;
+  });
+  
   $(window).scroll(function() {
     if (loading) {
       return;
@@ -235,4 +243,4 @@ $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
   });
 
   // $(window).sausage();
-}());
+});

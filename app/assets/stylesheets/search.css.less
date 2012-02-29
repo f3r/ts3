@@ -33,13 +33,15 @@
   ul{
     list-style-type: none;    
     margin: 0;
-    li{
+
+    li {
       .clearfix();
       overflow: hidden;
       zoom: 1;
-      padding: 10px 0;
+      padding: 0px 0px;
     }
-    &.list-display{            
+
+    &.list-display{
       
       li{
         padding: 7px;
@@ -61,6 +63,7 @@
           line-height: 1em;          
           margin: 12px 0 6px;
           font-size:19px;
+          width: 375px;
         }
       }      
       
@@ -218,15 +221,15 @@
  *********************************************************************************************************/
 
 .items-gallery{
-  
+
   .box{
     padding: 7px;
     background: #fff;
     .border-radius(3px);
     border: 1px solid #c0c0c0;
-    margin: 0px 0 10px;
-    height: 270px;
-    
+    margin: 0px 0 15px;
+    height: 235px;
+    width: 324px;
     &:hover{
       background: #f7fdff;
       border-color: #c0e4f3;
@@ -234,9 +237,27 @@
   }
     
   &.results{
+    width: 344px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+        
+    /* Properties on the left */
+    &:nth-child(odd) {
+      margin-left: 0px;
+    }
+
+    /* Properties on the right */
+    &:nth-child(even) {
+      margin-right: 0px;
+      margin-left: 8px;
+    }
+
     .desc{
       padding: 10px 3px;
-    }    
+    }
   }
   
   .header{

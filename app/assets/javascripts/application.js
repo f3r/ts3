@@ -7,6 +7,7 @@
 // require less-1.1.3.min
 //= require jquery
 //= require jquery_ujs
+//= require jquery-ui
 //= require jquery.ui.touch.punch.min
 //= require jquery.tinycarousel.min
 //= require jquery.cycle.all
@@ -23,7 +24,8 @@
 //= require preferences
 //= require fullcalendar.min
 //= require twitter/bootstrap
-
+//= require_self
+//= require_tree .
 // %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
 
 
@@ -221,6 +223,3 @@ var Expandable = {
 	})
   }
 }
-
-//= require self
-//= require_tree .

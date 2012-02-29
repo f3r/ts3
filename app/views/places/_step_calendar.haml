@@ -1,9 +1,10 @@
 .panel-wrapper
-  %h2.title= t(:calendar)
-  %p= t(:calendar_hint)
+  .alert.alert-info
+    = t(:calendar_hint)
 
   %fieldset
-    = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn primary'
+    .offset1
+      = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn primary'
     %div#new-availability-form.hide
       = render 'availabilities/form'
 

@@ -176,7 +176,7 @@ $(document).ready(function() {
   $.waypoints.settings.scrollThrottle = 1;
 
 
-  $('.topbar').waypoint(function(event, direction) {
+  $('.navbar').waypoint(function(event, direction) {
     $(this).toggleClass('sticky', direction === "down");
     event.stopPropagation();
   });

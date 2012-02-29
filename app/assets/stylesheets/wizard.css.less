@@ -1,12 +1,22 @@
 @import "twitter/bootstrap/variables";
 @import "twitter/bootstrap/mixins";
 
+.wizard {
+  .title h1 {
+    border-bottom: 1px solid #EEEEEE;
+    line-height: 1.2em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }  
+}
+
 ul#wizard_tabs {
   /*list-style: none;
   padding:0;
   margin:0 0 35px 0;*/
   li {
     width: 220px;
+    height: 44px;
     /* padding: 5px; */
     .indicator {
       float: left;
@@ -27,10 +37,10 @@ ul#wizard_tabs {
     }
   }
   li.active {
-    a {
+    /*a {
       background: #F2F2F2;
       color: #000;
-    }
+    }*/
   }
 }
 

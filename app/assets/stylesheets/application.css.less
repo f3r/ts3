@@ -201,6 +201,8 @@ form div.required label:after {
 // Header
 // -----------
 
+
+
 aside .section-header, .aside .section-header, .section-header {
   margin: 0 0;
   padding: 10px 14px;
@@ -1170,6 +1172,9 @@ div.start div.hub form input#check_out.textbox {width:118px;}
  * HEADER
  *********************************************************************************************************/
 .header {
+  height: 105px;
+  margin-bottom: 18px;
+  
   > .container {
     height: 65px;
     margin-top: 5px;
@@ -1211,7 +1216,11 @@ div.start div.hub form input#check_out.textbox {width:118px;}
  }
 
 .navbar{
-  .sticky {
+  height: 40px;
+  overflow: visible;
+  z-index: 10000;
+    
+  &.sticky {
      position: fixed;
      top: 0;
      width: 100%;

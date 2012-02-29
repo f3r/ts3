@@ -5,7 +5,7 @@
   .photo_wrapper
 
   .clearfix
-  .photos_wrapper
+  .photos_wrapper.well
     %p= t(:you_can_sort)
       
     .primary_marker
@@ -17,18 +17,19 @@
           = render 'photo_list'
         .clearfix
 
-  #photoQueue
+  .well
+    #photoQueue
 
-  .upload_wrapper
-    %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :id => "photo_uploader" } 
-    %p= t(:upload_photo_hint)
-.arrows.clearfix
-  .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t(:previous_step)
-  .float-right
-    %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:next_step)
+    .upload_wrapper
+      %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :id => "photo_uploader" } 
+      %p= t(:upload_photo_hint)
+  .arrows.clearfix
+    .float-left
+      %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t(:previous_step)
+    .float-right
+      %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:next_step)
+
 :javascript
-
   var afterSort = function(event, ui) {
 
     if($('#photos_list li').size() > 0) {
@@ -71,7 +72,7 @@
   var setPhoto = function(photo) {
     $('.photo_wrapper').empty();
 
-    var img_wrapper = $("<div class='active-photo'></div>");
+    var img_wrapper = $("<div class='active-photo well'></div>");
 
     var large_photo = photo.clone();
     large_photo.attr('src', large_photo.attr('data-large'));
@@ -142,7 +143,7 @@
   $(function() {
 
     $('#photo_uploader').uploadify({
-      'uploader'        : '/javascripts/uploadify/uploadify.swf',
+      'uploader'        : '/assets/uploadify/uploadify.swf',
       'script'          : "/places/#{@place.id}/photos",
       'cancelImg'       : '/images/close.png',
       'buttonImg'       : '/images/browse-button.png',

@@ -1,11 +1,11 @@
-.panel-wrapper
+.panel-wrapper.well
   %fieldset
-    .span3.offset8
+    .span3.offset6
       .input.required
         = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
         = f.select :currency, currencies_select, {}, :class => 'validate[required]'
-  %h2.title=t(:pricing)
-  %fieldset      
+  %h3=t(:pricing)
+  %fieldset     
     / .input
     /   = f.label :price_per_week, t(:price_per_week)
     /   %span.currency-sign= currency_sign_of(@place.currency)
@@ -16,7 +16,7 @@
       %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_per_month, :class => "validate[custom[number],min[1],required] span2 autosave_pricing"
       %span#estimated_amount_monthly
-  %h2.title=t(:additional_costs)
+  %h3=t(:additional_costs)
   %fieldset
     .input
       = f.label :price_final_cleanup, t(:final_cleanup)
@@ -28,7 +28,7 @@
       %span.currency-sign= currency_sign_of(@place.currency)
       = f.text_field :price_security_deposit, :class => "span2 autosave"
       = link_to '?', '#', :class => 'tooltip', 'data-original-title' => raw(t(:security_deposit_hint))            
-  %h2.title= t(:terms)
+  %h3= t(:terms)
   %fieldset
     .input
       = f.label :check_in_after, t(:check_in_before)
@@ -58,7 +58,7 @@
         :title => "#{t(:head_cancellation)}<br><br><b>#{t(:flexible)}</b>: #{t(:flexible_cancellation)}<br><b>#{t(:strict)}</b>: #{t(:strict_cancellation)}<br><br> #{t(:see_our)} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t(:cancellation_policy)}</a> #{t(:for_more_info)}."
     .input
       = f.label :house_rules, t(:house_rules)
-      = f.text_area :house_rules, :class => "span8 autosave", :rows => 5
+      = f.text_area :house_rules, :class => "span5 autosave", :rows => 5
 
 
 .arrows.clearfix

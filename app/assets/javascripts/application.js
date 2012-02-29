@@ -114,20 +114,6 @@ function hideIndicator(elem) {
     $(this).parent().blur();
   });
 
-  $.waypoints.settings.scrollThrottle = 1;
-
-
-  $('.topbar').waypoint(function(event, direction) {
-    $(this).toggleClass('sticky', direction === "down");
-    event.stopPropagation();
-  });
-
-  $('.wizard-aside, .wrap-searchbar, .search-aside').waypoint(function(event, direction) {
-    $(this).toggleClass('sticky', direction === "down");
-    event.stopPropagation();
-	}, {offset: 52});  // NOTE: when you change this, goto heypal.less -> .sticky and change top attr
-
-
 function add_datepicker() {
   // TODO: hack now. to make datepicker from-to live. focus only work "on"-focus (duh). So hasDatepicker class isn't assigned on load and from-to doesn't work.
   // I just re-bind it now, used in places/_step_5 and availabilities/_form
@@ -186,6 +172,20 @@ $(document).ready(function() {
   });
 
   $('.dropdown-toggle').dropdown();
+  
+  $.waypoints.settings.scrollThrottle = 1;
+
+
+  $('.topbar').waypoint(function(event, direction) {
+    $(this).toggleClass('sticky', direction === "down");
+    event.stopPropagation();
+  });
+
+  $('.wizard-aside, .wrap-searchbar, .search-aside').waypoint(function(event, direction) {
+    $(this).toggleClass('sticky', direction === "down");
+    event.stopPropagation();
+	}, {offset: 52});  // NOTE: when you change this, goto heypal.less -> .sticky and change top attr
+
 });
 
 function disabled_question_button() {

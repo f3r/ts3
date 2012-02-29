@@ -1,40 +1,40 @@
-.wizard-aside
-  %ul#wizard-selector
-    %li#general
+.wizard-aside.tabbable
+  %ul.nav.nav-tabs.tabs-stacked#wizard_tabs
+    %li
       .indicator#generalInfo
         = image_tag('/images/check-disabled.png')
-      %a{:href => "#1", :title => t(:general_information), :class => 'active'}
+      %a{:href => "#1", :title => t(:general_information)}
         = t(:general_info)
-    %li#photos
+    %li
       .indicator#photoInfo
         = image_tag('/images/check-disabled.png')
       %a{:href => "#2", :title => t(:photos)}
         = t(:photos)
-    %li#amenities
+    %li
       .indicator#amenitiesInfo
         = image_tag('/images/check-disabled.png')
       %a{:href => "#3", :title => t(:amenities)}
         = t(:amenities)
-    %li#price
+    %li
       .indicator
         = image_tag('/images/check-disabled.png')
       %a{:href => "#4", :title => t(:price_and_conditions)}
-        = t(:price_and_conditions)        
-    %li#calendar
+        = t(:price_and_conditions)
+    %li
       .indicator
         = image_tag('/images/check.png')
       %a{:href => "#5", :title => t(:calendar)}
         = t(:calendar)
 
-  .clearfix
-  - unless @place.published
-    %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
-      %span
-        = t(:preview)
-  - else
-    %a.btn.primary.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
-      %span
-        = t(:back_to_place_details)
+  .actions
+    - unless @place.published
+      %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
+        %span
+          = t(:preview)
+    - else
+      %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
+        %span
+          = t(:back_to_place_details)
 
 :javascript
   var timeCount = 0;

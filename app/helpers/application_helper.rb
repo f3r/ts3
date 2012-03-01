@@ -65,4 +65,8 @@ module ApplicationHelper
   def large_avatar(avatar)
     avatar['avatar'].gsub('thumb', 'large')
   end
+  
+  def require_google_apis
+    @require_google_apis = true
+  end
 end

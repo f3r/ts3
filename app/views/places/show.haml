@@ -1,14 +1,23 @@
 - content_for(:title) do
   - "#{@place.title} - #{@place.city_name}"
 
+- require_google_apis
+
 .row.place_info
-  .span16
+  .span12
+    /******************************************************************************************
+    / Preview header
+    /******************************************************************************************
     - if @preview && logged_in? && @owner['id'].eql?(current_user['id'])
       .preview-header
         .row.place_options
-          .span16
+          .span12
             %p= t(:this_is_preview)
         .border.span11
+
+    /******************************************************************************************
+    / Name, Price, Inquire Button
+    /******************************************************************************************
     .accomodation-wrapper
       .header
         .title 
@@ -18,10 +27,10 @@
               = render 'place_options_buttons'
           .meta
             %p= "#{@place.city_name}, #{@place.country_name}"
-
             .share
               %label= t(:share)
               .sharePlace
+              
         .focal
           %h1.price
 
@@ -36,24 +45,26 @@
               %span.sub= t(:per_night)
 
           -# %a.btn.large.primary= t(:rent)  
-          %a{:class => 'btn large primary', 'data-controls-modal' => 'inquire_place', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true', :href => '#'}= t(:rent)
+          %a{:class => 'btn btn-large btn-info', 'data-controls-modal' => 'inquire_place', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true', :href => '#'}= t(:rent)
           
           %p{:style => "font-size: 9px; font-variant: small-caps; color: #5B5848; margin-top: -3px;"} no obligation
 
-      .tabbed-panel  
-        %ul.tabs
+      /******************************************************************************************
+      / Upper Tabbed Panel: Photos, Map, Calendar
+      /******************************************************************************************
+      .tabbed-panel
+        %ul.nav.nav-tabs
           %li.active  
-            %a{:href => "#photo-slider"}= t(:photos)
+            %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t(:photos)
           %li
-            %a{:href => "#map-tab"}= t(:map)
+            %a{:href => "#map-tab",      'data-toggle' => 'tab'}= t(:map)
           %li 
-            %a{:href => "#calendar-tab"}= t(:calendar)
+            %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t(:calendar)
 
-        .pill-content
-          .active#photo-slider
+        .tab-content
+          #photo-slider.tab-pane.active
             .viewport
               %ul.overview
-
                 = get_carousel_photoset(@place).each_cons(3) do |p1, p2, p3|
                   %li
                     .big
@@ -80,17 +91,20 @@
               %a.buttons.next{:href => "#"}
                 =raw('&raquo;')
 
-          #map-tab
+          #map-tab.tab-pane
             %div#map
-          #calendar-tab
-            #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
+          #calendar-tab.tab-pane
+            #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px; margin-left: 100px"}
             #second-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
 
+      /******************************************************************************************
+      / Description, Minimum stay, Maximum Stay
+      /******************************************************************************************
       .description
         .row
-          .span10
+          .span8{:style => "height:200px; overflow-y: scroll;"}
             %pre.desc= @place.description
-          .span3.right.span-below
+          .span2.right.span-below
             .title
               =t(:minimum_stay)
             .micro
@@ -98,7 +112,7 @@
                 = "#{@place.minimum_stay} #{t(@place.stay_unit)}"
               -else
                 = t(:no_minimum)
-          .span3.right
+          .span2.right
             .title
               =t(:maximum_stay)
             .micro
@@ -106,88 +120,93 @@
                 = "#{@place.maximum_stay} #{t(@place.stay_unit)}"
               -else
                 = t(:no_maximum)
-      .tabbed-panel.other-info  
-        %ul.tabs
+                
+
+      /******************************************************************************************
+      / Extended info: Details, Amenities, Directions
+      /******************************************************************************************
+      .tabbed-panel.other-info
+        %ul.nav.nav-tabs
           %li.active  
-            %a{:href => "#details-tab"}= t(:details)
+            %a{:href => "#details-tab", 'data-toggle' => 'tab'}= t(:details)
           %li
-            %a{:href => "#amenities-tab"}= t(:amenities)
+            %a{:href => "#amenities-tab", 'data-toggle' => 'tab'}= t(:amenities)
           - unless @place.directions.blank?
             %li
-              %a{:href => "#directions-tab"}= t(:directions)
+              %a{:href => "#directions-tab", 'data-toggle' => 'tab'}= t(:directions)
           - unless @place.house_rules.blank?
             %li
-              %a{:href => "#house-rules-tab"}= t(:house_rules)
+              %a{:href => "#house-rules-tab", 'data-toggle' => 'tab'}= t(:house_rules)
 
-        .contents
-          .fine-print.pill-content
-            .row.active#details-tab
-              .span4.col
-                %label= t(:type)
-                .value= @place.place_type
-                %label= t(:size)
-                .value= raw("#{number_with_precision @place.size_sqm, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_meters_short)}")
-                %label &nbsp;
-                .value= raw("#{number_with_precision @place.size_sqf, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_feet_short)}")
-              .span4.col
-                - unless @place.num_bedrooms.blank?
-                  %label.sm= t(:bedroom)
-                  .value.sm= @place.num_bedrooms
-                - unless @place.num_beds.blank?
-                  %label.sm= t(:bed)
-                  .value.sm= @place.num_beds
-                %label.sm= t(:guest)
-                .value.sm
-                  1
-                  = " - #{@place.max_guests}" if @place.max_guests > 1
-                - unless @place.num_bathrooms.blank?
-                  %label.sm= t(:bathroom)
-                  .value.sm= @place.num_bathrooms
-              .span4.col
-                - unless @place.price_per_night.blank?
-                  %label= t(:price_per_night)
-                  .value= "#{get_pref_currency}#{@place.price_per_night}"
-                - unless @place.price_per_week.blank?
-                  %label= t(:price_per_week)
-                  .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-                - unless @place.price_per_month.blank?
-                  %label= t(:price_per_month)
-                  .value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-              .span4.col
-                - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
-                  %label= t(:final_cleanup)
-                  .value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-                - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
-                  %label= t(:security_deposit)
-                  .value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-                %label= t(:cancellation)
-                .value.bigger= cancellation_desc(@place)
+        .tab-content
+          // Details Pane
+          #details-tab.tab-pane.active
+            .span3
+              %label= t(:type)
+              .value= @place.place_type
+              %label= t(:size)
+              .value= raw("#{number_with_precision @place.size_sqm, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_meters_short)}")
+              %label &nbsp;
+              .value= raw("#{number_with_precision @place.size_sqf, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_feet_short)}")
+            .span3
+              - unless @place.num_bedrooms.blank?
+                %label.sm= t(:bedroom)
+                .value.sm= @place.num_bedrooms
+              - unless @place.num_beds.blank?
+                %label.sm= t(:bed)
+                .value.sm= @place.num_beds
+              %label.sm= t(:guest)
+              .value.sm
+                1
+                = " - #{@place.max_guests}" if @place.max_guests > 1
+              - unless @place.num_bathrooms.blank?
+                %label.sm= t(:bathroom)
+                .value.sm= @place.num_bathrooms
+            .span3
+              - unless @place.price_per_night.blank?
+                %label= t(:price_per_night)
+                .value= "#{get_pref_currency}#{@place.price_per_night}"
+              - unless @place.price_per_week.blank?
+                %label= t(:price_per_week)
+                .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+              - unless @place.price_per_month.blank?
+                %label= t(:price_per_month)
+                .value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+            .span3
+              - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
+                %label= t(:final_cleanup)
+                .value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+              - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
+                %label= t(:security_deposit)
+                .value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+              %label= t(:cancellation)
+              .value.bigger= cancellation_desc(@place)
 
-            .row#amenities-tab
-              .span
-                - display_place_amenities(@place).each do |amenity|
-                  %label.w-left-icon.check
-                    = amenity
-		
-            .row#directions-tab
-              .span
-                %pre.desc= @place.directions
+          // Amenities Pane
+          #amenities-tab
+            - display_place_amenities(@place).each do |amenity|
+              %label.w-left-icon.check
+                = amenity
 
-            .row#house-rules-tab
-              .span
-                %pre.desc= @place.house_rules
+          // Directions Pane	
+          #directions-tab
+            %pre.desc= @place.directions
 
+          // House Rules Pane
+          #house-rules-tab
+            %pre.desc= @place.house_rules
+
+
+      /******************************************************************************************
+      / Questions-Answers
+      /******************************************************************************************
       .tabbed-panel.other-info
         %ul.tabs
-          -#%li.active
-            -#%a{:href => '#details-reviews'} Reviews (2)
           %li.active
             %a{:href => '#details-questions'}
               = "#{t(:question)} (#{@comments.nil?? 0 : @comments.size})"
         .contents
           .fine-print.pill-content
-            -#.row.active#details-reviews
-              -#%p reviews
             .row.active#details-questions
               .span
                 = render '/comments/questions'
@@ -195,116 +214,15 @@
 = render :partial => 'inquire_place'
 
 :javascript
-  // accomodation photo slider
-  var oSlider7 = $('#photo-slider');
-  if(oSlider7.length > 0){
-    oSlider7.tinycarousel({ interval: true, pager: true, animation: false, fading: true });
-
-    $('.extra-paginator').click(function() {
-      console.log($(this).attr('data-page'));
-      oSlider7.tinycarousel_move($(this).attr('data-page'));
-      return false;
-    });
-  }
-  
-  // search siderbar accordion
-  $(".panel-expander > .content:gt(0)").hide();
-  $(".panel-expander > li:gt(4)").hide();
-  $(".panel-expander .header").click(function(){
-    $(this).toggleClass("active");
-    $(this).siblings(".header").removeClass("active");
-    $(this).next(".content").slideToggle(500)
-    return false;
+  PlaceShow.initialize({
+    cal_lastVisibleDay : #{DateTime.now.end_of_month.to_date},
+    cal_events         : #{@availabilities.to_json},
+    cal_month          : #{Date.today.month},
+    map_lat            : #{@place['lat']},
+    map_lon            : #{@place['lon']},
+    map_cityName       : '#{@place['city_name']}',
+    map_countryName    : '#{@place['country_name']}',
+    share_title        : '#{@place['title']}',
+    share_url          : '#{@place_url}',
+    share_id           : '#{@place.id}'
   });
-
-  $('.tabs').tabs();
-  $('.tabs').bind('change', function (e) {
-    if ($(e.target).attr('href') == '#calendar-tab') {
-      $("#first-calendar, #second-calendar").fullCalendar('render');
-    }
-  })
-  
-
-:erb
-  <script type="text/javascript">
-
-    var map;
-    function initializeMap() {
-      var mapOptions = {
-        zoom: 15,
-        center: new google.maps.LatLng(<%= @place['lat'] %>, <%= @place['lon'] %>),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      };
-
-      map = new google.maps.Map(document.getElementById('map'),mapOptions);
-
-      var marker = new google.maps.Marker({
-        position: new google.maps.LatLng(<%= @place['lat'] %>, <%= @place['lon'] %>),
-        map: map,
-        title: <%= "\'#{@place['city_name']}, #{@place['country_name']}\'" %>
-      });
-    }
-    
-    $(document).ready(function() {
-      $('#first-calendar').fullCalendar({
-        header: {
-          left: 'prev',
-          center: 'title',
-          right: ''
-        },
-        editable: false,
-        events: <%= @availabilities.to_json %>,
-        visEnd: <%= DateTime.now.end_of_month.to_date %>,
-      });
-
-      $('#second-calendar').fullCalendar({
-        header: {
-          left: '',
-          center: 'title',
-          right: 'next'
-        },
-        editable: false,
-        events: <%= @availabilities.to_json %>,
-        month: <%= Date.today.month %>,
-        visStart: false
-      });
-
-      $('.fc-header-left .fc-button-inner').hide();
-
-      $('#first-calendar .fc-header-left .fc-button-prev').click(function() {
-        $('#second-calendar').fullCalendar('prev');
-        var first_cal = $('#first-calendar').fullCalendar('getDate');
-        var cur_date = new Date();
-        if (first_cal.getMonth() == cur_date.getMonth()) {
-          $('.fc-header-left .fc-button-inner').hide();
-        } else{
-          $('.fc-header-left .fc-button-inner').show();
-        }
-      });
-
-      $('#second-calendar .fc-header-right .fc-button-next').click(function() {
-        $('#first-calendar').fullCalendar('next');
-        $('.fc-header-left .fc-button-inner').show();
-      });
-
-      $("a[data-method='delete']").confirmDialog({
-        message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>
-      });
-
-  });
-
-  $('.tabs').bind('change', function (e) {
-    if ($(e.target).attr('href') == '#map-tab') {
-      initializeMap();
-    }
-  });
-
-  $('.sharePlace').bookmark({
-    sites: ['facebook', 'twitter', 'google'],
-    showAllText: 'Show all ({n})',
-    title: <%= "\'#{@place['title']}\'" %>,
-    hint: 'Share this place',
-    url: <%= "\'#{place_url @place.id}\'" %>
-  });
-  
-  </script>

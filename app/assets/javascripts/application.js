@@ -4,7 +4,11 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-// require less-1.1.3.min
+// TODO: Check if these are required
+//    require less-1.1.3.min
+//    require jquery.sausage
+//  require jquery.bookmark.ext
+//
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
@@ -16,27 +20,23 @@
 //= require jquery.charcounter
 //= require jquery.validationEngine-en
 //= require jquery.validationEngine
-// require jquery.sausage
 //= require jquery.bootstrap.confirm.popover
 //= require jquery.bookmark
-// require jquery.bookmark.ext
 //= require modernizr
 //= require preferences
 //= require fullcalendar.min
 //= require twitter/bootstrap
 //= require_self
 //= require_tree .
-// %script{:src => 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false', :type => 'text/javascript'}
-
-
-// HOMEPAGE
 
 function customerSupportDialog() {
  $("#fdbk_tab").click(); 
 }
+
 function showIndicator(elem) {
   elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
 }
+
 function showRightIndicator(elem) {
   elem.after("<span class='save-indicator right'><img src='/images/loading.gif' alt='' /></span>");
 }
@@ -60,67 +60,60 @@ function hideIndicator(elem) {
   elem.parent().find('.save-indicator').detach();
 }
 
+$('span#date-input-1').calendar({
+  parentElement: 'div#date-input-1-container',
+  dateFormat: '%d %B %Y'
+});
 
-  $('span#date-input-1').calendar({
-    parentElement: 'div#date-input-1-container',
-    dateFormat: '%d %B %Y'
-  });
+$('span#date-input-2').calendar({
+  parentElement: 'div#date-input-2-container',
+  dateFormat: '%d %B %Y'
+});
 
-  $('span#date-input-2').calendar({
-    parentElement: 'div#date-input-2-container',
-    dateFormat: '%d %B %Y'
-  });
+$(".preference").click(function() {
+  $(this).hide().next().show();
+  $(this).next().focus();
+});
 
-  $(".preference").click(function() {
-    $(this).hide().next().show();
-    $(this).next().focus();
-  });
+$(".preference-entry").change(function(event) {
+  var me = $(this);
+  var text_container = me.prev();
 
-  $(".preference-entry").change(function(event) {
-    var me = $(this);
-    var text_container = me.prev();
+  if (me.val() != me.attr("data-current")) {
+    showIndicator(me);
+    $.ajax({
+      type: 'PUT',
+      url: '/users/change_preference.json',
+      data: me.serialize(),
+      success: function(data) {
+        showSavedIndicator(me);
 
-    if (me.val() != me.attr("data-current")) {
-      showIndicator(me);
-      $.ajax({
-        type: 'PUT',
-        url: '/users/change_preference.json',
-        data: me.serialize(),
-        success: function(data) {
-          showSavedIndicator(me);
+        me.attr("data-current", me.val());
+        text_container.children("span.text").html(me.children("option:selected").text());
 
-          me.attr("data-current", me.val());
-          text_container.children("span.text").html(me.children("option:selected").text());
-
-          me.hide();
-          text_container.show();
-          if($('#search_results').length > 0){
-            window.location.reload();
-          }
+        me.hide();
+        text_container.show();
+        if($('#search_results').length > 0){
+          window.location.reload();
         }
-      });
-    } else {
-      me.hide();
-      text_container.show();
-    }
-  }).blur(function() {
-    var me = $(this);
-    var text_container = me.prev();
+      }
+    });
+  } else {
     me.hide();
     text_container.show();
-  });
+  }
+}).blur(function() {
+  var me = $(this);
+  var text_container = me.prev();
+  me.hide();
+  text_container.show();
+});
 
-  $(".preference-entry > option").click(function() {
-    $(this).parent().blur();
-  });
+$(".preference-entry > option").click(function() {
+  $(this).parent().blur();
+});
 
 function add_datepicker() {
-  // TODO: hack now. to make datepicker from-to live. focus only work "on"-focus (duh). So hasDatepicker class isn't assigned on load and from-to doesn't work.
-  // I just re-bind it now, used in places/_step_5 and availabilities/_form
-
-  //$('.from-to-picker').live('focus', function() {
-  //  $(this).datepicker({
-
   $('.from-to-picker').datepicker('destroy').datepicker({
     // dateFormat: 'dd/mm/yy',
     dateFormat: 'yy-mm-dd',

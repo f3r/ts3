@@ -8,7 +8,7 @@
         %ul#country-select.dropdown
           %li.arrow
           %li Singapore
-          %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
+          %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
 
         %p
           %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center; font-weight: bold', :href => '/singapore'}= t(:homepage_search_but)
@@ -69,7 +69,7 @@
     %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => "PropNex"}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => "Far East Organization"}
     
-#my-modal.hide.modal.fade
+#city_modal.hide.modal.fade
   = form_tag '/cities/suggest', :class => 'cities_suggest_form' do
     .modal-header
       %h3=t(:cant_find_city)
@@ -88,5 +88,5 @@
       <br>
     .modal-footer
       %button.btn.primary=t(:submit)
-      %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
+      %button.btn{:onclick => "$('#city_modal').modal('hide'); return false;"}=t(:cancel)
 

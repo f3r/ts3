@@ -3,8 +3,9 @@
     = t(:calendar_hint)
 
   %fieldset
-    .offset1
-      = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn primary'
+    .row
+      #add-button.center
+        = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn btn-info btn-large'
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
@@ -20,7 +21,7 @@
 
   $("#open-new-availability").unbind('click').click(function() {
     $("#new-availability-form").show();
-    $("#open-new-availability").addClass('disabled').attr('disabled', 'disabled');
+    $("#open-new-availability").hide();
     return false;
   });
 

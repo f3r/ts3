@@ -1,5 +1,5 @@
 .panel-wrapper.well.form-horizontal
-  %fieldset
+  %fieldset.form-inline
     .span3.offset6
       .input.required
         = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
@@ -14,7 +14,7 @@
     .control-group
       = f.label :price_per_month, t(:price_per_month) + '*', :class => 'control-label'
       .controls
-        .input-prepend
+        %span.input-prepend
           %span.add-on.currency-sign= currency_sign_of(@place.currency)
           = f.text_field :price_per_month, :class => "validate[custom[number],min[1],required] span2 autosave_pricing"
         %span#estimated_amount_monthly
@@ -23,7 +23,7 @@
     .control-group
       = f.label :price_final_cleanup, t(:final_cleanup), :class => 'control-label'
       .controls
-        .input-prepend
+        %span.input-prepend
           %span.add-on.currency-sign= currency_sign_of(@place.currency)
           = f.text_field :price_final_cleanup, :class => "span2 autosave"
           = link_to '?', '#', :class => 'tooltip-link', :rel => 'tooltip', 'data-original-title' => raw(t(:final_cleanup_hint))
@@ -49,22 +49,23 @@
       = f.label :minimum_stay_days, t(:minimum_stay), :class => 'control-label'
       .controls
         = f.text_field :minimum_stay, :class => "span2 validate[required] autosave_pricing", :disabled => @place.minimum_stay == 0
-      = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_1 validate[required] autosave_pricing'
-      %span.no_minimum_stay
-        = check_box_tag "no_minimum_stay", 1, @place.minimum_stay == 0
-        = t(:no_minimum)
+        = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_1 validate[required] autosave_pricing'
+        %label.checkbox.inline.no_minimum_stay
+          = check_box_tag "no_minimum_stay", 1, @place.minimum_stay == 0
+          = t(:no_minimum)
     .control-group
       = f.label :maximum_stay_days, t(:maximum_stay), :class => 'control-label'
       .controls
         = f.text_field :maximum_stay, :class => "span2 validate[required] autosave_pricing", :disabled => @place.maximum_stay == 0
-      = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_2 validate[required] autosave_pricing'
-      %span.no_maximum_stay
-        = check_box_tag "no_maximum_stay", 1, @place.maximum_stay == 0
-        = t(:no_maximum)
+        = f.select :stay_unit, [[t(:weeks), 'weeks'], [t(:months), 'months']], {}, :class => 'stay_unit_sync stay_unit_sync_2 validate[required] autosave_pricing'
+        %label.checkbox.inline.no_maximum_stay
+          = check_box_tag "no_maximum_stay", 1, @place.maximum_stay == 0
+          = t(:no_maximum)
     .control-group.required
       = f.label :cancellation_policy, t(:cancellation_policy), :class => 'control-label'
-      = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
-      = link_to '?', '#', :class => 'tooltip-link',
+      .controls
+        = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
+        = link_to '?', '#', :class => 'tooltip-link',
         :title => "#{t(:head_cancellation)}<br><br><b>#{t(:flexible)}</b>: #{t(:flexible_cancellation)}<br><b>#{t(:strict)}</b>: #{t(:strict_cancellation)}<br><br> #{t(:see_our)} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t(:cancellation_policy)}</a> #{t(:for_more_info)}."
     .control-group
       = f.label :house_rules, t(:house_rules), :class => 'control-label'

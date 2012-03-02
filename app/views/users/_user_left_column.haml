@@ -1,4 +1,4 @@
-%section.span-one-fourth
+%section.span2
   - if !user.avatar.nil?
     - @avatar = large_avatar(user)
     - else
@@ -6,7 +6,7 @@
     
   = image_tag(@avatar, :width => 200)
   - if @current_action == "edit"
-    = link_to t(:change_photo), "", { "data-controls-modal"=>"avatar-modal", "data-backdrop"=>"static", :class => "change_avatar"}
+    = link_to t(:change_photo), "#avatar-modal", { "data-toggle" => "modal", "data-backdrop"=>"static", :class => "change_avatar"}
 
   %h2
     = short_full_name user

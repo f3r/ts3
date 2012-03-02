@@ -13,7 +13,7 @@ module ApplicationHelper
     return unless messages = flash.keys.select{|k| $flash_keys.include?(k)}
     
     formatted_messages = messages.map do |type|
-      content_tag :div, :class => "alert-message #{type.to_s}", :style => "margin-top:25px" do
+      content_tag :div, :class => "alert alert-#{type.to_s}", :style => "margin-top:25px" do
         message_for_item(flash[type], flash["#{type}_item".to_sym])
       end
     end
@@ -45,11 +45,11 @@ module ApplicationHelper
       end
       msgs.flatten!
 
-      ret = "<h5 style='color: #fff;'>#{pluralize(msgs.size, 'error')} prohibited this to save.</h5>"
+      ret = "<h5>#{pluralize(msgs.size, 'error')} prohibited this to save.</h5>"
       ret << '<ul class="coded_error">'
 
       msgs.each do |msg|
-        ret << "<li style='color: #fff;'>#{msg}</li>"
+        ret << "<li>#{msg}</li>"
       end
 
       ret << '</ul>'

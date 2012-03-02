@@ -110,7 +110,7 @@ p.strong {
 /* The white background content wrapper */
 .content {
   background-color: #fff;
-  padding: 0px 0;
+  padding: 0px 0px 30px 0;
 }
 
 /* Give a quick and non-cross-browser friendly divider */
@@ -188,7 +188,7 @@ form div.required label:after {
 
 
 aside .section-header, .aside .section-header, .section-header {
-  margin: 0 0;
+  margin: 0 0 20px;
   padding: 10px 14px;
   line-height: 1em;
   color: #747474;
@@ -221,6 +221,9 @@ aside .section-header, .aside .section-header, .section-header {
   }
   .btn {
     margin:15px 65px 25px 0 ;
+  }
+  .agree label {
+    display: inline-block;    
   }
 }
 
@@ -571,16 +574,19 @@ table.borderless td.label_detail {color:#777;text-align:right;}
 select#bank_account_holder_country_code,
 select#address_country {width:200px;}
 
-.edit_profile_page form label {width:190px;}
-.edit_profile_page form .public,
-.edit_profile_page form .fully-private,
-.edit_profile_page form .private {
-  width:16px;
-  height:16px;
-  background-position: right center;
-  background-repeat: no-repeat;
-  float:left;
-  margin:7px 4px 0 0;
+.edit_profile_page {
+  .form-horizontal .control-label {
+    text-align: left;
+    padding-left: 10px;
+  }
+  form .public, form .fully-private, form .private {
+    width:16px;
+    height:16px;
+    background-position: right center;
+    background-repeat: no-repeat;
+    float:left;
+    margin:7px 4px 0 0;
+  }
 }
 .edit_profile_page form .fully-private,
 .edit_profile_page form .private {
@@ -1205,6 +1211,10 @@ div.start div.hub form input#check_out.textbox {width:118px;}
     padding:0;
     height: 40px;
   }
+}
+
+.nav .add-item {
+  background-color: #3977B0;  
 }
 
 .preference-wrapper{

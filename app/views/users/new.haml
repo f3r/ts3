@@ -1,7 +1,7 @@
 - unless coded_errors_for(@user).blank?
-  %div{:class => 'alert-message error'}
+  %div{:class => 'alert alert-error'}
     = coded_errors_for @user
-.registration
+.registration.row-fluid
   %br
   = render :partial => 'form'
   = render :partial => 'connect_with'

@@ -16,7 +16,7 @@
       = f.password_field :password, :placeholder => 'Confirm'
     .input
       = f.password_field :password_confirmation, :placeholder => 'Confirm Password'
-    .input
+    .input.agree
       %div.reset-width
         = f.check_box :terms, :id => 'terms_and_conditions'
         %label.for-checkbox{:for => "terms_and_conditions"}

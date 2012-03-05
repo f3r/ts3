@@ -107,7 +107,6 @@ class PlacesController < ApplicationController
     end unless availabilities.blank?
 
     @comments = Heypal::Comment.find_all({:place_id => @place.to_param}, current_token)
-
     render :layout => 'application'
   end
 

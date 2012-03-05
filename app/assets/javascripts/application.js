@@ -7,7 +7,7 @@
 // TODO: Check if these are required
 //    require less-1.1.3.min
 //    require jquery.sausage
-//  require jquery.bookmark.ext
+//    require jquery.bookmark.ext
 //
 //= require jquery
 //= require jquery_ujs
@@ -33,8 +33,12 @@ function customerSupportDialog() {
  $("#fdbk_tab").click(); 
 }
 
-function showIndicator(elem) {
-  elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+function showIndicator(elem, html_attr) {
+  if (arguments.length == 2) {
+    elem.after("<span class='save-indicator' style=" + html_attr +"><img src='/images/loading.gif' alt='' /></span>");
+  } else {
+    elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+  }
 }
 
 function showRightIndicator(elem) {
@@ -144,7 +148,6 @@ function add_datepicker() {
       }
     }
   });
-  //});
 }
 
 $(document).ready(function() {
@@ -200,24 +203,24 @@ function disabled_question_button() {
 
 var Expandable = {
   initialize: function(selector){
-	var container = $(selector);
-	container.find('.expandable').each(function(){
-	  var section = $(this);
-	  section.find('.inner').hide();
-	  section.addClass('collapsed');
-	  section.click(function(){
-		if(section.hasClass('collapsed')){
-		  section.find('a').hide();
-		  section.find('.inner').slideDown('slow');
-		  section.removeClass('collapsed');
-		  return false;
-		} else {
-		  section.find('a').show();
-		  section.find('.inner').slideUp('slow', function(){
-		    section.addClass('collapsed');	
-		  });
-		}
-	  })
-	})
+  var container = $(selector);
+  container.find('.expandable').each(function(){
+    var section = $(this);
+    section.find('.inner').hide();
+    section.addClass('collapsed');
+    section.click(function(){
+    if(section.hasClass('collapsed')){
+      section.find('a').hide();
+      section.find('.inner').slideDown('slow');
+      section.removeClass('collapsed');
+      return false;
+    } else {
+      section.find('a').show();
+      section.find('.inner').slideUp('slow', function(){
+        section.addClass('collapsed');  
+      });
+    }
+    })
+  })
   }
 }

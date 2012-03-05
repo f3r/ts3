@@ -1,6 +1,6 @@
-%div.question-container{:id => "qdiv-#{comment['id']}"}
-  %div.left
-    .user_box
+.span9.offset1.question-container{:id => "qdiv-#{comment['id']}"}
+  .row-fluid.question
+    .span3.user_box
       -if !comment['user'].nil?
         .user_photo= avatar_image(comment['user'])
         .user_data
@@ -9,17 +9,16 @@
       -else
         =t(:unknown)
 
-    - if logged_in? && @owner['id'] == current_user['id'] # || comment['user_id'] == current_user['id']
+    - if logged_in? && @owner['id'] == current_user['id']
       = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
 
-    %div.p
-      %div= comment['comment']
-      %span.time= time_ago_in_words(comment['created_at'])
-      
+    .span9
+      .user_message= comment['comment']
+      .time= time_ago_in_words(comment['created_at'])
 
-  - if comment['replies'].blank?
-    -if current_user['id'] == @owner['id']
+  - # If I'm the owner and the question hasn't been responded yet
+  - if comment['replies'].blank? 
+    - if current_user['id'] == @owner['id']
       = render '/comments/form', :place => @place, :comment_id => comment['id']
-
   -else
     = render '/comments/reply', :reply => comment['replies'].first, :question_id => comment['id']

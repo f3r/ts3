@@ -102,7 +102,7 @@
       /******************************************************************************************
       .description
         .row
-          .span8{:style => "height:200px; overflow-y: scroll;"}
+          .span8{:style => "max-height:200px; overflow-y: scroll;"}
             %pre.desc= @place.description
           .span2.right.span-below
             .title
@@ -141,75 +141,133 @@
         .tab-content
           // Details Pane
           #details-tab.tab-pane.active
-            .span3
-              %label= t(:type)
-              .value= @place.place_type
-              %label= t(:size)
-              .value= raw("#{number_with_precision @place.size_sqm, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_meters_short)}")
-              %label &nbsp;
-              .value= raw("#{number_with_precision @place.size_sqf, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_feet_short)}")
-            .span3
-              - unless @place.num_bedrooms.blank?
-                %label.sm= t(:bedroom)
-                .value.sm= @place.num_bedrooms
-              - unless @place.num_beds.blank?
-                %label.sm= t(:bed)
-                .value.sm= @place.num_beds
-              %label.sm= t(:guest)
-              .value.sm
-                1
-                = " - #{@place.max_guests}" if @place.max_guests > 1
-              - unless @place.num_bathrooms.blank?
-                %label.sm= t(:bathroom)
-                .value.sm= @place.num_bathrooms
-            .span3
-              - unless @place.price_per_night.blank?
-                %label= t(:price_per_night)
-                .value= "#{get_pref_currency}#{@place.price_per_night}"
-              - unless @place.price_per_week.blank?
-                %label= t(:price_per_week)
-                .value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-              - unless @place.price_per_month.blank?
-                %label= t(:price_per_month)
-                .value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-            .span3
-              - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
-                %label= t(:final_cleanup)
-                .value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-              - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
-                %label= t(:security_deposit)
-                .value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-              %label= t(:cancellation)
-              .value.bigger= cancellation_desc(@place)
+            .span10.offset1{:style => "margin-bottom:15px"}
+              .row-fluid
+                // Place type, size
+                .span2
+                  .row-fluid
+                    .span4
+                      .details_label= t(:type)
+                    .span8
+                      .details_value= @place.place_type
+                  .row-fluid
+                    .span4
+                      .details_label= t(:size)
+                    .span8
+                      .details_value
+                        = raw("#{number_with_precision @place.size_sqm, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_meters_short)}")
+                        %br
+                        = raw("#{number_with_precision @place.size_sqf, :strip_insignificant_zeros => true, :precision => 1} #{t(:square_feet_short)}")
 
+                // Apartment Space (bedrooms, bed, max guests, bathrooms)
+                .span3
+                  - unless @place.num_bedrooms.blank?
+                    .row-fluid
+                      .span8
+                        .details_label= t(:bedroom)
+                      .span4
+                        .details_value= @place.num_bedrooms
+                  - unless @place.num_beds.blank?
+                    .row-fluid
+                      .span8
+                        .details_label= t(:bed)
+                      .span4
+                        .details_value= @place.num_beds
+                  .row-fluid
+                    .span8
+                      .details_label= t(:guest)
+                    .span4
+                      .details_value
+                        = "1"                        if @place.max_guests <= 1
+                        = "1 - #{@place.max_guests}" if @place.max_guests > 1
+                  - unless @place.num_bathrooms.blank?
+                    .row-fluid
+                      .span8
+                        .details_label= t(:bathroom)
+                      .span4
+                        .details_value= @place.num_bathrooms
+
+                // Prices Column (night, week, month)
+                .span3
+                  - unless @place.price_per_night.blank?
+                    .row-fluid
+                      .span8
+                        .details_label= t(:price_per_night)
+                      .span4
+                        .details_value= "#{get_pref_currency}#{@place.price_per_night}"
+                  - unless @place.price_per_week.blank?
+                    .row-fluid
+                      .span8
+                        .details_label= t(:price_per_week)
+                      .span4
+                        .details_value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+                  - unless @place.price_per_month.blank?
+                    .row-fluid
+                      .span8
+                        .details_label= t(:price_per_month)
+                      .span4
+                        .details_value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+
+
+                // Price final cleanup, security deposit, cancellation policy
+                .span4
+                  - unless @place.price_final_cleanup.blank? || @place.price_final_cleanup == 0
+                    .row-fluid
+                      .span7
+                        .details_label= t(:final_cleanup)
+                      .span5
+                        .details_value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+                  - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
+                    .row-fluid
+                      .span7
+                        .details_label= t(:security_deposit)
+                      .span5
+                        .details_value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+                  .row-fluid
+                    .span7
+                      .details_label= t(:cancellation)
+                    .span5
+                      .details_value= cancellation_desc(@place)
+                
           // Amenities Pane
-          #amenities-tab
-            - display_place_amenities(@place).each do |amenity|
-              %label.w-left-icon.check
-                = amenity
+          #amenities-tab.tab-pane
+            .span12{:style => "margin-bottom:15px"}
+              .row-fluid
+                // We group all amenities into 4 columns
+                - amenities = display_place_amenities(@place) 
+                - if amenities.count > 3
+                  - group_size = amenities.count/3
+                - else
+                  - group_size = amenities.count
+                - amenities.in_groups_of(group_size) do |amenity_group|
+                  .span3
+                    - amenity_group.each do |amenity|
+                      .w-left-icon.check= amenity
 
           // Directions Pane	
-          #directions-tab
-            %pre.desc= @place.directions
+          #directions-tab.tab-pane
+            .span
+              %pre.desc= @place.directions
 
           // House Rules Pane
-          #house-rules-tab
-            %pre.desc= @place.house_rules
+          #house-rules-tab.tab-pane
+            .span
+              %pre.desc= @place.house_rules
 
 
       /******************************************************************************************
       / Questions-Answers
       /******************************************************************************************
-      .tabbed-panel.other-info
-        %ul.tabs
+      .tabbed-panel
+        %ul.nav.nav-tabs
           %li.active
-            %a{:href => '#details-questions'}
+            %a{:href => '#details-questions', 'data-toggle' => 'tab'}
               = "#{t(:question)} (#{@comments.nil?? 0 : @comments.size})"
-        .contents
-          .fine-print.pill-content
-            .row.active#details-questions
-              .span
-                = render '/comments/questions'
+
+        .tab-content
+          #details-questions.tab-pane.active
+            .span
+              = render '/comments/questions'
 
 = render :partial => 'inquire_place'
 

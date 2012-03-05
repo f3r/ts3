@@ -26,7 +26,6 @@
 
 @logoColorDark: #3977b0;
 @logoColorLight: #91cef7;
-@grayLight: #F2F2F2;
 
 /********************************************************************************************************* 
  * HELPERS ADDED FROM HEYPAL.CSS.LESS
@@ -110,7 +109,7 @@ p.strong {
 /* The white background content wrapper */
 .content {
   background-color: #fff;
-  padding: 0px 0px 30px 0;
+  padding: 30px 0;
 }
 
 /* Give a quick and non-cross-browser friendly divider */
@@ -184,8 +183,6 @@ form div.required label:after {
 
 // Header
 // -----------
-
-
 
 aside .section-header, .aside .section-header, .section-header {
   margin: 0 0 20px;
@@ -793,7 +790,7 @@ ul.breadcrumb a {color:#333;}
   }
 
   .inputs-list label{
-    width: 194px;
+    width: 200px;
     padding: 2px 0;
     font-size: 13px;
     overflow: hidden;
@@ -918,7 +915,7 @@ h2.title {
 }
 
 #listing-status {
-  width: 60px;
+  margin-right: 35px;
 }
 
 /* @start uploadify */
@@ -1147,9 +1144,6 @@ div.start div.hub form input#check_out.textbox {width:118px;}
  * HEADER
  *********************************************************************************************************/
 .header {
-  height: 105px;
-  margin-bottom: 18px;
-  
   > .container {
     height: 65px;
     margin-top: 5px;
@@ -1191,11 +1185,7 @@ div.start div.hub form input#check_out.textbox {width:118px;}
  }
 
 .navbar{
-  height: 40px;
-  overflow: visible;
-  z-index: 10000;
-    
-  &.sticky {
+  .sticky {
      position: fixed;
      top: 0;
      width: 100%;

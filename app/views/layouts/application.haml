@@ -8,11 +8,15 @@
     .container
       .content
         .row
-          %section.span9
-            = flash_messages
-            = yield
-          %aside.span3
-            = yield :aside
+          - if content_for?(:aside)
+            %section.span9
+              = flash_messages
+              = yield
+            %aside.span3
+              = yield :aside
+          - else
+            %section.span12
+              = yield
 
       = render 'shared/footer'
     %script{:type => 'text/javascript', :src => 'https://s3.amazonaws.com/getsatisfaction.com/javascripts/feedback-v2.js'}

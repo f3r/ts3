@@ -45,7 +45,7 @@ class UsersController < ApplicationController
               facebook_info = Heypal::User.facebook_info('access_token' => current_token)
               if facebook_info
                 user_data = {
-                  'access_token' => current_token, 
+                  'access_token' => current_token,
                   'avatar_url' => facebook_info['avatar_url'],
                   'birthdate' => facebook_info['birthdate'],
                   'gender' => facebook_info['gender']
@@ -70,7 +70,7 @@ class UsersController < ApplicationController
 
       if params['email'].present? &&  Heypal::User.resend_confirmation({:email => params['email']})
         flash[:notice] = t(:confirmation_email_sent)
-        redirect_to login_path, :layout => 'single'
+        redirect_to login_path
       else
         flash[:error] = t(:invalid_email)
         render :layout => 'single'

@@ -4,7 +4,7 @@ HeyPalFrontEnd::Application.routes.draw do
     root :to => redirect("http://www.squarestays.com")
     match '/*path', :to => redirect {|params| "http://www.squarestays.com/#{params[:path]}"}
   end
-  
+
   get   'search/index'
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
@@ -13,9 +13,9 @@ HeyPalFrontEnd::Application.routes.draw do
   #match '/hong_kong'       => 'places#index'
 
   # SEO Routes
-  match '/singapore/:id-:slug', :to => 'places#show'
-  match '/hong_kong/:id-:slug', :to => 'places#show'
-    
+  match '/singapore/:id', :to => 'places#show'
+  match '/hong_kong/:id', :to => 'places#show'
+
   resources :places do
     member do
       get   :wizard
@@ -36,7 +36,7 @@ HeyPalFrontEnd::Application.routes.draw do
         put :sort
       end
     end
-    
+
     get :search, :on => :collection
     get '/singapore' => 'places#index', :on => :collection
     get '/hong_kong' => 'places#index', :on => :collection

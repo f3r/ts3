@@ -26,14 +26,14 @@
         %span.input-prepend
           %span.add-on.currency-sign= currency_sign_of(@place.currency)
           = f.text_field :price_final_cleanup, :class => "span2 autosave"
-          = link_to '?', '#', :class => 'tooltip-link', :rel => 'tooltip', 'data-original-title' => raw(t(:final_cleanup_hint))
+          = link_to '?', '#', :class => 'tooltip-link', :title => raw(t(:final_cleanup_hint))
     .control-group
       = f.label :price_security_deposit, t(:security_deposit), :class => 'control-label'
       .controls
         .input-prepend
           %span.add-on.currency-sign= currency_sign_of(@place.currency)
           = f.text_field :price_security_deposit, :class => "span2 autosave"
-          = link_to '?', '#', :class => 'tooltip-link', 'title' => raw(t(:security_deposit_hint))
+          = link_to '?', '#', :class => 'tooltip-link', :title => raw(t(:security_deposit_hint))
   %h3= t(:terms)
   %fieldset
     .control-group

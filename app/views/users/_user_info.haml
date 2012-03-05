@@ -5,6 +5,12 @@
     - unless request.fullpath.include?('edit')
       = link_to t(:account_settings), edit_profile_path, :class => "settings"
 
+  .form-horizontal
+    .control-group
+      = label_tag :first_name, t(:first_name), :class => 'control-label'
+      .controls
+        .user_detail=  @user['first_name']
+    
   %table.borderless
     %tr
       %td.label_detail

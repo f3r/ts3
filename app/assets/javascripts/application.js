@@ -149,20 +149,18 @@ $(document).ready(function() {
     }
   });
 
-  $("a.tooltip, a[rel=tooltip]").tooltip({
-      live:true,
-      animate: false,
-      placement: 'below',
-      html: true
-  });
-
-  $("a.tooltip-link").tooltip({
+  $("a.tooltip, a[rel=tooltip], a.tooltip-link").tooltip({
+      animation: false,
+      placement: 'top',
+  }); 
+  
+  /*$("a.tooltip-link").tooltip({
     live:true,
-    animate: false,
+    animation: false,
     placement:'below',
     delayOut: 3000,
     html: true
-  });
+  }); */
 
   $('.dropdown-toggle').dropdown();
   

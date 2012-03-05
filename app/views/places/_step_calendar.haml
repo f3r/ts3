@@ -20,6 +20,7 @@
 :javascript
 
   $("#open-new-availability").unbind('click').click(function() {
+    add_datepicker();
     $("#new-availability-form").show();
     $("#open-new-availability").hide();
     return false;

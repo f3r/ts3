@@ -35,6 +35,7 @@
           = f.text_field :price_security_deposit, :class => "span2 autosave"
           = link_to '?', '#', :class => 'tooltip-link', :title => raw(t(:security_deposit_hint))
   %h3= t(:terms)
+
   %fieldset
     .control-group
       = f.label :check_in_after, t(:check_in_before), :class => 'control-label'

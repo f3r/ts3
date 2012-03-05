@@ -26,11 +26,8 @@ class Heypal::Base < Hash
 
     def request(path, method = :get, options = {})
 
-      Rails.logger.info "Sending to #{path} / #{method} / #{options}"
+     Rails.logger.info "Sending to #{path} / #{method} / #{options}"
   
-      # Since we're requesting from a static page which doesn't support other http methods
-      #result = get(resource_url(path), options)
-
       result = case method 
         when :get
           get(resource_url(path), options)
@@ -42,10 +39,8 @@ class Heypal::Base < Hash
           destroy(resource_url(path), options)
       end
 
-      Rails.logger.info "Result ------- #{result}"
       @results = parse_json(result)
-
-      Rails.logger.info "Result #{@results}"
+      Rails.logger.info "Result ---- #{JSON.pretty_generate(@results)}"
 
       @results    
     end

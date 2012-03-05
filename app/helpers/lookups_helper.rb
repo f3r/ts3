@@ -1,10 +1,17 @@
 #coding: utf-8
 module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£'}
-  LANGUAGES = {'en' => 'English', 'da' => 'Danish'}
+  LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
-
-  #CANCELLATION_POLICIES = {1 => :flexible, 2 => :moderate, 3 => :strict}
+  CITIES     = [
+    'Singapore', 
+    'Hong Kong', 
+    'Sydney, Australia', 
+    'Kuala Lumpur, Malaysia', 
+    'New York, United States', 
+    'San Francisco, United States', 
+    'Los Angeles, United States'
+  ]
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
   def currencies
@@ -23,8 +30,8 @@ module LookupsHelper
     end
   end
 
-  def cities
-
+  def city_name(id=0)
+    CITIES[id-1]
   end
 
   def cancellation_policies_select
@@ -95,8 +102,10 @@ module LookupsHelper
       symbol = "£"
     when "SGD"
       symbol = "$"
+    when "HKD"
+      symbol = "$"
     else
-      symbol = ""
+      symbol = "$"
     end
     "#{symbol} #{currency}"
   end

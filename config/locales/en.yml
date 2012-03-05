@@ -29,8 +29,8 @@ en:
   how_it_works:      How it works
   photography_faq:   Photography FAQ
   community_support: Community Support
-  cityguide_sg:      City Guide Singapore
-  cityguide_hk:      City Guide Hong-Kong
+  cityguide_sg:      "City Guide: Singapore"
+  cityguide_hk:      "City Guide: Hong-Kong"
   
   ####################################################################################
   # Account creation & management
@@ -434,7 +434,7 @@ en:
   cant_find_city: Can't find the city you were looking for?
   leave_us_email: Leave us your email address and we will tell you when new cities are added to SquareStays.
   working_on_expanding: We're working hard to expand SquareStays. Please tell us which cities you would like to see next in SquareStays.
-  not_going_to_singapore: Not going to Singapore?
+  not_going_to_singapore: Other cities?
   homepage_facebook: Join us on Facebook
   homepage_twitter:  Follow us on Twitter
   homepage_blog:     Read our Blog

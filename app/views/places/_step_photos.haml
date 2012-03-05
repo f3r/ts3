@@ -108,26 +108,6 @@
     $('.photo_wrapper').append(img_wrapper);
   }
 
-  var photoMetadata = function() {
-    var photoArray = [];
-    $('#photos_list li img').each(function() {
-      var imgElem   = $(this);
-      var img       = {};
-      img.name      = imgElem.attr('data-name');
-      img.small     = imgElem.attr('data-small');
-      img.medsmall  = imgElem.attr('data-medsmall');
-      img.medium    = imgElem.attr('data-medium');
-      img.large     = imgElem.attr('data-large');
-      img.tiny      = imgElem.attr('data-tiny');
-      img.original  = imgElem.attr('data-original');
-      img.id        = imgElem.attr('data-id');
-      img.filename  = imgElem.attr('data-filename'); 
-      photoArray.push({photo: img});
-    });
-
-    return photoArray;
-  };
-
   var updatePhotoLabel = function(photo_id, label) {
     $.ajax({
       type: 'PUT',
@@ -164,35 +144,6 @@
         showLatestPhoto();
         validatePanels();        
       }
-    });
-
-    $('#photos_list').sortable({ 
-        grid: [8,2],
-        start: function(event, ui) {
-          $(event.currentTarget).addClass('noclick');
-        },
-        stop: function(event, ui) {
-          afterSort();
-
-          $.ajax({
-            type: 'PUT',
-            url: '/places/#{@place.id}/photos/sort.json',
-            data: $('#photos_list').sortable('serialize'), 
-            success: function() {
-              validatePanels();
-            }
-          });
-        }
-    });
-
-    afterSort();
-    showLatestPhoto();
-    
-    $('#photos_list li').click(function(){
-      if(!$(this).parent().hasClass('noclick')){
-       setPhoto($(this).find('img'));
-      }
-      $(this).parent().removeClass('noclick');
     });
   });
 

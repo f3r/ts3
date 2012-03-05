@@ -24,7 +24,12 @@ class PlacesController < ApplicationController
   def update
     result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
     if result['stat'] == "ok"
-      response = {:stat => "ok"}
+      place = result['place']
+      # filter data
+      [:place_type, :user, :photos].each do |k|
+        place[k] = nil
+      end
+      response = {:stat => "ok", :place => place}
     else
       response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
     end
@@ -65,6 +70,13 @@ class PlacesController < ApplicationController
 
   def wizard
     @place = Heypal::Place.find(params[:id], current_token, nil) # no currency conversion
+    
+    # filter data
+    @place_basic_info = @place
+    [:place_type, :user, :photos].each do |k|
+      @place_basic_info[k] = nil
+    end
+
     @photos = @place.photos
     @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
@@ -108,38 +120,34 @@ class PlacesController < ApplicationController
   #   #@place = Heypal::Place.find(params[:id], params[:token])
   # 
   #   Heypal::Photo.create(params[:id], params[:file], params[:token])
-    # p = Heypal::Photo.new
-    # p.place_id = params[:id]
-    # p.photo_id = Time.now.to_i
-    # 
-    # p.photo = params[:file]
-    # 
-    # p.save
-    # 
-    # photo = {
-    #           :photo => {
-    #             :id => p.photo_id,
-    #             :name => '',
-    #             :place_id => params[:id],
-    #             :filename => params[:Filename],
-    #             :large => p.photo.url(:large, false),
-    #             :medium => p.photo.url(:medium, false),
-    #             :medsmall => p.photo.url(:medsmall, false),
-    #             :small => p.photo.url(:small, false),
-    #             :tiny => p.photo.url(:tiny, false),
-    #             :original => p.photo.url(:original, false)
-    #           }
-    #         }
-
-    # unless @place.photos.nil?
-    #   @photos = @place.photos
-    # else
-    #   @photos = []
-    # end
-    # 
-    # post_params = {:photos => @photos.to_json}
-    # 
-    # result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
+  #   p = Heypal::Photo.new
+  #   p.place_id = params[:id]
+  #   p.photo_id = Time.now.to_i
+  #   p.photo = params[:file]
+  #   p.save
+  #   photo = {
+  #           :photo => {
+  #             :id => p.photo_id,
+  #             :name => '',
+  #             :place_id => params[:id],
+  #             :filename => params[:Filename],
+  #             :large => p.photo.url(:large, false),
+  #             :medium => p.photo.url(:medium, false),
+  #             :medsmall => p.photo.url(:medsmall, false),
+  #             :small => p.photo.url(:small, false),
+  #             :tiny => p.photo.url(:tiny, false),
+  #             :original => p.photo.url(:original, false)
+  #           }
+  #         }
+  #
+  #   unless @place.photos.nil?
+  #     @photos = @place.photos
+  #   else
+  #     @photos = []
+  #   end
+  # 
+  #   post_params = {:photos => @photos.to_json}
+  #   result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
   # 
   #   @place = Heypal::Place.find(params[:id], params[:token])
   #   @photos = @place.photos
@@ -151,16 +159,32 @@ class PlacesController < ApplicationController
     render :js => @cities.map.collect{|city| [city['name']]}
   end
 
-  # default place search
+  # default place search2
   def index
-    check_in = params[:check_in] rescue nil
+    @city_id = params[:city_id]
+    unless @city_id
+      if params[:city] == 'hong_kong'
+        @city_id = 2 
+      else
+        @city_id = 1
+      end
+    end
+    
+    check_in  = params[:check_in]  rescue nil
     check_out = params[:check_out] rescue nil
-    page = params[:page]
-    params = {'check_in' => check_in, 'check_out' => check_out, "sort" => 'price_lowest', 'guests' => '1', 'currency' => get_current_currency}
+    page      = params[:page]
+    params    = { 
+      'check_in'  => check_in, 
+      'check_out' => check_out, 
+      'sort'      => 'price_lowest', 
+      'guests'    => '1',
+      'city'      => @city_id,
+      'currency'  => get_current_currency
+    }
     params.merge!('per_page' => 5, 'page' => page)
     @results = Heypal::Place.search(params)
 
-    min, max = Heypal::Geo.get_price_range(1, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
+    min, max = Heypal::Geo.get_price_range(@city_id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
     if !min.nil? && !max.nil?
       @min_price = min
       @max_price = max
@@ -175,21 +199,33 @@ class PlacesController < ApplicationController
     end
   end
 
+  # User
   def search
+    debugger
     page = params[:page]
     params.merge!('per_page' => 5, 'page' => page)
     @results = Heypal::Place.search(params)
 
-    if @results.key?("err") # TODO: handle no results found
-      render :json => {:results => 0, :per_page => 0, :current_page => 0, :total_pages => 0, 
-        :place_data => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
-        :place_filters => ''}
+    if @results.key?("err")
+      render :json => {
+        :results       => 0, 
+        :per_page      => 0, 
+        :current_page  => 0, 
+        :total_pages   => 0, 
+        :place_data    => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
+        :place_filters => ''
+      }
     else
       cur_page = @results['current_page'].nil? ? 1 : @results['current_page']
-      render :json => {:results => @results['results'], :per_page => @results['per_page'], :current_page => cur_page, :place_type_count => @results['place_type_count'],
-        :total_pages => @results['total_pages'], 
-        :place_data => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
-        :place_filters => render_to_string(:_place_type_filters, :layout => false)}
+      render :json => {
+        :results          => @results['results'], 
+        :per_page         => @results['per_page'], 
+        :current_page     => cur_page, 
+        :place_type_count => @results['place_type_count'],
+        :total_pages      => @results['total_pages'], 
+        :place_data       => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
+        :place_filters    => render_to_string(:_place_type_filters, :layout => false)
+      }
     end
   end
 
@@ -245,13 +281,13 @@ class PlacesController < ApplicationController
     @confirm_inquiry = Heypal::Place.confirm_inquiry(
       params[:id], 
       {
-        :name => params[:name],
-        :email => params[:email],
-        :mobile => params[:mobile],
-        :date_start => params[:date_start],
-        :length_stay => params[:length_stay],
+        :name             => params[:name],
+        :email            => params[:email],
+        :mobile           => params[:mobile],
+        :date_start       => params[:date_start],
+        :length_stay      => params[:length_stay],
         :length_stay_type => params[:length_stay_type],
-        :questions => params[:questions]
+        :questions        => params[:questions]
       },
       current_token
     )

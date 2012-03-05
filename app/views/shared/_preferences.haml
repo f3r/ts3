@@ -30,6 +30,10 @@
         = link_to :change_preference => true, :pref_currency => 'SGD' do
           %span.em <span class="check">&#10003;</span> 
           %span.option-label= get_currency_with_symbol("SGD")
+      %li{ get_current_currency == "HKD" ? {:class => "active"} : {} }
+        = link_to :change_preference => true, :pref_currency => 'HKD' do
+          %span.em <span class="check">&#10003;</span> 
+          %span.option-label= get_currency_with_symbol("HKD")
       %li.divider              
       %li.divider-title= "#{t(:choose_unit)}..."
       %li.divider            

@@ -49,11 +49,18 @@ function showSavedIndicator(elem) {
 }
 
 function showErrorIndicator(elem) {
-  $('#place_zip').validationEngine('showPrompt', 'Invalid format of zipcode', 'load');
+  // $('#place_zip').validationEngine('showPrompt', 'Invalid format of zipcode', 'load');
+  $(elem).validationEngine('showPrompt', 'Error', 'load');
 }
 
 function validateElement(elem) {
-  return $('#wizard_form').validationEngine('validateField', elem);
+  if ($('#wizard_form').validationEngine('validateField', elem)) {
+    elem.toggleClass("error");
+    return true
+  } else {
+    elem.toggleClass("error");
+    return false
+  }
 }
 
 function hideIndicator(elem) {

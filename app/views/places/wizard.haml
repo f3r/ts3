@@ -6,6 +6,7 @@
   .span12.title
     .float-right
       = link_to t(:invisible), '#', :class => 'btn secondary', :id => 'listing-status'
+
     %h1= @place.title
   .row
     .span3
@@ -37,7 +38,6 @@
             / .preview
             .panel.tab-pane#6
               -#= render 'preview', :f => f
-
 :javascript
 
   $(function() {

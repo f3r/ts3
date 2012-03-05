@@ -7,7 +7,9 @@
           = link_to "Singapore", "#", :id => "open-country-select"
         %ul#country-select.dropdown
           %li.arrow
-          %li Singapore
+
+          %li= link_to "Singapore", '/singapore'
+          %li= link_to "Hong Kong", '/hong_kong'
           %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
 
         %p

@@ -16,7 +16,7 @@
   %br
   %p
     - if user['role'] == "agent"
-      = image_tag "/images/agent_button.png"
+      = image_tag "agent_button.png"
   - if logged_in? && current_user['id'] == user['id']
     %br
     = render :partial => "users/user_accounts"

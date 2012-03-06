@@ -1,5 +1,5 @@
 var pull_data = function() {
-  $(".results").append("<span id='search-load-indicator'><img src='/images/loading.gif' alt='loading...' /></span>");
+  $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
   $('html, body').animate({scrollTop: 0}, '1000');
   $("#search_results").css('opacity', '.3');
   $('#place_result_pages .from_index').html('false');

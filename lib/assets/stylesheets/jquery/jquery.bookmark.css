@@ -60,7 +60,7 @@ html:first-child .bookmark_list {  /* Opera */
 	height: 16px;
 }
 .bookmark_list span.bookmark_icons {
-	background: url(/images/bookmarks.png) no-repeat center;
+	background: url(bookmarks.png) no-repeat center;
 }
 .bookmark_list img {
 	border: none;

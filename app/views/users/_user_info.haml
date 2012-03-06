@@ -62,7 +62,7 @@
     - required_fields = ""
     - required_fields = required_fields + "* #{t(:mobile_phone)}<br />" if @user['phone_mobile'].blank?
     - required_fields = required_fields + "* #{t(:billing_address)}<br />" if @user['address'].blank?
-    = image_tag("/images/i_profile.png", 
+    = image_tag("i_profile.png", 
       :style => "float:right;", 
       :id => 'information-missing-fields', 
       :title => required_fields)

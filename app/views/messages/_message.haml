@@ -9,7 +9,7 @@
 
   .span12.conversations
     .float-right.delete-conversations
-      = link_to image_tag('/images/icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => t(:are_you_sure)
+      = link_to image_tag('icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => t(:are_you_sure)
 
     %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"} 
       %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }

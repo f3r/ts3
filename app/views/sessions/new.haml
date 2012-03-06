@@ -14,14 +14,14 @@
     %br.clearfix
     = link_to t(:forgot_password), reset_password_users_path
     %br
-    = link_to t(:resend_confirmation), confirm_users_path      
+    = link_to t(:resend_confirmation), confirm_users_path
   .section.span5
     %h2= t(:login_using)
     %a{:href => "/auth/facebook"}
-      %img{:src => '/images/signin_facebook.png', :style => 'margin-top: 10px', :alt => 'Sign in with Facebook'}
+      = image_tag 'signin_facebook.png', :style => 'margin-top: 10px', :alt => 'Sign in with Facebook'
     %br
     %a{:href => "/auth/twitter"}
-      %img{:src => '/images/sign-in-with-twitter-l.png', :alt => 'Sign in with twitter'}        
+      = image_tag 'sign-in-with-twitter-l.png', :alt => 'Sign in with twitter'
     %br
     %br
     %br

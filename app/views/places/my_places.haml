@@ -13,7 +13,7 @@
               .span3
                 .thumb.data-block
                   - if place['photos'].blank?
-                    - place_photo = image_tag( "/images/photo-missing.png", :size => "160x110")
+                    - place_photo = image_tag( "photo-missing.png", :size => "160x110")
                   - else
                     - place_photo = image_tag(place['photos'][0]['photo']['small'])
                   = link_to place_photo, (place['published'] ? place_path(place['id']) : wizard_place_path(place['id']))

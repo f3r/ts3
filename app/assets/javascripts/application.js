@@ -35,14 +35,14 @@ function customerSupportDialog() {
 
 function showIndicator(elem, html_attr) {
   if (arguments.length == 2) {
-    elem.after("<span class='save-indicator' style=" + html_attr +"><img src='/images/loading.gif' alt='' /></span>");
+    elem.after("<span class='save-indicator' style=" + html_attr +"><img src='/assets/loading.gif' alt='' /></span>");
   } else {
-    elem.after("<span class='save-indicator'><img src='/images/loading.gif' alt='' /></span>");
+    elem.after("<span class='save-indicator'><img src='/assets/loading.gif' alt='' /></span>");
   }
 }
 
 function showRightIndicator(elem) {
-  elem.after("<span class='save-indicator right'><img src='/images/loading.gif' alt='' /></span>");
+  elem.after("<span class='save-indicator right'><img src='/assets/loading.gif' alt='' /></span>");
 }
 
 function showSavedIndicator(elem) {

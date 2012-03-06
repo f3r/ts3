@@ -1,10 +1,10 @@
 .section.span5
   %h2.bottom-large= t(:create_an_account_using)
   %a{:href => "/auth/facebook"}
-    %img.bottom{:src => '/images/signin_facebook.png', :alt => 'Sign in with Facebook'}
+    = image_tag 'signin_facebook.png', :alt => 'Sign in with Facebook', :class => 'bottom'
   %br
   %a{:href => "/auth/twitter"}
-    %img{:src => '/images/sign-in-with-twitter-l.png', :alt => 'Sign in with twitter'}
+    = image_tag 'sign-in-with-twitter-l.png', :alt => 'Sign in with twitter'
   %p.bottom-part
     This will allow you to log in to SquareStays
     %br

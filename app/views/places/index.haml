@@ -31,13 +31,13 @@
               = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
               .sorting
                 = t(:sort_by)
-                = select_tag :sort, options_for_select(sort_options, 'price_highest'), :class => 'medium' 
+                = select_tag :sort, options_for_select(sort_options, 'price_highest'), :class => 'medium'
 
       .results
         #search_results
           = render 'search_results', :places => @results['places']
           
-      .loading.center.hide= image_tag('/images/loading.gif')
+      .loading.center.hide= image_tag('loading.gif')
     .span3
       .search-aside
         %form.panel-wrap

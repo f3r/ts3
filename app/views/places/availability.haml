@@ -81,7 +81,7 @@
       .row
         .span4.right
           - if @user['address'].nil?
-            %a.btn.primary.large.preview-button{:href => '#', :class => 'twipsy', 'data-original-title' => 'Billing Address is required', :disabled => 'disabled'}
+            %a.btn.primary.large.preview-button{:href => '#', :class => 'tooltip', 'data-original-title' => 'Billing Address is required', :disabled => 'disabled'}
               %span= t(:confirm_rental)
           - else
             %button.btn.large.primary.confirm_rental= t(:confirm_rental)

@@ -1,0 +1,402 @@
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+
+/********************************************************************************************************* 
+ * FILTERS
+ *********************************************************************************************************/
+.search-aside {
+  .header {
+    height:18px;
+  }  
+}
+  
+/********************************************************************************************************* 
+ * SEARCH RESULTS LIST
+ *********************************************************************************************************/
+
+.results{
+  .header{
+    .clearfix();
+    overflow: hidden;
+    zoom: 1;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+    
+    .title{
+      float: left;
+      
+      h4{
+        line-height: 1;
+        margin-top: 8px;
+      }
+    }    
+    .controls{
+      float:right;
+      select{
+       width: 200px; 
+      }            
+    }
+  }
+  
+  ul{
+    list-style-type: none;    
+    margin: 0;
+
+    li {
+      .clearfix();
+      overflow: hidden;
+      zoom: 1;
+      padding: 0px 0px;
+    }
+
+    &.list-display{
+      
+      li{
+        padding: 7px;
+        background: #fff;
+        .border-radius(5px);
+        border: 1px solid #c0c0c0;
+        margin: 10px 0;
+        
+        &:hover{
+          background: #f7fdff;
+          border-color: #c0e4f3;
+        }        
+      }
+      
+      .info{
+        float: left;
+        
+        > .title{
+          line-height: 1em;          
+          margin: 12px 0 6px;
+          font-size:19px;
+          width: 375px;
+        }
+      }      
+      
+      .data-block{
+        float: left;
+        margin-right: 30px;
+        line-height: 20px;        
+        &:last-child{
+          margin-right: 0;
+        }
+        
+        .title{
+          color: #454545;
+          font-size: 12px;
+        }
+        
+        &.thumb{
+          margin-right: 10px;
+          min-width: 150px;
+          min-height: 100px;
+          background-color: #3e3e3e;
+          border:0;
+          padding:0;
+          border-radius:0;
+          img { margin: 0 auto; }
+        }
+        
+        .micro{
+          text-transform: uppercase;
+          letter-spacing: 0.025em;
+          
+         .verified{
+            background: transparent url(../images/icons/icon.check.png) no-repeat 0 2px;
+            padding-left: 20px;
+          }
+        }
+        
+        &.property{
+          .house {
+            background: transparent url(../images/icons/houseicon.png) no-repeat 0 3px;
+            padding-left: 25px;
+            margin-top: 20px;
+          }
+          .size {
+            background: transparent url(../images/icons/sizeicon.png) no-repeat 0 3px;
+            padding-left: 25px;
+            margin-top: 5px;
+          }
+
+        }
+        
+        &.property2 {
+          .bathroom {
+            padding-left: 25px;
+            margin-left: 30px;
+            margin-top: 5px;
+            background: transparent url(../images/icons/bathroomicon.png) no-repeat 0 3px;
+          }
+          .bedroom {
+            padding-left: 25px;
+            margin-left: 30px;
+            margin-top: 20px;
+            background: transparent url(../images/icons/bedroomicon.png) no-repeat 0 3px;            
+          }
+        }
+        
+      }
+            
+      .price.data-block{
+        float: right;        
+        text-align: right;  
+        padding: 15px 5px 0 0;
+        .figure{  
+          font-size: 28px;        
+          font-weight: bold;
+          color: #353535;
+          margin-bottom: 5px;
+        }
+      }
+      
+      .people{
+        float: left;
+        width: 225px;
+        margin-top:25px;
+
+        .details,
+        .profile-pic{
+          float: left;
+          margin-right: 10px;
+        }
+        
+        .details{
+          margin-right: 7px;
+          
+          .rating{
+            .clearfix();
+            overflow: hidden;
+            zoom: 1;
+            margin-top: 3px;
+            
+            .smile,
+            .star{
+              float: left;
+              font-weight: bold;
+              font-size: 12px;
+              padding-left: 20px;
+              margin-right: 5px;              
+              width: 30px;
+              
+              a{
+                color: #353535;
+              }
+            }            
+            .star{
+              background: transparent url(../images/icons/icon.star.png) no-repeat 0 0;
+              margin-right: 0;
+            }
+            .smile{
+              background: transparent url(../images/icons/icon.smile.png) no-repeat 0 0;              
+            }
+          }
+        }
+        
+        .profile-pic{
+          padding: 3px;
+          border: 1px solid #eee;
+          .border-radius(3px);
+          img{ display: block;}
+        }
+      }
+            
+    }
+  }
+  
+  .micro{ 
+    font-size: 11px;
+    color: #888;
+  }
+  
+  .thumb{
+    border: 1px solid #eee;
+    padding: 4px;
+    margin-right: 5px;
+    background-color: #3e3e3e;
+    .border-radius(3);    
+    img{
+      display: block;
+    }
+  }
+}
+
+
+/********************************************************************************************************* 
+ * SEARCH RESULTS GRID VIEW
+ *********************************************************************************************************/
+
+.items-gallery{
+
+  .box{
+    padding: 7px;
+    background: #fff;
+    .border-radius(3px);
+    border: 1px solid #c0c0c0;
+    margin: 0px 0 15px;
+    height: 235px;
+    width: 324px;
+    &:hover{
+      background: #f7fdff;
+      border-color: #c0e4f3;
+    }
+  }
+    
+  &.results{
+    width: 344px;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    zoom: 1;
+    *display: inline;
+        
+    /* Properties on the left */
+    &:nth-child(odd) {
+      margin-left: 0px;
+    }
+
+    /* Properties on the right */
+    &:nth-child(even) {
+      margin-right: 0px;
+      margin-left: 8px;
+    }
+
+    .desc{
+      padding: 10px 3px;
+    }
+  }
+  
+  .header{
+    padding: 20px 0 10px;
+    border-top: 1px solid #eee;    
+  }
+  
+  .clearfix{
+    overflow: hidden;
+    _zoom: 1;
+  }
+  
+  .feat{
+    float: left;
+    margin-left:2px;
+    
+    .thumb{
+      float: left;
+      width: 217px;
+      min-height: 141px;
+      background-color: #3e3e3e;
+      margin:0;
+      img {
+        margin: 0 auto;
+        max-width:217px;
+        max-height:141px;
+      }
+    }
+  }
+  
+  .side{
+    float: right;
+    width: 102px;
+    overflow: hidden;
+    _zoom: 1;
+    margin-right:2px;
+    
+    .thumb{
+      float: left;
+      width: 100%;
+      min-height: 70px;
+      margin: 0 auto 1px;
+      
+      &:last-child{
+        margin-bottom: 0;
+      }
+
+      img { margin: 0 auto }
+    }
+    
+  }
+  
+  .thumb{    
+    float: none;
+    border: 0;
+    padding: 0;
+    background-color: #3e3e3e;
+    border-radius:0;
+
+    img{ display: block; }
+  }
+  
+  h3.title{
+    line-height: 1.4em;
+    margin-bottom: 5px;
+  }
+    
+  .data-block{
+    float: left;
+    margin-right: 10px;
+    line-height: 20px;        
+    &:last-child{
+      margin-right: 0;
+    }
+    
+    .title{
+      color: #454545;
+      font-size: 12px;
+    }
+    
+    &.thumb{
+      margin-right: 10px;
+    }
+    
+    .micro{
+      text-transform: uppercase;
+      letter-spacing: 0.025em;
+      
+     .verified{
+        background: transparent url(../images/icons/icon.check.png) no-repeat 0 2px;
+        padding-left: 20px;
+      }
+    }
+
+    &.property{
+      .house {
+        background: transparent url(../images/icons/houseicon.png) no-repeat 0 3px;
+        padding-left: 25px;
+        margin-top: 5px;
+      }
+      .size {
+        background: transparent url(../images/icons/sizeicon.png) no-repeat 0 3px;
+        padding-left: 25px;
+        margin-top: 5px;
+      }
+
+    }
+    
+    &.property2 {
+      .bedroom {
+        padding-left: 25px;
+        margin-left: 0px;
+        margin-top: 5px;
+        background: transparent url(../images/icons/bedroomicon.png) no-repeat 0 3px;            
+      }
+      .bathroom {
+        padding-left: 25px;
+        margin-left: 0px;
+        margin-top: 5px;
+        background: transparent url(../images/icons/bathroomicon.png) no-repeat 0 3px;
+      }
+    }
+    
+  }
+
+  .price{
+    float: right;
+    text-align: right;
+    .figure{      
+      font-size: 24px;
+    }    
+  }
+}

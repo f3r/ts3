@@ -6,6 +6,7 @@ require "action_controller/railtie"
 require "action_mailer/railtie"
 require "active_resource/railtie"
 require "rails/test_unit/railtie"
+require "sprockets/railtie"
 
 if defined?(Bundler)
   # If you precompile assets before deploying to production, use this line
@@ -49,5 +50,9 @@ module HeyPalFrontEnd
 
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
+    
+    # Add additional asset paths for asset pipeline (sprockets)
+    #config.assets.paths << Rails.root.join("app", "assets", "flash")
+    
   end
 end

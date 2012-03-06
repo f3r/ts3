@@ -1,10 +1,6 @@
-.row
-  .span16
-    .row
-      %br
-      .profile_page
-        = render "user_left_column", :user => @user
-        - if logged_in? && !params[:id] && current_user['id'] == @user['id']
-          = render  :partial => "user_info"
-        - elsif params[:id]
-          = render :partial => "user_properties"
+.profile_page
+  = render "user_left_column", :user => @user
+  - if logged_in? && !params[:id] && current_user['id'] == @user['id']
+    = render  :partial => "user_info"
+  - elsif params[:id]
+    = render :partial => "user_properties"

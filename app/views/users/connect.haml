@@ -1,5 +1,5 @@
 - unless coded_errors_for(@user).blank?
-  %div{:class => 'alert-message error'}
+  %div{:class => 'alert alert-error'}
     = coded_errors_for @user
 .row{:style => "margin-left:20px"}
   .span
@@ -9,7 +9,7 @@
       Hello
   .span6{:style => "line-height: 40px; font-size: 2em;"}
     = @user.full_name
-.registration
+.registration.row-fluid
   %br
   = render :partial => '/users/form'
   .section.span5

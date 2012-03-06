@@ -1,40 +1,34 @@
 = coded_errors_for @place
-.row
-  .span12
-    = form_for :place, :url => places_path, :class => 'form-stacked', :html => {:id => 'wizard_form'} do |f|
-      .panel
-      .panel-wrapper
-        %h2.title
-          = t(:list_your_place)
+.container
+  .row
+    .span10.offset1{:style => "background: #f0f0f0" }
+      = form_for :place, :url => places_path, :class => 'form-stacked', :html => {:id => 'wizard_form'} do |f|
+        %h2.title= t(:list_your_place)
         %fieldset
           .clearfix
             .input.required
               = f.label :city_id, t(:what_city_is_your_place_in)
-              = f.select :city_id, cities_select, :class => "validate[required] span6"
+              = f.select :city_id, cities_select, :class => "validate[required] span4"
             .input.required
               = f.label :title, t(:title)
-              = f.text_field :title, :class => "validate[required] span7"
-
+              = f.text_field :title, :class => "validate[required] span6"
             .input
               = f.label :place_type_id, t(:place_type)
               = f.select :place_type_id, place_types_select
             .input.required
               = f.label :num_bedrooms, t(:how_many_bedrooms)
-              = f.text_field :num_bedrooms, :class => "validate[required,custom[integer],min[0]] span2"
+              = f.text_field :num_bedrooms, :class => "validate[required,custom[integer],min[0]] span1"
             .input.required
               = f.label :max_guests, t(:max_guests)
-              = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span2"
-            %br.clearfix
-            %br.clearfix
+              = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1"
+            %br
             .input
-              %div.reset-width
-                = f.check_box :terms, :class => "validate[required]"
-                = t(:i_agree_to_the)
-                = link_to t(:terms_and_conditions), terms_path, :target => :blank        
-
-      .arrows.clearfix
-        .coda-nav-right
-          %button.btn.primary{:type => "submit", :id => "submit_button"}=raw t(:save_and_continue)
+              = f.label ' ',' '
+              = f.check_box :terms, :class => "validate[required]"
+              = t(:i_agree_to_the)
+              = link_to t(:terms_and_conditions), terms_path, :target => :blank        
+        %br
+          %button.btn.btn-primary.offset7{:type => "submit", :id => "submit_button", :style => "width:200px;"}=raw t(:save_and_continue)
 
 :javascript
 

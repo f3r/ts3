@@ -2,7 +2,7 @@
   .container
     .row
       .span5
-        = link_to image_tag('/images/SquareStays.png', :height => 58), root_path, :title => t(:app_name)
+        .logo= link_to image_tag('/images/SquareStays.png', :size => "244x58"), root_path, :title => t(:app_name)
       - if logged_in?
         .user_box.logged-in
           .row

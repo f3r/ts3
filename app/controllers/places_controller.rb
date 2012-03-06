@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   layout 'plain'
-  before_filter :login_required, :only => [:new, :wizard, :create]
+  before_filter :login_required, :only => [:new, :wizard, :create, :my_places]
   before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability]
 
   def new
@@ -107,7 +107,6 @@ class PlacesController < ApplicationController
     end unless availabilities.blank?
 
     @comments = Heypal::Comment.find_all({:place_id => @place.to_param}, current_token)
-
     render :layout => 'application'
   end
 

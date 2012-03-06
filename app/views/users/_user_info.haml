@@ -1,10 +1,16 @@
-.span8
+.span6
   /TODO: Add link to edit on the right of the section header
   .section-header
     =t(:section_header_user_profile)
     - unless request.fullpath.include?('edit')
       = link_to t(:account_settings), edit_profile_path, :class => "settings"
 
+  .form-horizontal
+    .control-group
+      = label_tag :first_name, t(:first_name), :class => 'control-label'
+      .controls
+        .user_detail=  @user['first_name']
+    
   %table.borderless
     %tr
       %td.label_detail
@@ -67,5 +73,5 @@
 
 :javascript
   $(document).ready(function() {
-    $('#information-missing-fields').twipsy({html:true,placement:"below"});
+    $('#information-missing-fields').tooltip({html:true,placement:"below"});
   });

@@ -23,14 +23,13 @@ HeyPalFrontEnd::Application.configure do
   config.action_dispatch.best_standards_support = :builtin
 
   # Do not compress assets
-  config.assets.compress = false
+  config.assets.compress = true
 
   # Expands the lines which load the assets
-  config.assets.debug = true
+  config.assets.debug = false
 
   config.from_locales = [:en]
   config.to_locales = [:es, :de]
-
 end
 
 # Heypal::base_url = BACKEND_PATH

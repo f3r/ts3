@@ -1,22 +1,28 @@
-%fieldset
-  %div
-    = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :from
-    =t(:to)
-    = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :to
+%fieldset.form-horizontal.well
+  .control-group
+    = label_tag "date_start", 'Dates', :class => 'control-label'
+    .controls
+      = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :from
+      = t(:to)
+      = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :to
 
-    %span.availability-price
+  .availability-price.control-group
+    = label_tag "availability_type", 'Status', :class => 'control-label'
+    .controls
       = select_tag "availability_type", raw("<option value='1'>#{t(:unavailable)}</option><option value='2'>#{t(:new_price)}</option>"), :class => 'availability_type'
 
       %span.wrap.hide
-        %small.currency-sign= currency_sign_of(@place.currency)
-        = text_field_tag "price_per_night", "", :placeholder => t(:new_price), :class => 'small validate[custom[number],min[0]]'
+        %span.input-prepend
+          %small.add-on.currency-sign= currency_sign_of(@place.currency)
+          = text_field_tag "price_per_night", "", :placeholder => t(:new_price), :class => 'small validate[custom[number],min[0]]'
 
-    %small.help-block
-      =t(:you_can_add_dates)
-      %span.currency-sign= currency_sign_of(@place.currency)
-      = @place.price_per_night
+      %p.help-block
+        =t(:you_can_add_dates)
+        %span.currency-sign
+          = currency_sign_of(@place.currency)
+          = @place.price_per_night
 
-    %div.availability-action
+    %div.availability-action.pull-right
       = button_tag t(:close), :class => "btn cancel-new-availability"
       = button_tag t(:add), :id => "new-availability", :class => "btn primary"
 
@@ -24,7 +30,7 @@
 
   $(".cancel-new-availability").unbind('click').click(function() {
     $("#new-availability-form").hide();
-    $("#open-new-availability").removeClass('disabled').removeAttr('disabled');
+    $("#open-new-availability").show();
     return false;
   });
 

@@ -1,58 +1,56 @@
 - content_for :javascripts do
-  %script{:src => "/javascripts/wizard.js", :type => 'text/javascript'}
+  = javascript_include_tag "wizard"
+  = stylesheet_link_tag "uploadify/uploadify.css"
 
-  %link{:rel => "stylesheet", :href => "/javascripts/uploadify/uploadify.css"}  
-  %script{:src => "/javascripts/uploadify/swfobject.js", :type => "text/javascript"}
-  %script{:src => "/javascripts/uploadify/jquery.uploadify.v2.1.4.min.js", :type => "text/javascript"}
-
-  %script{:src => "/javascripts/jquery.inlineedit.js", :type => "text/javascript"}
-
-.row
-  .span12
+.wizard.row
+  .span12.title
     .float-right
       = link_to t(:invisible), '#', :class => 'btn secondary', :id => 'listing-status'
-    %h1.title= @place.title
-    %p.section_title= t(:general_information)
-    .wizard-wrapper
-      = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
-        = hidden_field_tag :place_id, params[:id]
-        = hidden_field_tag :place_current, @place_basic_info.to_json
-        = hidden_field_tag :token, form_authenticity_token, :id => 'token'
-        = f.hidden_field :published
-        / .description
-        .panel#1
-          = render 'step_general', :f => f
-        / .photos
-        .panel#2
-          = render 'step_photos', :f => f
-        / .amenities
-        .panel#3
-          = render 'step_amenities', :f => f
-        / .pricing        
-        .panel#4
-          = render 'step_pricing', :f => f
-        / .celendar
-        .panel#5
-          = render 'step_calendar', :f => f
-        / .preview
-        .panel#6
-          -#= render 'preview', :f => f
-  .span4
-    = render :partial => 'sidebar'
 
+    %h1= @place.title
+  .row
+    .span3
+      = render :partial => 'sidebar'
+      &nbsp;
+    .span9
+      %h2.title.section_title= t(:general_information)
+      .wizard-wrapper
+        = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+          = hidden_field_tag :place_id, params[:id]
+          = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+          = f.hidden_field :published
+          .tab-content
+            / .description
+            .panel.tab-pane#1
+              = render 'step_general', :f => f
+            / .photos
+            .panel.tab-pane#2
+              = render 'step_photos', :f => f
+            / .amenities
+            .panel.tab-pane#3
+              = render 'step_amenities', :f => f
+            / .pricing        
+            .panel.tab-pane#4
+              = render 'step_pricing', :f => f
+            / .celendar
+            .panel.tab-pane#5
+              = render 'step_calendar', :f => f
+            / .preview
+            .panel.tab-pane#6
+              -#= render 'preview', :f => f
 :javascript
 
   $(function() {
-
+    //$('#wizard_tabs a:first').tab('show');
     var wizardStep = "#{params[:step]}";
     // Load initial Panel
     $('.wizard-wrapper .panel').css("display", "none");  
     $('.wizard-wrapper .panel:first').css("display", "block");  
 
     if(wizardStep != "") {
-      switchToPanel("#" + wizardStep);
+      switchToPanel(wizardStep);
     } else {
-      switchToPanel('#1');
+      switchToPanel(1);
     }
 
     validatePanels(); 

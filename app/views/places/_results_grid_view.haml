@@ -1,6 +1,6 @@
-- places.each do |place|
-  .items-gallery.results
-    .span6
+%ul
+  - places.each do |place|
+    %li.items-gallery.results
       .box
         .clearfix
           =  link_to seo_place_path(place) do

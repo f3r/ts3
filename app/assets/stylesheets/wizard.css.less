@@ -1,0 +1,75 @@
+@import "twitter/bootstrap/variables";
+@import "twitter/bootstrap/mixins";
+
+.wizard {
+  .title h1 {
+    border-bottom: 1px solid #EEEEEE;
+    line-height: 1.2em;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+  }  
+}
+
+ul#wizard_tabs {
+  /*list-style: none;
+  padding:0;
+  margin:0 0 35px 0;*/
+  li {
+    width: 220px;
+    height: 44px;
+    /* padding: 5px; */
+    .indicator {
+      float: left;
+      height: 32px;
+      width: 32px;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    a {
+      padding: 10px;
+      display:block;
+      color: @red;
+      height: 18px;
+      font-size: 14px;
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+  li.active {
+    a {
+      background: #F2F2F2;
+      color: #000;
+    }
+  }
+}
+
+.wizard-aside {
+  /*position: fixed;*/
+  width: 240px;
+  top: auto;
+  .nav > li > a:hover {
+    background-color: #FFF;
+  }
+  .actions {
+    margin-left: 20px;
+  }
+}
+
+.wizard-aside.sticky {
+  position: fixed;
+  top: 45px;
+  
+}
+
+.availability-action {
+  margin-top:10px;
+  text-align:right;
+  .remove-action {
+    float:left;
+  }
+}
+
+#add-button {
+  margin-bottom: 20px;
+}

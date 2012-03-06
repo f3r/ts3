@@ -1,40 +1,41 @@
-.topbar
-  .fill
+.navbar
+  .navbar-inner
     .container
-      %ul.nav
-        = menu_link_to t(:find_places), '/singapore'
-        - if logged_in?
-          - if is_agent? or is_admin?
-            %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
-              = link_to t(:my_places), my_places_path
-        - else
-          = menu_link_to t(:how_it_works), home_how_path
-          = menu_link_to t(:why_squarestays), home_why_path
-
-      %ul.nav.secondary-nav
-        - if logged_in?
-          - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
-            %li.add-item
-              = link_to t(:add_a_place), new_place_path
-
-          - if message_count == 0
-            %li.read-message
-              %a{:href => "#{messages_path}"}
-                %img{:src => 'http://s3.amazonaws.com/squarestays-static/msgicon_read.png', :height => 40, :width => 42}
-          - else
-            %li.unread-message{:onclick => "location.href='#{messages_path}';"}
-              = link_to message_count, messages_path
-
-        %li.dropdown.help
-          %a.dropdown-toggle{'data-toggle' => "dropdown"}
-            Help
-            %b.caret
-          %ul.dropdown-menu{:style => 'width:200px'}
-            %li= link_to t(:how_it_works),    home_how_path
-            %li= link_to t(:why_squarestays), home_why_path
-            %li= link_to t(:cityguide_sg),    cityguide_sg_path
-            %li= link_to t(:cityguide_hk),    cityguide_hk_path
-            %li= link_to t(:community_support), 'javascript: $("#fdbk_tab").click();'
+      .nav-collapse
+        %ul.nav
+          = menu_link_to t(:find_places), '/singapore'
+          - if logged_in?
             - if is_agent? or is_admin?
-              %li= link_to t(:photography_faq), home_photo_faq_path
+              %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
+                = link_to t(:my_places), my_places_path
+          - else
+            = menu_link_to t(:how_it_works), home_how_path
+            = menu_link_to t(:why_squarestays), home_why_path
+
+        %ul.nav.pull-right
+          - if logged_in?
+            - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
+              %li.add-item
+                = link_to t(:add_a_place), new_place_path
+
+            - if message_count == 0
+              %li.read-message
+                %a{:href => "#{messages_path}"}
+                  %img{:src => 'http://s3.amazonaws.com/squarestays-static/msgicon_read.png', :height => 40, :width => 42}
+            - else
+              %li.unread-message{:onclick => "location.href='#{messages_path}';"}
+                = link_to message_count, messages_path
+
+          %li.dropdown
+            %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
+              Help
+              %b.caret
+            %ul.dropdown-menu{:style => 'width:200px'}
+              %li= link_to t(:how_it_works),    home_how_path
+              %li= link_to t(:why_squarestays), home_why_path
+              %li= link_to t(:cityguide_sg),    cityguide_sg_path
+              %li= link_to t(:cityguide_hk),    cityguide_hk_path
+              %li= link_to t(:community_support), 'javascript: customerSupportDialog();'
+              - if is_agent? or is_admin?
+                %li= link_to t(:photography_faq), home_photo_faq_path
                   

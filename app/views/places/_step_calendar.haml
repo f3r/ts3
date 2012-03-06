@@ -1,9 +1,11 @@
 .panel-wrapper
-  %h2.title= t(:calendar)
-  %p= t(:calendar_hint)
+  .alert.alert-info
+    = t(:calendar_hint)
 
   %fieldset
-    = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn primary'
+    .row
+      #add-button.center
+        = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn btn-info btn-large'
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
@@ -18,8 +20,9 @@
 :javascript
 
   $("#open-new-availability").unbind('click').click(function() {
+    add_datepicker();
     $("#new-availability-form").show();
-    $("#open-new-availability").addClass('disabled').attr('disabled', 'disabled');
+    $("#open-new-availability").hide();
     return false;
   });
 

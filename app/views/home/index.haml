@@ -1,18 +1,19 @@
 .start
   .row
-    .span8
+    .span6
       .hub
         %h1
           =t(:search_place_stay_in)
           = link_to "Singapore", "#", :id => "open-country-select"
         %ul#country-select.dropdown
           %li.arrow
+
           %li= link_to "Singapore", '/singapore'
           %li= link_to "Hong Kong", '/hong_kong'
-          %li= link_to t(:not_going_to_singapore), "#", "data-controls-modal" => "my-modal"
+          %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
 
         %p
-          %a{:class => 'btn hp-blue large', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center', :href => '/singapore'}= t(:homepage_search_but)
+          %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center; font-weight: bold', :href => '/singapore'}= t(:homepage_search_but)
 
         #fp-liner{:style => 'color:#3977b0'}
           %p 
@@ -23,21 +24,21 @@
           %p
             %b= t(:fp_three)
     
-    .span8
+    .span6
       #teaser-pics
-        %a.thumb{:href => "http://www.squarestays.com/singapore/5-the-clift-prime-location-loft-with-view"}
+        %a.thumbnail{:href => "http://www.squarestays.com/singapore/5-the-clift-prime-location-loft-with-view"}
           .description= t(:car_one)
           %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/5/photos/1326456807/large.jpg"}
-        %a.thumb{:href => "http://www.squarestays.com/singapore/2-cavenagh-lodge-central-great-for-family"}
+        %a.thumbnail{:href => "http://www.squarestays.com/singapore/2-cavenagh-lodge-central-great-for-family"}
           .description= t(:car_two)
           %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/2/photos/1326444525/large.jpg"}
-        %a.thumb{:href => "http://www.squarestays.com/singapore/6-the-clift-cool-2-bedroom-downtown-loft"}
+        %a.thumbnail{:href => "http://www.squarestays.com/singapore/6-the-clift-cool-2-bedroom-downtown-loft"}
           .description= t(:car_three)
           %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/6/photos/1326721102/large.jpg"}
-        %a.thumb{:href => "#{cityguide_sg_path}"}
+        %a.thumbnail{:href => "#{cityguide_sg_path}"}
           .description= t(:car_four)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car05.jpg"}
-        %a.thumb{:href => "#{cityguide_hk_path}"}
+        %a.thumbnail{:href => "#{cityguide_hk_path}"}
           .description= t(:car_five)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car03.jpg"}
       
@@ -70,7 +71,7 @@
     %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => "PropNex"}
     %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => "Far East Organization"}
     
-#my-modal.hide.modal.fade
+#city_modal.hide.modal.fade
   = form_tag '/cities/suggest', :class => 'cities_suggest_form' do
     .modal-header
       %h3=t(:cant_find_city)
@@ -89,5 +90,5 @@
       <br>
     .modal-footer
       %button.btn.primary=t(:submit)
-      %button.btn{:onclick => "$('#my-modal').modal('hide'); return false;"}=t(:cancel)
+      %button.btn{:onclick => "$('#city_modal').modal('hide'); return false;"}=t(:cancel)
 

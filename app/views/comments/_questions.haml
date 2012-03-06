@@ -1,62 +1,36 @@
 -if logged_in?
   - unless current_user['id'] == @owner['id']
-    %a#open-ask-btn.btn.large.primary #{t(:ask_question)}
-  #ask-form.hide
-    = form_for 'comment', :url => place_comments_path(@place), :html => {:id => 'comment-form', :remote => true} do |f|
-      %div
-        = avatar_image(current_user)
-        = f.text_area :comment, :rows => 3, :class => "span10"
-      %div.buttons
-        .float-left
-          = f.check_box "pm"
-          = f.label "pm", t(:pm)
-        = button_tag t(:cancel), :id => 'ask-cancel', :class => 'btn'
-        = button_tag t(:submit), :id => 'ask-btn',    :class => "btn primary"
+    .row
+      .span12{:style => "text-align:center"}
+        %a#open-ask-btn.btn.btn-large.btn-primary= t(:ask_question)
+
+  .row
+    #ask-form.hide
+      .span10.offset1
+        = form_for 'comment', :url => place_comments_path(@place), :html => {:id => 'comment-form', :remote => true, :class => "form-inline"} do |f|
+          .row
+            .span1{:style=>"margin-right: 10px"}= avatar_image(current_user)
+            = f.text_area :comment, :rows => 3, :class => "span9", :style => "height:54px; width:689px; max-width:689px !important; min-width:689px !important"
+          .row
+            .span2.offset1
+              = f.check_box "pm"
+              .help-inline= t(:pm)
+            .span2.offset8
+              = button_tag t(:cancel), :id => 'ask-cancel', :class => 'btn'
+              = button_tag t(:submit), :id => 'ask-btn',    :class => "btn btn-primary"
 -else
-  %a.btn.large.primary{:href => signup_path}
-    = t(:ask_question)
+  .row
+    .span12{:style => "text-align:center"}
+      %a.btn.btn-large.btn-primary{:href => signup_path}= t(:ask_question)
 
 %br
 %br
 - if !@comments.nil?
-  %section.item-questions
-    - @comments.each do |comment|
-      = render '/comments/comment', :comment => comment
+  .row  
+    %section.item-questions
+      - @comments.each do |comment|
+        = render '/comments/comment', :comment => comment
 
 :javascript
-  $("#open-ask-btn").click(function() {
-    $(this).hide();
-    $("#ask-form").show();
-  });
 
-  $("#ask-cancel").click(function() {
-    $("#ask-form").hide();
-    $("#open-ask-btn").show();
-    return false;
-  });
-
-  $("#ask-btn").click(function() {
-    showIndicator($(this));
-  });
-
-  $(".open-respond-form").live('click', function() {
-    $(this).next().show();
-    $(this).hide();
-  });
-
-  $(".respond-cancel").live('click', function() {
-    var container = $(this).parents(".respond-form");
-    container.prev().show();
-    container.hide();
-    return false;
-  });
-
-  $(".respond-btn").live('click', function() {
-    showIndicator($(this));
-  });
-
-  $(".del").live('click', function() {
-    //showIndicator($(this));
-  });
-
-  disabled_question_button();
+  PlaceComments.initialize();

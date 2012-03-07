@@ -10,4 +10,4 @@
                 = check_box_tag :place_type, p_type.id, (params[:place_type_ids] && params[:place_type_ids].include?(p_type.id.to_s)), :id => p_type.slug, :autocomplete => 'off', :style => 'display:inline'
                 %span{:style => 'display:inline'}= p_type.translated_name
               %span.right
-                %span= "(#{count})"
+                %span.label= count

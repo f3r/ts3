@@ -441,7 +441,7 @@ ul.references{
 // ------------
 .wrap-searchbar{
   &.sticky {
-    background: transparent url(bg.spillover.png) repeat-x left top;
+    background: transparent url(bg.spillover.png) repeat-x left 8px;
     padding: 20px 0 0;
     position: fixed;
     top: 32px;
@@ -528,7 +528,9 @@ ul.references{
 // Search Aside
 
 .search-aside{
-  
+  label {
+    display: inline;
+  }
   .toggle{
     .btn{
       width: 108px;
@@ -1185,12 +1187,11 @@ div.start div.hub form input#check_out.textbox {width:118px;}
    }
  }
 
-.navbar{
-  .sticky {
-     position: fixed;
-     top: 0;
-     width: 100%;
-  }
+header.header {
+  height: 105px;
+}
+
+.navbar {
   /* Links in the menu */
   ul.nav > li > a {
     color: white;

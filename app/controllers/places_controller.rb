@@ -163,25 +163,26 @@ class PlacesController < ApplicationController
     @city_id = params[:city_id]
     unless @city_id
       if params[:city] == 'hong_kong'
-        @city_id = 2 
+        @city_id = 2
       else
         @city_id = 1
       end
     end
-    
+
     check_in  = params[:check_in]  rescue nil
     check_out = params[:check_out] rescue nil
     page      = params[:page]
-    params    = { 
-      'check_in'  => check_in, 
-      'check_out' => check_out, 
-      'sort'      => 'price_lowest', 
+    search_params    = { 
+      'check_in'  => check_in,
+      'check_out' => check_out,
+      'sort'      => 'price_lowest',
       'guests'    => '1',
       'city'      => @city_id,
-      'currency'  => get_current_currency
+      'currency'  => get_current_currency,
+      'per_page'  => 6,
+      'page'      => page
     }
-    params.merge!('per_page' => 5, 'page' => page)
-    @results = Heypal::Place.search(params)
+    @results = Heypal::Place.search(search_params)
 
     min, max = Heypal::Geo.get_price_range(@city_id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
     if !min.nil? && !max.nil?
@@ -200,17 +201,16 @@ class PlacesController < ApplicationController
 
   # User
   def search
-    debugger
     page = params[:page]
-    params.merge!('per_page' => 5, 'page' => page)
+    params.merge!('per_page' => 6, 'page' => page)
     @results = Heypal::Place.search(params)
 
     if @results.key?("err")
       render :json => {
-        :results       => 0, 
-        :per_page      => 0, 
-        :current_page  => 0, 
-        :total_pages   => 0, 
+        :results       => 0,
+        :per_page      => 0,
+        :current_page  => 0,
+        :total_pages   => 0,
         :place_data    => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
         :place_filters => ''
       }
@@ -231,7 +231,7 @@ class PlacesController < ApplicationController
   def my_places
     @places = Heypal::Place.my_places(current_token, get_current_currency)
   end
-  
+
   def rent
     if logged_in?
       @user = Heypal::User.show('access_token' => current_token)

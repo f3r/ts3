@@ -178,7 +178,7 @@ $(document).ready(function() {
 
 
   $('.navbar').waypoint(function(event, direction) {
-    $(this).toggleClass('sticky', direction === "down");
+    $(this).toggleClass('navbar-fixed-top', direction === "down");
     event.stopPropagation();
   });
 

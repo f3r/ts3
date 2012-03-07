@@ -63,14 +63,6 @@ var type_builder = function(type, count) {
 
 };
 
-$("#guests, #sort").change(function() {
-  pull_data();
-});
-
-$("#types-list input").live('click', function() {
-  pull_data();
-});
-
 PlaceFilters = {
   initialize: function(minPrice, maxPrice){
 
@@ -93,7 +85,15 @@ PlaceFilters = {
     // Initialize the date pickers
     $('.check-in-picker').datepicker();   
     $('.check-out-picker').datepicker();   
-    
+
+    // Top filters
+    $("#guests, #sort").change(function() {
+      pull_data();
+    });
+
+    $("#types-list input").live('click', function() {
+      pull_data();
+    });
   }
 }
 

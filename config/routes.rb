@@ -106,8 +106,8 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/terms'                => 'home#terms'
   match '/privacy'              => 'home#privacy'
   match '/contact'              => 'home#contact'
-  match 'city_guides/singapore' => 'home#singapore', :as => "cityguide_sg"
-  match 'city_guides/hong-kong' => 'home#hongkong',  :as => "cityguide_hk"
+  match 'city-guides/singapore' => 'home#singapore', :as => "cityguide_sg"
+  match 'city-guides/hong-kong' => 'home#hongkong',  :as => "cityguide_hk"
 
   root :to => 'home#index'
 
@@ -119,7 +119,7 @@ HeyPalFrontEnd::Application.routes.draw do
     match 'translate/translate' => 'translate#translate', :as => :translate
     match 'translate/reload'    => 'translate#reload',    :as => :translate_reload
   end
-  
+
   # Error matching
   # http://techoctave.com/c7/posts/36-rails-3-0-rescue-from-routing-error-solution
   get '/robots.txt' => 'home#robot'

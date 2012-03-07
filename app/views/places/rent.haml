@@ -132,7 +132,7 @@
           .clearfix
             = check_box_tag :terms, 1, false, :class => "validate[required]"
             = t(:read_agreement)
-            = link_to t(:terms_and_conditions), '/terms-and-conditions', :target => :blank
+            = link_to t(:terms_and_conditions), terms_path, :target => :blank
 
             = hidden_field_tag :user_id, current_user['id']
             = hidden_field_tag :place_id, @place["id"]

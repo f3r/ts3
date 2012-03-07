@@ -14,7 +14,7 @@
     .control-group
       = f.label :price_per_month, t(:price_per_month) + '*', :class => 'control-label'
       .controls
-        %span.input-prepend
+        .input-prepend
           %span.add-on.currency-sign= currency_sign_of(@place.currency)
           = f.text_field :price_per_month, :class => "validate[custom[number],min[1],required] span2 autosave_pricing"
         %span#estimated_amount_monthly
@@ -23,7 +23,7 @@
     .control-group
       = f.label :price_final_cleanup, t(:final_cleanup), :class => 'control-label'
       .controls
-        %span.input-prepend
+         .input-prepend
           %span.add-on.currency-sign= currency_sign_of(@place.currency)
           = f.text_field :price_final_cleanup, :class => "span2 autosave"
           = link_to '?', '#', :class => 'tooltip-link', :title => raw(t(:final_cleanup_hint))

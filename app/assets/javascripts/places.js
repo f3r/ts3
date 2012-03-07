@@ -48,21 +48,6 @@ var pull_data = function() {
   return false;
 };
 
-var type_builder = function(type, count) {
-  var checked_ = ''
-  if(count != 0) {
-    checked_ = ' checked="checked" ';
-  }
-  var list = '<li>'+
-    '<label>'+
-      '<div class="left"><input'+checked_+' id="'+type+'" type="checkbox" value="1" /> <span>'+type.human_titleize()+'</span></div>' +
-      '<div class="right"><span>('+count+')</span></div>' +
-    '</label>';
-
-  $("#types-list").append(list);
-
-};
-
 PlaceFilters = {
   initialize: function(minPrice, maxPrice){
 

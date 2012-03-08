@@ -33,7 +33,7 @@ staging:
     S3_BUCKET:            squarestays-img-staging
     FB_APP_ID:            294052747281058
     FB_APP_SECRET:        c8fbc31a070e9aa9bcbba3d702d5ec1a
-    FRONTEND_PATH:        http://frontend-heypal.heroku.com
+    FRONTEND_PATH:        http://squarestage-backend.herokuapp.com
     TW_APP_ID:            7IhUH1SkVKa7VNVDY5Bdw
     TW_APP_SECRET:        iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc
     BACKEND_PATH:         https://backend-heypal.heroku.com

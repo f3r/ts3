@@ -22,7 +22,8 @@ var pull_data = function() {
       currency: $('#currency').val(),
       check_in: $('#check_in').val(),
       check_out: $('#check_out').val(),
-      place_type_ids: place_type_ids
+      place_type_ids: place_type_ids,
+      city_id: $('#city_id').val()
     },
     success: function(data) {
       $('.results > #search-load-indicator').remove();
@@ -196,6 +197,7 @@ $(function() {
               check_in: $('#check_in').val(),
               check_out: $('#check_out').val(),
               place_type_ids: place_type_ids,
+              city_id: $('#city_id').val(),
               page: page
             },
             beforeSend: function() {

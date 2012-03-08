@@ -30,8 +30,6 @@
         </script>          
         <!-- ASM script end -->
                            
-  .seo= t(:homepage_seo_text) +  t(:homepage_seo_text2)
-                           
 -unless logged_in?
   - unless controller_name.eql?('users') && (action_name.eql?('new') || action_name.eql?('connect'))
     #popup-registration.modal.hide{:style => 'margin-left: -362px; width: 725px'}

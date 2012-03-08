@@ -165,6 +165,9 @@ $(function() {
         $.ajax({
           url: '/places?page=' + page,
           type: 'get',
+          data: { 
+            city_id: $('#city_id').val()
+          },
           dataType: 'script',
           beforeSend: function() {
             $('.loading').show();

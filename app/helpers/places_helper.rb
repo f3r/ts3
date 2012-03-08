@@ -116,7 +116,7 @@ module PlacesHelper
     end
     months
   end
-  
+
   def seo_place_path(place)
     result = place['title'].dup
     result.gsub!(/[^\x00-\x7F]+/, '') # Remove anything non-ASCII entirely (e.g. diacritics).
@@ -124,14 +124,14 @@ module PlacesHelper
     result.gsub!(/[ \-]+/i, '-')      # No more than one of the separator in a row.
     result.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
     result.downcase!
-    
-    if !request.fullpath.match('hong_kong').nil? || params[:city_id] == 2
+
+    if place['city_id'] == 2
       "/hong_kong/#{place['id']}-#{result}"
     else
       "/singapore/#{place['id']}-#{result}"
     end
   end
-  
+
   def place_type_filters(place_type_counts)
     filters = []
     place_type_counts.each do |type_name, count|

@@ -21,9 +21,9 @@
 
           .float-right
             = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px", :autocomplete => 'off'
-            = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from
+            = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
             = "-"
-            = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to
+            = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
 
             %br
             .toggle

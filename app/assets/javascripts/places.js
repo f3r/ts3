@@ -69,8 +69,38 @@ PlaceFilters = {
     });
     
     // Initialize the date pickers
-    $('.check-in-picker').datepicker();   
-    $('.check-out-picker').datepicker();   
+    //$('.check-in-picker').datepicker();   
+    //$('.check-out-picker').datepicker();
+    $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
+      dateFormat: 'yy-mm-dd',
+      minDate: +1,
+      onSelect: function(selectedDate) {
+        // we only refresh results if both calendar pickers are not empty
+        var checkin  = $('.check-in-picker').val();
+        var checkout = $('.check-out-picker').val();
+        if ((checkin != "") && (checkout != "")) {
+          pull_data();
+        }
+
+        var me = $(this);
+        var who = me.attr("data-date");
+        var instance = me.data("datepicker");
+
+        var date = $.datepicker.parseDate(
+              instance.settings.dateFormat ||
+              $.datepicker._defaults.dateFormat,
+              selectedDate, instance.settings);
+
+        if (who == 'from') {
+          from = me.next();
+          from.datepicker("option", "minDate", date);
+        } else {
+          to = me.prev();
+          to.datepicker("option", "maxDate", date);
+        }
+      }
+    });
+    
 
     // Top filters
     $("#guests, #sort").change(function() {
@@ -93,38 +123,6 @@ String.prototype.human_titleize = function() {
 
   return arr.join(' ');
 };
-
-$('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
-  dateFormat: 'yy-mm-dd',
-  minDate: +1,
-  onSelect: function(selectedDate) {
-
-    // we only refresh results if both calendar pickers are not empty
-    var checkin  = $('.check-in-picker').val();
-    var checkout = $('.check-out-picker').val();
-    
-    if ((checkin != "") && (checkout != "")) {
-      pull_data();
-    }
-      
-    var me = $(this);
-    var who = me.attr("data-date");
-    var instance = me.data("datepicker");
-
-    var date = $.datepicker.parseDate(
-          instance.settings.dateFormat ||
-          $.datepicker._defaults.dateFormat,
-          selectedDate, instance.settings);
-
-    if (who == 'from') {
-      from = me.next();
-      from.datepicker("option", "minDate", date);
-    } else {
-      to = me.prev();
-      to.datepicker("option", "maxDate", date);
-    }
-  }
-});
 
 $(function() {
   var loading = false;
@@ -163,9 +161,10 @@ $(function() {
       page++;
       if($('#place_result_pages .from_index').text() == 'true') {
         $.ajax({
-          url: '/places?page=' + page,
+          url: '/places',
           type: 'get',
-          data: { 
+          data: {
+            page: page,
             city_id: $('#city_id').val()
           },
           dataType: 'script',

@@ -72,19 +72,21 @@
     %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => "Far East Organization"}
     
 #city_modal.hide.modal.fade
-  = form_tag '/cities/suggest', :class => 'cities_suggest_form' do
+  = form_tag '/cities/suggest', :class => 'cities_suggest_form form-horizontal' do
     .modal-header
       %h3=t(:cant_find_city)
     .modal-body
       =t(:working_on_expanding)
       <br><br>
-      .input
-        %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:city)
-        = text_field_tag 'city', ''
+      .control-group
+        %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t(:city)
+        .controls
+          = text_field_tag 'city', ''
       - unless logged_in?
-        .input
-          %label{:style => "text-align:right; width:65px; margin-right:20px;"}=t(:email)
-          = text_field_tag 'email'
+        .control-group
+          %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t(:email)
+          .controls
+            = text_field_tag 'email'
       <br>
       %i=t(:leave_us_email)
       <br>

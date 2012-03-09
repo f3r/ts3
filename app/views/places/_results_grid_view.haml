@@ -12,7 +12,7 @@
 
         .desc.clearfix
           %h3.title
-            = link_to place['title'], seo_place_path(place)
+            = link_to place['title'], seo_place_path(place), :title => place['title']
           .clearfix
             .property.data-block
               .title
@@ -23,7 +23,7 @@
                     = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
                     =t(:square_feet_short)
                   -else
-                    = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ") 
+                    = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ")
                     =t(:square_meters_short)
 
             .property2.data-block
@@ -44,7 +44,7 @@
                   .micro= t(:per_night)
                 -if @results['total_days'] >= 7 && @results['total_days'] <= 28
                   .figure= "#{get_pref_currency}#{place['price_per_week']}"
-                  .micro= t(:per_week)      
+                  .micro= t(:per_week)
                 -if @results['total_days'] > 28
                   .figure= "#{get_pref_currency}#{place['price_per_month']}"
                   .micro= t(:per_month)

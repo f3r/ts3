@@ -70,7 +70,7 @@ class PlacesController < ApplicationController
 
   def wizard
     @place = Heypal::Place.find(params[:id], current_token, nil) # no currency conversion
-    
+
     # filter data
     @place_basic_info = @place
     [:place_type, :user, :photos].each do |k|

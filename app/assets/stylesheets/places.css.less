@@ -21,18 +21,22 @@
  * PLACE INQUIRY
  *********************************************************************************************************/
 #inquire_place  {
-  width: 650px; 
-  height: auto;
+  width: 650px;
   overflow-y: hidden;
   overflow-x: hidden;
   margin-left: -300px;
   top:40%;
   
+  form {
+    margin-bottom: 0;
+  }
+  &.modal {
+    max-height: none;
+  }
   .modal-footer {
     background-color: white;
     height:25px;
     border:none;
-    margin-top: 20px;
   }
   .modal-header {
     background-color: #337;

@@ -1,0 +1,35 @@
+= form_for :address, :url => user_change_address_path((@user['id'] ? @user['id'] : params[:id])), :method => :put, :html => {:id => "change_address", :class => 'form-horizontal'} do |f|
+  .section-header #{t(:section_header_billing_address)}
+  .text
+    -# FIXME: coded_errors_for is not working
+    -# = coded_errors_for @address
+    .control-group
+      = f.label :street, "#{t(:street)}*", :class => 'control-label'
+      .controls
+        = icon_tooltip(:private)
+        = f.text_field :street, :class => "validate[required]"
+    
+    .control-group
+      = f.label :city, "#{t(:city)}*", :class => 'control-label'
+      .controls
+        = icon_tooltip(:public)
+        = f.text_field :city, :class => "validate[required]"
+    
+    .control-group
+      = f.label :country, "#{t(:country)}*", :class => 'control-label'
+      .controls
+        = icon_tooltip(:public)
+        = f.localized_country_select(:country, [], {:include_blank => t(:choose_country)}, {:class => "validate[required]"})
+    
+    .control-group
+      = f.label :zip, "#{t(:zip)}*", :class => 'control-label'
+      .controls
+        = icon_tooltip(:private)
+        = f.text_field :zip, :class => "validate[required]"
+        = f.hidden_field :id
+    
+    .clearfix
+    .span4.float-right
+      = submit_tag t(:save), :class => 'btn btn-primary'
+      = link_to t(:cancel), profile_path, :class => 'btn btn-secondary'
+    .clearfix

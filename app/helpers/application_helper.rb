@@ -62,11 +62,26 @@ module ApplicationHelper
     Heypal::Message.message_count(current_token)
   end
 
-  def large_avatar(avatar)
-    avatar['avatar'].gsub('thumb', 'large')
+  def large_avatar(user)
+    if logged_in? && !user.avatar.nil?
+      user.avatar.gsub('thumb', 'large')
+    else
+      "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
+    end
   end
   
   def require_google_apis
     @require_google_apis = true
+  end
+  
+  def icon_tooltip(type)
+    case type
+      when :public
+        raw "<a class=\"public\" href=\"#\" rel=\"tooltip\" title=\"#{t(:public_field)}\"></a>"
+      when :private
+        raw "<a class=\"private\" href=\"#\" rel=\"tooltip\" title=\"#{t(:private_field)}\"></a>"
+      when :fully_private
+        raw "<a class=\"fully_private\" href=\"#\" rel=\"tooltip\" title=\"#{t(:fully_private_field)}\"></a>"
+    end
   end
 end

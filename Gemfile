@@ -7,13 +7,10 @@ gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'rest-client', :require => 'rest_client'
-#gem 'aws-s3',      :require => 'aws/s3'
-#gem 'paperclip',   :require => 'paperclip',  :path => 'lib/paperclip'
 gem 'haml',          '~>3.1.4'
 gem 'jquery-rails',  '~>1.0.18'
 
 group :assets do
-  #gem 'sass-rails',   "~> 3.2.4"
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"
   gem 'less-rails-bootstrap'

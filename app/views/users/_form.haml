@@ -6,16 +6,13 @@
     = f.hidden_field :oauth_token
     = f.hidden_field :oauth_uid
     = f.hidden_field :avatar_url
-    .input
-      = f.text_field :first_name, :placeholder => 'First Name'
-    .input
-      = f.text_field :last_name, :placeholder => 'Last Name'
-    .input
-      = f.text_field :email, :placeholder => 'E-Mail Address'
-    .input
-      = f.password_field :password, :placeholder => 'Confirm'
-    .input
-      = f.password_field :password_confirmation, :placeholder => 'Confirm Password'
+    
+    .input= f.text_field     :first_name, :placeholder => 'First Name',     :class => "validate[required]"
+    .input= f.text_field     :last_name,  :placeholder => 'Last Name',      :class => "validate[required]"
+    .input= f.text_field     :email,      :placeholder => 'E-Mail Address', :class => "validate[required,custom[email]]"
+    .input= f.password_field :password,   :placeholder => 'Confirm',        :class => "validate[required,custom[onlyLetterNumber]]"
+    .input= f.password_field :password_confirmation, :placeholder => 'Confirm Password', :class => "validate[required, equals[user_password]]"
+    
     .input.agree
       %div.reset-width
         = f.check_box :terms, :id => 'terms_and_conditions'
@@ -24,3 +21,8 @@
           = link_to t(:terms_and_conditions), terms_path, :target => :blank
     %button.btn.float-right{:type => 'submit'}
       Create account
+
+:javascript
+  $(document).ready(function(){
+    $("#registerForm").validationEngine('attach');
+  });

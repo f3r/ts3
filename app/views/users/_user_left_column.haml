@@ -1,10 +1,7 @@
 %section.span2
-  - if !user.avatar.nil?
-    - @avatar = large_avatar(user)
-    - else
-    - @avatar = "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
-    
+  - @avatar = large_avatar(user)    
   = image_tag(@avatar, :width => 200)
+  
   - if @current_action == "edit"
     = link_to t(:change_photo), "#avatar-modal", { "data-toggle" => "modal", "data-backdrop"=>"static", :class => "change_avatar"}
 
@@ -17,6 +14,7 @@
   %p
     - if user['role'] == "agent"
       = image_tag "agent_button.png"
+  
   - if logged_in? && current_user['id'] == user['id']
     %br
     = render :partial => "users/user_accounts"

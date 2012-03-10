@@ -6,13 +6,13 @@
   .control-group
     = f.label :first_name, "#{t(:first_name)}*", :class => 'control-label'
     .controls
-      = icon_tooltip(:public)
+      = icon_tooltip(:private)
       = f.text_field :first_name, :class => "validate[required]"
   
   .control-group
     = f.label :last_name, "#{t(:last_name)}*", :class => 'control-label'
     .controls
-      = icon_tooltip(:private)
+      = icon_tooltip(:public)
       = f.text_field :last_name, :class => "validate[required]"
   
   .control-group

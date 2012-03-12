@@ -15,8 +15,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/cities'          => 'places#get_cities'
   match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
   match '/:city'           => 'places#index', :city => /hong_kong|singapore/
-  #match '/hong_kong'       => 'places#index'
-
+\
   # SEO Routes
   match '/singapore/:id', :to => 'places#show'
   match '/hong_kong/:id', :to => 'places#show'
@@ -105,15 +104,16 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Static Content
   ###########################################################################################
-  match '/why'                  => 'home#why',       :as => :home_why
-  match '/how-it-works'         => 'home#how',       :as => :home_how
-  match '/photography-faq'      => 'home#photo_faq', :as => :home_photo_faq
-  match '/terms'                => 'home#terms'
-  match '/privacy'              => 'home#privacy'
-  match '/contact'              => 'home#contact'
-  match 'city-guides/singapore' => 'home#singapore', :as => "cityguide_sg"
-  match 'city-guides/hong-kong' => 'home#hongkong',  :as => "cityguide_hk"
-
+  match '/why'                      => 'home#why',            :as => :home_why
+  match '/how-it-works'             => 'home#how',            :as => :home_how
+  match '/photography-faq'          => 'home#photo_faq',      :as => :home_photo_faq
+  match '/terms'                    => 'home#terms'
+  match '/privacy'                  => 'home#privacy'
+  match '/contact'                  => 'home#contact'
+  match 'city-guides/singapore'     => 'home#singapore',      :as => :cityguide_sg
+  match 'city-guides/hong-kong'     => 'home#hongkong',       :as => :cityguide_hk
+  match 'city-guides/kuala-lumpur'  => 'home#kualalumpur',   :as => :cityguide_kl
+  
   root :to => 'home#index'
 
   ###########################################################################################

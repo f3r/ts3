@@ -908,3 +908,6 @@ es:
   your_place: "Este es tu lugar!"
   zip: "Código postal"
   zip_code: "Código Postal"
+  cityguide_sg: "Guía: Singapore"
+  cityguide_hk: "Guía: Hong-Kong"
+  cityguide_kl: "Guía: Kuala Lumpur"

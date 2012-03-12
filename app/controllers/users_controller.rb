@@ -205,7 +205,7 @@ class UsersController < ApplicationController
       end
     else
       unless request.referer.include?('signup')
-        render :js => %w($('#popup-registration').modal({show: true, backdrop: 'static', keyboard: true}); return false;)
+        render :js => %w($('#popup-registration').modal(); return false;)
       else
         render :js => %w(window.location.reload();)
       end

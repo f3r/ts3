@@ -62,7 +62,9 @@ var PlaceShow = {
       header   : {left: 'prev', center: 'title', right: ''},
       editable : false,
       events   : events,         // A URL of a JSON feed that the calendar will fetch Event Objects from
-      visEnd   : lastVisibleDay  // A Date object of the day after the last visible day
+      visEnd   : lastVisibleDay,  // A Date object of the day after the last visible day
+      eventRender: PlaceShow.onEventRender,
+      viewDisplay: PlaceShow.markFreeDays
     });
 
     $('#second-calendar').fullCalendar({
@@ -70,7 +72,9 @@ var PlaceShow = {
       editable : false,
       events   : events,         // A URL of a JSON feed that the calendar will fetch Event Objects from
       month    : month,          // The initial month when the calendar loads.
-      visStart : false
+      visStart : false,
+      eventRender: PlaceShow.onEventRender,
+      viewDisplay: PlaceShow.markFreeDays
     });
 
     $('.fc-header-left .fc-button-inner').hide();
@@ -93,6 +97,49 @@ var PlaceShow = {
     
     $('#first-calendar').fullCalendar('render');
     $('#second-calendar').fullCalendar('render');
+  },
+  
+  markFreeDays: function(){
+    $(this).find('.fc-content td').removeClass('free');
+    $(this).find('.fc-content td').removeClass('busy');
+
+    events = $(this).fullCalendar('clientEvents');
+    var isBusy = function(date){
+      for(var i in events){
+        var event = events[i];
+        if(event.color == "red" && (date.getTime() >= event.start.getTime()) && (date.getTime() <= event.end.getTime())){
+          return true;
+        }
+      }
+      return false;
+    };
+
+    var today = $(this).fullCalendar('getDate');
+    var viewData = $(this).fullCalendar('getView');
+    cMonth = today.getMonth();
+    cYear = today.getFullYear();
+    lYear = parseInt(cYear);
+
+    $(this).find('.fc-day-number').each(function(){
+      var cell = $(this).parent().parent();
+
+      if(!cell.hasClass('fc-other-month')){
+        lDay = parseInt($(this).text());
+        lMonth = parseInt(cMonth);
+        lDate = new Date(lYear,lMonth,lDay);
+        if(isBusy(lDate)){
+          cell.addClass('busy');
+        } else {
+          cell.addClass('free');
+        }
+      }
+    });
+  },
+
+  onEventRender: function(event, element, view){
+    if(event.color == 'red'){
+      return false;
+    }
   },
 
   //*******************************************************************************************

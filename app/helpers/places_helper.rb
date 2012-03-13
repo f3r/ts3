@@ -41,16 +41,16 @@ module PlacesHelper
       [t(:pets_allowed), :amenities_pets_allowed],
       [t(:breakfast), :amenities_breakfast],
       [t(:smoking_allowed), :amenities_smoking_allowed],
-      [t(:suitable_events), :amenities_suitable_events],      
+      [t(:suitable_events), :amenities_suitable_events],
       [t(:family_friendly), :amenities_family_friendly],
-    ]   
+    ]
   end
 
   def amenities_group_4
     [
       [t(:gym), :amenities_gym],
-      [t(:jacuzzi), :amenities_jacuzzi],      
-      [t(:hot_tub), :amenities_hot_tub],      
+      [t(:jacuzzi), :amenities_jacuzzi],
+      [t(:hot_tub), :amenities_hot_tub],
       [t(:tennis), :amenities_tennis],
       [t(:pool), :amenities_pool],
     ]
@@ -60,11 +60,18 @@ module PlacesHelper
     p = photo['photo']
 
     photo_title = p['name'].present? ? truncate(p['name'], :length => 23) : t(:no_caption)
-    raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}' data-medsmall='#{p['medsmall']}' data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' data-trunc-name='#{truncate(p['name'], :length => 23)}' alt='#{p['filename']}'/></div><p class='photo_title'>#{photo_title}</p>"
-  end
-  
-  def render_photo_title(photo)
+    html = content_tag :div, :class => 'photo_image', :id => "image-#{p['id']}" do
+      image_tag(p['small'], :data => {
+        :id    => p['id'],
+        :large => p['large'],
+        :name  => p['name'],
+        :trunc_name => truncate(p['name'], :length => 23)
+      }).html_safe
+    end
+    html << content_tag(:p, photo_title)
 
+    html
+    #raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}' data-medsmall='#{p['medsmall']}' data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' data-trunc-name='#{truncate(p['name'], :length => 23)}' alt='#{p['filename']}'/></div><p class='photo_title'>#{photo_title}</p>"
   end
 
   def location(place)

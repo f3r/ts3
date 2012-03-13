@@ -14,7 +14,7 @@
       .span9
         %ul.gallery#photos_list
           - @photos = @place.photos
-          = render 'photo_list'
+          = render 'photos/list'
         .clearfix
 
   .well
@@ -30,32 +30,8 @@
       %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:next_step)
 
 :javascript
-  var afterSort = function(event, ui) {
-
-    if($('#photos_list li').size() > 0) {
-      $('.photos_wrapper').show();
-    } else {
-      $('.photos_wrapper').hide();
-    }
-
-    $('#photos_list li').removeClass("active");
-    $('#photos_list li:first').addClass("active");
-
-    $('#photos_list li').hover(function() {
-      $(this).find(".photo_action").show();
-    }, function() {
-      $(this).find(".photo_action").hide();      
-    });
-  };
-
-  var deletePhoto = function(photo) {
-    photo.fadeOut('slow', function(){
-      photo.parent().remove();
-      showLatestPhoto();
-      validatePanels();
-    });
-  };
-
+  /* TODO: Finish moving all this to wizard.js */
+  
   var showPhoto = function() {
     setPhoto($(this).find('img'));
   };
@@ -99,7 +75,7 @@
         }
         img_div = $("#image-" + $(this).attr('data-image-id'));
         img_div.find('img.photo').attr('data-name', data.value);
-        img_div.find('img.photo').attr('data-trunc-name', trunc);
+        img_div.find('img.photo').attr('data-trunc_name', trunc);
         img_div.find('~ .photo_title').html(trunc);
         updatePhotoLabel($(this).attr('data-image-id'), data.value)
       }
@@ -121,6 +97,8 @@
   var csrf_param = $('meta[name=csrf-param]').attr('content');
 
   $(function() {
+    
+    PhotoManager.initialize('#{sort_place_photos_path(@place.id)}');
 
     $('#photo_uploader').uploadify({
       'uploader'        : '/assets/uploadify/uploadify.swf',

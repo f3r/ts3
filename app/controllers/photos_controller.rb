@@ -8,7 +8,7 @@ class PhotosController < ApplicationController
 
     @place = Heypal::Place.find(params[:place_id], params[:token])
     @photos = @place.photos
-    render :template => 'places/_photo_list', :layout => false
+    render :partial => 'photos/list', :layout => false
   end
 
   def destroy

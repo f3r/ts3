@@ -129,11 +129,19 @@ class SessionsController < ApplicationController
   end
 
   def oauth_firstname
-    @oauth_firstname = omniauth_userinfo['first_name']
+    @oauth_firstname = if omniauth_userinfo['first_name']
+      omniauth_userinfo['first_name']
+    elsif oauth_name
+      oauth_name.split(' ', 2)[0]
+    end
   end
 
   def oauth_lastname
-    @oauth_lastname = omniauth_userinfo['last_name']
+    @oauth_lastname = if omniauth_userinfo['last_name']
+      omniauth_userinfo['last_name']
+    elsif oauth_name
+      oauth_name.split(' ', 2)[1]
+    end
   end
 
   def oauth_email

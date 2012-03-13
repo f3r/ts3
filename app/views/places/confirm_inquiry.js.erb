@@ -1,4 +1,4 @@
-$('#inquire_place').modal('hide');
+$('#inquire_place').modal('hide').addClass('sent');
 $('.alert-message').remove();
 <% if @response == "success" %>
 $('.place_info').before('<div class="alert alert-success" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t(:inquiry_success) %></div>');

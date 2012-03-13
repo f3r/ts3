@@ -15,7 +15,6 @@
 //= require jquery.ui.touch.punch.min
 //= require jquery.tinycarousel.min
 //= require jquery.cycle.all
-//= require jquery.calendar
 //= require jquery.waypoints.min
 //= require jquery.charcounter
 //= require jquery.validationEngine-en
@@ -70,16 +69,6 @@ function validateElement(elem) {
 function hideIndicator(elem) {
   elem.parent().find('.save-indicator').detach();
 }
-
-$('span#date-input-1').calendar({
-  parentElement: 'div#date-input-1-container',
-  dateFormat: '%d %B %Y'
-});
-
-$('span#date-input-2').calendar({
-  parentElement: 'div#date-input-2-container',
-  dateFormat: '%d %B %Y'
-});
 
 $(".preference").click(function() {
   $(this).hide().next().show();

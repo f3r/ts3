@@ -6,6 +6,7 @@ var PlaceShow = {
     var self = this;
     self.initializeSlider();
     self.initializeSharePlace(opts.share_title, opts.share_url, opts.share_id);
+    self.inquireModal();
 
     // Lazy Initialize Map and calendar
     $('a[data-toggle="tab"]').on('shown', function (e) {
@@ -153,5 +154,25 @@ var PlaceShow = {
       hint: 'Share this place',
       url: url //+ ' ' + id
     });    
+  },
+  
+  inquireModal: function(){
+    $('#inquire_place').on('shown', function (){
+      add_datepicker();
+      $('.alert-message').remove();
+      $("#inquire_form").validationEngine({
+        promptPosition : "bottomRight:-50,30",
+        relative: true,
+        onSuccess: function(){
+          $("#inquire_button").button('loading');
+          return true;
+        }
+      });
+    });
+    
+    $('#optional').hide();
+    $('#optional-header').click(function(){
+      $('#optional').toggle()
+    });
   }    
 }

@@ -77,6 +77,19 @@
   .optional-body {
     background-color: #f7f7f7;
   }
+
+  .inquiry-sent-msg {
+    display: none;
+  }
+  
+  &.sent {
+    .inquiry-sent-msg {
+      display: block;
+    }
+    .inquiry-actions {
+      display: none;
+    }
+  }
 }
 
 /********************************************************************************************************* 

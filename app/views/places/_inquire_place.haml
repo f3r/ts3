@@ -57,21 +57,7 @@
             = text_area_tag :questions, nil, :rows => 5, :placeholder => 'Please tell us if you have any further questions. Questions can be for this property or for any properties listed by this agent', :class => 'span5'
     .clearfix
     .modal-footer
-      %button.btn.btn-primary{'data-loading-text' => "Submitting...", 'data-toggle' => "button", 'id' => 'inquire_button'}=t(:submit)
-      %div.btn{ :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
-
-:javascript
-  $('#inquire_button').click(function(){
-   $(this).button('loading');
-  });
-  $('#optional').hide();
-  $('#optional-header').click(function(){
-    $('#optional').toggle()
-  });
-  $('#inquire_place').bind('show', function () {
-    $('.alert-message').remove();
-    $("#inquire_form").validationEngine({
-      promptPosition : "bottomRight:-50,30",
-      relative: true      
-    });
-  })
+      .inquiry-actions
+        %button.btn.btn-primary{'data-loading-text' => "Submitting...", 'id' => 'inquire_button', 'autocomplete' => 'off'}=t(:submit)
+        %div.btn{ :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
+      %div.inquiry-sent-msg.btn.btn-primary.disabled= "Inquiry already sent"

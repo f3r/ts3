@@ -22,6 +22,10 @@
     %button.btn.float-right{:type => 'submit'}
       Create account
 
+  .switch-login
+    = t(:switch_to_login)
+    = link_to 'here', login_path
+  
 :javascript
   $(document).ready(function(){
     $("#registerForm").validationEngine('attach');

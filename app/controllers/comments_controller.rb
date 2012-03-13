@@ -24,9 +24,9 @@ class CommentsController < ApplicationController
       saved, @comment = comment.save
   
       if saved
-        render :partial => '/comments/add_comment'
+        render '/comments/create', :layout => nil
       else
-        render :text => 'error'
+        render '/comments/validation_error', :layout => nil
       end
     end
   end

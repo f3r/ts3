@@ -51,7 +51,7 @@ var PlaceComments = {
   
   addComment: function(html){
     $('.item-questions').append(html);
-    $('#respond-form-div').hide();
+    $("#ask-form").hide();
     hideIndicator($('#ask-btn'));
     $('#open-ask-btn').show();
     $('#comment_comment').val('');

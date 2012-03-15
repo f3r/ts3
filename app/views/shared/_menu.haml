@@ -3,7 +3,14 @@
     .container
       .nav-collapse
         %ul.nav
-          = menu_link_to t(:find_places), '/singapore'
+          %li.dropdown
+            %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
+              = t(:find_places)
+              %b.caret
+            %ul.dropdown-menu{:style => 'width:200px'}
+              %li= link_to t(:singapore), '/singapore'
+              %li= link_to t(:hongkong),  '/hong_kong'
+
           - if logged_in?
             - if is_agent? or is_admin?
               %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}

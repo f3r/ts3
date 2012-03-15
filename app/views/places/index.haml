@@ -17,7 +17,7 @@
               %span.results_count= @results['results']
               = t(:results)
             %br
-            = link_to "Not going to #{city_name(@city_id)}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
+            = #link_to "Not going to #{city_name(@city_id)}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 
           .float-right
             = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px", :autocomplete => 'off'

@@ -30,7 +30,7 @@
       - elsif is_agent?
         = button_to 'List your properties', new_place_path, :class => "btn btn-large btn-info", :method => :get
       - else
-        = button_to 'List your properties', mail_to('support@squarestays.com'), :class => "btn btn-large btn-info", :method => :get
+        = button_to 'List your properties', 'mailto: support@squarestays.com', :class => "btn btn-large btn-info", :method => :get
   .row  
     .well
       %h3 Payments

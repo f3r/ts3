@@ -1,7 +1,7 @@
 #inquire_place.modal.hide.fade
   = form_tag(confirm_inquiry_place_path, {:method => :post, :remote => true, :id => "inquire_form"}) do
     .modal-header
-      %a{:href => '#', :class => 'close'}x
+      %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
       %h3 Tell us about your stay
 
     .modal-header.optional-section

@@ -464,13 +464,16 @@ ul.references{
 .search-bar{  
   background: #f8f8f8;
   border: 1px solid #c0c0c0;
-  padding: 10px;  
+  padding: 10px 10px 0 10px;
 /*  .border-radius(5px);*/
   .clearfix();
   overflow: hidden;
   _zoom: 1;
   margin-bottom: 20px;
-  
+
+  input#check_in, input#check_out {width:84px;}
+  h2 {line-height:23px;}
+
   form{
     margin: 0;
     .floatLeft();
@@ -507,20 +510,19 @@ ul.references{
   }
 
 
-  .toggle{
-    padding-top: 3px;
+  .views {
     .clearfix();
     height: 30px;
-    margin-top: 7px;
     a{
       width: 24px;
       height:24px;
-      float:right;    
       .border-radius(2px);
       margin-left: 10px;
       opacity: 0.2;
+      float: right;
     }
-    
+    .sorting { float: left; }
+    .toggle  { float: right;}
     a.current{ opacity: 1;}
     
     .disp-list{
@@ -1121,19 +1123,6 @@ pre.desc {
 
 form#wizard_form label.no_minimum_stay,
 form#wizard_form label.no_maximum_stay { float:none; }
-
-.search-bar1 input#check_in,
-.search-bar1 input#check_out {width:84px;}
-.search-bar1 h2 {line-height:23px;}
-.search-bar2 .buttons,
-.search-bar2 .results,
-.search-bar2 .sorting {float:left;width:33%;}
-.search-bar2 .toggle {width:80px;}
-.search-bar2 .toggle a {float:left;}
-
-.search-bar2 .buttons {}
-.search-bar2 .results {text-align:center;padding-top:6px;}
-.search-bar2 .sorting {text-align:right;}
 
 div.start div.hub form input#check_in.textbox,
 div.start div.hub form input#check_out.textbox {width:118px;}

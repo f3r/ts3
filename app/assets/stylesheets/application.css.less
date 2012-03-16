@@ -566,8 +566,9 @@ ul.references{
 
 // 
 // My Places
-.my_places .edit_button a.btn {
-  float:right
+.my_places {
+  .edit_button a.btn { float:right; }
+  .place_status { width: 40px; text-align: center; } 
 }
 
 // 
@@ -987,7 +988,7 @@ h2.title {
   background: @red;
 }
 
-a.tooltip, a.tooltip-link, .place_status  {
+a.tooltip, a.tooltip-link  {
   border:1px solid;
   border-radius:5px;
   margin-left:10px;

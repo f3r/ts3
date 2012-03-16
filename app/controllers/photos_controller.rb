@@ -13,6 +13,8 @@ class PhotosController < ApplicationController
 
   def destroy
     Heypal::Photo.delete(params[:id], current_token)
+    @place = Heypal::Place.find(params[:place_id], current_token)
+    @published = @place['published']
     respond_to do |format|
       format.js{ render :template => 'photos/destroy.js.erb', :layout => false }
     end

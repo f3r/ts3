@@ -7,10 +7,10 @@
             %li
               .float-right
                 - if place['published']
-                  %p{:class => 'place_status'}=  t(:listed)
+                  .label.place_status.label-success=  t(:listed)
                 - else
-                  %p{:class => 'place_status'}=  t(:invisible)
-              .span3
+                  .label.place_status=  t(:invisible)
+              .span
                 .thumb.data-block
                   - if place['photos'].blank?
                     - place_photo = image_tag( "photo-missing.png", :size => "160x110")
@@ -22,23 +22,23 @@
                   %h3.title
                     = link_to place['title'], (place['published'] ? place_path(place['id']) : wizard_place_path(place['id'])), :class => 'place_title_link'
                   .row
-                    .span3
+                    .span2
                       .location
                         = "#{place['city_name']}, #{place['country_name']}"
-                    .span3
+                    .span2
                       .type 
                         = I18n.t(place['place_type']['name'].parameterize('_')) 
                       .micro
                         - if !place['size_sqf'].nil? or !place['size_sqm'].nil?
                           = get_current_size_unit == "sqf" ? place['size_sqf'].round(2) : place['size_sqm'].round(2)
                           =raw get_pref_size_unit
-                    .span3
+                    .span2
                       .price
-                        - if !place['price_per_night'].nil?
-                          .figure= "#{get_pref_currency}#{place['price_per_night']} #{t(:per_night)}"
+                        - if !place['price_per_month'].nil?
+                          .figure= "#{get_pref_currency}#{place['price_per_month']} #{t(:per_month)}"
                         - else
                           &nbsp;
-                    .span3.edit_delete_buttons.hidden
+                    .span2.edit_delete_buttons.hidden
                       %a.btn.large.small{:title => t(:edit_place), :href => "#{wizard_place_path(place['id'])}"}
                         =t(:edit_place)
                       = link_to t(:delete_place), place_path(place['id']), :method => :delete,  :class => 'btn large small'

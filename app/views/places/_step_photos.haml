@@ -30,20 +30,7 @@
       %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t(:next_step)
 
 :javascript
-  /* TODO: Finish moving all this to wizard.js */
-  
-  var showPhoto = function() {
-    setPhoto($(this).find('img'));
-  };
-
-  var showLatestPhoto = function() {
-    var photo = $('#photos_list li img').last();
-    if(photo.size() > 0) {
-      setPhoto(photo);
-    } else {
-      $('.photo_wrapper').empty();
-    }
-  }
+  /* TODO: Finish moving this to wizard.js */
 
   var updatePhotoLabel = function(photo_id, label) {
     $.ajax({
@@ -53,11 +40,10 @@
     });
   };
 
-  var uploadify_script_data = {};
-  var csrf_token = $('meta[name=csrf-token]').attr('content');
-  var csrf_param = $('meta[name=csrf-param]').attr('content');
-
   $(function() {
+    var uploadify_script_data = {};
+    var csrf_token = $('meta[name=csrf-token]').attr('content');
+    var csrf_param = $('meta[name=csrf-param]').attr('content');
     
     PhotoManager.initialize('#{sort_place_photos_path(@place.id)}');
 
@@ -78,10 +64,7 @@
       'fileExt'         : '*.jpg;*.png',
       'scriptData'      : {'_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
       'onComplete'  : function(event, ID, fileObj, response, data) {
-        $('#photos_list').html(response);
-        afterSort();
-        showLatestPhoto();
-        validatePanels();        
+        PhotoManager.insert(response);        
       }
     });
   });

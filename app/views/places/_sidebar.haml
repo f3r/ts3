@@ -27,15 +27,15 @@
         %a{:href => "#5", :title => t(:calendar)}
           = t(:calendar)
 
-  .actions
-    - unless @place.published
-      %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
-        %span
-          = t(:preview)
-    - else
-      %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
-        %span
-          = t(:back_to_place_details)
+    .actions
+      - unless @place.published
+        %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
+          %span
+            = t(:preview)
+      - else
+        %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
+          %span
+            = t(:back_to_place_details)
 
 :javascript
   var timeCount = 0;

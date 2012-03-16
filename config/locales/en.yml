@@ -29,8 +29,10 @@ en:
   how_it_works:      How it works
   photography_faq:   Photography FAQ
   community_support: Community Support
+  hongkong:          Hong Kong
+  singapore:         Singapore
   cityguide_sg:      "City Guide: Singapore"
-  cityguide_hk:      "City Guide: Hong-Kong"
+  cityguide_hk:      "City Guide: Hong Kong"
   cityguide_kl:      "City Guide: Kuala Lumpur"
   
   ####################################################################################
@@ -333,6 +335,7 @@ en:
   ####################################################################################
   this_is_preview: This is a Preview
   per_night: Per Night
+  per_month: Per Month
   rent: Inquire
 
   map: Map

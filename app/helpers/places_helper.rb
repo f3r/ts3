@@ -64,8 +64,8 @@ module PlacesHelper
       image_tag(p['small'], :data => {
         :id    => p['id'],
         :large => p['large'],
-        :name  => p['name'],
-        :trunc_name => truncate(p['name'], :length => 23)
+        :name  => p['name'] || '',
+        :trunc_name => truncate(p['name'], :length => 23) || ''
       }).html_safe
     end
     html << content_tag(:p, photo_title)

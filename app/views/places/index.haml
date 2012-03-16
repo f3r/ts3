@@ -4,55 +4,28 @@
 %section.clearfix
   .row
     .span9
-      .wrap-searchbar
-        .search-bar
-          .float-left
-            %h2{:style => 'display:inline; '}
-              = city_name(@city_id)
-            = hidden_field_tag :currency, get_current_currency
-            = hidden_field_tag :city_id, @city_id
-            %br
-            #num_search_results
-              %span.results_count= @results['results']
-              = t(:results)
-            %br
-            = #link_to "Not going to #{city_name(@city_id)}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
-
-          .float-right
-            .filters
-              = select_tag :guests, options_for_select(max_guest_options), :style => "width:100px", :autocomplete => 'off'
-              = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
-              = "-"
-              = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
-
-            .views
-              .sorting
-                = t(:sort_by)
-                = select_tag :sort, options_for_select(sort_options, 'price_highest'), :class => 'medium', :autocomplete => 'off'
-              .toggle
-                = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-                = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
-
+      = render 'search_bar'
       .results
         #search_results
           = render 'search_results', :places => @results['places']
           
       .loading.center.hide= image_tag('loading.gif')
     .span3
-      .search-aside
-        %form.panel-wrap
-          %ul.panel-expander
-            %li
-              = render :partial => 'place_type_filters'
-            %li
-              .header= t(:price_per_month)
-              .content
-                #max_price.float-right= @max_price
-                #min_price= @min_price
+      .search-aside-wrapper
+        .search-aside
+          %form.panel-wrap
+            %ul.panel-expander
+              %li
+                = render :partial => 'place_type_filters'
+              %li
+                .header= t(:price_per_month)
+                .content
+                  #max_price.float-right= @max_price
+                  #min_price= @min_price
 
-                #price-slider{:style => "z-index:1;"}
+                  #price-slider{:style => "z-index:1;"}
 
-        = render 'shared/asm_banner_vertical'
+          = render 'shared/asm_banner_vertical'
 
 #place_result_pages.hide
   .page_num= 1

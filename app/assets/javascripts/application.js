@@ -163,18 +163,18 @@ $(document).ready(function() {
 
   $('.dropdown-toggle').dropdown();
   
-  $.waypoints.settings.scrollThrottle = 1;
+  $.waypoints.settings.scrollThrottle = 30;
 
 
-  $('.navbar').waypoint(function(event, direction) {
-    $(this).toggleClass('navbar-fixed-top', direction === "down");
+  $('.navbar-wrapper').waypoint(function(event, direction) {
+    $('.navbar').toggleClass('navbar-fixed-top', direction === "down");
     event.stopPropagation();
   });
 
-  $('.wizard-aside, .wrap-searchbar, .search-aside').waypoint(function(event, direction) {
-    $(this).toggleClass('sticky', direction === "down");
+  $('.wizard-aside-wrapper, .search-bar-wrapper, .search-aside-wrapper').waypoint(function(event, direction) {
+    $(this).children().toggleClass('sticky', direction === "down");
     event.stopPropagation();
-	}, {offset: 52});  // NOTE: when you change this, goto heypal.less -> .sticky and change top attr
+	}, {offset: 52});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
 
 });
 

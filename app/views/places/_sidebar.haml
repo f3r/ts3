@@ -1,29 +1,30 @@
-.wizard-aside
-  %ul.nav.nav-tabs.nav-stacked#wizard_tabs
-    %li.active
-      .indicator#generalInfo
-        = image_tag('check-disabled.png')
-      %a{:href => "#1", :title => t(:general_information)}
-        = t(:general_info)
-    %li
-      .indicator#photoInfo
-        = image_tag('check-disabled.png')
-      %a{:href => "#2", :title => t(:photos)}
-        = t(:photos)
-    %li
-      .indicator#amenitiesInfo
-        = image_tag('check-disabled.png')
-      %a{:href => "#3", :title => t(:amenities)}
-        = t(:amenities)
-    %li
-      .indicator#priceInfo
-        = image_tag('check-disabled.png')
-      %a{:href => "#4", :title => t(:price_and_conditions)}
-        = t(:price_and_conditions)
-    %li
-      .indicator
-        = image_tag('check.png')
-      %a{:href => "#5", :title => t(:calendar)}
+.wizard-aside-wrapper
+  .wizard-aside
+    %ul.nav.nav-tabs.nav-stacked#wizard_tabs
+      %li.active
+        .indicator#generalInfo
+          = image_tag('check-disabled.png')
+        %a{:href => "#1", :title => t(:general_information)}
+          = t(:general_info)
+      %li
+        .indicator#photoInfo
+          = image_tag('check-disabled.png')
+        %a{:href => "#2", :title => t(:photos)}
+          = t(:photos)
+      %li
+        .indicator#amenitiesInfo
+          = image_tag('check-disabled.png')
+        %a{:href => "#3", :title => t(:amenities)}
+          = t(:amenities)
+      %li
+        .indicator#priceInfo
+          = image_tag('check-disabled.png')
+        %a{:href => "#4", :title => t(:price_and_conditions)}
+          = t(:price_and_conditions)
+      %li
+        .indicator
+          = image_tag('check.png')
+        %a{:href => "#5", :title => t(:calendar)}
         = t(:calendar)
 
   .actions

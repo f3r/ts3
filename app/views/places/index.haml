@@ -5,7 +5,7 @@
   .row
     .span9
       = render 'search_bar'
-      .results
+      .results{:style => "padding-top: 10px;"}
         #search_results
           = render 'search_results', :places => @results['places']
           
@@ -25,7 +25,7 @@
 
                   #price-slider{:style => "z-index:1;"}
 
-          = render 'shared/asm_banner_vertical'
+      = render 'shared/asm_banner_vertical'
 
 #place_result_pages.hide
   .page_num= 1

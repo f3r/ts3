@@ -449,10 +449,11 @@ ul.references{
 // ------------
 .search-bar-container{
   &.sticky {
-    background: transparent url(bg.spillover.png) repeat-x left 8px;
+    background: transparent url(bg.spillover.png) repeat-x left 0px;
+    /*background-color: white;*/
     padding: 20px 0 0;
     position: fixed;
-    top: 32px;
+    top: 40px;
     width: 700px;
 
     + .results {
@@ -538,6 +539,7 @@ ul.references{
 // Search Aside
 
 .search-aside{
+  background-color: white;
   label {
     display: inline;
   }
@@ -550,7 +552,8 @@ ul.references{
 
   &.sticky {
     position: fixed;
-    top: 52px;
+    top: 40px;
+    padding-top:20px;
     width: 220px;
   }
 }

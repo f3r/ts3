@@ -110,6 +110,15 @@ PlaceFilters = {
     $("#types-list input").live('click', function() {
       pull_data();
     });
+
+    // Sticky filters
+    $(".search-aside-wrapper").height($(".search-aside").height());
+    $(".search-bar-wrapper").height($(".search-bar").height());
+
+    $('.search-bar-wrapper, .search-aside-wrapper').waypoint(function(event, direction) {
+      $(this).children().toggleClass('sticky', direction === "down");
+      event.stopPropagation();
+    }, {offset: 60});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
   }
 }
 

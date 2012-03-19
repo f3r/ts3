@@ -165,16 +165,15 @@ $(document).ready(function() {
   
   $.waypoints.settings.scrollThrottle = 30;
 
-
   $('.navbar-wrapper').waypoint(function(event, direction) {
     $('.navbar').toggleClass('navbar-fixed-top', direction === "down");
     event.stopPropagation();
   });
 
-  $('.wizard-aside-wrapper, .search-bar-wrapper, .search-aside-wrapper').waypoint(function(event, direction) {
+  $('.wizard-aside-wrapper').waypoint(function(event, direction) {
     $(this).children().toggleClass('sticky', direction === "down");
     event.stopPropagation();
-	}, {offset: 52});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
+	}, {offset: 62});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
 
 });
 

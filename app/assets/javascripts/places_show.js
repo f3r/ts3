@@ -163,9 +163,12 @@ var PlaceShow = {
       $("#inquire_form").validationEngine({
         promptPosition : "bottomRight:-50,30",
         relative: true,
-        onSuccess: function(){
-          $("#inquire_button").button('loading');
-          return true;
+        onValidationComplete: function(form, status){
+          if(status){
+            $("#inquire_button").button('loading');
+            form.validationEngine('detach');
+            form.submit();
+          }
         }
       });
     });

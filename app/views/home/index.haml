@@ -7,9 +7,8 @@
           = link_to "Singapore", "#", :id => "open-country-select"
         %ul#country-select.dropdown
           %li.arrow
-
-          %li= link_to t(:singapore), '/singapore'
-          %li= link_to t(:hongkong), '/hong_kong'
+          - Heypal::City.all.each do |city|
+            %li= link_to city.name, "/#{city.code}"
           %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
 
         %p
@@ -29,15 +28,19 @@
         %a.thumbnail{:href => "http://www.squarestays.com/singapore/5-the-clift-prime-location-loft-with-view"}
           .description= t(:car_one)
           %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/5/photos/1326456807/large.jpg"}
+
         %a.thumbnail{:href => "http://www.squarestays.com/singapore/2-cavenagh-lodge-central-great-for-family"}
           .description= t(:car_two)
           %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/2/photos/1326444525/large.jpg"}
-        %a.thumbnail{:href => "http://www.squarestays.com/singapore/6-the-clift-cool-2-bedroom-downtown-loft"}
+
+        %a.thumbnail{:href => "http://www.squarestays.com/kuala_lumpur"}
           .description= t(:car_three)
-          %img{:src => "http://s3.amazonaws.com/squarestays-img-production/places/6/photos/1326721102/large.jpg"}
+          %img{:src => "https://s3.amazonaws.com/squarestays-static/car06.jpg"}
+
         %a.thumbnail{:href => "#{cityguide_sg_path}"}
           .description= t(:car_four)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car05.jpg"}
+
         %a.thumbnail{:href => "#{cityguide_hk_path}"}
           .description= t(:car_five)
           %img{:src => "http://s3.amazonaws.com/squarestays-static/car03.jpg"}

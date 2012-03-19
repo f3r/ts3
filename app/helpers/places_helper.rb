@@ -132,11 +132,9 @@ module PlacesHelper
     result.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
     result.downcase!
 
-    if place['city_id'] == 2
-      "/hong_kong/#{place['id']}-#{result}"
-    else
-      "/singapore/#{place['id']}-#{result}"
-    end
+    city = Heypal::City.find_by_id(place['city_id'])
+    
+    "/#{city.code}/#{place['id']}-#{result}"
   end
 
   def place_type_filters(place_type_counts)

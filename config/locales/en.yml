@@ -29,8 +29,9 @@ en:
   how_it_works:      How it works
   photography_faq:   Photography FAQ
   community_support: Community Support
-  hongkong:          Hong Kong
+  hong_kong:         Hong Kong
   singapore:         Singapore
+  kuala_lumpur:       Kuala Lumpur
   cityguide_sg:      "City Guide: Singapore"
   cityguide_hk:      "City Guide: Hong Kong"
   cityguide_kl:      "City Guide: Kuala Lumpur"
@@ -452,9 +453,9 @@ en:
 
   car_one:   "The Clift - an elegant Singapore downtown loft"
   car_two:   "Cavenagh - perfect for families coming to Singapore"
-  car_three: "In the heart of Singapore - The Clift"
+  car_three: "Kuala Lumpur - now featured on SquareStays!"
   car_four:  "Singapore - a rising global business powerhouse"
-  car_five:  "Hong Kong - the newest city on SquareStays!"
+  car_five:  "Hong Kong - business gateway to China"
 
   ####################################################################################
   # How it works page

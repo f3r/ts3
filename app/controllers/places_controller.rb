@@ -160,13 +160,15 @@ class PlacesController < ApplicationController
 
   # default place search2
   def index
-    @city_id = params[:city_id]
-    unless @city_id
-      if params[:city] == 'hong_kong'
-        @city_id = 2
-      else
-        @city_id = 1
-      end
+    if params[:city_id]
+      @city_id = params[:city_id]
+    elsif params[:city]
+      city = Heypal::City.find_by_name(params[:city])
+      @city_id = city.id if city
+    end
+
+    unless @city_id  
+      raise "Invalid city"
     end
 
     check_in  = params[:check_in]  rescue nil

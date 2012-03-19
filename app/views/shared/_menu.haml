@@ -9,8 +9,8 @@
                 = t(:find_places)
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
-                %li= link_to t(:singapore), '/singapore'
-                %li= link_to t(:hongkong),  '/hong_kong'
+                - Heypal::City.all.each do |city|
+                  %li= link_to city.name, "/#{city.code}"
 
             - if logged_in?
               - if is_agent? or is_admin?

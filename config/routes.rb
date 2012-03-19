@@ -14,11 +14,10 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
   match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
-  match '/:city'           => 'places#index', :city => /hong_kong|singapore/
-\
+  match '/:city'           => 'places#index', :city => Heypal::City.routes_regexp
+
   # SEO Routes
-  match '/singapore/:id', :to => 'places#show'
-  match '/hong_kong/:id', :to => 'places#show'
+  match '/:city/:id'       => 'places#show', :city => Heypal::City.routes_regexp
 
   resources :places do
     member do
@@ -42,8 +41,6 @@ HeyPalFrontEnd::Application.routes.draw do
     end
 
     get :search, :on => :collection
-    get '/singapore' => 'places#index', :on => :collection
-    get '/hong_kong' => 'places#index', :on => :collection
 
     resources :availabilities
     resources :comments do

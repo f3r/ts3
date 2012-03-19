@@ -64,7 +64,7 @@
     .control-group.required
       = f.label :address_1, t(:address_1), :class => 'control-label'
       .controls
-        = f.text_field :address_1, :class => "input-xlarge autosave"
+        = f.text_field :address_1, :class => "input-xlarge validate[required] autosave"
         %p.help-block
           = t(:address_1_help)
     .control-group

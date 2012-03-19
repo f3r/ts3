@@ -46,7 +46,7 @@
     var wizardStep = "#{params[:step]}";
     // Load initial Panel
     $('.wizard-wrapper .panel').css("display", "none");  
-    $('.wizard-wrapper .panel:first').css("display", "block");  
+    $('.wizard-wrapper .panel').first().css("display", "block");  
 
     if(wizardStep != "") {
       switchToPanel(wizardStep);
@@ -54,6 +54,7 @@
       switchToPanel(1);
     }
 
-    validatePanels(); 
-
+    validatePanels();
+    //Hide errors initially
+    $('.wizard-wrapper .panel .error').removeClass('error');
   });

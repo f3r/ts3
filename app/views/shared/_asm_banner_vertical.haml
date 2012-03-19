@@ -1,3 +1,7 @@
+- if Rails.env.production? && @city_id==1
+  #SGHotels_Ad{:style => "margin-left:1px; margin-top: 30px"}
+    = link_to image_tag("SingaporeHotels.jpg"), "http://singaporehotels.com"
+
 - if Rails.env.production?
   #ASM_Ad{:style => "margin-left:27px; margin-top: 20px"}
     / ASM Ad-tag STARTS

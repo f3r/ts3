@@ -152,14 +152,6 @@ $(document).ready(function() {
       animation: false,
       placement: 'top',
   }); 
-  
-  /*$("a.tooltip-link").tooltip({
-    live:true,
-    animation: false,
-    placement:'below',
-    delayOut: 3000,
-    html: true
-  }); */
 
   $('.dropdown-toggle').dropdown();
   

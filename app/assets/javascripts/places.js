@@ -69,8 +69,6 @@ PlaceFilters = {
     });
     
     // Initialize the date pickers
-    //$('.check-in-picker').datepicker();   
-    //$('.check-out-picker').datepicker();
     $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
       dateFormat: 'yy-mm-dd',
       minDate: +1,

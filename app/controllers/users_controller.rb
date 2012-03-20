@@ -60,7 +60,7 @@ class UsersController < ApplicationController
             end
           end
         end
-        redirect_to '/places'
+        redirect_to after_sign_in_path
       else
         flash[:error] = t(:invalid_confirmation_code)
         render :layout => 'single'

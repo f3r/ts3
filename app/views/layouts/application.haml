@@ -16,6 +16,7 @@
               = yield :aside
           - else
             %section.span12
+              = flash_messages
               = yield
 
       = render 'shared/footer'

@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
   def new
+    if params[:ref]
+      session[:user_return_to] = params[:ref]
+    end
     @user = Heypal::User.new
     render :layout => 'single'
   end

@@ -9,7 +9,18 @@ module HomeHelper
       login_path
     end
   end
-  
+
+  def signup_path_with_ref
+    black_list = ['/', '/signup', '/login']
+    current_path = request.path
+
+    if current_path && !black_list.include?(current_path)
+      signup_path(:ref => request.path)
+    else
+      signup_path
+    end
+  end
+
   def menu_link_to(label, path)
     current_path = request.path
     active_class = (request.path == path)? 'active' : ''

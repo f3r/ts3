@@ -167,7 +167,7 @@ class PlacesController < ApplicationController
       @city_id = city.id if city
     end
 
-    unless @city_id  
+    unless @city_id
       raise "Invalid city"
     end
 

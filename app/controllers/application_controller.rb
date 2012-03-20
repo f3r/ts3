@@ -52,7 +52,7 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path
-    session.delete(:user_return_to) || '/places'
+    session.delete(:user_return_to) || root_url
   end
   
 end

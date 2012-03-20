@@ -9,9 +9,8 @@ gem 'omniauth-twitter'
 gem 'rest-client', :require => 'rest_client'
 gem 'haml',          '~>3.1.4'
 gem 'jquery-rails',  '~>1.0.18'
-gem 'country_select'
-gem 'localized_country_select'
 gem 'airbrake'
+
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
@@ -36,7 +35,7 @@ group :development, :test do
   gem 'steak'
   gem 'launchy'
   gem 'powder'
-
+  
   # Debugger, for installation see: http://pastie.org/3293194
   gem 'linecache19', '0.5.13'
   gem 'ruby-debug-base19', '0.11.26'

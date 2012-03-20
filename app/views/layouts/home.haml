@@ -4,15 +4,15 @@
     = render 'shared/meta'
 
   %body
-    = render 'shared/header'      
+    = render 'shared/header'
 
     .container
       .content
-        = flash_messages                  
+        = flash_messages
         = yield
     .container    
       .content
-        = render 'shared/footer'      
+        = render 'shared/footer'
     
     :javascript
       $(document).ready(function() {

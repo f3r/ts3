@@ -16,7 +16,15 @@ class UsersController < ApplicationController
     }
 
     if @user.valid? && @user.save
-      redirect_to signup_complete_path
+      # Try to login
+      @heypal_session = Heypal::Session.create(:email => params[:user][:email], :password => params[:user][:password])
+      if @heypal_session.valid?
+        flash[:success] = t(:user_created)
+        sign_in @heypal_session
+        redirect_to after_sign_in_path
+      else
+        redirect_to signup_complete_path
+      end
     else
       if params[:user][:oauth_uid]
         @oauth_provider = params[:user][:oauth_provider]

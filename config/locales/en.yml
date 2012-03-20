@@ -43,6 +43,7 @@ en:
   create_an_account_using:    Create an Account using
   user_confirmed:             Your account has been successfully confirmed!
   email_confirmed:            Your email address has been successfully confirmed!
+  user_created:               Your account has been successfully created!
   invalid_confirmation_code:  Invalid Confirmation Code
   enter_confirmation_code:    Enter Confirmation Code
   resend_confirmation:        Resend Confirmation

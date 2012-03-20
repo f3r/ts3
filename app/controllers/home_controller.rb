@@ -1,4 +1,4 @@
-class HomeController < ApplicationController  
+class HomeController < ApplicationController
   def suggest
     Heypal::User.feedback(
       :access_token => current_token,
@@ -8,7 +8,7 @@ class HomeController < ApplicationController
         :email => params[:email]
       }
     )
-    
+
     flash[:notice] = "Thank you for your message. SquareStays is expanding and we will let you know when #{params['city']} is available!"
     redirect_to root_path
   end

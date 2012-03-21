@@ -18,9 +18,11 @@
     /******************************************************************************************
     / Name, Price, Inquire Button
     /******************************************************************************************
+
     .accomodation-wrapper
       .header
         .title 
+          = render :partial => 'button_favorite', :locals => { :place => @place }
           %h1= @place.title
           - if logged_in? && @owner['id'].eql?(current_user['id'])
             .buttons

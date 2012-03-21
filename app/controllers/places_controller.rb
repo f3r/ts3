@@ -68,6 +68,22 @@ class PlacesController < ApplicationController
     render :json => response, :layout => false
   end
 
+  def add_favorite
+    @result = Heypal::Place.add_favorite(params[:id], current_token)
+    @place_id = params[:id]
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
+  def remove_favorite
+    @result = Heypal::Place.remove_favorite(params[:id], current_token)
+    @place_id = params[:id]
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
   def wizard
     @place = Heypal::Place.find(params[:id], current_token, nil) # no currency conversion
 
@@ -184,7 +200,7 @@ class PlacesController < ApplicationController
       'per_page'  => 6,
       'page'      => page
     }
-    @results = Heypal::Place.search(search_params)
+    @results = Heypal::Place.search(search_params, current_token)
 
     min, max = Heypal::Geo.get_price_range(@city_id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
     if !min.nil? && !max.nil?
@@ -205,7 +221,7 @@ class PlacesController < ApplicationController
   def search
     page = params[:page]
     params.merge!('per_page' => 6, 'page' => page)
-    @results = Heypal::Place.search(params)
+    @results = Heypal::Place.search(params, current_token)
 
     if @results.key?("err")
       render :json => {
@@ -232,6 +248,10 @@ class PlacesController < ApplicationController
 
   def my_places
     @places = Heypal::Place.my_places(current_token, get_current_currency)
+  end
+
+  def favorite_places
+    @results = Heypal::Place.favorite_places(current_token, get_current_currency)
   end
 
   def rent

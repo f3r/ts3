@@ -1,0 +1,11 @@
+<% if @result['stat'] == "ok" %>
+  if($(".place_<%= @place_id %> .button_favorite button").attr('data-page') == "favorite_places"){
+    $(".place_<%= @place_id %> button").tooltip('hide')
+    $(".place_<%= @place_id %>").remove();
+  } else {
+    $(".place_<%= @place_id %> .button_favorite button").attr('disabled', 'disabled').removeClass("btn-success").attr('data-original-title', '<%= t(:add_favorite) %>');;
+    $(".place_<%= @place_id %> .button_favorite button i").removeClass("icon-star icon-white").addClass("icon-star-empty icon-black");
+    $(".place_<%= @place_id %> .button_favorite form").attr('action', '<%= add_favorite_place_path(:id => @place_id) %>');
+    $(".place_<%= @place_id %> .button_favorite button").removeAttr('disabled');
+  }
+<% end %>

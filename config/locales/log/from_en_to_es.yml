@@ -11,6 +11,7 @@ activerecord:
 add: Add
 add_a_place: "Add a Place"
 add_address: "Add address"
+add_favorite: "Add to favorites"
 add_new: "Add New"
 additional_costs: "Additional Costs"
 address: Address
@@ -106,18 +107,6 @@ errors:
   : "not allowed to do that"
   ? "134"
   : "doesn't have access to resource"
-  ? "135"
-  : "Invalid currency"
-  ? "136"
-  : occupied
-  ? "137"
-  : "invalid place request, check availability"
-  ? "138"
-  : "already cancelled"
-  ? "139"
-  : "date must be on the past"
-  ? "140"
-  : "must be greater than"
   ? "141"
   : "minimum stay not met"
   ? "142"
@@ -141,6 +130,11 @@ gym: Gym
 handicap: "Handicap accessible"
 head_cancellation: "If you wish to cancel your SquareStays reservation"
 heating: Heating
+helpers: 
+  button: 
+    create: "Create %{model}"
+    submit: "Save %{model}"
+    update: "Update %{model}"
 holder_name: "Holder Name"
 homepage_about: "About SquareStays"
 homepage_about_content: "SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay."
@@ -153,8 +147,15 @@ hot_tub: "Hot Tub"
 hot_water: "Hot Water"
 house: House
 house_rules: "House rules"
+how_it_works: "How it works"
+how_list_your_properties: "If you would like to list a property on SquareStays, please contact us at %{places_email}. The SquareStays team will then work with you to ensure that you understand the requirements for listings on SquareStays."
+how_payments_1st: "SquareStays listings are designed to have full disclosure and no hidden fees! When you make an inquiry or a reservation, you should know exactly how much it will cost. All SquareStays fees are built into the prices shown on the site."
+how_payments_2nd: "SquareStays offers payments by credit card, PayPal and bank transfer. Please contact us at %{support_email} with any questions."
+how_travelers_4th: "Of course, you can always send general messages or questions to any other member on the site using the “Send Message” link on the member’s profile page or when viewing the details of any place. If you ever have any problems or questions in communicating with other members, please contact us at %{support_email}"
 i_have_an_account: "Already a SquareStays member?"
 iban: IBAN
+inquiry_error: "There was a problem processing you inquiry, please try again"
+inquiry_success: "Your inquiry has been successfully sent"
 internet: Internet
 internet_wifi: Wifi
 jacuzzi: Jacuzzi
@@ -193,6 +194,7 @@ passport_number: "Passport number"
 payment_details: "Payment details"
 per_night: "Per Night"
 pets_allowed: "Pets Allowed"
+photography_faq: "Photography FAQ"
 photos: Photos
 place_and_building_facilities: "Place & Building facilities"
 place_details: "Place details"
@@ -227,7 +229,9 @@ public_field: "Public. Anyone can see this information"
 publish: Publish
 question: Questions
 read_agreement: "I have read and agree to the lease agreement"
+read_photo_faq: "Read some tips on providing great pictures for your SquareStays properties"
 registration_warning: "SquareStays won't publish anything without your prior consent"
+remove_favorite: "Remove from favorites"
 rent: "Rent it!"
 results: Results
 room: Room
@@ -240,6 +244,7 @@ security_deposit_hint: "The wireframe has this but I don't have the text yer"
 see_our: "See our"
 select_one: "Please select at least one"
 share: "Share via"
+signup_for_an_account: "Signup for a new account"
 site_title: "SquareStays - Trusted Stays"
 smoking_allowed: "Smoking Allowed"
 something_went_wrong: "Something went wrong. Please check again later."
@@ -259,6 +264,7 @@ sub_total: Subtotal
 success: Success!
 suitable_events: "Suitable for Events"
 swift: Swift
+switch_to_login: "Already have an account? Sign in"
 teaser_1_content: "SquareStays offers flexible, high-quality accommodations for you. Squarestays is the destination site to find your perfect short-term or medium-term stay."
 teaser_1_title: Flexibility
 teaser_2_content: "SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust."
@@ -284,6 +290,7 @@ villa: Villa
 washer: Washer
 weeks: Weeks
 what_city_is_your_place_in: "What city is your place in?"
+why_squarestays: "Why SquareStays?"
 working_on_expanding: "We're working hard on expanding SquareStays to more. You can help us by telling us what city you would like to see next."
 you_can_add_dates: "You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to"
 you_can_sort: "You can sort your photos by drag and drop"

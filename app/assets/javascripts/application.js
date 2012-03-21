@@ -148,7 +148,7 @@ $(document).ready(function() {
     }
   });
 
-  $("a.tooltip, a[rel=tooltip], a.tooltip-link").tooltip({
+  $("a.tooltip, a[rel=tooltip], button[rel=tooltip], a.tooltip-link").tooltip({
       animation: false,
       placement: 'top',
   }); 

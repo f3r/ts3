@@ -1,0 +1,9 @@
+%section.clearfix
+  .row
+    .span9
+      .results
+        #search_results
+          = render 'search_results', :places => @results['places']
+      .loading.center.hide= image_tag('loading.gif')
+    .span3
+      .search-aside

@@ -99,7 +99,7 @@ class Heypal::Place < Heypal::Base
       p
     end
 
-    def search(params = {})
+    def search(params = {}, access_token)
       q = ''
       params.each do |k, v|
         next if k == 'action' || k == 'controller'
@@ -123,7 +123,7 @@ class Heypal::Place < Heypal::Base
       end
       q.chomp!('&')
 
-      request("/places/search.json?#{q}", :get)
+      request("/places/search.json?#{q}&access_token=#{access_token}", :get)
     end
     
     def my_places(access_token, currency)
@@ -138,6 +138,22 @@ class Heypal::Place < Heypal::Base
     def upload_photo(id, photo, access_token)
       result = request("/places/#{id}/photos.json?access_token=#{access_token}", :post, :photo => phot)
     end
+
+    def add_favorite(id, access_token)
+      result = request("/places/#{id}/add_favorite.json?access_token=#{access_token}", :get)
+      result
+    end
+
+    def remove_favorite(id, access_token)
+      result = request("/places/#{id}/remove_favorite.json?access_token=#{access_token}", :get)
+      result
+    end
+
+    def favorite_places(access_token, currency)
+      result = request("/users/me/favorite_places.json?access_token=#{access_token}", :get)
+      result
+    end
+
   end
 
   def initialize(params = {})

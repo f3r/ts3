@@ -1,6 +1,6 @@
 %ul
   - places.each do |place|
-    %li.items-gallery.results
+    %li.items-gallery.results{:class => "place_#{place['id']}"}
       .box
         .clearfix
           =  link_to seo_place_path(place) do
@@ -12,6 +12,7 @@
 
         .desc.clearfix
           %h3.title
+            = render :partial => 'button_favorite', :locals => { :place => place }
             = link_to place['title'], seo_place_path(place), :title => place['title']
           .clearfix
             .property.data-block

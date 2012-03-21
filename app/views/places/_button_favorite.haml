@@ -1,0 +1,14 @@
+-if logged_in?
+  %div.button_favorite
+    - if place['favorited'] == false
+      = form_for :place, :url => add_favorite_place_path(:id => place['id']), :method => :put, :html => { :remote => true } do |f|
+        %button.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), "data-page" => @current_action }
+          %i.icon-star-empty.icon-black
+    - else
+      = form_for :place, :url => remove_favorite_place_path(:id => place['id']), :method => :put, :html => { :remote => true } do |f|
+        %button.btn.btn-mini.btn-success{:rel => "tooltip", :title => t(:remove_favorite), "data-page" => @current_action }
+          %i.icon-star.icon-white
+- else
+  %div.button_favorite
+    %a.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), :href => login_path_with_ref }
+      %i.icon-star-empty.icon-black

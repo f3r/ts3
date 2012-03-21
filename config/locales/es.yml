@@ -36,6 +36,7 @@ es:
   add: Añadir
   add_a_place: "Nuevo Apartamento"
   add_address: "Agregar dirección"
+  add_favorite: "Agregar a Favoritos"
   add_new: "Agregar nuevo"
   additional_costs: "Gastos adicionales"
   address: Dirección
@@ -96,6 +97,9 @@ es:
   choose_language: "Elija el idioma"
   choose_unit: "Elija la unidad"
   city: Ciudad
+  cityguide_hk: "Guía: Hong-Kong"
+  cityguide_kl: "Guía: Kuala Lumpur"
+  cityguide_sg: "Guía: Singapore"
   click_here_to_add_caption: "Haga clic aquí para agregar título"
   close: Cerrar
   community_support: Soporte
@@ -605,6 +609,8 @@ es:
       too_short: "es demasiado corto (el mínimo es %{count} caracteres)"
       wrong_length: "es la longitud incorrecta (debe %{count} caracteres)"
   facebook_connected: "Has conectado correctamente tu cuenta en Facebook!"
+  failed_read: "No se ha podido marcar como leídos"
+  failed_unread: "No se ha podido marcar como no leído"
   family_friendly: "Ambiente familiar"
   final_cleanup: "Limpieza final"
   final_cleanup_hint: "El costo de la limpieza del lugar una vez finalizado el alquiler"
@@ -635,6 +641,10 @@ es:
   head_cancellation: "Si desea cancelar su reserva de SquareStays"
   heating: Calefacción
   helpers: 
+    button: 
+      create: ""
+      submit: ""
+      update: ""
     select: 
       prompt: "Por favor seleccione"
     submit: 
@@ -644,22 +654,29 @@ es:
   holder_name: "Nombre del titular"
   homepage_about: "Acerca de SquareStays"
   homepage_about_content: "SquareStays ofrece una mezcla única de exactamente lo que necesita en alojamiento profesional flexible - calidad y confianza a un precio razonable. Todos los anuncios de SquareStays están diseñados para proporcionar la comodidad que usted espera de tener un lugar propio con la flexibilidad de una estancia de corto plazo. SquareStays sólo permite propietarios profesionales, propietarios, agentes y gerentes de propiedad lista de lugares. Esto le asegura un alto nivel de confianza, servicio y calidad para su estancia."
+  homepage_blog: "Lee nuestro Blog"
+  homepage_facebook: "Síguenos en Facebook"
   homepage_life_sg_content: ""
   homepage_life_sg_title: "Crecimiento del negocio en Asia"
   homepage_search_but: "Encontrar un lugar"
   homepage_seo_text: ""
   homepage_seo_text2: ""
-  homepage_facebook: Síguenos en Facebook
-  homepage_twitter:  Síguenos en Twitter
-  homepage_blog:     Lee nuestro Blog
+  homepage_twitter: "Síguenos en Twitter"
   hot_tub: "Tina caliente"
   hot_water: "Agua caliente"
   house: Casa
   house_rules: "Normas de la casa"
+  how_it_works: ""
+  how_list_your_properties: ""
   how_many_bedrooms: "¿Cuántas habitaciones?"
+  how_payments_1st: ""
+  how_payments_2nd: ""
+  how_travelers_4th: ""
   i_agree_to_the: "Acepto los"
   i_have_an_account: "¿Ya es miembro de SquareStays?"
   iban: IBAN
+  inquiry_error: ""
+  inquiry_success: ""
   internet: Internet
   internet_wifi: WiFi
   invalid_confirmation_code: "Código de confirmación inválido"
@@ -682,10 +699,8 @@ es:
   map: Mapa
   mark_read: "Marcar como leído"
   mark_unread: "Marcar como no leído"
-  marked_as_unread: El mensaje fue marcado como no leído
-  marked_as_read: El mensaje fue marcado como leído
-  failed_unread: No se ha podido marcar como no leído
-  failed_read: No se ha podido marcar como leídos
+  marked_as_read: "El mensaje fue marcado como leído"
+  marked_as_unread: "El mensaje fue marcado como no leído"
   max_guests: "Número de Invitados"
   maximum_of: "Máximo de"
   maximum_stay: "Estadía máxima"
@@ -771,6 +786,7 @@ es:
   payment_details: "Detalles de pago"
   per_night: "Por noche"
   pets_allowed: Mascotas
+  photography_faq: ""
   photos: Fotos
   place_and_building_facilities: "Lugar y las instalaciones"
   place_details: "Detalles de lugar"
@@ -808,8 +824,10 @@ es:
   publish: Publicar
   question: Preguntas
   read_agreement: "He leído y estoy de acuerdo con el contrato de arrendamiento"
+  read_photo_faq: ""
   register: Registro
   registration_warning: "SquareStays no publicará nada sin su consentimiento"
+  remove_favorite: "Remover de Favoritos"
   rent: Alquilarlo!
   resend_confirmation: "Reenviar confirmación"
   reset_password: "Restablecer Contraseña"
@@ -834,6 +852,7 @@ es:
   sign_out: "Terminar Sesión"
   signup_complete: "Registro completado"
   signup_complete_text: "Gracias por registrarte! Sin embargo, todavía tienes que confirmar tu cuenta. Comprueba tu email y activa tu cuenta con el enlace que te hemos enviado."
+  signup_for_an_account: ""
   signup_needed_to_connect: "Para conectar tu cuenta con tu red social, proveenos de la siguientes información"
   site_title: "SquareStays - Trusted Stays"
   size: Tamaño
@@ -864,6 +883,7 @@ es:
     select: 
       prompt: "Por favor seleccione"
   swift: SWIFT
+  switch_to_login: ""
   teaser_1_content: "SquareStays ofrece alojamiento flexible y de alta calidad para usted. Squarestays es el sitio de destino para encontrar la perfecta estancia a corto o mediano plazo."
   teaser_1_title: Flexibilidad
   teaser_2_content: "SquareStays trabaja con agentes profesionales y propietarios para garantizar una experiencia cómoda y profesional que puede confiar."
@@ -902,12 +922,10 @@ es:
   weeks: Semanas
   what_city: "¿En qué ciudad está tu Apartamento?"
   what_city_is_your_place_in: "¿En qué ciudad está su apartamento?"
+  why_squarestays: ""
   working_on_expanding: "Estamos trabajando en la expansión de SquareStays. Para ayudarnos, puede decirnos qué ciudad gustaría ver a continuación."
   you_can_add_dates: "Puede agregar fechas o un intervalo de fechas cuando su lugar esté disponible, o si le gustaría cambiar la tarifa diaria, que actualmente se establece en"
   you_can_sort: "Puede ordenar sus fotos mediante arrastrar y soltar"
   your_place: "Este es tu lugar!"
   zip: "Código postal"
   zip_code: "Código Postal"
-  cityguide_sg: "Guía: Singapore"
-  cityguide_hk: "Guía: Hong-Kong"
-  cityguide_kl: "Guía: Kuala Lumpur"

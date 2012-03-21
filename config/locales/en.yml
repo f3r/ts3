@@ -299,6 +299,9 @@ en:
   place_published: Your place is now listed!
   place_publish_error: Sorry, we can not publish your place because of missing information.
   place_unpublished: Your place is now invisible
+  
+  add_favorite: Add to favorites
+  remove_favorite: Remove from favorites
 
   ####################################################################################
   # Questions & Messages

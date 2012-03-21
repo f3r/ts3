@@ -30,6 +30,8 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :publish
       put   :unpublish
       get   :publish_check
+      put   :add_favorite
+      put   :remove_favorite
       get   :rent
       match :availability
       post  :confirm_rental
@@ -48,7 +50,8 @@ HeyPalFrontEnd::Application.routes.draw do
       post :reply_to_message
     end
   end
-  match '/my_places'          => 'places#my_places',         :as => :my_places
+  match '/my_places'          => 'places#my_places',          :as => :my_places
+  match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places
   get   '/check_availability' => 'places#check_availability'
 
   ###########################################################################################

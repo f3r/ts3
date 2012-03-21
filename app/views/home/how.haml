@@ -18,8 +18,7 @@
       %h3 Listing members
       %img{:src => "http://s3.amazonaws.com/squarestays-static/listing_members.jpg", :class => 'metaphor'}
       %p= t(:how_list_your_properties_1st, :places_email => mail_to('places@squarestays.com')).html_safe
-      %p If you would like to list a property on SquareStays, please contact us at places@squarestays.com. The SquareStays team will then work with you to ensure that you understand the requirements for listings on SquareStays.
-      %p In general, all properties on SquareStays should be fully-furnished, full units with all utilities turned on. We encourage you to provide as much information as possible about the short-term availability terms, for instance, if your units have a minimum stay of one month, two months or more. Also, please be clear with any other conditions you may have, such as security deposit or clean-up fees. Finally, providing as many high-quality photos as possible is extremely valuable for potential tenants.
+      %p= t(:how_list_your_properties_2nd) 
       %p= t(:how_list_your_properties_3rd, :support_email => mail_to('support@squarestays.com')).html_safe
   .row.actions
     .span6

@@ -112,7 +112,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match 'city-guides/singapore'     => 'home#singapore',      :as => :cityguide_sg
   match 'city-guides/hong-kong'     => 'home#hongkong',       :as => :cityguide_hk
   match 'city-guides/kuala-lumpur'  => 'home#kualalumpur',    :as => :cityguide_kl
-  
+
   root :to => 'home#index'
 
   ###########################################################################################

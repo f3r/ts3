@@ -10,7 +10,8 @@ module LookupsHelper
     'Kuala Lumpur, Malaysia', 
     'New York, United States', 
     'San Francisco, United States', 
-    'Los Angeles, United States'
+    'Los Angeles, United States',
+    'Shanghai, China'
   ]
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
@@ -45,7 +46,8 @@ module LookupsHelper
      ['Kuala Lumpur, Malaysia',       '4'],
      ['New York, United States',      '5'],
      ['San Francisco, United States', '6'],
-     ['Los Angeles, United States',   '7']
+     ['Los Angeles, United States',   '7'],
+     ['Shanghai, China',              '8']
     ]
   end
 

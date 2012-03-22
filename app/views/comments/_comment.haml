@@ -1,18 +1,19 @@
 .span9.offset1.question-container{:id => "qdiv-#{comment['id']}"}
   .row-fluid.question
-    .span3.user_box
-      -if !comment['user'].nil?
-        .user_photo= avatar_image(comment['user'])
-        .user_data
-          .user_name= link_to "#{comment['user']['first_name'][0]}. #{comment['user']['last_name']}", '#'
-          .user_role= comment['user']['role']
-      -else
-        =t(:unknown)
+    .span4
+      .user_box
+        -if !comment['user'].nil?
+          .user_photo= avatar_image(comment['user'])
+          .user_data
+            .user_name= link_to "#{comment['user']['first_name'][0]}. #{comment['user']['last_name']}", '#'
+            .user_role= comment['user']['role']
+        -else
+          =t(:unknown)
 
     - if logged_in? && @owner['id'] == current_user['id']
       = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
 
-    .span9
+    .span8
       .user_message= comment['comment']
       .time= time_ago_in_words(comment['created_at'])
 

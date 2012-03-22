@@ -4,6 +4,7 @@ var PlaceShow = {
     // INITIALIZERS
     //*******************************************************************************************
     var self = this;
+    var isCalendarOpen = false;
     self.initializeSlider();
     self.initializeSharePlace(opts.share_title, opts.share_url, opts.share_id);
     self.inquireModal();
@@ -12,7 +13,10 @@ var PlaceShow = {
     $('a[data-toggle="tab"]').on('shown', function (e) {
       // Lazy load calendar
       if ($(e.target).attr('href') == '#calendar-tab') {
-        self.initializeCalendar(opts.cal_events, opts.cal_lastVisibleDay, opts.cal_month);
+        if (!isCalendarOpen) {
+          self.initializeCalendar(opts.cal_events, opts.cal_lastVisibleDay, opts.cal_month);
+          isCalendarOpen = true;
+        };
       };
       // Lazy load map
       if ($(e.target).attr('href') == '#map-tab') {

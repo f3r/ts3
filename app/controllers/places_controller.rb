@@ -360,13 +360,15 @@ class PlacesController < ApplicationController
     @confirm_inquiry = Heypal::Place.confirm_inquiry(
       params[:id], 
       {
-        :name             => params[:name],
-        :email            => params[:email],
-        :mobile           => params[:mobile],
+        :extra => {
+          :name   => params[:name],
+          :email  => params[:email],
+          :mobile => params[:mobile]
+        },
         :date_start       => params[:date_start],
         :length_stay      => params[:length_stay],
         :length_stay_type => params[:length_stay_type],
-        :questions        => params[:questions]
+        :message          => params[:questions]
       },
       current_token
     )
@@ -377,7 +379,7 @@ class PlacesController < ApplicationController
     end
     respond_to do |format|
       format.js { render :layout => false }
-    end    
+    end
   end
 
   def destroy

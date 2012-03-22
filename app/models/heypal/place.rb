@@ -76,7 +76,7 @@ class Heypal::Place < Heypal::Base
     end
 
     def confirm_inquiry(id, options, access_token)
-      result = request("/places/#{id}/confirm_inquiry.json?access_token=#{access_token}", :post, options)
+      result = request("/places/#{id}/inquire.json?access_token=#{access_token}", :post, options)
     end
 
     def normalize_place(result)

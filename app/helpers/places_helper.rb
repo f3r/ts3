@@ -137,6 +137,10 @@ module PlacesHelper
     "/#{city.code}/#{place['id']}-#{result}"
   end
 
+  def seo_city_path(city_id)
+    "/#{Heypal::City.find_by_id(city_id).code}"
+  end
+
   def place_type_filters(place_type_counts)
     filters = []
     place_type_counts.each do |type_name, count|

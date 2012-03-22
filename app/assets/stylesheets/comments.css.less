@@ -43,16 +43,26 @@
           margin-right:5px;
         }
         .user_data {
-          .user_name a {
-              font-weight: bold;
-              font-size: 15px;
+          .user_name {
+            overflow:hidden;
+            width:100%;
+            white-space:nowrap;
+            a {
+                font-weight: bold;
+                font-size: 12px;
+            }
           }
           .user_role {
-            font-style: italic;
+            color: #333;
             font-size: 11px;
-          }
+            font-style: normal;
+            font-weight: bold;          }
         } /*user_data*/
         .user_photo {
+          width:60px;
+          height:60px;
+          display:block;
+          background-color:#eee;
         } /*user_photo*/
       } /*user_box*/
       
@@ -60,7 +70,7 @@
         .border-radius(4px);
         border: 1px #A8B5DF solid;
         background-color: #D8E5FF;
-        height: 42px;
+        min-height: 42px;
         width: 505px;
         padding: 7px;
       }
@@ -75,17 +85,27 @@
         .user_photo {
           float:right;
           margin-left: 5px;
+          width:60px;
+          height:60px;
+          display:block;
+          background-color:#eee;
         }
         .user_data {
           float:right;
-          .user_name a {
-              font-weight: bold;
-              font-size: 15px;
+          .user_name {
+            overflow:hidden;
+            width:100%;
+            white-space:nowrap;
+            a {
+                font-weight: bold;
+                font-size: 12px;
+            }
           }
           .user_role {
-            margin-top: 22px;
-            font-style: italic;
+            color: #333;
             font-size: 11px;
+            font-style: normal;
+            font-weight: bold;          }
           }
         } /*user_data*/
       } /*user_box*/

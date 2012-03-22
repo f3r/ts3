@@ -579,9 +579,47 @@ ul.references{
 
 // 
 // Profile
-.profile_page .section-header a.settings {
-  font-size:12px;
-  float:right;
+.edit_profile_page, .profile_page {
+  .section-header {
+    a.settings {
+      font-size:12px;
+      float:right;
+    }
+  }
+  h2.name {
+    font-size:14px;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .address {
+    font-size:11px;
+    color:#333;
+  }
+  .user_box {
+    border-bottom: 1px solid #EEEEEE;
+    height: 60px;
+    margin-bottom: 10px;
+    .user_name {
+      font-size:11px;
+      white-space:nowrap;
+      overflow:hidden;
+    }
+  }
+  .link_accounts {
+    h4 {
+      font-size:13px;
+      margin-bottom:10px;
+    }
+    a {
+      margin-left:4px;
+    }
+  }
+  table.user_info {
+    width:100%;
+    td {
+      padding:8px;
+    }
+  }
 }
 
 .ui-datepicker

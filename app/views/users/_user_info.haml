@@ -4,7 +4,7 @@
     - unless request.fullpath.include?('edit')
       = link_to t(:account_settings), edit_profile_path, :class => "settings"
     
-  %table.borderless
+  %table.borderless.user_info
     %tr
       %td.label_detail
         #{t(:first_name)}

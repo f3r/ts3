@@ -1,9 +1,9 @@
 - if @user_auth && !@user_auth['authentications'].nil?
   - for auth in @user_auth['authentications']
-    .user_box{:style => 'height: 40px;'}
-      .user_photo.float-left
-        = image_tag("icons/facebook.png", :size => "30x30") if auth['provider'] == "facebook"
-        = image_tag("icons/twitter.png", :size => "30x30")  if auth['provider'] == "twitter"
+    .user_box
+      .user_photo
+        = image_tag("icons/facebook_48x48.png", :size => "30x30") if auth['provider'] == "facebook"
+        = image_tag("icons/twitter_48x48.png", :size => "30x30")  if auth['provider'] == "twitter"
         &nbsp;
         %img{:src => "#{profile_picture_url(auth['uid'], auth['provider'])}", :style => "width:30px; height:30px; padding-right:5px;", :alt => "#{auth['provider']} pic"}
       .user_data

@@ -5,9 +5,9 @@
   - if @current_action == "edit"
     = link_to t(:change_photo), "#avatar-modal", { "data-toggle" => "modal", "data-backdrop"=>"static", :class => "change_avatar"}
 
-  %h2
+  %h2.name
     = short_full_name user
-  %p
+  %p.address
     - if !user['address'].nil?
       = "#{user['address']['city']}, #{user['address']['country']}"
   %br

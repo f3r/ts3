@@ -1,6 +1,6 @@
 -if logged_in?
   %div.button_favorite
-    - if place['favorited'] == false
+    - if !place['favorited']
       = form_for :place, :url => add_favorite_place_path(:id => place['id']), :method => :put, :html => { :remote => true } do |f|
         %button.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), "data-page" => @current_action }
           %i.icon-star-empty.icon-black

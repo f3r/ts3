@@ -1,39 +1,16 @@
 .span15
   %span.float-left
-    - if from
-      %a{:href => "/users/#{m['to']['id']}"}
-        = avatar_image_by_id(m['to'])
-    - else
-      %a{:href => "/users/#{m['from']['id']}"}
-        = avatar_image_by_id(m['from'])
+    %a{:href => "/users/#{m['from']['id']}"} 
+      = avatar_image(m['from'])
 
-  .span12.conversations
-    .float-right.delete-conversations
-      = link_to image_tag('icons/icon.ekis.png'), delete_conversation_path(from ? m['to']['id'] : m['from']['id']), :method => :delete, :confirm => t(:are_you_sure)
+  .span12
+    %div{:class => "alert-message info"}
+      %b= m['from']['first_name'][0] + ". " + m['from']['last_name']
+      %br
+      = simple_format h(m['body'])
 
-    %a{:href => from ? "/messages/#{m['to']['id']}" : "/messages/#{m['from']['id']}"} 
-      %div{:class => m['isread'] ? "alert-message info" : "alert-message warning" }
-        - if from
-          %b= "#{m['to']['first_name'].chr}. #{m['to']['last_name']}"
-        - else
-          %b= "#{m['from']['first_name'].chr}. #{m['from']['last_name']}"
-
-        %br
-        = truncate(m['message'], :length => 80)
-
-    %span.float-right.mark-as
-      %i
-        %span.time= time_ago_in_words(Time.parse(m['date']))
-      - unless m['isread']
-        = link_to t(:mark_read), mark_as_read_path(from ? m['to']['id'] : m['from']['id'])
-      - else
-        = link_to t(:mark_unread), mark_as_unread_path(from ? m['to']['id'] : m['from']['id'])
-
-:erb
-  <script type='text/javascript'>
-    $("a[data-method='delete']").confirmDialog({
-      message: <%= "\'<strong>#{t(:are_you_sure)}</strong>\'" %>,
-      cancelButton: 'Cancel'
-    });
-  </script>
-
+    %div.float-right{:style => "margin-top: -20px; margin-bottom:15px"}
+      %span.created_at
+        %i 
+          %span.time= time_ago_in_words(Time.parse(m['date']))
+      

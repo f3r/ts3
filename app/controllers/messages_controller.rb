@@ -5,12 +5,13 @@ class MessagesController < ApplicationController
 
   # Retrieves all conversations
   def index
-    @results = Heypal::Message.list({"access_token" => current_token})
+    @result = Heypal::Message.list({"access_token" => current_token})
+    @conversations = @result['conversations']
   end
 
   # Retrieves all messages with a user
   def conversation
-    @with = Heypal::User.info("id" => params[:id])
+    #@with = Heypal::User.info("id" => params[:id])
     @messages  = Heypal::Message.messages({"id" => params[:id],"access_token" => current_token})
   end
 

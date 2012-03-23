@@ -1,0 +1,15 @@
+.span12.entry{:class => m['read'] ? "read" : "unread" }
+  .span2.inquiry
+    = render 'inquiry', :inquiry => m['inquiry']
+  .span1
+    %a{:href => "/users/#{m['from']['id']}"}
+      = avatar_image_by_id(m['from'])
+      = message_from(m['from'])
+
+  .span8.conversations
+    %a{:href => "/messages/#{m['id']}"} 
+      %div
+        = truncate(m['message'], :length => 80)
+
+  .span2
+    %span.time= "#{time_ago_in_words(Time.parse(m['date']))} ago"

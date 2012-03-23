@@ -6,7 +6,7 @@ class Heypal::Message < Heypal::Base
     end
 
     def messages(params = {})
-      request("/messages/#{params['id']}.json?access_token=#{params['access_token']}", :get, params)
+      request("/conversations/#{params['id']}.json?access_token=#{params['access_token']}", :get, params)
     end
 
     def create(params = {})

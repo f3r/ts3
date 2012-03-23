@@ -315,6 +315,7 @@ en:
   pm_prepend_post: "]\n\n"
   messages:         Messages
   conversation_with: Conversation with
+  inquiry_on:       Inquiry on
   no_messages:      No messages
   mark_read: Mark read
   mark_unread: Mark unread
@@ -413,11 +414,16 @@ en:
   street: Street
   zip: Zip
   success: Success!
-  
-  # inquiry
+
+  ####################################################################################
+  # Inquiries
+  ####################################################################################
   
   inquiry_success:             Your inquiry has been successfully sent
   inquiry_error:               "There was a problem processing you inquiry, please try again"
+  inquiry_guests:
+    one:                      1 guest
+    other:                   '%{count} guests'
 
   ####################################################################################
   # Place index/search

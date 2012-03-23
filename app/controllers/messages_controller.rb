@@ -12,27 +12,31 @@ class MessagesController < ApplicationController
   # Retrieves all messages with a user
   def conversation
     #@with = Heypal::User.info("id" => params[:id])
-    @messages  = Heypal::Message.messages({"id" => params[:id],"access_token" => current_token})
+    result  = Heypal::Message.messages({"id" => params[:id],"access_token" => current_token})
+    @conversation = result['conversation']
+    @messages = result['messages']
+    @inquiry = @conversation['inquiry']
   end
 
   # Posts a new message to a user
   def create
-    message_params = {}
-    message_params.merge!({:access_token => current_token, :id => params['id'], :message => params['message']['message']})
+    message_params = {
+      :access_token => current_token, :id => params['id'], :message => params['message']['message']
+    }
     @message = Heypal::Message.create(message_params)
+
     respond_with do |format|
       format.html {
-        place = Heypal::Place.find(params[:place_id], current_token, get_current_currency)
-        redirect_to place_path(place)
+        redirect_to conversation_path(params['id'])
       }
-      format.js {
-        #must have show action for message to render single message
-        render :partial => '/messages/add_message'
-      }
+      # format.js {
+      #   #must have show action for message to render single message
+      #   render :partial => '/messages/add_message'
+      # }
     end
   end
 
-  def delete_conversation
+  def destroy
     @with = Heypal::User.info("id" => params[:id])
     @deleted, @result = Heypal::Message.delete('user_id' => params['id'], 'access_token' => current_token)
 

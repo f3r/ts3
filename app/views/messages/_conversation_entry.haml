@@ -1,15 +1,16 @@
 .span12.entry{:class => m['read'] ? "read" : "unread" }
-  .span2.inquiry
-    = render 'inquiry', :inquiry => m['inquiry']
-  .span1
+  .span2.place
+    = image_tag m['inquiry']['place_thumb'], :alt => m['inquiry']['place_title']
+  .span1.from
     %a{:href => "/users/#{m['from']['id']}"}
       = avatar_image_by_id(m['from'])
       = message_from(m['from'])
 
-  .span8.conversations
-    %a{:href => "/messages/#{m['id']}"} 
-      %div
-        = truncate(m['message'], :length => 80)
-
+  .span2.inquiry
+    = render 'messages/target/inquiry_row', :inquiry => m['inquiry']
+      
+  .span4.message
+    = link_to conversation_path(m['id']) do
+      = truncate(m['message'], :length => 80)
   .span2
     %span.time= "#{time_ago_in_words(Time.parse(m['date']))} ago"

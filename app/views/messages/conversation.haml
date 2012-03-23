@@ -1,27 +1,25 @@
-.row
+.conversation
   %h4.section-header
     %a{:href => "/messages"}
       =t(:messages)
     &raquo;
-    =t(:conversation_with)
-    = #"#{@with['first_name'].chr}. #{@with['last_name']}"
-    = link_to t(:mark_unread), mark_as_unread_path(1)
+    - if @inquiry
+      = t(:inquiry_on)
+      = 'A place'
+    - else
+      = t(:conversation_with)
+      = @conversation['from']['first_name']
+    .actions.pull-right
+      = link_to t(:mark_unread), mark_as_unread_path(params[:id])
 
-  - if !@messages.blank?
-    - @messages['messages'].each do |m|
-      %div.message
-        = render 'message', :m => m
+  - if @inquiry
+    .row.target
+      = render 'messages/target/inquiry_box', :inquiry => @inquiry
+
+  - if @messages.present?
+    - @messages.each do |m|
+      = render 'message', :m => m
   - else
     =t(:no_messages)
-
-  = #  render 'new_message', :with => @with['id']
-    
-%br
-
-.row
-  %h4.section-header
-    %a{:href => "/messages"}
-      =t(:messages)
-    &raquo;
-    =t(:conversation_with)
-    = #"#{@with['first_name'].chr}. #{@with['last_name']}"
+  .row
+    = render 'new'

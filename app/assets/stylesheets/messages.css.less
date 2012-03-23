@@ -18,3 +18,49 @@
     margin-bottom:15px
   }
 }
+
+.inbox {
+  .entry {
+    border: 1px solid #C0C0C0;
+    border-radius: 5px 5px 5px 5px;
+    padding: 7px 0;
+    &.unread {
+     background-color: #E0F5DA;
+    }
+  }
+  .inquiry {
+    color: #B0B2B4;
+    .value {
+      color: #333333;
+    }
+  }
+}
+
+.conversation {
+  .message {
+    margin-bottom: 10px;
+    .body {
+      border: 1px solid #C0C0C0;
+      padding: 7px;
+    }
+    .from {
+      text-align: center;
+    }
+  }
+  .target {
+    border: 1px solid #C0C0C0;
+    border-radius: 5px;
+    margin: 10px 0 30px;
+    padding: 7px;
+    background-color: #B5E0A8;
+    .inquiry {
+      .title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .value {
+        font-weight: bold;
+      }
+    }
+  }
+}

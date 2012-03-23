@@ -1,8 +1,0 @@
-.span15
-  = form_for 'message', :url => new_message_path(@with_id), :html => {:class => 'respond-form show', :remote => true} do |f|
-    %span.float-left
-      = avatar_image(current_user)      
-    .span12
-      = f.text_area :message, :rows => 4, :class => "span12"
-      %div.float-right{:style => "margin-top: 10px;"}
-        = button_tag t(:submit), :class => "btn primary respond-btn", :id => "send_message_btn"

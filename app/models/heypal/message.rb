@@ -10,7 +10,7 @@ class Heypal::Message < Heypal::Base
     end
 
     def create(params = {})
-      result = request("/messages/#{params[:id]}.json", :post, params)
+      result = request("/conversations/#{params[:id]}.json", :put, params)
 
       if result['stat'] == 'ok'
         return get_data_on(result)

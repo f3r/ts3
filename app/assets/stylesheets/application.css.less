@@ -186,7 +186,7 @@ form div.required label:after {
 // -----------
 
 aside .section-header, .aside .section-header, .section-header {
-  margin: 0 0 20px;
+  margin: 0 0 10px;
   padding: 10px 14px;
   line-height: 1em;
   color: #747474;
@@ -194,7 +194,9 @@ aside .section-header, .aside .section-header, .section-header {
   font-size: 16px;
   background: #F4F4F4;
 }
-
+aside .section-header, .aside .section-header {
+  margin: 0 0 20px;
+}
 
 // Registration
 // -----------
@@ -1239,10 +1241,51 @@ header.header {
   }
 
   /* Inbox message icon*/
-  ul.nav > .read-message > a{
-    padding:0;
-    height: 40px;
+  ul.nav {
+    .read-message > a{
+      padding:0;
+      height: 40px;
+    }
+  
+    .unread-message {
+      background-image: url('http://s3.amazonaws.com/squarestays-static/msgicon_unread.png');
+      height: 40px;
+      width: 42px;
+      position: relative;
+      cursor: pointer;
+    
+      a {
+        background-color: #d86e00;
+        border: 1px solid white;
+        height: 10px;
+        width: 10px;
+        color: white;
+        font-size: 9px;
+        padding: 0 0 0 0;
+        display: inline;
+        padding: 1px 1px 3px 7px;
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        margin-bottom: -8px;
+        -moz-box-shadow: 0 0 2px 2px #CCC;
+        -webkit-box-shadow: 0 0 2px 2px #CCC;
+        box-shadow: 0 0 2px 2px #CCC;
+        line-height: 12px;
+      }
+    }
   }
+
+  .read-message {
+    height: 40px;
+    width: 42px;
+    display: inline;
+    a {
+      padding: 0px 0px;
+    }
+
+  }
+  
 }
 
 .nav .add-item {

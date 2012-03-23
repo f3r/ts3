@@ -1,0 +1,16 @@
+.inquiry
+  .span2.place
+    = image_tag inquiry['place_thumb'], :alt => inquiry['place_title']
+  .span8.details
+    %span.title= inquiry['place_title']
+    - if inquiry['guests'].present?
+      .guests
+        %span.value= t(:inquiry_guests, :count => inquiry['guests'])
+    - if inquiry['check_in'].present?
+      .arriving 
+        %span.key= 'arriving on'
+        %span.value= inquiry['check_in']
+    - if inquiry['length'].present?
+      .stay
+        %span.key= 'stay'
+        %span.value= inquiry['length']

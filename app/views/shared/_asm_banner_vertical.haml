@@ -1,6 +1,6 @@
 - if Rails.env.production? && @city_id==1
   #SGHotels_Ad{:style => "margin-left:1px; margin-top: 30px"}
-    = link_to image_tag("SingaporeHotels.jpg"), "http://www.singaporehotels.com/#?utm_source=squarestays&utm_medium=promo&utm_campaign=singapore-hotels", {:rel => "nofollow"}
+    = link_to image_tag("SingaporeHotels.jpg"), "http://www.singaporehotels.com/#?utm_source=squarestays&utm_medium=promo&utm_campaign=singapore-hotels" .html-safe, {:rel => "nofollow"}
 
 - if Rails.env.production?
   #ASM_Ad{:style => "margin-left:27px; margin-top: 20px"}

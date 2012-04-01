@@ -35,6 +35,8 @@ en:
   cityguide_sg:      "City Guide: Singapore"
   cityguide_hk:      "City Guide: Hong Kong"
   cityguide_kl:      "City Guide: Kuala Lumpur"
+  my_account:        My Account
+  my_profile:        My Profile
   
   ####################################################################################
   # Account creation & management
@@ -299,7 +301,9 @@ en:
   place_published: Your place is now listed!
   place_publish_error: Sorry, we can not publish your place because of missing information.
   place_unpublished: Your place is now invisible
-  
+
+  my_favorite_places: My Favorite Places
+  favorite_places: Favorite places
   add_favorite: Add to favorites
   remove_favorite: Remove from favorites
 
@@ -423,6 +427,43 @@ en:
   price_size_highest: Price/Size (Highest First)
   sorry_no_matches: "Sorry, there are no properties that match your criteria"
   agent: Agent
+
+
+  ####################################################################################
+  # Alerts
+  ####################################################################################  
+  alerts: Alerts
+  my_alerts: My Alerts
+  status: Status
+  query: Query
+  schedule: Schedule
+  delivery_method: Delivery method
+  daily: Daily
+  weekly: Weekly
+  monthly: Monthly
+  sms: SMS
+  email_and_sms: Email and SMS
+  edit: Edit
+  pause: Pause
+  unpause: Unpause
+  delete: Delete
+  active: Active
+  inactive: Inactive
+  maximum_price: Maximum price
+  minimum_price: Mininum price
+  dates: Dates
+  settings: Settings
+  message_alert_created: The alert has been successfully created
+  message_alert_deleted: The alert has been successfully deleted
+  message_alert_paused: The alert has been successfully paused
+  message_alert_unpaused: The alert has been successfully unpaused
+  message_alert_updated: The alert has been successfully updated
+  no_alerts: No alerts found.
+  view_results: View results
+  create_alert: Create alert
+  edit_alert: Edit alert
+  custom_alerts: Custom alerts
+
 
   ####################################################################################
   # Home page

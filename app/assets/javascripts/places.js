@@ -3,7 +3,8 @@ var pull_data = function() {
   $('html, body').animate({scrollTop: 0}, '1000');
   $("#search_results").css('opacity', '.3');
   $('#place_result_pages .from_index').html('false');
-  $('#place_result_pages .page_num').html(1);
+  $('#place_result_pages .page_num').html(1);  
+  $('#custom-alerts button.save-search').attr("disabled", "disabled");
 
   var place_type_ids = new Array;
   $.each($("#types-list input"), function() {
@@ -34,6 +35,7 @@ var pull_data = function() {
       $("#num_search_results .results_count").html(data.results);
 
       $("#types-list").html(data.place_filters);
+      $("#save_search").html(data.save_search);
 
       if ($("#disp-gallery").hasClass('current')) {
         $(".show-grid").show();
@@ -44,6 +46,7 @@ var pull_data = function() {
       }
       $('#place_result_pages .current_page').html(data.current_page);
       $('#place_result_pages .total_page').html(data.total_pages);
+      $('#custom-alerts button.save-search').removeAttr("disabled");
     }
   });
   return false;

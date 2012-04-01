@@ -11,7 +11,8 @@ HeyPalFrontEnd::Application.routes.draw do
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end
 
-  get   'search/index'
+  # get   'search/index'
+  match '/search'          => 'places#index', :as => :search
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
   match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
@@ -50,6 +51,15 @@ HeyPalFrontEnd::Application.routes.draw do
       post :reply_to_message
     end
   end
+
+  ###########################################################################################
+  # Saved searches
+  ###########################################################################################
+  resources :alerts do
+    get 'pause' => 'alerts#pause'
+    get 'unpause' => 'alerts#unpause'
+  end
+
   match '/my_places'          => 'places#my_places',          :as => :my_places
   match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places
   get   '/check_availability' => 'places#check_availability'

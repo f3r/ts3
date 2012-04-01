@@ -173,11 +173,12 @@ class PlacesController < ApplicationController
     @cities = Heypal::Geo.get_all_cities(params[:query])
     render :js => @cities.map.collect{|city| [city['name']]}
   end
-
+  
   # default place search2
   def index
+
     if params[:city_id]
-      @city_id = params[:city_id]
+      @city_id = params[:city_id].to_i
     elsif params[:city]
       city = Heypal::City.find_by_name(params[:city])
       @city_id = city.id if city
@@ -187,20 +188,40 @@ class PlacesController < ApplicationController
       raise "Invalid city"
     end
 
-    check_in  = params[:check_in]  rescue nil
-    check_out = params[:check_out] rescue nil
-    page      = params[:page]
-    search_params    = { 
-      'check_in'  => check_in,
-      'check_out' => check_out,
-      'sort'      => 'price_lowest',
-      'guests'    => '1',
-      'city'      => @city_id,
-      'currency'  => get_current_currency,
-      'per_page'  => 6,
-      'page'      => page
-    }
-    @results = Heypal::Place.search(search_params, current_token)
+    if params[:city]
+
+      check_in  = params[:check_in]  rescue nil
+      check_out = params[:check_out] rescue nil
+      page      = params[:page]
+      alert_params    = { 
+        'check_in'  => check_in,
+        'check_out' => check_out,
+        'sort'      => 'price_lowest',
+        'guests'    => '1',
+        'city'      => @city_id,
+        'currency'  => get_current_currency,
+        'per_page'  => 6,
+        'page'      => page
+      }
+
+    else
+      
+      alert_params = { 
+        'city_id'         => params[:city_id],
+        'guests'          => params[:guests],
+        'check_in'        => params[:check_in],
+        'check_out'       => params[:check_out],
+        'sort'            => params[:sort],
+        'currency'        => params[:currency],
+        'min_price'       => params[:min_price],
+        'max_price'       => params[:max_price],
+        'place_type_ids'  => params['place_type_ids'],
+        'per_page'        => 6
+      }
+
+    end
+
+    @results = Heypal::Place.search(alert_params, current_token)
 
     min, max = Heypal::Geo.get_price_range(@city_id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
     if !min.nil? && !max.nil?
@@ -211,10 +232,28 @@ class PlacesController < ApplicationController
       @max_price = 0
     end
 
+    @alert_params = {
+      'alert_type'       => 'Place',
+      'schedule'          => 'daily',
+      'delivery_method'   => 'email',
+      'query'             => {
+        'city_id'         => @city_id,
+        'guests'          => params['guests'],
+        'check_in'        => params['check_in'],
+        'check_out'       => params['check_out'],
+        'sort'            => params['sort'],
+        'currency'        => get_current_currency,
+        'min_price'       => params['min_price'],
+        'max_price'       => params['max_price'],
+        'place_type_ids'  => params['place_type_ids']
+      }
+    }
+
     respond_to do |format|
       format.html
       format.js { render :partial => 'javascript_place' }
     end
+      
   end
 
   # User
@@ -222,6 +261,23 @@ class PlacesController < ApplicationController
     page = params[:page]
     params.merge!('per_page' => 6, 'page' => page)
     @results = Heypal::Place.search(params, current_token)
+
+    @alert_params = {
+      'alert_type'       => 'Place',
+      'schedule'          => 'daily',
+      'delivery_method'   => 'email',
+      'query'             => {
+        'city_id'         => params['city_id'],
+        'guests'          => params['guests'],
+        'check_in'        => params['check_in'],
+        'check_out'       => params['check_out'],
+        'sort'            => params['sort'],
+        'currency'        => params['currency'],
+        'min_price'       => params['min_price'],
+        'max_price'       => params['max_price'],
+        'place_type_ids'  => params['place_type_ids']
+      }
+    }
 
     if @results.key?("err")
       render :json => {
@@ -241,9 +297,11 @@ class PlacesController < ApplicationController
         :place_type_count => @results['place_type_count'],
         :total_pages      => @results['total_pages'], 
         :place_data       => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
-        :place_filters    => render_to_string(:_place_type_filters, :layout => false)
+        :place_filters    => render_to_string(:_place_type_filters, :layout => false),
+        :save_search      => render_to_string("alerts/_save_search_form.haml", :locals => {:alert_params => @alert_params}, :layout => false)
       }
     end
+
   end
 
   def my_places

@@ -16,6 +16,14 @@
           %form.panel-wrap
             %ul.panel-expander
               %li
+                - if logged_in? && @alert_params
+                  #custom-alerts
+                    .header= t(:custom_alerts)
+                    .content                  
+                      %button.btn.save-search{"data-toggle" => "modal", :href => "#save_search"}
+                        %i.icon-time
+                        =t("create_alert")
+              %li
                 = render :partial => 'place_type_filters'
               %li
                 .header= t(:price_per_month)
@@ -32,6 +40,10 @@
   .current_page= @results['current_page']
   .total_page= @results['total_pages']
   .from_index= true
+
+- if logged_in? && @alert_params
+  #save_search.modal.hide.fade
+    = render :partial => 'alerts/save_search_form', :locals => { :alert_params => @alert_params }
   
 :javascript
   $(document).ready(function() {  

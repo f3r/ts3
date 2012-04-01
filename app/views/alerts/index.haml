@@ -1,0 +1,63 @@
+- if @alerts.blank?
+  .alert.alert-info= t(:no_alerts)
+- else
+  %table.table.table-striped.alerts
+    %tr
+      %th= t(:status)
+      %th= t(:query)
+      %th= t(:schedule)
+      %th= t(:delivery_method)
+      %th
+    - for alert in @alerts do
+      %tr{:id => "alert-#{alert['id']}"}
+        %td
+          - if alert["active"]
+            %span.label.label-success= t(:active)
+          - else
+            %span.label= t(:inactive)
+        %td
+          %ul
+            - if !alert["query"]["city_id"].blank?
+              %li= "#{city_name(alert["query"]["city_id"].to_i)}"
+            - if !alert["query"]["min_price"].blank?
+              %li= "#{t(:minimum_price)}: #{alert["query"]["min_price"]}"
+            -  if !alert["query"]["max_price"].blank?
+              %li= "#{t(:maximum_price)}: #{alert["query"]["max_price"]}"
+            - if !alert["query"]["guests"].blank?
+              %li= "#{t(:guests)}: #{alert["query"]["guests"]}"
+            - if !alert["query"]["check_in"].blank?
+              %li= "#{t(:check_in)}: #{alert["query"]["check_in"]}"
+            - if !alert["query"]["check_out"].blank?
+              %li= "#{t(:check_out)}: #{alert["query"]["check_out"]}"
+        %td= t(alert["schedule"])
+        %td= t(alert["delivery_method"])
+        %td
+          %div.btn-group
+            = link_to alert_path(alert['id']), :class => "results btn btn-small" do
+              %i.icon-search
+              =t(:view_results)                
+            = link_to edit_alert_path(alert['id']), :class => "edit btn btn-small" do
+              %i.icon-cog
+              =t(:settings)                
+            - if alert["active"]
+              = link_to alert_pause_path(alert['id']), :class => "pause btn btn-small" do
+                %i.icon-pause
+                =t(:pause)                
+            - else
+              = link_to alert_unpause_path(alert['id']), :class => "unpause btn btn-small" do
+                %i.icon-play
+                =t(:unpause)                
+            = link_to alert_path(alert['id']), :class => "delete btn btn-danger", :method => :delete, :confirm => t(:are_you_sure) do
+              %i.icon-trash.icon-white
+              =t(:delete)                
+
+:javascript
+  $(document).ready(function() {
+    $("a.edit").click(function() {
+      $('#edit').modal('show');
+      $('#edit').load($(this).attr("href"));
+      return false;
+    });
+  });
+  
+#edit.modal.hide

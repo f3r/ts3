@@ -1,0 +1,81 @@
+= form_tag @current_action == "edit" ? alert_path(alert_params['id']) : alerts_path, :class => "form-horizontal", :method => @current_action == "edit" ? :put : :post do
+
+  = hidden_field_tag "query[currency]", alert_params['query']['currency']
+  = hidden_field_tag "alert_type", alert_params['alert_type']
+
+  .modal-header
+    %h3=t(@current_action == "edit" ? :edit_alert : :create_alert)
+  .modal-body
+    %fieldset
+      .column1
+        .control-group
+          %label{:class => "control-label"}= t(:settings)
+          .controls
+            = select_tag "schedule", options_for_select([[t(:daily), "daily"], [t(:weekly), "weekly"], [t(:monthly), "monthly"]], alert_params['schedule'])
+            = select_tag "delivery_method", options_for_select([[t(:email), "email"], [t(:sms), "sms"], [t(:email_and_sms), "email_sms"]], alert_params['delivery_method'])
+        .control-group
+          %label{:class => "control-label"}= t(:city)
+          .controls
+            = select_tag "query[city_id]", options_for_select(cities_select, alert_params['query']['city_id'])
+        .control-group
+          %label{:class => "control-label"}= t(:guests)
+          .controls
+            = select_tag "query[guests]", options_for_select(max_guest_options, alert_params['query']['guests'])
+        .control-group
+          %label{:class => "control-label"}= t(:dates)
+          .controls
+            = text_field_tag "query[check_in]", alert_params['query']['check_in'], :placeholder => t(:arriving_on), :class => 'span2 check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
+            = text_field_tag "query[check_out]", alert_params['query']['check_out'], :placeholder => t(:departing_on), :class => 'span2 check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
+        .control-group
+          %label{:class => "control-label"}= t(:sort_by)
+          .controls
+            = select_tag "query[sort]", options_for_select(sort_options, alert_params['query']['sort'] || 'price_highest'), :class => 'medium'
+        .control-group
+          %label{:class => "control-label"}= t(:minimum_price)
+          .controls
+            .input-prepend
+              %span.add-on= get_currency_with_symbol(get_current_currency)
+              = text_field_tag "query[min_price]", alert_params['query']['min_price'], :placeholder => t(:minimum_price), :class => 'span2', 'autocomplete' => 'off'
+        .control-group
+          %label{:class => "control-label"}= t(:maximum_price)
+          .controls
+            .input-prepend
+              %span.add-on= get_currency_with_symbol(get_current_currency)
+              = text_field_tag "query[max_price]", alert_params['query']['max_price'], :placeholder => t(:maximum_price), :class => 'span2', 'autocomplete' => 'off'
+      .column2
+        .control-group
+          %label{:class => "control-label"}= t(:type)
+          - place_types_list.each do |name, id, slug|
+            .controls
+              %label.checkbox
+                = check_box_tag "query[place_type_ids][]", id, (alert_params['query']['place_type_ids'] && alert_params['query']['place_type_ids'].include?(id.to_s)), :id => "#{slug}_filter"
+                = name
+
+  .modal-footer
+    %button.btn{:onclick => "$('.modal').modal('hide'); return false;"}=t(:cancel)
+    %button.btn.btn-primary=t(:submit)
+
+:javascript
+  // Initialize the date pickers
+  $('#save_search .check-in-picker, #save_search .check-out-picker').datepicker('destroy').datepicker({
+    dateFormat: 'yy-mm-dd',
+    minDate: +1,
+    onSelect: function(selectedDate) {
+      var me = $(this);
+      var who = me.attr("data-date");
+      var instance = me.data("datepicker");
+
+      var date = $.datepicker.parseDate(
+            instance.settings.dateFormat ||
+            $.datepicker._defaults.dateFormat,
+            selectedDate, instance.settings);
+
+      if (who == 'from') {
+        from = me.next();
+        from.datepicker("option", "minDate", date);
+      } else {
+        to = me.prev();
+        to.datepicker("option", "maxDate", date);
+      }
+    }
+  });

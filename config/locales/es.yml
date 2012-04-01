@@ -2,6 +2,7 @@
 es: 
   account_number: "Número de cuenta"
   account_settings: Editar
+  active: Activo
   activerecord: 
     errors: 
       full_messages: 
@@ -46,6 +47,7 @@ es:
   address_2_help: "Apartmento / Número"
   agent: Agente
   aircon: "Aire acondicionado"
+  alerts: Alertas
   amenities: Instalaciones
   apartment: Apartamento
   app_domain: Squarestays.com
@@ -381,9 +383,12 @@ es:
     ZW: Zimbabue
     ZZ: "Desconocido o región invalida"
   country: Pais
+  create_alert: "Crear alerta"
   create_an_account_using: "Crear una cuenta usando"
   create_new_account: "Crear nueva cuenta"
   currency: Moneda
+  custom_alerts: "Alertas personalizadas"
+  daily: Diario
   date: 
     abbr_day_names: 
       - dom
@@ -437,6 +442,7 @@ es:
       - !ruby/symbol day
       - !ruby/symbol month
       - !ruby/symbol year
+  dates: Fechas
   datetime: 
     distance_in_words: 
       about_x_hours: 
@@ -481,7 +487,9 @@ es:
       second: Segundos
       year: Año
   days: días
+  delete: Eliminar
   delete_place: "Eliminar el apartamento"
+  delivery_method: "Método de entrega"
   departing: Salida
   departing_on: "Partiendo el"
   description: Descripción
@@ -491,10 +499,13 @@ es:
   doorman: Portero
   dryer: Secadora
   duration: Duración
+  edit: Editar
   edit_account: "Editar cuenta"
+  edit_alert: "Editar alerta"
   edit_place: "Editar lugar"
   elevator: Ascensor
   email: Email
+  email_and_sms: "Correo electrónico y SMS"
   email_confirmed: "Se ha confirmado correctamente tu dirección de correo electrónico!"
   enter_confirmation_code: "Introduce tu código de confirmación"
   enter_your_email: "Introduce tu Email"
@@ -612,6 +623,7 @@ es:
   failed_read: "No se ha podido marcar como leídos"
   failed_unread: "No se ha podido marcar como no leído"
   family_friendly: "Ambiente familiar"
+  favorite_places: "Lugares favoritos"
   final_cleanup: "Limpieza final"
   final_cleanup_hint: "El costo de la limpieza del lugar una vez finalizado el alquiler"
   find_places: "Buscar Apartamento"
@@ -662,12 +674,17 @@ es:
   homepage_seo_text: ""
   homepage_seo_text2: ""
   homepage_twitter: "Síguenos en Twitter"
+  hong_kong: ""
+  hongkong: ""
   hot_tub: "Tina caliente"
   hot_water: "Agua caliente"
   house: Casa
   house_rules: "Normas de la casa"
   how_it_works: ""
   how_list_your_properties: ""
+  how_list_your_properties_1st: ""
+  how_list_your_properties_2nd: ""
+  how_list_your_properties_3rd: ""
   how_many_bedrooms: "¿Cuántas habitaciones?"
   how_payments_1st: ""
   how_payments_2nd: ""
@@ -675,6 +692,7 @@ es:
   i_agree_to_the: "Acepto los"
   i_have_an_account: "¿Ya es miembro de SquareStays?"
   iban: IBAN
+  inactive: ""
   inquiry_error: ""
   inquiry_success: ""
   internet: Internet
@@ -685,6 +703,7 @@ es:
   invisible: Invisible
   jacuzzi: Jacuzzi
   kitchen: Cocina
+  kuala_lumpur: ""
   last_name: Apellido
   leave_us_email: "Déjenos su dirección de correo electrónico para que podamos notificarle cuando añadimos la ciudad que buscabas."
   lenght_of_stay: "Duración de la estadía"
@@ -703,21 +722,34 @@ es:
   marked_as_unread: "El mensaje fue marcado como no leído"
   max_guests: "Número de Invitados"
   maximum_of: "Máximo de"
+  maximum_price: "Precio máximo"
   maximum_stay: "Estadía máxima"
+  message_alert_created: "La alerta se ha creado correctamente"
+  message_alert_deleted: "La alerta se ha eliminado correctamente"
+  message_alert_paused: "La alerta ha sido correctamente desactivada"
+  message_alert_unpaused: "La alerta ha sido correctamente reactivada"
+  message_alert_updated: "La alerta se ha actualizado correctamente"
   message_user: "Enviar un mensaje"
   messages: Mensajes
   minimum_of: "Mínimo de"
+  minimum_price: "Precio minimo"
   minimum_stay: "Estadía mínima"
   miscellaneous: Varios
   mobile_phone: "Número de Teléfono Móvil"
   mobile_phone_number: "Número de teléfono móvil"
   moderate: Moderada
   moderate_cancellation: "reembolso completo 5 días antes de la llegada, excepto las tasas"
+  monthly: Mensual
   months: Meses
+  my_account: "Mi cuenta"
+  my_alerts: "Mis alertas"
+  my_favorite_places: "Mis lugares favoritos"
   my_places: "Mis Apartamentos"
+  my_profile: "Mi perfil"
   new_price: "Nuevo precio"
   next_step: "Siguiente &raquo;"
   nights: Noches
+  no_alerts: "No hay alertas encontradas."
   no_caption: "sin título"
   no_maximum: "No hay máximo"
   no_messages: "No hay mensajes"
@@ -783,7 +815,9 @@ es:
   password_reset_failed: "El restablecimiento de tu contraseña ha fallado."
   password_reset_instruction_sent: "Email enviado con las instrucciones para restablecer tu contraseña"
   password_reset_success: "Cambio de contraseña correcto!"
+  pause: Desactivar
   payment_details: "Detalles de pago"
+  per_month: ""
   per_night: "Por noche"
   pets_allowed: Mascotas
   photography_faq: ""
@@ -822,6 +856,7 @@ es:
   profile_retype_pwd: "Vuelva a escribir la contraseña'"
   public_field: "Público. Cualquiera puede ver esta información"
   publish: Publicar
+  query: Búsqueda
   question: Preguntas
   read_agreement: "He leído y estoy de acuerdo con el contrato de arrendamiento"
   read_photo_faq: ""
@@ -837,6 +872,7 @@ es:
   save: Guardar
   save_and_continue: "Guardar y Continuar &raquo;"
   saving_photo: "Guardando la foto"
+  schedule: Programación
   search_place_stay_in: "Buscar un lugar para quedarse"
   section_header_bank_account: "Cuenta bancaria"
   section_header_billing_address: "Dirección para Facturación"
@@ -847,6 +883,7 @@ es:
   security_deposit_hint: ""
   see_our: "Consulte nuestra"
   select_one: "Por favor, seleccione al menos uno"
+  settings: Configuración
   share: "Compartir a través de"
   sign_in: "Iniciar Sesión"
   sign_out: "Terminar Sesión"
@@ -854,9 +891,11 @@ es:
   signup_complete_text: "Gracias por registrarte! Sin embargo, todavía tienes que confirmar tu cuenta. Comprueba tu email y activa tu cuenta con el enlace que te hemos enviado."
   signup_for_an_account: ""
   signup_needed_to_connect: "Para conectar tu cuenta con tu red social, proveenos de la siguientes información"
+  singapore: ""
   site_title: "SquareStays - Trusted Stays"
   size: Tamaño
   smoking_allowed: "Fumar permitido"
+  sms: SMS
   something_went_wrong: "Algo salió mal. Intente de nuevo más tarde."
   sorry_no_matches: "Lo sentimos, no hay propiedades que coinciden con los criterios"
   sort_by: "Ordenar por"
@@ -866,6 +905,7 @@ es:
   square_meters: "Metros cuadrados"
   square_meters_short: m²
   state: Estado/Provincia
+  status: Estado
   stay_details: "Detalles de la estadía"
   street: Calle
   strict: Estricto
@@ -910,15 +950,19 @@ es:
   type: Tipo
   unavailable: "No disponible"
   unconfirmed_email: "Sin confirmar correo electrónico"
+  unpause: Reactivar
   unpublish: "Anular la publicación"
   upload_a_new_photo: "Subir una foto nueva"
   upload_photo: "Subir foto"
   upload_photo_hint: "Soportamos imágenes jpg y png. Debes enviar un mínimo de 3 imágenes."
   use_facebook_photo: "Usar la foto de Facebook"
   user_confirmed: "Tu cuenta se ha confirmado correctamente!"
+  user_created: ""
   view_house_rules: "Ver reglas de casa"
+  view_results: "Ver resultados"
   villa: Villa
   washer: Lavadora
+  weekly: Semanal
   weeks: Semanas
   what_city: "¿En qué ciudad está tu Apartamento?"
   what_city_is_your_place_in: "¿En qué ciudad está su apartamento?"

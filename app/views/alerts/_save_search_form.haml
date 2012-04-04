@@ -12,7 +12,7 @@
           %label{:class => "control-label"}= t(:settings)
           .controls
             = select_tag "schedule", options_for_select([[t(:daily), "daily"], [t(:weekly), "weekly"], [t(:monthly), "monthly"]], alert_params['schedule'])
-            = select_tag "delivery_method", options_for_select([[t(:email), "email"], [t(:sms), "sms"], [t(:email_and_sms), "email_sms"]], alert_params['delivery_method'])
+            = select_tag "delivery_method", options_for_select([[t(:email), "email"]], alert_params['delivery_method'])
         .control-group
           %label{:class => "control-label"}= t(:city)
           .controls

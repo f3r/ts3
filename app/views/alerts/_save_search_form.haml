@@ -57,7 +57,7 @@
 
 :javascript
   // Initialize the date pickers
-  $('#save_search .check-in-picker, #save_search .check-out-picker').datepicker('destroy').datepicker({
+  $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
     dateFormat: 'yy-mm-dd',
     minDate: +1,
     onSelect: function(selectedDate) {

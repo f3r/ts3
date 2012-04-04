@@ -59,6 +59,7 @@ HeyPalFrontEnd::Application.routes.draw do
     get 'pause' => 'alerts#pause'
     get 'unpause' => 'alerts#unpause'
   end
+  match '/search/code/:search_code' => 'alerts#show_search_code', :as => :show_search_code
 
   match '/my_places'          => 'places#my_places',          :as => :my_places
   match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places

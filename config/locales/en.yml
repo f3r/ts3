@@ -463,7 +463,9 @@ en:
   create_alert: Create alert
   edit_alert: Edit alert
   custom_alerts: Custom alerts
-
+  error_invalid_or_expired_search: Invalid or expired search
+  error_alert_check_dates: Invalid dates
+  error_alert: Unknown error
 
   ####################################################################################
   # Home page

@@ -113,6 +113,9 @@ edit_place: "Edit place"
 elevator: Elevator
 email_and_sms: "Email and SMS"
 email_confirmed: "Your email address has been successfully confirmed!"
+error_alert: "Unknown error"
+error_alert_check_dates: "Invalid dates"
+error_invalid_or_expired_search: "Invalid or expired search"
 errors: 
   ? "133"
   : "not allowed to do that"

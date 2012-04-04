@@ -45,6 +45,10 @@ class Heypal::Alert < Heypal::Base
       result = request("/users/me/alerts/#{id}.json?access_token=#{access_token}", :get)
     end
 
+    def get_search_params(search_code)
+      result = request("/alerts/#{search_code}.json", :get)
+    end
+
     def get_data_on(result)
       [true, result["alert"]]
     end

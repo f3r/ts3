@@ -510,6 +510,9 @@ es:
   enter_confirmation_code: "Introduce tu código de confirmación"
   enter_your_email: "Introduce tu Email"
   enter_your_new_password: "Introduce nueva contraseña"
+  error_alert: "Error desconocido"
+  error_alert_check_dates: "Fechas no válidas"
+  error_invalid_or_expired_search: "Búsqueda no válido o caducada"
   errors: 
     ? "100"
     : "has already been taken"

@@ -1,7 +1,7 @@
 class Heypal::City
 
   CITIES = [{id: 1, name: :singapore}, {id: 2, name: :hong_kong}, {id: 4, name: :kuala_lumpur}]
-  
+
   attr_accessor :id, :code
 
   def self.all

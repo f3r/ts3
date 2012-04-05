@@ -4,14 +4,15 @@ module LookupsHelper
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
   CITIES     = [
-    'Singapore', 
-    'Hong Kong', 
-    'Sydney, Australia', 
-    'Kuala Lumpur, Malaysia', 
-    'New York, United States', 
-    'San Francisco, United States', 
+    'Singapore',
+    'Hong Kong',
+    'Sydney, Australia',
+    'Kuala Lumpur, Malaysia',
+    'New York, United States',
+    'San Francisco, United States',
     'Los Angeles, United States',
-    'Shanghai, China'
+    'Shanghai, China',
+    'Manila, Philippines'
   ]
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
@@ -37,17 +38,18 @@ module LookupsHelper
 
   def cancellation_policies_select
     CANCELLATION_POLICIES.collect { |key, value| [t(value), key] }
-  end 
+  end
 
   def cities_select
-    [['Singapore',                    '1'], 
-     ['Hong Kong',                    '2'], 
-     ['Sydney, Australia',            '3'], 
+    [['Singapore',                    '1'],
+     ['Hong Kong',                    '2'],
+     ['Sydney, Australia',            '3'],
      ['Kuala Lumpur, Malaysia',       '4'],
      ['New York, United States',      '5'],
      ['San Francisco, United States', '6'],
      ['Los Angeles, United States',   '7'],
-     ['Shanghai, China',              '8']
+     ['Shanghai, China',              '8'],
+     ['Manila, Philippines',          '9']
     ]
   end
 

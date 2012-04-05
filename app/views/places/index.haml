@@ -52,5 +52,10 @@
   
 :javascript
   $(document).ready(function() {  
-    PlaceFilters.initialize(#{@min_price},#{@max_price});
+    PlaceFilters.initialize({
+      'min_price': #{@min_price},
+      'max_price': #{@max_price},
+      'initial_min_price': #{params[:min_price] || 'null'},
+      'initial_max_price': #{params[:max_price] || 'null'}    
+    });
   });

@@ -16,14 +16,14 @@
       .float-right
         .filters
           = select_tag :guests, options_for_select(max_guest_options, !params['guests'].blank? ? params['guests'] : ''), :style => "width:100px", :autocomplete => 'off'
-          = text_field_tag "check_in", @results['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
+          = text_field_tag "check_in", params['check_in'], :placeholder => t(:arriving_on), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
           = "-"
-          = text_field_tag "check_out", @results['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
+          = text_field_tag "check_out", params['check_out'], :placeholder => t(:departing_on), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
 
         .views
           .sorting
             = t(:sort_by)
-            = select_tag :sort, options_for_select(sort_options, !params['sort'].blank? ? params['sort'] : 'price_highest'), :class => 'medium', :autocomplete => 'off'
+            = select_tag :sort, options_for_select(sort_options, params['sort'].present? ? params['sort'] : 'price_highest'), :class => 'medium', :autocomplete => 'off'
           .toggle
             = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
             = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'

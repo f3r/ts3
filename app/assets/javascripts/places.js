@@ -53,14 +53,18 @@ var pull_data = function() {
 };
 
 PlaceFilters = {
-  initialize: function(minPrice, maxPrice){
+  initialize: function(opts){
+    var minPrice = opts['min_price'],
+        maxPrice = opts['max_price'],
+        initialMinPrice = opts['initial_min_price'] || minPrice,
+        initialMaxPrice = opts['initial_max_price'] || maxPrice;
 
     // Initialize Price Sliders
     $("#price-slider").slider({
       range: true,
       min: minPrice,
       max: maxPrice,
-      values: [minPrice, maxPrice],
+      values: [initialMinPrice, initialMaxPrice],
       step: 100,
       slide: function( event, ui ) {
         $("#min_price").html(ui.values[0]);

@@ -32,7 +32,7 @@ class Heypal::User < Heypal::Base
 
     def confirm_reset_password(params = {})
       result = request('/users/password.json', :put, params)
-      result['stat'] == 'ok'
+      result
     end
 
     def show(params = {})

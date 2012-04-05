@@ -93,6 +93,7 @@
         font-weight: bold;
         padding-right: 16px;
         background: transparent url(blue-arrow-down.png) no-repeat right center;
+		outline: 0;
         
         &:hover{
           text-decoration: none;
@@ -159,6 +160,7 @@
       width: 10px;
       background:  transparent url(dot.normal.png) no-repeat center center;
       text-indent: -9999px;
+	  outline:0;
       float: left;
       margin: 0 2px;
       &.activeSlide{
@@ -197,7 +199,7 @@
 #country-select {
   list-style-type:none;
   position: absolute;
-  margin: 0 100px 0 262px;
+  margin: 0 100px 0 264px;
   top: 234px;
   display: none;
   background: #fff;
@@ -207,12 +209,12 @@
   li {
     background-color:#36C;
     padding:5px 5px;
-    line-height: 27px;
+    line-height: 14px;
     color: #FFF;
     border-bottom:1px solid #404040;
-    font-size:16px;
-    width: 100px;
-    text-align: center;
+    font-size:12px;
+    width: 110px;
+    text-align: left;
 
     &.arrow {
       background: transparent url(blue.drop.png) no-repeat;
@@ -225,8 +227,7 @@
 
     a {
       color: #FFF;
-      font-style: italic;
-      font-size: 10px;
+	  margin-left:3px
     }
   }
   
@@ -239,7 +240,10 @@
     border-top-right-radius: 4px;
   }
   li:last-child {
-    line-height: 17px;
+    line-height: 10px;
+	font-size:10px;
+	font-style:italic;
+	text-align:right;
     border-bottom:none;
     padding-bottom:5px;
     -webkit-border-bottom-right-radius: 4px;

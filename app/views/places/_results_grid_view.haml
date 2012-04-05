@@ -1,6 +1,7 @@
 %ul
   - places.each do |place|
     %li.items-gallery.results{:class => "place_#{place['id']}"}
+      = render :partial => 'sharing_options', :locals => { :place => place }
       .box
         .clearfix
           =  link_to seo_place_path(place) do

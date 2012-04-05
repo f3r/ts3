@@ -369,6 +369,10 @@ en:
   edit_place: Edit
   delete_place: Delete
   message_user: Send a Message
+  
+  successfully_added_to_your_favorites: The place was successfully added to your favorites
+  share_this_place_with_your_friends: Share this favorite with your friends
+  no_thanks: No thanks
 
   ####################################################################################
   # Place rent

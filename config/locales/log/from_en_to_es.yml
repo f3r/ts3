@@ -117,10 +117,6 @@ error_alert: "Unknown error"
 error_alert_check_dates: "Invalid dates"
 error_invalid_or_expired_search: "Invalid or expired search"
 errors: 
-  ? "133"
-  : "not allowed to do that"
-  ? "134"
-  : "doesn't have access to resource"
   ? "141"
   : "minimum stay not met"
   ? "142"
@@ -221,8 +217,13 @@ no_maximum: "No Maximum"
 no_messages: "No messages"
 no_minimum: "No Minimum"
 no_result: "No results found. Try changing some of your search options."
+no_thanks: "No thanks"
 not_going_to_singapore: "Not going to Singapore?"
 not_listed_yet: "Your place is not listed yet!"
+number: 
+  currency: 
+    format: 
+      negative_format: "-%u%n"
 other_space: "Other space"
 parking_included: "Parking Space"
 passport_number: "Passport number"
@@ -284,6 +285,7 @@ see_our: "See our"
 select_one: "Please select at least one"
 settings: Settings
 share: "Share via"
+share_this_place_with_your_friends: "Share this favorite with your friends"
 signup_for_an_account: "Signup for a new account"
 singapore: Singapore
 site_title: "SquareStays - Trusted Stays"
@@ -305,6 +307,7 @@ strict_7_day: "Strict 7-Day"
 strict_cancellation: "at least 7 days before the reservation date, you will be charged 10% of the security deposit."
 sub_total: Subtotal
 success: Success!
+successfully_added_to_your_favorites: "The place was successfully added to your favorites"
 suitable_events: "Suitable for Events"
 swift: Swift
 switch_to_login: "Already have an account? Sign in"

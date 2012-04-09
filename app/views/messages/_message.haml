@@ -4,5 +4,5 @@
       = avatar_image(m['from'])
       = message_from(m['from'])
   .span11
-    .body= simple_format h(m['body'])
+    .body{:class => m['system'] ? 'system' : ''}= simple_format h(m['body'])
     %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"

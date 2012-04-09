@@ -5,7 +5,7 @@
     &raquo;
     - if @inquiry
       = t(:inquiry_on)
-      = 'A place'
+      = @inquiry['place_title']
     - else
       = t(:conversation_with)
       = @conversation['from']['first_name']

@@ -1,9 +1,9 @@
 %h4.section-header=t(:inquiries)
 .inbox
-  .row
-    - if @conversations.blank?
+  - if @conversations.blank?
 
-    - else
-      - @conversations.each do |m|
+  - else
+    - @conversations.each do |m|
+      .row
         = render 'conversation_entry', :m => m
 

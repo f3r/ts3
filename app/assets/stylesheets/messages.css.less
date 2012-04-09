@@ -22,10 +22,16 @@
 .inbox {
   .entry {
     border: 1px solid #C0C0C0;
+    margin: 1px 1px 1px 21px;
     border-radius: 5px 5px 5px 5px;
     padding: 7px 0;
+    color: #333333;
     &.unread {
      background-color: #E0F5DA;
+    }
+    &:hover {
+      margin: 0 0 0 20px;
+      border: 2px solid #C0C0C0;
     }
   }
   .inquiry {
@@ -33,6 +39,10 @@
     .value {
       color: #333333;
     }
+  }
+  .message .empty {
+    font-style: italic;
+    color: #B0B2B4;
   }
 }
 
@@ -42,6 +52,9 @@
     .body {
       border: 1px solid #C0C0C0;
       padding: 7px;
+      &.system {
+        font-style: italic;
+      }
     }
     .from {
       text-align: center;

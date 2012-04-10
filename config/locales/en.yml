@@ -323,6 +323,7 @@ en:
   marked_as_read: The message was marked as read
   failed_unread: Failed to mark as unread
   failed_read: Failed to mark as read
+  no_messages: You don't have any message in your inbox
 
   ####################################################################################
   # Photos

@@ -2,7 +2,7 @@
   .span2.place
     = image_tag inquiry['place_thumb'], :alt => inquiry['place_title']
   .span8.details
-    %span.title= inquiry['place_title']
+    %span.title= link_to inquiry['place_title'], inquiry['place_url']
     - if inquiry['guests'].present?
       .guests
         %span.value= t(:inquiry_guests, :count => inquiry['guests'])

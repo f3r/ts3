@@ -374,26 +374,24 @@ class PlacesController < ApplicationController
   end
 
   def confirm_inquiry
-    @confirm_inquiry = Heypal::Place.confirm_inquiry(
-      params[:id], 
-      {
-        :extra => {
-          :name   => params[:name],
-          :email  => params[:email],
-          :mobile => params[:mobile]
-        },
-        :date_start       => params[:date_start],
-        :length_stay      => params[:length_stay],
-        :length_stay_type => params[:length_stay_type],
-        :message          => params[:questions]
-      },
-      current_token
-    )
-    if @confirm_inquiry['stat'] == 'ok'
-      @response = "success"
-    else
-      @response = "error"
-    end
+    # @confirm_inquiry = Heypal::Place.confirm_inquiry(
+    #      params[:id],
+    #      {
+    #        :name             => params[:name],
+    #        :email            => params[:email],
+    #        :date_start       => params[:date_start],
+    #        :length_stay      => params[:length_stay],
+    #        :length_stay_type => params[:length_stay_type],
+    #        :message          => params[:questions]
+    #        #:extra => {
+    #        #  :mobile => params[:mobile]
+    #        #},
+    #      },
+    #      current_token
+    #    )
+    #    if @confirm_inquiry['stat'] == 'ok'
+    #      @success = true
+    #    end
     respond_to do |format|
       format.js { render :layout => false }
     end

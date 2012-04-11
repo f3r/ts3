@@ -1,7 +1,9 @@
-$('#inquire_place').modal('hide').addClass('sent');
 $('.alert-message').remove();
-<% if @response == "success" %>
+$('#inquire_place').modal('hide').addClass('sent');
+<%= open_modal :inquiry_sent, 'inquiries/sent' %>
+<% if @success %>
 $('.place_info').before('<div class="alert alert-success" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t(:inquiry_success) %></div>');
 <% else %>
+$("#inquire_button").button('reset');
 $('.place_info').before('<div class="alert alert-error" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t(:inquiry_error) %></div>');
 <% end %>

@@ -165,7 +165,7 @@ var PlaceShow = {
       add_datepicker();
       $('.alert-message').remove();
       $("#inquire_form").validationEngine({
-        promptPosition : "bottomRight:-50,30",
+        promptPosition : "bottomRight:-10,-10",
         relative: true,
         onValidationComplete: function(form, status){
           if(status){

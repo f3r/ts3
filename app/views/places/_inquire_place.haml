@@ -4,60 +4,34 @@
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
       %h3 Tell us about your stay
 
-    .modal-header.optional-section
-      %h5 Contact information
     .modal-body
       .form-horizontal
-        .control-group
-          %label{:class => 'control-label'} Name
-          .controls
-            - if logged_in?
-              = text_field_tag :name, full_name(current_user), :class => 'span5 validate[required]'
-            - else
-              = text_field_tag :name, nil, :placeholder => "e.g. John Smith", :class => 'span5 validate[required]'
-        .control-group
-          %label{:class => 'control-label'} Email address
-          .controls
-            - if logged_in?
-              = text_field_tag :email, current_user.email, :class => 'span5 validate[required,custom[email]]'
-            - else
-              = text_field_tag :email, nil, :placeholder => 'e.g. mail@mail.com', :class => 'span5 validate[required]'
-        .control-group
-          %label{:class => 'control-label'} Mobile phone number
-          .controls
-            - if logged_in?
-              = text_field_tag :mobile, current_user.phone_mobile, :class => 'span3 validate[required]'
-            - else
-              = text_field_tag :mobile, nil, :placeholder => "e.g. +65 1111 1111", :class => 'span3 validate[required]'
-      
-            = check_box_tag :call_me, 'yes', true
-            %span{:style => 'font-size: 13px'} I would like someone to call me
+        - unless logged_in?
+          .control-group
+            %label{:class => 'control-label'} Name
+            .controls
+              = text_field_tag :name, nil, :placeholder => 'e.g. John Smith', :class => 'validate[required]'
+          .control-group
+            %label{:class => 'control-label'} Email
+            .controls
+              = text_field_tag :email, nil, :placeholder => 'e.g. mail@mail.com', :class => 'validate[required]'
 
-    .modal-header.optional-section{:id => 'optional-header'}
-      %h5 
-        =image_tag 'blue-arrow-down.png'
-        Optional information
-        =image_tag 'blue-arrow-down.png'
-
-    .modal-body.optional-body{:id => 'optional'}
-      .form-horizontal
         .control-group
-          %label{:class => 'control-label'} When are you arriving?
+          %label{:class => 'control-label'} Arriving
           .controls
             = text_field_tag "date_start", nil, :placeholder => "Click to select date", :class => 'textbox medium from-to-picker', "data-date" => :from
         .control-group
-          %label{:class => 'control-label'} How long are you staying?
+          %label{:class => 'control-label'} Staying
           .controls
             = select_tag :length_stay, '<option selected="selected">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>More</option>'.html_safe, :class => 'small'
             = select_tag :length_stay_type, '<option value="weeks">week(s)</option><option selected="selected" value="months">month(s)</option>'.html_safe, :class => 'small'
 
         .control-group
-          %label{:class => 'control-label'} Comments / Questions
+          %label{:class => 'control-label'} Comments / Questions          
           .controls
             = text_area_tag :questions, nil, :rows => 5, :placeholder => 'Please tell us if you have any further questions. Questions can be for this property or for any properties listed by this agent', :class => 'span5'
     .clearfix
     .modal-footer
       .inquiry-actions
-        %button.btn.btn-primary{'data-loading-text' => "Submitting...", 'id' => 'inquire_button', 'autocomplete' => 'off'}=t(:submit)
-        %div.btn{ :onclick => "$('#inquire_place').modal('hide')"}= t(:cancel)
-      %div.inquiry-sent-msg.btn.btn-primary.disabled= "Inquiry sent"
+        %button.btn.btn-large.btn-primary{'data-loading-text' => "Submitting...", 'id' => 'inquire_button', 'autocomplete' => 'off'}=t(:inquire)
+      %div.inquiry-sent-msg.btn.btn-large.btn-primary.disabled= "Inquiry sent"

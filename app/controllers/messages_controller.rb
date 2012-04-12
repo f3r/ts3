@@ -16,6 +16,7 @@ class MessagesController < ApplicationController
     @conversation = result['conversation']
     @messages = result['messages']
     @inquiry = @conversation['inquiry']
+    @transaction = @conversation['transaction']
   end
 
   # Posts a new message to a user

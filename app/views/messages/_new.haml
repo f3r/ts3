@@ -1,5 +1,4 @@
 = form_for 'message', :url => new_message_path(@conversation['id']), :html => {} do |f|
-  .span6.offset1
-    = f.text_area :message, :rows => 4, :class => "span6"
-    .reply.pull-right
-      = button_tag t(:send), :class => "btn primary respond-btn", :id => "send_message_btn"
+  = f.text_area :message, :rows => 4, :class => "span6"
+  .reply.pull-right
+    = button_tag t(:send), :class => "btn primary respond-btn", :id => "send_message_btn"

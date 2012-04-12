@@ -1,0 +1,3 @@
+- if !@transaction
+  = form_for 'workflow', :url => confirm_rental_place_path(@inquiry['place_id']), :html => {}, :remote => true do |f|
+    = button_tag t(:confirm_rental), :class => "btn btn-primary btn-large respond-btn", :id => "confirm_rental"

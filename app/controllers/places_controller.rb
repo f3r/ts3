@@ -350,10 +350,27 @@ class PlacesController < ApplicationController
   end
 
   def confirm_rental
-    @confirm_rental = Heypal::Place.confirm_rental(params[:id], params[:confirm_rental][:check_in], params[:confirm_rental][:check_out], current_token)
-    @place = Heypal::Place.find(params[:id], current_token)
-    @owner = @place['user']
-    render :layout => 'plain'
+    @confirm_rental = Heypal::Place.confirm_rental(params[:id], current_token)
+    if @confirm_rental['stat'] == "ok"
+      @response = "success"
+    else
+      @response = "error"
+    end    
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
+  def cancel_rental
+    @confirm_rental = Heypal::Place.cancel_rental(params[:id], current_token)
+    if @confirm_rental['stat'] == "ok"
+      @response = "success"
+    else
+      @response = "error"
+    end    
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
   end
 
   def confirm_inquiry

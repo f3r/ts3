@@ -426,6 +426,8 @@ en:
     one:                      1 guest
     other:                   '%{count} guests'
 
+  user_confirmed_rental_message: You have confirmed the rental. Awaiting final confirmation from Agent
+
   ####################################################################################
   # Place index/search
   ####################################################################################

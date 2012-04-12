@@ -35,8 +35,9 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :remove_favorite
       get   :rent
       match :availability
-      post  :confirm_rental
       post  :confirm_inquiry
+      post  :confirm_rental
+      post  :cancel_rental
     end
     resources :photos, :only => [:create, :update, :destroy] do
       collection do

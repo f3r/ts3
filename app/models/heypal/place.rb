@@ -71,8 +71,12 @@ class Heypal::Place < Heypal::Base
       result = request("/places/#{id}/check_availability.json?access_token=#{access_token}&currency=#{currency}&check_in=#{check_in}&check_out=#{check_out}", :get)
     end
 
-    def confirm_rental(id, check_in, check_out, access_token)
-      result = request("/places/#{id}/confirm_rental.json?access_token=#{access_token}&check_in=#{check_in}&check_out=#{check_out}", :post)
+    def confirm_rental(id, access_token)
+      result = request("/places/#{id}/confirm_rental.json?access_token=#{access_token}", :post)
+    end
+
+    def cancel_rental(place_id, transaction_id, access_token)
+      result = request("/places/#{place_id}/transactions/#{transaction_id}/cancel.json?access_token=#{access_token}", :post)
     end
 
     def confirm_inquiry(id, options, access_token)

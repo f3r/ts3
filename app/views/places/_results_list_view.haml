@@ -1,7 +1,6 @@
 - if places
   - places.each do |place|
     %li{:class => "place_#{place['id']}"}
-      = render :partial => 'sharing_options', :locals => { :place => place }
       .thumb.data-block
         =  link_to seo_place_path(place) do
           = image_tag(place['photos'].blank? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])

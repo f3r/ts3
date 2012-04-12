@@ -4,7 +4,6 @@
 - require_google_apis
 
 .row.place_info{:class => "place_#{@place['id']}"}
-  = render :partial => 'sharing_options', :locals => { :place => @place }
   .span12
     /
     %ul.breadcrumb

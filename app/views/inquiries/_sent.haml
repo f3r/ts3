@@ -1,4 +1,9 @@
 - content_for(:modal_header) do
-  %h3 Inquiry Sent
+  %h3= t(:inquiry_success)
 
-%h4 What shall we use to fill the empty spaces
+%p
+  The property owner or listing agent will get a notification of your request. 
+  Normally, your request will be handled within 24-48 hours.
+
+%p
+  You can follow up with your inquiries at the #{link_to 'messages section', messages_path}

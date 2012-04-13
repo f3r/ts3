@@ -145,7 +145,7 @@ en:
   awaiting_request_agent:  "Waiting for guest to make final confirmation"
   confirmed_rental_guest:  "You have confirmed the rental."
   confirmed_rental_guest2: "Awaiting for final confirmation from the Agent."
-
+  awaiting_payment_guest:  "Awaiting for Guest to make paypal payment"
 
   ####################################################################################
   # Authentications

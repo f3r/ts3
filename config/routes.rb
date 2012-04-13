@@ -35,7 +35,6 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :remove_favorite
       get   :rent
       match :availability
-      post  :preapprove_rental
       #post  :cancel_rental
     end
 
@@ -56,6 +55,7 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :transactions, :only => [] do
     member do
       post  :request_rental
+      post  :preapprove_rental
     end
   end
 

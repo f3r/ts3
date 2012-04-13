@@ -12,7 +12,19 @@ class TransactionsController < ApplicationController
       @response = "error"
     end
     respond_to do |format|
-      format.js { render :layout => false }
+      format.js { render :layout => false, :template => "transactions/change_state.js.erb" }
+    end
+  end
+
+  def preapprove_rental
+    @preapprove_rental = Heypal::Place.preapprove_rental( params[:id], current_token)
+    
+    if @preapprove_rental['stat'] == 'ok'
+      @success = true
+      @inquiry = @preapprove_rental['inquiry']
+    end
+    respond_to do |format|
+      format.js { render :layout => false, :template => "transactions/change_state.js.erb" }
     end
   end
 end

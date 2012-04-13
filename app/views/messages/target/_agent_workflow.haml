@@ -1,4 +1,6 @@
 - if inquiry['state']  == 'bigbang'
   %p= t(:awaiting_request_agent)
+- elsif inquiry['state']  == 'requested'
+  = link_to t(:preapprove_rental), preapprove_rental_transaction_path(inquiry['id']), {:method => :post, :remote => true, :id => "preapprove_rental", :class => "btn btn-primary btn-large respond-btn" }
 - else
-  = link_to t(:preapprove_rental), request_rental_transaction_path(inquiry['id']), {:method => :post, :remote => true, :id => "confirm_rental", :class => "btn btn-primary btn-large respond-btn" }
+  %p= t(:awaiting_payment_guest)

@@ -101,7 +101,8 @@ en:
   section_header_user_information:  User Information
   section_header_billing_address:   Billing Address
   section_header_user_password:     Password
-  section_header_bank_account:   Bank Account
+  section_header_bank_account:      Bank Account
+
   ####################################################################################
   # User Profile Data
   ####################################################################################
@@ -119,7 +120,7 @@ en:
   profile_current_pwd: Current Password
   profile_retype_pwd:  Re-type Password'
   change_photo:        Change photo
-  change_photo_description: Uploading a current photo helps renters evaluate your profile. While its not required, it helps build trust with property owners if you complete your profile.
+  change_photo_description: Uploading a current photo helps rentconfirm_rentalers evaluate your profile. While its not required, it helps build trust with property owners if you complete your profile.
   use_facebook_photo:   Use Facebook Photo
   upload_a_new_photo:   Upload a new Photo
   saving_photo:         Saving photo
@@ -134,6 +135,17 @@ en:
   iban:                 IBAN
   swift:                Swift
   choose_country:       Choose a country
+
+  ####################################################################################
+  # Transactions/Inquiries
+  ####################################################################################  
+
+  confirm_rental:          Confirm Rental Request
+  preapprove_rental:       Pre-approve Rental Request
+  awaiting_request_agent:  "Waiting for guest to make final confirmation"
+  confirmed_rental_guest:  "You have confirmed the rental."
+  confirmed_rental_guest2: "Awaiting for final confirmation from the Agent."
+
 
   ####################################################################################
   # Authentications
@@ -398,7 +410,6 @@ en:
   billing_address: Billing Address
   change_billing_address: Change billing address
   billed_address: You will be billed at this address
-  confirm_rental: Confirm rental request
   add_address: Add address
   change_address: Change address
   continue: Continue

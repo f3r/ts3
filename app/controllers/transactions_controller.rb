@@ -5,7 +5,7 @@ class TransactionsController < ApplicationController
 
   def request_rental
     @request_rental = Heypal::Place.request_rental(params[:id], current_token)
-    if @confirm_rental['stat'] == "ok"
+    if @request_rental['stat'] == "ok"
       @response = "success"
       @inquiry = @request_rental['inquiry']
     else

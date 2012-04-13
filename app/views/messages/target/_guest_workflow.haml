@@ -1,1 +1,5 @@
-= link_to t(:confirm_rental), request_rental_transaction_path(@inquiry['id']), {:method => :post, :remote => true, :id => "confirm_rental", :class => "btn btn-primary btn-large respond-btn" }
+- if inquiry['state']  == 'bigbang'
+  = link_to t(:confirm_rental), request_rental_transaction_path(inquiry['id']), {:method => :post, :remote => true, :id => "confirm_rental", :class => "btn btn-primary btn-large respond-btn" }
+- else
+  %p= t(:confirmed_rental_guest)
+  %p= t(:confirmed_rental_guest2)

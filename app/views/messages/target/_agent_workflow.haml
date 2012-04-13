@@ -1,1 +1,4 @@
-Agent Workflow
+- if inquiry['state']  == 'bigbang'
+  %p= t(:awaiting_request_agent)
+- else
+  = link_to t(:preapprove_rental), request_rental_transaction_path(inquiry['id']), {:method => :post, :remote => true, :id => "confirm_rental", :class => "btn btn-primary btn-large respond-btn" }

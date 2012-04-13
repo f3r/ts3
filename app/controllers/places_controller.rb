@@ -321,7 +321,7 @@ class PlacesController < ApplicationController
       redirect_to login_path
     end
   end
-  
+
   def availability
     @user = Heypal::User.show('access_token' => current_token)
     @availability = Heypal::Place.availability(params[:id], params[:check_in], params[:check_out], get_current_currency, current_token)
@@ -332,7 +332,7 @@ class PlacesController < ApplicationController
       render :layout => 'plain'
     end
   end
-  
+
   def check_availability
     @availability = Heypal::Place.availability(params[:place_id], params[:check_in], params[:check_out], get_current_currency, current_token)
     if @availability.key?("err")
@@ -346,18 +346,6 @@ class PlacesController < ApplicationController
       render :inline => error.to_json
     else
       render :inline => [params[:fieldId], true].to_json
-    end
-  end
-
-  def confirm_rental
-    @confirm_rental = Heypal::Place.confirm_rental(params[:id], current_token)
-    if @confirm_rental['stat'] == "ok"
-      @response = "success"
-    else
-      @response = "error"
-    end    
-    respond_to do |format|
-      format.js { render :layout => false }
     end
   end
 

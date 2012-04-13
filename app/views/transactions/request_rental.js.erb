@@ -1,0 +1,4 @@
+alert('requested');
+<% if @response == "success" %>
+  page_replace_html('inquiry_workflow', :partial => 'messages/target/inquiry_workflow', :inquiry => @inquiry)
+<% end %>

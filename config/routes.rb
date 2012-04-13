@@ -35,10 +35,10 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :remove_favorite
       get   :rent
       match :availability
-      post  :confirm_inquiry
-      post  :confirm_rental
-      post  :cancel_rental
+      post  :preapprove_rental
+      #post  :cancel_rental
     end
+
     resources :photos, :only => [:create, :update, :destroy] do
       collection do
         put :sort
@@ -50,6 +50,12 @@ HeyPalFrontEnd::Application.routes.draw do
     resources :availabilities
     resources :comments do
       post :reply_to_message
+    end
+  end
+
+  resources :transactions, :only => [] do
+    member do
+      post  :request_rental
     end
   end
 

@@ -10,7 +10,7 @@
           .span6
             = t(:user_confirmed_rental_message)
           .span4
-            = render 'transaction_actions'
+            =# render 'transaction_actions'
       -else
         = simple_format h(m['body'])
     %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"

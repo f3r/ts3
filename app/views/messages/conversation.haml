@@ -24,5 +24,6 @@
   .row
     .span6
       = render 'new'
-    .span6
-      = render 'workflow'
+    - if @inquiry
+      .span6#inquiry_workflow
+        = render 'messages/target/inquiry_workflow', :inquiry => @inquiry

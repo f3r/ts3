@@ -52,12 +52,7 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-  resources :transactions, :only => [] do
-    member do
-      post  :request_rental
-      post  :preapprove_rental
-    end
-  end
+  resources :transactions, :only => [:update]
 
   ###########################################################################################
   # Saved searches

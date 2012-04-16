@@ -23,7 +23,7 @@
         .views
           .sorting
             = t(:sort_by)
-            = select_tag :sort, options_for_select(sort_options, params['sort'].present? ? params['sort'] : 'price_highest'), :class => 'medium', :autocomplete => 'off'
+            = select_tag :sort, options_for_select(sort_options, params['sort'].present? ? params['sort'] : 'price_lowest'), :class => 'medium', :autocomplete => 'off'
           .toggle
             = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
             = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'

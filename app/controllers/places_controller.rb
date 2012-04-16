@@ -188,7 +188,7 @@ class PlacesController < ApplicationController
       raise "Invalid city"
     end
 
-    if params[:city]
+    #if params[:city]
 
       check_in  = params[:check_in]  rescue nil
       check_out = params[:check_out] rescue nil
@@ -196,7 +196,7 @@ class PlacesController < ApplicationController
       alert_params    = { 
         'check_in'  => check_in,
         'check_out' => check_out,
-        'sort'      => 'price_lowest',
+        'sort'      => params[:sort] || 'price_lowest',
         'guests'    => '1',
         'city'      => @city_id,
         'currency'  => get_current_currency,
@@ -204,22 +204,21 @@ class PlacesController < ApplicationController
         'page'      => page
       }
 
-    else
-      
-      alert_params = { 
-        'city_id'         => params[:city_id],
-        'guests'          => params[:guests],
-        'check_in'        => params[:check_in],
-        'check_out'       => params[:check_out],
-        'sort'            => params[:sort],
-        'currency'        => params[:currency],
-        'min_price'       => params[:min_price],
-        'max_price'       => params[:max_price],
-        'place_type_ids'  => params['place_type_ids'],
-        'per_page'        => 6
-      }
-
-    end
+    # else
+    #       alert_params = { 
+    #         'city_id'         => params[:city_id],
+    #         'guests'          => params[:guests],
+    #         'check_in'        => params[:check_in],
+    #         'check_out'       => params[:check_out],
+    #         'sort'            => params[:sort],
+    #         'currency'        => params[:currency],
+    #         'min_price'       => params[:min_price],
+    #         'max_price'       => params[:max_price],
+    #         'place_type_ids'  => params['place_type_ids'],
+    #         'page'            => params[:page],
+    #         'per_page'        => 6
+    #       }
+    #     end
 
     @results = Heypal::Place.search(alert_params, current_token)
 

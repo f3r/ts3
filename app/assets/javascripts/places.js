@@ -179,7 +179,8 @@ $(function() {
           type: 'get',
           data: {
             page: page,
-            city_id: $('#city_id').val()
+            city_id: $('#city_id').val(),
+            currency: $('#currency').val()
           },
           dataType: 'script',
           beforeSend: function() {

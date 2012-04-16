@@ -53,6 +53,7 @@ HeyPalFrontEnd::Application.routes.draw do
   end
 
   resources :transactions, :only => [:update]
+  post 'paypal_callback', :to => 'payment_notifications#create'
 
   ###########################################################################################
   # Saved searches

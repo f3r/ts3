@@ -343,7 +343,7 @@ en:
   inquiry_questions:  "Please add any other questions here. You can ask questions about this property, your needs or any other listing from the listing"
   no_messages:        No messages
   mark_read:          Mark read
-  mark_unread:        Mark unread
+  mark_unread:        Mark as unread
   marked_as_unread:   The message was marked as unread
   marked_as_read:     The message was marked as read
   failed_unread:      Failed to mark as unread
@@ -364,6 +364,10 @@ en:
   workflow_readypay_agent:         "The tenant has been notified of the rental approval. The tenant has been asked to pay the rental initiation fee. You will be notified when the payment is complete."
   workflow_paid_guest:             "Congratulations! Your rental is confirmed. The listing owner's contact details will be sent to you in an email and you will pay the remainder of your rental fees directly to the listing owner. Enjoy your stay and thank you for using SquareStays!"
   workflow_paid_agent:             "Congratulations! This rental is confirmed. The tenant's contact details will be sent to you in an email and the tenant will pay the remainder of your rental fees directly to you. Thank you for listing your property with SquareStays!"
+  workflow_system_msg_send:        "Inquiry sent"
+  workflow_system_msg_request:     "Guest requested rental"
+  workflow_system_msg_pre_approve: "Agent approved the rental request"
+  workflow_system_msg_pay:         "Guest paid the rental initiation fee"
 
   ####################################################################################
   # Photos

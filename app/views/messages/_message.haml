@@ -1,16 +1,17 @@
-.row.message
-  .span1.from
-    %a{:href => "/users/#{m['from']['id']}"} 
-      = avatar_image(m['from'])
-      = message_from(m['from'])
-  .span11
-    .body{:class => m['system'] ? 'system' : ''}
-      -if m['body'] == "transaction_confirmed_rental"
-        .row
-          .span6
-            = t(:user_confirmed_rental_message)
-          .span4
-            =# render 'transaction_actions'
-      -else
+- if m['system']
+  .row.system-message
+    .span12
+      .well
+        =# image_tag('SquareStays_square_75x75.png')
+        = system_message_body(m['system_msg_id'])
+      %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"
+- else
+  .row.message
+    .span1.from
+      %a{:href => "/users/#{m['from']['id']}"} 
+        = avatar_image(m['from'])
+        = message_from(m['from'])
+    .span11
+      .body
         = simple_format h(m['body'])
-    %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"
+      %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"

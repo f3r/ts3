@@ -64,10 +64,21 @@
       text-shadow: 0 1px 0 rgba(255, 255, 255, 0.1), 0 0 30px rgba(255, 255, 255, 0.125);
     }
   }
+  .system-message {
+    padding-bottom: 10px;
+    .well {
+      margin-bottom: 0;
+      padding: 10px 19px;
+      font-style: italic;
+    }
+  }
   .message {
     margin-bottom: 10px;
     .body {
+      /*border: 1px solid #C0C0C0; */
       border: 1px solid #C0C0C0;
+      border-radius: 4px 4px 4px 4px;
+      box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
       padding: 7px;
       &.system {
         font-style: italic;

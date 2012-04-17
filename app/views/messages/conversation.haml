@@ -1,17 +1,8 @@
 .conversation
-  %h4.section-header
-    %a{:href => "/messages"}
-      =t(:inquiries)
-    &raquo;
-    - if @inquiry
-      = t(:inquiry_on)
-      = @inquiry['place_title']
-    - else
-      = t(:conversation_with)
-      = @conversation['from']['first_name']
+  = breadcrumb [[t(:inquiries), messages_path]], conversation_title do
     .actions.pull-right
       = link_to t(:mark_unread), mark_as_unread_path(params[:id])
-
+    
   - if @inquiry
     .row.target
       = render 'messages/target/inquiry_box', :inquiry => @inquiry
@@ -25,7 +16,5 @@
     .span6
       = render 'new'
     - if @inquiry
-      .span1.or
-        or
-      .span5#inquiry_workflow
+      #inquiry_workflow
         = render 'messages/target/inquiry_workflow', :inquiry => @inquiry

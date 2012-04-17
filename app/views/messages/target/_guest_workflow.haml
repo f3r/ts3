@@ -1,15 +1,23 @@
 - case inquiry['state'].to_sym
   - when  :initial
-    = link_to t(:workflow_initial_guest_button), transaction_path(inquiry['id'], :event => :request), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
-    %p.hint= "(#{t(:workflow_initial_guest)})"
+    .span1.or
+      or
+    .span5
+      = link_to t(:workflow_initial_guest_button), transaction_path(inquiry['id'], :event => :request), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
+      %p.hint= "(#{t(:workflow_initial_guest)})"
 
   - when :requested
-    %p.hint= t(:workflow_requested_guest)
+    .span5.offset1
+      %p.hint= t(:workflow_requested_guest)
 
   - when :ready_to_pay
-    = render 'messages/target/payment_button', :inquiry => inquiry
-    %p.hint= t(:workflow_readypay_guest)
-    %p= image_tag "paypal-verified.gif"
-
+    .span1.or
+      or
+    .span5
+      = render 'messages/target/payment_button', :inquiry => inquiry
+      %p.hint= t(:workflow_readypay_guest)
+      %p= image_tag "paypal-verified.gif"
+  
   - else
-    %p.hint= t(:workflow_paid_agent)
+    .span5.offset1
+      %p.hint= t(:workflow_paid_agent)

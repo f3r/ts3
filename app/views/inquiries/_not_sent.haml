@@ -1,0 +1,8 @@
+- content_for(:modal_header) do
+  %h3 Error
+
+- if @confirm_inquiry['err']['user']
+  %p 
+    You already have an account registered with that email, please login before sending your inquiry.
+- else
+  %p= t(:inquiry_error)

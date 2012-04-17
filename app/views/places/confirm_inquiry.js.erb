@@ -5,5 +5,6 @@ $('#inquire_place').modal('hide');
   <%= open_modal :inquiry_sent, 'inquiries/sent' %>
 <% else %>
   $("#inquire_button").button('reset');
+  <%= open_modal :inquiry_not_sent, 'inquiries/not_sent' %>
   $('.place_info').before('<div class="alert alert-error" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t(:inquiry_error) %></div>');
 <% end %>

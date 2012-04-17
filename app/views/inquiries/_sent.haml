@@ -1,10 +1,6 @@
 - content_for(:modal_header) do
   %h3= t(:inquiry_success)
 
-%p
-  The property owner or listing agent will get a notification of your request. 
-  Normally, your request will be handled within 24-48 hours.
-%p
-  We also created an account for you to keep track of your inquiries.
-%p
-  You can follow up with your inquiries at the #{link_to 'messages section', messages_path}
+%p= t(:inquiry_sent_msg)
+  
+%p= t(:inquiry_sent_msg2, :link => link_to(t(:inquiry_center), messages_path)).html_safe

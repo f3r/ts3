@@ -8,6 +8,7 @@ en:
   app_name:   Squarestays
   site_title: SquareStays - Trusted Stays
   submit:     Submit
+  submitting: Submitting
   cancel:     Cancel
   save:       Save
   app_domain: Squarestays.com
@@ -65,7 +66,7 @@ en:
   password_reset_instruction_sent: Password reset instruction has been sent to your email. 
   password_reset_failed:      Password reset failed. 
   signup_complete:            Signup Complete
-  signup_complete_text:       Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it.
+  signup_complete_text:       "Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it."
   confirm_reset_password:     Confirm your password reset
   enter_your_new_password:    Enter your new password
   choose_a_password:          Choose a password for your account
@@ -73,7 +74,7 @@ en:
   facebook_connected:         You have successfully connected your facebook account!
   twitter_connected:          You have successfully connected your twitter account!
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.
-  signup_needed_to_connect:   We need to connect the details to your SquareStays account, please provide us the following.
+  signup_needed_to_connect:   "We need to connect the details to your SquareStays account, please provide us the following."
   i_have_an_account:          Already a SquareStays member?
   choose_language:            Choose language
   choose_currency:            Choose currency
@@ -87,6 +88,7 @@ en:
   # General field names and validation errors
   ####################################################################################
   email:                Email
+  email_example:        e.g. mail@mail.com
   unconfirmed_email:    Unconfirmed email
   invalid_email:        Invalid Email
   password:             Password
@@ -109,6 +111,8 @@ en:
   ####################################################################################
   first_name:          First Name
   last_name:           Last Name
+  name:                Name
+  name_example:        e.g. John Smith
   gender:              Gender
   gender_undisclosed:  Undisclosed
   gender_male:         Male
@@ -238,7 +242,7 @@ en:
   num_bedrooms: Number of Bedrooms
   num_beds: Number of Beds
   num_bathrooms: Number of Bathrooms
-  address_1_help: Street Address, Company 
+  address_1_help: "Street Address, Company"
   address_2_help: Apartment / Unit Number / Suite
   size: Size
   city: City
@@ -252,10 +256,10 @@ en:
 
   amenities: Amenities
   select_one: Please select at least one
-  place_and_building_facilities: Place & Building facilities
+  place_and_building_facilities: "Place & Building facilities"
   furnishings: Conveniences
   miscellaneous: Miscellaneous
-  sports_and_recreation: Sports & Recreation
+  sports_and_recreation: "Sports & Recreation"
 
   preview_button: Preview &raquo;
  
@@ -291,10 +295,10 @@ en:
   see_our: See our
   for_more_info: for more info
 
-  head_cancellation: If you wish to cancel your SquareStays reservation
-  strict_cancellation: at least 7 days before the reservation date, you will be charged 10% of the security deposit.
-  moderate_cancellation: full refund 5 days prior to arrival, except fees
-  flexible_cancellation: at least 30 days before the reservation date, you will not be charged and any security deposit you have paid will be refunded to you.
+  head_cancellation:     "If you wish to cancel your SquareStays reservation"
+  strict_cancellation:   "at least 7 days before the reservation date, you will be charged 10% of the security deposit."
+  moderate_cancellation: "full refund 5 days prior to arrival, except fees"
+  flexible_cancellation: "at least 30 days before the reservation date, you will not be charged and any security deposit you have paid will be refunded to you."
 
   do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
 
@@ -311,9 +315,9 @@ en:
   publish: Publish
   unpublish: Unpublish
 
-  place_published: Your place is now listed!
-  place_publish_error: Sorry, we can not publish your place because of missing information.
-  place_unpublished: Your place is now invisible
+  place_published:     Your place is now listed!
+  place_publish_error: "Sorry, we can not publish your place because of missing information."
+  place_unpublished:   Your place is now invisible
 
   my_favorite_places: My Favorite Places
   favorite_places: Favorite places
@@ -323,20 +327,43 @@ en:
   ####################################################################################
   # Questions & Messages
   ####################################################################################
-  ask_question:    Ask a question
-  pm_prepend_pre:  "Private question regarding your property ["
-  pm_prepend_post: "]\n\n"
-  messages:         Messages
-  conversation_with: Conversation with
-  inquiry_on:       Inquiry on
-  no_messages:      No messages
-  mark_read: Mark read
-  mark_unread: Mark unread
-  marked_as_unread: The message was marked as unread
-  marked_as_read: The message was marked as read
-  failed_unread: Failed to mark as unread
-  failed_read: Failed to mark as read
-  no_messages: You don't have any message in your inbox
+  ask_question:       Ask a question
+  question_new_placeholder: You can ask and answer questions here.
+  pm_prepend_pre:     "Private question regarding your property ["
+  pm_prepend_post:    "]\n\n"
+  messages:           Messages
+  conversation_with:  Conversation with
+  inquiry_center:     Inquiry Center
+  inquiry_on:         Inquiry on
+  inquiry_sent:       Inquiry sent
+  inquiry_sent_msg:   "The listing owner will be notified of your inquiry. Normally, you should expect a response within 24-48 hours. If, by chance, you don't hear back, we encourage you to inquire on other properties."
+  inquiry_sent_msg2:  "You can check on your inquiries in the %{link}"
+  comments_questions: Comments / Questions
+  Staying:            Staying
+  inquiry_questions:  "Please add any other questions here. You can ask questions about this property, your needs or any other listing from the listing"
+  no_messages:        No messages
+  mark_read:          Mark read
+  mark_unread:        Mark unread
+  marked_as_unread:   The message was marked as unread
+  marked_as_read:     The message was marked as read
+  failed_unread:      Failed to mark as unread
+  failed_read:        Failed to mark as read
+  no_messages:        You don't have any message in your inbox
+
+  ####################################################################################
+  # Workflow Messages
+  ####################################################################################
+  workflow_initial_guest:          "When you are ready to rent this property"
+  workflow_initial_guest_button:   "Confirm Rental Request"
+  workflow_initial_agent:          "When the tenant makes a final rental request, you will be able to confirm the rental here. "
+  workflow_requested_guest:        "You have confirmed your rental request. Once the listing owner has checked all conditions and property availability, you will be prompted to pay the rental initiation fee of SGD $300. This will secure the property for you for the duration of your rental request."
+  workflow_requested_agent:        "The tenant has submitted a rental request, confirming their intent to rent this property. Please double-check the terms of the rental, including the payment schedule, property availability and other considerations and requirements you may have. When you are ready, please click the button below to confirm the tenant's rental request. The tenant will then be prompted to pay the rental confirmation fee."
+  workflow_requested_agent_button: "Approve Rental Request"
+  workflow_readypay_guest:         "The listing owner has confirmed your rental request. Please use the button below to pay the rental initiation fee of SGD $300. This will secure the property for you for the duration of your rental request."
+  workflow_readypay_guest_button:  "Pay rental initiation fee SGD$300"
+  workflow_readypay_agent:         "The tenant has been notified of the rental approval. The tenant has been asked to pay the rental initiation fee. You will be notified when the payment is complete."
+  workflow_paid_guest:             "Congratulations! Your rental is confirmed. The listing owner's contact details will be sent to you in an email and you will pay the remainder of your rental fees directly to the listing owner. Enjoy your stay and thank you for using SquareStays!"
+  workflow_paid_agent:             "Congratulations! This rental is confirmed. The tenant's contact details will be sent to you in an email and the tenant will pay the remainder of your rental fees directly to you. Thank you for listing your property with SquareStays!"
 
   ####################################################################################
   # Photos
@@ -432,11 +459,11 @@ en:
   # Inquiries
   ####################################################################################
   
-  inquiry_success:             Your inquiry has been successfully sent
-  inquiry_error:               "There was a problem processing you inquiry, please try again"
+  inquiry_success:   "Your inquiry has been sent!"
+  inquiry_error:     "There was a problem processing you inquiry, please try again"
   inquiry_guests:
-    one:                      1 guest
-    other:                   '%{count} guests'
+    one:             1 guest
+    other:           '%{count} guests'
 
   user_confirmed_rental_message: You have confirmed the rental. Awaiting final confirmation from Agent
 
@@ -477,6 +504,7 @@ en:
   maximum_price: Maximum price
   minimum_price: Mininum price
   dates: Dates
+  date_select: Click to select date
   settings: Settings
   message_alert_created: The alert has been successfully created
   message_alert_deleted: The alert has been successfully deleted

@@ -8,30 +8,30 @@
       .form-horizontal
         - unless logged_in?
           .control-group
-            %label{:class => 'control-label'} Name
+            %label{:class => 'control-label'}= t(:name)
             .controls
-              = text_field_tag :name, nil, :placeholder => 'e.g. John Smith', :class => 'validate[required]'
+              = text_field_tag :name, nil, :placeholder => t(:name_example), :class => 'validate[required]'
           .control-group
-            %label{:class => 'control-label'} Email
+            %label{:class => 'control-label'}= t(:email)
             .controls
-              = text_field_tag :email, nil, :placeholder => 'e.g. mail@mail.com', :class => 'validate[required]'
+              = text_field_tag :email, nil, :placeholder => t(:email_example), :class => 'validate[required]'
 
         .control-group
-          %label{:class => 'control-label'} Arriving
+          %label{:class => 'control-label'}= t(:arriving)
           .controls
-            = text_field_tag "date_start", nil, :placeholder => "Click to select date", :class => 'textbox medium from-to-picker', "data-date" => :from
+            = text_field_tag "date_start", nil, :placeholder => t(:date_select), :class => 'textbox medium from-to-picker', "data-date" => :from
         .control-group
-          %label{:class => 'control-label'} Staying
+          %label{:class => 'control-label'}= t(:staying)
           .controls
             = select_tag :length_stay, '<option selected="selected">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>More</option>'.html_safe, :class => 'small'
             = select_tag :length_stay_type, '<option value="weeks">week(s)</option><option selected="selected" value="months">month(s)</option>'.html_safe, :class => 'small'
 
         .control-group
-          %label{:class => 'control-label'} Comments / Questions          
+          %label{:class => 'control-label'}= t(:comments_questions)
           .controls
-            = text_area_tag :questions, nil, :rows => 5, :placeholder => 'Please tell us if you have any further questions. Questions can be for this property or for any properties listed by this agent', :class => 'span5'
+            = text_area_tag :questions, nil, :rows => 5, :placeholder => t(:inquiry_questions), :class => 'span5'
     .clearfix
     .modal-footer
       .inquiry-actions
-        %button.btn.btn-large.btn-primary{'data-loading-text' => "Submitting...", 'id' => 'inquire_button', 'autocomplete' => 'off'}=t(:inquire)
-      %div.inquiry-sent-msg.btn.btn-large.btn-primary.disabled= "Inquiry sent"
+        %button.btn.btn-large.btn-primary{'data-loading-text' => t(:submitting), 'id' => 'inquire_button', 'autocomplete' => 'off'}=t(:inquire)
+      %div.inquiry-sent-msg.btn.btn-large.btn-primary.disabled= t(:inquiry_sent)

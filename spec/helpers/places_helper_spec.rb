@@ -14,9 +14,10 @@ describe PlacesHelper do
   context "#place_type_filters" do
     it "returns available types" do
       filters = place_type_filters({"apartment"=>5, "house"=>2, "villa"=>0, "room"=>0, "other_space"=>0})
+
       filters[0][0].slug.should == "apartment"
       filters[0][1].should == 5
-      
+
       filters[1][0].slug.should == "house"
       filters[1][1].should == 2
     end

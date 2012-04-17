@@ -1,10 +1,12 @@
 - if inquiry['state']  == 'initial'
-  = link_to t(:confirm_rental), transaction_path(inquiry['id'], :event => :request), {:method => :put, :remote => true, :class => "btn btn-primary btn-large respond-btn" }
+  = link_to transaction_path(inquiry['id'], :event => :request), {:method => :put, :remote => true, :class => "btn btn-huge" } do
+    %span
+      = t(:confirm_rental)
 
 - elsif inquiry['state'] == 'requested'
   %p= t(:confirmed_rental_guest)
   %p= t(:confirmed_rental_guest2)
 
 - else
-  %p= 'Please proceed to pay the fee'
   = render 'messages/target/payment_button', :inquiry => inquiry
+  %p= 'Please proceed to pay the fee'

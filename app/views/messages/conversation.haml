@@ -25,5 +25,7 @@
     .span6
       = render 'new'
     - if @inquiry
-      .span6#inquiry_workflow
+      .span1.or
+        or
+      .span5#inquiry_workflow
         = render 'messages/target/inquiry_workflow', :inquiry => @inquiry

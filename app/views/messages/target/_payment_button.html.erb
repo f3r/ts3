@@ -1,4 +1,4 @@
-<% payment_service_for inquiry['code'], PAYPAL_ACCOUNT, :amount => 300, :currency => 'SGD', :service => :paypal do |service|
+<% payment_service_for inquiry['code'], PAYPAL_ACCOUNT, :amount => 300, :currency => 'SGD', :service => :paypal, :html => { :id => 'payment_form' } do |service|
   service.customer :first_name => current_user.first_name,
       :last_name => current_user.last_name,
       :email => current_user.email
@@ -12,5 +12,6 @@
   # PayPal will redirect your user here if he cancels the payment
   service.cancel_return_url root_url %>
 
-  <%= submit_tag 'Booking Payment', :class => 'btn btn-primary btn-large' %>
+  <% #submit_tag 'Booking Payment', :class => 'btn btn-huge' %>
+  <%= link_to_function '<span>Booking Payment</span>'.html_safe, "$('#payment_form').submit()", {:class => "btn btn-huge" } %>
 <% end %>

@@ -2,7 +2,8 @@
   %p= t(:awaiting_request_agent)
 
 - elsif inquiry['state']  == 'requested'
-  = link_to t(:preapprove_rental), transaction_path(inquiry['id'], :event => :pre_approve), {:method => :put, :remote => true, :class => "btn btn-primary btn-large respond-btn" }
+  = link_to transaction_path(inquiry['id'], :event => :pre_approve), {:method => :put, :remote => true, :class => "btn btn-huge" } do
+    %span= t(:preapprove_rental)
 
 - else
   %p= t(:awaiting_payment_guest)

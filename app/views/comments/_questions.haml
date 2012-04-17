@@ -11,10 +11,10 @@
           .row
             .span1{:style=>"margin-right: 10px"}= avatar_image(current_user)
             = f.text_area :comment, :rows => 3, :class => "span9", :style => "height:54px; width:689px; max-width:689px !important; min-width:689px !important"
-          .row
+          .row{:style => "margin-top:20px"}
             .span2.offset1
-              = f.check_box "pm"
-              .help-inline= t(:pm)
+              = #f.check_box "pm"
+              = #.help-inline= t(:pm)
             .span2.offset8
               = button_tag t(:cancel), :id => 'ask-cancel', :class => 'btn'
               = button_tag t(:submit), :id => 'ask-btn',    :class => "btn btn-primary"

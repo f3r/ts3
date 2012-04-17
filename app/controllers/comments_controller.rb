@@ -9,17 +9,19 @@ class CommentsController < ApplicationController
 
     place = Heypal::Place.find(params[:place_id], current_token)
     
-    if params[:comment][:pm] == '1'
-      message_params = {
-        :id           => @owner['id'], 
-        :message      => t(:pm_prepend_pre) + place['title'] + t(:pm_prepend_post) + params[:comment][:comment], 
-        :access_token => current_token
-      }
-      saved, message = Heypal::Message.create(message_params)
+    # This checks if the user clicked "send private" for a question, currently commented out
+    # until we integrate with the new messaging API
+    # if params[:comment] && params[:comment][:pm] == '1'
+    #   message_params = {
+    #     :id           => @owner['id'], 
+    #     :message      => t(:pm_prepend_pre) + place['title'] + t(:pm_prepend_post) + params[:comment][:comment], 
+    #     :access_token => current_token
+    #   }
+    #   saved, message = Heypal::Message.create(message_params)
 
-      render :partial => '/comments/send_privately', :locals => {:saved => saved}
+    #   render :partial => '/comments/send_privately', :locals => {:saved => saved}
 
-    else
+    # else
       comment = Heypal::Comment.new(comment_params)
       saved, @comment = comment.save
   
@@ -28,7 +30,7 @@ class CommentsController < ApplicationController
       else
         render '/comments/validation_error', :layout => nil
       end
-    end
+    # end
   end
 
   def reply_to_message

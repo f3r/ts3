@@ -5,13 +5,18 @@
 
   service.item_name 'SquareStays Rental Fee'
 
+  service.customer :first_name => current_user['first_name'],
+                   :last_name => current_user['last_name']
+
+  service.invoice inquiry['code']
+
   # PayPal will POST a callback here when the payment is done
   service.notify_url paypal_callback_url
   # PayPal will take your user here with a POST after he pays
   service.return_url root_url
+
   # PayPal will redirect your user here if he cancels the payment
   service.cancel_return_url root_url %>
 
-  <% #submit_tag 'Booking Payment', :class => 'btn btn-huge' %>
   <%= link_to_function '<span>Booking Payment</span>'.html_safe, "$('#payment_form').submit()", {:class => "btn btn-huge" } %>
 <% end %>

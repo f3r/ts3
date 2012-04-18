@@ -19,12 +19,13 @@
         .control-group
           %label{:class => 'control-label'}= t(:arriving)
           .controls
-            = text_field_tag "date_start", nil, :placeholder => t(:date_select), :class => 'textbox medium from-to-picker', "data-date" => :from
+            = text_field_tag "date_start_label", nil, :placeholder => t(:date_select), :class => 'validate[required] textbox medium datepicker'
+            = hidden_field_tag "date_start", nil
         .control-group
           %label{:class => 'control-label'}= t(:staying)
           .controls
-            = select_tag :length_stay, '<option selected="selected">1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>More</option>'.html_safe, :class => 'small'
-            = select_tag :length_stay_type, '<option value="weeks">week(s)</option><option selected="selected" value="months">month(s)</option>'.html_safe, :class => 'small'
+            = select_tag :length_stay, options_for_select([1,2,3,4,5,6,7,8,9,'more']), :class => 'small'
+            = select_tag :length_stay_type, lenght_stay_type_options, :class => 'small'
 
         .control-group
           %label{:class => 'control-label'}= t(:comments_questions)

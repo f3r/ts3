@@ -133,7 +133,7 @@ module PlacesHelper
     result.downcase!
 
     city = Heypal::City.find_by_id(place['city_id'])
-    
+
     "/#{city.code}/#{place['id']}-#{result}"
   end
 
@@ -150,5 +150,9 @@ module PlacesHelper
       end
     end
     filters
+  end
+
+  def lenght_stay_type_options
+    options_for_select([['week(s)', 'weeks'], ['month(s)', 'months']])
   end
 end

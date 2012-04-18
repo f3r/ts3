@@ -163,6 +163,15 @@ var PlaceShow = {
   inquireModal: function(){
     $('#inquire_place').on('shown', function (){
       add_datepicker();
+      
+      $('#date_start_label').datepicker('destroy').datepicker({
+        // dateFormat: 'dd/mm/yy',
+        dateFormat: 'd M yy',
+        minDate: +1,
+        altField: "#date_start",
+        altFormat: 'yy-mm-dd'
+      });
+
       $('.alert-message').remove();
       $("#inquire_form").validationEngine({
         promptPosition : "bottomRight:-10,-10",
@@ -175,11 +184,6 @@ var PlaceShow = {
           }
         }
       });
-    });
-    
-    $('#optional').hide();
-    $('#optional-header').click(function(){
-      $('#optional').toggle()
     });
   }    
 }

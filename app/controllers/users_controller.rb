@@ -122,9 +122,14 @@ class UsersController < ApplicationController
     if request.post?
       result = Heypal::User.confirm_reset_password(params)
       if params['reset_password_token'].present? && result['stat'] == "ok"
-        flash[:notice] = t(:password_reset_success)
+        if params[:welcome]
+          flash[:success] = t(:password_set_first_time)
+        else
+          flash[:success] = t(:password_reset_success)
+        end
         sign_in result
         redirect_to root_path
+        return
       else
         flash[:error] = t(:password_reset_failed)
       end

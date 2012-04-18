@@ -113,6 +113,7 @@ en:
   first_name:          First Name
   last_name:           Last Name
   name:                Name
+  full_name:           Full Name
   name_example:        e.g. John Smith
   gender:              Gender
   gender_undisclosed:  Undisclosed
@@ -366,7 +367,7 @@ en:
   workflow_paid_guest:             "Congratulations! Your rental is confirmed. The listing owner's contact details will be sent to you in an email and you will pay the remainder of your rental fees directly to the listing owner. Enjoy your stay and thank you for using SquareStays!"
   workflow_paid_agent:             "Congratulations! This rental is confirmed. The tenant's contact details will be sent to you in an email and the tenant will pay the remainder of your rental fees directly to you. Thank you for listing your property with SquareStays!"
   workflow_system_msg_send:        "Inquiry sent"
-  workflow_system_msg_request:     "Guest requested rental"
+  workflow_system_msg_request:     "Guest requested to rent this place"
   workflow_system_msg_pre_approve: "Agent approved the rental request"
   workflow_system_msg_pay:         "Guest paid the rental initiation fee"
 

@@ -8,7 +8,7 @@
       .form-horizontal
         - unless logged_in?
           .control-group
-            %label{:class => 'control-label'}= t(:name)
+            %label{:class => 'control-label'}= t(:full_name)
             .controls
               = text_field_tag :name, nil, :placeholder => t(:name_example), :class => 'validate[required]'
           .control-group

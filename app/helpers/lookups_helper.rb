@@ -49,7 +49,11 @@ module LookupsHelper
      ['San Francisco, United States', '6'],
      ['Los Angeles, United States',   '7'],
      ['Shanghai, China',              '8'],
-     ['Manila, Philippines',          '9']
+     ['Manila, Philippines',          '9'],
+     ['Beijing, China',               '10'],
+     ['Jakarta, Indonesia',           '11'],
+     ['Bangkok, Thailand',            '12'],
+     ['Melbourne, Australia',         '13']
     ]
   end
 

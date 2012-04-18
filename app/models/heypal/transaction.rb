@@ -6,7 +6,7 @@ class Heypal::Transaction < Heypal::Base
     end
 
     def pay(code, params)
-      request("/transactions/#{code}/pay.json", :post, params.slice(:amount))
+      request("/transactions/#{code}/pay.json", :post, params)
     end
   end
 

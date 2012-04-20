@@ -188,7 +188,10 @@ class PlacesController < ApplicationController
       raise "Invalid city"
     end
     
+    # set default city cookie
+    cookies[:pref_city] = @city_id if @city_id != get_current_city
     if logged_in?
+      # save city preference on user profile if logged in
       session['current_user'] = current_user.change_preference(:pref_city, @city_id, current_token) if @city_id != get_current_city
     end
 

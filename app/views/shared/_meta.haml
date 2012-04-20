@@ -1,8 +1,7 @@
-%meta{:charset => "utf-8"}/
+%meta{:charset => "utf-8"}
 %title= content_for?(:title) ? "#{yield(:title)} | #{t(:site_title)}" : t(:site_title)
-%meta{:content => "", :name => "description"}/
-%meta{:content => "", :name => "author"}/
-
+%meta{:content => "", :name => "description"}
+%meta{:content => "", :name => "author"}
 %link{:rel => "icon", :type => "image/png", :href => "http://squarestays.com/favicon.png"}
 
 = stylesheet_link_tag "application"
@@ -11,7 +10,7 @@
   = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'
 
 /[if lt IE 9]
-  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
 / Le styles
 
 %script{:type=>"text/javascript"}
@@ -25,9 +24,11 @@
   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
   })();
 
-<script type="text/javascript">var switchTo5x=true;</script>
-<script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
-<script type="text/javascript">stLight.options({publisher: "f91eb31f-708d-40c7-b96e-f3b8ce71ba44"}); </script>
+%script{:type=>"text/javascript"}
+  var switchTo5x=true;
+= javascript_include_tag 'http://w.sharethis.com/button/buttons.js'
+%script{:type=>"text/javascript"}
+  stLight.options({publisher: "f91eb31f-708d-40c7-b96e-f3b8ce71ba44"});
 
 = csrf_meta_tag
 

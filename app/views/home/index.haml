@@ -7,7 +7,7 @@
           = link_to "Singapore", "#", :id => "open-country-select"
         %ul#country-select.dropdown
           %li.arrow
-          - Heypal::City.all.each do |city|
+          - Heypal::City.all_active.each do |city|
             %li= link_to city.name, "/#{city.code}"
           %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
 

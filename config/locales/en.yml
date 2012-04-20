@@ -30,14 +30,37 @@ en:
   how_it_works:      How it works
   photography_faq:   Photography FAQ
   community_support: Community Support
-  hong_kong:         Hong Kong
-  singapore:         Singapore
-  kuala_lumpur:       Kuala Lumpur
   cityguide_sg:      "City Guide: Singapore"
   cityguide_hk:      "City Guide: Hong Kong"
   cityguide_kl:      "City Guide: Kuala Lumpur"
   my_account:        My Account
   my_profile:        My Profile
+
+  ####################################################################################
+  # Cities
+  ####################################################################################
+
+  hong_kong:          Hong Kong
+  singapore:          Singapore
+  kuala_lumpur:       Kuala Lumpur
+  los_angeles:        Los Angeles
+  manila:             Manila
+  new_york:           New York
+  san_francisco:      San Francisco
+  shanghai:           Shanghai
+  sydney:             Sydney
+
+  ####################################################################################
+  # Countries
+  ####################################################################################
+
+  US: United States
+  HK: Hong Kong
+  MY: Malaysia
+  PH: Philippines
+  CH: China
+  SG: Singapore
+  AU: Australia
   
   ####################################################################################
   # Account creation & management

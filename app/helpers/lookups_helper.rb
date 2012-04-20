@@ -3,17 +3,7 @@ module LookupsHelper
   CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£', 'MYR' => 'RM', 'AUD' => 'A$'}
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
-  CITIES     = [
-    'Singapore',
-    'Hong Kong',
-    'Sydney, Australia',
-    'Kuala Lumpur, Malaysia',
-    'New York, United States',
-    'San Francisco, United States',
-    'Los Angeles, United States',
-    'Shanghai, China',
-    'Manila, Philippines'
-  ]
+  CITIES = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
   def currencies
@@ -32,8 +22,8 @@ module LookupsHelper
     end
   end
 
-  def city_name(id=0)
-    CITIES[id-1]
+  def city_name(city_id)
+    CITIES.find{|city| city[0] == city_id}[1]
   end
 
   def cancellation_policies_select
@@ -41,20 +31,7 @@ module LookupsHelper
   end
 
   def cities_select
-    [['Singapore',                    '1'],
-     ['Hong Kong',                    '2'],
-     ['Sydney, Australia',            '3'],
-     ['Kuala Lumpur, Malaysia',       '4'],
-     ['New York, United States',      '5'],
-     ['San Francisco, United States', '6'],
-     ['Los Angeles, United States',   '7'],
-     ['Shanghai, China',              '8'],
-     ['Manila, Philippines',          '9'],
-     ['Beijing, China',               '10'],
-     ['Jakarta, Indonesia',           '11'],
-     ['Bangkok, Thailand',            '12'],
-     ['Melbourne, Australia',         '13']
-    ]
+    CITIES.collect{ |id, name, country| ["#{name}, #{country}", id] }
   end
 
   def place_types_select

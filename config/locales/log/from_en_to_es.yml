@@ -1,4 +1,12 @@
 --- 
+AU: Australia
+CH: China
+HK: "Hong Kong"
+MY: Malaysia
+PH: Philippines
+SG: Singapore
+Staying: Staying
+US: "United States"
 account_number: "Account number"
 account_settings: Edit
 active: Active
@@ -34,6 +42,8 @@ arriving_on: "Arriving on"
 ask_question: "Ask a question"
 authentication_fail: "We are unable to authenticate you at the moment. Please try again."
 availability: Availability
+awaiting_payment_guest: "Awaiting for Guest to make paypal payment"
+awaiting_request_agent: "Waiting for guest to make final confirmation"
 back_to_place_details: "Back to Property"
 bank_code: "Bank code"
 bathroom: Bathrooms
@@ -69,6 +79,7 @@ check_in_before: "Check In Before"
 check_in_flexible: Flexible
 check_out: "Check out"
 check_out_before: "Check Out Before"
+choose_a_password: "Choose a password for your account"
 choose_country: "Choose a country"
 choose_currency: "Choose currency"
 choose_language: "Choose language"
@@ -77,11 +88,14 @@ city: City
 click_here_caption: "click here to add caption"
 click_here_to_add_caption: "Click here to add caption"
 close: Close
+comments_questions: "Comments / Questions"
 confirm_password: "Confirm Password"
 confirm_rental: "Confirm rental"
 confirm_reset_password: "Confirm your password reset"
 confirmation_code: "Confirmation code"
 confirmation_email_sent: "Confirmation email sent"
+confirmed_rental_guest: "You have confirmed the rental."
+confirmed_rental_guest2: "Awaiting for final confirmation from the Agent."
 contact: Contact
 contact_information: "Contact Information"
 continue: Continue
@@ -94,6 +108,7 @@ create_an_account_using: "Create an Account using"
 currency: Currency
 custom_alerts: "Custom alerts"
 daily: Daily
+date_select: "Click to select date"
 dates: Dates
 days: days
 delete: Delete
@@ -113,6 +128,7 @@ edit_place: "Edit place"
 elevator: Elevator
 email_and_sms: "Email and SMS"
 email_confirmed: "Your email address has been successfully confirmed!"
+email_example: "e.g. mail@mail.com"
 error_alert: "Unknown error"
 error_alert_check_dates: "Invalid dates"
 error_invalid_or_expired_search: "Invalid or expired search"
@@ -133,6 +149,7 @@ fp_one: SquareStays
 fp_three: accomodations
 fp_two_a: "connects you with"
 fp_two_b: "trusted, professional, short-term"
+full_name: "Full Name"
 fully_private_field: "Private. Only visible to SquareStays"
 furnishings: Conveniences
 guest: Guests
@@ -171,7 +188,16 @@ how_travelers_4th: "Of course, you can always send general messages or questions
 i_have_an_account: "Already a SquareStays member?"
 iban: IBAN
 inactive: Inactive
+inquiry_center: "Inquiry Center"
 inquiry_error: "There was a problem processing you inquiry, please try again"
+inquiry_guests: 
+  one: "1 guest"
+  other: "%{count} guests"
+inquiry_on: "Inquiry on"
+inquiry_questions: "Please add any other questions here. You can ask questions about this property, your needs or any other listing from the listing"
+inquiry_sent: "Inquiry sent"
+inquiry_sent_msg: "The listing owner will be notified of your inquiry. Normally, you should expect a response within 24-48 hours. If, by chance, you don't hear back, we encourage you to inquire on other properties."
+inquiry_sent_msg2: "You can check on your inquiries in the %{link}"
 inquiry_success: "Your inquiry has been successfully sent"
 internet: Internet
 internet_wifi: Wifi
@@ -183,7 +209,9 @@ lenght_of_stay: "Length of Stay"
 length_of_stay: "Length of stay"
 linked_accounts: "Linked Accounts"
 listed: Listed
+los_angeles: "Los Angeles"
 main_page_title: Squarestays.com
+manila: Manila
 map: Map
 mark_read: "Mark read"
 mark_unread: "Mark unread"
@@ -210,7 +238,10 @@ my_account: "My Account"
 my_alerts: "My Alerts"
 my_favorite_places: "My Favorite Places"
 my_profile: "My Profile"
+name: Name
+name_example: "e.g. John Smith"
 new_price: "New price"
+new_york: "New York"
 nights: Nights
 no_alerts: "No alerts found."
 no_maximum: "No Maximum"
@@ -227,6 +258,7 @@ number:
 other_space: "Other space"
 parking_included: "Parking Space"
 passport_number: "Passport number"
+password_set_first_time: "Your password was set successfully"
 pause: Pause
 payment_details: "Payment details"
 per_month: "Per Month"
@@ -246,6 +278,7 @@ pm_prepend_post: |+
     
 pm_prepend_pre: "Private question regarding your property ["
 pool: Pool
+preapprove_rental: "Pre-approve Rental Request"
 preview: Preview
 price_final_cleanup: "Cleanup Fee"
 price_highest: "Price (Highest First)"
@@ -267,6 +300,7 @@ public_field: "Public. Anyone can see this information"
 publish: Publish
 query: Query
 question: Questions
+question_new_placeholder: "You can ask and answer questions here."
 read_agreement: "I have read and agree to the lease agreement"
 read_photo_faq: "Read some tips on providing great pictures for your SquareStays properties"
 registration_warning: "SquareStays won't publish anything without your prior consent"
@@ -274,6 +308,7 @@ remove_favorite: "Remove from favorites"
 rent: "Rent it!"
 results: Results
 room: Room
+san_francisco: "San Francisco"
 save: Save
 saving_photo: "Saving photo"
 schedule: Schedule
@@ -284,6 +319,7 @@ security_deposit_hint: "The wireframe has this but I don't have the text yer"
 see_our: "See our"
 select_one: "Please select at least one"
 settings: Settings
+shanghai: Shanghai
 share: "Share via"
 share_this_place_with_your_friends: "Share this favorite with your friends"
 signup_for_an_account: "Signup for a new account"
@@ -306,11 +342,13 @@ strict: Strict
 strict_7_day: "Strict 7-Day"
 strict_cancellation: "at least 7 days before the reservation date, you will be charged 10% of the security deposit."
 sub_total: Subtotal
+submitting: Submitting
 success: Success!
 successfully_added_to_your_favorites: "The place was successfully added to your favorites"
 suitable_events: "Suitable for Events"
 swift: Swift
 switch_to_login: "Already have an account? Sign in"
+sydney: Sydney
 teaser_1_content: "SquareStays offers flexible, high-quality accommodations for you. Squarestays is the destination site to find your perfect short-term or medium-term stay."
 teaser_1_title: Flexibility
 teaser_2_content: "SquareStays works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust."
@@ -332,6 +370,7 @@ upload_a_new_photo: "Upload a new Photo"
 upload_photo: "Upload Photo"
 upload_photo_hint: "We support jpg and png images. You must upload a minimum of 3 images."
 use_facebook_photo: "Use Facebook Photo"
+user_confirmed_rental_message: "You have confirmed the rental. Awaiting final confirmation from Agent"
 user_created: "Your account has been successfully created!"
 view_house_rules: "View House Rules"
 view_results: "View results"
@@ -341,6 +380,9 @@ weekly: Weekly
 weeks: Weeks
 what_city_is_your_place_in: "What city is your place in?"
 why_squarestays: "Why SquareStays?"
+workflow_initial_agent: "When the tenant makes a final rental request, you will be able to confirm the rental here. "
+workflow_initial_guest: "When you are ready to rent this property"
+workflow_initial_guest_button: "Confirm Rental Request"
 working_on_expanding: "We're working hard on expanding SquareStays to more. You can help us by telling us what city you would like to see next."
 you_can_add_dates: "You can add dates or a range of dates when your place is either unavailable, or you'd like to change the daily rate, which is currently set to"
 you_can_sort: "You can sort your photos by drag and drop"

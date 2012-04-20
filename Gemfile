@@ -11,11 +11,11 @@ gem 'haml',          '~>3.1.4'
 gem 'jquery-rails',  '~>1.0.18'
 gem 'airbrake'
 gem 'activemerchant'
+gem 'less-rails-bootstrap'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"
-  gem 'less-rails-bootstrap'
 end
 
 group :development do

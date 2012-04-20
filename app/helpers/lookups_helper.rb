@@ -100,7 +100,7 @@ module LookupsHelper
   end
 
   def get_current_city
-    get_city.to_i || 1
+    get_city || 1
   end
 
   def max_guest_options

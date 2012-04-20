@@ -99,6 +99,10 @@ module LookupsHelper
     get_size_unit || 'sqf'
   end
 
+  def get_current_city
+    get_city.to_i || 1
+  end
+
   def max_guest_options
     [["1 #{t(:guest)}", 1], ["3 #{t(:guests)}", 3], ["5 #{t(:guests)}", 5], ["10 #{t(:guests)}", 10]]
   end
@@ -138,5 +142,9 @@ module LookupsHelper
 
   def get_size_unit
     (current_user['pref_size_unit'] if logged_in? && !current_user['pref_size_unit'].blank?) || cookies[:pref_size_unit] || nil
+  end
+
+  def get_city
+    (current_user['pref_city'] if logged_in? && !current_user['pref_city'].blank?) || cookies[:pref_city] || nil
   end
 end

@@ -10,7 +10,7 @@
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
                 - Heypal::City.all_active.each do |city|
-                  %li= link_to city.name, "/#{city.code}"
+                  %li{:class => city.id == @city_id ? "active" : ""}= link_to city.name, "/#{city.code}"
 
             - if logged_in?
               %li.dropdown

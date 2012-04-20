@@ -187,6 +187,10 @@ class PlacesController < ApplicationController
     unless @city_id
       raise "Invalid city"
     end
+    
+    if logged_in?
+      session['current_user'] = current_user.change_preference(:pref_city, @city_id, current_token) if @city_id != get_current_city
+    end
 
     #if params[:city]
 

@@ -4,7 +4,8 @@
       .hub
         %h1
           =t(:search_place_stay_in)
-          = link_to "Singapore", "#", :id => "open-country-select"
+          - current_city = Heypal::City.find_by_id(get_current_city)
+          = link_to current_city.name, "/#{current_city.code}", :id => "open-country-select"
         %ul#country-select.dropdown
           %li.arrow
           - Heypal::City.all_active.each do |city|
@@ -12,7 +13,7 @@
           %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
 
         %p
-          %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center; font-weight: bold', :href => '/singapore'}= t(:homepage_search_but)
+          %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center; font-weight: bold', :href => "/#{current_city.code}"}= t(:homepage_search_but)
 
         #fp-liner{:style => 'color:#3977b0'}
           %p 

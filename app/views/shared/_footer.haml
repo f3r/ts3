@@ -14,6 +14,7 @@
           google_ad_height = 90;
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">; </script>
+      
       :plain
         <!-- ASM script begin -->
         <div id="cX-root" style="display:none"></div>
@@ -29,6 +30,9 @@
           var targetEl = document.getElementsByTagName('script')[0]; targetEl.parentNode.insertBefore(scriptEl, targetEl); } catch (e) {};} ());
         </script>          
         <!-- ASM script end -->
+      
+      :plain
+        <script type="text/javascript"> var _ohtConfig = { debug : true, v : 0.1, mscp : ('https:' == document.location.protocol ? 'https://' : 'http://') + 'owsassets.onehourtranslation.com/build/0.1', services:{ mlft : { formid : 52271, src : 'http://www.onehourtranslation.com' } } }; (function() { var oscr = document.createElement('script'); oscr.type = 'text/javascript'; oscr.async = true; oscr.src = _ohtConfig.mscp+'/all.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(oscr, s); })(); </script> <a href="http://www.onehourtranslation.com/" class="oht_ref">Translation Services</a>
                            
 -unless logged_in?
   - unless controller_name.eql?('users') && (action_name.eql?('new') || action_name.eql?('connect'))

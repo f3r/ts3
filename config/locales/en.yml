@@ -375,6 +375,7 @@ en:
   failed_unread:      Failed to mark as unread
   failed_read:        Failed to mark as read
   no_messages:        You don't have any message in your inbox
+  re_captcha :        Humans only
 
   ####################################################################################
   # Workflow Messages

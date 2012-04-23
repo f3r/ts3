@@ -368,29 +368,34 @@ class PlacesController < ApplicationController
   end
 
   def confirm_inquiry
-    @confirm_inquiry = Heypal::Place.confirm_inquiry(
-      params[:id],
-      {
-       :name             => params[:name],
-       :email            => params[:email],
-       :date_start       => params[:date_start],
-       :length_stay      => params[:length_stay],
-       :length_stay_type => params[:length_stay_type],
-       :message          => params[:questions]
-       #:extra => {
-       #  :mobile => params[:mobile]
-       #},
-      },
-      current_token
-    )
-
-    if @confirm_inquiry['stat'] == 'ok'
-      @success = true
-      # Just created a new user
-      if @confirm_inquiry['authentication_token']
-        sign_in @confirm_inquiry
-        @just_created = true
+    if logged_in? || verify_recaptcha()
+      @confirm_inquiry = Heypal::Place.confirm_inquiry(
+        params[:id],
+        {
+         :name             => params[:name],
+         :email            => params[:email],
+         :date_start       => params[:date_start],
+         :length_stay      => params[:length_stay],
+         :length_stay_type => params[:length_stay_type],
+         :message          => params[:questions]
+         #:extra => {
+         #  :mobile => params[:mobile]
+         #},
+        },
+        current_token
+      )
+  
+      if @confirm_inquiry['stat'] == 'ok'
+        @success = true
+        # Just created a new user
+        if @confirm_inquiry['authentication_token']
+          sign_in @confirm_inquiry
+          @just_created = true
+        end
       end
+    else
+      @success = false
+      @recaptcha_error = true
     end
     respond_to do |format|
       format.js { render :layout => false }

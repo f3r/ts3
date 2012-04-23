@@ -31,6 +31,12 @@
           %label{:class => 'control-label'}= t(:comments_questions)
           .controls
             = text_area_tag :questions, nil, :rows => 5, :placeholder => t(:inquiry_questions), :class => 'span5'
+        - unless logged_in?
+          .control-group
+            %label{:class => 'control-label'}= t(:re_captcha)
+            .controls
+              = recaptcha_tags :theme => 'validate[required]' 
+            .recaptcha_error
     .clearfix
     .modal-footer
       .inquiry-actions

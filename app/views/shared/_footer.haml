@@ -44,3 +44,18 @@
     - if params[:trigger_signup]
       :javascript          
         $('#popup-registration').modal();
+        
+  :javascript          
+    $(function() {
+      $(".trigger_signup").click(function() {
+        $.ajax({
+          type: 'PUT',
+          url: '/set_ref.json',
+          data: {
+            ref : $(this).attr('data-ref')
+          }
+        });
+        $('#popup-registration').modal();
+        return false;
+      });
+    });

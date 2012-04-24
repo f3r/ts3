@@ -70,8 +70,8 @@ class PlacesController < ApplicationController
 
   def add_favorite
     @result = Heypal::Place.add_favorite(params[:id], current_token)
-
     respond_to do |format|
+      format.html { redirect_to place_path(params[:id]), :flash => { :notice => t(:successfully_added_to_your_favorites) } }
       format.js { render :layout => false }
     end
   end

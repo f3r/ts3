@@ -17,4 +17,12 @@ class HomeController < ApplicationController
     robots = File.read(Rails.root + "config/robots.#{Rails.env}.txt")
     render :text => robots, :layout => false, :content_type => "text/plain"
   end
+
+  def set_ref
+    respond_to do |format|
+      session[:user_return_to] = params[:ref] if params[:ref] && !params[:ref].blank?
+      format.json { render :inline => "ok" }
+    end 
+  end
+
 end

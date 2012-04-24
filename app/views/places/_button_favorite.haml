@@ -10,5 +10,5 @@
           %i.icon-star.icon-white
 - else
   %div.button_favorite
-    %a.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), :href => '?trigger_signup=true' }
+    %a.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), :class => "trigger_signup", "data-ref" => add_favorite_place_path(:id => place['id']), :href => "#" }
       %i.icon-star-empty.icon-black

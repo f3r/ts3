@@ -31,7 +31,7 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :publish
       put   :unpublish
       get   :publish_check
-      put   :add_favorite
+      match :add_favorite
       put   :remove_favorite
       get   :rent
       match :availability
@@ -115,6 +115,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/users/password/:reset_password_token'   => 'users#confirm_reset_password'
   match '/auth/:provider/callback',                                               to: 'sessions#auth'
   match '/auth/failure',                                                          to: 'sessions#fail'
+  put   '/set_ref'                                => 'home#set_ref'
 
   ###########################################################################################
   # Static Content

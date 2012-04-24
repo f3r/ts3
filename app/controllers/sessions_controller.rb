@@ -3,9 +3,7 @@ class SessionsController < ApplicationController
 
   def new
     # Store the referral URL for redirecting after login
-    if params[:ref]
-      session[:user_return_to] = params[:ref]
-    end
+    session[:user_return_to] = params[:ref] if params[:ref] && !params[:ref].blank?
   end
   
   def create

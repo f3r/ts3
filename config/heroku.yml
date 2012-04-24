@@ -23,6 +23,9 @@ production:
     BACKEND_PATH:         https://squarestays-backend.heroku.com
     SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
     COOKIE_STORE_KEY:     _SquareStaysProductionFrontEnd_session
+    RECAPTCHA_PUB_KEY:    6Lcoo9ASAAAAALmNU_4LUOy4W11qRueZ9C3FXu3h
+    RECAPTCHA_PVT_KEY:    6Lcoo9ASAAAAAHM-sKYibqSA16qaCYR9IaG8SknD
+
 
 staging:
   app:   squarestage
@@ -39,3 +42,5 @@ staging:
     BACKEND_PATH:         https://squarestage-backend.heroku.com
     SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
     COOKIE_STORE_KEY:     _SquareStaysStagingFrontEnd_session
+    RECAPTCHA_PUB_KEY:    6Lcuo9ASAAAAAGx1sEf6qvddoPnTnvZ9QjSXAuNR
+    RECAPTCHA_PVT_KEY:    6Lcuo9ASAAAAAOYdrtLjPruEU0ZmferG5C_aTCEK

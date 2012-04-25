@@ -1,11 +1,17 @@
 #coding: utf-8
 module LookupsHelper
-  CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£', 'MYR' => 'RM', 'AUD' => 'A$'}
+  #CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£', 'MYR' => 'RM', 'AUD' => 'A$'}
+  CURRENCIES = {}
+  activecurrencies = Heypal::Currency.all_active
+  if activecurrencies
+    activecurrencies.each do |p|
+      CURRENCIES[p.currency_code] = p.symbol
+    end
+  end
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
   CITIES = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
-
   def currencies
     CURRENCIES.keys
   end

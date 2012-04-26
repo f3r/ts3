@@ -24,7 +24,7 @@
     .accomodation-wrapper
       .header
         .title 
-          = render :partial => 'button_favorite', :locals => { :place => @place }
+          = render :partial => 'button_favorite', :locals => { :place_id => @place['id'], :favorited => @place['favorited'] }
           %h1= @place.title
           - if logged_in? && @owner['id'].eql?(current_user['id'])
             .buttons

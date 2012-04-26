@@ -1,0 +1,3 @@
+<%= page_replace("#favorite_#{@place['id']}",
+      :partial => 'places/button_favorite',
+      :locals => { :place_id => @place['id'], :favorited => @place['favorited'] }) %>

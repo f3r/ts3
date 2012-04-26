@@ -1,14 +1,11 @@
--if logged_in?
-  %div.button_favorite
-    - if !place['favorited']
-      = form_for :place, :url => add_favorite_place_path(:id => place['id']), :method => :put, :html => { :remote => true } do |f|
-        %button.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), "data-page" => @current_action }
-          %i.icon-star-empty.icon-black
+%div.button_favorite{:id => "favorite_#{place_id}"}
+  -if logged_in?
+    - if !favorited
+      = link_to favorites_path(:place_id => place_id), :remote => true, :method => :post, :class => 'btn btn-mini', :rel => 'tooltip', :title => t(:add_favorite), "data-page" => @current_action, :onclick => "$(this).tooltip('hide')" do
+        %i.icon-star-empty.icon-black
     - else
-      = form_for :place, :url => remove_favorite_place_path(:id => place['id']), :method => :put, :html => { :remote => true } do |f|
-        %button.btn.btn-mini.btn-success{:rel => "tooltip", :title => t(:remove_favorite), "data-page" => @current_action }
-          %i.icon-star.icon-white
-- else
-  %div.button_favorite
-    %a.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), :class => "trigger_signup", "data-ref" => add_favorite_place_path(:id => place['id']), :href => "#" }
+      = link_to favorite_path(:id => place_id, :place_id => place_id), :remote => true, :method => :delete, :class => 'btn btn-mini btn-success', :rel => 'tooltip', :title => t(:remove_favorite), "data-page" => @current_action, :onclick => "$(this).tooltip('hide')" do
+        %i.icon-star-empty.icon-white
+  - else
+    %a.btn.btn-mini{:rel => "tooltip", :title => t(:add_favorite), :class => "trigger_signup", "data-ref" => favorites_add_path(:place_id => place_id), :href => "#" }
       %i.icon-star-empty.icon-black

@@ -44,3 +44,4 @@ staging:
     COOKIE_STORE_KEY:     _SquareStaysStagingFrontEnd_session
     RECAPTCHA_PUB_KEY:    6Lcuo9ASAAAAAGx1sEf6qvddoPnTnvZ9QjSXAuNR
     RECAPTCHA_PVT_KEY:    6Lcuo9ASAAAAAOYdrtLjPruEU0ZmferG5C_aTCEK
+    DATABASE_URL: mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/heypaldb

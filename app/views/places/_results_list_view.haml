@@ -6,17 +6,8 @@
           = image_tag(place['photos'].blank? ? "http://placehold.it/150x100" : place['photos'][0]['photo']['medsmall'])
       .info  
         %h3.title
-          = render :partial => 'button_favorite', :locals => { :place => place }
+          = render :partial => 'button_favorite', :locals => { :place_id => place['id'], :favorited => place['favorited'] }
           = link_to place['title'], seo_place_path(place)
-
-          / .people.data-block
-          /   .profile-pic
-          /     = image_tag(place['user']['avatar'].nil? ? "http://placehold.it/40x40" : place['user']['avatar'], :style => "width:40px; height:40px")
-          /   .details
-          /     .name
-          /       = link_to "#{place['user']['first_name'][0]}. #{place['user']['last_name']}", user_path(place['user']['id']), :class => 'title'
-          /       .micro
-          /         .type.verified=t(:agent)
 
         .property.data-block
           .title

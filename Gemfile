@@ -1,6 +1,7 @@
 source :rubygems
 
 gem 'rails', '3.2.0'
+gem 'mysql2'
 
 gem 'dynamic_form'
 gem 'omniauth'
@@ -33,7 +34,7 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'database_cleaner'
-  gem 'factory_girl_rails'
+  gem 'factory_girl_rails', "~> 3.0"
   gem 'capybara'
   gem 'steak'
   gem 'launchy'

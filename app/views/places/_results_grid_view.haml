@@ -12,7 +12,7 @@
 
         .desc.clearfix
           %h3.title
-            = render :partial => 'button_favorite', :locals => { :place => place }
+            = render :partial => 'button_favorite', :locals => { :place_id => place['id'], :favorited => place['favorited'] }
             = link_to place['title'], seo_place_path(place), :title => place['title']
           .clearfix
             .property.data-block

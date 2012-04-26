@@ -1,7 +1,7 @@
 class PlacesController < ApplicationController
   layout 'plain'
   before_filter :login_required, :only => [:new, :wizard, :create, :my_places]
-  before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability, :add_favorite]
+  before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability]
 
   def new
     @place = Heypal::Place.new
@@ -66,22 +66,6 @@ class PlacesController < ApplicationController
       response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
     end
     render :json => response, :layout => false
-  end
-
-  def add_favorite
-    @result = Heypal::Place.add_favorite(params[:id], current_token)
-    respond_to do |format|
-      format.html { redirect_to place_path(params[:id]), :flash => { :notice => t(:successfully_added_to_your_favorites) } }
-      format.js { render :layout => false }
-    end
-  end
-
-  def remove_favorite
-    @result = Heypal::Place.remove_favorite(params[:id], current_token)
-    @place_id = params[:id]
-    respond_to do |format|
-      format.js { render :layout => false }
-    end
   end
 
   def wizard

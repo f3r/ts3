@@ -31,8 +31,6 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :publish
       put   :unpublish
       get   :publish_check
-      match :add_favorite
-      put   :remove_favorite
       get   :rent
       match :availability
       post  :confirm_inquiry
@@ -132,6 +130,12 @@ HeyPalFrontEnd::Application.routes.draw do
   match 'city-guides/kuala-lumpur'  => 'home#kualalumpur',    :as => :cityguide_kl
 
   root :to => 'home#index'
+
+  ###########################################################################################
+  # Backend ported resources
+  ###########################################################################################
+  resources :favorites, :only => [:create, :destroy]
+  get 'favorites/add' => 'favorites#create' # For after login redirect
 
   ###########################################################################################
   # Detecting untranslated stringd

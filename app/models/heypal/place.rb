@@ -135,16 +135,6 @@ class Heypal::Place < Heypal::Base
       result = request("/places/#{id}/photos.json?access_token=#{access_token}", :post, :photo => phot)
     end
 
-    def add_favorite(id, access_token)
-      result = request("/places/#{id}/add_favorite.json?access_token=#{access_token}", :get)
-      result
-    end
-
-    def remove_favorite(id, access_token)
-      result = request("/places/#{id}/remove_favorite.json?access_token=#{access_token}", :get)
-      result
-    end
-
     def favorite_places(access_token, currency)
       result = request("/users/me/favorite_places.json?access_token=#{access_token}", :get)
       result

@@ -88,6 +88,7 @@
         line-height: 20px;        
         &.last-child{
           margin-right: 0;
+          float: right;
         }
         
         .title{
@@ -147,10 +148,10 @@
         
       }
             
-      .price.data-block{
-        float: right;        
+      .price {      
         text-align: right;  
         padding: 6px 6px 0 0;
+        height: 45px;
         .figure{  
           font-size: 28px;        
           font-weight: bold;
@@ -226,10 +227,20 @@
     .border-radius(3);    
     img{
       display: block;
-    }
+    } 
+  }
+  .manage {
+    width: 180px;
+    text-align: right;
+    margin-top: 15px;
   }
 }
 
+// My Places
+.my_places {
+  .edit_button a.btn { float:right; }
+  .place_status { width: 40px; text-align: center; padding: 7px } 
+}
 
 /********************************************************************************************************* 
  * SEARCH RESULTS GRID VIEW

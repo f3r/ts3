@@ -1,11 +1,12 @@
 #coding: utf-8
 module LookupsHelper
-  #CURRENCIES = {'SGD' => 'SG$', 'USD' => 'US$', 'HKD' => 'HK$', 'GBP' => 'GB£', 'MYR' => 'RM', 'AUD' => 'A$'}
-  CURRENCIES = {}
+  CURRENCIES        = {}
+  CURRENCYSYMBOL    = {}
   activecurrencies = Heypal::Currency.all_active
   if activecurrencies
     activecurrencies.each do |p|
-      CURRENCIES[p.currency_code] = p.symbol
+      CURRENCIES[p.currency_code]     = "#{p.currency_abbreviation}""#{p.symbol}"
+      CURRENCYSYMBOL[p.currency_code] = p.symbol
     end
   end
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
@@ -86,17 +87,9 @@ module LookupsHelper
   end
 
   def get_currency_with_symbol(currency)
-    case currency
-    when "USD"
-      symbol = "$"
-    when "GBP"
-      symbol = "£"
-    when "SGD"
-      symbol = "$"
-    when "HKD"
-      symbol = "$"
-    else
-      symbol = "$"
+    symbol = "$"
+    if CURRENCYSYMBOL[currency]
+      symbol = CURRENCYSYMBOL[currency]
     end
     "#{symbol} #{currency}"
   end
@@ -153,4 +146,13 @@ module LookupsHelper
   def get_city
     (current_user['pref_city'] if logged_in? && !current_user['pref_city'].blank?) || cookies[:pref_city] || nil
   end
+  
+  def get_activecurrencies
+    activecurrencies = Heypal::Currency.all_active
+    if activecurrencies
+      return activecurrencies
+    end
+    
+  end
+ 
 end

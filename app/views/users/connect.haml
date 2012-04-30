@@ -16,7 +16,7 @@
     %h2= t(:i_have_an_account)
     %p Please log in
 
-    = form_tag sessions_path do
+    = form_tag user_session_path do
       = hidden_field_tag :oauth_provider
       = hidden_field_tag :oauth_token
       = hidden_field_tag :oauth_uid

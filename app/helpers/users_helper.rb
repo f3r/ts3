@@ -1,7 +1,8 @@
 module UsersHelper
   def full_name(user)
-    name = [user['first_name'], user['last_name']].join(' ')
-    name.titleize unless name.eql?(' ')
+    # name = [user['first_name'], user['last_name']].join(' ')
+    #     name.titleize unless name.eql?(' ')
+    user.full_name
   end
   
   def short_full_name(user)

@@ -4,9 +4,9 @@ module HomeHelper
     current_path = request.path
 
     if current_path && !black_list.include?(current_path)
-      login_path(:ref => request.path)
+      new_user_session_path(:ref => request.path)
     else
-      login_path
+      new_user_session_path
     end
   end
 
@@ -15,9 +15,9 @@ module HomeHelper
     current_path = request.path
 
     if current_path && !black_list.include?(current_path)
-      signup_path(:ref => request.path)
+      new_user_registration_path(:ref => request.path)
     else
-      signup_path
+      new_user_registration_path
     end
   end
 

@@ -11,6 +11,9 @@ HeyPalFrontEnd::Application.routes.draw do
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end
 
+  devise_for :users, :path => '/', :controllers => { :sessions => "sessions", :registrations => "registrations"},
+             :path_names => { :sign_in => 'login', :sign_up => 'signup', :sign_out => 'logout' }
+
   # get   'search/index'
   match '/search'          => 'places#index', :as => :search
   match '/connect'         => 'users#connect'
@@ -86,10 +89,10 @@ HeyPalFrontEnd::Application.routes.draw do
     collection do
       get  :confirm
       post :resend_confirmation
-      post :reset_password
-      get  :reset_password
-      get  :confirm_reset_password
-      post :confirm_reset_password
+      #post :reset_password
+      #get  :reset_password
+      #get  :confirm_reset_password
+      #post :confirm_reset_password
       put  :change_preference
     end
     member do
@@ -103,11 +106,11 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Sessions, Registration & Providers
   ###########################################################################################
-  resources :sessions
-  match '/signup'                                 => 'users#new',                 :as => :signup
+  #resources :sessions
+  #match '/signup'                                 => 'users#new',                 :as => :signup
   match '/signup_complete'                        => 'users#signup_complete',     :as => :signup_complete
-  match '/login'                                  => 'sessions#new',              :as => :login
-  match '/logout'                                 => 'sessions#destroy',          :as => :logout
+  #match '/login'                                  => 'sessions#new',              :as => :login
+  #match '/logout'                                 => 'sessions#destroy',          :as => :logout
   match '/users/confirmation/cancel'              => 'users#cancel_email_change', :as => :cancel_email_change
   match '/users/confirmation/:confirmation_token' => 'users#confirm'
   match '/users/password/:reset_password_token'   => 'users#confirm_reset_password'

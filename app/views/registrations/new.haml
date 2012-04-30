@@ -1,0 +1,8 @@
+- if @user.invalid?
+  %div{:class => 'alert alert-error'}
+    = error_messages_for @user
+
+.registration.row-fluid
+  %br
+  = render :partial => 'form'
+  =# render :partial => 'connect_with'

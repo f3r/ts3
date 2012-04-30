@@ -3,6 +3,7 @@ source :rubygems
 gem 'rails', '3.2.0'
 gem 'mysql2'
 
+gem 'devise'
 gem 'dynamic_form'
 gem 'omniauth'
 gem 'omniauth-facebook'
@@ -23,12 +24,14 @@ group :assets do
 end
 
 group :development do
+  gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
 end
 
 group :test do
-  gem 'turn', :require => false  # Pretty printed test output
+  #gem 'turn', :require => false  # Pretty printed test output
+  gem 'faker'
 end
 
 group :development, :test do

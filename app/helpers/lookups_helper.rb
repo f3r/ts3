@@ -3,6 +3,7 @@ module LookupsHelper
   CURRENCIES        = {}
   CURRENCYSYMBOL    = {}
   activecurrencies = Heypal::Currency.all_active
+
   if activecurrencies
     activecurrencies.each do |p|
       CURRENCIES[p.currency_code]     = "#{p.currency_abbreviation}""#{p.symbol}"
@@ -131,6 +132,7 @@ module LookupsHelper
   end
 
   protected
+
   def get_language
     (current_user['pref_language'] if logged_in? && !current_user['pref_language'].blank?) || cookies[:pref_language] || nil
   end

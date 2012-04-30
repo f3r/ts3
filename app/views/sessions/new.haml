@@ -3,20 +3,20 @@
   .section.span6.bored
     %h2.offset-one-eight= t(:login)
 
-    = form_tag sessions_path do 
+    = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       .input
-        = text_field_tag :email, '',  :placeholder => 'E-Mail Address'
+        = f.text_field :email,  :placeholder => 'E-Mail Address'
       .input
-        = password_field_tag :password, '', :placeholder => 'Password'
+        = f.password_field :password, :placeholder => 'Password'
       %button.btn.float-right{:type => 'submit'}
         Login
 
     .alternative
-      = link_to t(:forgot_password), reset_password_users_path
+      = link_to t(:forgot_password), new_user_password_path #reset_password_users_path
     .alternative
-      = link_to t(:resend_confirmation), confirm_users_path
+      =# link_to t(:resend_confirmation), confirm_users_path
     .alternative
-      = link_to t(:signup_for_an_account), signup_path
+      = link_to t(:signup_for_an_account), new_user_registration_path
   .section.span5
     %h2= t(:login_using)
     %a{:href => "/auth/facebook"}

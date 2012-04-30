@@ -17,38 +17,14 @@
           Español
       %li.divider
       %li.divider-title= "#{t(:choose_currency)}..."
-      %li.divider            
-      / US DOLLARS
-      %li{ get_current_currency == "USD" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_currency => 'USD' do
-          %span.em <span class="check">&#10003;</span>
-          %span.option-label= get_currency_with_symbol("USD")
-      / BRITISH POUNDS
-      %li{ get_current_currency == "GBP" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_currency => 'GBP' do 
-          %span.em <span class="check">&#10003;</span> 
-          %span.option-label= get_currency_with_symbol("GBP")
-      / SINGAPORE DOLLARS
-      %li{ get_current_currency == "SGD" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_currency => 'SGD' do
-          %span.em <span class="check">&#10003;</span> 
-          %span.option-label= get_currency_with_symbol("SGD")
-      / HONG KONG DOLLARS
-      %li{ get_current_currency == "HKD" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_currency => 'HKD' do
-          %span.em <span class="check">&#10003;</span> 
-          %span.option-label= get_currency_with_symbol("HKD")
-      // MALAYSIAN RINGIT
-      %li{ get_current_currency == "MYR" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_currency => 'MYR' do
-          %span.em <span class="check">&#10003;</span> 
-          %span.option-label= get_currency_with_symbol("MYR")
-      / AUSTRALIAN DOLLARS
-      %li{ get_current_currency == "AUD" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_currency => 'AUD' do
-          %span.em <span class="check">&#10003;</span> 
-          %span.option-label= get_currency_with_symbol("AUD")
-
+      %li.divider
+        - if get_activecurrencies
+          - get_activecurrencies.each do |cur|
+            %li{ get_current_currency == cur.currency_code ? {:class => "active"} : {} }
+              = link_to :change_preference => true, :pref_currency => cur.currency_code do
+                %span.em <span class="check">&#10003;</span>
+                %span.option-label= get_currency_with_symbol(cur.currency_code)
+        
       %li.divider              
       %li.divider-title= "#{t(:choose_unit)}..."
       %li.divider            

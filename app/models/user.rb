@@ -12,13 +12,20 @@ class User < ActiveRecord::Base
          :token_authenticatable     # Generate auth token and validates it
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
-                  :remember_me, :pref_language, :pref_currency, :pref_size_unit, :pref_city, :role, :passport_number
+                  :remember_me, :pref_language, :pref_currency, :pref_size_unit, :pref_city, :role, :passport_number, :skip_welcome
 
   attr_accessor :oauth_provider, :oauth_token, :oauth_uid, :avatar_url, :terms
 
   before_save :ensure_authentication_token
+  after_create :send_on_create_welcome_instructions
 
   def full_name
     [first_name,last_name].join(' ')
+  end
+
+  private
+
+  def send_on_create_welcome_instructions
+    RegistrationMailer.welcome_instructions(self).deliver unless skip_welcome
   end
 end

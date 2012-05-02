@@ -84,4 +84,12 @@ module ApplicationHelper
         raw "<a class=\"fully_private\" href=\"#\" rel=\"tooltip\" title=\"#{t(:fully_private_field)}\"></a>"
     end
   end
+
+  def support_email
+    SUPPORT_EMAIL
+  end
+
+  def site_name
+    SITE_NAME
+  end
 end

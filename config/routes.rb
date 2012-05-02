@@ -1,4 +1,9 @@
 HeyPalFrontEnd::Application.routes.draw do
+  if Rails.env.development?
+    require 'preview_mails'
+    mount PreviewMails => 'mail_view'
+  end
+
   # Redirect http://squarestays.com to http://www.squarestays.com
   constraints(:host => /^squarestays.com/) do
     root :to => redirect("http://www.squarestays.com")

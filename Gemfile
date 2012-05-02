@@ -27,6 +27,7 @@ group :development do
   gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
+  gem 'mail_view'
 end
 
 group :test do

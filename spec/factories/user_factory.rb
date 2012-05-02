@@ -7,5 +7,6 @@ FactoryGirl.define do
     password              { Faker::Lorem.words(2).to_sentence }
     password_confirmation { |u| u.password }
     confirmed_at          { 1.day.ago }
+    skip_welcome          { true }
   end
 end

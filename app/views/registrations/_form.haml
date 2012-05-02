@@ -2,11 +2,7 @@
   %h2.offset-one-eight= t(:create_new_account)
   %br
   = form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:id => 'registerForm'})  do |f|
-    = f.hidden_field :oauth_provider
-    = f.hidden_field :oauth_token
-    = f.hidden_field :oauth_uid
-    = f.hidden_field :avatar_url
-    
+    = render 'oauth_fields', :f => f
     .input= f.text_field     :first_name, :placeholder => 'First Name',     :class => "validate[required]"
     .input= f.text_field     :last_name,  :placeholder => 'Last Name',      :class => "validate[required]"
     .input= f.text_field     :email,      :placeholder => 'E-Mail Address', :class => "validate[required,custom[email]]"

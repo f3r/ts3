@@ -14,11 +14,11 @@ feature 'Sessions feature', %q{
 
     page.should have_content(t(:login))
 
-    fill_in 'email', :with => @user.email
-    fill_in 'password', :with => @user.password
+    fill_in 'user_email', :with => @user.email
+    fill_in 'user_password', :with => @user.password
 
     click_button 'Login'
-    debugger
+
     page.should have_content(t(:sign_out))
   end
 

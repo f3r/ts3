@@ -2,7 +2,21 @@
   %div{:class => 'alert alert-error'}
     = error_messages_for @user
 
-.registration.row-fluid
-  %br
-  = render :partial => 'form'
-  =# render :partial => 'connect_with'
+- if @user.oauth_provider
+  .row.oauth-box
+    .span.avatar
+      =image_tag @user.avatar_url
+    .span
+      %h1
+        Hello
+    .span6{:style => "line-height: 40px; font-size: 2em;"}
+      = @user.full_name
+  .registration.row-fluid
+    %br
+    = render :partial => 'form'
+    = render :partial => 'associate_login'
+- else
+  .registration.row-fluid
+    %br
+    = render :partial => 'form'
+    = render :partial => 'connect_with'

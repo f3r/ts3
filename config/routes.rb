@@ -16,7 +16,7 @@ HeyPalFrontEnd::Application.routes.draw do
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end
 
-  devise_for :users, :path => '/', :controllers => { :sessions => "sessions", :registrations => "registrations"},
+  devise_for :users, :path => '/', :controllers => { :sessions => "sessions", :registrations => "registrations", :omniauth_callbacks => "omniauth_callbacks"},
              :path_names => { :sign_in => 'login', :sign_up => 'signup', :sign_out => 'logout' }
 
   # get   'search/index'
@@ -113,14 +113,14 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   #resources :sessions
   #match '/signup'                                 => 'users#new',                 :as => :signup
-  match '/signup_complete'                        => 'users#signup_complete',     :as => :signup_complete
+  #match '/signup_complete'                        => 'users#signup_complete',     :as => :signup_complete
   #match '/login'                                  => 'sessions#new',              :as => :login
   #match '/logout'                                 => 'sessions#destroy',          :as => :logout
-  match '/users/confirmation/cancel'              => 'users#cancel_email_change', :as => :cancel_email_change
-  match '/users/confirmation/:confirmation_token' => 'users#confirm'
-  match '/users/password/:reset_password_token'   => 'users#confirm_reset_password'
-  match '/auth/:provider/callback',                                               to: 'sessions#auth'
-  match '/auth/failure',                                                          to: 'sessions#fail'
+  #match '/users/confirmation/cancel'              => 'users#cancel_email_change', :as => :cancel_email_change
+  #match '/users/confirmation/:confirmation_token' => 'users#confirm'
+  #match '/users/password/:reset_password_token'   => 'users#confirm_reset_password'
+  #match '/auth/:provider/callback',                                               to: 'sessions#auth'
+  #match '/auth/failure',                                                          to: 'sessions#fail'
   put   '/set_ref'                                => 'home#set_ref'
 
   ###########################################################################################

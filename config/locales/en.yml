@@ -96,6 +96,7 @@ en:
   choose_a_password:          Choose a password for your account
   password_reset_success:     Password reset successful
   password_set_first_time:    Your password was set successfully
+  oauth_connected:            You have successfully connected your %{provider} account!
   facebook_connected:         You have successfully connected your facebook account!
   twitter_connected:          You have successfully connected your twitter account!
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.

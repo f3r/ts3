@@ -6,10 +6,10 @@ feature 'Sessions feature', %q{
 } do
 
   background do
-    @user = Factory(:user)
+    @user = FactoryGirl.create(:user)
   end
 
-  scenario 'sign in using my email and password' do
+  scenario 'sign in using my email and password', :backend => true do
     visit '/login'
 
     page.should have_content(t(:login))

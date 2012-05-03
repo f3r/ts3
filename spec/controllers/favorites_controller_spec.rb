@@ -2,10 +2,13 @@ require 'spec_helper'
 
 describe FavoritesController do
   before(:each) do
-    @user = double("user", :id => 32)
-    session['current_user'] = @user
-
-    Heypal::Place.stub(:find).and_return(double(:id => 1))
+    @user = FactoryGirl.create(:user)
+    login_as @user
+    # @user = double("user", :id => 32)
+    # session['current_user'] = @user
+    place = double(:id => 1)
+    place.stub(:[]).with('id').and_return(1)
+    Heypal::Place.stub(:find).and_return(place)
   end
 
   it "creates a new favorite" do

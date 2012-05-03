@@ -54,15 +54,8 @@ class User < ActiveRecord::Base
   # checks if avatar_url is set and updates the avatar if avatar_url is an image
   def check_avatar_url
     if self.avatar_url
-      begin
-        remote_avatar = open(self.avatar_url)
-        if remote_avatar.content_type.match(/image/)
-          self.avatar = remote_avatar
-        end
-      rescue Exception => e
-        logger.error { "Error [user.rb/check_avatar_url] #{e.message}" }
-        return nil
-      end
+      remote_avatar = open(self.avatar_url) rescue nil
+      self.avatar = remote_avatar if remote_avatar
     end
   end
 end

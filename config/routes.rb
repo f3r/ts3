@@ -90,38 +90,11 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/profile'      => 'users#show', :as => :profile
   match '/profile/edit' => 'users#edit', :as => :edit_profile
 
-  resources :users do
-    collection do
-      get  :confirm
-      post :resend_confirmation
-      #post :reset_password
-      #get  :reset_password
-      #get  :confirm_reset_password
-      #post :confirm_reset_password
-      put  :change_preference
-    end
-    member do
-      post :publish
-    end
-    match '/change_address'      => "addresses#update"
-    match '/change_bank_account' => "bank_accounts#update"
-    put   '/change_password'     => "users#change_password"
-  end
-
-  ###########################################################################################
-  # Sessions, Registration & Providers
-  ###########################################################################################
-  #resources :sessions
-  #match '/signup'                                 => 'users#new',                 :as => :signup
-  #match '/signup_complete'                        => 'users#signup_complete',     :as => :signup_complete
-  #match '/login'                                  => 'sessions#new',              :as => :login
-  #match '/logout'                                 => 'sessions#destroy',          :as => :logout
-  #match '/users/confirmation/cancel'              => 'users#cancel_email_change', :as => :cancel_email_change
-  #match '/users/confirmation/:confirmation_token' => 'users#confirm'
-  #match '/users/password/:reset_password_token'   => 'users#confirm_reset_password'
-  #match '/auth/:provider/callback',                                               to: 'sessions#auth'
-  #match '/auth/failure',                                                          to: 'sessions#fail'
-  put   '/set_ref'                                => 'home#set_ref'
+  put   'users/:id/change_preference' => "user#change_preference", :as => :change_preference
+  match '/change_address'             => "addresses#update"
+  match '/change_bank_account'        => "bank_accounts#update"
+  put   '/change_password'            => "users#change_password"
+  put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################
   # Static Content

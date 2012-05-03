@@ -90,7 +90,11 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/profile'      => 'users#show', :as => :profile
   match '/profile/edit' => 'users#edit', :as => :edit_profile
 
-  put   'users/:id/change_preference' => "user#change_preference", :as => :change_preference
+  resources :users do
+    member do
+      put :change_preferece
+    end
+  end
   match '/change_address'             => "addresses#update"
   match '/change_bank_account'        => "bank_accounts#update"
   put   '/change_password'            => "users#change_password"
@@ -127,8 +131,9 @@ HeyPalFrontEnd::Application.routes.draw do
     match 'translate/reload'    => 'translate#reload',    :as => :translate_reload
   end
 
-  # Error matching
-  # http://techoctave.com/c7/posts/36-rails-3-0-rescue-from-routing-error-solution
   get '/robots.txt' => 'home#robot'
-  match '*a', :to => 'errors#routing'
+
+  # Error matching
+  match '/404' => 'errors#page_not_found'
+  match '/500' => 'errors#exception'
 end

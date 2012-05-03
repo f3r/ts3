@@ -1,5 +1,11 @@
 class ErrorsController < ApplicationController
-  def routing
-    render :file => "#{Rails.root}/public/404.html", :status => 404, :layout => false
+  layout 'error'
+
+  def page_not_found
+    render 'page_not_found', :status => 404
+  end
+
+  def exception
+    render 'exception', :status => 500
   end
 end

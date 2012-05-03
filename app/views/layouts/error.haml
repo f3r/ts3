@@ -1,0 +1,17 @@
+!!!
+%html{:lang => "en"}
+  %head
+    = render 'shared/meta'
+
+  %body
+    %header.header
+      .container
+        .row
+          .span5
+            .logo= link_to image_tag('SquareStays.png', :size => "244x58"), root_path, :title => t(:app_name)
+      = render 'shared/menu'
+    .container
+      = flash_messages
+      .content
+        = yield
+      = render 'shared/footer'

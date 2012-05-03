@@ -17,7 +17,7 @@ module AuthenticationHelper
   end
 
   def current_token
-    current_user.authentication_token
+    current_user.authentication_token if current_user
   end
 
   def login_required

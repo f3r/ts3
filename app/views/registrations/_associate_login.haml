@@ -3,7 +3,7 @@
   %p Please log in
 
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-    = render 'oauth_fields', :f => f
+    = render 'registrations/oauth_fields', :f => f
     .input
       = f.text_field :email,  :placeholder => t(:email)
     .input

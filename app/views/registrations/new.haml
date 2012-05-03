@@ -1,8 +1,8 @@
-- if @user.errors.any?
+- if @user && @user.errors.any?
   %div{:class => 'alert alert-error'}
     = error_messages_for @user
 
-- if @user.oauth_provider
+- if @user && @user.oauth_provider
   .row.oauth-box
     .span.avatar
       =image_tag @user.avatar_url
@@ -13,10 +13,10 @@
       = @user.full_name
   .registration.row-fluid
     %br
-    = render :partial => 'form'
-    = render :partial => 'associate_login'
+    = render :partial => 'registrations/form'
+    = render :partial => 'registrations/associate_login'
 - else
   .registration.row-fluid
     %br
-    = render :partial => 'form'
-    = render :partial => 'connect_with'
+    = render :partial => 'registrations/form'
+    = render :partial => 'registrations/connect_with'

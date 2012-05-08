@@ -5,6 +5,7 @@ HeyPalFrontEnd::Application.configure do
   # every request.  This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.reload_classes_only_on_change = false
 
   # Log error messages when you accidentally call methods on nil.
   config.whiny_nils = true
@@ -35,10 +36,3 @@ HeyPalFrontEnd::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
 end
-
-# Heypal::base_url = BACKEND_PATH
-
-# Rails.application.config.middleware.use OmniAuth::Builder do
-#   provider :facebook, FB_APP_ID, FB_APP_SECRET, {:scope => 'email, user_birthday'}
-#   provider :twitter,  TW_APP_ID, TW_APP_SECRET
-# end

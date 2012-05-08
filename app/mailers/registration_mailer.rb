@@ -2,8 +2,8 @@ class RegistrationMailer < Devise::Mailer
   layout 'user_email'
   helper 'application'
 
-  default :from => MAILER_SENDER
-  default :bcc  => ["jeremy@squarestays.com", "fer@squarestays.com"].join(',')
+  default :from => SiteConfig.mailer_sender
+  default :bcc  => SiteConfig.mail_bcc
 
   def welcome_instructions(user)
     @user      = user

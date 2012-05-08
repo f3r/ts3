@@ -86,10 +86,10 @@ module ApplicationHelper
   end
 
   def support_email
-    SUPPORT_EMAIL
+    SiteConfig.support_email
   end
 
   def site_name
-    SITE_NAME
+    SiteConfig.site_name
   end
 end

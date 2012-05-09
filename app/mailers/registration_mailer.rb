@@ -8,7 +8,7 @@ class RegistrationMailer < Devise::Mailer
   def welcome_instructions(user)
     @user      = user
     recipients = "#{user.full_name} <#{user.email}>"
-    subject    = 'Welcome to SquareStays'
+    subject    = t('devise.registrations.signed_up')
 
     mail(:to => recipients, :subject => subject)
   end

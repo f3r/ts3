@@ -1,5 +1,4 @@
 module ApplicationHelper
-
   def placehold(width = 60, height = 60, url = false)
     if url
       "http://placehold.it/#{width}x#{height}"

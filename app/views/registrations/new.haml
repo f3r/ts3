@@ -11,12 +11,12 @@
         Hello
     .span6{:style => "line-height: 40px; font-size: 2em;"}
       = @user.full_name
-  .registration.row-fluid
+  .credentials-box.registration.row-fluid
     %br
     = render :partial => 'registrations/form'
     = render :partial => 'registrations/associate_login'
 - else
-  .registration.row-fluid
+  .credentials-box.registration.row-fluid
     %br
     = render :partial => 'registrations/form'
     = render :partial => 'registrations/connect_with'

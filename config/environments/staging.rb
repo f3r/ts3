@@ -58,3 +58,8 @@ HeyPalFrontEnd::Application.configure do
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 end
+
+HeyPalFrontEnd::Application.config.middleware.use ExceptionNotifier,
+  :email_prefix => "[Staging] ",
+  :sender_address => 'alert@exception.com',
+  :exception_recipients => SiteConfig.mail_sysadmins

@@ -11,10 +11,10 @@ gem 'omniauth-twitter'
 gem 'rest-client', :require => 'rest_client'
 gem 'haml',          '~>3.1.4'
 gem 'jquery-rails',  '~>1.0.18'
-gem 'airbrake'
 gem 'activemerchant'
 gem 'less-rails-bootstrap'
 
+gem 'exception_notification'
 gem "recaptcha", :require => "recaptcha/rails"
 
 # File Uploads

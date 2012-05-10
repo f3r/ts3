@@ -108,7 +108,6 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Static Content
   ###########################################################################################
-<<<<<<< HEAD
   match '/page/:pages'              => 'home#staticpage'    
   match '/why'                      => 'home#staticpage' , :pages => :why,:as => :home_why 
   match '/how-it-works'             => 'home#staticpage' , :pages => :how,:as => :home_how 
@@ -120,9 +119,6 @@ HeyPalFrontEnd::Application.routes.draw do
   match 'city-guides/singapore'     => 'home#staticpage' , :pages => :sg,:as => :cityguide_sg
   match 'city-guides/hong-kong'     => 'home#staticpage' , :pages => :hk,:as => :cityguide_hk
   match 'city-guides/kuala-lumpur'  => 'home#staticpage' , :pages => :kl,:as => :cityguide_kl
-=======
-  match '/page/:pages'              => 'home#staticpage'      
->>>>>>> [FIXES #28448573] As an Admin ISBAT manage static pages -- front end
 
   root :to => 'home#index'
 

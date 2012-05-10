@@ -108,16 +108,7 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Static Content
   ###########################################################################################
-  match '/why'                      => 'home#why',            :as => :home_why
-  match '/how-it-works'             => 'home#how',            :as => :home_how
-  match '/photography-faq'          => 'home#photo_faq',      :as => :home_photo_faq
-  match '/terms'                    => 'home#terms'
-  match '/fees'                     => 'home#fees'
-  match '/privacy'                  => 'home#privacy'
-  match '/contact'                  => 'home#contact'
-  match 'city-guides/singapore'     => 'home#singapore',      :as => :cityguide_sg
-  match 'city-guides/hong-kong'     => 'home#hongkong',       :as => :cityguide_hk
-  match 'city-guides/kuala-lumpur'  => 'home#kualalumpur',    :as => :cityguide_kl
+  match '/page/:pages'              => 'home#staticpage'      
 
   root :to => 'home#index'
 

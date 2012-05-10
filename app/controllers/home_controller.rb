@@ -24,5 +24,10 @@ class HomeController < ApplicationController
       format.json { render :inline => "ok" }
     end 
   end
+  
+  def staticpage
+    #get the content from back-end
+    @staticpages = Heypal::Cmspage.getPageContents("pageurl" => params[:pages])
+  end
 
 end

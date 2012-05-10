@@ -1,145 +1,4 @@
 class UsersController < ApplicationController
-  def new
-    session[:user_return_to] = params[:ref] if params[:ref] && !params[:ref].blank?
-    @user = Heypal::User.new
-    render :layout => 'single'
-  end
-
-  def create
-    @user = Heypal::User.new(params[:user])
-
-    @user.oauth_token = {'provider' => params['oauth_provider'],
-      'uid' => params[:oauth_uid],
-      'credentials' => {
-        'token' => params[:oauth_token],
-        'secret' => ''
-      }
-    }
-
-    if @user.valid? && @user.save
-      # Try to login
-      @heypal_session = Heypal::Session.create(:email => params[:user][:email], :password => params[:user][:password])
-      if @heypal_session.valid?
-        flash[:success] = t(:user_created)
-        sign_in @heypal_session
-        redirect_to after_sign_in_path
-      else
-        redirect_to signup_complete_path
-      end
-    else
-      if params[:user][:oauth_uid]
-        @oauth_provider = params[:user][:oauth_provider]
-        @oauth_uid = params[:user][:oauth_uid]
-        render :template => 'users/connect', :layout => 'single'
-      else
-        render :action => :new, :layout => 'single'
-      end
-    end
-  end
-
-  def confirm
-     if params['confirmation_token']
-      result = Heypal::User.confirm({'confirmation_token' => params['confirmation_token']})
-      if params['confirmation_token'].present? && result['stat'].eql?('ok')
-        sign_in result
-        if result['email_change'] == true
-          flash[:notice] = t(:email_confirmed)
-        else
-          flash[:notice] = t(:user_confirmed)
-          #if sign up using fb/twitter
-          auth = Heypal::User.list('access_token' => current_token)
-          user_auth = auth['authentications'][0]
-          if auth && user_auth
-            if user_auth['provider'].eql?('facebook')
-              facebook_info = Heypal::User.facebook_info('access_token' => current_token)
-              if facebook_info
-                user_data = {
-                  'access_token' => current_token,
-                  'avatar_url' => facebook_info['avatar_url'],
-                  'birthdate' => facebook_info['birthdate'],
-                  'gender' => facebook_info['gender']
-                }
-                user = Heypal::User.update(user_data)
-              end
-            elsif user_auth['provider'].eql?('twitter')
-              user = Heypal::User.update({
-                'access_token' => current_token,
-                :avatar_url=>"http://api.twitter.com/1/users/profile_image/#{user_auth['uid']}.jpg?size=bigger"
-              })
-            end
-          end
-        end
-        redirect_to after_sign_in_path
-      else
-        flash[:error] = t(:invalid_confirmation_code)
-        render :layout => 'single'
-      end
-
-    elsif params['email']
-
-      if params['email'].present? &&  Heypal::User.resend_confirmation({:email => params['email']})
-        flash[:notice] = t(:confirmation_email_sent)
-        redirect_to login_path
-      else
-        flash[:error] = t(:invalid_email)
-        render :layout => 'single'
-      end
-
-    end
-
-  end
-
-  def reset_password
-    if request.post?
-      if params['email']
-        if params['email'].present? && Heypal::User.reset_password({:email => params[:email]})
-          flash[:notice] = t(:password_reset_instruction_sent)
-          redirect_to login_path
-          return
-        else
-          flash[:error] = t(:password_reset_failed)
-        end
-      else
-        flash[:error] = t(:password_reset_failed)
-      end
-    end
-
-    render :layout => 'single'
-  end
-
-  def items
-  end
-
-  def received
-  end
-
-  def connect
-  end
-
-  def confirm_reset_password
-    if request.post?
-      result = Heypal::User.confirm_reset_password(params)
-      if params['reset_password_token'].present? && result['stat'] == "ok"
-        if params[:welcome]
-          flash[:success] = t(:password_set_first_time)
-        else
-          flash[:success] = t(:password_reset_success)
-        end
-        sign_in result
-        redirect_to root_path
-        return
-      else
-        flash[:error] = t(:password_reset_failed)
-      end
-    end
-
-    render :layout => 'single'
-  end
-
-  def signup_complete
-
-  end
-
   def show
     if logged_in? && params['id'].blank?
       @user = Heypal::User.show('access_token' => current_token)
@@ -226,7 +85,7 @@ class UsersController < ApplicationController
       end
     end
   end
-  
+
   def cancel_email_change
     if Heypal::User.cancel_email_change('access_token' => current_token)
       session['current_user'] = Heypal::User.show('access_token' => current_token)
@@ -235,5 +94,4 @@ class UsersController < ApplicationController
       render :json => {:stat => false}
     end
   end
-  
 end

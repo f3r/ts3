@@ -12,7 +12,7 @@
                 - Heypal::City.all_active.each do |city|
                   %li{:class => city.id == @city_id ? "active" : ""}= link_to city.name, "/#{city.code}"
 
-            - if logged_in?
+            - if user_signed_in?
               %li.dropdown
                 %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
                   = t(:my_account)
@@ -34,7 +34,7 @@
               = menu_link_to t(:why_squarestays), home_why_path
 
           %ul.nav.pull-right
-            - if logged_in?
+            - if user_signed_in?
               - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
                 %li.add-item
                   = link_to t(:add_a_place), new_place_path

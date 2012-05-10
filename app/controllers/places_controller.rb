@@ -368,12 +368,14 @@ class PlacesController < ApplicationController
         },
         current_token
       )
-  
+
       if @confirm_inquiry['stat'] == 'ok'
         @success = true
         # Just created a new user
         if @confirm_inquiry['authentication_token']
-          sign_in @confirm_inquiry
+          # TODO: move user creation logic to the frontend
+          user = User.find_by_authentication_token(@confirm_inquiry['authentication_token'])
+          sign_in user
           @just_created = true
         end
       end

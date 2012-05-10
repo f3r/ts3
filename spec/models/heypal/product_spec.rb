@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Heypal::Product do
+describe Heypal::Product, :backend => true do
 
   it "should return a list of products" do 
     results = Heypal::Product.all

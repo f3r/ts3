@@ -68,6 +68,7 @@ en:
   ####################################################################################
   create_new_account:         Create New Account
   create_an_account_using:    Create an Account using
+  connecting_your_account_allows_you:   This will allow you to log in to %{site_name} using your existing accounts!
   user_confirmed:             Your account has been successfully confirmed!
   email_confirmed:            Your email address has been successfully confirmed!
   user_created:               Your account has been successfully created!
@@ -96,6 +97,7 @@ en:
   choose_a_password:          Choose a password for your account
   password_reset_success:     Password reset successful
   password_set_first_time:    Your password was set successfully
+  oauth_connected:            You have successfully connected your %{provider} account!
   facebook_connected:         You have successfully connected your facebook account!
   twitter_connected:          You have successfully connected your twitter account!
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.
@@ -177,6 +179,7 @@ en:
   confirmed_rental_guest:  "You have confirmed the rental."
   confirmed_rental_guest2: "Awaiting for final confirmation from the Agent."
   awaiting_payment_guest:  "Awaiting for Guest to make paypal payment"
+  payment_fee_desc:        "%{site_name} Rental Fee for %{title}"
 
   ####################################################################################
   # Authentications

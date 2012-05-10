@@ -2,20 +2,23 @@ require 'acceptance/acceptance_helper'
 
 feature 'Sessions feature', %q{
   As a user
-  I should be able to ...
+  I should be able to login
 } do
 
-  scenario 'signin using my email and password' do
+  background do
+    @user = FactoryGirl.create(:user)
+  end
+
+  scenario 'sign in using my email and password', :backend => true do
     visit '/login'
 
     page.should have_content(t(:login))
 
-    fill_in 'email', :with => 'test@email.com'
-    fill_in 'password', :with => 'password123'
+    fill_in 'user_email', :with => @user.email
+    fill_in 'user_password', :with => @user.password
 
     click_button 'Login'
 
-    page.should have_content(t(:dashboard))
     page.should have_content(t(:sign_out))
   end
 

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Heypal::User do
-  
+describe Heypal::User, :backend => true do
+
   it "should be able to sign up on the site using my email and password" do
     @user = Heypal::User.create(:name => 'test', :email => 'test@test.com', :password => 'hello123')
 

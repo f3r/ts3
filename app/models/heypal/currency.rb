@@ -2,6 +2,10 @@ class Heypal::Currency < Heypal::Base
 
   attr_accessor :id, :currency_code, :symbol , :currency_abbreviation
 
+  def self.all
+    @all ||= self.all_active
+  end
+
   def self.all_active
     currencies = []
     result = request("/currencies.json?active=1", :get)

@@ -1,4 +1,9 @@
 HeyPalFrontEnd::Application.routes.draw do
+  if Rails.env.development?
+    require 'preview_mails'
+    mount PreviewMails => 'mail_view'
+  end
+
   # Redirect http://squarestays.com to http://www.squarestays.com
   constraints(:host => /^squarestays.com/) do
     root :to => redirect("http://www.squarestays.com")
@@ -10,6 +15,9 @@ HeyPalFrontEnd::Application.routes.draw do
     root :to => redirect("http://www.squarestays.com")
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end
+
+  devise_for :users, :path => '/', :controllers => { :sessions => "sessions", :registrations => "registrations", :omniauth_callbacks => "omniauth_callbacks"},
+             :path_names => { :sign_in => 'login', :sign_up => 'signup', :sign_out => 'logout' }
 
   # get   'search/index'
   match '/search'          => 'places#index', :as => :search
@@ -83,37 +91,14 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/profile/edit' => 'users#edit', :as => :edit_profile
 
   resources :users do
-    collection do
-      get  :confirm
-      post :resend_confirmation
-      post :reset_password
-      get  :reset_password
-      get  :confirm_reset_password
-      post :confirm_reset_password
-      put  :change_preference
-    end
     member do
-      post :publish
+      put :change_preferece
     end
-    match '/change_address'      => "addresses#update"
-    match '/change_bank_account' => "bank_accounts#update"
-    put   '/change_password'     => "users#change_password"
   end
-
-  ###########################################################################################
-  # Sessions, Registration & Providers
-  ###########################################################################################
-  resources :sessions
-  match '/signup'                                 => 'users#new',                 :as => :signup
-  match '/signup_complete'                        => 'users#signup_complete',     :as => :signup_complete
-  match '/login'                                  => 'sessions#new',              :as => :login
-  match '/logout'                                 => 'sessions#destroy',          :as => :logout
-  match '/users/confirmation/cancel'              => 'users#cancel_email_change', :as => :cancel_email_change
-  match '/users/confirmation/:confirmation_token' => 'users#confirm'
-  match '/users/password/:reset_password_token'   => 'users#confirm_reset_password'
-  match '/auth/:provider/callback',                                               to: 'sessions#auth'
-  match '/auth/failure',                                                          to: 'sessions#fail'
-  put   '/set_ref'                                => 'home#set_ref'
+  match '/change_address'             => "addresses#update"
+  match '/change_bank_account'        => "bank_accounts#update"
+  put   '/change_password'            => "users#change_password"
+  put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################
   # Static Content
@@ -146,8 +131,9 @@ HeyPalFrontEnd::Application.routes.draw do
     match 'translate/reload'    => 'translate#reload',    :as => :translate_reload
   end
 
-  # Error matching
-  # http://techoctave.com/c7/posts/36-rails-3-0-rescue-from-routing-error-solution
   get '/robots.txt' => 'home#robot'
-  match '*a', :to => 'errors#routing'
+
+  # Error matching
+  match '/404' => 'errors#page_not_found'
+  match '/500' => 'errors#exception'
 end

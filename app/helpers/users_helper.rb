@@ -1,7 +1,8 @@
 module UsersHelper
   def full_name(user)
-    name = [user['first_name'], user['last_name']].join(' ')
-    name.titleize unless name.eql?(' ')
+    # name = [user['first_name'], user['last_name']].join(' ')
+    #     name.titleize unless name.eql?(' ')
+    user.full_name
   end
   
   def short_full_name(user)
@@ -29,13 +30,20 @@ module UsersHelper
     end
     avatar
   end
-  
+
   def avatar_image(user)
-    if user && user['avatar']
-      image_tag user['avatar'], :style => "width:60px; height:60px;"
-    else
-      image_tag "https://s3.amazonaws.com/squarestays-static/missing_userpic.png", :style => "width:60px; height:60px;"
+    # TODO: Remove backward compatibility
+    src = "https://s3.amazonaws.com/squarestays-static/missing_userpic.png"
+    if user
+      if user.kind_of?(User)
+        src = user.avatar.url(:thumb) if user.avatar?
+      elsif user['avatar']
+        # Backward compatibility
+        src = user['avatar']
+      end
     end
+
+    image_tag src, :style => "width:60px; height:60px;"
   end
 
   def avatar_image_by_id(user_id)

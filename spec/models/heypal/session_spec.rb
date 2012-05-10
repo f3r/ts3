@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Heypal::Session do
+describe Heypal::Session, :backend => true do
 
   context "User" do
 

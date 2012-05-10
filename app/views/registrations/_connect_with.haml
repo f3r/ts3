@@ -1,0 +1,11 @@
+.section.span5
+  %h2.bottom-large= t(:create_an_account_using)
+  = link_to user_omniauth_authorize_path(:facebook) do
+    = image_tag 'signin_facebook.png', :alt => 'Sign in with Facebook', :class => 'bottom'
+  %br
+  = link_to user_omniauth_authorize_path(:twitter) do
+    = image_tag 'sign-in-with-twitter-l.png', :alt => 'Sign in with twitter'
+  %p.bottom-part
+    = t(:connecting_your_account_allows_you)
+%br.clearfix
+%br

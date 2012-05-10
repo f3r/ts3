@@ -1,0 +1,22 @@
+- if @user && @user.errors.any?
+  %div{:class => 'alert alert-error'}
+    = error_messages_for @user
+
+- if @user && @user.oauth_provider
+  .row.oauth-box
+    .span.avatar
+      =image_tag @user.avatar_url
+    .span
+      %h1
+        Hello
+    .span6{:style => "line-height: 40px; font-size: 2em;"}
+      = @user.full_name
+  .credentials-box.registration.row-fluid
+    %br
+    = render :partial => 'registrations/form'
+    = render :partial => 'registrations/associate_login'
+- else
+  .credentials-box.registration.row-fluid
+    %br
+    = render :partial => 'registrations/form'
+    = render :partial => 'registrations/connect_with'

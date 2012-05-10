@@ -1,5 +1,5 @@
 %section.span2
-  - @avatar = large_avatar(user)    
+  - @avatar = large_avatar(current_user)
   = image_tag(@avatar, :width => 200)
   
   - if @current_action == "edit"

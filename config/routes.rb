@@ -113,7 +113,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/how-it-works'             => 'home#staticpage' , :pages => :how,:as => :home_how 
   match '/photography-faq'          => 'home#staticpage' , :pages => :faq,:as => :home_photo_faq
   match '/terms'                    => 'home#staticpage' , :pages => :terms
-  match '/fees'                     => 'home#staticpage' , :pages => :terms
+  match '/fees'                     => 'home#staticpage' , :pages => :fees
   match '/privacy'                  => 'home#staticpage' , :pages => :privacy
   match '/contact'                  => 'home#staticpage' , :pages => :contact
   match 'city-guides/singapore'     => 'home#staticpage' , :pages => :sg,:as => :cityguide_sg

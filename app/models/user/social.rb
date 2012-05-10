@@ -5,7 +5,7 @@ class User
     included do
       attr_accessor :oauth_provider, :oauth_uid, :oauth_token, :oauth_secret, :avatar_url
       attr_accessible :oauth_provider, :oauth_uid, :oauth_token, :oauth_secret, :avatar_url
-      after_save :store_authentication, :if => :oauth_token
+      after_save :store_authentication, :if => :oauth_token?
     end
 
     module ClassMethods
@@ -88,6 +88,10 @@ class User
         }
       }
       self.apply_oauth(access_token)
+    end
+
+    def oauth_token?
+      self.oauth_token.present?
     end
   end
 end

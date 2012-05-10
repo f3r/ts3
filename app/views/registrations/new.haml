@@ -2,7 +2,7 @@
   %div{:class => 'alert alert-error'}
     = error_messages_for @user
 
-- if @user && @user.oauth_provider
+- if @user && @user.oauth_token?
   .row.oauth-box
     .span.avatar
       =image_tag @user.avatar_url

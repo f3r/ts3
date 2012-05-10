@@ -16,7 +16,8 @@ HeyPalFrontEnd::Application.routes.draw do
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end
 
-  devise_for :users, :path => '/', :controllers => { :sessions => "sessions", :registrations => "registrations", :omniauth_callbacks => "omniauth_callbacks"},
+  devise_for :users, :path => '/', :controllers => { :sessions => 'sessions', :registrations => 'registrations', :passwords => 'passwords',
+               :omniauth_callbacks => "omniauth_callbacks"},
              :path_names => { :sign_in => 'login', :sign_up => 'signup', :sign_out => 'logout' }
 
   # get   'search/index'

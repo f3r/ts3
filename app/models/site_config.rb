@@ -1,6 +1,6 @@
 class SiteConfig < ActiveRecord::Base
   def self.instance
-    @instance ||= SiteConfig.first || SiteConfig.new
+    SiteConfig.first || SiteConfig.new
   end
 
   def self.mail_sysadmins

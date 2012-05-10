@@ -7,7 +7,7 @@
     .input= f.text_field     :first_name, :placeholder => 'First Name',     :class => "validate[required]"
     .input= f.text_field     :last_name,  :placeholder => 'Last Name',      :class => "validate[required]"
     .input= f.text_field     :email,      :placeholder => 'E-Mail Address', :class => "validate[required,custom[email]]"
-    .input= f.password_field :password,   :placeholder => 'Confirm',        :class => "validate[required,custom[onlyLetterNumber]]"
+    .input= f.password_field :password,   :placeholder => 'Password',       :class => "validate[required,custom[onlyLetterNumber]]"
     .input= f.password_field :password_confirmation, :placeholder => 'Confirm Password', :class => "validate[required, equals[user_password]]"
     
     .input.agree

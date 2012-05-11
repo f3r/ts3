@@ -1,6 +1,8 @@
 class SiteConfig < ActiveRecord::Base
+  after_save :reset_cache
+
   def self.instance
-    SiteConfig.first || SiteConfig.new
+    @instance ||= SiteConfig.first || SiteConfig.new
   end
 
   def self.mail_sysadmins
@@ -19,5 +21,15 @@ class SiteConfig < ActiveRecord::Base
     else
       super
     end
+  end
+
+  protected
+
+  def self.reset_cache
+    @instance = nil
+  end
+
+  def reset_cache
+    self.class.reset_cache
   end
 end

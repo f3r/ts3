@@ -6,7 +6,7 @@ en:
   # App General Stuff
   ####################################################################################
   app_name:   Squarestays
-  site_title: SquareStays - Trusted Stays
+  site_title: '%{site_name} - Trusted Stays'
   submit:     Submit
   submitting: Submitting
   cancel:     Cancel

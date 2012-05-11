@@ -47,6 +47,8 @@ module HeyPalFrontEnd
 
     config.exceptions_app = self.routes
 
+    config.assets.initialize_on_precompile = false
+
     # Add additional asset paths for asset pipeline (sprockets)
     #config.assets.paths << Rails.root.join("app", "assets", "flash")
   end

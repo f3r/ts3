@@ -22,6 +22,10 @@ gem 'paperclip', "~> 2.4"         # Attachements
 gem 'aws-s3'                      # Upload to Amazon S3
 gem 'aws-sdk'
 
+gem 'activeadmin'
+gem 'sass-rails'
+gem "meta_search",    '>= 1.1.0.pre'
+
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"

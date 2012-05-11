@@ -43,7 +43,7 @@ HeyPalFrontEnd::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( wizard.js uploadify/uploadify.css)
+  config.assets.precompile += %w( wizard.js uploadify/uploadify.css active_admin.css active_admin.js)
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
@@ -72,4 +72,4 @@ end
 HeyPalFrontEnd::Application.config.middleware.use ExceptionNotifier,
   :email_prefix => "[Production] ",
   :sender_address => 'alert@exception.com',
-  :exception_recipients => SiteConfig.mail_sysadmins
+  :exception_recipients => 'fer@heypal.com, nico@heypal.com'

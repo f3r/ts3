@@ -1,4 +1,8 @@
 HeyPalFrontEnd::Application.routes.draw do
+  ActiveAdmin.routes(self)
+
+  devise_for :admin_users, ActiveAdmin::Devise.config
+
   if Rails.env.development?
     require 'preview_mails'
     mount PreviewMails => 'mail_view'

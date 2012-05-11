@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120508021019) do
+ActiveRecord::Schema.define(:version => 20120511085430) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.string   "country"
     t.string   "zip"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "alerts", :force => true do |t|
@@ -61,16 +61,16 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.string   "uid"
     t.string   "token"
     t.string   "secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "authentications", ["provider"], :name => "index_authentications_on_provider"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "availabilities", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "place_id"
     t.date     "date_start"
     t.date     "date_end"
@@ -97,8 +97,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.string   "branch_code"
     t.string   "iban"
     t.string   "swift"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "cities", :force => true do |t|
@@ -117,9 +117,18 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
   add_index "cities", ["country_code"], :name => "index_cities_on_country_code"
   add_index "cities", ["state"], :name => "index_cities_on_state"
 
+  create_table "cmspages", :force => true do |t|
+    t.string  "page_title"
+    t.string  "page_url",    :default => "",    :null => false
+    t.text    "description"
+    t.boolean "active",      :default => false
+  end
+
+  add_index "cmspages", ["page_url"], :name => "index_cmspages_on_page_url", :unique => true
+
   create_table "comments", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user_id"
     t.integer  "place_id"
     t.text     "comment"
@@ -158,8 +167,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -174,6 +183,19 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
 
   add_index "favorites", ["favorable_id"], :name => "index_favorites_on_favorable_id"
   add_index "favorites", ["user_id"], :name => "index_favorites_on_user_id"
+
+  create_table "front_carrousels", :force => true do |t|
+    t.string   "link"
+    t.string   "label"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "position"
+    t.boolean  "active",             :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
 
   create_table "inbox_entries", :force => true do |t|
     t.integer  "user_id"
@@ -214,13 +236,6 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
 
   add_index "messages", ["conversation_id"], :name => "index_messages_on_conversation_id"
 
-  create_table "panoramas", :force => true do |t|
-    t.integer "photo_id"
-    t.text    "xml"
-    t.string  "html_file_name"
-    t.string  "swf_file_name"
-  end
-
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -243,8 +258,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
 
   create_table "place_types", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "places", :force => true do |t|
@@ -313,8 +328,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.float    "reviews_communication_avg",               :default => 0.0
     t.float    "reviews_location_avg",                    :default => 0.0
     t.float    "reviews_value_avg",                       :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.integer  "price_final_cleanup_usd"
     t.integer  "price_security_deposit_usd"
     t.float    "size_sqm"
@@ -361,17 +376,6 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
   add_index "places", ["state_name"], :name => "index_places_on_state_name"
   add_index "places", ["user_id"], :name => "index_places_on_user_id"
 
-  create_table "settings", :force => true do |t|
-    t.string   "var",                       :null => false
-    t.text     "value"
-    t.integer  "target_id"
-    t.string   "target_type", :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
-
   create_table "site_configs", :force => true do |t|
     t.string   "site_name"
     t.string   "site_url"
@@ -392,8 +396,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.string   "state"
     t.string   "previous_state"
     t.text     "additional_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "transaction_logs", ["transaction_id"], :name => "index_transaction_logs_on_transaction_id"
@@ -412,8 +416,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.float    "service_percentage"
     t.float    "sub_total"
     t.text     "additional_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "transaction_code"
     t.integer  "inquiry_id"
   end
@@ -423,12 +427,12 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                     :null => false
-    t.string   "encrypted_password",     :limit => 128,                     :null => false
+    t.string   "email",                  :default => "",     :null => false
+    t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -438,8 +442,8 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "gender"
     t.date     "birthdate"
     t.string   "timezone"
@@ -452,7 +456,7 @@ ActiveRecord::Schema.define(:version => 20120508021019) do
     t.string   "pref_currency"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "role",                                  :default => "user"
+    t.string   "role",                   :default => "user"
     t.string   "pref_size_unit"
     t.string   "passport_number"
     t.string   "unconfirmed_email"

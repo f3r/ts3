@@ -9,6 +9,7 @@ ActiveAdmin.register User do
   scope :all, :default => true
   scope :consumer
   scope :agent
+  scope :admin
 
   filter :email
   filter :first_name

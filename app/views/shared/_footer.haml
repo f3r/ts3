@@ -4,14 +4,14 @@
     = link_to t(:privacy_policy), privacy_path
     = link_to t(:contact), contact_path
 
-  - if Rails.env.production?
+  - if Rails.env.staging? || Rails.env.production?
     .seo.center
       :plain
         <script type="text/javascript">
           google_ad_client = "ca-pub-8370998771772384";
           google_ad_slot = "5184648881";
           google_ad_width = 728;
-          google_ad_height = 90;
+          google_ad_height = 90;``
         </script>
         <script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js">; </script>
       

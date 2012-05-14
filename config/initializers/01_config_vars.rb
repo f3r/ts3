@@ -1,5 +1,5 @@
 # LOAD LOCAL CONFIGURATION
-if Rails.env.test? or Rails.env.development?
+if Rails.env.test? || Rails.env.development?
   APP_CONFIG = YAML.load_file("#{Rails.root}/config/local.yml")[Rails.env]
 else
   APP_CONFIG = {}

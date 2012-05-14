@@ -36,7 +36,10 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token, :check_avatar_url
   after_create :send_on_create_welcome_instructions
-
+  
+  scope :consumer, where("role = 'user'")
+  scope :agent,  where("role = 'agent'")
+  
   def full_name
     [first_name,last_name].join(' ')
   end

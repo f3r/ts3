@@ -12,7 +12,7 @@ module LookupsHelper
   end
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
-  CITIES = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
+
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
   def currencies
     CURRENCIES.keys
@@ -31,7 +31,8 @@ module LookupsHelper
   end
 
   def city_name(city_id)
-    CITIES.find{|city| city[0] == city_id}[1]
+    cities = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
+    cities.find{|city| city[0] == city_id}[1]
   end
 
   def cancellation_policies_select
@@ -39,7 +40,8 @@ module LookupsHelper
   end
 
   def cities_select
-    CITIES.collect{ |id, name, country| ["#{name}, #{country}", id] }
+    cities = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
+    cities.collect{ |id, name, country| ["#{name}, #{country}", id] }
   end
 
   def place_types_select

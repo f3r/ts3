@@ -13,7 +13,7 @@ class City < ActiveRecord::Base
 
   def self.routes_regexp
   	# Matches the name of a city
-  	Regexp.new(self.all.collect(&:slug).join('|'))
+  	Regexp.new(self.all.collect{|city| city.slug if city.respond_to?(:slug)}.join('|'))
   end
 
   def activate!

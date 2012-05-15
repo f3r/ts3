@@ -91,10 +91,11 @@ HeyPalFrontEnd::Application.routes.draw do
     member do
       put :change_preferece
     end
+    match '/change_address'             => "addresses#update"
+    match '/change_bank_account'        => "bank_accounts#update"
+    put   '/change_password'            => "users#change_password"
   end
-  match '/change_address'             => "addresses#update"
-  match '/change_bank_account'        => "bank_accounts#update"
-  put   '/change_password'            => "users#change_password"
+
   put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################

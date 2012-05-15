@@ -2,7 +2,7 @@
   %li#toggle-preferences.dropdown
     %a.dropdown-toggle{:href => "#"}
       %span.selector_label
-        = get_currency_with_symbol(get_current_currency)
+        = currency_sign_of(get_current_currency)
     %ul.dropdown-menu
       %li.arrow
       %li.divider-title= "#{t(:choose_language)}..."
@@ -18,12 +18,11 @@
       %li.divider
       %li.divider-title= "#{t(:choose_currency)}..."
       %li.divider
-        - if get_activecurrencies
-          - get_activecurrencies.each do |cur|
-            %li{ get_current_currency == cur.currency_code ? {:class => "active"} : {} }
-              = link_to :change_preference => true, :pref_currency => cur.currency_code do
-                %span.em <span class="check">&#10003;</span>
-                %span.option-label= get_currency_with_symbol(cur.currency_code)
+        - Currency.active.each do |cur|
+          %li{ get_current_currency == cur.currency_code ? {:class => "active"} : {} }
+            = link_to :change_preference => true, :pref_currency => cur.currency_code do
+              %span.em <span class="check">&#10003;</span>
+              %span.option-label= cur.label
         
       %li.divider              
       %li.divider-title= "#{t(:choose_unit)}..."

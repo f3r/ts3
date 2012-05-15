@@ -1,32 +1,20 @@
 #coding: utf-8
 module LookupsHelper
-  CURRENCIES        = {}
-  CURRENCYSYMBOL    = {}
-  activecurrencies = Heypal::Currency.all_active
-
-  if activecurrencies
-    activecurrencies.each do |p|
-      CURRENCIES[p.currency_code]     = "#{p.currency_abbreviation}""#{p.symbol}"
-      CURRENCYSYMBOL[p.currency_code] = p.symbol
-    end
-  end
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
 
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
-  def currencies
-    CURRENCIES.keys
+
+  def currencies_options
+    Currency.active.collect{|cur| cur.currency_code}
   end
 
-  def currencies_select
-    currencies
-  end
-
-  def currency_sign_of(currency)
-    if CURRENCIES[currency]
-      return CURRENCIES[currency]
+  def currency_sign_of(code)
+    currency = Currency.find_by_currency_code(code)
+    if currency
+      currency.label
     else
-      return currency
+      code
     end
   end
 
@@ -53,11 +41,6 @@ module LookupsHelper
     select_tag :pref_language, options_for_select(LANGUAGES.map{ |l, t| [t, l]}, current), :class => "hide preference-entry", "data-current" => current
   end
 
-  def pref_currency_list
-    current = self.get_current_currency
-    select_tag :pref_currency, options_for_select(CURRENCIES.map{ |c, t| [t, c]}, current), :class => "hide preference-entry", "data-current" => current
-  end
-
   def pref_size_unit_list
     current = self.get_current_size_unit
     select_tag :pref_size_unit, options_for_select(SIZE_UNITS.map{ |c, t| [raw(t), c]}, current), :class => "hide preference-entry", "data-current" => current
@@ -68,7 +51,19 @@ module LookupsHelper
   end
 
   def get_pref_currency
-    CURRENCIES[self.get_currency] || 'US$'
+    current_currency.label
+  end
+
+  def current_currency
+    if logged_in? && current_user.pref_currency.present?
+      return Currency.find_by_currency_code(current_user.pref_currency)
+    end
+
+    if cookies[:pref_currency]
+      return Currency.find_by_currency_code(cookies[:pref_currency])
+    end
+
+    return Currency.default
   end
 
   def get_pref_size_unit
@@ -80,15 +75,7 @@ module LookupsHelper
   end
 
   def get_current_currency
-    get_currency || 'USD'
-  end
-
-  def get_currency_with_symbol(currency)
-    symbol = "$"
-    if CURRENCYSYMBOL[currency]
-      symbol = CURRENCYSYMBOL[currency]
-    end
-    "#{symbol} #{currency}"
+    current_currency.currency_code
   end
 
   def get_current_size_unit
@@ -129,19 +116,7 @@ module LookupsHelper
     (current_user['pref_language'] if logged_in? && !current_user['pref_language'].blank?) || cookies[:pref_language] || nil
   end
 
-  def get_currency
-    (current_user['pref_currency'] if logged_in? && !current_user['pref_currency'].blank?) || cookies[:pref_currency] || nil
-  end
-
   def get_size_unit
     (current_user['pref_size_unit'] if logged_in? && !current_user['pref_size_unit'].blank?) || cookies[:pref_size_unit] || nil
   end
-
-  def get_activecurrencies
-    activecurrencies = Heypal::Currency.all_active
-    if activecurrencies
-      return activecurrencies
-    end
-  end
-
 end

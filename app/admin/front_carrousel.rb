@@ -1,5 +1,5 @@
 ActiveAdmin.register FrontCarrousel, :as => "Frontpage image" do
-  menu :priority => 5, :label => "Frontpage image gallery"
+  menu false
   actions :all, :except => :new
   
   config.sort_order = 'active_desc'
@@ -17,7 +17,8 @@ ActiveAdmin.register FrontCarrousel, :as => "Frontpage image" do
       end
     column :created_at 
     default_actions
-  end  
+  end
+  
   show do |fc|
     attributes_table do
       row :id    

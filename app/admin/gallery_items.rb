@@ -9,17 +9,6 @@ ActiveAdmin.register GalleryItem  do
   controller do
     actions :edit, :update, :destroy, :show, :index
     
-    def update
-      update! do |format|
-        format.html { redirect_to admin_gallery_path(resource.gallery) }
-      end
-    end
-    
-    def destroy
-      destroy! do |format|
-        format.html { redirect_to admin_gallery_path(resource.gallery) }
-      end
-    end
   end
   
   index do

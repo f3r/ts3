@@ -17,8 +17,6 @@
             %span.label= t(:inactive)
         %td
           %ul
-            - if !alert["query"]["city_id"].blank?
-              %li= "#{city_name(alert["query"]["city_id"].to_i)}"
             - if !alert["query"]["min_price"].blank?
               %li= "#{t(:minimum_price)}: #{alert["query"]["min_price"]}"
             -  if !alert["query"]["max_price"].blank?

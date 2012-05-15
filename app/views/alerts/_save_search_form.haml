@@ -16,7 +16,7 @@
         .control-group
           %label{:class => "control-label"}= t(:city)
           .controls
-            = select_tag "query[city_id]", options_for_select(cities_select, alert_params['query']['city_id'])
+            = select_tag "query[city_id]", options_for_select(cities_options, alert_params['query']['city_id'])
         .control-group
           %label{:class => "control-label"}= t(:guests)
           .controls

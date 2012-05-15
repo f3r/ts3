@@ -7,7 +7,7 @@
         .control-group.required
           = f.label :city_id, t(:what_city_is_your_place_in), :class => 'control-label'
           .controls
-            = f.select :city_id, cities_select, :class => "validate[required] span4"
+            = f.select :city_id, cities_options, :class => "validate[required] span4"
         .control-group.required
           = f.label :title, t(:title), :class => 'control-label'
           .controls

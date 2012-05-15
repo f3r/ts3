@@ -30,18 +30,12 @@ module LookupsHelper
     end
   end
 
-  def city_name(city_id)
-    cities = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
-    cities.find{|city| city[0] == city_id}[1]
-  end
-
   def cancellation_policies_select
     CANCELLATION_POLICIES.collect { |key, value| [t(value), key] }
   end
 
-  def cities_select
-    cities = Heypal::City.all.map{|city| [city.id, city.name, city.country_name]}
-    cities.collect{ |id, name, country| ["#{name}, #{country}", id] }
+  def cities_options
+    cities = City.all.collect{|city| ["#{city.name}, #{city.country}", city.id]}
   end
 
   def place_types_select
@@ -101,10 +95,6 @@ module LookupsHelper
     get_size_unit || 'sqf'
   end
 
-  def get_current_city
-    get_city || 1
-  end
-
   def max_guest_options
     [["1 #{t(:guest)}", 1], ["3 #{t(:guests)}", 3], ["5 #{t(:guests)}", 5], ["10 #{t(:guests)}", 10]]
   end
@@ -147,16 +137,11 @@ module LookupsHelper
     (current_user['pref_size_unit'] if logged_in? && !current_user['pref_size_unit'].blank?) || cookies[:pref_size_unit] || nil
   end
 
-  def get_city
-    (current_user['pref_city'] if logged_in? && !current_user['pref_city'].blank?) || cookies[:pref_city] || nil
-  end
-  
   def get_activecurrencies
     activecurrencies = Heypal::Currency.all_active
     if activecurrencies
       return activecurrencies
     end
-    
   end
- 
+
 end

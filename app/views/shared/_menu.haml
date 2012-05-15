@@ -9,8 +9,8 @@
                 = t(:find_places)
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
-                - Heypal::City.all_active.each do |city|
-                  %li{:class => city.id == @city_id ? "active" : ""}= link_to city.name, "/#{city.code}"
+                - City.active.each do |city|
+                  %li{:class => (@city && @city.id == city.id)? "active" : ""}= link_to city.name, "/#{city.slug}"
 
             - if user_signed_in?
               %li.dropdown

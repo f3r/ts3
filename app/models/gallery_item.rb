@@ -4,6 +4,8 @@ class GalleryItem < ActiveRecord::Base
   
   default_scope :order => 'position ASC'
   
+  scope :active, where(:active => true)
+  
   has_attached_file :photo, {
      :styles => {
        :large => {

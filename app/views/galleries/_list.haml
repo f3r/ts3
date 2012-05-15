@@ -1,0 +1,5 @@
+#teaser-pics
+  - g_items.each do |image| 
+    %a.thumbnail{:href => "#{image.link}"}
+      .description= "#{image.label}"
+      %img{:src => "#{image.image_url}"}

@@ -2,9 +2,7 @@ class GalleryItem < ActiveRecord::Base
   
   belongs_to :gallery
   
-  default_scope :order => 'position ASC'
-  
-  scope :active, where(:active => true)
+  scope :active, where(:active => true).order("position ASC")
   
   has_attached_file :photo, {
      :styles => {

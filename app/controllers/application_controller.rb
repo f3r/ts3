@@ -55,4 +55,9 @@ class ApplicationController < ActionController::Base
     session.delete(:user_return_to) || root_url
   end
   
+  #Only for the active admin
+  def set_admin_user_to_authorization
+    Authorization.current_user = current_admin_user
+  end
+  
 end

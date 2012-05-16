@@ -1,5 +1,9 @@
 module AuthenticationHelper
 
+  def current_user?(user)
+    current_user && current_user.id == user.id
+  end
+
   def logged_in?
     user_signed_in?
   end

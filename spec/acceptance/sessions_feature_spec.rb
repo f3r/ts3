@@ -8,6 +8,7 @@ feature 'Sessions feature', %q{
   background do
     @city = FactoryGirl.create(:city)
     @user = FactoryGirl.create(:user)
+    @currency = FactoryGirl.create(:currency)
   end
 
   scenario 'sign in using my email and password', :backend => true do

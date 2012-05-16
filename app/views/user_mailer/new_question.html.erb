@@ -1,0 +1,3 @@
+<h2>Dear <%= @user.first_name %>,</h2>
+<p>You have a question from <%= @from.anonymized_name %> regarding "<%= @place.title %>" waiting for you on <%= site_name %>!</p>
+<p><%= link_to 'Click here', place_url(@place, :anchor => 'details-questions') %> to respond to this question.</p>

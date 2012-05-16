@@ -21,6 +21,7 @@ class User < ActiveRecord::Base
 
   belongs_to :prefered_city, :class_name => 'City', :foreign_key => 'pref_city'
   has_many :authentications,  :dependent => :destroy
+  has_many :comments,         :dependent => :destroy
 
   has_attached_file :avatar,
      :styles => {
@@ -44,6 +45,13 @@ class User < ActiveRecord::Base
 
   def full_name
     [first_name,last_name].join(' ')
+  end
+
+  def anonymized_name
+    initials = []
+    initials << "#{first_name[0]}." if first_name
+    initials << "#{last_name[0]}." if last_name
+    initials.join(' ')
   end
 
   def name=(a_name)

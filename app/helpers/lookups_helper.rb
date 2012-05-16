@@ -28,12 +28,12 @@ module LookupsHelper
 
   def place_types_select
     # id, translated name
-    Heypal::Place.place_types.map {|p| [I18n.t(p['name'].parameterize('_').singularize), p['id']]}
+    PlaceType.all.map {|pt| [pt.name, pt.id]}
   end
 
   def place_types_list
     # id, translated name, slug
-    Heypal::Place.place_types.map {|p| [I18n.t(p['name'].parameterize('_').singularize), p['id'], p['name'].parameterize('_').singularize]}
+    PlaceType.all.map {|pt| [pt.name, pt.id, pt.slug]}
   end
 
   def pref_language_list

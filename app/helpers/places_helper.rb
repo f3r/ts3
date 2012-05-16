@@ -145,7 +145,7 @@ module PlacesHelper
     filters = []
     place_type_counts.each do |type_name, count|
       if count > 0
-        place_type = Heypal::PlaceType.find_by_slug(type_name)
+        place_type = PlaceType.find_by_slug(type_name)
         filters << [place_type, count]
       end
     end

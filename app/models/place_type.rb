@@ -10,6 +10,25 @@ class PlaceType < ActiveRecord::Base
     Rails.cache.fetch('place_types_list') { PlaceType.all }
   end
   
+  #
+  
+  #generating slug
+  def slug
+    name.parameterize('_').singularize
+  end
+  
+  def translated_name
+    name
+  end
+  
+  def self.find_by_slug(slug)
+    self.all.each do |r|
+      if r.slug == slug
+        return r
+      end
+    end
+  end
+  
   private
 
   def delete_cache

@@ -44,7 +44,7 @@
     .control-group.required
       = f.label :city_id, t(:city), :class => 'control-label'
       .controls
-        = f.select :city_id, cities_select, {}, { :class => "validate[required] autosave input-xlarge"}
+        = f.select :city_id, cities_options, {}, { :class => "validate[required] autosave input-xlarge"}
     - if false
       .control-group
         = f.label :city, t(:city), :class => 'control-label'

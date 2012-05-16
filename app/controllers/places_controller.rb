@@ -157,26 +157,25 @@ class PlacesController < ApplicationController
     @cities = Heypal::Geo.get_all_cities(params[:query])
     render :js => @cities.map.collect{|city| [city['name']]}
   end
-  
+
   # default place search2
   def index
-
     if params[:city_id]
-      @city_id = params[:city_id].to_i
+      @city = City.find(params[:city_id].to_i)
     elsif params[:city]
-      city = Heypal::City.find_by_name(params[:city])
-      @city_id = city.id if city
+      @city = City.find(params[:city])
     end
 
-    unless @city_id
+    unless @city
       raise "Invalid city"
     end
-    
+
     # set default city cookie
-    cookies[:pref_city] = @city_id if @city_id != get_current_city
+    cookies[:pref_city_id] = @city.id
+
     if logged_in?
-      # save city preference on user profile if logged in
-      session['current_user'] = current_user.change_preference(:pref_city, @city_id, current_token) if @city_id != get_current_city
+      # save city preference on user profile if logged index
+      session['current_user'] = current_user.change_preference(:pref_city, @city.id) if @city.id != current_user.pref_city
     end
 
     #if params[:city]
@@ -189,7 +188,7 @@ class PlacesController < ApplicationController
         'check_out' => check_out,
         'sort'      => params[:sort] || 'price_lowest',
         'guests'    => '1',
-        'city'      => @city_id,
+        'city'      => @city.id,
         'currency'  => get_current_currency,
         'per_page'  => 6,
         'page'      => page
@@ -213,7 +212,7 @@ class PlacesController < ApplicationController
 
     @results = Heypal::Place.search(alert_params, current_token)
 
-    min, max = Heypal::Geo.get_price_range(@city_id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
+    min, max = Heypal::Geo.get_price_range(@city.id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
     if !min.nil? && !max.nil?
       @min_price = min
       @max_price = max
@@ -227,7 +226,7 @@ class PlacesController < ApplicationController
       'schedule'          => 'daily',
       'delivery_method'   => 'email',
       'query'             => {
-        'city_id'         => @city_id,
+        'city_id'         => @city.id,
         'guests'          => params['guests'],
         'check_in'        => params['check_in'],
         'check_out'       => params['check_out'],

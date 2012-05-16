@@ -19,6 +19,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :terms, :skip_welcome
 
+  belongs_to :prefered_city, :class_name => 'City', :foreign_key => 'pref_city'
   has_many :authentications,  :dependent => :destroy
 
   has_attached_file :avatar,
@@ -36,17 +37,23 @@ class User < ActiveRecord::Base
 
   before_save :ensure_authentication_token, :check_avatar_url
   after_create :send_on_create_welcome_instructions
-  
+
   scope :consumer, where("role = 'user'")
   scope :agent,    where("role = 'agent'")
   scope :admin,    where("role = 'admin' or role = 'superadmin'")
-  
+
   def full_name
     [first_name,last_name].join(' ')
   end
 
   def name=(a_name)
     self.first_name, self.last_name = a_name.split(' ', 2)
+  end
+
+  def change_preference(pref, value)
+    if pref =~ /pref_/
+      self.update_attribute(pref, value)
+    end
   end
 
   private

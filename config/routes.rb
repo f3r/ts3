@@ -20,19 +20,11 @@ HeyPalFrontEnd::Application.routes.draw do
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end
 
+  root :to => 'home#index'
+
   devise_for :users, :path => '/', :controllers => { :sessions => 'sessions', :registrations => 'registrations', :passwords => 'passwords',
                :omniauth_callbacks => "omniauth_callbacks"},
              :path_names => { :sign_in => 'login', :sign_up => 'signup', :sign_out => 'logout' }
-
-  # get   'search/index'
-  match '/search'          => 'places#index', :as => :search
-  match '/connect'         => 'users#connect'
-  match '/cities'          => 'places#get_cities'
-  match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
-  match '/:city'           => 'places#index', :city => Heypal::City.routes_regexp
-
-  # SEO Routes
-  match '/:city/:id'       => 'places#show', :city => Heypal::City.routes_regexp
 
   resources :places do
     member do
@@ -99,10 +91,11 @@ HeyPalFrontEnd::Application.routes.draw do
     member do
       put :change_preferece
     end
+    match '/change_address'             => "addresses#update"
+    match '/change_bank_account'        => "bank_accounts#update"
+    put   '/change_password'            => "users#change_password"
   end
-  match '/change_address'             => "addresses#update"
-  match '/change_bank_account'        => "bank_accounts#update"
-  put   '/change_password'            => "users#change_password"
+
   put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################
@@ -120,13 +113,22 @@ HeyPalFrontEnd::Application.routes.draw do
   match 'city-guides/hong-kong'     => 'home#staticpage' , :pages => :hk,:as => :cityguide_hk
   match 'city-guides/kuala-lumpur'  => 'home#staticpage' , :pages => :kl,:as => :cityguide_kl
 
-  root :to => 'home#index'
-
   ###########################################################################################
   # Backend ported resources
   ###########################################################################################
   resources :favorites, :only => [:create, :destroy]
   get 'favorites/add' => 'favorites#create' # For after login redirect
+
+  # get   'search/index'
+  match '/search'          => 'places#index', :as => :search
+  match '/connect'         => 'users#connect'
+  match '/cities'          => 'places#get_cities'
+  match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
+  match '/:city'           => 'places#index', :city => City.routes_regexp
+
+  # SEO Routes
+  match '/:city/:id'       => 'places#show', :city => City.routes_regexp
+
 
   ###########################################################################################
   # Detecting untranslated stringd

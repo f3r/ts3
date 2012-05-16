@@ -22,7 +22,6 @@
 //= require jquery.bootstrap.confirm.popover
 //= require jquery.bookmark
 //= require modernizr
-//= require preferences
 //= require fullcalendar.min
 //= require twitter/bootstrap
 //= require_self

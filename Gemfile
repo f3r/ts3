@@ -35,6 +35,9 @@ gem 'geocoder'                    # Geocoding Google-based
 
 gem 'will_paginate', "= 3.0.2"               # Paginating results
 
+gem "friendly_id", "~> 4.0.1"
+
+
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"

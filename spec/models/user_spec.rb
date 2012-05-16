@@ -19,6 +19,25 @@ describe User do
     end
   end
 
+  context "Preferences" do
+    let(:user){ FactoryGirl.create(:user) }
+
+    it "stores prefered city" do
+      city = FactoryGirl.create(:city)
+      user.change_preference(:pref_city, city.id)
+      user.reload
+      user.prefered_city.should == city
+    end
+
+    it "stores prefered currency"
+
+    it "stores prefered language" do
+      user.change_preference(:pref_language, 'pt')
+      user.reload
+      user.pref_language.should == 'pt'
+    end
+  end
+
   context "OAuth" do
     let(:user){ FactoryGirl.create(:user) }
 

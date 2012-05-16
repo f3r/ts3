@@ -3,7 +3,7 @@
     .span3.offset6
       .input.required
         = f.label :currency, t(:currency), :style => "width:auto;margin-right:10px;"
-        = f.select :currency, currencies_select, {}, :class => 'validate[required]'
+        = f.select :currency, currencies_options, {}, :class => 'validate[required]'
   %h3=t(:pricing)
   %fieldset  
     / .input

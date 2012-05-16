@@ -14,9 +14,9 @@ class ApplicationController < ActionController::Base
   def params_with_token(resource)
     p = params[resource]
     p[:access_token] = current_token
-    p 
+    p
   end
-  
+
   def change_preferences
     if params.delete(:change_preference)
       preference = if params.key?("pref_language")
@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
       cookies[preference] = value
 
       if logged_in?
-        session['current_user'] = current_user.change_preference(preference, value, current_token)
+        session['current_user'] = current_user.change_preference(preference, value)
         redirect_to params
       else
         redirect_to params.merge(:trigger_signup => true)
@@ -40,13 +40,18 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Threat as 404
+  rescue_from RestClient::ResourceNotFound do |exception|
+    raise ActiveRecord::RecordNotFound
+  end
+
   private
-  
+
   def instantiate_controller_and_action_names
     @current_action = action_name
     @current_controller = controller_name
   end
-  
+
   def store_location
     session[:user_return_to] = request.url unless params[:controller] == "sessions"
   end
@@ -54,5 +59,5 @@ class ApplicationController < ActionController::Base
   def after_sign_in_path
     session.delete(:user_return_to) || root_url
   end
-  
+
 end

@@ -16,7 +16,7 @@
         .control-group
           %label{:class => "control-label"}= t(:city)
           .controls
-            = select_tag "query[city_id]", options_for_select(cities_select, alert_params['query']['city_id'])
+            = select_tag "query[city_id]", options_for_select(cities_options, alert_params['query']['city_id'])
         .control-group
           %label{:class => "control-label"}= t(:guests)
           .controls
@@ -34,13 +34,13 @@
           %label{:class => "control-label"}= t(:minimum_price)
           .controls
             .input-prepend
-              %span.add-on= get_currency_with_symbol(get_current_currency)
+              %span.add-on= currency_sign_of(get_current_currency)
               = text_field_tag "query[min_price]", alert_params['query']['min_price'], :placeholder => t(:minimum_price), :class => 'span2', 'autocomplete' => 'off'
         .control-group
           %label{:class => "control-label"}= t(:maximum_price)
           .controls
             .input-prepend
-              %span.add-on= get_currency_with_symbol(get_current_currency)
+              %span.add-on= currency_sign_of(get_current_currency)
               = text_field_tag "query[max_price]", alert_params['query']['max_price'], :placeholder => t(:maximum_price), :class => 'span2', 'autocomplete' => 'off'
       .column2
         .control-group

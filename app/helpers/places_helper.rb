@@ -132,13 +132,13 @@ module PlacesHelper
     result.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
     result.downcase!
 
-    city = Heypal::City.find_by_id(place['city_id'])
+    city = City.find(place['city_id'])
 
-    "/#{city.code}/#{place['id']}-#{result}"
+    "/#{city.slug}/#{place['id']}-#{result}"
   end
 
   def seo_city_path(city_id)
-    "/#{Heypal::City.find_by_id(city_id).code}"
+    "/#{City.find(city_id).slug}"
   end
 
   def place_type_filters(place_type_counts)

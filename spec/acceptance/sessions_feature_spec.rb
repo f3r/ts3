@@ -6,6 +6,7 @@ feature 'Sessions feature', %q{
 } do
 
   background do
+    @city = FactoryGirl.create(:city)
     @user = FactoryGirl.create(:user)
   end
 

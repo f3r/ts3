@@ -28,4 +28,16 @@ module HomeHelper
       link_to label, path
     end
   end
+
+  def current_city
+    if logged_in? && current_user.prefered_city.present?
+      return current_user.prefered_city
+    end
+
+    if cookies[:pref_city_id]
+      return City.find(cookies[:pref_city_id])
+    end
+
+    return City.active.first
+  end
 end

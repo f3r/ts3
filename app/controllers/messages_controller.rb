@@ -40,8 +40,7 @@ class MessagesController < ApplicationController
   def destroy
     @with = Heypal::User.info("id" => params[:id])
     @deleted, @result = Heypal::Message.delete('user_id' => params['id'], 'access_token' => current_token)
-
-    flash[:notice] = "Conversation with #{@with['first_name'].chr}. #{@with['last_name']} deleted."
+    flash[:notice] = t("messages.conversation_with_deleted", :name => "#{@with['first_name'].chr}. #{@with['last_name']}")
     redirect_to messages_path
   end
 
@@ -49,9 +48,9 @@ class MessagesController < ApplicationController
   def mark_as_read
     @message = Heypal::Message.mark_as_read('user_id' => params[:id], 'access_token' => current_token)
     if @message['stat'] == "ok"
-      flash[:notice] = t(:marked_as_read)
+      flash[:notice] = t("messages.marked_as_read")
     else
-      flash[:error] = t(:failed_read)
+      flash[:error] = t("messages.failed_read")
     end
     redirect_to messages_path
   end
@@ -60,9 +59,9 @@ class MessagesController < ApplicationController
   def mark_as_unread
     @message = Heypal::Message.mark_as_unread('user_id' => params[:id], 'access_token' => current_token)
     if @message['stat'] == "ok"
-      flash[:notice] = t(:marked_as_unread)
+      flash[:notice] = t("messages.marked_as_unread")
     else
-      flash[:error] = t(:failed_unread)
+      flash[:error] = t("messages.failed_unread")
     end
     redirect_to messages_path
   end

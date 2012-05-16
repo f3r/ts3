@@ -9,7 +9,7 @@ class FavoritesController < ApplicationController
     if @favorite.save
       find_parent # Reload the parent
       respond_to do |format|
-        format.html { redirect_to place_path(@place['id']), :flash => { :notice => t(:successfully_added_to_your_favorites) } }
+        format.html { redirect_to place_path(@place['id']), :flash => { :notice => t("favorites.messages.successfully_added_to_your_favorites") } }
         format.js { render :layout => false }
       end
     else

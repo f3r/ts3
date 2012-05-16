@@ -52,7 +52,7 @@ class AvailabilitiesController < ApplicationController
     if Heypal::Availability.delete(params[:id], param)
       render :json => {:stat => true}
     else
-      render :json => {:stat => false, :data => 'Something went wrong. Please check your availabilities again.'}
+      render :json => {:stat => false, :data => t("places.availabilities.messages.something_went_wrong")}
     end
   end
 end

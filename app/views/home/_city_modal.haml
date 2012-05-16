@@ -1,0 +1,21 @@
+#city_modal.modal.fade.hide
+  = form_tag '/cities/suggest', :class => 'cities_suggest_form form-horizontal' do
+    .modal-header
+      %h3= t("front_page.city_modal.title", :site_name => SITE_NAME)
+    .modal-body
+      %p= t("front_page.city_modal.description", :site_name => SITE_NAME)
+      .control-group
+        %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t("addresses.city")
+        .controls
+          = text_field_tag 'city', ''
+      - unless logged_in?
+        .control-group
+          %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t("users.email")
+          .controls
+            = text_field_tag 'email'
+      %p 
+        %i= t("front_page.city_modal.footer", :site_name => SITE_NAME)
+    .modal-footer
+      %button.btn.primary=t("submit")
+      %button.btn{:onclick => "$('#city_modal').modal('hide'); return false;"}
+        = t("cancel")

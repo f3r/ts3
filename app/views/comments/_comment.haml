@@ -6,12 +6,12 @@
           .user_photo= avatar_image(comment.user)
           .user_data
             .user_name= "#{comment.user.anonymized_name}"
-            .user_role= comment.user.role
+            .user_role= t("roles.#{comment.user.role}")
         -else
-          =t(:unknown)
+          =t("places.questions.unknown")
 
     - if current_user?(@owner)
-      = link_to 'X', place_comment_path(comment.place_id, comment.id, :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
+      = link_to 'X', place_comment_path(comment.place_id, comment.id, :type => 'question'), :remote => true, :method => :delete, :confirm => t("places.questions.delete_this_question"), :class => "del hide"
 
     .span8
       .user_message= comment.comment

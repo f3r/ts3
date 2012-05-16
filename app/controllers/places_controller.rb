@@ -45,16 +45,16 @@ class PlacesController < ApplicationController
     result = Heypal::Place.publish_check(params[:id], current_token)
     if result['stat'] == "ok"
       result = Heypal::Place.publish(params[:id], current_token)
-      flash[:notice] = t(:place_published)
+      flash[:notice] = t("places.messages.place_published")
     else
-      flash[:error] = t(:place_publish_error)
+      flash[:error] = t("places.messages.place_publish_error")
     end
     redirect_to preview_place_path(:id => params[:id])
   end
 
   def unpublish
     place = Heypal::Place.unpublish(params[:id], current_token)
-    flash[:notice] = t(:place_unpublished)
+    flash[:notice] = t("places.messages.place_unpublished")
     redirect_to preview_place_path(:id => params[:id])
   end
 
@@ -306,7 +306,7 @@ class PlacesController < ApplicationController
       @user = Heypal::User.show('access_token' => current_token)
       render :layout => 'single'
     else
-      flash[:error] = 'You must be logged in to rent a place'
+      flash[:error] = t("places.messages.logged_to_rent")
       redirect_to place_path(params[:id])
     end
   end
@@ -327,11 +327,11 @@ class PlacesController < ApplicationController
     if @availability.key?("err")
       error = [params[:fieldId], true]
       if @availability['err'][params[:fieldId]]
-        error = [params[:fieldId], false, 'date must be future, after today'] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(119)
-        error = [params[:fieldId], false, 'end date must be after initial date'] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(120)
-        error = [params[:fieldId], false, 'occupied'] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
+        error = [params[:fieldId], false, t("places.messages.date_must_be_future")] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(119)
+        error = [params[:fieldId], false, t("places.messages.date_must_be_after")] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(120)
+        error = [params[:fieldId], false, t("places.messages.occupied")] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
       end
-      error = [params[:fieldId], false, 'occupied'] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
+      error = [params[:fieldId], false, t("places.messages.occupied")] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
       render :inline => error.to_json
     else
       render :inline => [params[:fieldId], true].to_json
@@ -390,9 +390,9 @@ class PlacesController < ApplicationController
   def destroy
     @place = Heypal::Place.delete(params[:id], current_token)
       if @place['stat'] == 'ok'
-        flash[:notice] = 'Place successfully deleted'
+        flash[:notice] = t("places.messages.place_deleted")
       else
-        flash[:error] = 'error deleting place'
+        flash[:error] = t("places.messages.place_deletion_error")
     end
     redirect_to my_places_path
   end

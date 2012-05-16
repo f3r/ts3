@@ -1,21 +1,20 @@
 .panel-wrapper
   .alert.alert-info
-    = t(:calendar_hint)
+    = t("places.wizard.calendar.calendar_hint")
 
   %fieldset
     .row
       #add-button.center
-        = button_tag t(:add_new), :id => 'open-new-availability', :class => 'btn btn-info btn-large'
+        = button_tag t("places.wizard.calendar.add_new"), :id => 'open-new-availability', :class => 'btn btn-info btn-large'
     %div#new-availability-form.hide
       = render 'availabilities/form'
 
   %div#all-availabilities
     = render 'availabilities/list_all', :availabilities => @availabilities, :place => @place
 
-
 .arrows.clearfix
   .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t(:previous_step)
+    %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t("places.wizard.previous_step")
 
 :javascript
 
@@ -76,7 +75,7 @@
         }
       },
       error: function() {
-        alert("#t(:something_went_wrong)");
+        alert("#{t("places.wizard.calendar.something_went_wrong")}");
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }
@@ -107,6 +106,6 @@
       }
     })
     .live("ajax:error", function() {
-      alert("#t(:something_went_wrong)");
+      alert("#{t("places.wizard.calendar.something_went_wrong")}");
       hideIndicator($(this));
     });

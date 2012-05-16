@@ -1,0 +1,129 @@
+####################################################################################
+# Front page and static pages
+####################################################################################
+en:
+  suggest_thank_you_message: "Thank you for your message. %{site_name} is expanding and we will let you know when %{city} is available!"
+  front_page:
+    search_button: Find a Place
+    search_place_stay_in: Search for a place to stay in
+    other_cities: Other cities?
+    description:
+      one: "%{site_name}"
+      two: connects you with
+      three: "trusted, professional, short-term"
+      four: accomodations
+    carousel:
+      one: "The Clift - an elegant Singapore downtown loft"
+      two: "Cavenagh - perfect for families coming to Singapore"
+      three: "Kuala Lumpur - now featured on %{site_name}!"
+      four: "Singapore - a rising global business powerhouse"
+      five: "Hong Kong - business gateway to China"
+    teaser:
+      title: "Why should you use %{site_name}?"
+      one: "%{site_name} offers flexible, high-quality accommodations for you. %{site_name} is the destination site to find your perfect short-term or medium-term stay."
+      two: "%{site_name} works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust."
+      three: "%{site_name} offers high quality and distinct properties - have your own home away from home for less then the price of a 5 star hotel."
+    trust:
+      one: Small World Group
+      two: National Research Foundation
+      three: PropNex
+      four: Far East Organization
+    social:
+      facebook: Join us on Facebook
+      twitter: Follow us on Twitter
+      blog: Read our Blog
+    city_modal:
+      title: Can't find the city you were looking for?
+      description: "We're working hard to expand %{site_name}. Please tell us which cities you would like to see next in %{site_name}."
+      footer: "Leave us your email address and we will tell you when new cities are added to %{site_name}."
+  how:
+    title: "How %{site_name} works"
+    find_a_place: Find a Place
+    list_your_properties: List your Properties
+    payments: Payments
+    intro: |
+      <p>%{site_name} offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price.</p>
+      <p>All %{site_name} listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay.</p>
+      <p>%{site_name} only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay.</p>
+    travelers: Travelers
+    travelers_content: |
+      <p>Simply use the place search and filter page on %{site_name} to find a place that’s right for you. You can narrow your search criteria by type of accommodation, price, and location.</p>
+      <p>Once you have found place that looks good for you, you can either make a reservation or make an inquiry. An inquiry is like a reservation, including the dates that you are looking for, as well as helping you understand the costs, but allows you to ask any further questions you might want to ask before making a reservation. A reservation, is, naturally, a reserved set of dates that you will stay at the place.</p>
+      <p>The place owner or listing member will typically answer your request within 24-48 hours. The owner may have some follow-up questions for you, so please remember to check in on the site regularly when you have inquiries pending.</p>
+      <p>Of course, you can always send general messages or questions to any other member on the site using the “Send Message” link on the member’s profile page or when viewing the details of any place. If you ever have any problems or questions in communicating with other members, please contact us at %{support_email}</p>
+    listing_members: Listing Members
+    listing_members_content: |
+      <p>If you would like to list a property on %{site_name}, please contact us at %{places_email}. The %{site_name} team will then work with you to ensure that you understand the requirements for listings on %{site_name}.</p>
+      <p>In general, all properties on %{site_name} should be fully-furnished, full units with all utilities turned on. We encourage you to provide as much information as possible about the short-term availability terms, for instance, if your units have a minimum stay of one month, two months or more. Also, please be clear with any other conditions you may have, such as security deposit or clean-up fees. Finally, providing as many high-quality photos as possible is extremely valuable for potential tenants.</p>
+      <p>Once you have emailed us, we will enable your account to create listings, usually within 2 business days. Please watch your email for any incoming messages and inquiries from interested tenants, and email us at any time at %{support_email} with any questions you may have.</p>
+    payments_content: |
+      <p>%{site_name} listings are designed to have full disclosure and no hidden fees! When you make an inquiry or a reservation, you should know exactly how much it will cost. All %{site_name} fees are built into the prices shown on the site.</p>
+      <p>%{site_name} offers payments by credit card, PayPal and bank transfer. Please contact us at %{support_email} with any questions.</p>
+  why:
+    title: "Why %{site_name}?"
+    get_started: Get Started!
+    content: |
+      <p>%{site_name} connects you with trusted, professional, short-term accommodations.</p>
+      <p>What does this mean?</p>
+      <p>%{site_name} works with property owners, landlords and innovative real estate professionals to get high-quality listings. Places listed on %{site_name} differ from other sites in a few key ways:</p>
+      <ul>
+      <li>%{site_name} places are designed for professionals. Our agents and owners know that business travellers demand a higher level of quality and a minimum set of conveniences.</li>
+      <li>Our listings are designed to be very thorough. We want to make sure you get all the information you need to make a decision without wasting your time viewing and inquiring on places that aren’t right for you.</li>
+      <li>All places are available for short-term, some as short as one week, most from one month to six months.</li>
+      <li>All places should tell you up-front what amenities, furniture and facilities are available for your use.</li>
+      <li>You should get a very clear and precise listing of all the costs involved, from deposits to rent to utilities for places on %{site_name}. There are no hidden fees or extras.</li>
+      </ul>
+    trust: Trust
+    trust_content: |
+      <p>%{site_name} members typically link their %{site_name} accounts to Facebook, Twitter or LinkedIn. This lets you see who is really behind the place you see online. You can communicate with them openly through our messaging system and ask any questions.</p>
+      <p>Additionally, people listing places can ask questions to make sure you are the right person for them. We have heard consistently from both property listing members and tenant members, that the process for finding short-term accommodations is very challenging, and communication becomes problematic. %{site_name} helps solve this problem by providing a centralized communication system where either side can quickly see the other’s profile and listings.</p>
+    flexibility: Flexibility
+    flexibility_content: |
+      <p>%{site_name} knows that business professionals in the modern economy have jobs that may take them all over the world, often for short-term assignments. %{site_name} makes sure that all property listing members understand this and can accommodate.</p>
+    affordability: Affordability
+    affordability_content: |
+      <p>%{site_name} provides high-quality offerings, ranging from a single room to a full luxury condominium. We view affordability as a comparative measure - are %{site_name} listings more affordable than comparable accommodations from elsewhere? For instance, our full apartment and condominium listings are benchmarked against the price of serviced apartments or corporate housing.</p>
+    where_is_site: "Where is %{site_name}?"
+    where_is_site_content: |
+      <p>%{site_name} focuses on the Asia-Pacific region, including eastern Asia and Australia / New Zealand. With business travel to Asia-Pacific increasing and hotel prices sky-rocketing, finding a place to stay for business travel has become increasingly difficult.</p>
+    singapore_first: "Singapore - the first city on %{site_name}"
+    singapore_first_content: |
+      <p>As a hub that connects the east and the west, Singapore is an important market in the Asian business economy with sustained growth and top-rated business environment. %{site_name} is now available in Singapore and plans to expand in other major cities soon.</p>
+  fees:
+    site_fees: "%{site_name} Fees"
+    site_fees_content: "%{site_name} is currently free of charge to all visiting Members. Listing members pay a 10% commission on the first month's rent."
+  photo_faq:
+    title: Photography FAQ
+    description: |
+      <p>%{site_name} helps connect people offering high-quality, flexible accommodations with professional tenants. This happens through the %{site_name} site, helping you, as the lister, avoid costly screening of potential tenants. In order to do this, your listings should have the highest quality and most attractive photos possible. This guide is designed to help you provide the best photos you can for your listings on %{site_name}.</p>
+      <p>Some tips on how to get great photographs on %{site_name}:</p>
+    brighten_it_up: 1. Brighten it up
+    brighten_it_up_content: |
+      <p>Photograph with natural daylight flooding into the room from the windows, and turn on the lights. This will give your space a friendly and bright atmosphere and help define the depth. That helps tenants understand the size of the space.</p>
+      <p>If you have a professional or semi-professional camera, or a camera that allows manual control of the shutter speed, don't be afraid to experiment with overexposing by a stop or so to get a brighter shot. This holds especially true if you're photographing against windows during the day! To compensate for that bright daylight, your camera will try to adjust by dialing down the exposure times. This will result in dark and murky interiors. You will *have* to increase exposure times a bit, to get a friendly and bright interior shot. Don't worry if this results in blown out windows, the interior is what counts in this shot.</p>
+      <p>If your space is too dark for well exposed handheld shots, get a tripod and mount your camera on it. With a tripod, you can dial the exposure times way up without getting blurry results.</p>
+    go_wide: 2. Go wide
+    go_wide_content: |
+      <p>Use the widest angle lens you have and/or zoom out all the way with your zoom. Full frame sensor SLR cameras are the best cameras for shooting interiors, because of their ability to capture wide angles and their strength in picking up light.</p>
+      <p>Wider angles make the interior look more spacious and give potential tenants a better idea of a room's layout.</p>
+      <p>This does not mean that you shouldn't take shots of some beautiful details. Find a balance between wide "establishing" shots, and a few "close-ups" of the details that define your space.</p>
+      <p>Carefully mixing shots will tell potential tenants a story about the space, and they will be more interested in renting it.</p>
+    shoot_from_a_corner: 3. Shoot from a Corner
+    shoot_from_a_corner_content: |
+      <p>When shooting interior spaces, try to find a corner from which you can see the entire room. Shoot towards the opposite corner. This makes it easier to capture a bigger space, and makes for a more dynamic composition.</p>
+    clean_it_up: "4. Clean it up, liven it up"
+    clean_it_up_content: |
+      <p>Before Taking any Photos, make sure your space isn't cluttered or messy.</p>
+      <p>Conversely, if the space is not occupied at the time of your shooting, consider placing some props like bottles or flowers to give it a welcoming, lived-in appearance. Avoid props that are associated with clutter or stress, such as clothes, remotes or loose paper.</p>
+    show_the_exterior: 5. Show the exterior
+    show_the_exterior_content: |
+      <p>Guests will want to know what the property looks like from the outside. You should try and include some amenities on the exterior shots, such as the swimming pool, BBQ pits or garden area.</p>
+    dont_frame: 6. Don't frame your shots digitally
+    dont_frame_content: |
+      <p>%{site_name} will automatically frame your photo where necessary. There's no need for any manual framing, on the contrary, the additional frame may result in inconsistant results</p>
+    dont_add_captions: 7. Don't add captions to your photos
+    dont_add_captions_content: |
+      <p>%{site_name} allows you to add captions to your Photos with a single click in our Property Manager.</p>
+    dont_be_stingy: Don't be stingy! We've got space for your space
+    dont_be_stingy_content: |
+      <p>%{site_name} property listings are designed to accomodate lots of photos. A Listing with a dozen Photos of rooms, exteriors and amenities will quickly seem familiar to your potential guests, whereas a listing with just 3 or 4 shots may seem vague and undefined, making the decision to rent that much harder!</p>

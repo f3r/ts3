@@ -13,6 +13,6 @@ $('.recaptcha_error').html("Invalid Text");
         <% else %>
           $("#inquire_button").button('reset');
           <%= open_modal :inquiry_not_sent, 'inquiries/not_sent' %>
-          $('.place_info').before('<div class="alert alert-error" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t(:inquiry_error) %></div>');
+          $('.place_info').before('<div class="alert alert-error" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t("inquiries.inquiry_error") %></div>');
         <% end %>
 <%end%>

@@ -6,7 +6,7 @@
           %ul.nav
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
-                = t(:find_places)
+                = t("header.menu.find_places")
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
                 - City.active.each do |city|
@@ -15,29 +15,29 @@
             - if user_signed_in?
               %li.dropdown
                 %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
-                  = t(:my_account)
+                  = t("header.menu.my_account")
                   %b.caret
                 %ul.dropdown-menu{:style => 'width:200px'}
                   %li{:class => @current_controller == "users" && @current_action == "show" ? "active" : ""}
-                    = link_to t(:my_profile), profile_path
+                    = link_to t("header.menu.my_profile"), profile_path
                   - if is_agent? or is_admin?
                     %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
-                      = link_to t(:my_places), my_places_path
+                      = link_to t("header.menu.my_places"), my_places_path
                   %li{:class => @current_controller == "places" && @current_action == "favorite_places" ? "active" : ""}
-                    = link_to t(:my_favorite_places), favorite_places_path
+                    = link_to t("header.menu.my_favorite_places"), favorite_places_path
                   %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
-                    = link_to t(:my_alerts), alerts_path
+                    = link_to t("header.menu.my_alerts"), alerts_path
 
 
             - else
-              = menu_link_to t(:how_it_works), '/how-it-works'
-              = menu_link_to t(:why_squarestays), '/why'
+              = menu_link_to t("header.menu.how_it_works"), '/how-it-works'
+              = menu_link_to t("header.menu.why_site", :site_name => SITE_NAME), '/why'
 
           %ul.nav.pull-right
             - if user_signed_in?
               - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
                 %li.add-item
-                  = link_to t(:add_a_place), new_place_path
+                  = link_to t("header.menu.add_a_place"), new_place_path
 
               - if message_count == 0
                 %li.read-message
@@ -49,15 +49,14 @@
 
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
-                Help
+                = t("header.menu.help")
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
-                %li= link_to t(:how_it_works), '/how-it-works'
-                %li= link_to t(:why_squarestays), '/why'
-                %li= link_to t(:cityguide_sg), '/singapore-city-guide'
-                %li= link_to t(:cityguide_hk), '/hong-kong-city-guide'
-                %li= link_to t(:cityguide_kl), '/kuala-lumpur-city-guide'
-                %li= link_to t(:community_support), 'https://getsatisfaction.com/squarestays', :target => '_blank'
+                %li= link_to t("header.menu.how_it_works"), '/how-it-works'
+                %li= link_to t("header.menu.why_site", :site_name => SITE_NAME), '/why'
+                %li= link_to t("header.menu.cityguide_sg"), '/singapore-city-guide'
+                %li= link_to t("header.menu.cityguide_hk"), '/hong-kong-city-guide'
+                %li= link_to t("header.menu.cityguide_kl"), '/kuala-lumpur-city-guide'
+                %li= link_to t("header.menu.community_support"), 'https://getsatisfaction.com/squarestays', :target => '_blank'
                 - if (is_agent? || is_admin?)
-                  %li= link_to t(:photography_faq), home_photo_faq_path
-                  
+                  %li= link_to t("header.menu.photography_faq"), home_photo_faq_path

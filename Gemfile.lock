@@ -1,3 +1,11 @@
+GIT
+  remote: git://github.com/svenfuchs/i18n-active_record.git
+  revision: 4628202f676aecfbc00d404342e61f75078d9439
+  branch: rails-3.2
+  specs:
+    i18n-active_record (0.0.2)
+      i18n (>= 0.6.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -85,6 +93,7 @@ GEM
     columnize (0.3.6)
     commonjs (0.2.0)
       therubyracer (~> 0.9.9)
+    dalli (1.1.4)
     database_cleaner (0.6.7)
     declarative_authorization (0.5.5)
     devise (2.0.4)
@@ -319,6 +328,7 @@ DEPENDENCIES
   aws-sdk
   capybara
   coffee-rails (~> 3.2.1)
+  dalli
   database_cleaner
   declarative_authorization
   devise
@@ -331,6 +341,7 @@ DEPENDENCIES
   google_currency
   haml (~> 3.1.4)
   heroku_san (~> 2.1.4)
+  i18n-active_record!
   jquery-rails (~> 1.0.18)
   launchy
   less-rails-bootstrap

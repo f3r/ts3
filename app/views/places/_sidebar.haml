@@ -4,38 +4,38 @@
       %li.active
         .indicator#generalInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#1", :title => t(:general_information)}
-          = t(:general_info)
+        %a{:href => "#1", :title => t("places.wizard.general_information_title")}
+          = t("places.wizard.general_information_title")
       %li
         .indicator#photoInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#2", :title => t(:photos)}
-          = t(:photos)
+        %a{:href => "#2", :title => t("places.wizard.photos_title")}
+          = t("places.wizard.photos_title")
       %li
         .indicator#amenitiesInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#3", :title => t(:amenities)}
-          = t(:amenities)
+        %a{:href => "#3", :title => t("places.wizard.amenities_title")}
+          = t("places.wizard.amenities_title")
       %li
         .indicator#priceInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#4", :title => t(:price_and_conditions)}
-          = t(:price_and_conditions)
+        %a{:href => "#4", :title => t("places.wizard.price_and_conditions_title")}
+          = t("places.wizard.price_and_conditions_title")
       %li
         .indicator
           = image_tag('check.png')
-        %a{:href => "#5", :title => t(:calendar)}
-          = t(:calendar)
+        %a{:href => "#5", :title => t("places.wizard.calendar_title")}
+          = t("places.wizard.calendar_title")
 
     .actions
       - unless @place.published
         %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
           %span
-            = t(:preview)
+            = t("preview")
       - else
         %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
           %span
-            = t(:back_to_place_details)
+            = t("places.wizard.back_to_property")
 
 :javascript
   var timeCount = 0;

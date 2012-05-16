@@ -1,34 +1,12 @@
 .span16
   .row
-    %h2 
-      Welcome to Singapore!        
-  %br
+    %h2= t("city_guides.singapore.title")
   .row
-    %p Singapore is the first city available on SquareStays. It’s natural, because Singapore is also home for us! Singapore is a rising business power across Asia. For westerners, Singapore can help in bridging the gap between east and west and providing gateways to Asia, particularly to China and India. And for Asian companies and cultures, Singapore is a bridge to the west.
-    %p Singapore is a city state of around 5 million people on an area of approximately 700 square kilometers (~274 square miles). Most of the population lives on the main island of Singapore, although there are small neighborhoods on the islands of Sentosa and Pulau Ubin as well.
-    %p Singapore was originally a Malay settlement, then a British crown colony, before becoming independent in 1965. Since independence, Singapore has achieve remarkable stability and unity amongst its very diverse population base. 
-    %p The main economic drivers are shipping, tourism, financial services, oil and gas (refining and trading) and other export-oriented sectors. About 10 million visitors come to Singapore each year.
-
-    %h3 Business in Singapore
-    %p Singapore is known for its transparent, stable business environment. Singapore often rates as the easiest place to do business, and has virtually no corruption!
-
-    %h3 Accommodation in Singapore
-    %p While Singapore has a large selection of hotels, prices tend to be high. Average business hotels regularly cost more than $120 USD / night. Extended stays for short-term corporate assignments have traditionally gravitated towards serviced apartments at exorbitant rates. This is where SquareStays comes in - providing an affordable alternative with luxury, and comfort at substantial savings!
-
-    %br
-    %center
-      %a.btn.btn-primary.btn-large.center-block{:type => 'submit', :href => "/singapore"}= "#{t(:find_place_in)} #{t(:singapore)}!"
-
-    %h3 Helpful links
-    %ul
-      %li= "Singapore on #{link_to "Wikipedia", "http://en.wikipedia.org/wiki/Singapore"}".html_safe
-      %li= "A Singapore #{link_to "expat forum", "http://www.singaporeexpats.com"} and another #{link_to "expat forum", "http://www.expatsingapore.com"} for Singapore".html_safe
-      %li= "The leading Singapore #{link_to "real estate portal", "http://www.propertyguru.com.sg"} for long-term rentals and purchases".html_safe
-      %li= "#{link_to "Singapore hotels", "http://www.singaporehotels.com"} (for stays under one month) ".html_safe
-
-    %h3 Sources
-    %ul
-      %li= link_to "Economy of Singapore", "http://en.wikipedia.org/wiki/Economy_of_Singapore"
-      %li= link_to "Annual Report on Tourism Statistics (2009)", "https://www.stbtrc.com.sg/images/links/X1Annual_Report_on_Tourism_Statistics_2009.pdf"
-      %li= link_to "Strait Times", "http://www.straitstimes.com/BreakingNews/Singapore/Story/STIStory_725306.html"
-      %li= link_to "Transparency.org" , "http://cpi.transparency.org/cpi2011/results/#CountryResults"
+    = t("city_guides.singapore.main_content", :site_name => SITE_NAME).html_safe
+    %p
+      %center
+        %a.btn.btn-primary.btn-large{:type => 'submit', :href => "/singapore"}= t("city_guides.find_place_in", :city_name => t("cities.singapore"))
+    %h3= t("city_guides.helpful_links")
+    = t("city_guides.singapore.helpful_links_content").html_safe
+    %h3= t("city_guides.sources")
+    = t("city_guides.singapore.sources_content").html_safe

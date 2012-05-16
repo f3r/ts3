@@ -1,12 +1,13 @@
+/ TODO: DELETE THIS PAGE? Not used.
 %ul.breadcrumb
   %li
     = link_to @place['title'], place_path(@place["id"])
     %span.divider= "/"
   %li
-    = link_to t(:rent), rent_place_path(@place["id"])
+    = link_to t("places.rent_word"), rent_place_path(@place["id"])
     %span.divider= "/"
   %li.active
-    =t(:availability)
+    =t("places.availabilities.availability")
 
 .row
   .span16
@@ -14,65 +15,65 @@
       .panel
         .panel-wrapper
           %h2.title
-            = t(:payment_details)
+            = t("places.availabilities.payment_details")
       .span12.right
         %table.borderless
           %tr
             %td.label_detail
-              #{t(:length_of_stay)}
+              #{t("places.availabilities.length_of_stay")}
             %td.user_detail
               = @availability['total_days'] 
-              #{t(:days)}
+              #{t("places.availabilities.total_days")}
           %tr
             %td.label_detail
-              #{t(:sub_total)}
+              #{t("places.availabilities.sub_total")}
             %td.user_detail
               = number_to_currency @availability['sub_total'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
           %tr
             %td.label_detail
-              #{t(:price_final_cleanup)}
+              #{t("places.availabilities.price_final_cleanup")}
             %td.user_detail
               = number_to_currency @availability['price_final_cleanup'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
           %tr
             %td.label_detail
-              #{t(:price_security_deposit)}
+              #{t("places.availabilities.price_security_deposit")}
             %td.user_detail
               = number_to_currency @availability['price_security_deposit'], :unit => currency_sign_of(@availability['currency']), :strip_insignificant_zeros => true
       .clearfix
       .panel
         .panel-wrapper
           %h2.title
-            = t(:billing_address)
+            = t("users.billing_address")
 
       .span12.right
         - if !@user['address'].nil?
 
-          %p= "#{t(:billed_address)}:"
-          %p= link_to t(:change_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
+          %p= "#{t("places.availabilities.billed_address")}:"
+          %p= link_to t("places.availabilities.change_address"), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
 
           %table.borderless
             %tr
               %td.label_detail
-                #{t(:country)}
+                #{t("addresses.country")}
               %td.user_detail
                 = @user['address']['country']
             %tr
               %td.label_detail
-                #{t(:city)}
+                #{t("addresses.city")}
               %td.user_detail
                 = @user['address']['city']
             %tr
               %td.label_detail
-                #{t(:street)}
+                #{t("addresses.street")}
               %td.user_detail
                 = @user['address']['street']
             %tr
               %td.label_detail
-                #{t(:zip)}
+                #{t("addresses.zip_code")}
               %td.user_detail
                 = @user['address']['zip']
         - else
-          %p= link_to t(:add_address), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
+          %p= link_to t("places.availabilities.add_address"), "", { "data-controls-modal"=>"address-modal", "data-backdrop"=>"static", :class => "change_address"}
         .clearfix
 
       = f.hidden_field(:check_in, :value => params[:check_in])
@@ -82,16 +83,16 @@
         .span4.right
           - if @user['address'].nil?
             %a.btn.primary.large.preview-button{:href => '#', :class => 'tooltip', 'data-original-title' => 'Billing Address is required', :disabled => 'disabled'}
-              %span= t(:confirm_rental)
+              %span= t("places.availabilities.confirm_rental")
           - else
-            %button.btn.large.primary.confirm_rental= t(:confirm_rental)
+            %button.btn.large.primary.confirm_rental= t("places.availabilities.confirm_rental")
 
 
 #address-modal.modal.hide.fade
   = form_for :address, :url => user_change_address_path(@user['id']), :method => :put do |f|
     .modal-header
       = link_to "x", '#', :class => "close"
-      %h3= t(:change_address)
+      %h3= t("places.availabilities.change_address")
     .modal-body
       .row
         .span10
@@ -99,19 +100,19 @@
           -# FIXME: coded_errors_for is not working
           -# = coded_errors_for @address
           .input
-            = f.label :street, t(:street)
+            = f.label :street, t("addresses.street")
             .private
             = f.text_field :street
           .input
-            = f.label :city, t(:city)
+            = f.label :city, t("addresses.city")
             .public
             = f.text_field :city
           .input
-            = f.label :country, t(:country)
+            = f.label :country, t("addresses.country")
             .public
             = f.country_select(:country, ["Singapore", "Hong Kong", "Kuala Lumpur"], :include_blank => true)
           .input
-            = f.label :zip, t(:zip)
+            = f.label :zip, t("addresses.zip_code")
             .private
             = f.text_field :zip
             = f.hidden_field :id

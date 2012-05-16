@@ -1,7 +1,7 @@
 .conversation
-  = breadcrumb [[t(:inquiries), messages_path]], conversation_title do
+  = breadcrumb [[t("inquiries.inquiries_title"), messages_path]], conversation_title do
     .actions.pull-right
-      = link_to t(:mark_unread), mark_as_unread_path(params[:id])
+      = link_to t("messages.mark_unread"), mark_as_unread_path(params[:id])
     
   - if @inquiry
     .row.target
@@ -11,7 +11,7 @@
     - @messages.each do |m|
       = render 'message', :m => m
   - else
-    =t(:no_messages)
+    =t("messages.no_messages")
   .row
     .span6
       = render 'new'

@@ -3,25 +3,25 @@
     .span6
       .hub
         %h1
-          =t(:search_place_stay_in)
+          =t("front_page.search_place_stay_in")
           = link_to current_city.name, "/#{current_city.slug}", :id => "open-country-select"
         %ul#country-select.dropdown
           %li.arrow
           - City.active.each do |city|
             %li= link_to city.name, "/#{city.slug}"
-          %li= link_to t(:not_going_to_singapore), "#city_modal", "data-toggle" => "modal"
+          %li= link_to t("front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
 
         %p
-          %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center; font-weight: bold', :href => "/#{current_city.slug}"}= t(:homepage_search_but)
+          %a{:class => 'btn btn-large btn-primary', :style => 'margin-left:63px; margin-top:10px; margin-bottom:55px; width:168px; height:23px; text-align:center; padding-top:12px; float:center; font-weight: bold', :href => "/#{current_city.slug}"}= t("front_page.search_button")
 
         #fp-liner{:style => 'color:#3977b0'}
           %p 
-            %b= t(:fp_one)
+            %b= t("front_page.description.one", :site_name => SITE_NAME)
           %p 
-            %span= t(:fp_two_a)
-            %b= t(:fp_two_b)
+            %span= t("front_page.description.two")
+            %b= t("front_page.description.three")
           %p
-            %b= t(:fp_three)
+            %b= t("front_page.description.four")
     
     .span6
       = gallery :homepage
@@ -31,50 +31,28 @@
   .links
     %img{:src => "https://s3.amazonaws.com/squarestays-static/icon.fb.jpg", :width => "30px", :height => "30px"}
     %span.social-text
-      %a{:href => "https://www.facebook.com/squarestays"}= t(:homepage_facebook)
+      %a{:href => "https://www.facebook.com/squarestays"}= t("front_page.social.facebook")
     %img{:src => "https://s3.amazonaws.com/squarestays-static/icon.tw.jpg", :width => "30px", :height => "30px"}
     %span.social-text
-      %a{:href => "https://twitter.com/#!/Squarestays"}= t(:homepage_twitter)
+      %a{:href => "https://twitter.com/#!/Squarestays"}= t("front_page.social.twitter")
     %img{:src => "https://s3.amazonaws.com/squarestays-static/icon.rss.png", :width => "25px", :height => "25px"}
     %span.social-text
-      %a{:href => "http://blog.squarestays.com"}= t(:homepage_blog)
+      %a{:href => "http://blog.squarestays.com"}= t("front_page.social.blog")
   %hr{:class => "style-two"}
   
 .tease-blurb  
   .tease-header
-    t(:teaser_center_title)
+    = t("front_page.teaser.title", :site_name => SITE_NAME)
   .row
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg",  :alt => t(:teaser_1_content)}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/qlty.jpg", :alt => t(:teaser_2_content)}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/afrd.jpg", :alt => t(:teaser_3_content)}            
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg",  :alt => t("front_page.teaser.one", :site_name => SITE_NAME)}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/qlty.jpg", :alt => t("front_page.teaser.two", :site_name => SITE_NAME)}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/afrd.jpg", :alt => t("front_page.teaser.three", :site_name => SITE_NAME)}
 
 .trust
   .row
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/swg.jpg",  :title => "Small World Group"}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg",  :title => "National Research Foundation"}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => "PropNex"}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => "Far East Organization"}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/swg.jpg",  :title => t("front_page.trust.one")}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg",  :title => t("front_page.trust.two")}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => t("front_page.trust.three")}
+    %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => t("front_page.trust.four")}
     
-#city_modal.hide.modal.fade
-  = form_tag '/cities/suggest', :class => 'cities_suggest_form form-horizontal' do
-    .modal-header
-      %h3=t(:cant_find_city)
-    .modal-body
-      =t(:working_on_expanding)
-      <br><br>
-      .control-group
-        %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t(:city)
-        .controls
-          = text_field_tag 'city', ''
-      - unless logged_in?
-        .control-group
-          %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t(:email)
-          .controls
-            = text_field_tag 'email'
-      <br>
-      %i=t(:leave_us_email)
-      <br>
-    .modal-footer
-      %button.btn.primary=t(:submit)
-      %button.btn{:onclick => "$('#city_modal').modal('hide'); return false;"}=t(:cancel)
-
+= render :partial => "city_modal"

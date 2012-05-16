@@ -8,8 +8,7 @@ class HomeController < ApplicationController
         :email => params[:email]
       }
     )
-
-    flash[:notice] = "Thank you for your message. SquareStays is expanding and we will let you know when #{params['city']} is available!"
+    flash[:notice] = t("suggest_thank_you_message", :site_name => SITE_NAME, :city => params['city'])
     redirect_to root_path
   end
 

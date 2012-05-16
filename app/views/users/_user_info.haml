@@ -1,29 +1,29 @@
 .span6
   .section-header
-    =t(:section_header_user_profile)
+    =t("users.section_header_user_profile")
     - unless request.fullpath.include?('edit')
-      = link_to t(:account_settings), edit_profile_path, :class => "settings"
+      = link_to t("users.edit"), edit_profile_path, :class => "settings"
     
   %table.borderless.user_info
     %tr
       %td.label_detail
-        #{t(:first_name)}
+        #{t("users.first_name")}
       %td.user_detail
         = @user['first_name']
     %tr
       %td.label_detail
-        #{t(:last_name)}
+        #{t("users.last_name")}
       %td.user_detail
         = @user['last_name']
     %tr
       %td.label_detail
-        #{t(:email)}
+        #{t("users.email")}
       %td.user_detail
         = @user['email']
     - if !@user['address'].nil?
       %tr
         %td.label_detail
-          #{t(:billing_address)}
+          #{t("users.billing_address")}
         %td.user_detail
           = "#{@user['address']['street']}"
           %br
@@ -33,38 +33,28 @@
     - if !@user['mobile_phone'].nil?
       %tr
         %td.label_detail
-          #{t(:mobile_phone)}
+          #{t("users.mobile_phone")}
         %td.user_detail
           = @user['phone_mobile']
     - if !@user['gender'].nil?
       %tr
         %td.label_detail
-          #{t(:gender)}
+          #{t("users.gender")}
         %td.user_detail
-          /TODO: Map gender to i18n gender_male/gender_female
-          = @user['gender'].nil? ? t(:gender_undisclosed) : @user['gender'].titleize
+          = @user['gender'].nil? ? t("users.gender_undisclosed") : t("users.gender_#{@user['gender']}")
     - if !@user['birthdate'].nil?
       %tr
         %td.label_detail
-          #{t(:birthdate)}
+          #{t("users.birthdate")}
         %td.user_detail
           = date_convert @user['birthdate'] unless @user['birthdate'].blank?
 
 - content_for :aside do
   - if @user['phone_mobile'].blank? or @user['address'].blank?
     - required_fields = ""
-    - required_fields = required_fields + "* #{t(:mobile_phone)}<br />" if @user['phone_mobile'].blank?
-    - required_fields = required_fields + "* #{t(:billing_address)}<br />" if @user['address'].blank?
-    = image_tag("i_profile.png", 
-      :style => "float:right;", 
-      :id => 'information-missing-fields', 
-      :title => required_fields)
+    - required_fields = required_fields + "* #{t("users.mobile_phone")}<br />" if @user['phone_mobile'].blank?
+    - required_fields = required_fields + "* #{t("users.billing_address")}<br />" if @user['address'].blank?
     %br
-    %br
-    %br
-    %i= t(:profile_req_message)
-
-:javascript
-  $(document).ready(function() {
-    $('#information-missing-fields').tooltip({html:true,placement:"below"});
-  });
+    = link_to image_tag("i_profile.png", :width => 38, :height => 38), "#", :rel => "popover", "data-original-title" => t("users.required_fields"), "data-content" => required_fields
+    %p
+      %i= t("users.profile_required_message", :site_name => SITE_NAME)

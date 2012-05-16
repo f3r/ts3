@@ -4,7 +4,7 @@
       .well
         =# image_tag('SquareStays_square_75x75.png')
         = system_message_body(m['system_msg_id'])
-      %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"
+      %span.time.pull-right= t("time_ago", :time => time_ago_in_words(Time.parse(m['date'])))
 - else
   .row.message
     .span1.from
@@ -13,4 +13,4 @@
     .span11
       .body
         = simple_format h(m['body'])
-      %span.time.pull-right= "#{time_ago_in_words(Time.parse(m['date']))} ago"
+      %span.time.pull-right= t("time_ago", :time => time_ago_in_words(Time.parse(m['date'])))

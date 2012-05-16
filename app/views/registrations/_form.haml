@@ -1,28 +1,28 @@
 - @user ||= User.new
 
 .section.span6.bored
-  %h2.offset-one-eight= t(:create_new_account)
+  %h2.offset-one-eight= t("users.registration.create_new_account")
   %br
   = form_for(@user, :url => user_registration_path, :html => {:id => 'registerForm'})  do |f|
     = render 'registrations/oauth_fields', :f => f
-    .input= f.text_field     :first_name, :placeholder => 'First Name',     :class => "validate[required]"
-    .input= f.text_field     :last_name,  :placeholder => 'Last Name',      :class => "validate[required]"
-    .input= f.text_field     :email,      :placeholder => 'E-Mail Address', :class => "validate[required,custom[email]]"
-    .input= f.password_field :password,   :placeholder => 'Password',       :class => "validate[required,custom[onlyLetterNumber]]"
-    .input= f.password_field :password_confirmation, :placeholder => 'Confirm Password', :class => "validate[required, equals[user_password]]"
+    .input= f.text_field     :first_name, :placeholder => t("users.first_name"),                  :class => "validate[required]"
+    .input= f.text_field     :last_name,  :placeholder => t("users.last_name"),                   :class => "validate[required]"
+    .input= f.text_field     :email,      :placeholder => t("users.email_address"),               :class => "validate[required,custom[email]]"
+    .input= f.password_field :password,   :placeholder => t("users.password"),                    :class => "validate[required,custom[onlyLetterNumber]]"
+    .input= f.password_field :password_confirmation, :placeholder => t("users.confirm_password"), :class => "validate[required, equals[user_password]]"
     
     .input.agree
       %div.reset-width
         = f.check_box :terms, :id => 'terms_and_conditions'
         %label.for-checkbox{:for => "terms_and_conditions"}
-          I accept the
-          = link_to t(:terms_and_conditions), terms_path, :target => :blank
+          = t("users.registration.i_accept_the")
+          = link_to t("terms_and_conditions"), terms_path, :target => :blank
     %button.btn.float-right{:type => 'submit'}
-      Create account
+      = t("users.registration.create_account")
 
   .switch-login
-    = t(:switch_to_login)
-    = link_to 'here', new_user_session_path
+    = t("users.registration.switch_to_login")
+    = link_to t("users.registration.here"), new_user_session_path
   
 :javascript
   $(document).ready(function(){

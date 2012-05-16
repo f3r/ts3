@@ -1,8 +1,7 @@
 #coding: utf-8
 module LookupsHelper
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
-  SIZE_UNITS = {'sqm' => I18n.t(:square_meters_short), 'sqf' => I18n.t(:square_feet_short)}
-
+  SIZE_UNITS = {'sqm' => I18n.t("units.square_meters_short"), 'sqf' => I18n.t("units.square_feet_short")}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
   def currencies_options
@@ -19,21 +18,21 @@ module LookupsHelper
   end
 
   def cancellation_policies_select
-    CANCELLATION_POLICIES.collect { |key, value| [t(value), key] }
+    CANCELLATION_POLICIES.collect { |key, value| [t("places.cancellation_policies.#{value}"), key] }
   end
 
   def cities_options
-    cities = City.all.collect{|city| ["#{city.name}, #{city.country}", city.id]}
+    cities = City.all.collect{|city| ["#{t('cities.' + city.name.parameterize('_'))}, #{t('countries.' + city.country_code)}", city.id]}
   end
 
   def place_types_select
     # id, translated name
-    PlaceType.all.map {|pt| [pt.name, pt.id]}
+    PlaceType.all.map {|pt| [I18n.t("places.types.#{pt.slug}"), pt.id]}
   end
 
   def place_types_list
     # id, translated name, slug
-    PlaceType.all.map {|pt| [pt.name, pt.id, pt.slug]}
+    PlaceType.all.map {|pt| [I18n.t("places.types.#{pt.slug}"), pt.id, pt.slug]}
   end
 
   def pref_language_list
@@ -83,11 +82,11 @@ module LookupsHelper
   end
 
   def max_guest_options
-    [["1 #{t(:guest)}", 1], ["3 #{t(:guests)}", 3], ["5 #{t(:guests)}", 5], ["10 #{t(:guests)}", 10]]
+    [[t("places.search.guests", :count => 1), 1], [t("places.search.guests", :count => 3), 3], [t("places.search.guests", :count => 5), 5], [t("places.search.guests", :count => 10), 10]]
   end
 
   def sort_options
-    [[t(:price_lowest), 'price_lowest'], [t(:price_highest), 'price_highest'], [t(:price_size_lowest), 'price_size_lowest'], [t(:price_size_highest), 'price_size_highest']]
+    [[t("places.search.price_lowest"), 'price_lowest'], [t("places.search.price_highest"), 'price_highest'], [t("places.search.price_size_lowest"), 'price_size_lowest'], [t("places.search.price_size_highest"), 'price_size_highest']]
   end
 
   def empty_place_type
@@ -95,7 +94,7 @@ module LookupsHelper
   end
 
   def cancellation_desc(place)
-    t(LookupsHelper::CANCELLATION_POLICIES[place.cancellation_policy])
+    t("places.cancellation_policies.#{LookupsHelper::CANCELLATION_POLICIES[place.cancellation_policy]}")
   end
   # Should be of this format:
   # {"date_end"=>[120]}

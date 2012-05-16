@@ -51,5 +51,8 @@ module HeyPalFrontEnd
 
     # Add additional asset paths for asset pipeline (sprockets)
     #config.assets.paths << Rails.root.join("app", "assets", "flash")
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
   end
 end

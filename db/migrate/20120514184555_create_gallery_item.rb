@@ -5,7 +5,7 @@ class CreateGalleryItem < ActiveRecord::Migration
       t.string :label
       t.has_attached_file :photo
       t.integer :position, :default => 0
-      t.boolean  :active, :default => 0
+      t.boolean  :active, :default => 1
       t.references :gallery, :default => 0
       t.timestamps
    end

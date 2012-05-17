@@ -31,3 +31,26 @@
 #place_published_input {
   display: none;
 }
+.status.active, .status.user {
+  background: #8DAA92;
+}
+
+.status.agent {
+  background: #0066BB
+}
+
+.status.admin {
+  background: #BB1111;
+}
+
+.dashboard .stats div {
+  margin: 10px auto 30px;
+}
+
+#place_published_input {
+  display: none;
+}
+
+.admin_questions .table_tools {
+  display: none;
+}

@@ -23,6 +23,10 @@ var PlaceShow = {
         self.initializeMap(opts.map_lat, opts.map_lon, opts.map_cityName, opts.map_countryName);
       }
     });
+
+    if(window.location.hash){
+      $('a[href="' + window.location.hash + '"]').tab('show');
+    }
   },
   
   //*******************************************************************************************

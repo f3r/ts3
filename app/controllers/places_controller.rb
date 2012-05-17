@@ -84,7 +84,7 @@ class PlacesController < ApplicationController
 
   def preview
     @preview = true
-    @comments = Heypal::Comment.find_all({:place_id => @place.to_param}, current_token)
+    @comments = Comment.where(:place_id => @place.id).questions
 
     render(:template => 'places/show', :layout => 'application')
   end
@@ -106,7 +106,7 @@ class PlacesController < ApplicationController
         }
     end unless availabilities.blank?
 
-    @comments = Heypal::Comment.find_all({:place_id => @place.to_param}, current_token)
+    @comments = Comment.where(:place_id => @place.id).questions
     render :layout => 'application'
   end
 
@@ -401,6 +401,6 @@ protected
 
   def find_place
     @place = Heypal::Place.find(params[:id], current_token, get_current_currency)
-    @owner = @place['user']
+    @owner = @place.user
   end
 end

@@ -3,46 +3,28 @@ class CommentsController < ApplicationController
   before_filter :find_place
 
   def create
-    comment_params = params[:comment]
-    comment_params[:access_token] = current_token
-    comment_params[:place_id] = params[:place_id]
-
     place = Heypal::Place.find(params[:place_id], current_token)
-    
-    # This checks if the user clicked "send private" for a question, currently commented out
-    # until we integrate with the new messaging API
-    # if params[:comment] && params[:comment][:pm] == '1'
-    #   message_params = {
-    #     :id           => @owner['id'], 
-    #     :message      => t(:pm_prepend_pre) + place['title'] + t(:pm_prepend_post) + params[:comment][:comment], 
-    #     :access_token => current_token
-    #   }
-    #   saved, message = Heypal::Message.create(message_params)
 
-    #   render :partial => '/comments/send_privately', :locals => {:saved => saved}
+    @comment = current_user.comments.new(params[:comment])
+    @comment.place_id = place.id
 
-    # else
-      comment = Heypal::Comment.new(comment_params)
-      saved, @comment = comment.save
-  
-      if saved
-        render '/comments/create', :layout => nil
-      else
-        render '/comments/validation_error', :layout => nil
-      end
-    # end
+    if @comment.save
+      UserMailer.new_question(@comment.place.user, @comment).deliver if @comment.place
+      render '/comments/create', :layout => nil
+    else
+      render '/comments/validation_error', :layout => nil
+    end
   end
 
   def reply_to_message
     comment_params = params[:comment]
-    comment_params[:access_token] = current_token
     comment_params[:place_id] = params[:place_id]
     comment_params[:replying_to] = @replying_to = params[:comment_id]
 
-    comment = Heypal::Comment.new(comment_params)
-    saved, @comment = comment.save
+    @comment = current_user.comments.new(comment_params)
 
-    if saved
+    if @comment.save
+      UserMailer.new_question_reply(@comment.user, @comment).deliver
       respond_to do |format|
         format.js { render :layout => false }
       end
@@ -52,8 +34,8 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment_params = {'id' => params[:id], 'access_token' => current_token, 'place_id' => params[:place_id] }
-    comment = Heypal::Comment.delete(@comment_params)
+    @comment = Comment.find(params[:id])
+    @comment.destroy
 
     @question_id = params[:qId] if params.key?(:qId)
 
@@ -67,6 +49,6 @@ class CommentsController < ApplicationController
 
   def find_place
     @place = Heypal::Place.find(params[:place_id], current_token)
-    @owner = @place['user']
+    @owner = @place.user
   end
 end

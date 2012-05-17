@@ -168,6 +168,10 @@ class Heypal::Place < Heypal::Base
     self['id']
   end
 
+  def user
+    User.find(self['user_id'])
+  end
+
   def valid?
     self['stat'] == 'ok'
   end

@@ -360,6 +360,8 @@ en:
   question_new_placeholder: You can ask and answer questions here.
   pm_prepend_pre:     "Private question regarding your property ["
   pm_prepend_post:    "]\n\n"
+  new_question_subject: "You have a new question from %{sender} on %{site_name}"
+  new_question_reply_subject: "Your question was answered on %{site_name}"
   messages:           Messages
   conversation_with:  Conversation with
   inquiry_center:     Inquiry Center

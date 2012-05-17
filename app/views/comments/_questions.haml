@@ -1,5 +1,5 @@
 -if logged_in?
-  - unless current_user['id'] == @owner['id']
+  - unless current_user?(@owner)
     .row
       .span12{:style => "text-align:center"}
         %a#open-ask-btn.btn.btn-large.btn-primary= t(:ask_question)
@@ -7,7 +7,7 @@
   .row
     #ask-form.hide
       .span10.offset1
-        = form_for 'comment', :url => place_comments_path(@place), :html => {:id => 'comment-form', :remote => true, :class => "form-inline"} do |f|
+        = form_for :comment, :url => place_comments_path(@place), :html => {:method => :post, :remote => true, :id => 'comment-form', :class => "form-inline"} do |f|
           .row
             .span1{:style=>"margin-right: 10px"}= avatar_image(current_user)
             = f.text_area :comment, :rows => 3, :class => "span9", :style => "height:54px; width:689px; max-width:689px !important; min-width:689px !important"
@@ -25,12 +25,10 @@
 
 %br
 %br
-- if !@comments.nil?
+- if !@comments.blank?
   .row  
     %section.item-questions
-      - @comments.each do |comment|
-        = render '/comments/comment', :comment => comment
+      = render :collection => @comments, :partial => '/comments/comment'
 
 :javascript
-
   PlaceComments.initialize();

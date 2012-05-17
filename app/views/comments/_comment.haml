@@ -1,25 +1,25 @@
-.span9.offset1.question-container{:id => "qdiv-#{comment['id']}"}
+.span9.offset1.question-container{:id => "qdiv-#{comment.id}"}
   .row-fluid.question
     .span4
       .user_box
-        -if !comment['user'].nil?
-          .user_photo= avatar_image(comment['user'])
+        -if comment.user
+          .user_photo= avatar_image(comment.user)
           .user_data
-            .user_name= link_to "#{comment['user']['first_name'][0]}. #{comment['user']['last_name']}", '#'
-            .user_role= comment['user']['role']
+            .user_name= "#{comment.user.anonymized_name}"
+            .user_role= comment.user.role
         -else
           =t(:unknown)
 
-    - if logged_in? && @owner['id'] == current_user['id']
-      = link_to 'X', place_comment_path(comment['place_id'], comment['id'], :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
+    - if current_user?(@owner)
+      = link_to 'X', place_comment_path(comment.place_id, comment.id, :type => 'question'), :remote => true, :method => :delete, :confirm => 'Delete this Question?', :class => "del hide"
 
     .span8
-      .user_message= comment['comment']
-      .time= time_ago_in_words(comment['created_at'])
+      .user_message= comment.comment
+      .time= time_ago_in_words(comment.created_at)
 
   - # If I'm the owner and the question hasn't been responded yet
-  - if comment['replies'].blank? 
-    - if current_user['id'] == @owner['id']
-      = render '/comments/form', :place => @place, :comment_id => comment['id']
+  - if comment.answers.blank?
+    - if current_user?(@owner)
+      = render '/comments/form', :place => @place, :comment_id => comment.id
   -else
-    = render '/comments/reply', :reply => comment['replies'].first, :question_id => comment['id']
+    = render '/comments/reply', :reply => comment.reply, :question_id => comment.id

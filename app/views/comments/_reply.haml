@@ -1,17 +1,17 @@
 .row-fluid.answer
   .span8#answer
     .owners_answer= "Owner's Answer"
-    .user_message= reply['comment']
-    .time= time_ago_in_words(reply['created_at'])
-  - if logged_in? && @owner['id'] == current_user['id']
+    .user_message= reply.comment
+    .time= time_ago_in_words(reply.created_at)
+  - if logged_in? && current_user?(@owner)
     .del.hide#del-reply= link_to 'X', place_comment_path(reply['place_id'], reply['id'], :type => 'reply', :qId => question_id), :remote => true, :method => :delete, :confirm => 'Delete this Answer?'
 
   .span4
     .user_box
-      -if !reply['user'].nil?
-        .user_photo= avatar_image(reply['user'])
+      -if reply.user
+        .user_photo= avatar_image(reply.user)
         .user_data
-          .user_name= link_to "#{reply['user']['first_name'][0]}. #{reply['user']['last_name']}", '#'
-          .user_role= reply['user']['role']
+          .user_name= link_to "#{reply.user.anonymized_name}", '#'
+          .user_role= reply.user.role
       -else
         =t(:unknown)

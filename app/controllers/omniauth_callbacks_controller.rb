@@ -1,12 +1,13 @@
 class OmniauthCallbacksController < Devise::OmniauthCallbacksController
   def facebook
     access_token = request.env["omniauth.auth"]
+    access_token.slice!(:uid, :provider, :info, :credentials)
     handle_provider(access_token)
   end
 
   def twitter
     access_token = request.env["omniauth.auth"]
-    access_token.except!(:extra) # Avoid CookieOverflow
+    access_token[:extra][:raw_info].except!(:work) # Avoid CookieOverflow
     handle_provider(access_token)
   end
 

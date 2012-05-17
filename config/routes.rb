@@ -22,9 +22,14 @@ HeyPalFrontEnd::Application.routes.draw do
 
   root :to => 'home#index'
 
-  devise_for :users, :path => '/', :controllers => { :sessions => 'sessions', :registrations => 'registrations', :passwords => 'passwords',
-               :omniauth_callbacks => "omniauth_callbacks"},
-             :path_names => { :sign_in => 'login', :sign_up => 'signup', :sign_out => 'logout' }
+  devise_for :users, 
+             :controllers => { :sessions => 'sessions', 
+                               :registrations => 'registrations', 
+                               :passwords => 'passwords',
+                               :omniauth_callbacks => "omniauth_callbacks"},
+             :path_names => {  :sign_in => 'login', 
+                               :sign_up => 'signup', 
+                               :sign_out => 'logout' }
 
   resources :places do
     member do

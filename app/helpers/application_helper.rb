@@ -91,4 +91,12 @@ module ApplicationHelper
   def site_name
     SiteConfig.site_name
   end
+  
+  def gallery(name)
+    g = Gallery.find_by_name(name)
+    if !g.nil?
+      @g_items = g.gallery_items.active
+      render :partial => "galleries/list", :locals => { :g_items => @g_items }
+    end
+  end
 end

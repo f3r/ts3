@@ -24,12 +24,7 @@
             %b= t(:fp_three)
     
     .span6
-      #teaser-pics
-        - teaser_images = Heypal::FrontpageImage.all_visible
-        - teaser_images.each do |image|
-          %a.thumbnail{:href => "#{image.link}"}
-            .description= "#{image.label}"
-            %img{:src => "#{image.image_url}"}
+      = gallery :homepage
       
 .tease-social
   %hr{:class => "style-two"}

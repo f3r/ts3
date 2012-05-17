@@ -48,15 +48,12 @@ describe User do
           "token" => "token123",
           "secret" => "secret123",
         },
-        "extra" => {
-          "user_hash" => {
-            "email" => 'user@facebook.com',
-            "first_name" => 'John',
-            "last_name" => 'Smith'
-          }
+        "info" => {
+          "email" => 'user@facebook.com',
+          "first_name" => 'John',
+          "last_name" => 'Smith'
         }
       })
-      @token.extra.raw_info = @token.extra.user_hash
     end
 
     it "stores facebook authentication" do
@@ -92,7 +89,7 @@ describe User do
     end
 
     it "doesn't create a user if it is missing required fields" do
-      @token.extra.raw_info.email = nil
+      @token.info.email = nil
       new_user = User.from_oauth(@token)
       new_user.first_name.should == 'John'
       new_user.last_name.should == 'Smith'

@@ -3,7 +3,7 @@ class User
     extend ActiveSupport::Concern
 
     included do
-      attr_accessor :oauth_provider, :oauth_uid, :oauth_token, :oauth_secret, :avatar_url
+      attr_accessor   :oauth_provider, :oauth_uid, :oauth_token, :oauth_secret, :avatar_url
       attr_accessible :oauth_provider, :oauth_uid, :oauth_token, :oauth_secret, :avatar_url
       after_save :store_authentication, :if => :oauth_token?
     end
@@ -54,16 +54,16 @@ class User
 
     def load_data_from_facebook(data)
       self.oauth_provider = 'facebook'
-      self.oauth_uid = data.uid
-      self.oauth_token = data.credentials.token
+      self.oauth_uid      = data.uid
+      self.oauth_token    = data.credentials.token
 
-      raw = data.extra.raw_info
-      self.first_name = raw.first_name
-      self.last_name = raw.last_name
-      self.email = raw.email
-
-      if data.info && data.info.image
-        self.avatar_url = data.info.image.gsub('square', 'large')
+      if data.info
+        self.first_name = data.info.first_name
+        self.last_name  = data.info.last_name
+        self.email      = data.info.email
+        if data.info.image
+          self.avatar_url = data.info.image.gsub('square', 'large')
+        end
       end
     end
 

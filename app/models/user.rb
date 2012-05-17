@@ -49,6 +49,10 @@ class User < ActiveRecord::Base
   def name=(a_name)
     self.first_name, self.last_name = a_name.split(' ', 2)
   end
+  
+  def consumer?
+    role == 'user'
+  end
 
   def change_preference(pref, value)
     if pref =~ /pref_/

@@ -1,0 +1,1114 @@
+--- 
+es: 
+  accept: Aceptar
+  activemodel: 
+    errors: 
+      format: "%{attribute} %{message}"
+      messages: 
+        accepted: "debe ser aceptado"
+        blank: "no puede estar en blanco"
+        confirmation: "no coincide con la confirmación"
+        empty: "no puede estar vacío"
+        equal_to: "debe ser igual a %{count}"
+        even: "debe ser par"
+        exclusion: "está reservado"
+        greater_than: "debe ser mayor que %{count}"
+        greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
+        inclusion: "no está incluido en la lista"
+        invalid: "no es válido"
+        less_than: "debe ser menor que %{count}"
+        less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+        not_a_number: "no es un número"
+        not_an_integer: "debe ser un entero"
+        odd: "debe ser impar"
+        record_invalid: "La validación falló: %{errors}"
+        taken: "ya está en uso"
+        too_long: "es demasiado largo (%{count} caracteres máximo)"
+        too_short: "es demasiado corto (%{count} caracteres mínimo)"
+        wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
+      template: 
+        body: "Se encontraron problemas con los siguientes campos:"
+        header: 
+          one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
+          other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
+  activerecord: 
+    errors: 
+      messages: 
+        record_invalid: "Error de validación: %{errors}"
+        taken: "ya ha sido tomada"
+      template: 
+        body: "Hubo problemas con los siguientes campos:"
+        header: 
+          one: "1 error evitó que se guarde este %{model}"
+          other: "%{count} errores evitan que se guarde este %{model}"
+  addresses: 
+    address_1: "Dirección 1"
+    address_1_help: "Dirección de la calle, empresa"
+    address_2: "Dirección 2"
+    address_2_help: "Apartamento / número de unidad / Suite"
+    city: Ciudad
+    country: País
+    directions: Direcciones
+    state: Estado
+    street: Calle
+    zip_code: "Código Postal"
+  alerts: 
+    active: Activo
+    alerts: Alertas
+    create_alert: "Crear alerta"
+    custom_alerts: "Alertas personalizadas"
+    daily: Diario
+    delete: Eliminar
+    delivery_method: "Método de entrega"
+    edit: Editar
+    edit_alert: "Editar alerta"
+    email: "Correo electrónico"
+    email_and_sms: "Correo electrónico y SMS"
+    error_alert: "Error desconocido"
+    error_alert_check_dates: "Fechas no válidas"
+    error_invalid_or_expired_search: "Búsqueda no válido o caducado"
+    inactive: Inactivo
+    maximum_price: "Precio máximo"
+    message_alert_created: "La alerta se ha creado correctamente"
+    message_alert_deleted: "La alerta se ha eliminado correctamente"
+    message_alert_paused: "La alerta ha sido correctamente en pausa"
+    message_alert_unpaused: "La alerta ha sido correctamente unpaused"
+    message_alert_updated: "La alerta se ha actualizado correctamente"
+    minimum_price: "Precio mínimo"
+    monthly: Mensual
+    my_alerts: "Mis alertas"
+    no_alerts: "No hay alertas encontradas."
+    pause: Pausa
+    query: Consulta
+    schedule: Programación
+    settings: Configuración
+    sms: SMS
+    status: Estado
+    view_results: "Ver resultados"
+    weekly: Semanal
+  are_you_sure: "¿Estás seguro?"
+  cancel: Cancelar
+  choose_country: "Elegir un país"
+  cities: 
+    hong_kong: "Hong Kong"
+    kuala_lumpur: "Kuala Lumpur"
+    los_angeles: "Los Ángeles"
+    manila: Manila
+    new_york: "Nueva York"
+    san_francisco: "San Francisco"
+    shanghai: Shanghai
+    singapore: Singapur
+    sydney: Sydney
+  city_guides: 
+    find_place_in: "Encontrar un lugar en %{city_name}!"
+    helpful_links: "Enlaces útiles"
+    hong_kong: 
+      title: "Bienvenido a Hong Kong!!"
+    kuala_lumpur: 
+      title: "Bienvenido a Kuala Lumpur!!"
+    singapore: 
+      title: "Bienvenido a Singapur!!"
+    sources: Fuentes
+  close: Cerrar
+  contact: Contacto
+  contact_information: "Información de contacto"
+  countries: 
+    AD: Andorra
+    AE: "Emiratos Árabes Unidos"
+    AF: Afganistán
+    AG: "Antigua y Barbuda"
+    AI: Anguila
+    AL: Albania
+    AM: Armenia
+    AN: "Antillas Neerlandesas"
+    AO: Angola
+    AQ: "La Antártida"
+    AR: Argentina
+    AS: "Samoa Americana"
+    AT: Austria
+    AU: Australia
+    AW: Aruba
+    AX: "Islas Aland"
+    AZ: Azerbaiyán
+    BA: Bosnia-Herzegovina
+    BB: Barbados
+    BD: Bangladesh
+    BE: Bélgica
+    BF: "Burkina Faso"
+    BG: Bulgaria
+    BH: Bahrein
+    BI: Burundi
+    BJ: Benin
+    BL: "Saint Barthélemy"
+    BM: Bermudas
+    BN: Brunei
+    BO: Bolivia
+    BQ: "Territorio Antártico británico"
+    BR: Brasil
+    BS: Bahamas
+    BT: Bután
+    BV: "Isla Bouvet"
+    BW: Botswana
+    BY: Bielorrusia
+    BZ: Belice
+    CA: Canadá
+    CC: "Islas Cocos"
+    CD: "Congo - Kinshasa"
+    CF: "República Centroafricana"
+    CG: "Congo - Brazzaville"
+    CH: China
+    CI: "Costa de Marfil"
+    CK: "Islas Cook"
+    CL: Chile
+    CM: Camerún
+    CN: China
+    CO: Colombia
+    CR: "Costa Rica"
+    CS: "Serbia y Montenegro"
+    CT: "Cantón y Enderbury islas"
+    CU: Cuba
+    CV: "Cabo Verde"
+    CX: "Isla de Navidad"
+    CY: Chipre
+    CZ: "República Checa"
+    DD: "Alemania Oriental"
+    DE: Alemania
+    DJ: Djibouti
+    DK: Dinamarca
+    DM: Dominica
+    DO: "República Dominicana"
+    DZ: Argelia
+    EC: Ecuador
+    EE: Estonia
+    EG: Egipto
+    EH: "Sáhara Occidental"
+    ER: Eritrea
+    ES: España
+    ET: Etiopía
+    FI: Finlandia
+    FJ: Fiji
+    FK: "Islas Malvinas"
+    FM: Micronesia
+    FO: "Islas Faroe"
+    FQ: "Del sur francés y territorios antárticos"
+    FR: Francia
+    FX: "Francia Metropolitana"
+    GA: Gabón
+    GB: "Reino Unido"
+    GD: Granada
+    GE: Georgia
+    GF: "Guayana francesa"
+    GG: Guernsey
+    GH: Ghana
+    GI: Gibraltar
+    GL: Groenlandia
+    GM: Gambia
+    GN: Guinea
+    GP: Guadalupe
+    GQ: "Guinea Ecuatorial"
+    GR: Grecia
+    GS: "Georgia del Sur y las Islas Sandwich del sur"
+    GT: Guatemala
+    GU: Guam
+    GW: Guinea-Bissau
+    GY: Guyana
+    HK: "Hong Kong"
+    HM: "Islas Heard y McDonald"
+    HN: Honduras
+    HR: Croacia
+    HT: Haití
+    HU: Hungría
+    ID: Indonesia
+    IE: Irlanda
+    IL: Israel
+    IM: "Isla de Man"
+    IN: India
+    IO: "Territorio británico del Océano Índico"
+    IQ: Irak
+    IR: Irán
+    IS: Islandia
+    IT: Italia
+    JE: Jersey
+    JM: Jamaica
+    JO: Jordania
+    JP: Japón
+    JT: "Isla de Johnston"
+    KE: Kenia
+    KG: Kirguizistán
+    KH: Camboya
+    KI: Kiribati
+    KM: Comoras
+    KN: "Saint Kitts y Nevis"
+    KP: "Corea del Norte"
+    KR: "Corea del sur"
+    KW: Kuwait
+    KY: "Islas Caimán"
+    KZ: Kazajstán
+    LA: Laos
+    LB: Líbano
+    LC: "Santa Lucía"
+    LI: Liechtenstein
+    LK: "Sri Lanka"
+    LR: Liberia
+    LS: Lesotho
+    LT: Lituania
+    LU: Luxemburgo
+    LV: Letonia
+    LY: Libia
+    MA: Marruecos
+    MC: Mónaco
+    MD: Moldavia
+    ME: Montenegro
+    MF: "San Martín"
+    MG: Madagascar
+    MH: "Islas Marshall"
+    MI: "Islas Midway"
+    MK: Macedonia
+    ML: Malí
+    MM: Myanmar
+    MN: Mongolia
+    MO: Macao
+    MP: "Islas Marianas del Norte"
+    MQ: Martinica
+    MR: Mauritania
+    MS: Montserrat
+    MT: Malta
+    MU: Mauricio
+    MV: Maldivas
+    MW: Malawi
+    MX: México
+    MY: Malasia
+    MZ: Mozambique
+    NA: Namibia
+    NC: "Nueva Caledonia"
+    NE: Níger
+    NF: "Isla Norfolk"
+    NG: Nigeria
+    NI: Nicaragua
+    NL: "Países Bajos"
+    ? "NO"
+    : Noruega
+    NP: Nepal
+    NQ: "Dronning Maud Land"
+    NR: Nauru
+    NT: "Zona neutral"
+    NU: Niue
+    NZ: "Nueva Zelanda"
+    OM: Omán
+    PA: Panamá
+    PC: "Fideicomiso de las islas del Pacífico"
+    PE: Perú
+    PF: "Polinesia francesa"
+    PG: "Papua Nueva Guinea"
+    PH: Filipinas
+    PK: Pakistán
+    PL: Polonia
+    PM: "Saint Pierre y Miquelon"
+    PN: Pitcairn
+    PR: "Puerto Rico"
+    PS: "Territorio palestino"
+    PT: Portugal
+    PU: "Estados Unidos varias islas del Pacífico"
+    PW: Palau
+    PY: Paraguay
+    PZ: "Zona del Canal de Panamá"
+    QA: Qatar
+    QO: "Oceanía periféricas"
+    QU: "Unión Europea"
+    RE: Reunion
+    RO: Rumania
+    RS: Serbia
+    RU: Rusia
+    RW: Rwanda
+    SA: "Arabia Saudí"
+    SB: "Islas Salomón"
+    SC: Seychelles
+    SD: Sudán
+    SE: Suecia
+    SG: Singapur
+    SH: "Santa Helena"
+    SI: Eslovenia
+    SJ: "Svalbard y Jan Mayen"
+    SK: Eslovaquia
+    SL: "Sierra Leona"
+    SM: "San Marino"
+    SN: Senegal
+    SO: Somalia
+    SR: Surinam
+    ST: "Santo Tomé y Príncipe"
+    SU: "Unión de Repúblicas Socialistas Soviéticas"
+    SV: "El Salvador"
+    SY: Siria
+    SZ: Swazilandia
+    TC: "Islas Turcas y Caicos"
+    TD: Chad
+    TF: "Territorios australes franceses"
+    TG: Togo
+    TH: Tailandia
+    TJ: Tayikistán
+    TK: Tokelau
+    TL: "Timor Oriental"
+    TM: Turkmenistán
+    TN: Túnez
+    TO: Tonga
+    TR: Turquía
+    TT: "Trinidad y Tobago"
+    TV: Tuvalu
+    TW: Taiwán
+    TZ: Tanzania
+    UA: Ucrania
+    UG: Uganda
+    UM: "Islas menores de Estados Unidos"
+    US: "Estados Unidos"
+    UY: Uruguay
+    UZ: Uzbekistán
+    VA: Vaticano
+    VC: "San Vicente y las Granadinas"
+    VD: "Vietnam del Norte"
+    VE: Venezuela
+    VG: "Islas Vírgenes Británicas"
+    VI: "Islas Vírgenes"
+    VN: Vietnam
+    VU: Vanuatu
+    WF: "Wallis y Futuna"
+    WK: "Isla Wake"
+    WS: Samoa
+    YD: "República Democrática del Yemen popular"
+    YE: Yemen
+    YT: Mayotte
+    ZA: Sudáfrica
+    ZM: Zambia
+    ZW: Zimbabue
+    ZZ: "Región desconocida o no válida"
+  date: 
+    abbr_day_names: 
+      - dom
+      - lun
+      - mar
+      - mié
+      - jue
+      - vie
+      - sáb
+    abbr_month_names: 
+      - ~
+      - ene
+      - feb
+      - mar
+      - abr
+      - may
+      - jun
+      - jul
+      - ago
+      - sep
+      - oct
+      - nov
+      - dic
+    day_names: 
+      - domingo
+      - lunes
+      - martes
+      - miércoles
+      - jueves
+      - viernes
+      - sábado
+    formats: 
+      default: "%d/%m/%Y"
+      long: "%d de %B de %Y"
+      short: "%d de %b"
+    month_names: 
+      - ~
+      - enero
+      - febrero
+      - marzo
+      - abril
+      - mayo
+      - junio
+      - julio
+      - agosto
+      - septiembre
+      - octubre
+      - noviembre
+      - diciembre
+    order: 
+      - !ruby/symbol day
+      - !ruby/symbol month
+      - !ruby/symbol year
+  date_select: "Haga clic para seleccionar la fecha"
+  datetime: 
+    distance_in_words: 
+      about_x_hours: 
+        one: "alrededor de 1 hora"
+        other: "alrededor de %{count} horas"
+      about_x_months: 
+        one: "alrededor de 1 mes"
+        other: "alrededor de %{count} meses"
+      about_x_years: 
+        one: "alrededor de 1 año"
+        other: "alrededor de %{count} años"
+      almost_x_years: 
+        one: "casi 1 año"
+        other: "casi %{count} años"
+      half_a_minute: "medio minuto"
+      less_than_x_minutes: 
+        one: "menos de 1 minuto"
+        other: "menos de %{count} minutos"
+      less_than_x_seconds: 
+        one: "menos de 1 segundo"
+        other: "menos de %{count} segundos"
+      over_x_years: 
+        one: "más de 1 año"
+        other: "más de %{count} años"
+      x_days: 
+        one: "1 día"
+        other: "%{count} días"
+      x_minutes: 
+        one: "1 minuto"
+        other: "%{count} minutos"
+      x_months: 
+        one: "1 mes"
+        other: "%{count} meses"
+      x_seconds: 
+        one: "1 segundo"
+        other: "%{count} segundos"
+    prompts: 
+      day: Día
+      hour: Hora
+      minute: Minutos
+      month: Mes
+      second: Segundos
+      year: Año
+  days: Días
+  delete: Eliminar
+  error: Error
+  errors: 
+    ? "100"
+    : "ya ha sido tomada"
+    ? "101"
+    : "no puede estar vacío"
+    ? "102"
+    : "demasiado corto"
+    ? "103"
+    : "no es válido"
+    ? "104"
+    : "no coincide"
+    ? "105"
+    : "token de acceso no válido"
+    ? "106"
+    : "no se ha encontrado"
+    ? "107"
+    : "sin confirmar"
+    ? "108"
+    : "no autenticado"
+    ? "109"
+    : "contraseña o correo electrónico no válida"
+    ? "110"
+    : "deberá registrarse"
+    ? "111"
+    : "solicitud de oauth no válido"
+    ? "112"
+    : "Este usuario no tiene una cuenta de Facebook vinculada"
+    ? "113"
+    : "fecha no válida"
+    ? "114"
+    : "Error de API de Amazon"
+    ? "115"
+    : "no hay resultados"
+    ? "116"
+    : duplicado
+    ? "117"
+    : "token de oauth no válido"
+    ? "118"
+    : "debe ser un número"
+    ? "119"
+    : "debe ser el futuro, después de hoy"
+    ? "120"
+    : "fecha de finalización debe ser después de la fecha inicial"
+    ? "121"
+    : "intervalo se superpone con el intervalo existente en el lugar"
+    ? "123"
+    : "no hay suficientes imágenes"
+    ? "124"
+    : "la descripción es demasiado corta"
+    ? "125"
+    : "no hay disponibilidad"
+    ? "126"
+    : "no hay precio"
+    ? "127"
+    : "ninguna moneda"
+    ? "128"
+    : "ningún depósito de seguridad"
+    ? "129"
+    : "unidad de tamaño no válida"
+    ? "130"
+    : "no activado"
+    ? "131"
+    : "json no válido"
+    ? "132"
+    : "ciudad no válida"
+    ? "133"
+    : "no se permite hacer eso"
+    ? "134"
+    : "no tiene acceso al recurso"
+    ? "135"
+    : "Moneda no válida"
+    ? "136"
+    : ocupado
+    ? "137"
+    : "solicitud de lugar no válido, consultar disponibilidad"
+    ? "138"
+    : "ya ha sido cancelada"
+    ? "139"
+    : "la fecha debe ser en el pasado"
+    ? "140"
+    : "debe ser mayor que"
+    ? "141"
+    : "Estancia mínima no se cumple"
+    ? "142"
+    : "sobrepasa la estancia máxima"
+    dynamic_format: "%{message}"
+    format: "%{attribute} %{message}"
+    messages: 
+      accepted: "debe ser aceptado"
+      blank: "no puede estar en blanco"
+      confirmation: "no coincide con la confirmación"
+      empty: "no puede estar vacío"
+      equal_to: "debe ser igual a %{count}"
+      even: "debe ser par"
+      exclusion: "está reservado"
+      greater_than: "debe ser mayor que %{count}"
+      greater_than_or_equal_to: "debe ser mayor que o igual a %{count}"
+      inclusion: "no está incluido en la lista"
+      invalid: "no es válido"
+      less_than: "debe ser menor que %{count}"
+      less_than_or_equal_to: "debe ser menor que o igual a %{count}"
+      not_a_number: "no es un número"
+      not_an_integer: "debe ser un entero"
+      odd: "debe ser impar"
+      record_invalid: "La validación falló: %{errors}"
+      taken: "ya está en uso"
+      too_long: "es demasiado largo (%{count} caracteres máximo)"
+      too_short: "es demasiado corto (%{count} caracteres mínimo)"
+      wrong_length: "no tiene la longitud correcta (%{count} caracteres exactos)"
+    template: 
+      body: "Se encontraron problemas con los siguientes campos:"
+      header: 
+        one: "No se pudo guardar este/a %{model} porque se encontró 1 error"
+        other: "No se pudo guardar este/a %{model} porque se encontraron %{count} errores"
+  favorites: 
+    add_favorite: "Agregar a Favoritos"
+    messages: 
+      successfully_added_to_your_favorites: "El lugar se agregó correctamente a tus Favoritos"
+    no_thanks: "No, gracias"
+    remove_favorite: "Quitar de Favoritos"
+    share_this_place_with_your_friends: "Compartir este favorito con tus amigos"
+  fees: 
+    site_fees: "Honorarios de %{site_name}"
+    site_fees_content: "%{site_name} es actualmente gratuito para todos los miembros de la visitas. Listado miembros pagan una Comisión de 10% en alquiler el primer mes de."
+  flexible: Flexible
+  front_page: 
+    carousel: 
+      five: "Hong Kong - puerta de enlace de negocios a China"
+      four: "Singapur - una potencia creciente de negocio global"
+      one: "The Clift - una elegante loft centro de Singapur"
+      three: "Kuala Lumpur - ahora aparecido en %{site_name}!"
+      two: "Cavenagh - perfecto para familias llegando a Singapur"
+    city_modal: 
+      description: "Estamos trabajando duro para expandir %{site_name}. Por favor díganos qué ciudades que le gustaría ver a continuación en %{site_name}."
+      footer: "%{site_name}"
+      title: "¿No encuentras la ciudad que buscabas?"
+    description: 
+      four: Alojamientos
+      one: "%{site_name}"
+      three: "a corto plazo, profesional y confiable"
+      two: "le conecta con"
+    other_cities: "¿Otras ciudades?"
+    search_button: "Encontrar un lugar"
+    search_place_stay_in: "Búsqueda de un lugar para quedarse en"
+    social: 
+      blog: "Leer nuestro Blog"
+      facebook: "Únase a nosotros en Facebook"
+      twitter: "Siguenos en Twitter"
+    teaser: 
+      one: "%{site_name} ofrece alojamiento flexible y de alta calidad para usted. %{site_name} es el sitio de destino para encontrar su perfecta estancia a corto o mediano plazo."
+      three: "%{site_name} ofrece alta calidad y distintas propiedades - tienen su propia casa por menos entonces el precio de un hotel de 5 estrellas."
+      title: "¿Por qué debería utilizar %{site_name}?"
+      two: "%{site_name} trabaja con agentes profesionales y terratenientes para garantizar una experiencia cómoda y profesional que puede confiar."
+    trust: 
+      four: "Far East Organization"
+      one: "Small World Group"
+      three: PropNex
+      two: "National Research Foundation"
+  header: 
+    menu: 
+      add_a_place: "Agregar una propiedad"
+      cityguide_hk: "Guía de la ciudad: Hong Kong"
+      cityguide_kl: "Guía de la ciudad: Kuala Lumpur"
+      cityguide_sg: "Guía de la ciudad: Singapur"
+      community_support: "Apoyo de la comunidad"
+      find_places: "Encontrar un lugar"
+      help: Ayuda
+      how_it_works: "Cómo funciona"
+      my_account: "Mi cuenta"
+      my_alerts: "Mis alertas"
+      my_favorite_places: "Mis lugares favoritos"
+      my_places: "Mis propiedades"
+      my_profile: "Mi perfil"
+      photography_faq: "Fotografía FAQ"
+      why_site: "¿Por qué %{site_name}?"
+    preferences: 
+      choose_currency: "Seleccione divisa"
+      choose_language: "Elija idioma"
+      choose_unit: "Elija la unidad"
+      english_native: English
+      spanish_native: Español
+  helpers: 
+    button: 
+      create: "Crear %{model}"
+      submit: "Guardar %{model}"
+      update: "Actualización %{model}"
+    select: 
+      prompt: "Por favor seleccione"
+    submit: 
+      create: "Crear %{model}"
+      submit: "Guardar %{model}"
+      update: "Actualizar %{model}"
+  how: 
+    find_a_place: "Encontrar un lugar"
+    payments: Pagos
+    title: "Cómo funciona %{site_name}"
+    travelers: Viajeros
+  inquiries: 
+    arriving: Llegando
+    arriving_on: Llegando
+    button_inquire: Consulta
+    comments_questions: "Comentarios / preguntas"
+    conversation_with: "Conversación con"
+    existing_account_please_login: "Ya tienes una cuenta registrada con ese correo electrónico, inicie la sesión antes de enviar su consulta."
+    inquiries_title: Consultas
+    inquiry: Consulta
+    inquiry_center: "Centro de Consultas"
+    inquiry_error: "Hubo un problema al procesar le consulta, vuelva a intentarlo"
+    inquiry_guests: 
+      one: "1 invitado"
+      other: "%{count} invitados"
+    inquiry_modal_title: "Cuéntanos tu estancia"
+    inquiry_questions: "Agregue cualquier otra pregunta aquí. Puede hacer preguntas acerca de esta propiedad, sus necesidades o cualquier otro anuncio de la lista"
+    inquiry_sent: "Consulta enviada"
+    inquiry_sent_check_link: "Se puede comprobar en sus investigaciones en el %{link}"
+    inquiry_sent_msg: "El propietario del anuncio será notificado de su consulta. Normalmente, debe esperar una respuesta dentro de 24 a 48 horas. Si, por casualidad, no escucha, te animamos a preguntar sobre otras propiedades."
+    inquiry_success_title: "Se ha enviado tu consulta!"
+    re_captcha: "Sólo los seres humanos"
+    staying: Quedandose
+  messages: 
+    button_send_a_message: "Enviar un mensaje"
+    conversation_with_deleted: "Conversación con %{name} eliminado."
+    failed_read: "No se ha podido marcar como leído"
+    failed_unread: "No se ha podido marcar como no leído"
+    mark_read: "Marcar como leído"
+    mark_unread: "Marcar como no leído"
+    marked_as_read: "El mensaje fue marcado como leído"
+    marked_as_unread: "El mensaje fue marcado como no leído"
+    message_sent_privately: "Mensaje enviado privada"
+    messsage_error_try_again: "Se ha producido un error. Vuelva a intentarlo."
+    no_messages: "No hay mensajes"
+    no_messages_inbox: "No tienes ningún mensaje en la bandeja de entrada"
+    question_new_placeholder: "Puede preguntar y responder preguntas aquí."
+    reply: Responder
+  months: Meses
+  number: 
+    currency: 
+      format: 
+        delimiter: "."
+        format: "%n %u"
+        negative_format: "-%n %u"
+        precision: 2
+        separator: ","
+        significant: false
+        strip_insignificant_zeros: false
+        unit: €
+    format: 
+      delimiter: "."
+      precision: 3
+      separator: ","
+      significant: false
+      strip_insignificant_zeros: false
+    human: 
+      decimal_units: 
+        format: "%n %u"
+        units: 
+          billion: "mil millones"
+          million: millón
+          quadrillion: "mil billones"
+          thousand: mil
+          trillion: billón
+      format: 
+        precision: 1
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units: 
+        format: "%n %u"
+        units: 
+          byte: 
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage: 
+      format: ~
+    precision: 
+      format: ~
+  or: O
+  photo_faq: 
+    title: "Fotografía FAQ"
+  places: 
+    address: Dirección
+    amenities: 
+      aircon: "Aire acondicionado"
+      breakfast: Desayuno
+      buzzer_intercom: Zumbador/Intercom
+      cable_tv: "TV por cable"
+      doorman: Portero
+      dryer: Secador
+      elevator: Ascensor
+      family_friendly: "Ambiente familiar"
+      gym: Gimnasio
+      handicap: "Handicap accesible"
+      heating: Calefacción
+      hot_tub: "Tina caliente"
+      hot_water: "Agua caliente"
+      internet: Internet
+      internet_wifi: WiFi
+      jacuzzi: Jacuzzi
+      kitchen: Cocina
+      parking_included: "Espacio de estacionamiento"
+      pets_allowed: Mascotas
+      pool: Piscina
+      smoking_allowed: "Fumar permitido"
+      suitable_events: "Apto para eventos"
+      tennis: Tenis
+      tv: TV
+      washer: Lavadora
+    availabilities: 
+      messages: 
+        something_went_wrong: "Algo salió mal. Por favor, compruebe de nuevo sus disponibilidades."
+    bathrooms: Baños
+    bedrooms: Dormitorios
+    beds: Camas
+    calendar: Calendario
+    cancellation: Cancelación
+    cancellation_policies: 
+      flexible: "Flexible 30 días"
+      moderate: Moderada
+      strict: Estricto
+      strict_7_day: "Estricto 7 días"
+    cancellation_policy: "Política de cancelación"
+    check_in_after: "Llegar antes de"
+    check_out_before: "Salir antes de"
+    currency: Moneda
+    delete: Eliminar
+    description: Descripción
+    details: Detalles
+    edit: Editar
+    final_cleanup: "Limpieza final"
+    guests: Invitados
+    house_rules: "Reglas de la casa"
+    inquire: Preguntar
+    invisible: Invisible
+    listed: Listado
+    map: Mapa
+    max_guests: "Número de invitados"
+    maximum_of: "Máximo de"
+    maximum_stay: "Estancia máxima"
+    messages: 
+      date_must_be_after: "fecha de finalización debe ser después de la fecha inicial"
+      date_must_be_future: "la fecha debe ser futura, después de hoy"
+      logged_to_rent: "Debes estar registrado para alquilar un lugar"
+      occupied: Ocupado
+      place_deleted: "Lugar eliminado correctamente"
+      place_deletion_error: "Error de eliminación de lugar"
+      place_publish_error: "Lo sentimos, podemos no publicar su lugar debido a la falta de información."
+      place_published: "Su lugar ahora está listado!"
+      place_unpublished: "Su lugar ahora es invisible"
+    minimum_of: "Mínimo de"
+    minimum_stay: "Estancia mínima"
+    no_maximum: "No hay máximo"
+    no_minimum: "No hay mínimo"
+    no_obligation: "ninguna obligación"
+    num_bathrooms: "Número de baños"
+    num_bedrooms: "Número de habitaciones"
+    num_beds: "Número de camas"
+    per_month: "Por mes"
+    per_night: "Por noche"
+    per_week: "Por semana"
+    photos: Fotos
+    price_per_month: "Precio por mes"
+    price_per_night: "Precio por noche"
+    price_per_week: "Precio por semana"
+    publish: Publicar
+    questions: 
+      ask_question: "Haga una pregunta"
+      delete_this_question: "¿Eliminar esta pregunta?"
+      owners_answer: "Respuesta del propietario"
+      unknown: Desconocido
+    questions_title: Preguntas
+    rent: 
+      check_in_flexible: Flexible
+      clear_selection: "Borrar selección"
+      continue: Continuar
+      duration: Duración
+      nights: Noches
+      place_details: "Detalles de lugar"
+      read_rent_agreement: "He leído y está de acuerdo con el contrato de arrendamiento"
+      stay_details: "Detalles del lugar"
+    rent_word: Rentar
+    search: 
+      arriving_on: Llegando
+      city: Ciudad
+      dates: Fechas
+      departing_on: Saliendo
+      guests: 
+        one: "1 invitado"
+        other: "%{count} invitados"
+      maximum_price: "Precio máximo"
+      minimum_price: "Precio mínimo"
+      no_result: "No se encontraron resultados. Pruebe a cambiar algunas de sus opciones de búsqueda."
+      price_highest: "Precio (más alto primero)"
+      price_lowest: "Precio (más bajo primero)"
+      price_size_highest: "Precio y tamaño (más alto primero)"
+      price_size_lowest: "Precio y tamaño (más bajo primero)"
+      pricing_title: "Precio por mes"
+      results: 
+        one: "1 resultado"
+        other: "%{count} resultados"
+        zero: "No hay resultados"
+      sorry_no_matches: "Lo sentimos, no hay propiedades que coinciden con los criterios"
+      sort_by: "Ordenar por"
+      type: Tipo
+      type_title: Tipo
+    security_deposit: "Depósito de garantía"
+    size: Tamaño
+    this_is_a_preview: "Esta es una vista previa"
+    title: Título
+    type: Tipo
+    types: 
+      apartment: Apartamento
+      house: Casa
+      other_space: "Otro espacio"
+      room: Habitación
+      villa: Villa
+    unpublish: "Anular la publicación"
+    wizard: 
+      additional_costs_title: "Costes adicionales"
+      address_title: Dirección
+      amenities: 
+        do_you_allow_smoking: "¿Se permite fumar en su apartamento y balcón?"
+        select_one: "Por favor, seleccione al menos una"
+      amenities_title: Comodidades
+      back_to_property: "Volver a propiedad"
+      calendar: 
+        add: Añadir
+        add_new: "Agregar nuevo"
+        calendar_hint: "Por favor háganos saber qué fechas el lugar está disponible para alquiler"
+        close: Cerrar
+        dates: Fechas
+        edit: Editar
+        new_date_help: "Puede agregar fechas o un intervalo de fechas cuando su lugar sea disponible, o que le gustaría cambiar la tarifa diaria, que actualmente se establece en %{currency_sign}%{price_per_night}"
+        new_price: "Nuevo precio"
+        remove: Quitar
+        remove_confirmation: "¿Quitar este período de su calendario?"
+        something_went_wrong: "Algo salió mal. Compruebe de nuevo más tarde."
+        status: Estado
+        to: Para
+        unavailable: "No disponible"
+      calendar_title: Calendario
+      description_title: Descripción
+      furnishings_title: Comodidades
+      general_information_title: "Información general"
+      how_many_bedrooms: "Cuántos dormitorios"
+      i_agree_to_the: "Estoy de acuerdo con la"
+      list_your_place: "El lugar de la lista"
+      max_guests: "Número máximo de invitados"
+      miscellaneous_title: Varios
+      next_step: "Paso siguiente &raquo;"
+      photos: 
+        are_you_sure_delete_photo: "¿Está seguro que desea eliminar esta foto?"
+        click_here_to_add_caption: "Haga clic aquí para agregar título"
+        no_caption: "Sin título"
+        primary: Principal
+        read_photo_faq: "Leer algunas sugerencias para proporcionar imágenes para tu %{site_name} propiedades"
+        tip: "Puede ordenar tus fotos mediante arrastrar y soltar"
+        upload_photo_hint: "Apoyamos las imágenes jpg y png. Debes enviar un mínimo de 3 imágenes."
+      photos_title: Fotos
+      place_and_building_facilities_title: "Lugar y las instalaciones del edificio"
+      place_type: "¿Qué clase de lugar es?"
+      previous_step: "&laquo; Paso anterior"
+      price_and_conditions_title: "Precio y condiciones"
+      pricing: 
+        final_cleanup_hint: "El costo de la limpieza del lugar una vez finalizado el alquiler"
+        flexible_cancellation: "al menos 30 días antes de la fecha de reserva, no se le cobrará y cualquier depósito de seguridad que han pagado se devolverá a usted."
+        for_more_info: "para obtener más información"
+        head_cancellation: "Si desea cancelar su reserva de %{site_name}"
+        moderate_cancellation: "5 días antes de la llegada, excepto las tasas de reembolso completo"
+        see_our: "Consulte nuestra"
+        strict_cancellation: "al menos 7 días antes de la fecha de reserva, se le cobrará el 10% de los depósitos de seguridad."
+      pricing_title: Precios
+      save_and_continue: "Guardar y continuar &raquo;"
+      sports_and_recreation_title: "Deportes "
+      terms_title: Términos
+      what_city_is_your_place_in: "¿Qué ciudad está su lugar?"
+  preview: "Vista previa"
+  privacy_policy: "Política de privacidad"
+  private: Privada
+  read_more: "Leer más"
+  roles: 
+    admin: Admin
+    agent: Agente
+    user: Usuario
+  save: Guardar
+  share_via: "Compartir en"
+  site_title: "%{site_name} - %{site_tagline}"
+  submit: Enviar
+  submitting: Enviando
+  suggest_thank_you_message: "Gracias por tu mensaje. %{site_name} se está expandiendo y le haremos saber cuando %{city} está disponible!"
+  support: 
+    array: 
+      last_word_connector: ", y "
+      two_words_connector: " y "
+      words_connector: ", "
+  terms_and_conditions: "Términos y condiciones"
+  terms_of_service: "Términos de servicio"
+  time: 
+    am: am
+    formats: 
+      default: "%A, %d de %B de %Y %H:%M:%S %z"
+      long: "%d de %B de %Y %H:%M"
+      short: "%d de %b %H:%M"
+    pm: pm
+  time_ago: "hace %{time}"
+  units: 
+    square_feet: "Pies cuadrados"
+    square_feet_short: pies²
+    square_meters: "Metros cuadrados"
+    square_meters_short: m²
+  users: 
+    bank_accounts: 
+      account_number: "Número de cuenta"
+      bank_code: "Código del Banco"
+      branch_code: "Código de sucursal"
+      choose_country: "Elegir un país"
+      holder_name: "Nombre del titular"
+      iban: IBAN
+      swift: SWIFT
+    billing_address: "Dirección de facturación"
+    birthdate: "Fecha de nacimiento"
+    cancel_email_change: "Cancelar el cambio de correo electrónico"
+    change_photo: "Foto de cambio"
+    change_photo_description: "Subir una foto actual ayuda a inquilinos evaluar tu perfil. Mientras no obligatorio, ayuda a construir confianza con dueños si completa su perfil."
+    confirm_password: "Confirmar contraseña"
+    edit: Editar
+    email: "Correo electrónico"
+    email_address: "Dirección de correo electrónico"
+    email_example: "por ejemplo, mail@mail.com"
+    first_name: "Primer nombre"
+    fully_private_field: "Privada. Sólo visible %{site_name}"
+    gender: Género
+    gender_female: Femenino
+    gender_male: Masculino
+    gender_undisclosed: "No revelado"
+    gender_unknown: "No revelado"
+    last_name: Apellido
+    link_account: "Vincular cuenta"
+    linked_accounts: "Cuentas vinculadas"
+    messages: 
+      authentication_fail: "Somos incapaces de autenticarle en este momento. Vuelva a intentarlo."
+      confirmation_email_sent: "Correo electrónico de confirmación enviada"
+      connected_with_account: "%{oauth_provider} está conectado en tu cuenta."
+      email_confirmed: "Se ha confirmado correctamente tu dirección de correo electrónico!"
+      invalid_confirmation_code: "Código de confirmación no válido"
+      invalid_email: "Correo electrónico no válida"
+      invalid_login: "Inicio de sesión no válido"
+      password_reset_failed: "Error de restablecimiento de contraseña."
+      password_reset_instruction_sent: "Instrucciones de restablecimiento de contraseña se ha enviado a su correo electrónico."
+      password_reset_success: "Éxito de restablecimiento de contraseña"
+      password_set_first_time: "La contraseña se estableció correctamente"
+      signup_needed_to_connect: "Tenemos que conectar los detalles de tu cuenta de %{site_name}, por favor facilítenos la siguiente."
+      successfully_updated_billing: "Se actualizó correctamente su dirección de facturación"
+      successfully_updated_password: "Se actualizó correctamente la contraseña."
+      successfully_updated_profile: "Había actualizado tu perfil."
+      successfully_updated_profile_check_email: "Has actualizado tu perfil! Sin embargo, deberás confirmar tu correo electrónico. Por favor, revisa tu correo electrónico y haga clic en el enlace para comprobarlo."
+      user_confirmed: "Tu cuenta ha sido exitosamente confirmada!"
+      user_created: "Tu cuenta se ha creado correctamente!"
+    mobile_phone: "Número de teléfono móvil"
+    name_example: "por ejemplo, John Smith"
+    passport_number: "Número de pasaporte"
+    password: Contraseña
+    private_field: "Privada. Sólo visible para aquellos que tienen una transacción activa con usted"
+    profile_required_message: "Por favor, haga clic en Editar en tu perfil para introducir información adicional necesaria para realizar reservas en %{site_name}."
+    public_field: "Público. Cualquiera puede ver esta información"
+    register: Registro
+    registration: 
+      already_member: "¿Ya es un miembro %{site_name}?"
+      choose_a_password: "Elija una contraseña para su cuenta"
+      confirm: Confirmar
+      confirm_reset_password: "Confirme el restablecimiento de contraseña"
+      confirmation_code: "Código de confirmación"
+      create_account: "Crear cuenta"
+      create_an_account_using: "Crear una cuenta mediante"
+      create_new_account: "Crear nueva cuenta"
+      enter_confirmation_code: "Introduzca el código de confirmación"
+      enter_your_email: "Introduzca su correo electrónico"
+      enter_your_new_password: "Introduzca su nueva contraseña"
+      forgot_password: "¿Olvidó la contraseña?"
+      hello: Hola
+      here: Aquí
+      i_accept_the: "Acepto la"
+      login: "Inicio de sesión"
+      login_to_site: "Inicio de sesión a %{site_name}"
+      login_using: "Inicio de sesión utilizando"
+      please_login: "Inicie sesión"
+      registration_warning: "%{site_name} no publica nada sin su consentimiento"
+      resend_confirmation: "Enviar confirmación"
+      resend_confirmation_code: "Reenviar código de confirmación"
+      reset_password: "Restablecer contraseña"
+      sign_in_provider_info: |-
+          Esto le permitirá iniciar sesión en %{site_name}<br />
+          utilizando sus cuentas existentes!
+      sign_in_with: "Identifícate con %{provider}"
+      signup_complete: "Suscripción completa"
+      signup_complete_text: "Gracias por registrarte! Sin embargo, deberás confirmar tu cuenta. Por favor, revisa tu correo electrónico y haga clic en el enlace para comprobarlo."
+      signup_for_an_account: "Regístrate para una cuenta nueva"
+      switch_to_login: "¿Ya tienes una cuenta? Inicia sesión"
+    required_fields: "Campos obligatorios"
+    retype_password: "Vuelva a escribir la contraseña"
+    saving_photo: "Guardar la foto"
+    section_header_bank_account: "Cuenta bancaria"
+    section_header_billing_address: "Dirección de facturación"
+    section_header_user_information: "Información de usuario"
+    section_header_user_password: Contraseña
+    section_header_user_profile: "Información personal"
+    sign_in: "Inicia sesión"
+    sign_out: "Cerrar sesión"
+    unconfirmed_email: "Correo electrónico no confirmado"
+    upload_a_new_photo: "Subir una nueva foto"
+    use_facebook_photo: "Usar foto de Facebook"
+  weeks: Semanas
+  why: 
+    affordability: Asequibilidad
+  workflow: 
+    initial_agent: "Cuando el inquilino hace una solicitud de alquiler final, podrá confirmar el alquiler aquí."
+    initial_guest: "Cuando esté listo para alquilar esta propiedad"
+    initial_guest_button: "Confirmar solicitud de alquiler"
+    paid_agent: "¡ Felicidades! Este alquiler está confirmado. Detalles de contacto del arrendatario se le enviará por correo electrónico y el inquilino pagará el resto de las tarifas de alquiler directamente a usted. Gracias por anunciar tu propiedad con %{site_name}!"
+    paid_guest: "¡Felicidades! Se confirma su alquiler. Datos de contacto del propietario de la lista se le enviará por correo electrónico y pagará el resto de las tarifas de alquiler directamente al propietario de la lista. Disfrute de su estancia y gracias por utilizar %{site_name}!"
+    readypay_agent: "El inquilino ha sido notificado de la aprobación de alquiler. Se ha solicitado el inquilino a pagar la cuota de iniciación de alquiler. Se le notificará cuando se complete el pago."
+    readypay_guest: "El propietario del anuncio ha confirmado su solicitud de alquiler. Utilice el botón de abajo para pagar la cuota de iniciación de alquiler de SGD $300. Esto garantizará la propiedad para usted para la duración de su solicitud de alquiler."
+    readypay_guest_button: "Pagar cuota de iniciación de alquiler SGD$300"
+    requested_agent: "El inquilino ha presentado una solicitud de alquiler, confirmando su intención de alquilar esta propiedad. Compruebe los términos del alquiler, incluyendo la programación de pago, disponibilidad de propiedad y otras consideraciones y requisitos que puede tener. Cuando esté listo, haga clic en el botón para confirmar la solicitud de alquiler del arrendatario. Luego se pedirá el inquilino a pagar la cuota de confirmación de alquiler."
+    requested_agent_button: "Aprobar la solicitud de alquiler"
+    requested_guest: "Han confirmado su solicitud de alquiler. Una vez que el propietario del anuncio ha comprobado todas las condiciones y disponibilidad de la propiedad, se le pedirá a pagar la cuota de iniciación de alquiler de SGD $300. Esto garantizará la propiedad para usted para la duración de su solicitud de alquiler."
+    system_msg_pay: "Invitado pagó la cuota de iniciación de alquiler"
+    system_msg_pre_approve: "Agente aprobó la solicitud de alquiler"
+    system_msg_request: "Invitado pidió alquilar este lugar"
+    system_msg_send: "Pregunta enviada"

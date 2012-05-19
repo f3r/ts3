@@ -16,4 +16,6 @@ module I18n
   end
 end
 
-I18n.exception_handler = :missing_translations_log_handler
+if Rails.env.development?
+  I18n.exception_handler = :missing_translations_log_handler
+end

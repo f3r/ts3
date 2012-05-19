@@ -16,7 +16,7 @@ en:
     reply:                      Reply
     message_sent_privately:     Message sent privately
     messsage_error_try_again:   An error occured. Please try again.
-    conversation_with_deleted:  "Conversation with #{name} deleted."
+    conversation_with_deleted:  "Conversation with %{name} deleted."
 
   inquiries:
     inquiries_title: Inquiries

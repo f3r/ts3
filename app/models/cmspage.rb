@@ -18,12 +18,13 @@ class Cmspage < ActiveRecord::Base
     self.active = false
     self.save
   end
- #get the contnet of the page
- def self.getPageContent(page)
+ 
+  # Get the content of the page
+  def self.getPageContent(page)
     if page
       @pagecontents = Cmspage.where(:active => 1, :page_url => page).first
     end
- end
+  end
  
  def self.get_all_routes
     @fields      = [:id, :page_url, :page_title]
@@ -33,21 +34,21 @@ class Cmspage < ActiveRecord::Base
     @activeroute = Cmspage.active.select(@fields).all
   end
  
-  #Dynamic routes
-   def self.routes(router)
-      pages = get_all_routes
-      if pages
+  # Add Dynamic routes
+  def self.routes(router)
+    pages = get_all_routes
+    if pages
       router.instance_exec(pages) do |pages|
-         pages.each do |page|
-           if page['route_as']
+        pages.each do |page|
+          if page['route_as']
             match "/#{page['page_url']}" => 'home#staticpage', :pages => "#{page['page_url']}", :as => "#{page['route_as']}" 
           else
-            match "/#{page['page_url']}" => 'home#staticpage', :pages => "#{page['page_url']}",:path=>"#{page['page_url']}"
+            match "/#{page['page_url']}" => 'home#staticpage', :pages => "#{page['page_url']}", :path=>"#{page['page_url']}"
           end
+        end
       end
-     end
-   end
- end
+    end
+  end
  
  def self.get_all_active_city_name
    @fields      = [:name]

@@ -7,11 +7,14 @@ feature 'StaticPages feature', %q{
 
   background do
     @page = FactoryGirl.create(:cmspage)
+    FactoryGirl.create(:currency)
   end
 
   scenario 'visit a StaticPage' do
     visit "/#{@page.page_url}"
-    page.should have_content(@page.description)
+    @page.description.each do |paragraph|
+      page.should have_content(paragraph)
+    end
   end
 
   scenario 'see a 404 if the StaticPage doesnt exist' do

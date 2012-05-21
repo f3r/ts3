@@ -27,7 +27,7 @@ class HomeController < ApplicationController
   
   def staticpage
     #get the content from back-end
-    @staticpages = Heypal::Cmspage.getPageContents("pageurl" => params[:pages])
+    @staticpages = Cmspage.getPageContent(params[:pages])
   end
 
 end

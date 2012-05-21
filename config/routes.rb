@@ -104,20 +104,9 @@ HeyPalFrontEnd::Application.routes.draw do
   put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################
-  # Static Content
+  # Static page dynamic routing
   ###########################################################################################
-  match '/page/:pages'              => 'home#staticpage'    
-  match '/why'                      => 'home#staticpage' , :pages => :why,:as => :home_why 
-  match '/how-it-works'             => 'home#staticpage' , :pages => :how,:as => :home_how 
-  match '/photography-faq'          => 'home#staticpage' , :pages => :faq,:as => :home_photo_faq
-  match '/terms'                    => 'home#staticpage' , :pages => :terms
-  match '/fees'                     => 'home#staticpage' , :pages => :fees
-  match '/privacy'                  => 'home#staticpage' , :pages => :privacy
-  match '/contact'                  => 'home#staticpage' , :pages => :contact
-  match 'city-guides/singapore'     => 'home#staticpage' , :pages => :sg,:as => :cityguide_sg
-  match 'city-guides/hong-kong'     => 'home#staticpage' , :pages => :hk,:as => :cityguide_hk
-  match 'city-guides/kuala-lumpur'  => 'home#staticpage' , :pages => :kl,:as => :cityguide_kl
-
+  Cmspage.routes(self)
   ###########################################################################################
   # Backend ported resources
   ###########################################################################################

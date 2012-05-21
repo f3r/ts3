@@ -26,30 +26,6 @@ class Cmspage < ActiveRecord::Base
     end
   end
  
- def self.get_all_routes
-    @fields      = [:id, :page_url, :page_title]
-    if self.connection.column_exists?(self.table_name, :route_as)
-      @fields << :route_as
-    end
-    @activeroute = Cmspage.active.select(@fields).all
-  end
- 
-  # Add Dynamic routes
-  def self.routes(router)
-    pages = get_all_routes
-    if pages
-      router.instance_exec(pages) do |pages|
-        pages.each do |page|
-          if page['route_as']
-            match "/#{page['page_url']}" => 'home#staticpage', :pages => "#{page['page_url']}", :as => "#{page['route_as']}" 
-          else
-            match "/#{page['page_url']}" => 'home#staticpage', :pages => "#{page['page_url']}", :path=>"#{page['page_url']}"
-          end
-        end
-      end
-    end
-  end
- 
  def self.get_all_active_city_name
    @fields      = [:name]
    cityname  = []

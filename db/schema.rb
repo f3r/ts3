@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120515030118) do
+ActiveRecord::Schema.define(:version => 20120516131408) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -119,6 +119,16 @@ ActiveRecord::Schema.define(:version => 20120515030118) do
   add_index "cities", ["slug"], :name => "index_cities_on_slug", :unique => true
   add_index "cities", ["state"], :name => "index_cities_on_state"
 
+  create_table "cmspages", :force => true do |t|
+    t.string  "page_title"
+    t.string  "page_url",    :default => "",    :null => false
+    t.text    "description"
+    t.boolean "active",      :default => false
+    t.string  "route_as"
+  end
+
+  add_index "cmspages", ["page_url"], :name => "index_cmspages_on_page_url", :unique => true
+
   create_table "comments", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -186,6 +196,26 @@ ActiveRecord::Schema.define(:version => 20120515030118) do
     t.datetime "photo_updated_at"
     t.integer  "position"
     t.boolean  "active",             :default => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
+  end
+
+  create_table "galleries", :force => true do |t|
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "gallery_items", :force => true do |t|
+    t.string   "link"
+    t.string   "label"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
+    t.integer  "position",           :default => 0
+    t.boolean  "active",             :default => false
+    t.integer  "gallery_id",         :default => 0
     t.datetime "created_at",                            :null => false
     t.datetime "updated_at",                            :null => false
   end

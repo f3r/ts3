@@ -135,10 +135,9 @@ HeyPalFrontEnd::Application.routes.draw do
   # Static page dynamic routing
   ###########################################################################################
   
-  match '/:pages'                   => 'home#staticpage' , :pages => :why,:as => :home_why
-  match '/:pages'                   => 'home#staticpage' , :pages => :how,:as => :home_how
-  match '/:pages'                   => 'home#staticpage' , :pages => :why,:as => :home_why 
-  match '/:pages'                   => 'home#staticpage' , :pages => :faq,:as => :home_photo_faq
+  match '/:pages'                   => 'home#staticpage' , :pages => /why/, :as => :home_why
+  match '/:pages'                   => 'home#staticpage' , :pages => /how/, :as => :home_how
+  match '/:pages'                   => 'home#staticpage' , :pages => /faq/, :as => :home_photo_faq
   
   match '/terms'                    => 'home#staticpage' , :pages => :terms
   match '/fees'                     => 'home#staticpage' , :pages => :fees
@@ -150,6 +149,8 @@ HeyPalFrontEnd::Application.routes.draw do
   match 'city-guides/kuala-lumpur'  => 'home#staticpage' , :pages => :kl,:as => :cityguide_kl
 
   get '/robots.txt' => 'home#robot'
+
+  match '/:pages' => 'home#staticpage'
 
   # Error matching
   match '/404' => 'errors#page_not_found'

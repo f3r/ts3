@@ -26,10 +26,8 @@ class Cmspage < ActiveRecord::Base
   end
  
   # Get the content of the page
-  def self.getPageContent(page)
-    if page
-      @pagecontents = Cmspage.where(:active => 1, :page_url => page).first
-    end
+  def self.find_by_url(url)
+    Cmspage.where(:active => 1, :page_url => url).first if url
   end
  
  def self.get_all_active_city_name

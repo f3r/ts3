@@ -1,2 +1,2 @@
--if !@staticpages.blank?
- = @staticpages["description"].html_safe
+- if @staticpage.present?
+ = @staticpage.description.html_safe

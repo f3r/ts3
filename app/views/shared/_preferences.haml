@@ -5,16 +5,16 @@
         = currency_sign_of(get_current_currency)
     %ul.dropdown-menu
       %li.arrow
-      %li.divider-title= "#{t("header.preferences.choose_language")}..."
+      %li.divider-title= "#{t("template.header.preferences.choose_language")}..."
       %li.divider
       %li{ get_current_language == "en" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_language => 'en' do
           %span.check &#10003;
-          = t("header.preferences.english_native")
+          = t("template.header.preferences.english_native")
       %li{ get_current_language == "es" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_language => 'es' do
           %span.check &#10003;
-          = t("header.preferences.spanish_native")
+          = t("template.header.preferences.spanish_native")
       %li.divider
       %li.divider-title= "#{t("header.preferences.choose_currency")}..."
       %li.divider
@@ -24,7 +24,7 @@
               %span.em <span class="check">&#10003;</span>
               %span.option-label= cur.label
       %li.divider              
-      %li.divider-title= "#{t("header.preferences.choose_unit")}..."
+      %li.divider-title= "#{t("template.header.preferences.choose_unit")}..."
       %li.divider            
       %li{ get_current_size_unit == "sqm" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_size_unit => 'sqm' do

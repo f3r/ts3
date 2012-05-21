@@ -1,24 +1,24 @@
 #why.info
   .intro.span12
-    %h3= t("why.title", :site_name => SITE_NAME)
-    = t("why.content", :site_name => SITE_NAME).html_safe
+    %h3= t("pages.why.title", :site_name => SITE_NAME)
+    = t("pages.why.content", :site_name => SITE_NAME).html_safe
     - if !logged_in?
       .get-started
-        = link_to t("why.get_started"), {:trigger_signup => true}, :class => 'btn btn-primary btn-large btn-info', :style => 'width: 210px'
+        = link_to t("pages.why.get_started"), {:trigger_signup => true}, :class => 'btn btn-primary btn-large btn-info', :style => 'width: 210px'
   .span16
     .well
-      %h4= t("why.trust")
-      = t("why.trust_content", :site_name => SITE_NAME).html_safe
+      %h4= t("pages.why.trust")
+      = t("pages.why.trust_content", :site_name => SITE_NAME).html_safe
     .well
-      %h4= t("why.flexibility")
-      = t("why.flexibility_content", :site_name => SITE_NAME).html_safe
+      %h4= t("pages.why.flexibility")
+      = t("pages.why.flexibility_content", :site_name => SITE_NAME).html_safe
     .well
-      %h4= t("why.affordability")
-      = t("why.affordability_content", :site_name => SITE_NAME).html_safe
+      %h4= t("pages.why.affordability")
+      = t("pages.why.affordability_content", :site_name => SITE_NAME).html_safe
     .well
-      %h4= t("why.where_is_site", :site_name => SITE_NAME)
-      = t("why.where_is_site_content", :site_name => SITE_NAME).html_safe  
+      %h4= t("pages.why.where_is_site", :site_name => SITE_NAME)
+      = t("pages.why.where_is_site_content", :site_name => SITE_NAME).html_safe  
     .well.singapore-first
-      %h4= t("why.singapore_first", :site_name => SITE_NAME)
-      = t("why.singapore_first_content", :site_name => SITE_NAME).html_safe
+      %h4= t("pages.why.singapore_first", :site_name => SITE_NAME)
+      = t("pages.why.singapore_first_content", :site_name => SITE_NAME).html_safe
       %img{:src => "http://s3.amazonaws.com/squarestays-static/singapore.jpg"}

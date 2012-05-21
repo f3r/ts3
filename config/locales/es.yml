@@ -601,66 +601,77 @@ es:
     no_thanks: "No, gracias"
     remove_favorite: "Quitar de Favoritos"
     share_this_place_with_your_friends: "Compartir este favorito con tus amigos"
-  fees: 
-    site_fees: "Honorarios de %{site_name}"
-    site_fees_content: "%{site_name} es actualmente gratuito para todos los miembros de la visitas. Listado miembros pagan una Comisión de 10% en alquiler el primer mes de."
   flexible: Flexible
-  front_page: 
-    carousel: 
-      five: "Hong Kong - puerta de enlace de negocios a China"
-      four: "Singapur - una potencia creciente de negocio global"
-      one: "The Clift - una elegante loft centro de Singapur"
-      three: "Kuala Lumpur - ahora aparecido en %{site_name}!"
-      two: "Cavenagh - perfecto para familias llegando a Singapur"
-    city_modal: 
-      description: "Estamos trabajando duro para expandir %{site_name}. Por favor díganos qué ciudades que le gustaría ver a continuación en %{site_name}."
-      footer: "%{site_name}"
-      title: "¿No encuentras la ciudad que buscabas?"
-    description: 
-      four: Alojamientos
-      one: "%{site_name}"
-      three: "a corto plazo, profesional y confiable"
-      two: "le conecta con"
-    other_cities: "¿Otras ciudades?"
-    search_button: "Encontrar un lugar"
-    search_place_stay_in: "Búsqueda de un lugar para quedarse en"
-    social: 
-      blog: "Leer nuestro Blog"
-      facebook: "Únase a nosotros en Facebook"
-      twitter: "Siguenos en Twitter"
-    teaser: 
-      one: "%{site_name} ofrece alojamiento flexible y de alta calidad para usted. %{site_name} es el sitio de destino para encontrar su perfecta estancia a corto o mediano plazo."
-      three: "%{site_name} ofrece alta calidad y distintas propiedades - tienen su propia casa por menos entonces el precio de un hotel de 5 estrellas."
-      title: "¿Por qué debería utilizar %{site_name}?"
-      two: "%{site_name} trabaja con agentes profesionales y terratenientes para garantizar una experiencia cómoda y profesional que puede confiar."
-    trust: 
-      four: "Far East Organization"
-      one: "Small World Group"
-      three: PropNex
-      two: "National Research Foundation"
-  header: 
-    menu: 
-      add_a_place: "Agregar una propiedad"
-      cityguide_hk: "Guía de la ciudad: Hong Kong"
-      cityguide_kl: "Guía de la ciudad: Kuala Lumpur"
-      cityguide_sg: "Guía de la ciudad: Singapur"
-      community_support: "Apoyo de la comunidad"
-      find_places: "Encontrar un lugar"
-      help: Ayuda
-      how_it_works: "Cómo funciona"
-      my_account: "Mi cuenta"
-      my_alerts: "Mis alertas"
-      my_favorite_places: "Mis lugares favoritos"
-      my_places: "Mis propiedades"
-      my_profile: "Mi perfil"
-      photography_faq: "Fotografía FAQ"
-      why_site: "¿Por qué %{site_name}?"
-    preferences: 
-      choose_currency: "Seleccione divisa"
-      choose_language: "Elija idioma"
-      choose_unit: "Elija la unidad"
-      english_native: English
-      spanish_native: Español
+  pages:
+    photo_faq: 
+      title: "Fotografía FAQ"
+    why: 
+      affordability: Asequibilidad
+    how: 
+      find_a_place: "Encontrar un lugar"
+      payments: Pagos
+      title: "Cómo funciona %{site_name}"
+      travelers: Viajeros
+    fees: 
+      site_fees: "Honorarios de %{site_name}"
+      site_fees_content: "%{site_name} es actualmente gratuito para todos los miembros de la visitas. Listado miembros pagan una Comisión de 10% en alquiler el primer mes de."
+    front_page: 
+      carousel: 
+        five: "Hong Kong - puerta de enlace de negocios a China"
+        four: "Singapur - una potencia creciente de negocio global"
+        one: "The Clift - una elegante loft centro de Singapur"
+        three: "Kuala Lumpur - ahora aparecido en %{site_name}!"
+        two: "Cavenagh - perfecto para familias llegando a Singapur"
+      city_modal: 
+        description: "Estamos trabajando duro para expandir %{site_name}. Por favor díganos qué ciudades que le gustaría ver a continuación en %{site_name}."
+        footer: "%{site_name}"
+        title: "¿No encuentras la ciudad que buscabas?"
+      description: 
+        four: Alojamientos
+        one: "%{site_name}"
+        three: "a corto plazo, profesional y confiable"
+        two: "le conecta con"
+      other_cities: "¿Otras ciudades?"
+      search_button: "Encontrar un lugar"
+      search_place_stay_in: "Búsqueda de un lugar para quedarse en"
+      social: 
+        blog: "Leer nuestro Blog"
+        facebook: "Únase a nosotros en Facebook"
+        twitter: "Siguenos en Twitter"
+      teaser: 
+        one: "%{site_name} ofrece alojamiento flexible y de alta calidad para usted. %{site_name} es el sitio de destino para encontrar su perfecta estancia a corto o mediano plazo."
+        three: "%{site_name} ofrece alta calidad y distintas propiedades - tienen su propia casa por menos entonces el precio de un hotel de 5 estrellas."
+        title: "¿Por qué debería utilizar %{site_name}?"
+        two: "%{site_name} trabaja con agentes profesionales y terratenientes para garantizar una experiencia cómoda y profesional que puede confiar."
+      trust: 
+        four: "Far East Organization"
+        one: "Small World Group"
+        three: PropNex
+        two: "National Research Foundation"
+  template: 
+    header:
+      menu: 
+        add_a_place: "Agregar una propiedad"
+        cityguide_hk: "Guía de la ciudad: Hong Kong"
+        cityguide_kl: "Guía de la ciudad: Kuala Lumpur"
+        cityguide_sg: "Guía de la ciudad: Singapur"
+        community_support: "Apoyo de la comunidad"
+        find_places: "Encontrar un lugar"
+        help: Ayuda
+        how_it_works: "Cómo funciona"
+        my_account: "Mi cuenta"
+        my_alerts: "Mis alertas"
+        my_favorite_places: "Mis lugares favoritos"
+        my_places: "Mis propiedades"
+        my_profile: "Mi perfil"
+        photography_faq: "Fotografía FAQ"
+        why_site: "¿Por qué %{site_name}?"
+      preferences: 
+        choose_currency: "Seleccione divisa"
+        choose_language: "Elija idioma"
+        choose_unit: "Elija la unidad"
+        english_native: English
+        spanish_native: Español
   helpers: 
     button: 
       create: "Crear %{model}"
@@ -672,11 +683,6 @@ es:
       create: "Crear %{model}"
       submit: "Guardar %{model}"
       update: "Actualizar %{model}"
-  how: 
-    find_a_place: "Encontrar un lugar"
-    payments: Pagos
-    title: "Cómo funciona %{site_name}"
-    travelers: Viajeros
   inquiries: 
     arriving: Llegando
     arriving_on: Llegando
@@ -760,8 +766,6 @@ es:
     precision: 
       format: ~
   or: O
-  photo_faq: 
-    title: "Fotografía FAQ"
   places: 
     address: Dirección
     amenities: 
@@ -1094,8 +1098,6 @@ es:
     upload_a_new_photo: "Subir una nueva foto"
     use_facebook_photo: "Usar foto de Facebook"
   weeks: Semanas
-  why: 
-    affordability: Asequibilidad
   workflow: 
     initial_agent: "Cuando el inquilino hace una solicitud de alquiler final, podrá confirmar el alquiler aquí."
     initial_guest: "Cuando esté listo para alquilar esta propiedad"

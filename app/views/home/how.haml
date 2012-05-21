@@ -1,31 +1,31 @@
 #how.info
   .row
     .intro.span12
-      %h2= t("how.title", :site_name => SITE_NAME)
+      %h2= t("pages.how.title", :site_name => SITE_NAME)
       %br
-      = t("how.intro", :site_name => SITE_NAME).html_safe
+      = t("pages.how.intro", :site_name => SITE_NAME).html_safe
   .row.columns
     .span6  
-      %h3= t("how.travelers")
+      %h3= t("pages.how.travelers")
       %img{:src => "http://s3.amazonaws.com/squarestays-static/travelers.jpg", :class => 'metaphor'}
-      = t("how.travelers_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
+      = t("pages.how.travelers_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
     .span6
-      %h3= t("how.listing_members")
+      %h3= t("pages.how.listing_members")
       %img{:src => "http://s3.amazonaws.com/squarestays-static/listing_members.jpg", :class => 'metaphor'}
-      = t("how.listing_members_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}"), :places_email => mail_to("places@#{SITE_DOMAIN}")).html_safe
+      = t("pages.how.listing_members_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}"), :places_email => mail_to("places@#{SITE_DOMAIN}")).html_safe
   .row.actions
     .span6
       - current_city = Heypal::City.find_by_id(get_current_city)
-      = button_to t("how.find_a_place"), "/#{current_city.code}", :class => "btn btn-large btn-info", :method => :get
+      = button_to t("pages.how.find_a_place"), "/#{current_city.code}", :class => "btn btn-large btn-info", :method => :get
     .span6
       - if !logged_in?
-        = button_to t("how.list_your_properties"), signup_path, :class => "btn btn-large btn-info", :method => :get
+        = button_to t("pages.how.list_your_properties"), signup_path, :class => "btn btn-large btn-info", :method => :get
       - elsif is_agent?
-        = button_to t("how.list_your_properties"), new_place_path, :class => "btn btn-large btn-info", :method => :get
+        = button_to t("pages.how.list_your_properties"), new_place_path, :class => "btn btn-large btn-info", :method => :get
       - else
-        = button_to t("how.list_your_properties"), mailto: "support@#{SITE_DOMAIN}", :class => "btn btn-large btn-info", :method => :get
+        = button_to t("pages.how.list_your_properties"), mailto: "support@#{SITE_DOMAIN}", :class => "btn btn-large btn-info", :method => :get
   .row  
     .well
-      %h3= t("how.payments")
+      %h3= t("pages.how.payments")
       %br
-      = t("how.payments_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
+      = t("pages.how.payments_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe

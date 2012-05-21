@@ -26,7 +26,10 @@ class Cmspage < ActiveRecord::Base
  end
  
  def self.get_all_routes
-    @fields      = [:id, :page_url, :page_title,:route_as]
+    @fields      = [:id, :page_url, :page_title]
+    if self.connection.column_exists?(self.table_name, :route_as)
+      @fields << :route_as
+    end
     @activeroute = Cmspage.active.select(@fields).all
   end
  

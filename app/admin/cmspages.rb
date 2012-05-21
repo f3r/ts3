@@ -11,6 +11,18 @@ ActiveAdmin.register Cmspage  do
   
   controller do
     helper 'admin/cmspages'
+    
+    def edit
+      if not resource.editable?
+        redirect_to admin_cmspage_path, :notice => "Page not editable"
+      end
+    end
+    
+    def destroy
+      if not resource.editable?
+        redirect_to admin_cmspage_path, :notice => "Page not deletable"
+      end
+    end
   end
   
   form do |f|

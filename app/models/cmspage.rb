@@ -9,6 +9,8 @@ class Cmspage < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
   
+  UNMODIFIABLE_STATIC_PAGE_URLS = ["terms", "fees", "privacy", "contact"]
+  
   def activate!
     self.active = true
     self.save
@@ -17,6 +19,10 @@ class Cmspage < ActiveRecord::Base
   def deactivate!
     self.active = false
     self.save
+  end
+  
+  def editable?
+    not UNMODIFIABLE_STATIC_PAGE_URLS.include? page_url
   end
  
   # Get the content of the page

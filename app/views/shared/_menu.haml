@@ -30,8 +30,8 @@
 
 
             - else
-              / = menu_link_to t(:how_it_works), home_how_path
-              / = menu_link_to t(:why_squarestays), home_why_path
+              = menu_link_to t(:how_it_works), '/how'
+              = menu_link_to t(:why_squarestays), '/why'
 
           %ul.nav.pull-right
             - if user_signed_in?
@@ -52,12 +52,12 @@
                 Help
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
-                / %li= link_to t(:how_it_works),    home_how_path
-                / %li= link_to t(:why_squarestays), home_why_path
-                / %li= link_to t(:cityguide_sg),    cityguide_sg_path
-                / %li= link_to t(:cityguide_hk),    cityguide_hk_path
-                / %li= link_to t(:cityguide_kl),    cityguide_kl_path
-                / %li= link_to t(:community_support), 'https://getsatisfaction.com/squarestays'
-                / - if is_agent? or is_admin?
-                /   %li= link_to t(:photography_faq), home_photo_faq_path
+                %li= link_to t(:how_it_works), '/how'
+                %li= link_to t(:why_squarestays), '/why'
+                %li= link_to t(:cityguide_sg), '/sg'
+                %li= link_to t(:cityguide_hk), '/hk'
+                %li= link_to t(:cityguide_kl), '/kl'
+                %li= link_to t(:community_support), 'https://getsatisfaction.com/squarestays', :target => '_blank'
+                - if false && (is_agent? || is_admin?)
+                  %li= link_to t(:photography_faq), '/photo-faq'
                   

@@ -17,6 +17,8 @@ gem 'less-rails-bootstrap'
 gem 'exception_notification'
 gem "recaptcha", :require => "recaptcha/rails"
 
+gem 'tinymce-rails'
+
 # File Uploads
 gem 'paperclip', "~> 2.4"         # Attachements
 gem 'aws-s3'                      # Upload to Amazon S3

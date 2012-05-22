@@ -126,4 +126,6 @@ ActiveAdmin.setup do |config|
   #
   # To load a javascript file:
   #   config.register_javascript 'my_javascript.js'
+  # Register for text editor
+  config.register_javascript '/assets/active_admin_custom.js'
 end

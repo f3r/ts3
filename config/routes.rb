@@ -22,13 +22,13 @@ HeyPalFrontEnd::Application.routes.draw do
 
   root :to => 'home#index'
 
-  devise_for :users, 
-             :controllers => { :sessions => 'sessions', 
-                               :registrations => 'registrations', 
+  devise_for :users,
+             :controllers => { :sessions => 'sessions',
+                               :registrations => 'registrations',
                                :passwords => 'passwords',
                                :omniauth_callbacks => "omniauth_callbacks"},
-             :path_names => {  :sign_in => 'login', 
-                               :sign_up => 'signup', 
+             :path_names => {  :sign_in => 'login',
+                               :sign_up => 'signup',
                                :sign_out => 'logout' }
 
   resources :places do
@@ -89,18 +89,14 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Profile
   ###########################################################################################
-  match '/profile'      => 'users#show', :as => :profile
-  match '/profile/edit' => 'users#edit', :as => :edit_profile
 
-  resources :users do
+  resource :profile do
     member do
       put :change_preferece
     end
-    match '/change_address'             => "addresses#update"
-    match '/change_bank_account'        => "bank_accounts#update"
-    put   '/change_password'            => "users#change_password"
   end
 
+  resources :users
   put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################

@@ -4,11 +4,6 @@ module UsersHelper
     #     name.titleize unless name.eql?(' ')
     user.full_name
   end
-  
-  def short_full_name(user)
-    name = [user['first_name'][0], user['last_name']].join('. ')
-    name.titleize unless name.eql?(' ')    
-  end
 
   def nickname(user)
     nick = 'no username yet'

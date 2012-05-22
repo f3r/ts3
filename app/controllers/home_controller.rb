@@ -30,4 +30,7 @@ class HomeController < ApplicationController
     raise ActiveRecord::RecordNotFound unless @staticpage
   end
 
+  def photo_faq
+    render :template => 'home/photo_faq'
+  end
 end

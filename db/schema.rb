@@ -195,6 +195,7 @@ ActiveRecord::Schema.define(:version => 20120525124239) do
     t.string  "page_url",    :default => "",    :null => false
     t.text    "description"
     t.boolean "active",      :default => false
+    t.string  "route_as"
     t.boolean "mandatory",   :default => false
   end
 

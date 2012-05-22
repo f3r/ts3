@@ -1,0 +1,7 @@
+.profile_page
+  = render "users/user_left_column", :user => @user
+
+  - if current_user?(@user)
+    = render  :partial => "users/user_info"
+  - elsif params[:id]
+    = render :partial => "users/user_properties"

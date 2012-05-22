@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 describe User do
+  let(:user){ FactoryGirl.create(:user) }
+
   context "name=" do
     it "parses the first name and last name" do
       user = User.new
@@ -20,8 +22,6 @@ describe User do
   end
 
   context "Preferences" do
-    let(:user){ FactoryGirl.create(:user) }
-
     it "stores prefered city" do
       city = FactoryGirl.create(:city)
       user.change_preference(:pref_city, city.id)
@@ -39,8 +39,6 @@ describe User do
   end
 
   context "OAuth" do
-    let(:user){ FactoryGirl.create(:user) }
-
     before(:each) do
       @token = Hashie::Mash.new({'uid' => '1234',
         "provider" => "facebook",
@@ -128,5 +126,9 @@ describe User do
       auth.provider.should == 'facebook'
       auth.uid.should == '456'
     end
+  end
+
+  context "Address" do
+    it "has one address"
   end
 end

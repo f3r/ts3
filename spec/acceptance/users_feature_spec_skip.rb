@@ -75,6 +75,6 @@ feature 'Users feature', %q{
 
   scenario 'confirm my reset password' do
     pending
-  end 
+  end
 
 end

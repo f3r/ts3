@@ -39,6 +39,7 @@ var UserEdit = {
       
       // User uploads avatar
       $('a.upload_avatar').click(function() {
+        $('a.upload_avatar').hide();
         $('input#user_avatar').show();
         $('input#user_avatar_url').val("");
       });

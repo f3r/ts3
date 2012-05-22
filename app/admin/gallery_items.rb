@@ -4,11 +4,10 @@ ActiveAdmin.register GalleryItem  do
   
   belongs_to :gallery
   
-  config.sort_order = 'active_desc'
+  config.sort_order = 'position_asc'
   
   controller do
     actions :edit, :update, :destroy, :show, :index
-    
   end
   
   index do
@@ -67,5 +66,13 @@ ActiveAdmin.register GalleryItem  do
     gallery_item.save!
     render :nothing => true
   end
+  
+  collection_action :sort, :method => :post do
+    params[:gallery_item].each_with_index do |id, index|
+      GalleryItem.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+  
   
 end

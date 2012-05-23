@@ -24,3 +24,18 @@ FactoryGirl.define do
     favorable_type 'Place'
   end
 end
+
+FactoryGirl.define do
+  factory :cmspage do
+    page_title  { @title = Faker::Name.name }
+    page_url    { @title.parameterize.underscore }
+    description { Faker::Lorem.paragraph }
+    active      { true }
+  end
+end
+
+FactoryGirl.define do
+  factory :place_type do
+    name { Faker::Name.name }
+  end
+end

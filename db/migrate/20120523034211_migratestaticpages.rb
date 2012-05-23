@@ -378,8 +378,7 @@ Cmspage.create(page_title: "Contact Information", page_url: "contact", mandatory
 </div>', active: 1 )
 
 
-Cmspage.create(page_title: "Photography FAQ", page_url: "photo-faq", mandatory: false, description: %{
-  <div class="info" id="photo_faq">
+Cmspage.create(page_title: "Photography FAQ", page_url: "photo-faq", mandatory: false, description: %{<div class="info" id="photo_faq">
           <div class="intro span16">
             <h3>Photography FAQ</h3>
             <p>SquareStays helps connect people offering high-quality, flexible accommodations with professional tenants. This happens through the SquareStays site, helping you, as the lister, avoid costly screening of potential tenants. In order to do this, your listings should have the highest quality and most attractive photos possible. This guide is designed to help you provide the best photos you can for your listings on SquareStays.</p>
@@ -454,12 +453,7 @@ Cmspage.create(page_title: "Photography FAQ", page_url: "photo-faq", mandatory: 
             </div>
           </div>
         </div>
-
-        <script>
-          //<![CDATA[
-            Expandable.initialize("#photo_faq");
-          //]]>
-        </script>
+        <script> Expandable.initialize("#photo_faq"); </script>
   }, active: 1)
 
   end

@@ -32,7 +32,10 @@ HeyPalFrontEnd::Application.configure do
   config.from_locales = [:en]
   config.to_locales = [:es, :de]
 
+  config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:dalli_store)
+
   # Mailer configuration
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = { :address => "localhost", :port => 1025 }
+
 end

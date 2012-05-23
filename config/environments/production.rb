@@ -56,6 +56,8 @@ HeyPalFrontEnd::Application.configure do
   config.fallbacks = true
   config.i18n.default_locale = :en
 
+  config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:dalli_store)
+
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 

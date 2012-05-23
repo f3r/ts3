@@ -33,6 +33,7 @@ HeyPalFrontEnd::Application.configure do
   config.to_locales = [:es, :de]
 
   config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:dalli_store)
+  config.i18n.fallbacks = false
 
   # Mailer configuration
   config.action_mailer.delivery_method = :smtp

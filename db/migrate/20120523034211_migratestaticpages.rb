@@ -1,6 +1,8 @@
 class Migratestaticpages < ActiveRecord::Migration
   def up
-    Cmspage.create(page_title: "how", page_url: "how", description: '<div id="how" class="info">
+    Cmspage.delete_all
+    
+    Cmspage.create(page_title: "How it works?", page_url: "how-it-works", mandatory: true, description: '<div id="how" class="info">
 <div class="row">
 <div class="intro span12">
 <h2>How SquareStays works</h2>
@@ -44,7 +46,9 @@ class Migratestaticpages < ActiveRecord::Migration
 </div>
 </div>
 </div>', active: 1 )
-Cmspage.create(page_title: "why", page_url: "why", description: '<div id="why" class="info">
+
+
+Cmspage.create(page_title: "Why SquareStays?", page_url: "why", mandatory: true, description: '<div id="why" class="info">
 <div class="intro span12">
 <h3>Why SquareStays?</h3>
 <p>SquareStays connects you with trusted, professional, short-term accommodations.</p>
@@ -84,7 +88,7 @@ Cmspage.create(page_title: "why", page_url: "why", description: '<div id="why" c
 </div>
 </div>', active: 1 )
 
-Cmspage.create(page_title: "Welcome to Singapore", page_url: "sg", description: '<div class="span16">
+Cmspage.create(page_title: "Welcome to Singapore", page_url: "singapore-city-guide", description: '<div class="span16">
 <div class="row">
 <h2>Welcome to Singapore!</h2>
 </div>
@@ -116,7 +120,7 @@ Cmspage.create(page_title: "Welcome to Singapore", page_url: "sg", description: 
 </div>
 </div>', active: 1 )
 
-Cmspage.create(page_title: "Welcome to Hong Kong!", page_url: "hk", description: '<div class="span16">
+Cmspage.create(page_title: "Welcome to Hong Kong!", page_url: "hong-kong-city-guide", description: '<div class="span16">
 <div class="row">
 <h2>Welcome to Hong Kong!!</h2>
 </div>
@@ -144,7 +148,9 @@ Cmspage.create(page_title: "Welcome to Hong Kong!", page_url: "hk", description:
 </ul>
 </div>
 </div>', active: 1 )
-Cmspage.create(page_title: "Welcome to Kuala Lumpur", page_url: "kl", description: '<div class="span16">
+
+
+Cmspage.create(page_title: "Welcome to Kuala Lumpur", page_url: "kuala-lumpur-city-guide", description: '<div class="span16">
 <div class="row">
 <h2>Welcome to Kuala Lumpur!!</h2>
 </div>
@@ -172,7 +178,9 @@ Cmspage.create(page_title: "Welcome to Kuala Lumpur", page_url: "kl", descriptio
 </ul>
 </div>
 </div>', active: 1 )
-Cmspage.create(page_title: "Trems", page_url: "terms", description: '<div class="span16">
+
+
+Cmspage.create(page_title: "Terms", page_url: "terms", mandatory: true, description: '<div class="span16">
 <h3>SquareStays Terms of Use / Member Agreement</h3>
 <p>PLEASE READ THESE TERMS OF USE CAREFULLY AS THEY CONTAIN IMPORTANT INFORMATION REGARDING YOUR LEGAL RIGHTS, REMEDIES AND OBLIGATIONS. THESE INCLUDE VARIOUS LIMITATIONS AND EXCLUSIONS, AND A CLAUSE THAT GOVERNS THE JURISDICTION AND VENUE OF DISPUTES.</p>
 <p>THE FOLLOWING DESCRIBES THE TERMS ON WHICH HEYPAL PRIVATE LIMITED OFFERS YOU ACCESS TO OUR SITE (SQUARESTAY.COM, SQUARESTAYS.COM) AND SERVICES.</p>
@@ -278,12 +286,16 @@ Cmspage.create(page_title: "Trems", page_url: "terms", description: '<div class=
 <p>Please contact us at legal@SquareStays.com with any questions regarding these Terms.</p>
 <p>Your continued use of this Site or Services and registration to use our Services is contingent upon your agreement to be bound by the foregoing Terms of Use.</p>
 </div>', active: 1 )
-Cmspage.create(page_title: "fees", page_url: "fees", description: '<div class="span16">
+
+
+Cmspage.create(page_title: "Fees", page_url: "fees", mandatory: true, description: '<div class="span16">
 <h3>SquareStays Fees</h3>
 <br />
 <p>SquareStays is currently free of charge to all visiting Members. Listing members pay a 10% commission on the first month\'s rent.</p>
 </div>', active: 1 )
-Cmspage.create(page_title: "Privacy Policy", page_url: "privacy", description: '<div class="span16">
+
+
+Cmspage.create(page_title: "Privacy Policy", page_url: "privacy", mandatory: true, description: '<div class="span16">
 <h3>Privacy Policy</h3>
 <p>PLEASE READ THIS PRIVACY POLICY CAREFULLY AS IT CONTAINS IMPORTANT INFORMATION REGARDING YOUR LEGAL RIGHTS AND USAGE OF YOUR PRIVATE INFORMATION. THIS POLICY INCORPORATES THE SQUARESTAYS TERMS OF USE (HEREAFTER &ldquo;TERMS&rdquo;) BY ASSOCIATION. SEE <a href="/terms">WWW.SQUARESTAYS.COM/TERMS</a> FOR FULL TERMS.</p>
 <p class="strong">Introduction</p>
@@ -351,7 +363,9 @@ Cmspage.create(page_title: "Privacy Policy", page_url: "privacy", description: '
 <p class="strong u">Changes to this Policy</p>
 <p>We may revise this Privacy Policy from time to time. The most current version of the policy will govern our use of your information and will always be at <a href="/privacy">http://SquareStays.com/privacy</a>. If we make a change to this policy that we determine, in our sole discretion, is material, we will notify you via update or e-mail to the email associated with your account. By continuing to access or use the Services after those changes become effective, you agree to be bound by the revised Privacy Policy.</p>
 </div>', active: 1 )
-Cmspage.create(page_title: "Contact Information", page_url: "contact", description: '<div class="span16 offset1">
+
+
+Cmspage.create(page_title: "Contact Information", page_url: "contact", mandatory: true, description: '<div class="span16 offset1">
 <div class="span4">
 <h3>Contact Information:</h3>
 <p>SquareStays</p>
@@ -362,6 +376,92 @@ Cmspage.create(page_title: "Contact Information", page_url: "contact", descripti
 </div>
 <div class="span"><iframe src="http://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=71+Ayer+Rajah+Crescent,+Singapore&amp;aq=0&amp;oq=71+Ayer+Rajah+Crescent&amp;sll=1.296767,103.786752&amp;sspn=0.006822,0.009602&amp;vpsrc=6&amp;g=71+Ayer+Rajah+Crescent,+Singapore+139951&amp;ie=UTF8&amp;hq=&amp;hnear=71+Ayer+Rajah+Crescent,+Singapore+139951&amp;ll=1.29677,103.786747&amp;spn=0.013644,0.019205&amp;t=m&amp;z=14&amp;output=embed" frameborder="0" marginwidth="0" marginheight="0" scrolling="no" width="425" height="350"></iframe><br /><small><a style="color: #0000ff; text-align: left;" href="http://maps.google.com/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=71+Ayer+Rajah+Crescent,+Singapore&amp;aq=0&amp;oq=71+Ayer+Rajah+Crescent&amp;sll=1.296767,103.786752&amp;sspn=0.006822,0.009602&amp;vpsrc=6&amp;g=71+Ayer+Rajah+Crescent,+Singapore+139951&amp;ie=UTF8&amp;hq=&amp;hnear=71+Ayer+Rajah+Crescent,+Singapore+139951&amp;ll=1.29677,103.786747&amp;spn=0.013644,0.019205&amp;t=m&amp;z=14">View Larger Map</a></small></div>
 </div>', active: 1 )
+
+
+Cmspage.create(page_title: "Photography FAQ", page_url: "photo-faq", mandatory: false, description: %{
+  <div class="info" id="photo_faq">
+          <div class="intro span16">
+            <h3>Photography FAQ</h3>
+            <p>SquareStays helps connect people offering high-quality, flexible accommodations with professional tenants. This happens through the SquareStays site, helping you, as the lister, avoid costly screening of potential tenants. In order to do this, your listings should have the highest quality and most attractive photos possible. This guide is designed to help you provide the best photos you can for your listings on SquareStays.</p>
+            <p>Some tips on how to get great photographs on SquareStays:</p>
+          </div>
+          <div class="span16">
+            <div class="well expandable collapsed">
+              <h4>1. Brighten it up</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <img src="http://s3.amazonaws.com/squarestays-static/photos/tc2living3.jpg">
+                <p>Photograph with natural daylight flooding into the room from the windows, and turn on the lights. This will give your space a friendly and bright atmosphere and help define the depth. That helps tenants understand the size of the space.</p>
+                <p>If you have a professional or semi-professional camera, or a camera that allows manual control of the shutter speed, don't be afraid to experiment with overexposing by a stop or so to get a brighter shot. This holds especially true if you're photographing against windows during the day! To compensate for that bright daylight, your camera will try to adjust by dialing down the exposure times. This will result in dark and murky interiors. You will *have* to increase exposure times a bit, to get a friendly and bright interior shot. Don't worry if this results in blown out windows, the interior is what counts in this shot.</p>
+                <p>If your space is too dark for well exposed handheld shots, get a tripod and mount your camera on it. With a tripod, you can dial the exposure times way up without getting blurry results.</p>
+              </div>
+            </div>
+            <div class="well expandable collapsed">
+              <h4>2. Go wide</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <img src="http://s3.amazonaws.com/squarestays-static/photos/tc3living2.jpg">
+                <p>Use the widest angle lens you have and/or zoom out all the way with your zoom. Full frame sensor SLR cameras are the best cameras for shooting interiors, because of their ability to capture wide angles and their strength in picking up light.</p>
+                Wider angles make the interior look more spacious and give potential tenants a better idea of a room's layout.
+                <p>This does not mean that you shouldn't take shots of some beautiful details. Find a balance between wide "establishing" shots, and a few "close-ups" of the details that define your space.</p>
+                Carefully mixing shots will tell potential tenants a story about the space, and they will be more interested in renting it.
+              </div>
+            </div>
+            <div class="well expandable collapsed">
+              <h4>3. Shoot from a Corner</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <img src="http://s3.amazonaws.com/squarestays-static/photos/tcwindows.jpg" style="display:none">
+                <p>When shooting interior spaces, try to find a corner from which you can see the entire room. Shoot towards the opposite corner. This makes it easier to capture a bigger space, and makes for a more dynamic composition.</p>
+              </div>
+            </div>
+            <div class="well expandable collapsed">
+              <h4>4. Clean it up, liven it up</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <img src="http://s3.amazonaws.com/squarestays-static/photos/tc2living6.jpg" style="display:none">
+                <p>Before Taking any Photos, make sure your space isn't cluttered or messy.</p>
+                <p>Conversely, if the space is not occupied at the time of your shooting, consider placing some props like bottles or flowers to give it a welcoming, lived-in appearance. Avoid props that are associated with clutter or stress, such as clothes, remotes or loose paper.</p>
+              </div>
+            </div>
+            <div class="well expandable collapsed">
+              <h4>5. Show the exterior</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <img src="http://s3.amazonaws.com/squarestays-static/photos/tcentrance.jpg">
+                <p>Guests will want to know what the property looks like from the outside. You should try and include some amenities on the exterior shots, such as the swimming pool, BBQ pits or garden area.</p>
+              </div>
+            </div>
+            <div class="well expandable collapsed">
+              <h4>6. Don't frame your shots digitally</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <p>SquareStays will automatically frame your photo where necessary. There's no need for any manual framing, on the contrary, the additional frame may result in inconsistant results</p>
+              </div>
+            </div>
+            <div class="well expandable collapsed">
+              <h4>7. Don't add captions to your photos</h4>
+              <a class="read-more" href="#">read more...</a>
+              <div class="inner" style="display: none; ">
+                <p>SquareStays allows you to add captions to your Photos with a single click in our Property Manager.</p>
+              </div>
+            </div>
+            <div class="well">
+              <h4>Don't be stingy! We've got space for your space</h4>
+              <div class="inner">
+                <p>SquareStays property listings are designed to accomodate lots of photos. A Listing with a dozen Photos of rooms, exteriors and amenities will quickly seem familiar to your potential guests, whereas a listing with just 3 or 4 shots may seem vague and undefined, making the decision to rent that much harder!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <script>
+          //<![CDATA[
+            Expandable.initialize("#photo_faq");
+          //]]>
+        </script>
+  }, active: 1)
+
   end
 
   def down

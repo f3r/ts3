@@ -10,8 +10,7 @@ class PlaceType < ActiveRecord::Base
     Rails.cache.fetch('place_types_list') { PlaceType.all }
   end
   
-  #
-  
+  #TODO: Use friendly_id
   #generating slug
   def slug
     name.parameterize('_').singularize

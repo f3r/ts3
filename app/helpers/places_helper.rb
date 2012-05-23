@@ -25,14 +25,6 @@ module PlacesHelper
       [t(:cable_tv), :amenities_cable_tv],
       [t(:washer), :amenities_washer],
     ]
-    #
-    #[
-      #['Couch', :amenities_couch],
-      #['Bedroom Furniture', :amenities_bedroom],
-      #['Dining room furniture', :amenities_dining], 
-      #['Kitchenware', :amenities_kitchenware],
-      #['Dishware', :amenities_dishware]
-    #]
   end
 
   # Misc
@@ -98,13 +90,6 @@ module PlacesHelper
     return hacked_photo_set
   end
   
-  # FIXME: collapse all availabilities so that they don't show several overlapped
-  # def cleanup_availabilities(foo)
-  #   foo.each do |f|
-  #     
-  #   end
-  # end
-
   # TODO: unused, delete? 
   def month_count(days)
     date = Date.today

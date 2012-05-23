@@ -11,6 +11,10 @@ require 'spec_helper'
 #   end
 # end
 describe PlacesHelper do
+  before(:each) do
+    %w(apartment house villa room other_space).each{|name| FactoryGirl.create(:place_type, :name => name)}
+  end
+
   context "#place_type_filters" do
     it "returns available types" do
       filters = place_type_filters({"apartment"=>5, "house"=>2, "villa"=>0, "room"=>0, "other_space"=>0})

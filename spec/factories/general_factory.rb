@@ -33,3 +33,9 @@ FactoryGirl.define do
     active      { true }
   end
 end
+
+FactoryGirl.define do
+  factory :place_type do
+    name { Faker::Name.name }
+  end
+end

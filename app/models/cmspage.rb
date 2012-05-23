@@ -2,10 +2,11 @@ class Cmspage < ActiveRecord::Base
   default_scope :order => 'id ASC'
    
   validates_presence_of   :page_title, :message => "101"
-  validates_presence_of   :page_url, :message => "101"
+  validates_presence_of   :page_url,   :message => "101"
   
   validates_uniqueness_of :page_url, :message => "Page Already exist with this name"
   validates_exclusion_of  :page_url, :in => proc {get_all_active_city_name} , :message => "Can't use this as page url (city name)"
+  
   scope :active,    where("active")
   scope :inactive,  where("not active")
   
@@ -20,11 +21,7 @@ class Cmspage < ActiveRecord::Base
     self.active = false
     self.save
   end
-  
-  def editable?
-    not UNMODIFIABLE_STATIC_PAGE_URLS.include? page_url
-  end
- 
+   
   # Get the content of the page
   def self.find_by_url(url)
     Cmspage.where(:active => 1, :page_url => url).first if url

@@ -12,7 +12,7 @@ feature 'Sessions feature', %q{
   end
 
   scenario 'sign in using my email and password', :backend => true do
-    visit '/login'
+    visit '/users/login'
 
     page.should have_content(t(:login))
 
@@ -25,7 +25,7 @@ feature 'Sessions feature', %q{
   end
 
   scenario 'signout' do
-    visit '/logout'
+    visit '/users/logout'
 
     page.should have_content(t(:sign_in))
   end

@@ -135,19 +135,11 @@ HeyPalFrontEnd::Application.routes.draw do
   # Static page dynamic routing
   ###########################################################################################
   
-  match '/:pages'                   => 'home#staticpage' , :pages => /why/, :as => :home_why
-  match '/:pages'                   => 'home#staticpage' , :pages => /how/, :as => :home_how
-  match '/:pages'                   => 'home#staticpage' , :pages => /faq/, :as => :home_photo_faq
-  
   match '/terms'                    => 'home#staticpage' , :pages => :terms
   match '/fees'                     => 'home#staticpage' , :pages => :fees
   match '/privacy'                  => 'home#staticpage' , :pages => :privacy
   match '/contact'                  => 'home#staticpage' , :pages => :contact
-  
-  match 'city-guides/singapore'     => 'home#staticpage' , :pages => :sg,:as => :cityguide_sg
-  match 'city-guides/hong-kong'     => 'home#staticpage' , :pages => :hk,:as => :cityguide_hk
-  match 'city-guides/kuala-lumpur'  => 'home#staticpage' , :pages => :kl,:as => :cityguide_kl
-
+    
   get '/robots.txt' => 'home#robot'
 
   match '/:pages' => 'home#staticpage'

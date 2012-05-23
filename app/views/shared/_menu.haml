@@ -30,7 +30,7 @@
 
 
             - else
-              = menu_link_to t(:how_it_works), '/how'
+              = menu_link_to t(:how_it_works), '/how-it-works'
               = menu_link_to t(:why_squarestays), '/why'
 
           %ul.nav.pull-right
@@ -52,12 +52,12 @@
                 Help
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
-                %li= link_to t(:how_it_works), '/how'
+                %li= link_to t(:how_it_works), '/how-it-works'
                 %li= link_to t(:why_squarestays), '/why'
-                %li= link_to t(:cityguide_sg), '/sg'
-                %li= link_to t(:cityguide_hk), '/hk'
-                %li= link_to t(:cityguide_kl), '/kl'
+                %li= link_to t(:cityguide_sg), '/singapore-city-guide'
+                %li= link_to t(:cityguide_hk), '/hong-kong-city-guide'
+                %li= link_to t(:cityguide_kl), '/kuala-lumpur-city-guide'
                 %li= link_to t(:community_support), 'https://getsatisfaction.com/squarestays', :target => '_blank'
-                - if false && (is_agent? || is_admin?)
+                - if (is_agent? || is_admin?)
                   %li= link_to t(:photography_faq), '/photo-faq'
                   

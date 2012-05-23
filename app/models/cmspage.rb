@@ -10,6 +10,8 @@ class Cmspage < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
   
+  has_and_belongs_to_many :menu_sections
+  
   UNMODIFIABLE_STATIC_PAGE_URLS = ["terms", "fees", "privacy", "contact"]
   
   def activate!
@@ -35,6 +37,10 @@ class Cmspage < ActiveRecord::Base
      cityname << city_name["name"]
    end
    return cityname
+ end
+ 
+ def to_s
+  page_title + " [" + page_url + "]"
  end
 
 end

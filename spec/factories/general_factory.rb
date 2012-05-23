@@ -39,3 +39,9 @@ FactoryGirl.define do
     name { Faker::Name.name }
   end
 end
+FactoryGirl.define do
+  factory :menu_section do
+    name { @name = Faker::Name.name }
+    display_name { @name.capitalize}
+  end  
+end

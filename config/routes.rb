@@ -103,8 +103,6 @@ HeyPalFrontEnd::Application.routes.draw do
 
   put   '/set_ref'                    => 'home#set_ref'
 
- 
-  
   ###########################################################################################
   # Backend ported resources
   ###########################################################################################
@@ -130,21 +128,21 @@ HeyPalFrontEnd::Application.routes.draw do
     match 'translate/translate' => 'translate#translate', :as => :translate
     match 'translate/reload'    => 'translate#reload',    :as => :translate_reload
   end
-  
+
    ###########################################################################################
   # Static page dynamic routing
   ###########################################################################################
-  
+
   match '/terms'                    => 'home#staticpage' , :pages => :terms
   match '/fees'                     => 'home#staticpage' , :pages => :fees
   match '/privacy'                  => 'home#staticpage' , :pages => :privacy
   match '/contact'                  => 'home#staticpage' , :pages => :contact
-    
-  get '/robots.txt' => 'home#robot'
 
-  match '/:pages' => 'home#staticpage'
+  get '/robots.txt' => 'home#robot'
 
   # Error matching
   match '/404' => 'errors#page_not_found'
   match '/500' => 'errors#exception'
+
+  match '/:pages' => 'home#staticpage'
 end

@@ -1,8 +1,15 @@
-require 'i18n/backend/active_record'
 ActiveAdmin.register Translation do
   menu :priority => 8
 
-  filter :locale, :as => :select, :collection => proc { I18n::Backend::ActiveRecord::Translation.available_locales }
+  config.sort_order = 'key_asc'  
+
+  controller do
+    helper 'admin/translations'
+    def scoped_collection
+      Translation.where(:locale => "en")
+    end
+  end
+
   filter :key
 
   scope :all, :default => true
@@ -12,16 +19,14 @@ ActiveAdmin.register Translation do
   scope :workflow
   scope :inquiries
   scope :messages
-  scope :pages
-  scope :city_guides
 
   index do
-    id_column
-    column :locale
-    column :key
-    column :value, :sortable => false
-    column("Status") {|translation| status_tag(!translation.value.blank? ? 'Translated' : 'Not translated') }
-    default_actions
+    column(:key) {|translation|
+      translation.key
+    }
+    for locale in Locale.all
+      column(locale.code) {|translation| translation_value_with_links(translation, locale.code) }
+    end
   end
 
   form :partial => "form"

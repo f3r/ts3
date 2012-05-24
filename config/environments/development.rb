@@ -32,7 +32,7 @@ HeyPalFrontEnd::Application.configure do
   config.from_locales = [:en]
   config.to_locales = [:es, :de]
 
-  config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:dalli_store)
+  config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:dalli_store, :namespace => "i18n")
   config.i18n.fallbacks = false
 
   # Mailer configuration

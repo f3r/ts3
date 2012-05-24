@@ -1,14 +1,14 @@
 .credentials-box
   %br
   .section.span6
-    %h2= t(:reset_password)
+    %h2= t("users.registration.reset_password")
 
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :post }) do |f|
       = devise_error_messages!
       .input
-        = f.email_field 'email',  :placeholder => t(:enter_your_email)
+        = f.email_field 'email',  :placeholder => t("users.registration.enter_your_email")
       %button.btn.float-right{:type => 'submit'}
-        = t(:submit)
+        = t("submit")
 
   %br.clearfix
   %br

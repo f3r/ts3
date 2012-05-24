@@ -6,6 +6,6 @@
   = link_to user_omniauth_authorize_path(:twitter) do
     = image_tag 'sign-in-with-twitter-l.png', :alt => t("users.registration.sign_in_with", :provider => "Twitter")
   %p.bottom-part
-    = simple_format t("users.registration.sign_in_provider_info", :site_name => SITE_NAME)
+    = simple_format t("users.registration.sign_in_provider_info")
 %br.clearfix
 %br

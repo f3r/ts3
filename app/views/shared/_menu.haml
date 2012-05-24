@@ -31,7 +31,7 @@
 
             - else
               = menu_link_to t("template.header.menu.how_it_works"), '/how-it-works'
-              = menu_link_to t("template.header.menu.why_site", :site_name => SITE_NAME), '/why'
+              = menu_link_to t("template.header.menu.why_site"), '/why'
 
           %ul.nav.pull-right
             - if user_signed_in?
@@ -53,7 +53,7 @@
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
                 %li= link_to t("template.header.menu.how_it_works"), '/how-it-works'
-                %li= link_to t("template.header.menu.why_site", :site_name => SITE_NAME), '/why'
+                %li= link_to t("template.header.menu.why_site"), '/why'
                 %li= link_to t("template.header.menu.cityguide_sg"), '/singapore-city-guide'
                 %li= link_to t("template.header.menu.cityguide_hk"), '/hong-kong-city-guide'
                 %li= link_to t("template.header.menu.cityguide_kl"), '/kuala-lumpur-city-guide'

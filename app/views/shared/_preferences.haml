@@ -16,7 +16,7 @@
           %span.check &#10003;
           = t("template.header.preferences.spanish_native")
       %li.divider
-      %li.divider-title= "#{t("header.preferences.choose_currency")}..."
+      %li.divider-title= "#{t("template.header.preferences.choose_currency")}..."
       %li.divider
         - Currency.active.each do |cur|
           %li{ get_current_currency == cur.currency_code ? {:class => "active"} : {} }

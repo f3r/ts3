@@ -11,7 +11,7 @@ class MigrateCurrentFrontCarrousel < ActiveRecord::Migration
     gi.photo = File.open("#{Rails.root}/db/migrate/existingcarrouselimages/two.jpg")
     gi.save!
 
-    gi = home_gallery.gallery_items.new({link: "http://www.squarestays.com/kuala_lumpur", label: I18n.translate("pages.front_page.carousel.three", :site_name => SITE_NAME), position: 3, active: 1})
+    gi = home_gallery.gallery_items.new({link: "http://www.squarestays.com/kuala_lumpur", label: I18n.translate("pages.front_page.carousel.three"), position: 3, active: 1})
     gi.photo = File.open("#{Rails.root}/db/migrate/existingcarrouselimages/three.jpg")
     gi.save!
     

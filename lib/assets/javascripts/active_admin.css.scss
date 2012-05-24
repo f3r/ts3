@@ -12,7 +12,7 @@
   display: none;
 }
 
-.status.active, .status.user, .status.yes {
+.status.active, .status.user, .status.yes, .status.translated {
   background: #8DAA92;
 }
 
@@ -53,4 +53,16 @@
 
 .admin_questions .table_tools {
   display: none;
+}
+
+.translations {
+	display:block; float:left; width: 80%;
+}
+.other_translation_text {
+	background-color:#fff;
+	border:1px solid #ccc;
+	padding:10px;
+	margin:10px 20px 10px 0;
+	overflow: auto;
+	white-space: normal;
 }

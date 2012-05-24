@@ -1,18 +1,18 @@
 #how.info
   .row
     .intro.span12
-      %h2= t("pages.how.title", :site_name => SITE_NAME)
+      %h2= t("pages.how.title")
       %br
-      = t("pages.how.intro", :site_name => SITE_NAME).html_safe
+      = t("pages.how.intro").html_safe
   .row.columns
     .span6  
       %h3= t("pages.how.travelers")
       %img{:src => "http://s3.amazonaws.com/squarestays-static/travelers.jpg", :class => 'metaphor'}
-      = t("pages.how.travelers_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
+      = t("pages.how.travelers_content", :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
     .span6
       %h3= t("pages.how.listing_members")
       %img{:src => "http://s3.amazonaws.com/squarestays-static/listing_members.jpg", :class => 'metaphor'}
-      = t("pages.how.listing_members_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}"), :places_email => mail_to("places@#{SITE_DOMAIN}")).html_safe
+      = t("pages.how.listing_members_content", :support_email => mail_to("support@#{SITE_DOMAIN}"), :places_email => mail_to("places@#{SITE_DOMAIN}")).html_safe
   .row.actions
     .span6
       - current_city = Heypal::City.find_by_id(get_current_city)
@@ -28,4 +28,4 @@
     .well
       %h3= t("pages.how.payments")
       %br
-      = t("pages.how.payments_content", :site_name => SITE_NAME, :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
+      = t("pages.how.payments_content", :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe

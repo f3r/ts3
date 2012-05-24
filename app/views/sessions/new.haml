@@ -1,7 +1,7 @@
 .credentials-box.login.row-fluid
   %br
   .section.span6.bored
-    %h2.offset-one-eight= t("users.registration.login_to_site", :site_name => SITE_NAME)
+    %h2.offset-one-eight= t("users.registration.login_to_site")
 
     = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
       .input

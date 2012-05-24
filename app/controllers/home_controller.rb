@@ -8,7 +8,7 @@ class HomeController < ApplicationController
         :email => params[:email]
       }
     )
-    flash[:notice] = t("pages.suggest_thank_you_message", :site_name => SITE_NAME, :city => params['city'])
+    flash[:notice] = t("pages.suggest_thank_you_message", :city => params['city'])
     redirect_to root_path
   end
 

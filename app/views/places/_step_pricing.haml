@@ -67,7 +67,7 @@
       .controls
         = f.select :cancellation_policy, cancellation_policies_select, {}, :class => 'validate[required] autosave'
         = link_to '?', '#', :class => 'popover-link', :rel => "popover", "data-original-title" => t("places.cancellation_policy"), 
-          "data-content" => "#{t("places.wizard.pricing.head_cancellation", :site_name => SITE_NAME)}<br><br><b>#{t("places.cancellation_policies.flexible")}</b>: #{t("places.wizard.pricing.flexible_cancellation")}<br><br><b>#{t("places.cancellation_policies.strict")}</b>: #{t("places.wizard.pricing.strict_cancellation")}<br><br>#{t("places.wizard.pricing.see_our")} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t("places.cancellation_policy")}</a> #{t("places.wizard.pricing.for_more_info")}."
+          "data-content" => "#{t("places.wizard.pricing.head_cancellation")}<br><br><b>#{t("places.cancellation_policies.flexible")}</b>: #{t("places.wizard.pricing.flexible_cancellation")}<br><br><b>#{t("places.cancellation_policies.strict")}</b>: #{t("places.wizard.pricing.strict_cancellation")}<br><br>#{t("places.wizard.pricing.see_our")} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t("places.cancellation_policy")}</a> #{t("places.wizard.pricing.for_more_info")}."
     .control-group
       = f.label :house_rules, t("places.house_rules"), :class => 'control-label'
       .controls

@@ -80,7 +80,7 @@ module ApplicationHelper
       when :private
         raw "<a class=\"private\" href=\"#\" rel=\"tooltip\" title=\"#{t("users.private_field")}\"></a>"
       when :fully_private
-        raw "<a class=\"fully_private\" href=\"#\" rel=\"tooltip\" title=\"#{t("users.fully_private_field", :site_name => SITE_NAME)}\"></a>"
+        raw "<a class=\"fully_private\" href=\"#\" rel=\"tooltip\" title=\"#{t("users.fully_private_field")}\"></a>"
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523034211) do
+ActiveRecord::Schema.define(:version => 20120523230922) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -121,7 +121,7 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",    :default => "",    :null => false
+    t.string  "page_url",                       :null => false
     t.text    "description"
     t.boolean "active",      :default => false
     t.boolean "mandatory",   :default => false
@@ -214,10 +214,10 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "position",           :default => 0
-    t.boolean  "active",             :default => false
+    t.boolean  "active",             :default => true
     t.integer  "gallery_id",         :default => 0
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "inbox_entries", :force => true do |t|
@@ -247,12 +247,6 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "inquiries", ["place_id"], :name => "index_inquiries_on_place_id"
   add_index "inquiries", ["user_id"], :name => "index_inquiries_on_user_id"
 
-  create_table "menus", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
     t.integer  "from_id"
@@ -264,21 +258,6 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   end
 
   add_index "messages", ["conversation_id"], :name => "index_messages_on_conversation_id"
-
-  create_table "pages", :force => true do |t|
-    t.string   "page_id"
-    t.string   "title"
-    t.integer  "menu_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "panoramas", :force => true do |t|
-    t.integer "photo_id"
-    t.text    "xml"
-    t.string  "html_file_name"
-    t.string  "swf_file_name"
-  end
 
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
@@ -420,17 +399,6 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "places", ["state_name"], :name => "index_places_on_state_name"
   add_index "places", ["user_id"], :name => "index_places_on_user_id"
 
-  create_table "settings", :force => true do |t|
-    t.string   "var",                       :null => false
-    t.text     "value"
-    t.integer  "target_id"
-    t.string   "target_type", :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
-
   create_table "site_configs", :force => true do |t|
     t.string   "site_name"
     t.string   "site_url"
@@ -480,6 +448,18 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "transactions", ["place_id"], :name => "index_transactions_on_place_id"
   add_index "transactions", ["state"], :name => "index_transactions_on_state"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
+
+  create_table "translations", :force => true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.text     "interpolations"
+    t.boolean  "is_proc",        :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "translations", ["locale", "key"], :name => "index_translations_on_locale_and_key", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                                     :null => false

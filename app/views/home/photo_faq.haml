@@ -1,7 +1,7 @@
 #photo_faq.info
   .intro.span16
     %h3= t("pages.photo_faq.title")
-    = t("pages.photo_faq.description", :site_name => SITE_NAME).html_safe
+    = t("pages.photo_faq.description").html_safe
   .span16
     .well.expandable
       %h4= t("pages.photo_faq.brighten_it_up")
@@ -42,18 +42,18 @@
       %h4= t("pages.photo_faq.dont_frame")
       %a{:href => '#', :class => 'read-more'}= t("read_more")
       .inner
-        = t("pages.photo_faq.dont_frame_content", :site_name => SITE_NAME).html_safe
+        = t("pages.photo_faq.dont_frame_content").html_safe
       
     .well.expandable
       %h4= t("pages.photo_faq.dont_add_captions")
       %a{:href => '#', :class => 'read-more'}= t("read_more")
       .inner
-        = t("pages.photo_faq.dont_add_captions_content", :site_name => SITE_NAME).html_safe
+        = t("pages.photo_faq.dont_add_captions_content").html_safe
 
     .well
       %h4= t("pages.photo_faq.dont_be_stingy")
       .inner
-        = t("pages.photo_faq.dont_be_stingy_content", :site_name => SITE_NAME).html_safe
+        = t("pages.photo_faq.dont_be_stingy_content").html_safe
 
 :javascript
   Expandable.initialize("#photo_faq");

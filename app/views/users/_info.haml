@@ -1,0 +1,17 @@
+.span6
+  .section-header
+    =t(:section_header_user_profile)
+    - if current_user?(@user)
+      = link_to t(:account_settings), edit_profile_path, :class => "settings"
+    
+  %table.borderless.user_info
+    %tr
+      %td.label_detail
+        = t(:first_name)
+      %td.user_detail
+        = @user.first_name
+    %tr
+      %td.label_detail
+        = t(:last_name)
+      %td.user_detail
+        = @user.last_name

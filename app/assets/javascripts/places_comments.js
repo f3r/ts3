@@ -46,7 +46,7 @@ var PlaceComments = {
       function() { $("#del-reply").hide();  }
     );
     
-    disabled_question_button();
+    this.disabled_question_button();
   },
   
   addComment: function(html){
@@ -56,5 +56,16 @@ var PlaceComments = {
     $('#open-ask-btn').show();
     $('#comment_comment').val('');
     disabled_question_button();
+  },
+  disabled_question_button: function() {
+    $("textarea").keyup(function() {
+      var submit_button = $(this).parents('form').find('button.primary');
+
+      if ($(this).val().length == 0) {
+        submit_button.attr('disabled', 'disabled').addClass('disabled');
+      } else {
+        submit_button.removeAttr('disabled').removeClass('disabled');
+      }
+    }).keyup();
   }
 }

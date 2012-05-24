@@ -69,49 +69,6 @@ function hideIndicator(elem) {
   elem.parent().find('.save-indicator').detach();
 }
 
-$(".preference").click(function() {
-  $(this).hide().next().show();
-  $(this).next().focus();
-});
-
-$(".preference-entry").change(function(event) {
-  var me = $(this);
-  var text_container = me.prev();
-
-  if (me.val() != me.attr("data-current")) {
-    showIndicator(me);
-    $.ajax({
-      type: 'PUT',
-      url: '/users/change_preference.json',
-      data: me.serialize(),
-      success: function(data) {
-        showSavedIndicator(me);
-
-        me.attr("data-current", me.val());
-        text_container.children("span.text").html(me.children("option:selected").text());
-
-        me.hide();
-        text_container.show();
-        if($('#search_results').length > 0){
-          window.location.reload();
-        }
-      }
-    });
-  } else {
-    me.hide();
-    text_container.show();
-  }
-}).blur(function() {
-  var me = $(this);
-  var text_container = me.prev();
-  me.hide();
-  text_container.show();
-});
-
-$(".preference-entry > option").click(function() {
-  $(this).parent().blur();
-});
-
 function add_datepicker() {
   $('.from-to-picker').datepicker('destroy').datepicker({
     // dateFormat: 'dd/mm/yy',
@@ -162,25 +119,7 @@ $(document).ready(function() {
     $('.navbar').toggleClass('navbar-fixed-top', direction === "down");
     event.stopPropagation();
   });
-
-  $('.wizard-aside-wrapper').waypoint(function(event, direction) {
-    $(this).children().toggleClass('sticky', direction === "down");
-    event.stopPropagation();
-	}, {offset: 62});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
-
 });
-
-function disabled_question_button() {
-  $("textarea").keyup(function() {
-    var submit_button = $(this).parents('form').find('button.primary');
-
-    if ($(this).val().length == 0) {
-      submit_button.attr('disabled', 'disabled').addClass('disabled');
-    } else {
-      submit_button.removeAttr('disabled').removeClass('disabled');
-    }
-  }).keyup();
-}
 
 var Expandable = {
   initialize: function(selector){

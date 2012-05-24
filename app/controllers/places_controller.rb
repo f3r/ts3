@@ -302,7 +302,7 @@ class PlacesController < ApplicationController
       render :layout => 'single'
     else
       flash[:error] = t("places.messages.logged_to_rent")
-      redirect_to place_path(params[:id])
+      redirect_to new_user_session_path
     end
   end
 

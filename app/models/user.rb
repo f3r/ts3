@@ -20,7 +20,9 @@ class User < ActiveRecord::Base
   belongs_to :prefered_city, :class_name => 'City', :foreign_key => 'pref_city'
 #  has_many :addresses,        :dependent => :destroy
   has_one :address
+  has_one :bank_account
   has_many :authentications,  :dependent => :destroy
+  has_many :places,           :dependent => :destroy
   has_many :comments,         :dependent => :destroy
 
   has_attached_file :avatar,
@@ -59,6 +61,10 @@ class User < ActiveRecord::Base
 
   def name=(a_name)
     self.first_name, self.last_name = a_name.split(' ', 2)
+  end
+
+  def admin?
+    self.role == 'admin'
   end
 
   def agent?

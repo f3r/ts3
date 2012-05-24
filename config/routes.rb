@@ -87,16 +87,12 @@ HeyPalFrontEnd::Application.routes.draw do
   get    '/messages/:id/mark_as_unread' => 'messages#mark_as_unread',       :as => :mark_as_unread
 
   ###########################################################################################
-  # Profile
+  # Profiles
   ###########################################################################################
+  resource :profile
 
-  resource :profile do
-    member do
-      put :change_preferece
-    end
-  end
+  resources :users, :only => [:show]
 
-  resources :users
   put   '/set_ref'                    => 'home#set_ref'
 
   ###########################################################################################

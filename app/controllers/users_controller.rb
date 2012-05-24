@@ -1,10 +1,6 @@
 class UsersController < ApplicationController
-  # logged user profile
-  def index
-    @user = current_user
-  end
-
   def show
+<<<<<<< HEAD
     @user = Heypal::User.info('id' => params[:id])
     @places = Heypal::User.places('id' => params[:id])
     render :layout => 'plain'
@@ -49,5 +45,7 @@ class UsersController < ApplicationController
     else
       render :json => {:stat => false}
     end
+    @user = User.agent.find(params[:id])
+    @places = @user.places
   end
 end

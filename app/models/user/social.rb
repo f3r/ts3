@@ -93,5 +93,33 @@ class User
     def oauth_token?
       self.oauth_token.present?
     end
+
+    def authentication_providers
+      [:facebook, :twitter]
+    end
+
+    def facebook_authentication
+      self.provider_authentication(:facebook)
+    end
+
+    def twitter_authentication
+      self.provider_authentication(:twitter)
+    end
+
+    def provider_authentication(provider)
+      self.authentications.where(:provider => provider).first
+    end
+
+    def authenticated_providers
+      auths = []
+      self.authentication_providers.each do |provider|
+        auths << provider if self.provider_authentication(provider)
+      end
+      auths
+    end
+
+    def not_yet_authenticated_providers
+      self.authentication_providers - self.authenticated_providers
+    end
   end
 end

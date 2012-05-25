@@ -126,6 +126,18 @@ describe User do
       auth.provider.should == 'facebook'
       auth.uid.should == '456'
     end
+
+    it "retrieves linked account info" do
+      user.facebook_authentication.should be_nil
+      user.not_yet_authenticated_providers.should == [:facebook, :twitter]
+      auth = user.authentications.create!(
+        :provider => 'facebook',
+        :uid => '123',
+        :token => 'token789'
+      )
+      user.facebook_authentication.should == auth
+      user.not_yet_authenticated_providers.should == [:twitter]
+    end
   end
 
   context "Address" do

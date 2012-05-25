@@ -15,5 +15,7 @@
     - if user.agent?
       = image_tag "agent_button.png"
 
-  - if current_user?(user)
-    = render :partial => "users/accounts"
+    = render "users/linked_accounts", :user => user
+
+    - if current_user?(user)
+      = render "profiles/connect_accounts"

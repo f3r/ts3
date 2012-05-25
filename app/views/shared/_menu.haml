@@ -30,8 +30,8 @@
 
 
             - else
-              = menu_link_to t(:how_it_works), '/how-it-works'
-              = menu_link_to t(:why_squarestays), '/why'
+              - MenuSection.left_menus.all.each do |ms|
+                = render_menu_section(ms)
 
           %ul.nav.pull-right
             - if user_signed_in?
@@ -47,17 +47,7 @@
                 %li.unread-message{:onclick => "location.href='#{messages_path}';"}
                   = link_to message_count, messages_path
 
-            %li.dropdown
-              %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
-                Help
-                %b.caret
-              %ul.dropdown-menu{:style => 'width:200px'}
-                %li= link_to t(:how_it_works), '/how-it-works'
-                %li= link_to t(:why_squarestays), '/why'
-                %li= link_to t(:cityguide_sg), '/singapore-city-guide'
-                %li= link_to t(:cityguide_hk), '/hong-kong-city-guide'
-                %li= link_to t(:cityguide_kl), '/kuala-lumpur-city-guide'
+            - MenuSection.right_menus.all.each do |ms|
+              = render_menu_section(ms) do
                 %li= link_to t(:community_support), 'https://getsatisfaction.com/squarestays', :target => '_blank'
-                - if (is_agent? || is_admin?)
-                  %li= link_to t(:photography_faq), home_photo_faq_path
-                  
+                                

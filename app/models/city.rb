@@ -6,14 +6,21 @@ class City < ActiveRecord::Base
   has_many :places
 
   before_save :update_cached_complete_name
+  after_save :reset_routes_cache
+
   after_commit  :delete_cache
 
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
   def self.routes_regexp
-  	# Matches the name of a city
-  	Regexp.new(self.all.collect{|city| city.slug if city.respond_to?(:slug)}.join('|'))
+  	# Matches the name of a city  
+  	if self.any?
+  	  Regexp.new(self.all.collect{|city| city.slug if city.respond_to?(:slug)}.join('|'))
+  	else
+  	  # default
+  	  /singapore/
+  	end
   end
 
   def activate!
@@ -58,6 +65,10 @@ class City < ActiveRecord::Base
       'geo_cities_' + country_code,
       'geo_cities_' + country_code + '_' + (state ? state.parameterize : "")
     ])
+  end
+
+  def reset_routes_cache
+    HeyPalFrontEnd::Application.reload_routes!
   end
 
   # def name

@@ -5,7 +5,7 @@ describe "StaticPages" do
     @page = FactoryGirl.create(:cmspage)
     FactoryGirl.create(:currency)
   end
-  
+
   it "renders static page" do
     get "/#{@page.page_url}"
     response.body.should include (@page.description)

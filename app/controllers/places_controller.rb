@@ -307,7 +307,7 @@ class PlacesController < ApplicationController
       render :layout => 'single'
     else
       flash[:error] = 'You must be logged in to rent a place'
-      redirect_to login_path
+      redirect_to place_path(params[:id])
     end
   end
 

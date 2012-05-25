@@ -40,4 +40,8 @@ module HomeHelper
 
     return City.active.first
   end
+
+  def home_photo_faq_path
+    '/photo-faq'
+  end
 end

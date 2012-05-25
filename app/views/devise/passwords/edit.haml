@@ -14,7 +14,9 @@
       .input
         = f.label :password, t(:enter_your_new_password)
         = f.password_field :password
-        =# f.password_field :password_confirmation
+      .input
+        = f.label :password, t(:confirm_reset_password)
+        = f.password_field :password_confirmation
 
       %button.btn.float-right{:type => 'submit'}
         = t(:submit)

@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe User do
+  before(:all) do
+    User.attachment_definitions[:avatar][:path] = "public/system/avatars/:id_partition/:style.:extension"
+  end
+
   let(:user){ FactoryGirl.create(:user) }
 
   context "name=" do
@@ -18,6 +22,16 @@ describe User do
       user.name = "Diego"
       user.first_name.should == "Diego"
       user.last_name.should be_nil
+    end
+  end
+
+  context "Avatar" do
+    it "sets and deletes the avatar" do
+      user.delete_avatar = true
+      mock_avatar = mock(:dirty? => false)
+      mock_avatar.should_receive(:clear)
+      user.stub(:avatar => mock_avatar)
+      user.save.should be_true
     end
   end
 

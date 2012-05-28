@@ -157,6 +157,7 @@ en:
   use_facebook_photo:   Use Facebook Photo
   upload_a_new_photo:   Upload a new Photo
   saving_photo:         Saving photo
+  delete_photo:         Delete photo
   private_field:        Private. Only visible to those that have an active transaction with you
   fully_private_field:  Private. Only visible to SquareStays
   public_field:         Public. Anyone can see this information

@@ -35,7 +35,7 @@ gem 'declarative_authorization'   # Access Control List
 
 gem 'geocoder'                    # Geocoding Google-based
 
-gem 'will_paginate', "= 3.0.2"               # Paginating results
+gem 'will_paginate', "= 3.0.2"    # Paginating results
 
 gem "friendly_id", "~> 4.0.1"
 

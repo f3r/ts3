@@ -10,7 +10,7 @@
           .preview
             =t(:preview)
         .span7
-          %p=t(:change_photo_description)
+          %p= t(:change_photo_description)
           %p
             =#%a.btn.medium.facebook_avatar=t(:use_facebook_photo)
             =# f.hidden_field(:facebook_image, :value => "http://graph.facebook.com/#{@facebook_uid}/picture?type=large") if !@facebook_uid.blank?

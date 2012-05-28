@@ -21,9 +21,9 @@ class HomeController < ApplicationController
     respond_to do |format|
       session[:user_return_to] = params[:ref] if params[:ref] && !params[:ref].blank?
       format.json { render :inline => "ok" }
-    end 
+    end
   end
-  
+
   def staticpage
     #get the content from back-end
     @staticpage = Cmspage.find_by_url(params[:pages])

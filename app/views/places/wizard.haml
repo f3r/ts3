@@ -5,7 +5,7 @@
 .wizard.row
   .span12.title
     .float-right
-      = link_to t(:invisible), '#', :class => 'btn secondary', :id => 'listing-status'
+      = link_to t("places.invisible"), '#', :class => 'btn secondary', :id => 'listing-status'
 
     %h1= @place.title
 .row
@@ -15,7 +15,7 @@
         = render :partial => 'sidebar'
         &nbsp;
       .span9
-        %h2.title.section_title= t(:general_information)
+        %h2.title.section_title= t("places.wizard.general_information_title")
         .wizard-wrapper
           = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
             = hidden_field_tag :place_id, params[:id]

@@ -2,7 +2,7 @@
   - unless current_user?(@owner)
     .row
       .span12{:style => "text-align:center"}
-        %a#open-ask-btn.btn.btn-large.btn-primary= t(:ask_question)
+        %a#open-ask-btn.btn.btn-large.btn-primary= t("places.questions.ask_question")
 
   .row
     #ask-form.hide
@@ -16,12 +16,12 @@
               = #f.check_box "pm"
               = #.help-inline= t(:pm)
             .span2.offset8
-              = button_tag t(:cancel), :id => 'ask-cancel', :class => 'btn'
-              = button_tag t(:submit), :id => 'ask-btn',    :class => "btn btn-primary"
+              = button_tag t("cancel"), :id => 'ask-cancel', :class => 'btn'
+              = button_tag t("submit"), :id => 'ask-btn',    :class => "btn btn-primary"
 -else
   .row
     .span12{:style => "text-align:center"}
-      %a.btn.btn-large.btn-primary{:href => login_path_with_ref}= t(:ask_question)
+      %a.btn.btn-large.btn-primary{:href => login_path_with_ref}= t("places.questions.ask_question")
 
 %br
 %br

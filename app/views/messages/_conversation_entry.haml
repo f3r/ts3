@@ -13,6 +13,6 @@
       - if m['message'].present?
         = truncate(m['message'], :length => 80)
       - else
-        %span.empty= 'No message'
+        %span.empty= t("messages.no_messages")
     .span2
-      %span.time= "#{time_ago_in_words(Time.parse(m['date']))} ago"
+      %span.time= t("time_ago", :time => time_ago_in_words(Time.parse(m['date'])))

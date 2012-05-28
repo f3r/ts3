@@ -3,55 +3,55 @@ module PlacesHelper
   # Amenities
   def amenities_group_1 
     [
-      [t(:kitchen), :amenities_kitchen],
-      [t(:hot_water), :amenities_hot_water], 
-      [t(:elevator), :amenities_elevator],
-      [t(:parking_included), :amenities_parking_included],
-      [t(:heating), :amenities_heating],
-      [t(:handicap), :amenities_handicap],
-      [t(:doorman), :amenities_doorman],
-      [t(:aircon), :amenities_aircon], 
-      [t(:buzzer_intercom), :amenities_buzzer_intercom],
+      [t("places.amenities.kitchen"), :amenities_kitchen],
+      [t("places.amenities.hot_water"), :amenities_hot_water], 
+      [t("places.amenities.elevator"), :amenities_elevator],
+      [t("places.amenities.parking_included"), :amenities_parking_included],
+      [t("places.amenities.heating"), :amenities_heating],
+      [t("places.amenities.handicap"), :amenities_handicap],
+      [t("places.amenities.doorman"), :amenities_doorman],
+      [t("places.amenities.aircon"), :amenities_aircon], 
+      [t("places.amenities.buzzer_intercom"), :amenities_buzzer_intercom],
     ]
   end
 
   # Furnishings 
   def amenities_group_2
     [
-      [t(:internet), :amenities_internet],
-      [t(:tv), :amenities_tv],
-      [t(:dryer), :amenities_dryer],    
-      [t(:internet_wifi), :amenities_internet_wifi],
-      [t(:cable_tv), :amenities_cable_tv],
-      [t(:washer), :amenities_washer],
+      [t("places.amenities.internet"), :amenities_internet],
+      [t("places.amenities.tv"), :amenities_tv],
+      [t("places.amenities.dryer"), :amenities_dryer],    
+      [t("places.amenities.internet_wifi"), :amenities_internet_wifi],
+      [t("places.amenities.cable_tv"), :amenities_cable_tv],
+      [t("places.amenities.washer"), :amenities_washer],
     ]
   end
 
   # Misc
   def amenities_group_3
     [
-      [t(:pets_allowed), :amenities_pets_allowed],
-      [t(:breakfast), :amenities_breakfast],
-      [t(:smoking_allowed), :amenities_smoking_allowed],
-      [t(:suitable_events), :amenities_suitable_events],
-      [t(:family_friendly), :amenities_family_friendly],
+      [t("places.amenities.pets_allowed"), :amenities_pets_allowed],
+      [t("places.amenities.breakfast"), :amenities_breakfast],
+      [t("places.amenities.smoking_allowed"), :amenities_smoking_allowed],
+      [t("places.amenities.suitable_events"), :amenities_suitable_events],
+      [t("places.amenities.family_friendly"), :amenities_family_friendly],
     ]
   end
 
   def amenities_group_4
     [
-      [t(:gym), :amenities_gym],
-      [t(:jacuzzi), :amenities_jacuzzi],
-      [t(:hot_tub), :amenities_hot_tub],
-      [t(:tennis), :amenities_tennis],
-      [t(:pool), :amenities_pool],
+      [t("places.amenities.gym"), :amenities_gym],
+      [t("places.amenities.jacuzzi"), :amenities_jacuzzi],
+      [t("places.amenities.hot_tub"), :amenities_hot_tub],
+      [t("places.amenities.tennis"), :amenities_tennis],
+      [t("places.amenities.pool"), :amenities_pool],
     ]
   end
 
   def render_photo(photo)
     p = photo['photo']
 
-    photo_title = p['name'].present? ? truncate(p['name'], :length => 23) : t(:no_caption)
+    photo_title = p['name'].present? ? truncate(p['name'], :length => 23) : t("places.wizard.photos.no_caption")
     html = content_tag :div, :class => 'photo_image', :id => "image-#{p['id']}" do
       image_tag(p['small'], :data => {
         :id    => p['id'],

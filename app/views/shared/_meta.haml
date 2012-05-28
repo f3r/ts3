@@ -1,5 +1,5 @@
 %meta{:charset => "utf-8"}
-%title= content_for?(:title) ? "#{yield(:title)} | #{t(:site_title)}" : t(:site_title)
+%title= content_for?(:title) ? "#{yield(:title)} | #{t("site_title", :site_tagline => SITE_TAGLINE)}" : t("site_title", :site_tagline => SITE_TAGLINE)
 %meta{:content => "", :name => "description"}
 %meta{:content => "", :name => "author"}
 %link{:rel => "icon", :type => "image/png", :href => "http://squarestays.com/favicon.png"}

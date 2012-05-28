@@ -39,6 +39,13 @@ gem 'will_paginate', "= 3.0.2"               # Paginating results
 
 gem "friendly_id", "~> 4.0.1"
 
+# i18n stored in active record
+gem 'i18n-active_record',
+    :git => 'git://github.com/svenfuchs/i18n-active_record.git',
+    :branch => 'rails-3.2',
+    :require => 'i18n/active_record'
+
+gem 'dalli' # Memcached
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"

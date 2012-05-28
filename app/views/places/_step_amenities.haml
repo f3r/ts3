@@ -1,44 +1,37 @@
 .alert.alert-info
-  = "#{t(:select_one)}"
-
+  = "#{t("places.wizard.amenities.select_one")}"
 .panel-wrapper.amenities.well
-  %h3= t(:place_and_building_facilities)
+  %h3= t("places.wizard.place_and_building_facilities_title")
   %fieldset
     - amenities_group_1.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
         = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
-        = a[0]
-  
-  %h3= t(:furnishings)
+        = a[0]  
+  %h3= t("places.wizard.furnishings_title")
   %fieldset
     - amenities_group_2.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
         = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
         = a[0]
-
-  %h3= t(:sports_and_recreation)
+  %h3= t("places.wizard.sports_and_recreation_title")
   %fieldset
     - amenities_group_4.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
         = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
         = a[0]
-
-
-
-  %h3= t(:miscellaneous)
+  %h3= t("places.wizard.miscellaneous_title")
   %fieldset
     - amenities_group_3.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        -if a[0] == 'Smoking Allowed'
-          = link_to '?', '#', :class => 'tooltip', :title => raw(t(:do_you_allow_smoking))
+        -if a[1] == :amenities_smoking_allowed
+          = link_to '?', '#', :class => 'tooltip-link', :title => raw(t("places.wizard.amenities.do_you_allow_smoking"))
           = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
           = a[0]
         -else
           = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
           = a[0]
-
 .arrows.clearfix
   .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t(:previous_step)
+    %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t("places.wizard.previous_step")
   .float-right
-    %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t(:next_step)
+    %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t("places.wizard.next_step")

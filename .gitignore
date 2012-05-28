@@ -8,3 +8,4 @@ config/database.yml
 public/system/**
 .rvmrc
 config/local.yml
+config/locales/log/

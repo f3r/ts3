@@ -5,33 +5,32 @@
         = currency_sign_of(get_current_currency)
     %ul.dropdown-menu
       %li.arrow
-      %li.divider-title= "#{t(:choose_language)}..."
+      %li.divider-title= "#{t("template.header.preferences.choose_language")}..."
       %li.divider
       %li{ get_current_language == "en" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_language => 'en' do
           %span.check &#10003;
-          English
+          = t("template.header.preferences.english_native")
       %li{ get_current_language == "es" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_language => 'es' do
           %span.check &#10003;
-          Español
+          = t("template.header.preferences.spanish_native")
       %li.divider
-      %li.divider-title= "#{t(:choose_currency)}..."
+      %li.divider-title= "#{t("template.header.preferences.choose_currency")}..."
       %li.divider
         - Currency.active.each do |cur|
           %li{ get_current_currency == cur.currency_code ? {:class => "active"} : {} }
             = link_to :change_preference => true, :pref_currency => cur.currency_code do
               %span.em <span class="check">&#10003;</span>
               %span.option-label= cur.label
-        
       %li.divider              
-      %li.divider-title= "#{t(:choose_unit)}..."
+      %li.divider-title= "#{t("template.header.preferences.choose_unit")}..."
       %li.divider            
       %li{ get_current_size_unit == "sqm" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_size_unit => 'sqm' do
           %span.em <span class="check">&#10003;</span> m²
-          =t("square_meters")
+          =t("units.square_meters")
       %li{ get_current_size_unit == "sqf" ? {:class => "active"} : {} }
         = link_to :change_preference => true, :pref_size_unit => 'sqf' do
           %span.em <span class="check">&#10003;</span> ft²
-          =t("square_feet")
+          =t("units.square_feet")

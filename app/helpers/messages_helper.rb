@@ -7,14 +7,14 @@ module MessagesHelper
   end
 
   def system_message_body(system_msg_id)
-    t("workflow_system_msg_#{system_msg_id}".to_sym)
+    t("workflow.system_msg_#{system_msg_id}".to_sym)
   end
 
   def conversation_title
     if @inquiry
-      "#{t(:inquiry_on)} #{@inquiry['place_title']}"
+      "#{t("inquiries.inquiry_on")} #{@inquiry['place_title']}"
     else
-      "#{t(:conversation_with)} #{@conversation['from']['first_name']}"
+      "#{t("inquiries.conversation_with")} #{@conversation['from']['first_name']}"
     end
   end
 end

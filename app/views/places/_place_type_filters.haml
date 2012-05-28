@@ -1,6 +1,6 @@
 - if !@results['place_type_count'].blank?
   #types-list
-    .header= t(:type)
+    .header= t("places.search.type_title")
     .content
       %ul{:class => "inputs-list"}
         - place_type_filters(@results['place_type_count']).each do |p_type, count|

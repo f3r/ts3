@@ -1,11 +1,11 @@
 - if inquiry['guests'].present?
   .guests
-    %span.value= t(:inquiry_guests, :count => inquiry['guests'])
+    %span.value= t("inquiries.inquiry_guests", :count => inquiry['guests'])
 - if inquiry['check_in'].present?
   .arriving 
-    %span.key= 'arriving on'
+    %span.key= t("inquiries.arriving_on")
     %span.value= inquiry['check_in']
 - if inquiry['length'].present?
   .stay
-    %span.key= 'stay'
+    %span.key= t("inquiries.staying")
     %span.value= inquiry['length']

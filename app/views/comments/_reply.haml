@@ -1,10 +1,10 @@
 .row-fluid.answer
   .span8#answer
-    .owners_answer= "Owner's Answer"
+    .owners_answer= t("places.questions.owners_answer")
     .user_message= reply.comment
     .time= time_ago_in_words(reply.created_at)
   - if logged_in? && current_user?(@owner)
-    .del.hide#del-reply= link_to 'X', place_comment_path(reply['place_id'], reply['id'], :type => 'reply', :qId => question_id), :remote => true, :method => :delete, :confirm => 'Delete this Answer?'
+    .del.hide#del-reply= link_to 'X', place_comment_path(reply['place_id'], reply['id'], :type => 'reply', :qId => question_id), :remote => true, :method => :delete, :confirm => t("places.questions.delete_this_question")
 
   .span4
     .user_box
@@ -12,6 +12,6 @@
         .user_photo= avatar_image(reply.user)
         .user_data
           .user_name= link_to "#{reply.user.anonymized_name}", '#'
-          .user_role= reply.user.role
+          .user_role= t("roles.#{reply.user.role}")
       -else
-        =t(:unknown)
+        =t("places.questions.unknown")

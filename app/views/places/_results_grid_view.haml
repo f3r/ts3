@@ -18,44 +18,24 @@
             .property.data-block
               .title
                 .type.house 
-                  = place['place_type']['name']
+                  = I18n.t("places.types.#{place['place_type']['name'].parameterize('_')}")
                 .type.size
                   - if get_current_size_unit == "sqf"
                     = raw("#{number_with_precision place['size_sqf'], :strip_insignificant_zeros => true, :precision => 1} ")
-                    =t(:square_feet_short)
+                    =t("units.square_feet_short")
                   -else
                     = raw("#{number_with_precision place['size_sqm'], :strip_insignificant_zeros => true, :precision => 1} ")
-                    =t(:square_meters_short)
+                    =t("units.square_meters_short")
 
             .property2.data-block
               .title
                 - if !place['num_bedrooms'].nil?
                   .type.bedroom
-                    = place['num_bedrooms']
-                    = t(:bedroom)
+                    = t("places.bedrooms", :count => place['num_bedrooms'])
                 - if !place['num_bathrooms'].nil?
                   .type.bathroom
-                    = place['num_bathrooms']
-                    = t(:bathroom)
-
+                    = t("places.bathrooms", :count => place['num_bathrooms'])
             .price.data-block
-              -if @results['total_days']
-                -if @results['total_days'] < 7
-                  .figure= "#{get_pref_currency}#{place['price_per_night']}"
-                  .micro= t(:per_night)
-                -if @results['total_days'] >= 7 && @results['total_days'] <= 28
-                  .figure= "#{get_pref_currency}#{place['price_per_week']}"
-                  .micro= t(:per_week)
-                -if @results['total_days'] > 28
-                  .figure= "#{get_pref_currency}#{place['price_per_month']}"
-                  .micro= t(:per_month)
-              -else
-                -if !place['price_per_month'].blank?
-                  .figure= "#{get_pref_currency}#{place['price_per_month']}"
-                  .micro= t(:per_month)
-                -elsif !place['price_per_week'].blank?
-                  .figure= "#{get_pref_currency}#{place['price_per_week']}"
-                  .micro= t(:per_week)
-                -elsif !place['price_per_night'].blank?
-                  .figure= "#{get_pref_currency}#{place['price_per_night']}"
-                  .micro= t(:per_night)
+              -if place['price_per_month'].present?
+                .figure= "#{get_pref_currency}#{place['price_per_month']}"
+                .micro= t("places.per_month")

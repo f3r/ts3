@@ -2,7 +2,7 @@
   .container
     .row
       .span5
-        .logo= link_to image_tag('SquareStays.png', :size => "244x58"), root_path, :title => t(:app_name)
+        .logo= link_to image_tag('SquareStays.png', :size => "244x58"), root_path, :title => SITE_NAME
       - if user_signed_in?
         .user_box.logged-in
           .row
@@ -11,13 +11,13 @@
             .user_name
               = link_to full_name(current_user), profile_path
               .small
-                = link_to t(:sign_out), destroy_user_session_path
+                = link_to t("users.sign_out"), destroy_user_session_path
       - else
         .user_box
           .row    
             .links
-              = link_to t(:sign_in), login_path_with_ref
+              = link_to t("users.sign_in"), login_path_with_ref
               %span.separator /
-              = link_to t(:register), signup_path_with_ref
+              = link_to t("users.register"), signup_path_with_ref
       = render 'shared/preferences'
   = render 'shared/menu'

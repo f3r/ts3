@@ -21,7 +21,7 @@ class AddressesController < ApplicationController
       if params[:address][:check_in] && params[:address][:check_out]
         redirect_to availability_place_path(:id => params[:address][:place_id],:check_in => params[:address][:check_in], :check_out => params[:address][:check_out])
       else
-        flash[:notice] = 'You successfully updated your billing address'
+        flash[:notice] = t("users.messages.successfully_updated_billing")
         redirect_to profile_path
       end
     else

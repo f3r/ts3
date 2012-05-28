@@ -1,34 +1,12 @@
 .span16
   .row
-    %h2 
-      Welcome to Hong Kong!!
-        
-  %br
+    %h2= t("city_guides.hong_kong.title")
   .row
-    %p Hong Kong is the second city available on SquareStays. Hong Kong has been an Asian tiger economy for years, and is the main gateway to China for many multinational corporations.
-
-    %p Hong Kong is a special administrative region (SAR) of China, with a population of just over 7 million people crammed into a land area of approximately 1100 square kilometers (~426 square miles). About 40% of the land in Hong Kong is protected and unusable for residential development because of its hilly nature. That leads to a very high population density in residential areas, which in turn causes extreme prices in real estate.
-
-    %p Hong Kong has a long and rich history, and has been fought over and ruled by several world powers. Hong Kong was one of the last British colonies, and only reverted to Chinese possession and rule in 1997.
-
-    %h3 Business in Hong Kong
-    %p The main economic drivers are financial services and shipping. Hong Kong offers one-day company incorporation and a number of low- or no-tax schemes for new companies or offshore corporations. 
-
-    %h3 Accommodation in Hong Kong
-    %p While Hong Kong has a large selection of hotels, prices are extremely high. Average business hotels regularly cost more than $200 USD / night. Serviced apartments are priced even higher, as they offer more space and a more complete suite of services. Serviced apartments in Hong Kong are normally full. SquareStays can help by offering fully furnished short-term rentals at reasonable prices and with good availability!
-
-    %br
-    %center
-      %a.btn.btn-primary.btn-large{:type => 'submit', :href => "/hong_kong"}= "#{t(:find_place_in)} #{t(:hong_kong)}!"
-
-    %h3 Helpful links
-    %ul
-      %li= "Hong Kong on #{link_to "Wikipedia", "http://en.wikipedia.org/wiki/Hong_Kong"}".html_safe
-      %li= "A Hong Kong #{link_to "expat forum", "http://www.hkexpats.com/"}, another #{link_to "expat forum", " http://hongkong.geoexpat.com"} and one last #{link_to "expat forum", "http://hongkong.asiaxpat.com"} for Hong Kong".html_safe
-      %li= "The leading real estate portals for long-term rentals and purchases in Hong Kong: #{link_to "squarefoot", "http://www.squarefoot.com.hk"} and #{link_to "chooze2move", "http://www.chooze2move.com"}".html_safe
-      %li= "#{link_to "Hong Kong hotels", "http://www.hongkonghotel.com"} (for stays under one month) ".html_safe
-
-    %h3 Sources
-    %ul
-      %li= link_to "Economy of Hong Kong", "http://en.wikipedia.org/wiki/Economy_of_Hong_Kong"
-      %li= link_to "Startupr article", "http://startupr.com/country-list/asia/hong-kong"
+    = t("city_guides.hong_kong.main_content").html_safe
+    %p
+      %center
+        %a.btn.btn-primary.btn-large{:type => 'submit', :href => "/hong_kong"}= t("city_guides.find_place_in", :city_name => t("cities.hong_kong"))
+    %h3= t("city_guides.helpful_links")
+    = t("city_guides.hong_kong.helpful_links_content").html_safe
+    %h3= t("city_guides.sources")
+    = t("city_guides.hong_kong.sources_content").html_safe

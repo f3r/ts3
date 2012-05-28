@@ -29,6 +29,6 @@ class Heypal::PlaceType < Heypal::Base
   end
   
   def translated_name
-    I18n.t(self.slug)
+    I18n.t("places.types.#{self.slug}")
   end
 end

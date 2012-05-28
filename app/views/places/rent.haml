@@ -1,3 +1,5 @@
+/ TODO: DELETE THIS PAGE? Not used.
+
 - content_for :javascripts do
   %link{:rel => "stylesheet", :href => "/javascripts/datepicker/css/datepicker.css", :type => "text/css"}
   %script{:src => '/javascripts/datepicker/js/datepicker.js', :type => 'text/javascript'}
@@ -10,7 +12,7 @@
     = link_to @place['title'], place_path(@place["id"])
     %span.divider &raquo;
   %li.active
-    =t(:rent)
+    =t("places.rent_word")
 
 .rent_place_page
   .row
@@ -21,7 +23,7 @@
         .panel
           .panel-wrapper
             %h2.title
-              = t(:place_details)
+              = t("places.rent.place_details")
 
         .row.info
           .span4
@@ -40,105 +42,106 @@
                 .title
                   - if !@place['size_sqf'].nil? or !@place['size_sqm'].nil?
                     = get_current_size_unit == "sqf" ? @place['size_sqf'].round() : @place['size_sqm'].round()
-                    =raw get_pref_size_unit
+                    = raw get_pref_size_unit
             .span2.price-data-block
               .price
                 - if !@place['price_per_night'].nil?
                   .figure
                     = "#{get_pref_currency}#{@place['price_per_night']}"
                   .micro-price
-                    = t(:per_night)
+                    = t("places.per_night")
                 - else
                   &nbsp;
 
         .row.details
           .span2#checkin-div
             .check_in
-              %strong= t(:check_in)
+              %strong= t("places.check_in_after")
             %span
-              = @place['check_in_after'].blank? ? t(:check_in_flexible) : @place['check_out_before']
+              = @place['check_in_after'].blank? ? t("places.check_in_flexible") : @place['check_out_before']
           .span2#checkout-div
             .check_out
-              %strong= t(:check_out)
+              %strong= t("places.check_out_before")
             %span
-              = @place['check_out_before'].blank? ? t(:check_in_flexible) : @place['check_out_before']
+              = @place['check_out_before'].blank? ? t("places.check_in_flexible") : @place['check_out_before']
           .span3
             .cancellation_policy
-              %strong= t(:cancellation_policy)
+              %strong= t("places.cancellation_policy")
             %span
               - policy = LookupsHelper::CANCELLATION_POLICIES[@place['cancellation_policy']]
               = cancellation_desc(@place)
-              = link_to '?', '#', :class => 'tooltip-link', 'data-original-title' => raw(t("#{policy}_cancellation".to_sym) + "<br/><br/>#{t(:see_our)} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t(:cancellation_policy)}</a> #{t(:for_more_info)}.")
+              = link_to '?', '#', :class => 'tooltip-link', 'data-original-title' => raw(t("places.cancellation_policies.#{policy}_cancellation".to_sym) + "<br/><br/>#{t("places.wizard.pricing.see_our")} <a href='#' data-controls-modal='cancellation_policy_text' data-backdrop='static'>#{t("places.cancellation_policy")}</a> #{t("places.wizard.pricing.for_more_info")}.")
 
         .row.details
           .span2#guests-div
             .guests
-              %strong= t(:guests)
+              %strong= t("places.guests")
             %span
               = @place['max_guests']
           .span2#rooms-div
             .bedrooms
-              %strong= t(:bedrooms)
+              %strong= t("places.bedrooms")
             %span
               = @place['num_bedrooms']
           - if !@place['house_rules'].blank?
             .span3
               .house_rules
-                %strong= t(:house_rules)
+                %strong= t("places.house_rules")
               %span
-                = link_to t(:view_house_rules), '#', "data-controls-modal" => "house-rules-modal"
+                = link_to t("places.view_house_rules"), '#', "data-controls-modal" => "house-rules-modal"
                 #house-rules-modal.hide.modal.fade
                   .modal-header
-                    %h3= t(:house_rules)
+                    %h3= t("places.house_rules")
                   .modal-body= @place['house_rules']
                   .modal-footer
-                    %button.btn{:onclick => "$('#house-rules-modal').modal('hide'); return false;"}= t(:close)
+                    %button.btn{:onclick => "$('#house-rules-modal').modal('hide'); return false;"}= t("close")
 
         .panel
           .panel-wrapper
             %h2.title
-              = t(:stay_details)
+              = t("places.rent.stay_details")
 
         .row
           .span16
             %fieldset
-              <p id="date_picker"></p>
-              <p><a href="#" id="clearSelection">Clear selection</a></p>
+              %p#date_picker
+              %p
+                %a{:href="#", :id => "clearSelection"}= t("places.rent.clear_selection")
               .clearfix
                 .input.required
-                  = label_tag :check_in, t(:arriving)
+                  = label_tag :check_in, t("places.search.arriving_on")
                   = text_field_tag :check_in, (!params['check_in'].blank? ? params['check_in'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability],past[NOW]]"
                 .input.required
-                  = label_tag :check_out, t(:departing)
+                  = label_tag :check_out, t("places.search.departing_on")
                   = text_field_tag :check_out, (!params['check_out'].blank? ? params['check_out'] : Date.today), :class => "validate[required,ajax[ajaxCheckAvailability],past[NOW]]"
                 .input
-                  %label= t(:duration)
+                  %label= t("places.rent.duration")
                   .duration
                     %span 0
-                    =t(:nights)
+                    =t("places.rent.nights")
 
         .panel
           .panel-wrapper
             %h2.title
-              = t(:contact_information)
+              = t("contact_information")
         %fieldset
           =fields_for "user", @user do |f|
             .input.required
-              %label= t(:mobile_phone_number)
+              %label= t("users.mobile_phone")
               = f.text_field :phone_mobile, :class => "validate[required]"
             .input.required
-              = f.label :passport_number, t(:passport_number)
+              = f.label :passport_number, t("users.passport_number")
               = f.text_field :passport_number, :class => "validate[required]"
           .clearfix
             = check_box_tag :terms, 1, false, :class => "validate[required]"
-            = t(:read_agreement)
-            = link_to t(:terms_and_conditions), terms_path, :target => :blank
+            = t("places.rent.read_rent_agreement")
+            = link_to t("terms_and_conditions"), terms_path, :target => :blank
 
             = hidden_field_tag :user_id, current_user['id']
             = hidden_field_tag :place_id, @place["id"]
 
           %button.btn.primary
-            = t(:continue)
+            = t("places.rent.continue")
 
 = render :partial => 'cancellation_policy'
 

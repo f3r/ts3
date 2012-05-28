@@ -1,7 +1,7 @@
 - content_for(:modal_header) do
-  %h3=t(:successfully_added_to_your_favorites)
+  %h3=t("favorites.messages.successfully_added_to_your_favorites")
 
-%h4=t(:share_this_place_with_your_friends)
+%h4=t("favorites.share_this_place_with_your_friends")
 .sharing_options
   %span.st_facebook_large{:displayText=>'Facebook', :st_url => "#{FRONTEND_PATH}#{seo_place_path(@place)}", :st_title => @place['title'], :st_summary => @place['description']}
   %span.st_twitter_large{:displayText=>'Tweet', :st_url => "#{FRONTEND_PATH}#{seo_place_path(@place)}", :st_title => @place['title'], :st_summary => @place['description']}
@@ -10,4 +10,4 @@
   %span.st_tumblr_large{:displayText=>'Tumblr', :st_url => "#{FRONTEND_PATH}#{seo_place_path(@place)}", :st_title => @place['title'], :st_summary => @place['description']}
 
 - content_for(:modal_footer) do
-  %button.btn.btn-primary{:onclick => "$('.modal').modal('hide'); return false;"}= t(:no_thanks)
+  %button.btn.btn-primary{:onclick => "$('.modal').modal('hide'); return false;"}= t("favorites.no_thanks")

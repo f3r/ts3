@@ -1,30 +1,23 @@
 %fieldset.form-horizontal.well
   .control-group
-    = label_tag "date_start", 'Dates', :class => 'control-label'
+    = label_tag "date_start", t("places.wizard.calendar.dates"), :class => 'control-label'
     .controls
-      = text_field_tag "date_start", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :from
-      = t(:to)
-      = text_field_tag "date_end", "", :placeholder => "dd/mm/yyyy", :class => 'small from-to-picker', "data-date" => :to
-
+      = text_field_tag "date_start", "", :placeholder => "yyyy/mm/dd", :class => 'small from-to-picker', "data-date" => :from
+      = t("places.wizard.calendar.to")
+      = text_field_tag "date_end", "", :placeholder => "yyyy/mm/dd", :class => 'small from-to-picker', "data-date" => :to
   .availability-price.control-group
-    = label_tag "availability_type", 'Status', :class => 'control-label'
+    = label_tag "availability_type", t("places.wizard.calendar.status"), :class => 'control-label'
     .controls
-      = select_tag "availability_type", raw("<option value='1'>#{t(:unavailable)}</option><option value='2'>#{t(:new_price)}</option>"), :class => 'availability_type'
-
+      = select_tag "availability_type", raw("<option value='1'>#{t("places.wizard.calendar.unavailable")}</option><option value='2'>#{t("places.wizard.calendar.new_price")}</option>"), :class => 'availability_type'
       %span.wrap.hide
         %span.input-prepend
           %small.add-on.currency-sign= currency_sign_of(@place.currency)
-          = text_field_tag "price_per_night", "", :placeholder => t(:new_price), :class => 'small validate[custom[number],min[0]]'
-
+          = text_field_tag "price_per_night", "", :placeholder => t("places.wizard.calendar.new_price"), :class => 'small validate[custom[number],min[0]]'
       %p.help-block
-        =t(:you_can_add_dates)
-        %span.currency-sign
-          = currency_sign_of(@place.currency)
-          = @place.price_per_night
-
+        =t("places.wizard.calendar.new_date_help", :currency_sign => currency_sign_of(@place.currency), :price_per_night => @place.price_per_month.to_i / 30)
     %div.availability-action.pull-right
-      = button_tag t(:close), :class => "btn cancel-new-availability"
-      = button_tag t(:add), :id => "new-availability", :class => "btn primary"
+      = button_tag t("places.wizard.calendar.close"), :class => "btn cancel-new-availability"
+      = button_tag t("places.wizard.calendar.add"), :id => "new-availability", :class => "btn primary"
 
 :javascript
 
@@ -67,7 +60,7 @@
         save_btn.removeAttr('disabled');
       },
       error: function() {
-        alert("#t(:something_went_wrong)");
+        alert('#t("places.wizard.calendar.something_went_wrong")');
         hideIndicator(save_btn);
         save_btn.removeAttr('disabled');
       }

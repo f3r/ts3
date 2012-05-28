@@ -7,7 +7,8 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def twitter
     access_token = request.env["omniauth.auth"]
-    access_token[:extra][:raw_info].except!(:work) # Avoid CookieOverflow
+    access_token.slice!(:uid, :provider, :info, :credentials)
+    access_token[:info].slice!(:name, :image) # Avoid CookieOverflow
     handle_provider(access_token)
   end
 

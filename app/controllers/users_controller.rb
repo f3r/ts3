@@ -1,8 +1,6 @@
 class UsersController < ApplicationController
   def show
-<<<<<<< HEAD
-    @user = Heypal::User.info('id' => params[:id])
-    @places = Heypal::User.places('id' => params[:id])
+    @user = User.find(params[:id])
     render :layout => 'plain'
   end
 

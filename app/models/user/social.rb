@@ -40,6 +40,12 @@ class User
       end
       auth.token = access_token[:credentials][:token]
       auth.secret = access_token[:credentials][:secret]
+
+      if !self.avatar? && access_token[:info] && access_token[:info].image
+        self.avatar_url = access_token.info.image.gsub('square', 'large').gsub('_normal', '')
+        self.save
+      end
+
       auth.save!
     end
 
@@ -74,7 +80,7 @@ class User
       self.oauth_secret = data.credentials.secret
 
       self.name = data.info.name
-      self.avatar_url = data.info.image
+      self.avatar_url = data.info.image.gsub('_normal', '') if data.info.image
     end
 
     def store_authentication

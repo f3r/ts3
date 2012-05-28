@@ -1,3 +1,4 @@
+# encoding: utf-8
 class CreateLocales < ActiveRecord::Migration
   def change
     create_table :locales do |t|

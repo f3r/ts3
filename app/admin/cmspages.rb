@@ -1,29 +1,28 @@
 ActiveAdmin.register Cmspage  do
+  menu :label => "Pages", :parent => 'CMS'
 
   controller do
     actions :all, :except => [:show]
   end
 
-  menu     :priority => 9, :label => "Pages"
-  
   config.sort_order = 'id_asc'
-  
+
   scope :all, :default => true
   scope :active
   scope :inactive
 
   filter :page_title
-  
+
   controller do
     helper 'admin/cmspages'
-    
+
     def new
       unless params[:frommenu].nil?
         session[:frommenu] = params[:frommenu]
       end
       new!
     end
-    
+
     def create
       create! do |format|
         frommenu = session[:frommenu]
@@ -40,7 +39,7 @@ ActiveAdmin.register Cmspage  do
         end
       end
     end
-    
+
     def destroy
       if resource.mandatory?
         redirect_to admin_cmspage_path, :notice => "Page not deletable"
@@ -49,7 +48,7 @@ ActiveAdmin.register Cmspage  do
       end
     end
   end
-  
+
   form do |f|
     f.inputs do
       f.input :page_title
@@ -61,7 +60,7 @@ ActiveAdmin.register Cmspage  do
     end
     f.buttons
   end
-  
+
   index do
     id_column
     column :page_title
@@ -70,9 +69,17 @@ ActiveAdmin.register Cmspage  do
     column("Status")       {|cmspage| status_tag(cmspage.active ? 'Active' : 'Inactive') }
     default_actions(:name => 'Actions')
   end
-  
+
   action_item  do
       link_to 'New External Link', new_admin_external_link_path
   end
 
+  # Activate/Deactivate
+  action_item :only => :show do
+    if cmspage.active
+      # link_to 'Deactivate', deactivate_admin_cmspage_path(cmspage),  :method => :put
+    else
+      # link_to 'Activate',   deactivate_admin_cmspage_path(cmspage),   :method => :put
+    end
+  end
 end

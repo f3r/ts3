@@ -10,7 +10,7 @@ class Cmspage < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
   
-  has_many :cmspage_menu_sections
+  has_many :cmspage_menu_sections, :dependent => :destroy
   has_many :menu_sections, :through => :cmspage_menu_sections
   
   
@@ -44,6 +44,14 @@ class Cmspage < ActiveRecord::Base
  
  def to_s
   page_title + " [" + page_url + "]"
+ end
+ 
+ def external?
+  false
+ end
+ 
+ def link
+  nil
  end
 
 end

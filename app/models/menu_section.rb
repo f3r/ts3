@@ -1,34 +1,39 @@
 class MenuSection < ActiveRecord::Base
+  
+  DEFAULT_MENU_SECTIONS = ["main", "help", "footer"]
 
   before_validation :make_name_lower_case
 
+  validates_inclusion_of :name, :in => DEFAULT_MENU_SECTIONS, :message => "Invalid menu section name"
   validates_presence_of :name, :message => "Name can't be empty"
   validates_uniqueness_of :name, :message => "Name should be unique"
   
-  validates_inclusion_of :mtype, :in => [1,2], :message => "Invalid type"
-  validates_inclusion_of :location, :in => [1,2], :message => "Invalid location"
-  
-  has_many :cmspage_menu_sections, :order => "position ASC"
+  has_many :cmspage_menu_sections, :order => "position ASC", :dependent => :destroy
   
   has_many :cmspages, :through => :cmspage_menu_sections, 
     :conditions => "active = 1",
     :include => :cmspage_menu_sections,
     :order => "position ASC"
-    
-  scope :left_menus, where(:location => 1)
-  scope :right_menus, where(:location => 2)
   
-  MENU_TYPES = {1 => "Inline", 2 => "DropDown"}
-  MENU_LOCATIONS = {1 => "Left", 2 => "Right"}
-  
-  def menu_types
-    MENU_TYPES
+  def self.create_defaults
+    default_menus = []
+    DEFAULT_MENU_SECTIONS.each do |ms|
+       default_menus << self.create({:name => ms, :display_name => ms.capitalize})
+    end
+    default_menus
   end
   
-  def menu_locations
-    MENU_LOCATIONS
+  def self.main
+    self.find_by_name('main')
   end
   
+  def self.help
+    self.find_by_name('help')
+  end
+  
+  def self.footer
+    self.find_by_name('footer')
+  end
   
   private
     def make_name_lower_case

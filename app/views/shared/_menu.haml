@@ -30,8 +30,7 @@
 
 
             - else
-              - MenuSection.left_menus.all.each do |ms|
-                = render_menu_section(ms)
+              = main_menu
 
           %ul.nav.pull-right
             - if user_signed_in?
@@ -47,7 +46,5 @@
                 %li.unread-message{:onclick => "location.href='#{messages_path}';"}
                   = link_to message_count, messages_path
 
-            - MenuSection.right_menus.all.each do |ms|
-              = render_menu_section(ms) do
-                %li= link_to t(:community_support), 'https://getsatisfaction.com/squarestays', :target => '_blank'
+            = help_menu
                                 

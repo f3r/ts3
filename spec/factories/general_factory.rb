@@ -39,9 +39,18 @@ FactoryGirl.define do
     name { Faker::Name.name }
   end
 end
+
 FactoryGirl.define do
   factory :menu_section do
     name { @name = Faker::Name.name }
     display_name { @name.capitalize}
   end  
+end
+
+FactoryGirl.define do
+  factory :external_link do
+    page_title { @name = Faker::Name.name }
+    page_url   { "http://#{Faker::Internet.domain_name}/#{@name}"}
+    active     { true }
+  end
 end

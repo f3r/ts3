@@ -1,4 +1,4 @@
-- case inquiry['state'].to_sym
+- case target.state.to_sym
   - when :initial
     .span5.offset1
       %p.hint= t("workflow.initial_agent")
@@ -7,7 +7,7 @@
     .span1.or
       or
     .span5
-      = link_to t("workflow.requested_agent_button"), transaction_path(inquiry['id'], :event => :pre_approve), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
+      = link_to t("workflow.requested_agent_button"), transaction_path(inquiry.id, :event => :pre_approve), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
       %p.hint= "(#{t("workflow.requested_agent")})"
 
   - when :ready_to_pay

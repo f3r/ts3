@@ -1,4 +1,4 @@
-- if inquiry_user?(inquiry)
-  = render 'messages/target/guest_workflow', :inquiry => inquiry
+- if current_user?(target.user)
+  = render 'messages/target/guest_workflow', :target => target
 - else
-  = render 'messages/target/agent_workflow', :inquiry => inquiry
+  = render 'messages/target/agent_workflow', :target => target

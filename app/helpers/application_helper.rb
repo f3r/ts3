@@ -58,7 +58,8 @@ module ApplicationHelper
   end
 
   def message_count
-    Heypal::Message.message_count(current_token)
+    status = Messenger.inbox_status(current_user)
+    status[:unread]
   end
 
   def large_avatar(user)

@@ -1,7 +1,4 @@
 module InquiriesHelper
-  def inquiry_user?(inquiry)
-    current_user && current_user['id'] == inquiry['user_id']
-  end
   # 
   # def payment_url(inquiry)
   #   values = {

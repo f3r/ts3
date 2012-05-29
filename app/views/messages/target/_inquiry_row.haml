@@ -1,11 +1,11 @@
-- if inquiry['guests'].present?
+- if target.guests.present?
   .guests
-    %span.value= t("inquiries.inquiry_guests", :count => inquiry['guests'])
-- if inquiry['check_in'].present?
+    %span.value= t("inquiries.inquiry_guests", :count => target.guests)
+- if target.check_in
   .arriving 
     %span.key= t("inquiries.arriving_on")
-    %span.value= inquiry['check_in']
-- if inquiry['length'].present?
+    %span.value= target.check_in
+- if target.length_in_words
   .stay
     %span.key= t("inquiries.staying")
-    %span.value= inquiry['length']
+    %span.value= target.length_in_words

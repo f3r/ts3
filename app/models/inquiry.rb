@@ -138,4 +138,12 @@ class Inquiry < ActiveRecord::Base
   def send_reminder
     InquiryMailer.inquiry_reminder_owner(self).deliver
   end
+
+  def title
+    self.place.title if self.place
+  end
+
+  def state
+    self.transaction.state if self.transaction
+  end
 end

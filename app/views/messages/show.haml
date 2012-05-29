@@ -1,11 +1,11 @@
 .conversation
   = breadcrumb [[t("inquiries.inquiries_title"), messages_path]], conversation_title do
     .actions.pull-right
-      = link_to t("messages.mark_unread"), mark_as_unread_path(params[:id])
+      = link_to t("messages.mark_unread"), mark_as_unread_message_path(@conversation.id), :method => :put
     
   - if @inquiry
     .row.target
-      = render 'messages/target/inquiry_box', :inquiry => @inquiry
+      = render_target(@conversation.target, :box)
 
   - if @messages.present?
     - @messages.each do |m|
@@ -15,6 +15,6 @@
   .row
     .span6
       = render 'new'
-    - if @inquiry
+    - if @conversation.target
       #inquiry_workflow
-        = render 'messages/target/inquiry_workflow', :inquiry => @inquiry
+        = render_target(@conversation.target, :workflow)

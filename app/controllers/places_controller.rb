@@ -97,7 +97,8 @@ class PlacesController < ApplicationController
     # FIXME: Implement method in places_helper.rb/cleanup_availabilities
     #availabilities = cleanup_availabilities(availabilities)
     availabilities.each do |a|
-        @availabilities << {
+        @availabilities 
+         {
           'title'  => price_availability_plain_calendar(a, @place),
           'start'  => Date.parse(a['date_start']), 
           'end'    => Date.parse(a['date_end']), 
@@ -294,55 +295,6 @@ class PlacesController < ApplicationController
 
   def favorite_places
     @results = Heypal::Place.favorite_places(current_token, get_current_currency)
-  end
-
-  def rent
-    if logged_in?
-      @user = Heypal::User.show('access_token' => current_token)
-      render :layout => 'single'
-    else
-      flash[:error] = t("places.messages.logged_to_rent")
-      redirect_to new_user_session_path
-    end
-  end
-
-  def availability
-    @user = Heypal::User.show('access_token' => current_token)
-    @availability = Heypal::Place.availability(params[:id], params[:check_in], params[:check_out], get_current_currency, current_token)
-    if @availability.key?("err")
-      @errors = @availability["err"]
-      render 'rent'
-    else
-      render :layout => 'plain'
-    end
-  end
-
-  def check_availability
-    @availability = Heypal::Place.availability(params[:place_id], params[:check_in], params[:check_out], get_current_currency, current_token)
-    if @availability.key?("err")
-      error = [params[:fieldId], true]
-      if @availability['err'][params[:fieldId]]
-        error = [params[:fieldId], false, t("places.messages.date_must_be_future")] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(119)
-        error = [params[:fieldId], false, t("places.messages.date_must_be_after")] if @availability["err"][params[:fieldId]] && @availability["err"][params[:fieldId]].include?(120)
-        error = [params[:fieldId], false, t("places.messages.occupied")] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
-      end
-      error = [params[:fieldId], false, t("places.messages.occupied")] if @availability["err"]['place'] && @availability["err"]['place'].include?(136)
-      render :inline => error.to_json
-    else
-      render :inline => [params[:fieldId], true].to_json
-    end
-  end
-
-  def cancel_rental
-    @confirm_rental = Heypal::Place.cancel_rental(params[:id], current_token)
-    if @confirm_rental['stat'] == "ok"
-      @response = "success"
-    else
-      @response = "error"
-    end
-    respond_to do |format|
-      format.js { render :layout => false }
-    end
   end
 
   def confirm_inquiry

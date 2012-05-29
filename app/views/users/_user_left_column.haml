@@ -3,7 +3,7 @@
   = image_tag(@avatar, :width => 200)
   
   - if @current_action == "edit"
-    = link_to t(:change_photo), "#avatar-modal", { "data-toggle" => "modal", "data-backdrop"=>"static", :class => "change_avatar"}
+    = link_to t("users.change_photo"), "#avatar-modal", { "data-toggle" => "modal", "data-backdrop"=>"static", :class => "change_avatar"}
 
   %h2.name
     = short_full_name user
@@ -19,4 +19,4 @@
     %br
     = render :partial => "users/user_accounts"
   - elsif logged_in? && params[:id] && current_user['id'] != user['id']
-    %a.btn.medium.primary{:href => "/messages/#{user['id']}", :style => 'margin-top: 50px' }= t(:message_user)
+    %a.btn.medium.primary{:href => "/messages/#{user['id']}", :style => 'margin-top: 50px' }= t("messages.button_send_a_message")

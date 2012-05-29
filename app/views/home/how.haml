@@ -1,42 +1,31 @@
 #how.info
   .row
     .intro.span12
-      %h2 How SquareStays works
+      %h2= t("pages.how.title")
       %br
-      %p SquareStays offers a unique blend of exactly what you need in flexible professional accommodations - quality and trust at a reasonable price. 
-      %p All SquareStays listings are designed to provide the comfort you expect from having a place of your own with the flexibility of a shorter-term stay. 
-      %p SquareStays only lets professional landlords, owners, agents and property managers list places. This ensures you a high level of trust, service and quality for your stay.
+      = t("pages.how.intro").html_safe
   .row.columns
     .span6  
-      %h3 Travelers
+      %h3= t("pages.how.travelers")
       %img{:src => "http://s3.amazonaws.com/squarestays-static/travelers.jpg", :class => 'metaphor'}
-      %p Simply use the place search and filter page on SquareStays to find a place that’s right for you. You can narrow your search criteria by type of accommodation, price, and location.
-
-      %p Once you have found place that looks good for you, you can make an inquiry to learn more about the place. An inquiry is like a reservation, including the dates that you are looking for, as well as helping you understand the costs, but allows you to ask any further questions you might want to ask before making a reservation. 
-
-      %p The place owner or listing member will typically answer your request within 24-48 hours. The owner may have some follow-up questions for you, so please remember to check in on the site regularly when you have inquiries pending.
-
-      %p Once you are comfortable with the place, you will be asked to pay a booking fee to guarantee your reservation. Once this is paid, you will be put in touch directly with the listing owner for all future payments, such as rent, utilities, etc.
-      %p= t(:how_travelers_4th, :support_email => mail_to('support@squarestays.com')).html_safe
+      = t("pages.how.travelers_content", :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe
     .span6
-      %h3 Listing members
+      %h3= t("pages.how.listing_members")
       %img{:src => "http://s3.amazonaws.com/squarestays-static/listing_members.jpg", :class => 'metaphor'}
-      %p= t(:how_list_your_properties_1st, :places_email => mail_to('places@squarestays.com')).html_safe
-      %p= t(:how_list_your_properties_2nd) 
-      %p= t(:how_list_your_properties_3rd, :support_email => mail_to('support@squarestays.com')).html_safe
+      = t("pages.how.listing_members_content", :support_email => mail_to("support@#{SITE_DOMAIN}"), :places_email => mail_to("places@#{SITE_DOMAIN}")).html_safe
   .row.actions
     .span6
-      = button_to 'Find a place', '/places/singapore', :class => "btn btn-large btn-info", :method => :get
+      - current_city = Heypal::City.find_by_id(get_current_city)
+      = button_to t("pages.how.find_a_place"), "/#{current_city.code}", :class => "btn btn-large btn-info", :method => :get
     .span6
       - if !logged_in?
-        = button_to 'List your properties', signup_path, :class => "btn btn-large btn-info", :method => :get
+        = button_to t("pages.how.list_your_properties"), signup_path, :class => "btn btn-large btn-info", :method => :get
       - elsif is_agent?
-        = button_to 'List your properties', new_place_path, :class => "btn btn-large btn-info", :method => :get
+        = button_to t("pages.how.list_your_properties"), new_place_path, :class => "btn btn-large btn-info", :method => :get
       - else
-        = button_to 'List your properties', 'mailto: support@squarestays.com', :class => "btn btn-large btn-info", :method => :get
+        = button_to t("pages.how.list_your_properties"), mailto: "support@#{SITE_DOMAIN}", :class => "btn btn-large btn-info", :method => :get
   .row  
     .well
-      %h3 Payments
+      %h3= t("pages.how.payments")
       %br
-      %p= t(:how_payments_1st)
-      %p= t(:how_payments_2nd, :support_email => mail_to('support@squarestays.com')).html_safe
+      = t("pages.how.payments_content", :support_email => mail_to("support@#{SITE_DOMAIN}")).html_safe

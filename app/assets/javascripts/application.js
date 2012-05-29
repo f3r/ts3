@@ -152,6 +152,8 @@ $(document).ready(function() {
       placement: 'top',
   }); 
 
+  $('a[rel=popover], a.popover-link').popover()
+
   $('.dropdown-toggle').dropdown();
   
   $.waypoints.settings.scrollThrottle = 30;

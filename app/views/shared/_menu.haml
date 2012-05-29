@@ -6,7 +6,7 @@
           %ul.nav
             %li.dropdown
               %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
-                = t(:find_places)
+                = t("template.header.menu.find_places")
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
                 - City.active.each do |city|
@@ -15,18 +15,18 @@
             - if user_signed_in?
               %li.dropdown
                 %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
-                  = t(:my_account)
+                  = t("template.header.menu.my_account")
                   %b.caret
                 %ul.dropdown-menu{:style => 'width:200px'}
                   %li{:class => @current_controller == "users" && @current_action == "show" ? "active" : ""}
-                    = link_to t(:my_profile), profile_path
+                    = link_to t("template.header.menu.my_profile"), profile_path
                   - if is_agent? or is_admin?
                     %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
-                      = link_to t(:my_places), my_places_path
+                      = link_to t("template.header.menu.my_places"), my_places_path
                   %li{:class => @current_controller == "places" && @current_action == "favorite_places" ? "active" : ""}
-                    = link_to t(:my_favorite_places), favorite_places_path
+                    = link_to t("template.header.menu.my_favorite_places"), favorite_places_path
                   %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
-                    = link_to t(:my_alerts), alerts_path
+                    = link_to t("template.header.menu.my_alerts"), alerts_path
 
 
             - else
@@ -36,7 +36,7 @@
             - if user_signed_in?
               - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
                 %li.add-item
-                  = link_to t(:add_a_place), new_place_path
+                  = link_to t("template.header.menu.add_a_place"), new_place_path
 
               - if message_count == 0
                 %li.read-message
@@ -47,4 +47,3 @@
                   = link_to message_count, messages_path
 
             = help_menu
-                                

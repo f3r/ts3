@@ -1,6 +1,5 @@
 - content_for(:modal_header) do
-  %h3= t(:inquiry_success)
+  %h3= t("inquiries.inquiry_success_title")
 
-%p= t(:inquiry_sent_msg)
-  
-%p= t(:inquiry_sent_msg2, :link => link_to(t(:inquiry_center), messages_path)).html_safe
+%p= t("inquiries.inquiry_sent_msg")  
+%p= t("inquiries.inquiry_sent_check_link", :link => link_to(t("inquiries.inquiry_center"), messages_path)).html_safe

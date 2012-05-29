@@ -4,7 +4,7 @@ ActiveAdmin.register Cmspage  do
     actions :all, :except => [:show]
   end
 
-  menu     :priority => 9
+  menu     :priority => 9, :label => "Pages"
   
   config.sort_order = 'id_asc'
   

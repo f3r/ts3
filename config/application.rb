@@ -31,7 +31,11 @@ module HeyPalFrontEnd
 
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    # config.i18n.default_locale = :de
+
+    # do nothing in config (i.e. remove the line in environment/production.rb)
+    # => local fallbacks won't be used
+
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
 
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -51,5 +55,6 @@ module HeyPalFrontEnd
 
     # Add additional asset paths for asset pipeline (sprockets)
     #config.assets.paths << Rails.root.join("app", "assets", "flash")
+
   end
 end

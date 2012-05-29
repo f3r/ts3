@@ -1,41 +1,24 @@
 #why.info
   .intro.span12
-    %h3 Why SquareStays?
-    %p SquareStays connects you with trusted, professional, short-term accommodations.
-    %p What does this mean?
-    %p SquareStays works with property owners, landlords and innovative real estate professionals to get high-quality listings. Places listed on SquareStays differ from other sites in a few key ways:
-    %ul
-      %li SquareStays places are designed for professionals. Our agents and owners know that business travellers demand a higher level of quality and a minimum set of conveniences.
-      %li Our listings are designed to be very thorough. We want to make sure you get all the information you need to make a decision without wasting your time viewing and inquiring on places that aren’t right for you.
-      %li All places are available for short-term, some as short as one week, most from one month to six months.
-      %li All places should tell you up-front what amenities, furniture and facilities are available for your use.
-      %li You should get a very clear and precise listing of all the costs involved, from deposits to rent to utilities for places on SquareStays. There are no hidden fees or extras.
+    %h3= t("pages.why.title")
+    = t("pages.why.content").html_safe
     - if !logged_in?
       .get-started
-        = link_to 'Get Started!', {:trigger_signup => true}, :class => 'btn btn-primary btn-large btn-info', :style => 'width: 210px'
+        = link_to t("pages.why.get_started"), {:trigger_signup => true}, :class => 'btn btn-primary btn-large btn-info', :style => 'width: 210px'
   .span16
     .well
-      %h4 Trust
-      %p 
-        SquareStays members typically link their SquareStays accounts to Facebook, Twitter or LinkedIn. This lets you see who is really behind the place you see online. You can communicate with them openly through our messaging system and ask any questions.
-      %p
-        Additionally, people listing places can ask questions to make sure you are the right person for them. We have heard consistently from both property listing members and tenant members, that the process for finding short-term accommodations is very challenging, and communication becomes problematic. SquareStays helps solve this problem by providing a centralized communication system where either side can quickly see the other’s profile and listings.
+      %h4= t("pages.why.trust")
+      = t("pages.why.trust_content").html_safe
     .well
-      %h4 Flexibility
-      %p
-        SquareStays knows that business professionals in the modern economy have jobs that may take them all over the world, often for short-term assignments. SquareStays makes sure that all property listing members understand this and can accommodate.
+      %h4= t("pages.why.flexibility")
+      = t("pages.why.flexibility_content").html_safe
     .well
-      %h4 Affordability
-      %p
-        SquareStays provides high-quality offerings, ranging from a single room to a full luxury condominium. We view affordability as a comparative measure - are SquareStays listings more affordable than comparable accommodations from elsewhere? For instance, our full apartment and condominium listings are benchmarked against the price of serviced apartments or corporate housing.
-
+      %h4= t("pages.why.affordability")
+      = t("pages.why.affordability_content").html_safe
     .well
-      %h4 Where is SquareStays?
-      %p
-        SquareStays focuses on the Asia-Pacific region, including eastern Asia and Australia / New Zealand. With business travel to Asia-Pacific increasing and hotel prices sky-rocketing, finding a place to stay for business travel has become increasingly difficult.
-  
+      %h4= t("pages.why.where_is_site")
+      = t("pages.why.where_is_site_content").html_safe  
     .well.singapore-first
-      %h4 Singapore - the first city on Squarestays
-      %p
-        As a hub that connects the east and the west, Singapore is an important market in the Asian business economy with sustained growth and top-rated business environment. SquareStays is now available in Singapore and plans to expand in other major cities soon.
+      %h4= t("pages.why.singapore_first")
+      = t("pages.why.singapore_first_content").html_safe
       %img{:src => "http://s3.amazonaws.com/squarestays-static/singapore.jpg"}

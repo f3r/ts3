@@ -1,20 +1,20 @@
 .section.span5
-  %h2= t(:i_have_an_account)
-  %p Please log in
+  %h2= t("users.registration.already_member")
+  %p= t("users.registrations.please_login")
 
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = render 'registrations/oauth_fields', :f => f
     .input
-      = f.text_field :email,  :placeholder => t(:email)
+      = f.text_field :email,  :placeholder => t("users.email")
     .input
-      = f.password_field :password, :placeholder => t(:password)
+      = f.password_field :password, :placeholder => t("users.password")
 
-    = f.submit 'Login', :class => 'btn float-right'
+    = f.submit t("users.registration.login"), :class => 'btn float-right'
 
   %br.clearfix
-  = link_to t(:forgot_password), new_user_password_path
+  = link_to t("users.registration.forgot_password"), new_user_password_path
   %br
   %br
   %br
   %p
-    %i= t(:registration_warning)
+    %i= t("users.registration.registration_warning")

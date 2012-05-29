@@ -30,9 +30,9 @@ class UsersController < ApplicationController
       user = Heypal::User.show('access_token' => current_token)
       session['current_user'] = user
       if !user['unconfirmed_email'].blank?
-        flash[:notice] = 'You successfully updated your profile! However, you need to confirm your email. Please check your email and click the link to verify it.'
+        flash[:notice] = t("users.messages.successfully_updated_profile_check_email")
       else
-        flash[:notice] = 'You successfully updated your profile.'
+        flash[:notice] = t("users.messages.successfully_updated_profile")
       end
       redirect_to profile_path
     else
@@ -46,7 +46,7 @@ class UsersController < ApplicationController
     @address = Heypal::Address.show('access_token' => current_token)
 
     if @user.valid? && @user.save
-      flash[:notice] = 'You successfully updated your password.'
+      flash[:notice] = t("users.messages.successfully_updated_password")
       redirect_to profile_path
     else
       @user_auth = Heypal::User.list('access_token' => current_token)

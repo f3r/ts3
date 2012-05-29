@@ -55,6 +55,9 @@ HeyPalFrontEnd::Application.configure do
   # the I18n.default_locale when a translation can not be found)
   config.i18n.fallbacks = true
 
+  config.i18n.default_locale = :en
+  config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:dalli_store, :namespace => "i18n")
+
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 

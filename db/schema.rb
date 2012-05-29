@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120523034211) do
+ActiveRecord::Schema.define(:version => 20120525124239) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -101,6 +101,69 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
     t.datetime "updated_at"
   end
 
+  create_table "bootstrap_configs", :force => true do |t|
+    t.string   "black"
+    t.string   "grayDarker"
+    t.string   "grayDark"
+    t.string   "gray"
+    t.string   "grayLight"
+    t.string   "grayLighter"
+    t.string   "white"
+    t.string   "blue"
+    t.string   "blueDark"
+    t.string   "green"
+    t.string   "red"
+    t.string   "yellow"
+    t.string   "orange"
+    t.string   "pink"
+    t.string   "purple"
+    t.string   "bodyBackground"
+    t.string   "textColor"
+    t.string   "linkColor"
+    t.string   "linkColorHover"
+    t.string   "sansFontFamily"
+    t.string   "serifFontFamily"
+    t.string   "monoFontFamily"
+    t.string   "baseFontSize"
+    t.string   "baseFontFamily"
+    t.string   "baseLineHeight"
+    t.string   "altFontFamily"
+    t.string   "headingsFontFamily"
+    t.string   "headingsFontWeight"
+    t.string   "headingsColor"
+    t.string   "tableBackground"
+    t.string   "tableBackgroundAccent"
+    t.string   "tableBackgroundHover"
+    t.string   "tableBorder"
+    t.string   "btnBackground"
+    t.string   "btnBackgroundHighlight"
+    t.string   "btnBorder"
+    t.string   "btnPrimaryBackground"
+    t.string   "btnPrimaryBackgroundHighlight"
+    t.string   "btnInfoBackground"
+    t.string   "btnInfoBackgroundHighlight"
+    t.string   "btnSuccessBackground"
+    t.string   "btnSuccessBackgroundHighlight"
+    t.string   "btnWarningBackground"
+    t.string   "btnWarningBackgroundHighlight"
+    t.string   "btnDangerBackground"
+    t.string   "btnDangerBackgroundHighlight"
+    t.string   "btnInverseBackground"
+    t.string   "btnInverseBackgroundHightlight"
+    t.string   "inputBackground"
+    t.string   "inputBorder"
+    t.string   "inputBorderRadius"
+    t.string   "inputDisabledBackground"
+    t.string   "formActionsBackground"
+    t.string   "dropdownBackground"
+    t.string   "dropdownBorder"
+    t.string   "dropdownLinkColor"
+    t.string   "dropdownLinkColorHover"
+    t.string   "dropdownLinkBackgroundHover"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+  end
+
   create_table "cities", :force => true do |t|
     t.string  "name"
     t.float   "lat"
@@ -119,6 +182,14 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "cities", ["slug"], :name => "index_cities_on_slug", :unique => true
   add_index "cities", ["state"], :name => "index_cities_on_state"
 
+  create_table "cmspage_menu_sections", :force => true do |t|
+    t.integer  "cmspage_id"
+    t.integer  "menu_section_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
+  end
+
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
     t.string  "page_url",    :default => "",    :null => false
@@ -128,6 +199,14 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   end
 
   add_index "cmspages", ["page_url"], :name => "index_cmspages_on_page_url", :unique => true
+
+  create_table "cmspages_menu_sections", :id => false, :force => true do |t|
+    t.integer  "cmspage_id"
+    t.integer  "menu_section_id"
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
+  end
 
   create_table "comments", :force => true do |t|
     t.datetime "created_at"
@@ -214,10 +293,10 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "position",           :default => 0
-    t.boolean  "active",             :default => false
+    t.boolean  "active",             :default => true
     t.integer  "gallery_id",         :default => 0
-    t.datetime "created_at",                            :null => false
-    t.datetime "updated_at",                            :null => false
+    t.datetime "created_at",                           :null => false
+    t.datetime "updated_at",                           :null => false
   end
 
   create_table "inbox_entries", :force => true do |t|
@@ -247,11 +326,26 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "inquiries", ["place_id"], :name => "index_inquiries_on_place_id"
   add_index "inquiries", ["user_id"], :name => "index_inquiries_on_user_id"
 
-  create_table "menus", :force => true do |t|
-    t.string   "name"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+  create_table "locales", :force => true do |t|
+    t.string  "code"
+    t.string  "name"
+    t.string  "name_native"
+    t.integer "position"
+    t.boolean "active",      :default => false
   end
+
+  add_index "locales", ["code"], :name => "index_locales_on_code", :unique => true
+
+  create_table "menu_sections", :force => true do |t|
+    t.string   "name",                                     :null => false
+    t.string   "display_name",                             :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.integer  "mtype",        :limit => 1, :default => 1
+    t.integer  "location",     :limit => 1, :default => 1
+  end
+
+  add_index "menu_sections", ["name"], :name => "index_menu_sections_on_name", :unique => true
 
   create_table "messages", :force => true do |t|
     t.integer  "conversation_id"
@@ -264,21 +358,6 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   end
 
   add_index "messages", ["conversation_id"], :name => "index_messages_on_conversation_id"
-
-  create_table "pages", :force => true do |t|
-    t.string   "page_id"
-    t.string   "title"
-    t.integer  "menu_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  create_table "panoramas", :force => true do |t|
-    t.integer "photo_id"
-    t.text    "xml"
-    t.string  "html_file_name"
-    t.string  "swf_file_name"
-  end
 
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
@@ -326,8 +405,8 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
     t.float    "lon"
     t.text     "directions"
     t.boolean  "amenities_aircon",                        :default => false
-    t.boolean  "amenities_breakfast",                     :default => false
     t.boolean  "amenities_buzzer_intercom",               :default => false
+    t.boolean  "amenities_breakfast",                     :default => false
     t.boolean  "amenities_cable_tv",                      :default => false
     t.boolean  "amenities_dryer",                         :default => false
     t.boolean  "amenities_doorman",                       :default => false
@@ -420,17 +499,6 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "places", ["state_name"], :name => "index_places_on_state_name"
   add_index "places", ["user_id"], :name => "index_places_on_user_id"
 
-  create_table "settings", :force => true do |t|
-    t.string   "var",                       :null => false
-    t.text     "value"
-    t.integer  "target_id"
-    t.string   "target_type", :limit => 30
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
-  end
-
-  add_index "settings", ["target_type", "target_id", "var"], :name => "index_settings_on_target_type_and_target_id_and_var", :unique => true
-
   create_table "site_configs", :force => true do |t|
     t.string   "site_name"
     t.string   "site_url"
@@ -480,6 +548,18 @@ ActiveRecord::Schema.define(:version => 20120523034211) do
   add_index "transactions", ["place_id"], :name => "index_transactions_on_place_id"
   add_index "transactions", ["state"], :name => "index_transactions_on_state"
   add_index "transactions", ["user_id"], :name => "index_transactions_on_user_id"
+
+  create_table "translations", :force => true do |t|
+    t.string   "locale"
+    t.string   "key"
+    t.text     "value"
+    t.text     "interpolations"
+    t.boolean  "is_proc",        :default => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
+  end
+
+  add_index "translations", ["locale", "key"], :name => "index_translations_on_locale_and_key", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                                                     :null => false

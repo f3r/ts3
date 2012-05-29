@@ -1,32 +1,12 @@
 .span16
   .row
-    %h2 
-      Welcome to Kuala Lumpur!!
-
-  %br
+    %h2= t("city_guides.kuala_lumpur.title")
   .row
-    %p Kuala Lumpur is the capital city and the heart of Malaysia! Malaysia is a diverse country, with people of several different ethnic groups, religions and cultural backgrounds. Kuala Lumpur, with a population of over 6 million, is the largest city, sitting at the convergence of the Gombak and Klang rivers, in the Klang valley. 
-    %p Areas of Malaysia were colonized by the British, the Dutch and the Portuguese, and were eventually unified under British control in the colony of Malaya. Since independence in 1963, Malaysia has developed rapidly, with strong population, economic and human development growth.
-    %p Malaysia has dynamic and diverse economy, leveraging production, natural resources and services. Malaysia has averaged a very strong 5%+ GDP consistently for several years.
-
-    %h3 Business in Kuala Lumpur, Malaysia
-    %p Some of Malaysia’s key natural resources are oil, gas, tin, rubber, minerals, palm oil.  Malaysia is one of the world’s major exporters of semiconductors and computer memory and storage. Malaysia is also home to the world’s largest Islamic banking and finance service sector. Kuala Lumpur is the undisputed center for all trading and related activity in Malaysia’s economy, as well as being the banking hub.
-
-    %h3 Accommodation in Kuala Lumpur
-    %p Kuala Lumpur has a very large selection of hotels, with prices and quality varying from ultra-luxury to the most basic, and everything in between. Business hotels in the most desirable locations will normally be above $150 USD / night. Serviced apartments are very expensive and difficult to find in Kuala Lumpur. This is where SquareStays comes in - providing luxury, and comfort in Kuala Lumpur at substantial savings!
-
-    %br
-    %center
-      %a.btn.btn-primary.btn-large{:type => 'submit', :href => "/kuala_lumpur"}= "#{t(:find_place_in)} #{t(:kuala_lumpur)}!"
-
-    %h3 Helpful links
-    %ul
-      %li= "Malaysia on #{link_to "Wikipedia", "http://en.wikipedia.org/wiki/Malaysia"}".html_safe
-      %li= "An #{link_to "KL expat forum", "http://www.expatkl.com/ver09/indexcontent.php"} and another #{link_to "Kuala Lumpur expat portal", "http://klexpatmalaysia.com/"}".html_safe
-      %li= "The leading Malayasia and Kuala Lumpur #{link_to "real estate portal", "http://www.homeguru.com.my"} for long-term rentals and purchases".html_safe
-      %li= "#{link_to "Kuala Lumpur hotels", "http://www.kualalumpurhotels.com/"} (for stays under one month)".html_safe
-
-    %h3 Sources
-    %ul
-      %li= link_to "Economy of Malaysia", "http://en.wikipedia.org/wiki/Economy_of_Malaysia"
-      %li= link_to "Tourism Malaysia Statistics (up to 2010)", "http://corporate.tourism.gov.my/research.asp?page=facts_figures"
+    = t("city_guides.kuala_lumpur.main_content").html_safe
+    %p
+      %center
+        %a.btn.btn-primary.btn-large{:type => 'submit', :href => "/kuala_lumpur"}= t("city_guides.find_place_in", :city_name => t("cities.kuala_lumpur"))
+    %h3= t("city_guides.helpful_links")
+    = t("city_guides.kuala_lumpur.helpful_links_content").html_safe
+    %h3= t("city_guides.sources")
+    = t("city_guides.kuala_lumpur.sources_content").html_safe

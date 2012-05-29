@@ -1,0 +1,12 @@
+####################################################################################
+# Countries
+####################################################################################
+en:
+  countries:
+    US: United States
+    HK: Hong Kong
+    MY: Malaysia
+    PH: Philippines
+    CH: China
+    SG: Singapore
+    AU: Australia

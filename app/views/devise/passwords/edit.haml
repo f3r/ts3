@@ -2,9 +2,9 @@
   %br
   .section.span8
     - if !params[:welcome].nil?
-      %h2= t(:choose_a_password)
+      %h2= t("users.registration.choose_a_password")
     - else
-      %h2= t(:confirm_reset_password)
+      %h2= t("users.registration.confirm_reset_password")
 
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
       = devise_error_messages!
@@ -12,11 +12,13 @@
       - if params[:welcome]
         = hidden_field_tag :welcome, params[:welcome]
       .input
-        = f.label :password, t(:enter_your_new_password)
+        = f.label :password, t("users.registration.enter_your_new_password")
         = f.password_field :password
-        =# f.password_field :password_confirmation
+      .input
+        = f.label :password, t(:confirm_reset_password)
+        = f.password_field :password_confirmation
 
       %button.btn.float-right{:type => 'submit'}
-        = t(:submit)
+        = t("submit")
   %br.clearfix
   %br

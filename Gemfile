@@ -16,6 +16,7 @@ gem 'less-rails-bootstrap'
 
 gem 'exception_notification'
 gem "recaptcha", :require => "recaptcha/rails"
+gem 'rakismet'
 
 gem 'tinymce-rails'
 
@@ -36,6 +37,9 @@ gem 'declarative_authorization'   # Access Control List
 gem 'geocoder'                    # Geocoding Google-based
 
 gem 'will_paginate', "= 3.0.2"    # Paginating results
+
+gem 'workflow'                    # State control
+gem 'validates_timeliness', '~> 3.0.2'
 
 gem "friendly_id", "~> 4.0.1"
 

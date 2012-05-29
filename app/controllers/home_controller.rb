@@ -1,17 +1,4 @@
 class HomeController < ApplicationController
-  def suggest
-    Heypal::User.feedback(
-      :access_token => current_token,
-      :type => :city_suggestion,
-      :message => {
-        :city => params[:city],
-        :email => params[:email]
-      }
-    )
-    flash[:notice] = t("pages.suggest_thank_you_message", :city => params['city'])
-    redirect_to root_path
-  end
-
   def robot
     robots = File.read(Rails.root + "config/robots.#{Rails.env}.txt")
     render :text => robots, :layout => false, :content_type => "text/plain"

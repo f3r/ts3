@@ -9,6 +9,7 @@
       or
     .span5
       = link_to t("workflow.requested_agent_button"), transaction_path(transaction.id, :event => :pre_approve), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
+
       %p.hint= "(#{t("workflow.requested_agent")})"
 
   - when :ready_to_pay

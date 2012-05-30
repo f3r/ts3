@@ -1,5 +1,5 @@
 class Currency < ActiveRecord::Base
-  default_scope :order => 'name ASC'
+  default_scope :order => 'currency_code ASC'
 
   validates_presence_of :name
   validates_presence_of :symbol

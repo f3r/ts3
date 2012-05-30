@@ -53,7 +53,6 @@ HeyPalFrontEnd::Application.routes.draw do
 
     get :search, :on => :collection
 
-    resources :availabilities
     resources :comments do
       post :reply_to_message
     end
@@ -70,7 +69,6 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/my_places'          => 'places#my_places',          :as => :my_places
   match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places
-  get   '/check_availability' => 'places#check_availability'
 
   ###########################################################################################
   # Inquiries
@@ -81,8 +79,9 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
+#  resources :inquiries, :only => [:create]
   resources :transactions, :only => [:update]
-  post 'paypal_callback', :to => 'payment_notifications#create'
+  post 'paypal_callback', :to => 'payment_notifications#create', :as => :paypal_callback
 
   ###########################################################################################
   # Profiles

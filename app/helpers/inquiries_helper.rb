@@ -16,6 +16,6 @@ module InquiriesHelper
   # end
 
   def payment_notification_url(inquiry)
-    BACKEND_PATH + '/paypal_callback'
+    paypal_callback_url
   end
 end

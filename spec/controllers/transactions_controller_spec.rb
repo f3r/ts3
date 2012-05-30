@@ -72,13 +72,13 @@ describe TransactionsController do
       end
     end
 
-    it "handles paypal payment" do
-      @transaction.update_attribute(:state, 'ready_to_pay')
-      post :pay, :code => @transaction.transaction_code, :amount => 299
-      response.should be_success
-
-      @transaction.reload
-      @transaction.state.should == 'paid'
-    end
+    # it "handles paypal payment" do
+    #   @transaction.update_attribute(:state, 'ready_to_pay')
+    #   post :pay, :code => @transaction.transaction_code, :amount => 299
+    #   response.should be_success
+    # 
+    #   @transaction.reload
+    #   @transaction.state.should == 'paid'
+    # end
   end
 end

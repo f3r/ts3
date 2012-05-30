@@ -76,6 +76,10 @@ class User < ActiveRecord::Base
     self.role == 'user'
   end
 
+  def role_symbols
+    [role.to_sym]
+  end
+
   def change_preference(pref, value)
     if pref =~ /pref_/
       self.update_attribute(pref, value)

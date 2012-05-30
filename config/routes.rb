@@ -59,9 +59,6 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-  resources :transactions, :only => [:update]
-  post 'paypal_callback', :to => 'payment_notifications#create'
-
   ###########################################################################################
   # Saved searches
   ###########################################################################################
@@ -76,7 +73,7 @@ HeyPalFrontEnd::Application.routes.draw do
   get   '/check_availability' => 'places#check_availability'
 
   ###########################################################################################
-  # Messaging
+  # Inquiries
   ###########################################################################################
   resources :messages do
     member do
@@ -84,12 +81,8 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-  # get    '/messages'                    => 'messages#index',                :as => :messages
-  # get    '/messages/:id'                => 'messages#conversation',         :as => :conversation
-  # post   '/messages/:id'                => 'messages#create',               :as => :new_message
-  # delete '/messages/:id'                => 'messages#delete_conversation',  :as => :delete_conversation
-  # get    '/messages/:id/mark_as_read'   => 'messages#mark_as_read',         :as => :mark_as_read
-  # get    '/messages/:id/mark_as_unread' => 'messages#mark_as_unread',       :as => :mark_as_unread
+  resources :transactions, :only => [:update]
+  post 'paypal_callback', :to => 'payment_notifications#create'
 
   ###########################################################################################
   # Profiles

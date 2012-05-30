@@ -1,8 +1,9 @@
+- transaction = target.transaction
 - case target.state.to_sym
   - when  :initial
     .span1.or= t("or")
     .span5
-      = link_to t("workflow.initial_guest_button"), transaction_path(target.id, :event => :request), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
+      = link_to t("workflow.initial_guest_button"), transaction_path(transaction.id, :event => :request), {:method => :put, :remote => true, :class => "btn btn-primary btn-large" }
       %p.hint= "(#{t("workflow.initial_guest")})"
 
   - when :requested

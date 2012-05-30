@@ -1,7 +1,5 @@
-require 'declarative_authorization/maintenance'
 class Transaction < ActiveRecord::Base
   include Workflow
-  include Authorization::TestHelper
 
   belongs_to :user
   belongs_to :place
@@ -41,7 +39,6 @@ class Transaction < ActiveRecord::Base
 
     # Check user permissions before every transition
     before_transition do |from, to, triggering_event, *event_args|
-      
       halt! unless permitted_to?(triggering_event)
     end
 

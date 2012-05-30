@@ -1,0 +1,5 @@
+<% @available_pages.each do |page|%>
+<tr id = "avp_<%= page.id%>" data-p-id = "<%= page.id%>">
+	<td><%= page%> <%= link_to "View", page.link%> | <%= link_to "Edit", edit_admin_cmspage_path(page)%></td>
+</tr>
+<% end%>

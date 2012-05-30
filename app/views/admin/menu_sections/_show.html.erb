@@ -1,0 +1,42 @@
+<table cellspacing="0" cellpadding="0" border="0" id = "menu_show" data-menu-section-id = "<%=resource.id%>">
+	<tbody>
+		<tr>
+			<td>
+<div class="panel">
+	<h3>Selected</h3>
+		
+	<div class="panel_contents">
+		<div id="" class="attributes_table locale">
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tbody id = "selected_pages" class = "connectedSortable">
+					<%= render :partial => "selected"%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+			</td>
+			<td>
+				
+				<div class="panel">
+					
+	<h3>Available <i style="font-size: 10px; font-weight: 1px">Drag to the selected</i></h3>
+		
+	<div class="panel_contents">
+		<div id="" class="attributes_table locale">
+			
+				<%= link_to "New Cmspage", "#{new_admin_cmspage_path}/"%> | 
+				<%= link_to "New External Link", "#{new_admin_external_link_path}/?frommenu=#{resource.id}"%>
+
+			<table cellspacing="0" cellpadding="0" border="0">
+				<tbody id = "available_pages" class = "">
+					<%= render :partial => "available"%>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+			</td>
+		</tr>
+	</tbody>
+</table>

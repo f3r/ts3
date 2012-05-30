@@ -1,0 +1,12 @@
+<% resource.cmspage_menu_sections.each do |ms|%>
+<% unless ms.cmspage.nil?%>
+<tr id = "sp_<%= ms.id%>">
+	<td><%= link_to ms.cmspage, ms.cmspage.link%> 
+		[
+		<%= link_to "Edit", edit_admin_cmspage_path(ms.cmspage)%> | 
+		<a href="javascript:{}" class ="remove_ms" data-ms-id = <%= ms.id%> data-p-id = <%= ms.cmspage.id%> title="Remove">Delete</a>
+		]
+		</td>
+</tr>
+<%end%>
+<% end%>

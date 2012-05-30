@@ -4,9 +4,27 @@ ActiveAdmin.register ExternalLink  do
   controller do
     actions :new, :create
     
+   def new
+     unless params[:frommenu].nil?
+       session[:frommenu] = params[:frommenu]
+     end
+     
+     new!
+   end 
    def create
     create! do |format|
-        format.html { redirect_to admin_cmspages_path }
+        frommenu = session[:frommenu]
+        format.html do
+            if frommenu.nil? 
+              redirect_to admin_cmspages_path
+            else
+              session[:frommenu] = nil
+              resource.active = true
+              resource.save
+              session[:newlink] = resource
+              redirect_to admin_menu_section_path(frommenu)
+            end
+          end
       end
    end
     

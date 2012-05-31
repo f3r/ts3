@@ -8,7 +8,6 @@ ActiveAdmin.register ExternalLink  do
      unless params[:frommenu].nil?
        session[:frommenu] = params[:frommenu]
      end
-     
      new!
    end 
    

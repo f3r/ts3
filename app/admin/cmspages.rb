@@ -17,6 +17,30 @@ ActiveAdmin.register Cmspage  do
   controller do
     helper 'admin/cmspages'
     
+    def new
+      unless params[:frommenu].nil?
+        session[:frommenu] = params[:frommenu]
+      end
+      new!
+    end
+    
+    def create
+      create! do |format|
+        frommenu = session[:frommenu]
+        format.html do
+          if frommenu.nil?
+            super
+          else
+            session[:frommenu] = nil
+            resource.active = true
+            resource.save
+            session[:newlink] = resource
+            redirect_to admin_menu_section_path(frommenu)
+          end
+        end
+      end
+    end
+    
     def destroy
       if resource.mandatory?
         redirect_to admin_cmspage_path, :notice => "Page not deletable"

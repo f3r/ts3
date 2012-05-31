@@ -13,7 +13,7 @@ ActiveAdmin.register MenuSection do
       
       selected_ids = resource.cmspages.all(:select => 'cmspages.id').map(&:id)
       selected_ids = [0] if selected_ids.empty?
-      @available_pages = Cmspage.active.all(:conditions => ['id not in (?)', selected_ids], :order => 'id asc')
+      @available_pages = Cmspage.active.all(:conditions => ['id not in (?)', selected_ids], :order => 'page_title asc')
     end
     
   end
@@ -52,7 +52,7 @@ ActiveAdmin.register MenuSection do
     
     selected_ids = menu_section.cmspages.all(:select => 'cmspages.id').map(&:id)
     selected_ids = [0] if selected_ids.empty?
-    @available_pages = Cmspage.active.all(:conditions => ['id not in (?)', selected_ids], :order => 'id asc')
+    @available_pages = Cmspage.active.all(:conditions => ['id not in (?)', selected_ids], :order => 'page_title asc')
     
     render :partial => "available"
   end

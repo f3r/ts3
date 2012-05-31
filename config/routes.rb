@@ -35,8 +35,6 @@ HeyPalFrontEnd::Application.routes.draw do
     member do
       get   :wizard
       get   :preview
-      post  :upload_photo
-      get   :photos
       put   :update_currency
       put   :publish
       put   :unpublish

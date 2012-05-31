@@ -116,44 +116,6 @@ class PlacesController < ApplicationController
     render :template => 'places/_photo_list', :layout => false
   end
 
-  # def upload_photo
-  #   #@place = Heypal::Place.find(params[:id], params[:token])
-  # 
-  #   Heypal::Photo.create(params[:id], params[:file], params[:token])
-  #   p = Heypal::Photo.new
-  #   p.place_id = params[:id]
-  #   p.photo_id = Time.now.to_i
-  #   p.photo = params[:file]
-  #   p.save
-  #   photo = {
-  #           :photo => {
-  #             :id => p.photo_id,
-  #             :name => '',
-  #             :place_id => params[:id],
-  #             :filename => params[:Filename],
-  #             :large => p.photo.url(:large, false),
-  #             :medium => p.photo.url(:medium, false),
-  #             :medsmall => p.photo.url(:medsmall, false),
-  #             :small => p.photo.url(:small, false),
-  #             :tiny => p.photo.url(:tiny, false),
-  #             :original => p.photo.url(:original, false)
-  #           }
-  #         }
-  #
-  #   unless @place.photos.nil?
-  #     @photos = @place.photos
-  #   else
-  #     @photos = []
-  #   end
-  # 
-  #   post_params = {:photos => @photos.to_json}
-  #   result = Heypal::Place.update(post_params.merge(:id => params[:id], :access_token => params[:token]))
-  # 
-  #   @place = Heypal::Place.find(params[:id], params[:token])
-  #   @photos = @place.photos
-  #   render :template => 'places/_photo_list', :layout => false
-  # end
-
   # default place search2
   def index
     if params[:city_id]

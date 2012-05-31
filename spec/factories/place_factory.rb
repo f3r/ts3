@@ -1,3 +1,5 @@
+include ActionDispatch::TestProcess
+
 FactoryGirl.define do
   factory :place_type do
     name { Faker::Lorem.words(2).to_sentence }
@@ -25,4 +27,11 @@ FactoryGirl.define do
       photos           { 3.times.collect{ p = Photo.new; p.save(:validate => false); p } }
     end
   end
+
+  factory :photo do
+    name   { Faker::Name.name }
+    photo  ActionController::TestCase.fixture_file_upload('spec/files/prop.jpg', 'image/jpg')
+    #association :place, :factory => :valid_place
+  end
+
 end

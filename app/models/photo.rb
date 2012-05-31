@@ -18,7 +18,7 @@ class Photo < ActiveRecord::Base
         :all => "-quality 70"
       },
      :path => "places/:place_id/photos/:id/:style.:extension",
-     :processors => [:rationize, :watermark]
+     :processors => [:rationize]#, :watermark]
    }
 
   #validates_presence_of :place_id

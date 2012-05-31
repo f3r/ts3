@@ -7,6 +7,8 @@
 %link{:rel => "icon", :type => "image/png", :href => "http://squarestays.com/favicon.png"}
 
 = stylesheet_link_tag "application"
+- if SiteConfig.color_scheme!="none"
+  = stylesheet_link_tag "color_schemes/#{SiteConfig.color_scheme}"
 = javascript_include_tag "application"
 - if @require_google_apis
   = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'

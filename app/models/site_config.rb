@@ -1,5 +1,5 @@
 class SiteConfig < ActiveRecord::Base
-  after_save :reset_cache
+  after_commit :reset_cache
 
   def self.instance
     @instance ||= SiteConfig.first || SiteConfig.new
@@ -32,6 +32,18 @@ class SiteConfig < ActiveRecord::Base
 
   def self.default_to_constant(name)
     name.to_s.upcase.constantize
+  end
+
+  # get a list of color_schemes the directory, get name from the first line
+  def self.color_schemes
+    color_schemes = [['Default', 'none']]
+    css_files = Dir[Rails.root + 'app/assets/stylesheets/color_schemes/*']
+    css_files.find_all{|file|File.extname(file) == '.less'}.each do |file|
+      filename = File.basename(file, ".css.less")
+      name = File.open(file) {|f| f.readline}.gsub("/* ", "").gsub(" */", "")
+      color_schemes << [name, filename] if name && filename
+    end
+    return color_schemes
   end
 
   protected

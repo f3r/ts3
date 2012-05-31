@@ -531,6 +531,7 @@ ActiveRecord::Schema.define(:version => 20120611021619) do
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "color_scheme",      :default => "default"
   end
 
   create_table "transaction_logs", :force => true do |t|

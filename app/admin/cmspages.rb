@@ -29,7 +29,7 @@ ActiveAdmin.register Cmspage  do
   form do |f|
     f.inputs do
       f.input :page_title
-      f.input :page_url , :label => "Page Url", :hint => cmspage.external? ? "This link will be opened in new window in the front-end" : "Ex: if page url is how , the original url like Siteurl/page/how"
+      f.input :page_url , :label => "Page Url", :hint => cmspage.external? ? "This link will be opened in new window" : "Ex: if page url is 'how', the final url would be #{SiteConfig.site_url}/page/how"
       unless cmspage.external? #We don't need the description editor for externallinks
         f.input :description ,:input_html => {:class => 'tinymce'}
       end

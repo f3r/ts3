@@ -11,6 +11,7 @@ ActiveAdmin.register ExternalLink  do
      
      new!
    end 
+   
    def create
     create! do |format|
         frommenu = session[:frommenu]

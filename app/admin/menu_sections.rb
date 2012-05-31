@@ -1,9 +1,7 @@
 ActiveAdmin.register MenuSection do
   
-  menu  :label => "Menus"
-  
-  filter :name
-  
+  menu    :label => "Menus"
+  filter  :name
   actions :index, :show
   
   controller do
@@ -24,7 +22,7 @@ ActiveAdmin.register MenuSection do
     id_column
     column :name
     column :created_at 
-    default_actions
+    default_actions(:name => 'Configure Menu')
   end
   
   

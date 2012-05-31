@@ -28,6 +28,5 @@ RECAPTCHA_PVT_KEY =     ENV['RECAPTCHA_PVT_KEY']      || APP_CONFIG['RECAPTCHA_P
 MAIL_BCC =              ''
 GAE_TRACKING_CODE =     ''
 SITE_URL =              FRONTEND_PATH
-SITE_NAME =             ENV['SITE_NAME']              || APP_CONFIG['SITE_NAME']
 SITE_TAGLINE =          ENV['SITE_TAGLINE']           || APP_CONFIG['SITE_TAGLINE']
 SITE_DOMAIN =           ENV['SITE_DOMAIN']            || APP_CONFIG['SITE_DOMAIN']

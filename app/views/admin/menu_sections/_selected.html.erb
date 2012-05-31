@@ -1,20 +1,17 @@
-<% cnt = 0%>
-<% resource.cmspage_menu_sections.each do |ms|%>
-<% unless ms.cmspage.nil?%>
-<tr id = "sp_<%= ms.id%>">
-	<td><%= link_to ms.cmspage, ms.cmspage.link%> 
-		[
-		<%= link_to "Edit", edit_admin_cmspage_path(ms.cmspage)%> | 
-		<a href="javascript:{}" class ="remove_ms" data-ms-id = <%= ms.id%> data-p-id = <%= ms.cmspage.id%> title="Remove">Delete</a>
-		]
-		</td>
-</tr>
-<%
-cnt = cnt + 1
-end%>
-<% end%>
-<% if cnt == 0%>
-	<tr id = "dp_1">
-		<td>Pull some menus to here </td>
-	</tr>
-<% end%>
+<%  if resource.cmspage_menu_sections.count == 0 %>
+      <tr id = "dp_1">
+        <td>You may drag&amp;drop any menu item here </td>
+      </tr>
+<%  else
+      resource.cmspage_menu_sections.each do |ms|
+        unless ms.cmspage.nil?
+%>
+          <tr id = "sp_<%= ms.id%>">
+            <td><b><%= link_to ms.cmspage, ms.cmspage.link%></b>
+                [<%= link_to "Edit Page", edit_admin_cmspage_path(ms.cmspage)%>]
+  		      </td>
+          </tr>
+<%      end
+      end
+    end 
+%>

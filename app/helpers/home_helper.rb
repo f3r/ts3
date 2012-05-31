@@ -82,11 +82,12 @@ module HomeHelper
     html = ""
     menu_cnt = MenuSection.footer.cmspages.count
     MenuSection.footer.cmspages.each do |p|
-      page_title = menu_cnt > 1 ? " #{p.page_title} |" : " #{p.page_title}"
-      html << link_to(page_title, p.link)
+      page_title = menu_cnt > 1 ? " #{p.page_title} " : " #{p.page_title}"
+      html << link_to(page_title, p.link) + " |"
       menu_cnt = menu_cnt - 1
     end
-    html.html_safe
+    # Strip out the last " |"
+    html[0..html.length-3].html_safe
   end
   
   

@@ -1,5 +1,5 @@
 class Cmspage < ActiveRecord::Base
-  default_scope :order => 'id ASC'
+  #default_scope :order => 'id ASC'
    
   validates_presence_of   :page_title, :message => "101"
   validates_presence_of   :page_url,   :message => "101"
@@ -9,6 +9,11 @@ class Cmspage < ActiveRecord::Base
   
   scope :active,    where("active")
   scope :inactive,  where("not active")
+  
+  has_many :cmspage_menu_sections, :dependent => :destroy
+  has_many :menu_sections, :through => :cmspage_menu_sections
+  
+  
   
   UNMODIFIABLE_STATIC_PAGE_URLS = ["terms", "fees", "privacy", "contact"]
   
@@ -35,6 +40,18 @@ class Cmspage < ActiveRecord::Base
      cityname << city_name["name"]
    end
    return cityname
+ end
+ 
+ def to_s
+  page_title + " [" + page_url + "]"
+ end
+ 
+ def external?
+  false
+ end
+ 
+ def link
+  nil
  end
 
 end

@@ -17,6 +17,30 @@ ActiveAdmin.register Cmspage  do
   controller do
     helper 'admin/cmspages'
     
+    def new
+      unless params[:frommenu].nil?
+        session[:frommenu] = params[:frommenu]
+      end
+      new!
+    end
+    
+    def create
+      create! do |format|
+        frommenu = session[:frommenu]
+        format.html do
+          if frommenu.nil?
+            super
+          else
+            session[:frommenu] = nil
+            resource.active = true
+            resource.save
+            session[:newlink] = resource
+            redirect_to admin_menu_section_path(frommenu)
+          end
+        end
+      end
+    end
+    
     def destroy
       if resource.mandatory?
         redirect_to admin_cmspage_path, :notice => "Page not deletable"
@@ -29,8 +53,10 @@ ActiveAdmin.register Cmspage  do
   form do |f|
     f.inputs do
       f.input :page_title
-      f.input :page_url , :label => "Page Url", :hint => "Ex: if page url is how , the original url like Siteurl/page/how"
-      f.input :description ,:input_html => {:class => 'tinymce'}
+      f.input :page_url , :label => "Page Url", :hint => cmspage.external? ? "This link will be opened in new window" : "Ex: if page url is 'how', the final url would be #{SiteConfig.site_url}/page/how"
+      unless cmspage.external? #We don't need the description editor for externallinks
+        f.input :description ,:input_html => {:class => 'tinymce'}
+      end
       f.input :active
     end
     f.buttons
@@ -45,25 +71,8 @@ ActiveAdmin.register Cmspage  do
     default_actions(:name => 'Actions')
   end
   
-  # Activate/Deactivate
-  action_item :only => :show do
-    if cmspage.active
-      # link_to 'Deactivate', deactivate_admin_cmspage_path(cmspage),  :method => :put
-    else
-      # link_to 'Activate',   deactivate_admin_cmspage_path(cmspage),   :method => :put
-    end
+  action_item  do
+      link_to 'New External Link', new_admin_external_link_path
   end
 
-  #   # Make Agent
-  # action_item :only => :show do
-  #   link_to('Make Agent', make_agent_admin_user_path(user), :method => :put, 
-  #     :confirm => 'Are you sure you want to turn the user into an agent?') if user.consumer?
-  # end
-  
-  # member_action :make_agent, :method => :put do
-  #   user = User.find(params[:id])
-  #   user.update_attribute(:role, 'agent')
-  #   redirect_to({:action => :show}, :notice => "The user is now an agent")
-  # end
-  
 end

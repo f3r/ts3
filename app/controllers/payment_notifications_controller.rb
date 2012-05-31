@@ -6,8 +6,9 @@ class PaymentNotificationsController < ApplicationController
     notify = ActiveMerchant::Billing::Integrations::Paypal::Notification.new request.raw_post
     transaction_code = notify.item_id
 
+    @transaction = Transaction.find_by_transaction_code(transaction_code)
     if notify.acknowledge #&& notify.complete?
-      @result = Heypal::Transaction.pay(transaction_code, params)
+      @result = @transaction.received_payment!(params)
     end
 
     render :nothing => true

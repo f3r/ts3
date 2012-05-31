@@ -22,13 +22,13 @@ HeyPalFrontEnd::Application.routes.draw do
 
   root :to => 'home#index'
 
-  devise_for :users, 
-             :controllers => { :sessions => 'sessions', 
-                               :registrations => 'registrations', 
+  devise_for :users,
+             :controllers => { :sessions => 'sessions',
+                               :registrations => 'registrations',
                                :passwords => 'passwords',
                                :omniauth_callbacks => "omniauth_callbacks"},
-             :path_names => {  :sign_in => 'login', 
-                               :sign_up => 'signup', 
+             :path_names => {  :sign_in => 'login',
+                               :sign_up => 'signup',
                                :sign_out => 'logout' }
 
   resources :places do
@@ -41,7 +41,6 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :publish
       put   :unpublish
       get   :publish_check
-      get   :rent
       match :availability
       post  :confirm_inquiry
     end
@@ -87,19 +86,11 @@ HeyPalFrontEnd::Application.routes.draw do
   get    '/messages/:id/mark_as_unread' => 'messages#mark_as_unread',       :as => :mark_as_unread
 
   ###########################################################################################
-  # Profile
+  # Profiles
   ###########################################################################################
-  match '/profile'      => 'users#show', :as => :profile
-  match '/profile/edit' => 'users#edit', :as => :edit_profile
+  resource :profile
 
-  resources :users do
-    member do
-      put :change_preferece
-    end
-    match '/change_address'             => "addresses#update"
-    match '/change_bank_account'        => "bank_accounts#update"
-    put   '/change_password'            => "users#change_password"
-  end
+  resources :users, :only => [:show]
 
   put   '/set_ref'                    => 'home#set_ref'
 
@@ -113,7 +104,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/search'          => 'places#index', :as => :search
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
-  match '/cities/suggest'  => 'home#suggest', :as => :city_suggest
+  resources :feedbacks, :only => [:create]
   match '/:city'           => 'places#index', :city => City.routes_regexp
 
   # SEO Routes

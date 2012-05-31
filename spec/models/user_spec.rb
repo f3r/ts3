@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe User do
+  before(:all) do
+    User.attachment_definitions[:avatar][:path] = "public/system/avatars/:id_partition/:style.:extension"
+  end
+
+  let(:user){ FactoryGirl.create(:user) }
+
   context "name=" do
     it "parses the first name and last name" do
       user = User.new
@@ -19,9 +25,17 @@ describe User do
     end
   end
 
-  context "Preferences" do
-    let(:user){ FactoryGirl.create(:user) }
+  context "Avatar" do
+    it "sets and deletes the avatar" do
+      user.delete_avatar = true
+      mock_avatar = mock(:dirty? => false)
+      mock_avatar.should_receive(:clear)
+      user.stub(:avatar => mock_avatar)
+      user.save.should be_true
+    end
+  end
 
+  context "Preferences" do
     it "stores prefered city" do
       city = FactoryGirl.create(:city)
       user.change_preference(:pref_city, city.id)
@@ -39,8 +53,6 @@ describe User do
   end
 
   context "OAuth" do
-    let(:user){ FactoryGirl.create(:user) }
-
     before(:each) do
       @token = Hashie::Mash.new({'uid' => '1234',
         "provider" => "facebook",
@@ -128,5 +140,21 @@ describe User do
       auth.provider.should == 'facebook'
       auth.uid.should == '456'
     end
+
+    it "retrieves linked account info" do
+      user.facebook_authentication.should be_nil
+      user.not_yet_authenticated_providers.should == [:facebook, :twitter]
+      auth = user.authentications.create!(
+        :provider => 'facebook',
+        :uid => '123',
+        :token => 'token789'
+      )
+      user.facebook_authentication.should == auth
+      user.not_yet_authenticated_providers.should == [:twitter]
+    end
+  end
+
+  context "Address" do
+    it "has one address"
   end
 end

@@ -10,7 +10,7 @@ module AvailabilitiesHelper
       'green'
     end
   end
-  
+
   def date_formatted(d) # date
     ds = Date.parse(d)
     ds.strftime("%a %d/%B")

@@ -40,6 +40,12 @@ class User
       end
       auth.token = access_token[:credentials][:token]
       auth.secret = access_token[:credentials][:secret]
+
+      if !self.avatar? && access_token[:info] && access_token[:info].image
+        self.avatar_url = access_token.info.image.gsub('square', 'large').gsub('_normal', '')
+        self.save
+      end
+
       auth.save!
     end
 
@@ -74,7 +80,7 @@ class User
       self.oauth_secret = data.credentials.secret
 
       self.name = data.info.name
-      self.avatar_url = data.info.image
+      self.avatar_url = data.info.image.gsub('_normal', '') if data.info.image
     end
 
     def store_authentication
@@ -92,6 +98,34 @@ class User
 
     def oauth_token?
       self.oauth_token.present?
+    end
+
+    def authentication_providers
+      [:facebook, :twitter]
+    end
+
+    def facebook_authentication
+      self.provider_authentication(:facebook)
+    end
+
+    def twitter_authentication
+      self.provider_authentication(:twitter)
+    end
+
+    def provider_authentication(provider)
+      self.authentications.where(:provider => provider).first
+    end
+
+    def authenticated_providers
+      auths = []
+      self.authentication_providers.each do |provider|
+        auths << provider if self.provider_authentication(provider)
+      end
+      auths
+    end
+
+    def not_yet_authenticated_providers
+      self.authentication_providers - self.authenticated_providers
     end
   end
 end

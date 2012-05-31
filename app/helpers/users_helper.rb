@@ -4,11 +4,6 @@ module UsersHelper
     #     name.titleize unless name.eql?(' ')
     user.full_name
   end
-  
-  def short_full_name(user)
-    name = [user['first_name'][0], user['last_name']].join('. ')
-    name.titleize unless name.eql?(' ')    
-  end
 
   def nickname(user)
     nick = 'no username yet'
@@ -47,11 +42,7 @@ module UsersHelper
   end
 
   def avatar_image_by_id(user_id)
-    user = Heypal::User.info(user_id)
-    if user && user.avatar
-      image_tag user.avatar, :style => "width:60px; height:60px;"
-    else
-      image_tag "https://s3.amazonaws.com/squarestays-static/missing_userpic.png", :style => "width:60px; height:60px;"
-    end
+    user = User.find(user_id)
+    avatar_image(user)
   end
 end

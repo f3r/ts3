@@ -1,22 +1,21 @@
+- editable ||= false
 %section.span2
-  - @avatar = large_avatar(current_user)
-  = image_tag(@avatar, :width => 200)
-  
-  - if @current_action == "edit"
+  = image_tag(large_avatar(user), :width => 200)
+
+  - if editable
     = link_to t("users.change_photo"), "#avatar-modal", { "data-toggle" => "modal", "data-backdrop"=>"static", :class => "change_avatar"}
+    = render "profiles/avatar_modal", :user => user
 
   %h2.name
-    = short_full_name user
+    = user.anonymized_name
   %p.address
-    - if !user['address'].nil?
+    - if false && !user['address'].nil?
       = "#{user['address']['city']}, #{user['address']['country']}"
-  %br
   %p
-    - if user['role'] == "agent"
+    - if user.agent?
       = image_tag "agent_button.png"
-  
-  - if logged_in? && current_user['id'] == user['id']
-    %br
-    = render :partial => "users/user_accounts"
-  - elsif logged_in? && params[:id] && current_user['id'] != user['id']
-    %a.btn.medium.primary{:href => "/messages/#{user['id']}", :style => 'margin-top: 50px' }= t("messages.button_send_a_message")
+
+    = render "users/linked_accounts", :user => user
+
+    - if current_user?(user)
+      = render "profiles/connect_accounts"

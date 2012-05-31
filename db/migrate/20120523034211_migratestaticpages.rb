@@ -1,7 +1,7 @@
 class Migratestaticpages < ActiveRecord::Migration
   def up
     Cmspage.delete_all
-    
+
     Cmspage.create(page_title: "How it works?", page_url: "how-it-works", mandatory: true, description: '<div id="how" class="info">
 <div class="row">
 <div class="intro span12">

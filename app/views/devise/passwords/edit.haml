@@ -1,5 +1,7 @@
+- if resource.errors.any?
+  %div{:class => 'alert alert-error'}
+    = error_messages_for resource
 .credentials-box
-  %br
   .section.span8
     - if !params[:welcome].nil?
       %h2= t("users.registration.choose_a_password")
@@ -7,18 +9,15 @@
       %h2= t("users.registration.confirm_reset_password")
 
     = form_for(resource, :as => resource_name, :url => password_path(resource_name), :html => { :method => :put }) do |f|
-      = devise_error_messages!
       = f.hidden_field :reset_password_token
       - if params[:welcome]
         = hidden_field_tag :welcome, params[:welcome]
       .input
         = f.label :password, t("users.registration.enter_your_new_password")
-        = f.password_field :password
+        = f.password_field :password, :class => "validate[required,custom[onlyLetterNumber]]"
       .input
         = f.label :password, t(:confirm_reset_password)
-        = f.password_field :password_confirmation
+        = f.password_field :password_confirmation, :class => "validate[required, equals[user_password]]"
 
       %button.btn.float-right{:type => 'submit'}
         = t("submit")
-  %br.clearfix
-  %br

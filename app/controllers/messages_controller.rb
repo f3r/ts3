@@ -11,7 +11,6 @@ class MessagesController < ApplicationController
 
   # Retrieves all messages with a user
   def conversation
-    #@with = Heypal::User.info("id" => params[:id])
     result  = Heypal::Message.messages({"id" => params[:id],"access_token" => current_token})
     @conversation = result['conversation']
     @messages = result['messages']
@@ -38,9 +37,9 @@ class MessagesController < ApplicationController
   end
 
   def destroy
-    @with = Heypal::User.info("id" => params[:id])
-    @deleted, @result = Heypal::Message.delete('user_id' => params['id'], 'access_token' => current_token)
-    flash[:notice] = t("messages.conversation_with_deleted", :name => "#{@with['first_name'].chr}. #{@with['last_name']}")
+    @with = User.find(params[:id])
+    @deleted, @result = Heypal::Message.delete(:user_id => @with.id, 'access_token' => current_token)
+    flash[:notice] = t("messages.conversation_with_deleted", :name => @with.anonymized_name)
     redirect_to messages_path
   end
 

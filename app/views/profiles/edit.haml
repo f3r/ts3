@@ -1,0 +1,16 @@
+.edit_profile_page
+  = render 'users/user_left_column', :user => current_user, :editable => true
+  
+  .span6
+    = render "profiles/user_information"
+    = render "profiles/billing_address"
+    = #render "profiles/bank_account" if @user.agent? || @user.admin?
+    = render "profiles/new_password"
+
+    .form-horizontal.accounts
+      .section-header=t(:linked_accounts)
+      = render "users/linked_accounts", :user => @user
+      .clearfix
+
+:javascript
+  UserEdit.initialize();

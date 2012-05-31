@@ -68,11 +68,11 @@ module ApplicationHelper
       "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
     end
   end
-  
+
   def require_google_apis
     @require_google_apis = true
   end
-  
+
   def icon_tooltip(type)
     case type
       when :public

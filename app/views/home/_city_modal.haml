@@ -1,5 +1,5 @@
 #city_modal.modal.fade.hide
-  = form_tag '/cities/suggest', :class => 'cities_suggest_form form-horizontal' do
+  = form_tag feedbacks_path, :class => 'cities_suggest_form form-horizontal' do
     .modal-header
       %h3= t("pages.front_page.city_modal.title")
     .modal-body
@@ -7,12 +7,13 @@
       .control-group
         %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t("addresses.city")
         .controls
-          = text_field_tag 'city', ''
+          = hidden_field_tag :type, :city_suggestion
+          = text_field_tag :message
       - unless logged_in?
         .control-group
           %label{:style => "text-align:right; width:65px; margin-right:20px;", :class => 'control-label'}=t("users.email")
           .controls
-            = text_field_tag 'email'
+            = text_field_tag :email
       %p 
         %i= t("pages.front_page.city_modal.footer")
     .modal-footer

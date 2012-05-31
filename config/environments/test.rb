@@ -34,6 +34,8 @@ HeyPalFrontEnd::Application.configure do
   # like if you have constraints or database-specific column types
   # config.active_record.schema_format = :sql
 
+  config.i18n_cache_store = ActiveSupport::Cache.lookup_store(:memory_store)
+
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
 end

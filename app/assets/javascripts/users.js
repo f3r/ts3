@@ -39,14 +39,24 @@ var UserEdit = {
       
       // User uploads avatar
       $('a.upload_avatar').click(function() {
+        $('a.upload_avatar').hide();
         $('input#user_avatar').show();
         $('input#user_avatar_url').val("");
+      });
+      
+      $('#delete_avatar_link').click(function() {
+        $('#user_delete_avatar').prop('checked', true);
+        $('.avatar-box').hide();
+        return false;
       });
     });
   },
 
   readURL: function (input) {
-    if (input.files && input.files[0]) {
+    if (input.files && input.files[0]) 
+    {
+      $('#user_delete_avatar').prop('checked', false);
+      $('.avatar-box').show();
       var reader = new FileReader();
       reader.onload = function (e) {
         $('.avatar_placeholder')

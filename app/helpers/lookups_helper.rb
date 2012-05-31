@@ -74,7 +74,7 @@ module LookupsHelper
   end
 
   def get_current_currency
-    current_currency.currency_code
+    current_currency.currency_code if current_currency
   end
 
   def get_current_size_unit

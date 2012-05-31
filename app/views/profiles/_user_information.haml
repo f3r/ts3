@@ -1,4 +1,4 @@
-= form_for :user, :url => user_path(@user['id']), :method => :put, :html => {:id => "update_user", :class => 'form-horizontal'} do |f|
+= form_for :user, :url => profile_path, :method => :put, :html => {:id => "update_user", :class => 'form-horizontal'} do |f|
   .section-header= t("users.section_header_user_information")
   - unless coded_errors_for(@user).blank?
     %div{:class => 'alert-message error'}= coded_errors_for @user
@@ -21,7 +21,7 @@
       = icon_tooltip(:private)
       = f.text_field :email, :class => "validate[required,custom[email]]"
   
-  - if !@user['unconfirmed_email'].blank?
+  - if false && !@user['unconfirmed_email'].blank?
     .control-group
       = f.label :unconfirmed_email, "#{t("users.unconfirmed_email")}*", :class => 'control-label'
       .controls
@@ -42,13 +42,13 @@
       = f.text_field :phone_mobile
   
   .control-group
-    = label_tag '', "#{t("users.birthdate")}*", :class => 'control-label'
+    = f.label :birthdate, "#{t("users.birthdate")}*", :class => 'control-label'
     .controls
       = icon_tooltip(:private)
-      = select_date (!@user['birthdate'].blank? ? @user['birthdate'].to_date : nil), :prefix => "birthdate", :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
+      = f.date_select :birthdate, :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
   
   .clearfix
   .span4.float-right
-    = submit_tag t("save"), :class => 'btn btn-primary'
+    = f.submit t("save"), :class => 'btn btn-primary'
     = link_to t("cancel"), profile_path, :class => 'btn btn-secondary'
   .clearfix

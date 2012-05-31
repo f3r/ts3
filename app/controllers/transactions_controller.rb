@@ -6,7 +6,7 @@ class TransactionsController < PrivateController
 
     if @transaction.change_state!(params[:event])
       respond_to do |format|
-        format.js { render :layout => false, :template => "transactions/change_state.js.erb" }
+        format.js { render :layout => false, :template => "transactions/change_state" }
       end
     else
     end

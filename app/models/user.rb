@@ -1,3 +1,4 @@
+require 'declarative_authorization/maintenance'
 class User < ActiveRecord::Base
   devise :database_authenticatable, # Encrypting Password and validating authenticity of user
          :registerable,             # Users can sign up :)
@@ -49,8 +50,31 @@ class User < ActiveRecord::Base
   scope :agent,    where("role = 'agent'")
   scope :admin,    where("role = 'admin' or role = 'superadmin'")
 
+  # Creates a new user with a random password automatically
+  def self.auto_signup(name, email)
+    first_name, last_name = name.split(' ', 2)
+    password = Devise.friendly_token[0,20]
+    user = self.new(
+      :first_name => first_name,
+      :last_name => last_name,
+      :email => email,
+      :password => password,
+      :password_confirmation => password
+    )
+
+    user.generate_set_password_token
+
+    Authorization::Maintenance::without_access_control do
+      if user.save
+        UserMailer.auto_welcome(user).deliver
+      end
+    end
+
+    user
+  end
+
   def full_name
-    [first_name,last_name].join(' ')
+    [first_name, last_name].compact.join(' ')
   end
 
   def anonymized_name
@@ -84,6 +108,11 @@ class User < ActiveRecord::Base
     if pref =~ /pref_/
       self.update_attribute(pref, value)
     end
+  end
+
+  def generate_set_password_token
+    # We use the saeme mechanism as password reset
+    self.generate_reset_password_token
   end
 
   private

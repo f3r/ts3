@@ -42,7 +42,6 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :unpublish
       get   :publish_check
       match :availability
-      post  :confirm_inquiry
     end
 
     resources :photos, :only => [:create, :update, :destroy] do
@@ -79,7 +78,7 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-#  resources :inquiries, :only => [:create]
+  resources :inquiries, :only => [:create]
   resources :transactions, :only => [:update]
   post 'paypal_callback', :to => 'payment_notifications#create', :as => :paypal_callback
 

@@ -7,12 +7,12 @@
 <% else %>
   $('.alert-message').remove();
   $('#inquire_place').modal('hide');
-  <% if @success %>
-    $('#inquire_place').addClass('sent');
-    <%= open_modal :inquiry_sent, 'inquiries/sent' %>
-  <% else %>
+  <% if !@user.persisted? || !@inquiry.persisted? %>
     $("#inquire_button").button('reset');
     <%= open_modal :inquiry_not_sent, 'inquiries/not_sent' %>
     $('.place_info').before('<div class="alert alert-error" data-alert="alert"><a href="#" class="close" data-dismiss="alert">×</a><%= t("inquiries.inquiry_error") %></div>');
+  <% else %>
+    $('#inquire_place').addClass('sent');
+    <%= open_modal :inquiry_sent, 'inquiries/sent' %>
   <% end %>
 <%end%>

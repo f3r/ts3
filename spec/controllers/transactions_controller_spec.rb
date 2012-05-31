@@ -54,7 +54,7 @@ describe TransactionsController do
     end
 
     it 'doesnt allow a user to request a transaction from another user' do
-      @guest2 = Factory(:user, :role => "user")
+      @guest2 = create(:user, :role => "user")
       login_as @guest2
 
       assert_raise Workflow::TransitionHalted  do
@@ -64,7 +64,7 @@ describe TransactionsController do
 
     it 'doenst allow agent to pre-approve a transaction from another user' do
       @transaction.update_attribute(:state, 'requested')
-      @agent2 = Factory(:user, :role => "agent")
+      @agent2 = create(:user, :role => "agent")
       login_as @agent2
 
       assert_raise Workflow::TransitionHalted  do

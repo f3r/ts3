@@ -33,4 +33,14 @@ class UserMailer < BaseMailer
 
     mail(:to => recipients, :subject => subject)
   end
+
+  # ==Description
+  # Email sent when we create an user account automatically (from an inquiry)
+  def auto_welcome(user)
+    @user      = user
+    recipients = "#{user.full_name} <#{user.email}>"
+    subject    = t('devise.registrations.signed_up')
+
+    mail(:to => recipients, :subject => subject)
+  end
 end

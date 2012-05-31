@@ -22,7 +22,7 @@ class Inquiry < ActiveRecord::Base
     inquiry.check_in = params[:date_start]
     inquiry.length = [params[:length_stay], params[:length_stay_type]]
 
-    return false unless inquiry.save
+    return inquiry unless inquiry.save
 
     # Creates a new conversation around the inquiry
     inquiry.start_conversation(params[:message])

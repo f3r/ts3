@@ -3,10 +3,8 @@ class CommentsController < ApplicationController
   before_filter :find_place
 
   def create
-    place = Heypal::Place.find(params[:place_id], current_token)
-
     @comment = current_user.comments.new(params[:comment])
-    @comment.place_id = place.id
+    @comment.place = @place
 
     if @comment.save
       UserMailer.new_question(@comment.place.user, @comment).deliver if @comment.place
@@ -48,7 +46,7 @@ class CommentsController < ApplicationController
   private
 
   def find_place
-    @place = Heypal::Place.find(params[:place_id], current_token)
+    @place = Place.find(params[:place_id])
     @owner = @place.user
   end
 end

@@ -2,21 +2,18 @@ require 'spec_helper'
 
 describe "StaticPages" do
   before(:each) do
-    @page = FactoryGirl.create(:cmspage)
-    FactoryGirl.create(:currency)
+    @page = create(:cmspage)
+    create(:currency)
   end
 
   it "renders static page" do
-    get "/#{@page.page_url}"
-    response.body.should include (@page.description)
-    # @page.description.each do |paragraph|
-    #   response.body.should include(paragraph)
-    # end
+    visit "/#{@page.page_url}"
+    page.should have_content(@page.description)
   end
 
   it "renders 404" do
     lambda {
-      get '/sjksjksjks'
+      visit '/not_a_page'
     }.should raise_error(ActiveRecord::RecordNotFound)
   end
 end

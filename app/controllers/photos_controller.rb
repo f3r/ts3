@@ -27,7 +27,7 @@ class PhotosController < ApplicationController
     @parent.photos.set_positions(params[:photo_ids])
 
     respond_to do |format|
-      format.js{ render :template => 'photos/sort.js.erb', :layout => false }
+      format.js{ render :template => 'photos/sort', :layout => false }
     end
   end
 

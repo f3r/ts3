@@ -73,7 +73,6 @@ group :development, :test do
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 3.0"
   gem 'capybara'
-  gem 'steak'
   gem 'launchy'
   gem 'powder'
 

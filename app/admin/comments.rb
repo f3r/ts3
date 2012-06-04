@@ -1,5 +1,5 @@
 ActiveAdmin.register Comment, :as => "Question" do
-  menu :priority => 5
+  menu :priority => 7
   #We don't need new question button
   actions :all, :except => :new
 

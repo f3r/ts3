@@ -4,6 +4,6 @@
     .alert.alert-info
       = t("messages.no_messages_inbox")
   - else
-    - @conversations.each do |m|
+    - @conversations.each do |c|
       .row
-        = render 'conversation_entry', :m => m
+        = render 'conversation', :conversation => c

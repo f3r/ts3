@@ -1,7 +1,7 @@
 ActiveAdmin.register Translation do
-  menu :priority => 8
+  menu :parent => 'CMS'
 
-  config.sort_order = 'key_asc'  
+  config.sort_order = 'key_asc'
 
   controller do
     helper 'admin/translations'

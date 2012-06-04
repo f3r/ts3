@@ -42,7 +42,6 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :unpublish
       get   :publish_check
       match :availability
-      post  :confirm_inquiry
     end
 
     resources :photos, :only => [:create, :update, :destroy] do
@@ -53,14 +52,10 @@ HeyPalFrontEnd::Application.routes.draw do
 
     get :search, :on => :collection
 
-    resources :availabilities
     resources :comments do
       post :reply_to_message
     end
   end
-
-  resources :transactions, :only => [:update]
-  post 'paypal_callback', :to => 'payment_notifications#create'
 
   ###########################################################################################
   # Saved searches
@@ -73,17 +68,19 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/my_places'          => 'places#my_places',          :as => :my_places
   match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places
-  get   '/check_availability' => 'places#check_availability'
 
   ###########################################################################################
-  # Messaging
+  # Inquiries
   ###########################################################################################
-  get    '/messages'                    => 'messages#index',                :as => :messages
-  get    '/messages/:id'                => 'messages#conversation',         :as => :conversation
-  post   '/messages/:id'                => 'messages#create',               :as => :new_message
-  delete '/messages/:id'                => 'messages#delete_conversation',  :as => :delete_conversation
-  get    '/messages/:id/mark_as_read'   => 'messages#mark_as_read',         :as => :mark_as_read
-  get    '/messages/:id/mark_as_unread' => 'messages#mark_as_unread',       :as => :mark_as_unread
+  resources :messages do
+    member do
+      put :mark_as_unread
+    end
+  end
+
+  resources :inquiries, :only => [:create]
+  resources :transactions, :only => [:update]
+  post 'paypal_callback', :to => 'payment_notifications#create', :as => :paypal_callback
 
   ###########################################################################################
   # Profiles

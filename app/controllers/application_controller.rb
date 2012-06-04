@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   before_filter :instantiate_controller_and_action_names
   before_filter :set_locale
   before_filter :change_preferences
+  before_filter :set_current_user
 
   def set_locale
     I18n.locale = get_current_language
@@ -46,6 +47,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_current_user
+    Authorization.current_user = current_user
+  end
 
   def instantiate_controller_and_action_names
     @current_action = action_name

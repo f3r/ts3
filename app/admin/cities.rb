@@ -1,6 +1,7 @@
 ActiveAdmin.register City do
-  menu :priority => 6
-  config.sort_order = 'position_asc'  
+  menu :parent => 'System Tables'
+
+  config.sort_order = 'position_asc'
 
   controller do
     helper 'admin/cities'
@@ -8,7 +9,7 @@ ActiveAdmin.register City do
       City.unscoped
     end
   end
-  
+
   scope :all, :default => true
   scope :active
   scope :inactive

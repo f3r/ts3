@@ -19,6 +19,7 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Basic" do
       f.input :site_name
       f.input :site_url
+      f.input :site_tagline
       f.input :mailer_sender
       f.input :support_email
       f.input :mail_bcc

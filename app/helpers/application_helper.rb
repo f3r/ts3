@@ -92,6 +92,10 @@ module ApplicationHelper
   def site_name
     SiteConfig.site_name
   end
+
+  def site_tagline
+    SiteConfig.site_tagline
+  end
   
   def gallery(name)
     g = Gallery.find_by_name(name)

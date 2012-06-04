@@ -48,6 +48,22 @@ module PlacesHelper
     ]
   end
 
+  def place_size(place)
+    html = ""
+    if get_current_size_unit == "sqf"
+      html << number_with_precision(place.size_sqf, :strip_insignificant_zeros => true, :precision => 1)
+      html << t("units.square_feet_short")
+    else
+      html << number_with_precision(place.size_sqm, :strip_insignificant_zeros => true, :precision => 1)
+      html << t("units.square_meters_short")
+    end
+    html
+  end
+
+  def place_price(place)
+    "#{get_pref_currency}#{place.price_per_month}"
+  end
+
   def render_photo(photo)
     p = photo['photo']
 
@@ -89,7 +105,7 @@ module PlacesHelper
 
     return hacked_photo_set
   end
-  
+
   # TODO: unused, delete? 
   def month_count(days)
     date = Date.today

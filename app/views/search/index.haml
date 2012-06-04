@@ -4,10 +4,10 @@
 %section.clearfix
   .row
     .span9
-      = render 'search_bar'
+      =# render 'search_bar'
       .results{:style => "padding-top: 10px;"}
         #search_results
-          = render 'search_results', :places => @results['places']
+          = render 'search_results'
           
       .loading.center.hide= image_tag('loading.gif')
     .span3
@@ -29,7 +29,7 @@
                         =t("alerts.create_alert")
                   
               %li
-                = render :partial => 'place_type_filters'
+                = #render 'place_type_filters'
               %li
                 .header= t("places.search.pricing_title")
                 .content
@@ -41,20 +41,19 @@
       = render 'shared/asm_banner_vertical'
 
 #place_result_pages.hide
-  .page_num= 1
-  .current_page= @results['current_page']
-  .total_page= @results['total_pages']
-  .from_index= true
+  .current_page= @results.current_page
+  .total_page= @results.total_pages
 
-- if logged_in? && @alert_params
-  #save_search.modal.hide.fade
-    = render :partial => 'alerts/save_search_form', :locals => { :alert_params => @alert_params }
+- if false
+  - if logged_in? && @alert_params
+    #save_search.modal.hide.fade
+      = render :partial => 'alerts/save_search_form', :locals => { :alert_params => @alert_params }
   
 :javascript
   $(document).ready(function() {  
     PlaceFilters.initialize({
-      'min_price': #{@min_price},
-      'max_price': #{@max_price},
+      'min_price': #{@min_price || 'null'},
+      'max_price': #{@max_price || 'null'},
       'initial_min_price': #{params[:min_price] || 'null'},
       'initial_max_price': #{params[:max_price] || 'null'}    
     });

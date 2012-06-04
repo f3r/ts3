@@ -95,12 +95,11 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :favorites, :only => [:create, :destroy]
   get 'favorites/add' => 'favorites#create' # For after login redirect
 
-  # get   'search/index'
-  match '/search'          => 'places#index', :as => :search
+  match '/search'          => 'search#index', :as => :search
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
   resources :feedbacks, :only => [:create]
-  match '/:city'           => 'places#index', :city => City.routes_regexp
+  match '/:city'           => 'search#index', :city => City.routes_regexp
 
   # SEO Routes
   match '/:city/:id'       => 'places#show',  :city => City.routes_regexp
@@ -118,7 +117,6 @@ HeyPalFrontEnd::Application.routes.draw do
    ###########################################################################################
   # Static page dynamic routing
   ###########################################################################################
-
   match '/terms'                    => 'home#staticpage' , :pages => :terms
   match '/fees'                     => 'home#staticpage' , :pages => :fees
   match '/privacy'                  => 'home#staticpage' , :pages => :privacy

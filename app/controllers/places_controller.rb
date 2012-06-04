@@ -118,89 +118,92 @@ class PlacesController < ApplicationController
 
   # default place search2
   def index
-    if params[:city_id]
-      @city = City.find(params[:city_id].to_i)
-    elsif params[:city]
-      @city = City.find(params[:city])
-    end
+    @city = City.find(params[:city]) if params[:city]
+    @search = Search::Places.new(current_user, params)
+    @results = @search.results
 
-    unless @city
-      raise "Invalid city"
-    end
-
-    # set default city cookie
-    cookies[:pref_city_id] = @city.id
-
-    if logged_in?
-      # save city preference on user profile if logged index
-      session['current_user'] = current_user.change_preference(:pref_city, @city.id) if @city.id != current_user.pref_city
-    end
-
-    #if params[:city]
-
-      check_in  = params[:check_in]  rescue nil
-      check_out = params[:check_out] rescue nil
-      page      = params[:page]
-      alert_params    = { 
-        'check_in'  => check_in,
-        'check_out' => check_out,
-        'sort'      => params[:sort] || 'price_lowest',
-        'guests'    => '1',
-        'city'      => @city.id,
-        'currency'  => get_current_currency,
-        'per_page'  => 6,
-        'page'      => page
-      }
-
+    # if params[:city_id]
+    #   @city = City.find(params[:city_id].to_i)
+    # elsif params[:city]
+    #   @city = City.find(params[:city])
+    # end
+    # 
+    # unless @city
+    #   raise "Invalid city"
+    # end
+    # 
+    # # set default city cookie
+    # cookies[:pref_city_id] = @city.id
+    # 
+    # if logged_in?
+    #   # save city preference on user profile if logged index
+    #   session['current_user'] = current_user.change_preference(:pref_city, @city.id) if @city.id != current_user.pref_city
+    # end
+    # 
+    # #if params[:city]
+    # 
+    #   check_in  = params[:check_in]  rescue nil
+    #   check_out = params[:check_out] rescue nil
+    #   page      = params[:page]
+    #   alert_params    = { 
+    #     'check_in'  => check_in,
+    #     'check_out' => check_out,
+    #     'sort'      => params[:sort] || 'price_lowest',
+    #     'guests'    => '1',
+    #     'city'      => @city.id,
+    #     'currency'  => get_current_currency,
+    #     'per_page'  => 6,
+    #     'page'      => page
+    #   }
+    # 
+    # # else
+    # #       alert_params = { 
+    # #         'city_id'         => params[:city_id],
+    # #         'guests'          => params[:guests],
+    # #         'check_in'        => params[:check_in],
+    # #         'check_out'       => params[:check_out],
+    # #         'sort'            => params[:sort],
+    # #         'currency'        => params[:currency],
+    # #         'min_price'       => params[:min_price],
+    # #         'max_price'       => params[:max_price],
+    # #         'place_type_ids'  => params['place_type_ids'],
+    # #         'page'            => params[:page],
+    # #         'per_page'        => 6
+    # #       }
+    # #     end
+    # 
+    # @results = Heypal::Place.search(alert_params, current_token)
+    # 
+    # min, max = Heypal::Geo.get_price_range(@city.id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
+    # if !min.nil? && !max.nil?
+    #   @min_price = min
+    #   @max_price = max
     # else
-    #       alert_params = { 
-    #         'city_id'         => params[:city_id],
-    #         'guests'          => params[:guests],
-    #         'check_in'        => params[:check_in],
-    #         'check_out'       => params[:check_out],
-    #         'sort'            => params[:sort],
-    #         'currency'        => params[:currency],
-    #         'min_price'       => params[:min_price],
-    #         'max_price'       => params[:max_price],
-    #         'place_type_ids'  => params['place_type_ids'],
-    #         'page'            => params[:page],
-    #         'per_page'        => 6
-    #       }
-    #     end
-
-    @results = Heypal::Place.search(alert_params, current_token)
-
-    min, max = Heypal::Geo.get_price_range(@city.id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
-    if !min.nil? && !max.nil?
-      @min_price = min
-      @max_price = max
-    else
-      @min_price = 0
-      @max_price = 0
-    end
-
-    @alert_params = {
-      'alert_type'       => 'Place',
-      'schedule'          => 'daily',
-      'delivery_method'   => 'email',
-      'query'             => {
-        'city_id'         => @city.id,
-        'guests'          => params['guests'],
-        'check_in'        => params['check_in'],
-        'check_out'       => params['check_out'],
-        'sort'            => params['sort'],
-        'currency'        => get_current_currency,
-        'min_price'       => params['min_price'],
-        'max_price'       => params['max_price'],
-        'place_type_ids'  => params['place_type_ids']
-      }
-    }
-
-    respond_to do |format|
-      format.html
-      format.js { render :partial => 'javascript_place' }
-    end
-      
+    #   @min_price = 0
+    #   @max_price = 0
+    # end
+    # 
+    # @alert_params = {
+    #   'alert_type'       => 'Place',
+    #   'schedule'          => 'daily',
+    #   'delivery_method'   => 'email',
+    #   'query'             => {
+    #     'city_id'         => @city.id,
+    #     'guests'          => params['guests'],
+    #     'check_in'        => params['check_in'],
+    #     'check_out'       => params['check_out'],
+    #     'sort'            => params['sort'],
+    #     'currency'        => get_current_currency,
+    #     'min_price'       => params['min_price'],
+    #     'max_price'       => params['max_price'],
+    #     'place_type_ids'  => params['place_type_ids']
+    #   }
+    # }
+    # 
+    # respond_to do |format|
+    #   format.html
+    #   format.js { render :partial => 'javascript_place' }
+    # end
   end
 
   # User

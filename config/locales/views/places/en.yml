@@ -3,10 +3,10 @@
 ####################################################################################
 en:
   places:
-    bedrooms:
+    bedrooms_count:
       one: 1 Bedroom
       other: "%{count} Bedrooms"
-    bathrooms:
+    bathrooms_count:
       one: 1 Bathroom
       other: "%{count} Bathrooms"
     per_night: Per Night

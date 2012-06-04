@@ -1,5 +1,5 @@
 #inquire_place.modal.hide.fade
-  = form_tag(confirm_inquiry_place_path, {:method => :post, :remote => true, :id => "inquire_form"}) do
+  = form_for(:inquiry, :url => inquiries_path(:place_id => @place.id), :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
     .modal-header
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
       %h3= t("inquiries.inquiry_modal_title")
@@ -8,34 +8,34 @@
       .form-horizontal
         - unless logged_in?
           .control-group
-            %label{:class => 'control-label'}= t("users.full_name")
+            = f.label :name, t("users.full_name"), {:class => 'control-label'}
             .controls
               = text_field_tag :name, nil, :placeholder => t("users.name_example"), :class => 'validate[required]'
           .control-group
-            %label{:class => 'control-label'}= t("users.email")
+            = f.label :email, t("users.email"), {:class => 'control-label'}
             .controls
               = text_field_tag :email, nil, :placeholder => t("users.email_example"), :class => 'validate[required]'
 
         .control-group
-          %label{:class => 'control-label'}= t("inquiries.arriving")
+          = f.label :date_start_label, t("inquiries.arriving"), {:class => 'control-label'}
           .controls
-            = text_field_tag "date_start_label", nil, :placeholder => t("date_select"), :class => 'validate[required] textbox medium datepicker'
-            = hidden_field_tag "date_start", nil
+            = text_field_tag "date_start_label", nil, :placeholder => t("date_select"), :class => 'validate[required] textbox medium datepicker', :id => 'inquiry_date_start_label'
+            = f.hidden_field :date_start
         .control-group
-          %label{:class => 'control-label'}= t("inquiries.staying")
+          = f.label :length_stay, t("inquiries.staying"), {:class => 'control-label'}
           .controls
-            = select_tag :length_stay, options_for_select([1,2,3,4,5,6,7,8,9,'more']), :class => 'small'
-            = select_tag :length_stay_type, lenght_stay_type_options, :class => 'small'
+            = f.select :length_stay, options_for_select([1,2,3,4,5,6,7,8,9,'more']), :class => 'small'
+            = f.select :length_stay_type, lenght_stay_type_options, :class => 'small'
 
         .control-group
-          %label{:class => 'control-label'}= t("inquiries.comments_questions")
+          = f.label :message, t("inquiries.comments_questions"), {:class => 'control-label'}
           .controls
-            = text_area_tag :questions, nil, :rows => 5, :placeholder => t("inquiries.inquiry_questions"), :class => 'span5'
+            = f.text_area :message, :rows => 5, :placeholder => t("inquiries.inquiry_questions"), :class => 'span5'
         - unless logged_in?
           .control-group
             %label{:class => 'control-label'}= t("inquiries.re_captcha")
             .controls
-              = recaptcha_tags :theme => 'validate[required]' 
+              = recaptcha_tags :theme => 'validate[required]'
             .recaptcha_error
     .clearfix
     .modal-footer

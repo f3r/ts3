@@ -1,8 +1,8 @@
 ActiveAdmin.register Locale do
-  menu :priority => 8
+  menu :parent => 'System Tables'
   config.sort_order = 'position_asc'
   config.clear_sidebar_sections!
-  
+
   scope :all, :default => true
   scope :active
   scope :inactive
@@ -40,13 +40,13 @@ ActiveAdmin.register Locale do
       link_to 'Activate', activate_admin_locale_path(locale), :method => :put
     end
   end
-  
+
   member_action :activate, :method => :put do
     locale = Locale.find(params[:id])
     activated = locale.activate!
     redirect_to({:action => :show}, :notice => (activated ? "The locale was activated" : "The locale cannot be activated"))
   end
-  
+
   member_action :deactivate, :method => :put do
     locale = Locale.find(params[:id])
     activated = locale.deactivate!

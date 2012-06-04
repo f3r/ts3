@@ -154,7 +154,19 @@ describe User do
     end
   end
 
-  context "Address" do
-    it "has one address"
+  context "auto_signup" do
+    it "creates a new user account" do
+      name = "Stewie Griffin"
+      email = "ste@gmail.com"
+      user = nil
+
+      expect {
+        user = User.auto_signup(name, email)
+      }.to change(User, :count).by(1)
+
+      user.should be_persisted # saved
+      user.reset_password_token.should_not be_nil
+      user.reset_password_sent_at.should_not be_nil
+    end
   end
 end

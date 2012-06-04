@@ -1,7 +1,4 @@
 module InquiriesHelper
-  def inquiry_user?(inquiry)
-    current_user && current_user['id'] == inquiry['user_id']
-  end
   # 
   # def payment_url(inquiry)
   #   values = {
@@ -19,6 +16,6 @@ module InquiriesHelper
   # end
 
   def payment_notification_url(inquiry)
-    BACKEND_PATH + '/paypal_callback'
+    paypal_callback_url
   end
 end

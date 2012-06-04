@@ -4,25 +4,29 @@
       .float-left
         %h2{:style => 'display:inline; '}
           = @city.name
-        = hidden_field_tag :currency, get_current_currency
-        = hidden_field_tag :city_id, @city.id
         %br
         #num_search_results
-          %span.results_count= t("places.search.results", :count => @results['results'].to_i)
+          %span.results_count= t("places.search.results", :count => @results.count)
         %br
         = #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 
       .float-right
-        .filters
-          = select_tag :guests, options_for_select(max_guest_options, !params['guests'].blank? ? params['guests'] : ''), :style => "width:100px", :autocomplete => 'off'
-          = text_field_tag "check_in", params['check_in'], :placeholder => t("places.search.arriving_on"), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
-          = "-"
-          = text_field_tag "check_out", params['check_out'], :placeholder => t("places.search.departing_on"), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
+        = form_for @search, :url => search_path, :as => :search do |f|
+          .filters
+            = f.text_field :city_id
+            = f.text_field :currency
+            = f.text_field :current_page
+            = f.text_field :total_pages
+            = f.select :guests, max_guest_options, :style => "width:100px", :autocomplete => 'off'
+            = f.text_field :check_in, :placeholder => t("places.search.arriving_on"), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
+            = "-"
+            = f.text_field :check_out, :placeholder => t("places.search.departing_on"), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
 
-        .views
-          .sorting
-            = t("places.search.sort_by")
-            = select_tag :sort, options_for_select(sort_options, params['sort'].present? ? params['sort'] : 'price_lowest'), :class => 'medium', :autocomplete => 'off'
-          .toggle
-            = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-            = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
+          .views
+            .sorting
+              = t("places.search.sort_by")
+              = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'
+            .toggle
+              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+              = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
+          = f.submit 'search'

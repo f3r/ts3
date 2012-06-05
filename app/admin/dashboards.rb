@@ -16,6 +16,13 @@ ActiveAdmin::Dashboards.build do
       render('/admin/chart', :title => 'Places', :stats => stats)
     end
   end
+  
+  section "Data Funnel", :priority => 40 do
+    div do
+      image_tag("http://chart.apis.google.com/chart?" + AdminDashboard.conversion_funnel_as_g_chart_params)
+    end
+  end
+  
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just

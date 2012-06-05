@@ -6,10 +6,14 @@
     .span9
       = render 'search_bar'
       .results{:style => "padding-top: 10px;"}
+        %span#search_load_indicator.hide
+          = image_tag('loading.gif', :alt => 'loading')
         #search_results
           = render 'search_results'
           
-      .loading.center.hide= image_tag('loading.gif')
+      .see-more.center
+        %span#see_more_load_indicator.hide= image_tag('loading.gif')
+        =# link_to_function 'see more', 'PlaceFilters.seeMore()'
     .span3
       .search-aside-wrapper
         .search-aside
@@ -40,10 +44,6 @@
 
       = render 'shared/asm_banner_vertical'
 
-#place_result_pages.hide
-  .current_page= @results.current_page
-  .total_page= @results.total_pages
-
 - if false
   - if logged_in? && @alert_params
     #save_search.modal.hide.fade
@@ -51,10 +51,5 @@
   
 :javascript
   $(document).ready(function() {  
-    PlaceFilters.initialize({
-      'min_price': #{@min_price || 'null'},
-      'max_price': #{@max_price || 'null'},
-      'initial_min_price': #{params[:min_price] || 'null'},
-      'initial_max_price': #{params[:max_price] || 'null'}    
-    });
+    PlaceFilters.initialize('#search_bar');
   });

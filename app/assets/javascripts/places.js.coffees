@@ -1,0 +1,241 @@
+$ ->
+  loading = false;
+
+  #############################################################################
+  # Method Called to retrieve new places via AJAX
+  #############################################################################
+  pull_data = ->
+    $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
+    $('html, body').animate({scrollTop: 0}, '1000');
+    $("#search_results").css('opacity', '.3');
+    $('#place_result_pages .from_index').html('false');
+    $('#place_result_pages .page_num').html(1);  
+    $('#custom-alerts button.save-search').attr("disabled", "disabled");
+
+    place_type_ids = []
+    for i in $("#types-list input")
+      place_type_ids.push $(@).val() if i.is(":checked")
+
+    $.ajax
+      url: '/places/search'
+      data:
+        guests:         $("#guests").val()
+        sort:           $("#sort").val()
+        min_price:      $("#min_price").html()
+        max_price:      $("#max_price").html()
+        currency:       $('#currency').val()
+        check_in:       $('#check_in').val()
+        check_out:      $('#check_out').val()
+        city_id:        $('#city_id').val()
+        min_lat:        $('#min_lat').val()
+        max_lat:        $('#max_lat').val()
+        min_lng:        $('#min_lng').val()
+        max_lng:        $('#max_lng').val()
+        place_type_ids: place_type_ids
+      success: ->
+        map.clearMarkers
+        if data.places != null
+          new_markers = $.parseJSON(data.places)
+          createMarkers(map, new_markers)
+          
+        $('.results > #search-load-indicator').remove
+        $('#search_results').css('opacity', '1')
+        $("#search_results").html(data.place_data)
+        $("#num_search_results .results_count").html(data.results)
+        $("#types-list").html(data.place_filters)
+        $("#save_search").html(data.save_search)
+
+        # Handles the 2 different views (grid/list)
+        if $("#disp-gallery").hasClass('current')
+          $(".show-grid").show()
+          $(".list-display").hide()
+        else
+          $(".list-display").show()
+          $(".show-grid").hide()
+
+        $('#place_result_pages .current_page').html(data.current_page)
+        $('#place_result_pages .total_page').html(data.total_pages)
+        $('#custom-alerts button.save-search').removeAttr("disabled")
+        $('#min_lat').val("")
+        $('#max_lat').val("")
+        $('#min_lng').val("")
+        $('#max_lng').val("")
+    false
+
+  #############################################################################
+  # Change search results display to GALLERY
+  #############################################################################
+  $("#disp-gallery").click ->
+    $(".show-grid").show()
+    $(".list-display").hide()
+    $(@).addClass('current')
+    $("#disp-list").removeClass('current')
+    false
+
+  #############################################################################
+  # Change search results display to LIST
+  #############################################################################
+  $("#disp-list").click -> 
+    $(".list-display").show()
+    $(".show-grid").hide()
+    $(@).addClass('current')
+    $("#disp-gallery").removeClass('current')
+    false
+  
+  #############################################################################
+  # Load more results when reach the end of the page
+  #############################################################################
+  $(window).scroll ->
+
+    # We avoid multiple calls while loading
+    return if loading
+
+    # Detect if we have reached the end of the page (for more results)
+    nearBottomOfPage = $(window).scrollTop() > $(document).height() - $(window).height() - 200
+
+    # Detect if we have reached the last page (no more results)
+    lastPage = $('#place_result_pages .current_page').text() == $('#place_result_pages .total_page').text()
+
+    if nearBottomOfPage() && !lastPage()
+      loading = true
+      page = parseInt $('#place_result_pages .page_num').text()
+      page++
+      
+      if $('#place_result_pages .from_index').text() == 'true'
+        $.ajax
+          url: '/places',
+          type: 'get',
+          data:
+            page: page
+            city_id: $('#city_id').val()
+            currency: $('#currency').val()
+          dataType: 'script'
+          beforeSend: ->
+            $('.loading').show()
+          success: ->
+            $('#place_result_pages .page_num').html(page)
+            new_markers = createMarkerObjectsFromString($('#places_data').val())
+            createMarkers(map,new_markers)
+            loading = false
+            $('.loading').hide()
+            $('#places_data').val("")
+
+      else
+        page = parseInt $('#place_result_pages .page_num').text()
+        page++
+
+        place_type_ids = []
+        $.each($("#types-list input"), ->
+          place_type_ids.push($(@).val()) if $(@).is(":checked")
+        )
+
+        $.ajax
+          url: '/places/search'
+          data:
+            guests:    $("#guests").val()
+            sort:      $("#sort").val()
+            min_price: $("#min_price").html()
+            max_price: $("#max_price").html()
+            currency:  $('#currency').val()
+            check_in:  $('#check_in').val()
+            check_out: $('#check_out').val()
+            city_id:   $('#city_id').val()
+            min_lat:   $('#min_lat').val()
+            max_lat:   $('#max_lat').val()
+            min_lng:   $('#min_lng').val()
+            max_lng:   $('#max_lng').val()
+            page:      page
+            place_type_ids: place_type_ids
+          beforeSend: -> 
+            $('.loading').show()
+          success: ->
+            if data.places != null
+              new_markers = $.parseJSON(data.places)
+              debugger
+              createMarkers(map, new_markers)
+        
+            $("#search_results").append(data.place_data)
+            $("#num_search_results .results_count").html(data.results)
+            $("#types-list").html(data.place_filters)
+
+            if $("#disp-gallery").hasClass('current')
+              $(".show-grid").show()
+              $(".list-display").hide()
+            else
+              $(".list-display").show()
+              $(".show-grid").hide()
+
+            $('#place_result_pages .from_index').html('false')
+            $('#place_result_pages .page_num').html(page)
+            $('#place_result_pages .current_page').html(data.current_page)
+            $('#place_result_pages .total_page').html(data.total_pages)
+            $('#places_data').val("")
+
+            loading = false
+            $('.loading').hide()
+
+  #############################################################################
+  # Initializator
+  #############################################################################
+  PlaceFilters =
+    initialize: (opts) ->
+      minPrice = opts['min_price']
+      maxPrice = opts['max_price']
+      initialMinPrice = opts['initial_min_price'] || minPrice
+      initialMaxPrice = opts['initial_max_price'] || maxPrice
+    
+      #TODO: figure this one out
+      gmaps = GMaps.initialize(opts['places'])
+    
+      # Initialize Price Sliders
+      $("#price-slider").slider
+        range:  true
+        min:    minPrice
+        max:    maxPrice
+        values: [initialMinPrice, initialMaxPrice]
+        step:   100
+        slide: (event,ui) ->
+          $("#min_price").html ui.values[0]
+          $("#max_price").html ui.values[1]
+        change: -> pull_data()
+      
+      # Initialize the date pickers
+      $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker
+        dateFormat: 'yy-mm-dd'
+        minDate:    +1
+        onSelect: (selectedDate) ->
+          # we only refresh results if both calendar pickers are not empty
+          checkin  = $('.check-in-picker').val();
+          checkout = $('.check-out-picker').val();
+          pull_data() if (checkin != "") && (checkout != "")
+
+          who = $(@).attr("data-date")
+          instance = $(@).data("datepicker")
+
+          date = $.datepicker.parseDate(
+            instance.settings.dateFormat || $.datepicker._defaults.dateFormat
+            selectedDate
+            instance.settings)
+
+          if who == 'from'
+            from = $(@).next()
+            from.datepicker("option", "minDate", date)
+          else
+            to = $(@).prev()
+            to.datepicker("option", "maxDate", date)
+
+      # Top filters
+      $("#guests, #sort").change -> pull_data()
+      $("#types-list input").live('click', -> pull_data())
+
+      # Sticky filters
+      $(".search-aside-wrapper").height $(".search-aside").height()
+      $(".search-bar-wrapper").height   $(".search-bar").height()
+
+      $('.search-bar-wrapper, .search-aside-wrapper').waypoint( 
+        (event, direction) -> 
+          $(@).children().toggleClass('sticky', direction == "down")
+          event.stopPropagation()
+        offset: 60)  # NOTE: when you change this, goto application.css.less -> .sticky and change top attr
+
+  window.PlaceFilters = PlaceFilters

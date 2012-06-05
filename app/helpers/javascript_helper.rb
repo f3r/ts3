@@ -11,6 +11,12 @@ module JavascriptHelper
     }.html_safe
   end
 
+  def page_append(selector, *render_attr)
+    %{
+      $("#{selector}").append("#{escape_javascript(render *render_attr) }");
+    }.html_safe
+  end
+
   def open_modal(name, partial)
     %{
       $('body').append("#{escape_javascript(render :partial => partial, :layout => 'layouts/modal', :locals => {:modal_id => name}) }");

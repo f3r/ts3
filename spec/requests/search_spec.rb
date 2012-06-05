@@ -7,7 +7,7 @@ describe "Search" do
 
   it "recognizes city seo url" do
     assert_routing({ :path => "/singapore", :method => :get },
-      { :controller => 'places', :action => 'index', :city => 'singapore' })
+      { :controller => 'search', :action => 'index', :city => 'singapore' })
   end
 
 end

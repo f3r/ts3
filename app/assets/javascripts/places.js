@@ -1,79 +1,92 @@
-var pull_data = function() {
-  $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
-  $('html, body').animate({scrollTop: 0}, '1000');
-  $("#search_results").css('opacity', '.3');
-  $('#place_result_pages .from_index').html('false');
-  $('#place_result_pages .page_num').html(1);  
-  $('#custom-alerts button.save-search').attr("disabled", "disabled");
-
-  var place_type_ids = new Array;
-  $.each($("#types-list input"), function() {
-    if ($(this).is(":checked")) {
-      place_type_ids.push($(this).val());
-    }
-  });
-
-  $.ajax({
-    url: '/places/search',
-    data: {
-      guests: $("#guests").val(),
-      sort: $("#sort").val(),
-      min_price: $("#min_price").html(),
-      max_price: $("#max_price").html(),
-      currency: $('#currency').val(),
-      check_in: $('#check_in').val(),
-      check_out: $('#check_out').val(),
-      place_type_ids: place_type_ids,
-      city_id: $('#city_id').val()
-    },
-    success: function(data) {
-      $('.results > #search-load-indicator').remove();
-      $('#search_results').css('opacity', '1');
-
-      $("#search_results").html(data.place_data);
-
-      $("#num_search_results .results_count").html(data.results);
-
-      $("#types-list").html(data.place_filters);
-      $("#save_search").html(data.save_search);
-
-      if ($("#disp-gallery").hasClass('current')) {
-        $(".show-grid").show();
-        $(".list-display").hide();
-      } else {
-        $(".list-display").show();
-        $(".show-grid").hide();
-      }
-      $('#place_result_pages .current_page').html(data.current_page);
-      $('#place_result_pages .total_page').html(data.total_pages);
-      $('#custom-alerts button.save-search').removeAttr("disabled");
-    }
-  });
-  return false;
-};
+// var pull_data = function() {
+//   alert('submitting');
+//   $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
+//   $("#search_results").css('opacity', '.3');
+//   $("#search_bar form").submit();
+  // $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
+  // $('html, body').animate({scrollTop: 0}, '1000');
+  // $("#search_results").css('opacity', '.3');
+  // $('#place_result_pages .from_index').html('false');
+  // $('#place_result_pages .page_num').html(1);  
+  // $('#custom-alerts button.save-search').attr("disabled", "disabled");
+  // 
+  // var place_type_ids = new Array;
+  // $.each($("#types-list input"), function() {
+  //   if ($(this).is(":checked")) {
+  //     place_type_ids.push($(this).val());
+  //   }
+  // });
+  // 
+  // $.ajax({
+  //   url: '/places/search',
+  //   data: {
+  //     guests: $("#guests").val(),
+  //     sort: $("#sort").val(),
+  //     min_price: $("#min_price").html(),
+  //     max_price: $("#max_price").html(),
+  //     currency: $('#currency').val(),
+  //     check_in: $('#check_in').val(),
+  //     check_out: $('#check_out').val(),
+  //     place_type_ids: place_type_ids,
+  //     city_id: $('#city_id').val()
+  //   },
+  //   success: function(data) {
+  //     $('.results > #search-load-indicator').remove();
+  //     $('#search_results').css('opacity', '1');
+  // 
+  //     $("#search_results").html(data.place_data);
+  // 
+  //     $("#num_search_results .results_count").html(data.results);
+  // 
+  //     $("#types-list").html(data.place_filters);
+  //     $("#save_search").html(data.save_search);
+  // 
+  //     if ($("#disp-gallery").hasClass('current')) {
+  //       $(".show-grid").show();
+  //       $(".list-display").hide();
+  //     } else {
+  //       $(".list-display").show();
+  //       $(".show-grid").hide();
+  //     }
+  //     $('#place_result_pages .current_page').html(data.current_page);
+  //     $('#place_result_pages .total_page').html(data.total_pages);
+  //     $('#custom-alerts button.save-search').removeAttr("disabled");
+  //   }
+  // });
+  // return false;
+// };
 
 PlaceFilters = {
-  initialize: function(opts){
-    var minPrice = opts['min_price'],
-        maxPrice = opts['max_price'],
-        initialMinPrice = opts['initial_min_price'] || minPrice,
-        initialMaxPrice = opts['initial_max_price'] || maxPrice;
+  initialize: function(containerId){
+    var container = $(containerId);
 
-    // Initialize Price Sliders
-    $("#price-slider").slider({
-      range: true,
-      min: minPrice,
-      max: maxPrice,
-      values: [initialMinPrice, initialMaxPrice],
-      step: 100,
-      slide: function( event, ui ) {
-        $("#min_price").html(ui.values[0]);
-        $("#max_price").html(ui.values[1]);
-      },
-      change: function() {
-        pull_data();
-      }
-    });
+    $("#new_search")
+      .bind('ajax:complete', PlaceFilters.loadingIndicatorOff);
+//      .bind('ajax:beforeSend', loadingIndicatorOn)
+
+    // Top filters
+    $("#search_guests, #search_sort_by").change(PlaceFilters.search);
+
+    // var minPrice = opts['min_price'],
+    //     maxPrice = opts['max_price'],
+    //     initialMinPrice = opts['initial_min_price'] || minPrice,
+    //     initialMaxPrice = opts['initial_max_price'] || maxPrice;
+    // 
+    // // Initialize Price Sliders
+    // $("#price-slider").slider({
+    //   range: true,
+    //   min: minPrice,
+    //   max: maxPrice,
+    //   values: [initialMinPrice, initialMaxPrice],
+    //   step: 100,
+    //   slide: function( event, ui ) {
+    //     $("#min_price").html(ui.values[0]);
+    //     $("#max_price").html(ui.values[1]);
+    //   },
+    //   change: function() {
+    //     pull_data();
+    //   }
+    // });
     
     // Initialize the date pickers
     $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
@@ -84,7 +97,7 @@ PlaceFilters = {
         var checkin  = $('.check-in-picker').val();
         var checkout = $('.check-out-picker').val();
         if ((checkin != "") && (checkout != "")) {
-          pull_data();
+          PlaceFilters.search();
         }
 
         var me = $(this);
@@ -105,16 +118,10 @@ PlaceFilters = {
         }
       }
     });
-    
 
-    // Top filters
-    $("#guests, #sort").change(function() {
-      pull_data();
-    });
-
-    $("#types-list input").live('click', function() {
-      pull_data();
-    });
+    // $("#types-list input").live('click', function() {
+    //   pull_data();
+    // });
 
     // Sticky filters
     $(".search-aside-wrapper").height($(".search-aside").height());
@@ -124,30 +131,59 @@ PlaceFilters = {
       $(this).children().toggleClass('sticky', direction === "down");
       event.stopPropagation();
     }, {offset: 60});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
+    
+    function nearBottomOfPage() {
+      return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
+    }
+
+    function lastPage() {
+      return $('#search_current_page').val() >= $('#search_total_pages').val();
+    }
+    
+    // Endless scroll
+    $(window).scroll(function() {
+      if (PlaceFilters.loading) {
+        return;
+      }
+    
+      if(nearBottomOfPage() && !lastPage()) {
+        PlaceFilters.seeMore();
+      }
+    });
+  },
+  search: function(){
+    $('html, body').animate({scrollTop: 0}, '1000');
+    PlaceFilters.loadingIndicatorOn();
+    $('#submitted_action').val('filter');
+    $('#search_current_page').val(1);
+    $('#new_search').submit();
+  },
+  seeMore: function(){
+    $('#submitted_action').val('see_more');
+    var page = parseInt($('#search_current_page').val());
+    page++;
+    $('#search_current_page').val(page);
+
+    $('#see_more_load_indicator').show();
+    $('#new_search').submit();
+  },
+  loadingIndicatorOn: function(){
+    PlaceFilters.loading = true;
+    $('#search_load_indicator').show();
+    $("#search_results").css('opacity', '.3'); 
+  },
+  loadingIndicatorOff: function(){
+    PlaceFilters.loading = false;
+    $('.results > #search-load-indicator').remove();
+    $('#see_more_load_indicator').hide();
+    $('#search_load_indicator').hide();
+    $('#search_results').css('opacity', '1');
   }
 }
-
-
-
-String.prototype.human_titleize = function() {
-  var arr = new Array();
-  $.each(this.split('_'), function(str) {
-    arr.push(this.charAt(0).toUpperCase() + this.slice(1));
-  });
-
-  return arr.join(' ');
-};
 
 $(function() {
   var loading = false;
 
-  function nearBottomOfPage() {
-    return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
-  }
-
-  function lastPage() {
-    return $('#place_result_pages .current_page').text() == $('#place_result_pages .total_page').text();
-  }
   $("#disp-gallery").click(function() {
     $(".show-grid").show();
     $(".list-display").hide();
@@ -163,88 +199,4 @@ $(function() {
     $("#disp-gallery").removeClass('current');
     return false;
   });
-  
-  $(window).scroll(function() {
-    if (loading) {
-      return;
-    }
-
-    if(nearBottomOfPage() && !lastPage()) {
-      loading = true;
-      page = parseInt($('#place_result_pages .page_num').text());
-      page++;
-      if($('#place_result_pages .from_index').text() == 'true') {
-        $.ajax({
-          url: '/places',
-          type: 'get',
-          data: {
-            page: page,
-            city_id: $('#city_id').val(),
-            currency: $('#currency').val()
-          },
-          dataType: 'script',
-          beforeSend: function() {
-            $('.loading').show();
-          },
-          success: function() {
-            // $(window).sausage('draw');
-            $('#place_result_pages .page_num').html(page);
-            loading = false;
-            $('.loading').hide();
-          }
-        });
-      } else {
-        page = parseInt($('#place_result_pages .page_num').text());
-        page++;
-         var place_type_ids = new Array;
-          $.each($("#types-list input"), function() {
-            if ($(this).is(":checked")) {
-              place_type_ids.push($(this).val());
-            }
-          });
-
-          $.ajax({
-            url: '/places/search',
-            data: {
-              guests: $("#guests").val(),
-              sort: $("#sort").val(),
-              min_price: $("#min_price").html(),
-              max_price: $("#max_price").html(),
-              currency: $('#currency').val(),
-              check_in: $('#check_in').val(),
-              check_out: $('#check_out').val(),
-              place_type_ids: place_type_ids,
-              city_id: $('#city_id').val(),
-              page: page
-            },
-            beforeSend: function() {
-              $('.loading').show();
-            },
-            success: function(data) {
-              $("#search_results").append(data.place_data);
-              $("#num_search_results .results_count").html(data.results);
-
-              $("#types-list").html(data.place_filters);
-
-              if ($("#disp-gallery").hasClass('current')) {
-                $(".show-grid").show();
-                $(".list-display").hide();
-              } else {
-                $(".list-display").show();
-                $(".show-grid").hide();
-              }
-              $('#place_result_pages .from_index').html('false');
-              $('#place_result_pages .page_num').html(page);
-              $('#place_result_pages .current_page').html(data.current_page);
-              $('#place_result_pages .total_page').html(data.total_pages);
-              // $(window).sausage('draw');
-              loading = false;
-              $('.loading').hide();
-            }
-          });
-      }
-    }
-  });
-
-  // $(window).sausage();
 });

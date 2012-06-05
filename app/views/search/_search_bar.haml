@@ -1,22 +1,21 @@
 .search-bar-wrapper
   .search-bar-container
-    .search-bar
+    .search-bar#search_bar
       .float-left
         %h2{:style => 'display:inline; '}
           = @city.name
-        %br
-        #num_search_results
-          %span.results_count= t("places.search.results", :count => @results.count)
-        %br
+        #num_search_results= search_results_count(@results)
+
         = #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 
       .float-right
-        = form_for @search, :url => search_path, :as => :search do |f|
+        = form_for @search, :url => search_path, :as => :search, :html => {:remote => true, :autocomplete => 'off'} do |f|
           .filters
-            = f.text_field :city_id
-            = f.text_field :currency
-            = f.text_field :current_page
-            = f.text_field :total_pages
+            = hidden_field_tag :submitted_action
+            = f.hidden_field :city_id
+            = f.hidden_field :currency
+            = f.hidden_field :current_page
+            = f.hidden_field :total_pages
             = f.select :guests, max_guest_options, :style => "width:100px", :autocomplete => 'off'
             = f.text_field :check_in, :placeholder => t("places.search.arriving_on"), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
             = "-"
@@ -29,4 +28,3 @@
             .toggle
               = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
               = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
-          = f.submit 'search'

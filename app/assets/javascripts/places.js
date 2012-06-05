@@ -66,27 +66,6 @@ PlaceFilters = {
 
     // Top filters
     $("#search_guests, #search_sort_by").change(PlaceFilters.search);
-
-    // var minPrice = opts['min_price'],
-    //     maxPrice = opts['max_price'],
-    //     initialMinPrice = opts['initial_min_price'] || minPrice,
-    //     initialMaxPrice = opts['initial_max_price'] || maxPrice;
-    // 
-    // // Initialize Price Sliders
-    // $("#price-slider").slider({
-    //   range: true,
-    //   min: minPrice,
-    //   max: maxPrice,
-    //   values: [initialMinPrice, initialMaxPrice],
-    //   step: 100,
-    //   slide: function( event, ui ) {
-    //     $("#min_price").html(ui.values[0]);
-    //     $("#max_price").html(ui.values[1]);
-    //   },
-    //   change: function() {
-    //     pull_data();
-    //   }
-    // });
     
     // Initialize the date pickers
     $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
@@ -131,25 +110,9 @@ PlaceFilters = {
       $(this).children().toggleClass('sticky', direction === "down");
       event.stopPropagation();
     }, {offset: 60});  // NOTE: when you change this, goto application.css.less -> .sticky and change top attr
-    
-    function nearBottomOfPage() {
-      return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
-    }
 
-    function lastPage() {
-      return $('#search_current_page').val() >= $('#search_total_pages').val();
-    }
-    
-    // Endless scroll
-    $(window).scroll(function() {
-      if (PlaceFilters.loading) {
-        return;
-      }
-    
-      if(nearBottomOfPage() && !lastPage()) {
-        PlaceFilters.seeMore();
-      }
-    });
+    this.initializeViews();
+    this.initializeScroll();
   },
   search: function(){
     $('html, body').animate({scrollTop: 0}, '1000');
@@ -167,6 +130,43 @@ PlaceFilters = {
     $('#see_more_load_indicator').show();
     $('#new_search').submit();
   },
+  initializeViews: function(){
+    $("#disp-gallery").click(function() {
+      $(".show-grid").show();
+      $(".list-display").hide();
+      $(this).addClass('current');
+      $("#disp-list").removeClass('current');
+      return false;
+    });
+
+    $("#disp-list").click(function() {
+      $(".list-display").show();
+      $(".show-grid").hide();
+      $(this).addClass('current');
+      $("#disp-gallery").removeClass('current');
+      return false;
+    });
+  },
+  initializeScroll: function(){
+    var nearBottomOfPage = function() {
+      return $(window).scrollTop() > $(document).height() - $(window).height() - 200;
+    };
+
+    var lastPage = function() {
+      return $('#search_current_page').val() >= $('#search_total_pages').val();
+    };
+    
+    // Endless scroll
+    $(window).scroll(function() {
+      if (PlaceFilters.loading) {
+        return;
+      }
+    
+      if(nearBottomOfPage() && !lastPage()) {
+        PlaceFilters.seeMore();
+      }
+    });
+  },
   loadingIndicatorOn: function(){
     PlaceFilters.loading = true;
     $('#search_load_indicator').show();
@@ -180,23 +180,3 @@ PlaceFilters = {
     $('#search_results').css('opacity', '1');
   }
 }
-
-$(function() {
-  var loading = false;
-
-  $("#disp-gallery").click(function() {
-    $(".show-grid").show();
-    $(".list-display").hide();
-    $(this).addClass('current');
-    $("#disp-list").removeClass('current');
-    return false;
-  });
-
-  $("#disp-list").click(function() {
-    $(".list-display").show();
-    $(".show-grid").hide();
-    $(this).addClass('current');
-    $("#disp-gallery").removeClass('current');
-    return false;
-  });
-});

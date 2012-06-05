@@ -1,12 +1,13 @@
-- if !@results['place_type_count'].blank?
+- filters = @search.place_type_filters
+- unless filters.empty?
   #types-list
     .header= t("places.search.type_title")
     .content
       %ul{:class => "inputs-list"}
-        - place_type_filters(@results['place_type_count']).each do |p_type, count|
+        - filters.each do |p_type, count|
           %li
             %span.filter
-              = check_box_tag :place_type, p_type.id, (params[:place_type_ids] && params[:place_type_ids].include?(p_type.id.to_s)), :id => "#{p_type.slug}_filter", :autocomplete => 'off'
+              = check_box_tag :place_type_id, p_type.id, (params[:place_type_ids] && params[:place_type_ids].include?(p_type.id.to_s)), :id => "#{p_type.slug}_filter", :autocomplete => 'off'
               %label{:for => "#{p_type.slug}_filter"}= p_type.translated_name
             %span.right
               %span.label= count

@@ -15,32 +15,8 @@
         %span#see_more_load_indicator.hide= image_tag('loading.gif')
         =# link_to_function 'see more', 'PlaceFilters.seeMore()'
     .span3
-      .search-aside-wrapper
-        .search-aside
-          %form.panel-wrap
-            %ul.panel-expander
-              %li
-                #custom-alerts
-                  .header= t("alerts.custom_alerts")
-                  .content
-                    - if logged_in?
-                      %button.btn.save-search{"data-toggle" => "modal", :href => "#save_search"}
-                        %i.icon-time
-                        =t("alerts.create_alert")
-                    - else
-                      %a.btn.save-search{:class => 'trigger_signup', :href => '#'}
-                        %i.icon-time
-                        =t("alerts.create_alert")
-                  
-              %li
-                = #render 'place_type_filters'
-              %li
-                .header= t("places.search.pricing_title")
-                .content
-                  #max_price.float-right= @max_price
-                  #min_price= @min_price
-
-                  #price-slider{:style => "z-index:1;"}
+      #search_filters
+        = render 'filters'
 
       = render 'shared/asm_banner_vertical'
 

@@ -12,7 +12,7 @@
     .property.data-block
       .title
         .type.house 
-          = place.place_type.translated_name #I18n.t("places.types.#{place['place_type']['name'].parameterize('_')}")
+          = place.place_type.translated_name
         .type.size
           = place_size(place)
 

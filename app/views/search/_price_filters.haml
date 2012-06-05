@@ -1,0 +1,27 @@
+- min_price, max_price = @search.price_range_bounds
+- current_min = @search.min_price || min_price
+- current_max = @search.max_price || max_price
+
+.header= t("places.search.pricing_title")
+.content
+  #max_price.float-right= max_price
+  #min_price= min_price
+
+  #price-slider{:style => "z-index:1;"}
+  
+:javascript
+  // Initialize Price Sliders
+  $("#price-slider").slider({
+    range: true,
+    min: #{min_price},
+    max: #{max_price},
+    values: [#{current_min}, #{current_max}],
+    step: 100,
+    slide: function( event, ui ) {
+      $("#min_price").html(ui.values[0]);
+      $("#max_price").html(ui.values[1]);
+    },
+    change: function() {
+      //pull_data();
+    }
+  });

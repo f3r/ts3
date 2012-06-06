@@ -11,7 +11,7 @@
       
     .span4.message
       - if conversation.body.present?
-        = truncate(suspicious_message?(conversation.body), :length => 80)
+        = truncate(suspicious_message?(conversation.body).html_safe, :length => 80)
       - else
         %span.empty= t("messages.no_messages")
     .span2

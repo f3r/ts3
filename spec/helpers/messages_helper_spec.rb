@@ -77,6 +77,12 @@ describe MessagesHelper do
       altrd_meg.should == "Testing message helper method with url  [hidden website url] "
     end
     
+    it "returns default url text with url https://www.test.com" do
+      msg = "Testing message helper method with url https://www.test.com"
+      altrd_meg = suspicious_message?(msg)
+      altrd_meg.should == "Testing message helper method with url  [hidden website url] "
+    end
+    
     it "returns default phone number message text" do
       msg = "Testing message helper method with phone number 333 333 3333"
       altrd_meg = suspicious_message?(msg)
@@ -86,6 +92,13 @@ describe MessagesHelper do
     
     it "returns default phone number message text (22 2222 2222)" do
       msg = "Testing message helper method with phone number 22 2222 2222"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
+    
+    it "returns default phone number with + message text (+22 2222 2222)" do
+      msg = "Testing message helper method with phone number +22 2222 2222"
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
@@ -103,6 +116,13 @@ describe MessagesHelper do
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number]  and email addess  [hidden email address]  and web site with url  [hidden website url] "
+    end
+    
+    it "returns website urls (http,www,https,without http,www)" do
+      msg = "Testing message helper method with url https://www.test.com or http://www.test.com or http://test.com or https://test.com or test.com"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with url  [hidden website url]  or  [hidden website url]  or  [hidden website url]  or  [hidden website url]  or  [hidden website url] "
     end
     
   end

@@ -75,4 +75,11 @@ ActiveAdmin.register Cmspage  do
       link_to 'New External Link', new_admin_external_link_path
   end
 
+  sidebar "Versions", :only => :edit do
+    unless resource.external? || resource.cmspage_versions.nil?
+      table_for(resource.cmspage_versions) do |t|
+        t.column("Choose a version") {|v| link_to v.display_name, admin_cmspage_version_path(v), :remote => true}
+      end
+    end
+  end
 end

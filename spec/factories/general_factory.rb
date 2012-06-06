@@ -20,7 +20,7 @@ FactoryGirl.define do
     favorable_type 'Place'
   end
 
-  factory :cmspage do
+  factory :cmspage, class: Page do
     page_title  { @title = Faker::Name.name }
     page_url    { @title.parameterize.underscore }
     description { Faker::Lorem.paragraph }

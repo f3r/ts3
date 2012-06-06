@@ -36,12 +36,14 @@ class SiteConfig < ActiveRecord::Base
 
   # get a list of color_schemes the directory, get name from the first line
   def self.color_schemes
-    color_schemes = [['Default', 'none']]
-    css_files = Dir[Rails.root + 'app/assets/stylesheets/color_schemes/*']
-    css_files.find_all{|file|File.extname(file) == '.less'}.each do |file|
-      filename = File.basename(file, ".css.less")
-      name = File.open(file) {|f| f.readline}.gsub("/* ", "").gsub(" */", "")
-      color_schemes << [name, filename] if name && filename
+    color_schemes = []
+    basedir = Rails.root + "app/assets/stylesheets/color_schemes/"
+    css_files = Dir.glob(basedir + '*')
+    css_files.each do |directory|
+      file = directory + "/index.css.less"
+      description = File.open(file) {|f| f.readline}.gsub("/*", "").gsub("*/", "").strip!
+      name = directory.gsub(basedir.to_s,"")
+      color_schemes << [description, name] if description && name
     end
     return color_schemes
   end

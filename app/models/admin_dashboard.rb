@@ -33,6 +33,17 @@ class AdminDashboard
   def self.conversion_funnel_as_g_chart_params
     funnel_items = self.conversion_funnel
     
+    item_labels = {}
+    
+    item_labels[:user_count] = "Registered Users"
+    item_labels[:user_active_count] = "Users active in last 30 days"
+    item_labels[:inquiry_count] = "Inquiries"
+    item_labels[:transaction_initial_state] = "Transaction Stage - Initial"
+    item_labels[:transaction_requested_state] = "Transaction Stage - Requested"
+    item_labels[:transaction_ready_to_pay_state] = "Transaction Stage - Ready to Pay"
+    item_labels[:transaction_paid_state] = "Transaction Stage - Paid"
+
+    
     g_p =[]
     g_p << "bhs".to_query("cht")
     g_p << "ffffff,FF9900".to_query("chco")
@@ -45,7 +56,7 @@ class AdminDashboard
     axis1 = []
     
     for funnel_item_key in funnel_items.keys.reverse
-      funnel_keys << funnel_item_key
+      funnel_keys << item_labels[funnel_item_key]
       axis1 << funnel_items[funnel_item_key]
     end
     

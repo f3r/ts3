@@ -98,7 +98,8 @@ module ApplicationHelper
   end
   
   def css_color_scheme
-    color_scheme = "color_schemes/#{SiteConfig.color_scheme.blank? ? "default" : SiteConfig.color_scheme }/index"
+    # FIXME: hardcoded the first result, SiteConfig cache is not getting cleared
+    color_scheme = "color_schemes/#{SiteConfig.first.color_scheme.blank? ? "default" : SiteConfig.first.color_scheme }/index"
   end
   
   def gallery(name)

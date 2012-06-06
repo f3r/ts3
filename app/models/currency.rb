@@ -7,6 +7,10 @@ class Currency < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
+  def self.from_usd(amount)
+    
+  end
+
   def self.default
     self.first
   end

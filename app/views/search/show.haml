@@ -1,0 +1,125 @@
+- content_for(:title) do
+  - "#{@place.title} - #{@place.city_name}"
+
+- require_google_apis
+
+.row.place_info{:class => "place_#{@place.id}"}
+  .span12
+    = breadcrumb [['Search Results', seo_city_path(@place.city)]],  @place.title
+
+    /******************************************************************************************
+    / Name, Price, Inquire Button
+    /******************************************************************************************
+
+    .accomodation-wrapper
+      .header
+        .title 
+          =# render :partial => 'button_favorite', :locals => { :place_id => @place['id'], :favorited => @place['favorited'] }
+          %h1= @place.title
+          -# - if logged_in? && @owner['id'].eql?(current_user['id'])
+          -#           .buttons
+          -#             = render 'place_options_buttons'
+          .meta
+            %p= "#{@place.city_name}, #{@place.country_name}"
+            .share
+              %label= t("share_via")
+              .sharePlace
+              
+        .focal
+          %h1.price
+            = place_price(@place)
+            %span.sub= t("places.per_month")
+
+          %a{:href => '#inquire_place', :class => 'btn btn-large btn-info', 'data-toggle' => 'modal', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true'}= t("places.inquire")
+          
+          %p{:style => "font-size: 9px; font-variant: small-caps; color: #5B5848; margin-top: -3px;"}= t("places.no_obligation")
+
+      /******************************************************************************************
+      / Tabbed Panel: Photos, Map, Calendar, Details, Amenities, Directions, House Rules, Questions
+      /******************************************************************************************
+      .tabbed-panel
+        %ul.nav.nav-tabs
+          %li.active  
+            %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("places.photos")
+          %li
+            %a{:href => "#map-tab",      'data-toggle' => 'tab'}= t("places.map")
+          %li 
+            %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("places.calendar")
+          %li  
+            %a{:href => "#details-tab", 'data-toggle' => 'tab'}= t("places.details")
+          - if @place.house_rules.present?
+            %li
+              %a{:href => "#house-rules-tab", 'data-toggle' => 'tab'}= t("places.house_rules")
+          %li
+            %a{:href => '#details-questions', 'data-toggle' => 'tab'}
+              = "#{t("places.questions_title")} (#{@comments.nil?? 0 : @comments.size})"
+
+        .tab-content
+          // Photo Slider pane
+          #photo-slider.tab-pane.active
+            = render 'slideshow'
+
+          // Map Pane
+          #map-tab.tab-pane
+            %div#map
+            - if @place.directions.present?
+              .span
+                %pre.desc= @place.directions
+          
+          // Calendar Pane
+          #calendar-tab.tab-pane
+            #first-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px; margin-left: 100px"}
+            #second-calendar{:style => "width:335px; float:left; padding:20px 0 10px 10px;"}
+
+          // Details Pane
+          #details-tab.tab-pane
+            = render :partial => 'details'
+
+          // House Rules Pane
+          #house-rules-tab.tab-pane
+            .span
+              %pre.desc= @place.house_rules
+
+          // Questions Tab
+          #details-questions.tab-pane
+            = render '/comments/questions'
+
+      /******************************************************************************************
+      / Description, Minimum stay, Maximum Stay
+      /******************************************************************************************
+      .description
+        .row
+          .span8
+            %pre.desc= @place.description
+          .span2.right.span-below
+            .title
+              =t("places.minimum_stay")
+            .micro
+              -if @place.minimum_stay != 0
+                = "#{@place.minimum_stay} #{t(@place.stay_unit)}"
+              -else
+                = t("places.no_minimum")
+          .span2.right
+            .title
+              =t("places.maximum_stay")
+            .micro
+              -if @place.maximum_stay != 0
+                = "#{@place.maximum_stay} #{t(@place.stay_unit)}"
+              -else
+                = t("places.no_maximum")
+
+= render 'inquire_place'
+
+:javascript
+  PlaceShow.initialize({
+    cal_lastVisibleDay : #{DateTime.now.end_of_month.to_date},
+    cal_events         : #{@availabilities.to_json},
+    cal_month          : #{Date.today.month},
+    map_lat            : #{@place['lat']},
+    map_lon            : #{@place['lon']},
+    map_cityName       : '#{@place.city_name}',
+    map_countryName    : '#{@place.country_name}',
+    share_title        : '#{@place.title}',
+    share_url          : '#{@place_url}',
+    share_id           : '#{@place.id}'
+  });

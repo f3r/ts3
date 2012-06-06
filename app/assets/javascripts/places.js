@@ -1,68 +1,8 @@
-// var pull_data = function() {
-//   alert('submitting');
-//   $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
-//   $("#search_results").css('opacity', '.3');
-//   $("#search_bar form").submit();
-  // $(".results").append("<span id='search-load-indicator'><img src='/assets/loading.gif' alt='loading...' /></span>");
-  // $('html, body').animate({scrollTop: 0}, '1000');
-  // $("#search_results").css('opacity', '.3');
-  // $('#place_result_pages .from_index').html('false');
-  // $('#place_result_pages .page_num').html(1);  
-  // $('#custom-alerts button.save-search').attr("disabled", "disabled");
-  // 
-  // var place_type_ids = new Array;
-  // $.each($("#types-list input"), function() {
-  //   if ($(this).is(":checked")) {
-  //     place_type_ids.push($(this).val());
-  //   }
-  // });
-  // 
-  // $.ajax({
-  //   url: '/places/search',
-  //   data: {
-  //     guests: $("#guests").val(),
-  //     sort: $("#sort").val(),
-  //     min_price: $("#min_price").html(),
-  //     max_price: $("#max_price").html(),
-  //     currency: $('#currency').val(),
-  //     check_in: $('#check_in').val(),
-  //     check_out: $('#check_out').val(),
-  //     place_type_ids: place_type_ids,
-  //     city_id: $('#city_id').val()
-  //   },
-  //   success: function(data) {
-  //     $('.results > #search-load-indicator').remove();
-  //     $('#search_results').css('opacity', '1');
-  // 
-  //     $("#search_results").html(data.place_data);
-  // 
-  //     $("#num_search_results .results_count").html(data.results);
-  // 
-  //     $("#types-list").html(data.place_filters);
-  //     $("#save_search").html(data.save_search);
-  // 
-  //     if ($("#disp-gallery").hasClass('current')) {
-  //       $(".show-grid").show();
-  //       $(".list-display").hide();
-  //     } else {
-  //       $(".list-display").show();
-  //       $(".show-grid").hide();
-  //     }
-  //     $('#place_result_pages .current_page').html(data.current_page);
-  //     $('#place_result_pages .total_page').html(data.total_pages);
-  //     $('#custom-alerts button.save-search').removeAttr("disabled");
-  //   }
-  // });
-  // return false;
-// };
-
 PlaceFilters = {
   initialize: function(containerId){
     var container = $(containerId);
 
-    $("#new_search")
-      .bind('ajax:complete', PlaceFilters.loadingIndicatorOff);
-//      .bind('ajax:beforeSend', loadingIndicatorOn)
+    $("#new_search").bind('ajax:complete', PlaceFilters.loadingIndicatorOff);
 
     // Top filters
     $("#search_guests, #search_sort_by").change(PlaceFilters.search);

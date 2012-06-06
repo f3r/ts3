@@ -21,7 +21,7 @@ module Search
     end
 
     def collection
-      Place.with_permissions_to(:read)
+      Place.published
     end
 
     def add_filters

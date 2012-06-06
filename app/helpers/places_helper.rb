@@ -98,12 +98,10 @@ module PlacesHelper
     place_amenities
   end
 
-  def get_carousel_photoset(place)
-    hacked_photo_set = place['photos'].dup
-    # to faken cons to still iterate and display for the last image the first and second image
-    hacked_photo_set << place['photos'][0] << place['photos'][1]
-
-    return hacked_photo_set
+  # to faken cons to still iterate and display for the last image the first and second image
+  def carousel_photoset(place)
+    hacked_photo_set = place.photos.all
+    hacked_photo_set << place.photos[0] << place.photos[1]
   end
 
   # TODO: unused, delete? 
@@ -138,8 +136,8 @@ module PlacesHelper
     "/#{city.slug}/#{place['id']}-#{result}"
   end
 
-  def seo_city_path(city_id)
-    "/#{City.find(city_id).slug}"
+  def seo_city_path(city)
+    "/#{city.slug}"
   end
 
   def place_type_filters(place_type_counts)

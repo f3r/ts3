@@ -37,6 +37,9 @@ en:
     bedrooms: Bedrooms
     beds: Beds
     guests: Guests
+    guests_range:
+      one: 1
+      other: "1 - %{count}"
     bathrooms: Bathrooms
     price_per_night: Price per Night
     price_per_week: Price per Week

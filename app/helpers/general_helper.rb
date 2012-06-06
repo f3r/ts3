@@ -8,7 +8,7 @@ module GeneralHelper
       response.send(method)
     end
   end
-  
+
   def format_errors(errors)
     error_list = {}
     for error in errors

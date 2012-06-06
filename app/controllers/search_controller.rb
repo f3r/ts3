@@ -3,7 +3,7 @@ class SearchController < ApplicationController
 
   def index
     @city = City.find(params[:city]) if params[:city]
-    #params.slice(:city_id, :currency, :guests, :check_in, :check_out, :current_page, :sort_by)
+
     @search = Search::Places.new(params[:search])
     @search.city_id = @city.id if @city
     @results = @search.results
@@ -19,6 +19,11 @@ class SearchController < ApplicationController
 
       format.html { render :template => "/search/index" }
     end
+  end
+
+  def show
+    @place = Place.published.find(params[:id])
+    @owner = @place.user
   end
 
 end

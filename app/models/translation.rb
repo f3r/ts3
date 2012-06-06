@@ -7,11 +7,11 @@ class Translation < ActiveRecord::Base
   scope :messages,  where("`translations`.`key` LIKE ?", 'messages.%')
 
   after_commit :delete_cache
-  
+
   def other_language(locale)
     translation = Translation.where(:key => self.key, :locale => locale).first
   end
-  
+
   private
   # TODO: get cache_key name
   def delete_cache

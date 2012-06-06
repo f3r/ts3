@@ -97,6 +97,10 @@ module ApplicationHelper
     SiteConfig.site_tagline
   end
   
+  def css_color_scheme
+    color_scheme = "color_schemes/#{SiteConfig.color_scheme.blank? ? "default" : SiteConfig.color_scheme }/index"
+  end
+  
   def gallery(name)
     g = Gallery.find_by_name(name)
     if !g.nil?

@@ -1,7 +1,7 @@
 /* Default SquareStays color scheme */
 
 /*
- *= require ../../application
+ * require ../../application
 */
 
 // CSS Reset
@@ -9,6 +9,7 @@
 
 // Core variables and mixins
 @import "custom_bootstrap/variables.less";
+@import "color_schemes/default/variables.less"; // custom
 @import "custom_bootstrap/mixins.less";
 
 // Grid system and page structure
@@ -56,3 +57,16 @@
 
 // Utility classes
 @import "custom_bootstrap/utilities.less"; // Has to be last to override when necessary
+
+// Layout
+@import "layout/defaults.css.less";
+@import "layout/home.css.less";
+@import "layout/comments.css.less";
+@import "layout/messages.css.less";
+@import "layout/places.css.less";
+@import "layout/places_photos.css.less";
+@import "layout/saved_searches.css.less";
+@import "layout/search.css.less";
+@import "layout/sessions.css.less";
+@import "layout/users.css.less";
+@import "layout/wizard.css.less";

@@ -50,10 +50,12 @@ module PlacesHelper
 
   def place_size(place)
     html = ""
-    if get_current_size_unit == "sqf"
+    unit = get_current_size_unit
+
+    if unit  == "sqf" && place.size_sqf
       html << number_with_precision(place.size_sqf, :strip_insignificant_zeros => true, :precision => 1)
       html << t("units.square_feet_short")
-    else
+    elsif unit == "sqm" && place.size_sqm
       html << number_with_precision(place.size_sqm, :strip_insignificant_zeros => true, :precision => 1)
       html << t("units.square_meters_short")
     end

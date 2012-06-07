@@ -1,7 +1,10 @@
-class PlacesController < ApplicationController
+class PlacesController < PrivateController
   layout 'plain'
-  before_filter :login_required, :only => [:new, :wizard, :create, :my_places]
   before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability]
+
+  def index
+    @results = current_user.places
+  end
 
   def new
     @place = Heypal::Place.new
@@ -82,128 +85,37 @@ class PlacesController < ApplicationController
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
   end
 
-  def preview
-    @preview = true
-    @comments = Comment.where(:place_id => @place.id).questions
-
-    render(:template => 'places/show', :layout => 'application')
-  end
-
   def show
-    @preview = false
-    availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
+    @preview = true
 
-    @availabilities = []
-    # FIXME: Implement method in places_helper.rb/cleanup_availabilities
-    #availabilities = cleanup_availabilities(availabilities)
-    availabilities.each do |a|
-        @availabilities 
-         {
-          'title'  => price_availability_plain_calendar(a, @place),
-          'start'  => Date.parse(a['date_start']), 
-          'end'    => Date.parse(a['date_end']), 
-          'color'  => color_price(a, @place),
-          'allDay' => true
-        }
-    end unless availabilities.blank?
-
-    @comments = Comment.where(:place_id => @place.id).questions
-    render :layout => 'application'
+    render 'search/show'
   end
+
+  # def show
+  #   @preview = false
+  #   availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
+  # 
+  #   @availabilities = []
+  #   # FIXME: Implement method in places_helper.rb/cleanup_availabilities
+  #   #availabilities = cleanup_availabilities(availabilities)
+  #   availabilities.each do |a|
+  #       @availabilities 
+  #        {
+  #         'title'  => price_availability_plain_calendar(a, @place),
+  #         'start'  => Date.parse(a['date_start']), 
+  #         'end'    => Date.parse(a['date_end']), 
+  #         'color'  => color_price(a, @place),
+  #         'allDay' => true
+  #       }
+  #   end unless availabilities.blank?
+  # 
+  #   @comments = Comment.where(:place_id => @place.id).questions
+  #   render :layout => 'application'
+  # end
 
   def photos
     @photos = @place.photos
     render :template => 'places/_photo_list', :layout => false
-  end
-
-  # default place search2
-  def index
-    @city = City.find(params[:city]) if params[:city]
-    @search = Search::Places.new(current_user, params)
-    @results = @search.results
-
-    # if params[:city_id]
-    #   @city = City.find(params[:city_id].to_i)
-    # elsif params[:city]
-    #   @city = City.find(params[:city])
-    # end
-    # 
-    # unless @city
-    #   raise "Invalid city"
-    # end
-    # 
-    # # set default city cookie
-    # cookies[:pref_city_id] = @city.id
-    # 
-    # if logged_in?
-    #   # save city preference on user profile if logged index
-    #   session['current_user'] = current_user.change_preference(:pref_city, @city.id) if @city.id != current_user.pref_city
-    # end
-    # 
-    # #if params[:city]
-    # 
-    #   check_in  = params[:check_in]  rescue nil
-    #   check_out = params[:check_out] rescue nil
-    #   page      = params[:page]
-    #   alert_params    = { 
-    #     'check_in'  => check_in,
-    #     'check_out' => check_out,
-    #     'sort'      => params[:sort] || 'price_lowest',
-    #     'guests'    => '1',
-    #     'city'      => @city.id,
-    #     'currency'  => get_current_currency,
-    #     'per_page'  => 6,
-    #     'page'      => page
-    #   }
-    # 
-    # # else
-    # #       alert_params = { 
-    # #         'city_id'         => params[:city_id],
-    # #         'guests'          => params[:guests],
-    # #         'check_in'        => params[:check_in],
-    # #         'check_out'       => params[:check_out],
-    # #         'sort'            => params[:sort],
-    # #         'currency'        => params[:currency],
-    # #         'min_price'       => params[:min_price],
-    # #         'max_price'       => params[:max_price],
-    # #         'place_type_ids'  => params['place_type_ids'],
-    # #         'page'            => params[:page],
-    # #         'per_page'        => 6
-    # #       }
-    # #     end
-    # 
-    # @results = Heypal::Place.search(alert_params, current_token)
-    # 
-    # min, max = Heypal::Geo.get_price_range(@city.id, get_current_currency) #1 is Sing. Line:28 of LookupsHelper
-    # if !min.nil? && !max.nil?
-    #   @min_price = min
-    #   @max_price = max
-    # else
-    #   @min_price = 0
-    #   @max_price = 0
-    # end
-    # 
-    # @alert_params = {
-    #   'alert_type'       => 'Place',
-    #   'schedule'          => 'daily',
-    #   'delivery_method'   => 'email',
-    #   'query'             => {
-    #     'city_id'         => @city.id,
-    #     'guests'          => params['guests'],
-    #     'check_in'        => params['check_in'],
-    #     'check_out'       => params['check_out'],
-    #     'sort'            => params['sort'],
-    #     'currency'        => get_current_currency,
-    #     'min_price'       => params['min_price'],
-    #     'max_price'       => params['max_price'],
-    #     'place_type_ids'  => params['place_type_ids']
-    #   }
-    # }
-    # 
-    # respond_to do |format|
-    #   format.html
-    #   format.js { render :partial => 'javascript_place' }
-    # end
   end
 
   # User
@@ -254,10 +166,6 @@ class PlacesController < ApplicationController
 
   end
 
-  def my_places
-    @places = Heypal::Place.my_places(current_token, get_current_currency)
-  end
-
   def favorite_places
     @results = Heypal::Place.favorite_places(current_token, get_current_currency)
   end
@@ -275,7 +183,7 @@ class PlacesController < ApplicationController
 protected
 
   def find_place
-    @place = Heypal::Place.find(params[:id], current_token, get_current_currency)
+    @place = current_user.places.find(params[:id])
     @owner = @place.user
   end
 end

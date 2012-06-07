@@ -1,4 +1,8 @@
-include ActionDispatch::TestProcess
+FactoryGirl::DefinitionProxy.class_eval do
+  def attach(name, path)
+    add_attribute name, File.new(Rails.root.join(path))
+  end
+end
 
 FactoryGirl.define do
   factory :place_type do
@@ -30,7 +34,8 @@ FactoryGirl.define do
 
   factory :photo do
     name   { Faker::Name.name }
-    photo  ActionController::TestCase.fixture_file_upload('spec/files/prop.jpg', 'image/jpg')
+    #photo  ActionController::TestCase.fixture_file_upload('spec/files/prop.jpg', 'image/jpg')
+    attach 'photo', 'spec/files/prop.jpg'
     #association :place, :factory => :valid_place
   end
 

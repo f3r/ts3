@@ -66,16 +66,16 @@ end
 
 group :test do
   #gem 'turn', :require => false  # Pretty printed test output
-  gem 'faker'
-end
-
-group :development, :test do
-  gem 'rspec-rails'
+  gem 'faker'  
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 3.0"
   gem 'capybara'
   gem 'launchy'
   gem 'powder'
+end
+
+group :development, :test do
+  gem 'rspec-rails'
 
   # Debugger, for installation see: http://pastie.org/3293194
   gem 'linecache19', '0.5.13'

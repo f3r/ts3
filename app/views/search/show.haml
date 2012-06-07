@@ -3,10 +3,16 @@
 
 - require_google_apis
 
+.row
+  .span10
+    = breadcrumb [['Search Results', seo_city_path(@place.city)]],  @place.title
+  .span2.place-actions
+    - if current_user?(@owner)
+      .buttons.pull-right
+        = render 'place_options_buttons'
+
 .row.place_info{:class => "place_#{@place.id}"}
   .span12
-    = breadcrumb [['Search Results', seo_city_path(@place.city)]],  @place.title
-
     /******************************************************************************************
     / Name, Price, Inquire Button
     /******************************************************************************************
@@ -16,9 +22,7 @@
         .title 
           =# render :partial => 'button_favorite', :locals => { :place_id => @place['id'], :favorited => @place['favorited'] }
           %h1= @place.title
-          -# - if logged_in? && @owner['id'].eql?(current_user['id'])
-          -#           .buttons
-          -#             = render 'place_options_buttons'
+          
           .meta
             %p= "#{@place.city_name}, #{@place.country_name}"
             .share
@@ -52,12 +56,12 @@
               %a{:href => "#house-rules-tab", 'data-toggle' => 'tab'}= t("places.house_rules")
           %li
             %a{:href => '#details-questions', 'data-toggle' => 'tab'}
-              = "#{t("places.questions_title")} (#{@comments.nil?? 0 : @comments.size})"
+              = t('places.questions_title', :count => @place.comments.count)
 
         .tab-content
           // Photo Slider pane
           #photo-slider.tab-pane.active
-            = render 'slideshow'
+            = render 'search/slideshow'
 
           // Map Pane
           #map-tab.tab-pane
@@ -73,7 +77,7 @@
 
           // Details Pane
           #details-tab.tab-pane
-            = render :partial => 'details'
+            = render 'search/details'
 
           // House Rules Pane
           #house-rules-tab.tab-pane
@@ -82,7 +86,7 @@
 
           // Questions Tab
           #details-questions.tab-pane
-            = render '/comments/questions'
+            = render 'comments/questions'
 
       /******************************************************************************************
       / Description, Minimum stay, Maximum Stay
@@ -108,7 +112,7 @@
               -else
                 = t("places.no_maximum")
 
-= render 'inquire_place'
+= render 'search/inquire_place'
 
 :javascript
   PlaceShow.initialize({

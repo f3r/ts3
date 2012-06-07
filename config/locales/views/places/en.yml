@@ -30,7 +30,7 @@ en:
     map: Map
     calendar: Calendar
     details: Details
-    questions_title: Questions
+    questions_title: "Questions (%{count})"
     house_rules: House rules
     type: Type
     size: Size

@@ -31,6 +31,11 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :tw_app_id
       f.input :tw_app_secret
     end
+    f.inputs "Meta Content" do
+      f.input :custom_meta
+      f.input :meta_description
+      f.input :meta_keywords
+    end
     f.buttons
   end
 end

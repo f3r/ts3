@@ -3,7 +3,7 @@ class SearchController < ApplicationController
   before_filter :authenticate_user!, :only => [:favorites]
 
   def index
-    if request.get?
+    if !request.xhr?
       @city = City.find(params[:city]) if params[:city]
       unless @city
         redirect_to "/#{current_city.slug}"

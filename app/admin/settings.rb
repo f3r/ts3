@@ -1,5 +1,5 @@
 ActiveAdmin.register SiteConfig, :as => 'Settings' do
-  menu :priority => 8
+  menu :label => "Config", :parent => 'Settings'
 
   controller do
     actions :index, :edit, :update

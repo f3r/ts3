@@ -1,5 +1,5 @@
 ActiveAdmin.register Inquiry do
-  menu :priority => 5
+  menu :priority => 5, :parent => 'E-Commerce'
   actions :index, :show
 
   scope :all, :default => true

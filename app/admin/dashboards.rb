@@ -2,7 +2,7 @@ ActiveAdmin::Dashboards.build do
 
   section "Users", :priority => 1 do
     div do
-      stats = User.histo_counts(:cummulative => true)
+      stats = User.histo_counts(:cummulative => false)
  
       render('/admin/chart', :title => 'Users', :stats => stats)
     end
@@ -10,7 +10,7 @@ ActiveAdmin::Dashboards.build do
   
   section "Places", :priority => 1 do
     div do
-      stats = Place.histo_counts(:cummulative => true)
+      stats = Place.histo_counts(:cummulative => false)
  
       render('/admin/chart', :title => 'Places', :stats => stats)
     end

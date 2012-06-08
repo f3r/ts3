@@ -13,6 +13,10 @@ class City < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
+  def self.default
+    self.first
+  end
+
   def self.routes_regexp
   	# Matches the name of a city  
   	if self.any?

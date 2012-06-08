@@ -21,6 +21,11 @@ describe "Search" do
       @place = create(:published_place, :city => @city)
     end
 
+    it "defaults to the first city" do
+      visit '/search'
+      current_path.should == '/singapore'
+    end
+
     it 'shows places for a city' do
       visit '/singapore'
       page.should have_content(@place.title)

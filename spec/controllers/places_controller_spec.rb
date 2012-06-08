@@ -24,8 +24,8 @@ describe PlacesController do
   it "shows my places" do
     login_as @agent
     get :index
-
     response.should be_success
+
     assigns(:results).count.should == 1
   end
 
@@ -33,6 +33,7 @@ describe PlacesController do
     login_as @agent
     get :show, :id => @place.id
     response.should be_success
+
     assigns(:place).should == @place
   end
 end

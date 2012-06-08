@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   layout 'plain'
+  before_filter :authenticate_user!, :only => [:favorites]
 
   def index
     @city = City.find(params[:city]) if params[:city]
@@ -24,6 +25,10 @@ class SearchController < ApplicationController
   def show
     @place = Place.published.find(params[:id])
     @owner = @place.user
+  end
+
+  def favorites
+    @results = Favorite.for_user(current_user, Place)
   end
 
 end

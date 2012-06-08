@@ -17,9 +17,10 @@ module JavascriptHelper
     }.html_safe
   end
 
-  def open_modal(name, partial)
+  def open_modal(name, partial, locals = {})
     %{
-      $('body').append("#{escape_javascript(render :partial => partial, :layout => 'layouts/modal', :locals => {:modal_id => name}) }");
+      $('body').append("#{escape_javascript(render :partial => partial, 
+        :layout => 'layouts/modal', :locals => locals.merge({:modal_id => name})) }");
     }.html_safe
   end
 end

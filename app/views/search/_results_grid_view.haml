@@ -11,7 +11,7 @@
               .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place.photos.blank? && place.photos[2] ? place.photos[2].photo.url(:small) : "http://placehold.it/106x70"))
         .desc.clearfix
           %h3.title
-            = render :partial => 'button_favorite', :locals => { :place_id => place.id, :favorited => place['favorited'] }
+            = render 'button_favorite', :favorable => place
             = link_to place.title, seo_place_path(place), :title => place.title
           .clearfix
             .property.data-block

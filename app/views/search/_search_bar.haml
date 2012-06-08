@@ -9,7 +9,7 @@
         = #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 
       .float-right
-        = form_for @search, :url => search_path, :as => :search, :html => {:remote => true, :autocomplete => 'off'} do |f|
+        = form_for @search, :url => search_index_path, :as => :search, :html => {:remote => true, :autocomplete => 'off', :method => :get} do |f|
           .filters
             = hidden_field_tag :submitted_action
             = f.hidden_field :city_id

@@ -33,37 +33,7 @@ end
 
 # def confirm_inquiry
 #   if logged_in? || verify_recaptcha()
-#     @confirm_inquiry = Heypal::Place.confirm_inquiry(
-#       params[:id],
-#       {
-#        :name             => params[:name],
-#        :email            => params[:email],
-#        :date_start       => params[:date_start],
-#        :length_stay      => params[:length_stay],
-#        :length_stay_type => params[:length_stay_type],
-#        :message          => params[:questions]
-#        #:extra => {
-#        #  :mobile => params[:mobile]
-#        #},
-#       },
-#       current_token
-#     )
-# 
-#     if @confirm_inquiry['stat'] == 'ok'
-#       @success = true
-#       # Just created a new user
-#       if @confirm_inquiry['authentication_token']
-#         # TODO: move user creation logic to the frontend
-#         user = User.find_by_authentication_token(@confirm_inquiry['authentication_token'])
-#         sign_in user
-#         @just_created = true
-#       end
-#     end
-#   else
-#     @success = false
+# =>else
 #     @recaptcha_error = true
-#   end
-#   respond_to do |format|
-#     format.js { render :layout => false }
 #   end
 # end

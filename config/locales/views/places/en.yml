@@ -200,6 +200,7 @@ en:
       pricing_title: Price per Month
       sorry_no_matches: "Sorry, there are no properties that match your criteria"
       no_result: No results found. Try changing some of your search options.
+      no_favorites: "You don't have any favorites, try adding one!"
       maximum_price: Maximum price
       minimum_price: Mininum price
       city: City

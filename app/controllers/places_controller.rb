@@ -118,58 +118,6 @@ class PlacesController < PrivateController
     render :template => 'places/_photo_list', :layout => false
   end
 
-  # User
-  def search
-    page = params[:page]
-    params.merge!('per_page' => 6, 'page' => page)
-    @results = Heypal::Place.search(params, current_token)
-
-    @alert_params = {
-      'alert_type'       => 'Place',
-      'schedule'          => 'daily',
-      'delivery_method'   => 'email',
-      'query'             => {
-        'city_id'         => params['city_id'],
-        'guests'          => params['guests'],
-        'check_in'        => params['check_in'],
-        'check_out'       => params['check_out'],
-        'sort'            => params['sort'],
-        'currency'        => params['currency'],
-        'min_price'       => params['min_price'],
-        'max_price'       => params['max_price'],
-        'place_type_ids'  => params['place_type_ids']
-      }
-    }
-
-    if @results.key?("err")
-      render :json => {
-        :results       => 0,
-        :per_page      => 0,
-        :current_page  => 0,
-        :total_pages   => 0,
-        :place_data    => render_to_string(:_search_results, :locals => {:places => []}, :layout => false),
-        :place_filters => ''
-      }
-    else
-      cur_page = @results['current_page'].nil? ? 1 : @results['current_page']
-      render :json => {
-        :results          => @results['results'], 
-        :per_page         => @results['per_page'], 
-        :current_page     => cur_page, 
-        :place_type_count => @results['place_type_count'],
-        :total_pages      => @results['total_pages'], 
-        :place_data       => render_to_string(:_search_results, :locals => {:places => @results['places']}, :layout => false),
-        :place_filters    => render_to_string(:_place_type_filters, :layout => false),
-        :save_search      => render_to_string("alerts/_save_search_form.haml", :locals => {:alert_params => @alert_params}, :layout => false)
-      }
-    end
-
-  end
-
-  def favorite_places
-    @results = Heypal::Place.favorite_places(current_token, get_current_currency)
-  end
-
   def destroy
     @place = Heypal::Place.delete(params[:id], current_token)
       if @place['stat'] == 'ok'

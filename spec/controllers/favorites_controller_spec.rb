@@ -22,7 +22,7 @@ describe FavoritesController do
   end
 
   it "doesn't remove another user favorite" do
-    fav = FactoryGirl.create(:favorite, :user_id => @user.id + 1)
+    fav = create(:favorite, :user_id => @user.id + 1)
     expect {
       delete :destroy , :id =>  @place.id, :place_id => @place.id
     }.to raise_error

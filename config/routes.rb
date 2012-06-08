@@ -48,8 +48,6 @@ HeyPalFrontEnd::Application.routes.draw do
       end
     end
 
-    get :search, :on => :collection
-
     resources :comments do
       post :reply_to_message
     end
@@ -65,7 +63,6 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/search/code/:search_code' => 'alerts#show_search_code', :as => :show_search_code
 
   match '/my_places'          => 'places#index',              :as => :my_places
-  match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places
 
   ###########################################################################################
   # Inquiries
@@ -95,7 +92,12 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :favorites, :only => [:create, :destroy]
   get 'favorites/add' => 'favorites#create' # For after login redirect
 
-  match '/search'          => 'search#index', :as => :search
+  resources :search, :controller => 'Search', :only => [:index, :show] do
+    collection do
+      get :favorites
+    end
+  end
+
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
   resources :feedbacks, :only => [:create]

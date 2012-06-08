@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe PhotosController do
   before(:each) do
-    @agent   = create(:user, :role => "agent")
+    @agent   = create(:agent)
     login_as @agent
     @place   = create(:place, :user => @agent)
   end
@@ -23,6 +23,15 @@ describe PhotosController do
       xhr :post, :destroy, { :place_id => @place.id, :id => @photo.id }
       response.should be_success
     }.to change(Photo, :count).by(-1)
+  end
+
+  it "updates photo label" do
+    @photo = create(:photo, :place => @place)
+    xhr :put, :update, :id => @photo.id, :place_id => @place.id, :name => 'Nice view'
+    response.should be_success
+
+    @photo.reload
+    @photo.name.should == 'Nice view'
   end
 
   it "unpublishes the property when removing a picture and the total count is < 3" do

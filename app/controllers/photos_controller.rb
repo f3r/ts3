@@ -31,12 +31,14 @@ class PhotosController < ApplicationController
     end
   end
 
-  # def update
-  #   Heypal::Photo.update(params[:place_id], params[:id], {:name => params[:name]}, current_token)
-  #   respond_to do |format|
-  #     format.js{ render :template => 'photos/update.js.erb', :layout => false }
-  #   end
-  # end
+  def update
+    @photo = @parent.photos.find(params[:id])
+    @photo.name = params[:name]
+    @photo.save
+    respond_to do |format|
+      format.js{ render :template => 'photos/update', :layout => false }
+    end
+  end
 
   protected
 

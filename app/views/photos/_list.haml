@@ -1,3 +1,4 @@
+- @photos = Place.find(@place.id).photos
 - if @photos && @photos.any?
   - @photos.each do |photo|
     %li{:id => "photo_ids-#{photo.id}"}

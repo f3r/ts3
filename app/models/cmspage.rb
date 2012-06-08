@@ -53,17 +53,4 @@ class Cmspage < ActiveRecord::Base
  def link
   nil
  end
-
- def self.get_meta_description_by_url (url)
-   @fields = [:meta_description]
-   page = Cmspage.select(@fields).where(:active => 1,:page_url => url).first
-   return page["meta_description"]
- end
- 
- def self.get_meta_keywords_by_url (url)
-   @fields = [:meta_keywords]
-   page = Cmspage.select(@fields).where(:active => 1,:page_url => url).first
-   return page["meta_keywords"]
- end
-
 end

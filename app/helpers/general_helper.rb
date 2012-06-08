@@ -139,23 +139,4 @@ module GeneralHelper
     return errors
   end
   
-  def get_cms_page_meta_keywords
-    if !params[:pages].nil?
-      keywords = Cmspage.get_meta_keywords_by_url(params[:pages])
-    end
-    if !keywords.present?
-      keywords = SiteConfig.meta_keywords
-    end
-    return keywords
-  end
-  
-  def get_cms_page_meta_description
-    if !params[:pages].nil? 
-      description =  Cmspage.get_meta_description_by_url(params[:pages])
-    end
-    if !description.present?
-      description = SiteConfig.meta_description
-    end
-    return description
-  end
 end

@@ -1,8 +1,8 @@
 %meta{:charset => "utf-8"}
 %title= content_for?(:title) ? "#{yield(:title)} | #{t("site_title", :site_tagline => SiteConfig.site_tagline)}" : t("site_title", :site_tagline => SiteConfig.site_tagline)
 = SiteConfig.custom_meta.html_safe
-%meta{:content => get_cms_page_meta_keywords, :name => "keywords"}
-%meta{:content => get_cms_page_meta_description, :name => "description"}
+%meta{:content => content_for?(:meta_keywords) ? "#{yield(:meta_keywords)}" : "#{SiteConfig.meta_keywords}", :name => "keywords"}
+%meta{:content => content_for?(:meta_description) ? "#{yield(:meta_description)}" : "#{SiteConfig.meta_description}", :name => "description"}
 
 %link{:rel => "icon", :type => "image/png", :href => "http://squarestays.com/favicon.png"}
 

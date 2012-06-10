@@ -13,6 +13,9 @@
           .filters
             = hidden_field_tag :submitted_action
             = f.hidden_field :city_id
+            = f.hidden_field :min_price            
+            = f.hidden_field :max_price
+            = f.hidden_field :place_type_ids
             = f.hidden_field :currency
             = f.hidden_field :current_page
             = f.hidden_field :total_pages

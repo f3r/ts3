@@ -86,6 +86,17 @@ PlaceFilters =
       return if PlaceFilters.loading
       PlaceFilters.seeMore() if nearBottomOfPage() && !lastPage()
 
+  bindTypeFilters: ->
+    # Type filters
+    $("#types-list input").click ->
+      ids = []
+      $("#types-list input").each ->
+        ids.push($(@).val()) if $(@).is(":checked")
+      $('#search_place_type_ids').val(ids.join());
+      PlaceFilters.search()
+
+  bindPriceFilters: ->
+
   loadingIndicatorOn: ->
     PlaceFilters.loading = true
     $('#search_load_indicator').show()

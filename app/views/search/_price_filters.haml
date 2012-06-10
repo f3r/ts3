@@ -3,15 +3,17 @@
 - current_max = @search.max_price || max_price
 
 .header= t("places.search.pricing_title")
-.content
-  #max_price.float-right= max_price
-  #min_price= min_price
+= content_tag :div, :id => 'price_filter', :data => {:min => current_min, :max => current_max, :tmin => min_price, :tmax =>  max_price} do
+  .content
+    #max_price.float-right= current_max
+    #min_price= current_min
 
-  #price-slider{:style => "z-index:1;"}
-  
+    .slider{:style => "z-index:1;"}
+
 :javascript
   // Initialize Price Sliders
-  $("#price-slider").slider({
+  var slider = $('#price_filter');
+  $("#price_filter .slider").slider({
     range: true,
     min: #{min_price},
     max: #{max_price},
@@ -19,9 +21,11 @@
     step: 100,
     slide: function( event, ui ) {
       $("#min_price").html(ui.values[0]);
+      $('#search_min_price').val(ui.values[0]);
       $("#max_price").html(ui.values[1]);
+      $('#search_max_price').val(ui.values[1]);
     },
     change: function() {
-      //pull_data();
+      PlaceFilters.search();
     }
   });

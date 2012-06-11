@@ -9,17 +9,17 @@ class PlaceType < ActiveRecord::Base
   def self.all_cached
     Rails.cache.fetch('place_types_list') { PlaceType.all }
   end
-  
+
   #TODO: Use friendly_id
   #generating slug
   def slug
     name.parameterize('_').singularize
   end
-  
+
   def translated_name
     name
   end
-  
+
   def self.find_by_slug(slug)
     self.all.each do |r|
       if r.slug == slug
@@ -27,7 +27,7 @@ class PlaceType < ActiveRecord::Base
       end
     end
   end
-  
+
   private
 
   def delete_cache

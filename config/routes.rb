@@ -35,8 +35,6 @@ HeyPalFrontEnd::Application.routes.draw do
     member do
       get   :wizard
       get   :preview
-      post  :upload_photo
-      get   :photos
       put   :update_currency
       put   :publish
       put   :unpublish
@@ -49,8 +47,6 @@ HeyPalFrontEnd::Application.routes.draw do
         put :sort
       end
     end
-
-    get :search, :on => :collection
 
     resources :comments do
       post :reply_to_message
@@ -66,8 +62,7 @@ HeyPalFrontEnd::Application.routes.draw do
   end
   match '/search/code/:search_code' => 'alerts#show_search_code', :as => :show_search_code
 
-  match '/my_places'          => 'places#my_places',          :as => :my_places
-  match '/favorite_places'    => 'places#favorite_places',    :as => :favorite_places
+  match '/my_places'          => 'places#index',              :as => :my_places
 
   ###########################################################################################
   # Inquiries
@@ -97,15 +92,19 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :favorites, :only => [:create, :destroy]
   get 'favorites/add' => 'favorites#create' # For after login redirect
 
-  # get   'search/index'
-  match '/search'          => 'places#index', :as => :search
+  resources :search, :controller => 'Search', :only => [:index, :show] do
+    collection do
+      get :favorites
+    end
+  end
+
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
   resources :feedbacks, :only => [:create]
-  match '/:city'           => 'places#index', :city => City.routes_regexp
+  match '/:city'           => 'search#index', :city => City.routes_regexp
 
   # SEO Routes
-  match '/:city/:id'       => 'places#show',  :city => City.routes_regexp
+  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp
 
 
   ###########################################################################################
@@ -120,7 +119,6 @@ HeyPalFrontEnd::Application.routes.draw do
    ###########################################################################################
   # Static page dynamic routing
   ###########################################################################################
-
   match '/terms'                    => 'home#staticpage' , :pages => :terms
   match '/fees'                     => 'home#staticpage' , :pages => :fees
   match '/privacy'                  => 'home#staticpage' , :pages => :privacy

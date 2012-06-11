@@ -1,0 +1,33 @@
+.search-bar-wrapper
+  .search-bar-container
+    .search-bar#search_bar
+      .float-left
+        %h2{:style => 'display:inline; '}
+          = @city.name
+        #num_search_results= search_results_count(@results)
+
+        = #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
+
+      .float-right
+        = form_for @search, :url => search_index_path, :as => :search, :html => {:remote => true, :autocomplete => 'off', :method => :get} do |f|
+          .filters
+            = hidden_field_tag :submitted_action
+            = f.hidden_field :city_id
+            = f.hidden_field :min_price            
+            = f.hidden_field :max_price
+            = f.hidden_field :place_type_ids
+            = f.hidden_field :currency
+            = f.hidden_field :current_page
+            = f.hidden_field :total_pages
+            = f.select :guests, max_guest_options, :style => "width:100px", :autocomplete => 'off'
+            = f.text_field :check_in, :placeholder => t("places.search.arriving_on"), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
+            = "-"
+            = f.text_field :check_out, :placeholder => t("places.search.departing_on"), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
+
+          .views
+            .sorting
+              = t("places.search.sort_by")
+              = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'
+            .toggle
+              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+              = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'

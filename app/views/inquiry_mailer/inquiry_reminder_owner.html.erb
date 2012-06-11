@@ -14,7 +14,7 @@ for <%= @inquiry.length_in_words %> starting on <%= @inquiry.check_in.to_formatt
 
 </br>
 
-<p>Log in to <%= link_to site_name, frontend_url('/login') %> to view the request. You can reply to your inquiries at the <%= link_to 'messages section', frontend_url('/messages') %>.</p>
+<p>Log in to <%= link_to site_name, new_user_session_path %> to view the request. You can reply to your inquiries at the <%= link_to 'messages section', messages_path %>.</p>
 
 <% content_for(:footer_ps) do %>
   <p></p>

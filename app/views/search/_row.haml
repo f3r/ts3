@@ -1,0 +1,43 @@
+- my_places ||= false
+%li{:class => "place_#{place.id}"}
+  .thumb.data-block
+    - url = my_places ? place_path(place) : seo_place_path(place)
+    = link_to url do
+      = image_tag(place.primary_photo.blank? ? "http://placehold.it/150x100" : place.primary_photo.photo.url(:medsmall))
+  .info
+    .title  
+      - unless my_places
+        = render 'button_favorite', :favorable => place
+      %h3
+        = link_to place.title, url
+
+    .property.data-block
+      .title
+        .type.house 
+          = place.place_type.translated_name
+        .type.size
+          = place_size(place)
+
+    .property2.data-block
+      .title
+        - unless place.num_bedrooms.blank?
+          .type.bedroom
+            = t("places.bedrooms_count", :count => place.num_bedrooms)
+        - unless place.num_bathrooms.blank?
+          .type.bathroom
+            = t("places.bathrooms_count", :count => place.num_bathrooms)
+  .data-block.last-child
+    .price
+      - if place.price_per_month.present?
+        .figure= place_price(place)
+        .micro= t("places.per_month")
+    - if my_places
+      .manage
+        %span.edit_delete_buttons
+          %a.btn.large.small{:title => t("places.edit"), :href => "#{wizard_place_path(place['id'])}"}
+            = t("places.edit")
+          = link_to t("places.delete"), place_path(place), :method => :delete,  :class => 'btn large small', :confirm => t("are_you_sure")
+        - if place['published']
+          %span.label.place_status.label-success=  t("places.listed")
+        - else
+          %span.label.place_status=  t("places.invisible")

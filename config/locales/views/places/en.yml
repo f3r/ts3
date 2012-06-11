@@ -3,10 +3,10 @@
 ####################################################################################
 en:
   places:
-    bedrooms:
+    bedrooms_count:
       one: 1 Bedroom
       other: "%{count} Bedrooms"
-    bathrooms:
+    bathrooms_count:
       one: 1 Bathroom
       other: "%{count} Bathrooms"
     per_night: Per Night
@@ -30,13 +30,16 @@ en:
     map: Map
     calendar: Calendar
     details: Details
-    questions_title: Questions
+    questions_title: "Questions (%{count})"
     house_rules: House rules
     type: Type
     size: Size
     bedrooms: Bedrooms
     beds: Beds
     guests: Guests
+    guests_range:
+      one: 1
+      other: "1 - %{count}"
     bathrooms: Bathrooms
     price_per_night: Price per Night
     price_per_week: Price per Week
@@ -197,6 +200,7 @@ en:
       pricing_title: Price per Month
       sorry_no_matches: "Sorry, there are no properties that match your criteria"
       no_result: No results found. Try changing some of your search options.
+      no_favorites: "You don't have any favorites, try adding one!"
       maximum_price: Maximum price
       minimum_price: Mininum price
       city: City

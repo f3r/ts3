@@ -1,7 +1,0 @@
-.row
-  .span10.offset1
-    .results.my_places
-      - if @places
-        %ul.list-display
-          #search_result_list
-            = render :partial => 'row', :collection => @places, :as => :place, :locals => {:my_places => true}

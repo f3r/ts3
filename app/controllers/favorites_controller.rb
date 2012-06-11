@@ -1,4 +1,4 @@
-class FavoritesController < ApplicationController
+class FavoritesController < PrivateController
   before_filter :find_parent
 
   def create
@@ -9,7 +9,7 @@ class FavoritesController < ApplicationController
     if @favorite.save
       find_parent # Reload the parent
       respond_to do |format|
-        format.html { redirect_to place_path(@place['id']), :flash => { :notice => t("favorites.messages.successfully_added_to_your_favorites") } }
+        format.html { redirect_to place_path(@parent.id), :flash => { :notice => t("favorites.messages.successfully_added_to_your_favorites") } }
         format.js { render :layout => false }
       end
     else
@@ -30,9 +30,9 @@ class FavoritesController < ApplicationController
     end
   end
 
-private
+  private
 
   def find_parent
-    @parent = @place = Heypal::Place.find(params[:place_id], current_token)
+    @parent = Place.with_permissions_to(:read).find(params[:place_id])
   end
 end

@@ -1,6 +1,5 @@
 ActiveAdmin.register MenuSection do
-  
-  menu    :label => "Menus"
+  menu    :label => "Menus", :parent => 'CMS'
   filter  :name
   actions :index, :show
   

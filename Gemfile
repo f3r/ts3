@@ -61,7 +61,6 @@ group :development do
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
   gem 'mail_view'
-  gem 'thin'
 end
 
 group :test do

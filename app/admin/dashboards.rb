@@ -16,11 +16,18 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
-  section "Data Funnel", :priority => 40 do
+  section "Users - Funnel", :priority => 2 do
     div do
-      image_tag("http://chart.apis.google.com/chart?" + AdminDashboard.conversion_funnel_as_g_chart_params)
+      google_funnel_chart(AdminDashboard.user_funnel, {:height => 100})
     end
   end
+  
+  section "Transaction - Funnel", :priority => 40 do
+    div do
+      google_funnel_chart(AdminDashboard.transaction_funnel, {:bar_color => "C6D9FD"})
+    end
+  end
+  
   
 
   # Define your dashboard sections here. Each block will be

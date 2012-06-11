@@ -32,9 +32,9 @@
         = f.text_field :num_bathrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
 
     .control-group.required
-      = f.label :place_size, t("places.size"), :class => 'control-label'
+      = f.label :size, t("places.size"), :class => 'control-label'
       .controls
-        = f.text_field :place_size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
+        = f.text_field :size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
         = f.text_field :size_sqm, :class => 'autosave_place_unit', :style => 'display:none'
         = f.text_field :size_sqf, :class => 'autosave_place_unit', :style => 'display:none'
       

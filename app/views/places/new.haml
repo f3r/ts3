@@ -27,7 +27,7 @@
         .control-group
           .controls  
             %label.checkbox
-              = f.check_box :terms, :class => "validate[required]"
+              = check_box_tag :place_terms, :class => "validate[required]"
               = t("places.wizard.i_agree_to_the")
               = link_to t("terms_and_conditions"), terms_path, :target => :blank
       %br

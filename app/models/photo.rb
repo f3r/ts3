@@ -17,8 +17,8 @@ class Photo < ActiveRecord::Base
      :convert_options => {
         :all => "-quality 70"
       },
-     :path => "places/:place_id/photos/:id/:style.:extension",
-     :processors => [:rationize, :watermark]
+     :path => "places/:parent_id/photos/:id/:style.:extension",
+     :processors => [:rationize]#, :watermark]
    }
 
   #validates_presence_of :place_id
@@ -45,6 +45,10 @@ class Photo < ActiveRecord::Base
     self.photo = io.original_filename.blank? ? nil : io
   rescue # catch url errors with validations instead of exceptions (Errno::ENOENT, OpenURI::HTTPError, etc...)
     logger.error "Cannot fetch #{url}"
+  end
+
+  def parent_id
+    self.place_id
   end
 
   protected

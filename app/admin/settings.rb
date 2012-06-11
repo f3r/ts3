@@ -1,5 +1,5 @@
 ActiveAdmin.register SiteConfig, :as => 'Settings' do
-  menu :priority => 8
+  menu :label => "Config", :parent => 'Settings'
 
   controller do
     actions :index, :edit, :update
@@ -30,6 +30,9 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :fb_app_secret
       f.input :tw_app_id
       f.input :tw_app_secret
+    end
+    f.inputs "Storage" do
+      f.input :static_assets_path
     end
     f.buttons
   end

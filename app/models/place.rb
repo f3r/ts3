@@ -44,11 +44,11 @@ class Place < ActiveRecord::Base
   belongs_to  :user
   belongs_to  :place_type
   belongs_to  :city
-  has_many    :availabilities, :dependent => :destroy
-  has_many    :comments, :dependent => :destroy
-  has_many    :transactions, :dependent => :destroy
-  has_many    :photos, :dependent => :destroy, :order => :position
-  has_many    :favorites, :as => :favorable, :dependent => :destroy
+  has_many    :availabilities,  :dependent => :destroy
+  has_many    :comments,        :dependent => :destroy
+  has_many    :transactions,    :dependent => :destroy
+  has_many    :photos,          :dependent => :destroy, :order => :position
+  has_many    :favorites,       :dependent => :destroy, :as => :favorable 
 
   before_save   :save_amenities,
                 :convert_prices_in_usd_cents,

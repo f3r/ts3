@@ -19,12 +19,17 @@ class User < ActiveRecord::Base
                   :remember_me, :pref_language, :pref_currency, :pref_size_unit, :pref_city, :role, :passport_number, :address_attributes, :delete_avatar
 
   belongs_to :prefered_city, :class_name => 'City', :foreign_key => 'pref_city'
-#  has_many :addresses,        :dependent => :destroy
+
+  # TODO: check if we need this
+  # has_many :addresses,        :dependent => :destroy
+
   has_one :address
   has_one :bank_account
+
   has_many :authentications,  :dependent => :destroy
   has_many :places,           :dependent => :destroy
   has_many :comments,         :dependent => :destroy
+  has_many :favorites,        :dependent => :destroy
 
   has_attached_file :avatar,
      :styles => {

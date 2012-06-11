@@ -2,12 +2,39 @@ require 'spec_helper'
 
 describe "Search" do
   before(:each) do
-    City.create(name: "Singapore", lat: 1.28967, lon: 103.85, country: "Singapore", country_code: "SG", active: true)
+    @city = create(:city, :name => "Singapore")
   end
 
   it "recognizes city seo url" do
     assert_routing({ :path => "/singapore", :method => :get },
-      { :controller => 'places', :action => 'index', :city => 'singapore' })
+      { :controller => 'search', :action => 'index', :city => 'singapore' })
+  end
+
+  it "recognizes place seo url" do
+    assert_routing({ :path => "/singapore/23-nice-house", :method => :get },
+      { :controller => 'search', :action => 'show', :city => 'singapore', :id => '23-nice-house' })
+  end
+
+  context "Place Results/Details" do
+    before(:each) do
+      create(:currency)
+      @place = create(:published_place, :city => @city)
+    end
+
+    it "defaults to the first city" do
+      visit '/search'
+      current_path.should == '/singapore'
+    end
+
+    it 'shows places for a city' do
+      visit '/singapore'
+      page.should have_content(@place.title)
+    end
+
+    it 'shows the details for a place' do
+      visit "/singapore/#{@place.id}"
+      page.should have_content(@place.title)
+    end
   end
 
 end

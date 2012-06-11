@@ -15,7 +15,6 @@
       = t("pages.how.listing_members_content", :support_email => mail_to("support@#{SITE_DOMAIN}"), :places_email => mail_to("places@#{SITE_DOMAIN}")).html_safe
   .row.actions
     .span6
-      - current_city = Heypal::City.find_by_id(get_current_city)
       = button_to t("pages.how.find_a_place"), "/#{current_city.code}", :class => "btn btn-large btn-info", :method => :get
     .span6
       - if !logged_in?

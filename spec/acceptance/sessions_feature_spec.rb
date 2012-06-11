@@ -14,19 +14,19 @@ feature 'Sessions feature', %q{
   scenario 'sign in using my email and password', :backend => true do
     visit '/users/login'
 
-    page.should have_content(t(:login))
+    page.should have_content(I18n.t(:login))
 
     fill_in 'user_email', :with => @user.email
     fill_in 'user_password', :with => @user.password
 
     click_button 'Login'
 
-    page.should have_content(t(:sign_out))
+    page.should have_content(I18n.t(:sign_out))
   end
 
   scenario 'signout' do
     visit '/users/logout'
 
-    page.should have_content(t(:sign_in))
+    page.should have_content(I18n.t(:sign_in))
   end
 end

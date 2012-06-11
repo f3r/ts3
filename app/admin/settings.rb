@@ -31,6 +31,9 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :tw_app_id
       f.input :tw_app_secret
     end
+    f.inputs "Storage" do
+      f.input :static_assets_path
+    end
     f.buttons
   end
 end

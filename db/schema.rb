@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120604035531) do
+ActiveRecord::Schema.define(:version => 20120611021619) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -479,9 +479,10 @@ ActiveRecord::Schema.define(:version => 20120604035531) do
     t.string   "tw_app_id"
     t.string   "tw_app_secret"
     t.string   "mail_bcc"
-    t.datetime "created_at",        :null => false
-    t.datetime "updated_at",        :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "site_tagline"
+    t.string   "static_assets_path"
   end
 
   create_table "transaction_logs", :force => true do |t|

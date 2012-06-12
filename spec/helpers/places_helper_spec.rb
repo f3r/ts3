@@ -15,7 +15,7 @@ describe PlacesHelper do
     %w(apartment house villa room other_space).each{|name| FactoryGirl.create(:place_type, :name => name)}
   end
 
-  context "#place_type_filters" do
+  context "Place Type Filters" do
     it "returns available types" do
       filters = place_type_filters({"apartment"=>5, "house"=>2, "villa"=>0, "room"=>0, "other_space"=>0})
 
@@ -24,6 +24,11 @@ describe PlacesHelper do
 
       filters[1][0].slug.should == "house"
       filters[1][1].should == 2
+    end
+  end
+
+  context "Currency Conversion" do
+    it "converts" do
     end
   end
 end

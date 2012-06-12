@@ -1,5 +1,5 @@
 ActiveAdmin.register Currency do
-  menu :parent => 'System Tables'
+  menu :parent => 'Settings'
 
   config.sort_order = 'position_asc'
 

@@ -1,11 +1,7 @@
 require 'spec_helper'
 
 describe User do
-  before(:all) do
-    User.attachment_definitions[:avatar][:path] = "public/system/avatars/:id_partition/:style.:extension"
-  end
-
-  let(:user){ FactoryGirl.create(:user) }
+  let(:user){ create(:user) }
 
   context "name=" do
     it "parses the first name and last name" do
@@ -37,7 +33,7 @@ describe User do
 
   context "Preferences" do
     it "stores prefered city" do
-      city = FactoryGirl.create(:city)
+      city = create(:city)
       user.change_preference(:pref_city, city.id)
       user.reload
       user.prefered_city.should == city

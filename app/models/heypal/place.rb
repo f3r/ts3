@@ -71,10 +71,6 @@ class Heypal::Place < Heypal::Base
       result = request("/places/#{id}/check_availability.json?access_token=#{access_token}&currency=#{currency}&check_in=#{check_in}&check_out=#{check_out}", :get)
     end
 
-    def confirm_inquiry(id, options, access_token)
-      result = request("/places/#{id}/inquire.json?access_token=#{access_token}", :post, options)
-    end
-
     def normalize_place(result)
       # merge the place hash for now
       p = {}
@@ -95,51 +91,9 @@ class Heypal::Place < Heypal::Base
       p
     end
 
-    def search(params = {}, access_token)
-      q = ''
-      params.each do |k, v|
-        next if k == 'action' || k == 'controller'
-        next if v.blank?
-
-        if v.class.eql?(Array)
-          if k == 'place_type_ids'
-            v.each do |id_|
-              q << "q[place_type_id_eq_any][]=#{id_}&"
-            end
-          end
-        else
-          if %w(sort m page city city_id per_page min_price max_price currency guests check_in check_out total_days).include? k
-            q << "#{k}"
-          else
-            q << "q[#{k}]"
-          end
-
-          q << "=#{v}&"
-        end
-      end
-      q.chomp!('&')
-
-      request("/places/search.json?#{q}&access_token=#{access_token}", :get)
-    end
-    
-    def my_places(access_token, currency)
-      result = request("/users/me/places.json?status=any&currency=#{currency}&access_token=#{access_token}", :get)
-      result['places']
-    end
-
     def delete(id, access_token)
       result = request("/places/#{id}.json?access_token=#{access_token}", :delete)
     end
-    
-    def upload_photo(id, photo, access_token)
-      result = request("/places/#{id}/photos.json?access_token=#{access_token}", :post, :photo => phot)
-    end
-
-    def favorite_places(access_token, currency)
-      result = request("/users/me/favorite_places.json?access_token=#{access_token}", :get)
-      result
-    end
-
   end
 
   def initialize(params = {})

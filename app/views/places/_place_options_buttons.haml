@@ -1,10 +1,7 @@
 - if @place.published
-  = form_for :place, :url => unpublish_place_path(:id => @place.to_param), :method => :put do |f|
-    %button.btn.primary.medium.preview-button.unpublish
-      %span= t("places.unpublish")
+  = button_to t("places.unpublish"), unpublish_place_path(:id => @place.to_param), :method => :put, :class => 'btn primary medium preview-button unpublish'
 - else
-  = form_for :place, :url => publish_place_path(:id => @place.to_param), :method => :put do |f|
-    %button.btn.primary.medium.preview-button.publish
-      %span= t("places.publish")
+  = button_to t("places.publish"), publish_place_path(:id => @place.to_param), :method => :put, :class => 'btn primary medium preview-button unpublish'
+
 %a.btn.medium.edit{:title => t("places.edit"), :href => "#{wizard_place_path(@place)}"}
   = t("places.edit")

@@ -1,5 +1,5 @@
 ActiveAdmin.register Locale do
-  menu :parent => 'System Tables'
+  menu :parent => 'Settings'
   config.sort_order = 'position_asc'
   config.clear_sidebar_sections!
 

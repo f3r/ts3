@@ -1,42 +1,48 @@
 class PhotosController < ApplicationController
-  layout 'plain'
-  before_filter :login_required, :except => [:create]
-  before_filter :find_place, :except => [:create]
+  respond_to :js
+
+  before_filter :authenticate_user!, :except => [:create]
+  before_filter :find_parent
 
   def create
-    Heypal::Photo.create(params[:place_id], params[:file], params[:token])
+    @photo = @parent.photos.new(:photo => params[:photo])
+    @photo.save
+    @photos = @parent.photos
 
-    @place = Heypal::Place.find(params[:place_id], params[:token])
-    @photos = @place.photos
     render :partial => 'photos/list', :layout => false
   end
 
   def destroy
-    Heypal::Photo.delete(params[:id], current_token)
-    @place = Heypal::Place.find(params[:place_id], current_token)
-    @published = @place['published']
+    @photo = @parent.photos.find(params[:id])
+    @photo.destroy
+    @place = @parent.reload
+    @published = @place.published
+
     respond_to do |format|
-      format.js{ render :template => 'photos/destroy.js.erb', :layout => false }
+      format.js{ render :template => 'photos/destroy', :layout => false }
     end
   end
 
   def sort
-    Heypal::Photo.sort(@place.id, params[:photo_ids], current_token)
+    @parent.photos.set_positions(params[:photo_ids])
+
     respond_to do |format|
-      format.js{ render :template => 'photos/sort.js.erb', :layout => false }
+      format.js{ render :template => 'photos/sort', :layout => false }
     end
   end
 
   def update
-    Heypal::Photo.update(params[:place_id], params[:id], {:name => params[:name]}, current_token)
+    @photo = @parent.photos.find(params[:id])
+    @photo.name = params[:name]
+    @photo.save
     respond_to do |format|
-      format.js{ render :template => 'photos/update.js.erb', :layout => false }
+      format.js{ render :template => 'photos/update', :layout => false }
     end
   end
 
-protected
+  protected
 
-  def find_place
-    @place = Heypal::Place.find(params[:place_id], current_token)
+  def find_parent
+    @parent = Place.with_permissions_to(:read).find(params[:place_id])
   end
 end

@@ -7,10 +7,10 @@
       #add-button.center
         = button_tag t("places.wizard.calendar.add_new"), :id => 'open-new-availability', :class => 'btn btn-info btn-large'
     %div#new-availability-form.hide
-      = render 'availabilities/form'
+      =# render 'availabilities/form'
 
   %div#all-availabilities
-    = render 'availabilities/list_all', :availabilities => @availabilities, :place => @place
+    = #render 'availabilities/list_all', :availabilities => @availabilities, :place => @place
 
 .arrows.clearfix
   .float-left

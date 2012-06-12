@@ -8,5 +8,14 @@ FactoryGirl.define do
     password_confirmation { |u| u.password }
     confirmed_at          { 1.day.ago }
     skip_welcome          { true }
+    role                  { 'user' }
+
+    factory :agent do
+      role                { 'agent' }
+    end
+
+    factory :admin do
+      role                { 'admin' }
+    end
   end
 end

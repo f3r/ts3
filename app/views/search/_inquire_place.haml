@@ -31,7 +31,7 @@
           = f.label :message, t("inquiries.comments_questions"), {:class => 'control-label'}
           .controls
             = f.text_area :message, :rows => 5, :placeholder => t("inquiries.inquiry_questions"), :class => 'span5'
-        - unless logged_in?
+        - if false && !logged_in?
           .control-group
             %label{:class => 'control-label'}= t("inquiries.re_captcha")
             .controls

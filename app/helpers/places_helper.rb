@@ -48,22 +48,39 @@ module PlacesHelper
     ]
   end
 
-  def render_photo(photo)
-    p = photo['photo']
+  def place_size(place)
+    html = ""
+    unit = get_current_size_unit
 
-    photo_title = p['name'].present? ? truncate(p['name'], :length => 23) : t("places.wizard.photos.no_caption")
-    html = content_tag :div, :class => 'photo_image', :id => "image-#{p['id']}" do
-      image_tag(p['small'], :data => {
-        :id    => p['id'],
-        :large => p['large'],
-        :name  => p['name'] || '',
-        :trunc_name => truncate(p['name'], :length => 23) || ''
+    if unit  == "sqf" && place.size_sqf
+      html << number_with_precision(place.size_sqf, :strip_insignificant_zeros => true, :precision => 1)
+      html << t("units.square_feet_short")
+    elsif unit == "sqm" && place.size_sqm
+      html << number_with_precision(place.size_sqm, :strip_insignificant_zeros => true, :precision => 1)
+      html << t("units.square_meters_short")
+    end
+    html
+  end
+
+  def place_price(place)
+    "#{get_pref_currency}#{place.price_per_month}"
+  end
+
+  def render_photo(photo)
+    p = photo.photo
+
+    photo_title = photo.name.present? ? truncate(photo.name, :length => 23) : t("places.wizard.photos.no_caption")
+    html = content_tag :div, :class => 'photo_image', :id => "image-#{photo.id}" do
+      image_tag(p.url(:small), :data => {
+        :id    => photo.id,
+        :large => p.url(:large),
+        :name  => photo.name || '',
+        :trunc_name => truncate(photo.name, :length => 23) || ''
       }).html_safe
     end
     html << content_tag(:p, photo_title)
 
     html
-    #raw "<div class='photo_image' id='image-#{p['id']}'><img class='photo' src='#{p['small']}' data-small='#{p['small']}' data-medium='#{p['medium']}' data-medsmall='#{p['medsmall']}' data-large='#{p['large']}' data-tiny='#{p['tiny']}' data-original='#{p['original']}' data-id='#{p['id']}' data-filename='#{p['filename']}' data-name='#{p['name']}' data-trunc-name='#{truncate(p['name'], :length => 23)}' alt='#{p['filename']}'/></div><p class='photo_title'>#{photo_title}</p>"
   end
 
   def location(place)
@@ -82,14 +99,12 @@ module PlacesHelper
     place_amenities
   end
 
-  def get_carousel_photoset(place)
-    hacked_photo_set = place['photos'].dup
-    # to faken cons to still iterate and display for the last image the first and second image
-    hacked_photo_set << place['photos'][0] << place['photos'][1]
-
-    return hacked_photo_set
+  # to faken cons to still iterate and display for the last image the first and second image
+  def carousel_photoset(place)
+    hacked_photo_set = place.photos.all
+    hacked_photo_set << place.photos[0] << place.photos[1]
   end
-  
+
   # TODO: unused, delete? 
   def month_count(days)
     date = Date.today
@@ -122,8 +137,8 @@ module PlacesHelper
     "/#{city.slug}/#{place['id']}-#{result}"
   end
 
-  def seo_city_path(city_id)
-    "/#{City.find(city_id).slug}"
+  def seo_city_path(city)
+    "/#{city.slug}"
   end
 
   def place_type_filters(place_type_counts)

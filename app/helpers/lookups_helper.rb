@@ -4,6 +4,17 @@ module LookupsHelper
   SIZE_UNITS = {'sqm' => I18n.t("units.square_meters_short"), 'sqf' => I18n.t("units.square_feet_short")}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
+
+  def current_city
+    if logged_in? && current_user.prefered_city.present?
+      current_user.prefered_city
+    elsif cookies[:pref_city_id]
+      City.find(cookies[:pref_city_id])
+    else
+      City.active.first
+    end
+  end
+
   def currencies_options
     Currency.active.collect{|cur| cur.currency_code}
   end

@@ -1,9 +1,8 @@
 ActiveAdmin::Dashboards.build do
 
-
   section "Users", :priority => 1 do
     div do
-      stats = User.histo_counts(:cummulative => true)
+      stats = User.histo_counts(:cummulative => false)
  
       render('/admin/chart', :title => 'Users', :stats => stats)
     end
@@ -11,11 +10,25 @@ ActiveAdmin::Dashboards.build do
   
   section "Places", :priority => 1 do
     div do
-      stats = Place.histo_counts(:cummulative => true)
+      stats = Place.histo_counts(:cummulative => false)
  
       render('/admin/chart', :title => 'Places', :stats => stats)
     end
   end
+
+  section "Users - Funnel", :priority => 2 do
+    div do
+      google_funnel_chart(AdminDashboard.user_funnel, {:height => 100, :width => 550})
+    end
+  end
+  
+  section "Transaction - Funnel", :priority => 40 do
+    div do
+      google_funnel_chart(AdminDashboard.transaction_funnel, {:bar_color => "C6D9FD", :width => 550})
+    end
+  end
+  
+  
 
   # Define your dashboard sections here. Each block will be
   # rendered on the dashboard in the context of the view. So just
@@ -41,22 +54,5 @@ ActiveAdmin::Dashboards.build do
   #       render 'recent_posts' # => this will render /app/views/admin/dashboard/_recent_posts.html.erb
   #     end
   #   end
-  
-  # == Section Ordering
-  # The dashboard sections are ordered by a given priority from top left to
-  # bottom right. The default priority is 10. By giving a section numerically lower
-  # priority it will be sorted higher. For example:
-  #
-  #   section "Recent Posts", :priority => 10
-  #   section "Recent User", :priority => 1
-  #
-  # Will render the "Recent Users" then the "Recent Posts" sections on the dashboard.
-  
-  # == Conditionally Display
-  # Provide a method name or Proc object to conditionally render a section at run time.
-  #
-  # section "Membership Summary", :if => :memberships_enabled?
-  # section "Membership Summary", :if => Proc.new { current_admin_user.account.memberships.any? }
- 
 
 end

@@ -27,24 +27,21 @@ FactoryGirl.define do
     active      { true }
   end
 
+  factory :menu_section do
+    name { @name = Faker::Name.name }
+    display_name { @name.capitalize}
+  end
+
+  factory :external_link do
+    page_title { @name = Faker::Name.name }
+    page_url   { "http://#{Faker::Internet.domain_name}/#{@name}"}
+    active     { true }
+  end
+
   factory :inquiry do
     user
     association :place, :factory => :published_place
     check_in    { Date.current + 2.year + 1.day }
     check_out   { Date.current + 2.year + 1.month }
-  end
-end
-FactoryGirl.define do
-  factory :menu_section do
-    name { @name = Faker::Name.name }
-    display_name { @name.capitalize}
-  end  
-end
-
-FactoryGirl.define do
-  factory :external_link do
-    page_title { @name = Faker::Name.name }
-    page_url   { "http://#{Faker::Internet.domain_name}/#{@name}"}
-    active     { true }
   end
 end

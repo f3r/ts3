@@ -1,29 +1,28 @@
 ActiveAdmin.register Cmspage  do
+  menu :label => "Pages", :parent => 'CMS'
 
   controller do
     actions :all, :except => [:show]
   end
 
-  menu     :priority => 9, :label => "Pages"
-  
   config.sort_order = 'id_asc'
-  
+
   scope :all, :default => true
   scope :active
   scope :inactive
 
   filter :page_title
-  
+
   controller do
     helper 'admin/cmspages'
-    
+
     def new
       unless params[:frommenu].nil?
         session[:frommenu] = params[:frommenu]
       end
       new!
     end
-    
+
     def create
       create! do |format|
         frommenu = session[:frommenu]
@@ -40,7 +39,7 @@ ActiveAdmin.register Cmspage  do
         end
       end
     end
-    
+
     def destroy
       if resource.mandatory?
         redirect_to admin_cmspage_path, :notice => "Page not deletable"
@@ -49,7 +48,7 @@ ActiveAdmin.register Cmspage  do
       end
     end
   end
-  
+
   form do |f|
     f.inputs do
       f.input :page_title
@@ -57,23 +56,32 @@ ActiveAdmin.register Cmspage  do
       unless cmspage.external? #We don't need the description editor for externallinks
         f.input :description ,:input_html => {:class => 'tinymce'}
       end
+      f.input :meta_keywords,
+        :hint => "Add all keywords that describe your site. Separated by commas",
+        :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
+      f.input :meta_description,
+        :hint => "Create a description of your site for search engines",
+        :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
       f.input :active
     end
     f.buttons
   end
-  
+
   index do
-    id_column
+    column(:id){|cmspage| link_to cmspage.id, edit_admin_cmspage_path(cmspage) }
     column :page_title
     column :page_url
     column("description")  {|cmspage| truncate(cmspage.description)}
+    column :meta_keywords
+    column :meta_description
     column("Status")       {|cmspage| status_tag(cmspage.active ? 'Active' : 'Inactive') }
     default_actions(:name => 'Actions')
   end
-  
+
   action_item  do
       link_to 'New External Link', new_admin_external_link_path
   end
+
 
   sidebar "Versions", :only => :edit do
     unless resource.external? || resource.cmspage_versions.nil?

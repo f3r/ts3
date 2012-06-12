@@ -104,4 +104,10 @@ module ApplicationHelper
       render :partial => "galleries/list", :locals => { :g_items => @g_items }
     end
   end
+
+  def static_asset(filename)
+    #base_path = "http://s3.amazonaws.com/#{Paperclip::Attachment.default_options[:bucket]}/static"
+    base_path = SiteConfig.static_assets_path
+    "#{base_path}/#{filename}"
+  end
 end

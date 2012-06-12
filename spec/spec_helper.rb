@@ -2,7 +2,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
-require 'capybara/rspec'
+#require 'capybara/rspec'
 require 'capybara/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc,
@@ -15,4 +15,7 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, :type => :controller
   config.include ControllerMacros, :type => :controller
   config.include FactoryGirl::Syntax::Methods
+
+  User.attachment_definitions[:avatar][:path] = "public/system/" + User.attachment_definitions[:avatar][:path]
+  Photo.attachment_definitions[:photo][:path] = "public/system/" + Photo.attachment_definitions[:photo][:path]
 end

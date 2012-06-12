@@ -1,8 +1,0 @@
-<% if @result['stat'] == "ok" %>
-  $(".place_<%= @place.id %> .button_favorite button").attr('disabled', 'disabled').addClass("btn-success").attr('data-original-title', '<%= t("favorites.remove_favorite") %>');;
-  $(".place_<%= @place.id %> .button_favorite button i").removeClass("icon-star-empty icon-black").addClass("icon-star icon-white");;
-  $(".place_<%= @place.id %> .button_favorite form").attr('action', '<%= remove_favorite_place_path(:id => @place.id) %>');
-  $(".place_<%= @place.id %> .button_favorite button").removeAttr('disabled');
-  <%= open_modal :share_place_modal, 'places/sharing_options' %>
-  stButtons.locateElements();
-<% end %>

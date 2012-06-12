@@ -1,5 +1,5 @@
 ActiveAdmin.register PlaceType do
-  menu :parent => 'System Tables'
+  menu :parent => 'Settings'
   filter :name
 
 end

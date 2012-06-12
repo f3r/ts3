@@ -1,14 +1,32 @@
 require 'spec_helper'
 
 describe Favorite do
-  it "stores a user favorite" do
-    user_id = 23
-    place_id = 45
-    fav = Favorite.create(
-      :user_id => user_id,
-      :favorable_id => place_id,
-      :favorable_type => 'Place'
+  before(:each) do
+    @user  = build_stubbed(:user)
+    @place = create(:place)
+
+    @favorite = Favorite.create!(
+      :user => @user,
+      :favorable => @place
     )
-    fav.should be_persisted
+  end
+
+  it "stores a user favorite" do
+    @favorite.should be_persisted
+    @favorite.reload
+    @favorite.favorable_type.should == 'Place'
+  end
+
+  it "retrieves user favorites" do
+    favs = Favorite.for_user(@user, Place)
+    favs.size.should == 1
+
+    favs[0].should == @place
+  end
+
+  it "checks if an object is favorited" do
+    Favorite.is_favorited?(@place, @user).should be_true
+    @user2 = build_stubbed(:user)
+    Favorite.is_favorited?(@place, @user2).should be_false
   end
 end

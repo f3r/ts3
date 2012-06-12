@@ -1,61 +1,11 @@
-- content_for(:title) do
-  - @city.name
-  
-%section.clearfix
-  .row
-    .span9
-      = render 'search_bar'
-      .results{:style => "padding-top: 10px;"}
-        #search_results
-          = render 'search_results', :places => @results['places']
-          
-      .loading.center.hide= image_tag('loading.gif')
-    .span3
-      .search-aside-wrapper
-        .search-aside
-          %form.panel-wrap
-            %ul.panel-expander
-              %li
-                #custom-alerts
-                  .header= t("alerts.custom_alerts")
-                  .content
-                    - if logged_in?
-                      %button.btn.save-search{"data-toggle" => "modal", :href => "#save_search"}
-                        %i.icon-time
-                        =t("alerts.create_alert")
-                    - else
-                      %a.btn.save-search{:class => 'trigger_signup', :href => '#'}
-                        %i.icon-time
-                        =t("alerts.create_alert")
-                  
-              %li
-                = render :partial => 'place_type_filters'
-              %li
-                .header= t("places.search.pricing_title")
-                .content
-                  #max_price.float-right= @max_price
-                  #min_price= @min_price
-
-                  #price-slider{:style => "z-index:1;"}
-
-      = render 'shared/asm_banner_vertical'
-
-#place_result_pages.hide
-  .page_num= 1
-  .current_page= @results['current_page']
-  .total_page= @results['total_pages']
-  .from_index= true
-
-- if logged_in? && @alert_params
-  #save_search.modal.hide.fade
-    = render :partial => 'alerts/save_search_form', :locals => { :alert_params => @alert_params }
-  
-:javascript
-  $(document).ready(function() {  
-    PlaceFilters.initialize({
-      'min_price': #{@min_price},
-      'max_price': #{@max_price},
-      'initial_min_price': #{params[:min_price] || 'null'},
-      'initial_max_price': #{params[:max_price] || 'null'}    
-    });
-  });
+.row
+  .span12
+    = breadcrumb [['Home', root_path]], t('my_places')
+  .span10.offset1
+    .results.my_places
+      - if @results.blank?
+        .alert-message.info= t("places.search.no_result")
+      - else
+        %ul.list-display
+          #search_result_list
+            = render :partial => 'search/row', :collection => @results, :as => :place, :locals => {:my_places => true}

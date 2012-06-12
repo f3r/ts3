@@ -1,5 +1,5 @@
 ActiveAdmin.register Transaction do
-  menu :priority => 5
+  menu :priority => 5, :parent => 'E-Commerce'
 
   actions :index , :show
   config.sort_order = 'id_desc'

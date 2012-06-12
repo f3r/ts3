@@ -54,14 +54,15 @@
       
       li{
         padding: 7px;
-        background: #fff;
+				color: @search_item_text_color;
+        background-color: @search_item_background_color;
         .border-radius(5px);
-        border: 1px solid #c0c0c0;
+        border: 1px solid @search_item_background_border_color;
         margin: 10px 0;
         
         &:hover{
-          background: #f7fdff;
-          border-color: #c0e4f3;
+          background-color: @search_item_background_hover_color;
+          border-color: @search_item_background_hover_border_color;
         }        
       }
       .button_favorite {
@@ -95,7 +96,7 @@
         }
         
         .title{
-          color: #454545;
+          color: @search_item_text_color;
           font-size: 12px;
         }
         

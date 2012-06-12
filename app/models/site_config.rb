@@ -40,7 +40,7 @@ class SiteConfig < ActiveRecord::Base
     basedir = Rails.root + "app/assets/stylesheets/color_schemes/"
     css_files = Dir.glob(basedir + '*')
     css_files.each do |directory|
-      file = directory + "/index.css.less"
+      file = directory + "/index.less"
       description = File.open(file) {|f| f.readline}.gsub("/*", "").gsub("*/", "").strip!
       name = directory.gsub(basedir.to_s,"")
       color_schemes << [description, name] if description && name

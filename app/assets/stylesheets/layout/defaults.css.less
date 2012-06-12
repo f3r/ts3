@@ -52,7 +52,7 @@ aside .row, aside .media-grid, .aside .row, .aside .media-grid {
 
 // Sup
 // ---------
-.sup          { color: @grayLight; font-size: @smallfont; }
+.sup          { color: @grayLighter; font-size: @smallfont; }
 a.sup         { color: @linkColor; font-size: @smallfont; }
 .bottom       { margin-bottom: 10px; }
 .bottom-large { margin-bottom: 30px; }
@@ -67,7 +67,7 @@ p.strong {
 }
 
 .hr_line {
-  border-top: 1px solid @grayLight;
+  border-top: 1px solid @grayLighter;
   margin: 25px 0 10px 0;
 }
 
@@ -82,7 +82,7 @@ p.strong {
 
 /* The white background content wrapper */
 .content {
-  background-color: #fff;
+  background-color: @content_background_color;
   padding: 20px 0;
 }
 
@@ -132,7 +132,7 @@ select {
   }
 }
 .active-photo {
-  background: @grayLight;
+  background: @grayLighter;
   padding: 20px 40px;
 }
 .active-label {
@@ -162,10 +162,10 @@ aside .section-header, .aside .section-header, .section-header {
   margin: 0 0 10px;
   padding: 10px 14px;
   line-height: 1em;
-  color: #747474;
-  .box-shadow(inset 0 1px 0 @white);
+  color: @forms_section_header_text_color;
+  .box-shadow(inset 0 1px 0 @forms_section_header_boxshadow_color);
   font-size: 16px;
-  background: #F4F4F4;
+  background: @forms_section_header_background_color;
 }
 aside .section-header, .aside .section-header {
   margin: 0 0 20px;
@@ -175,7 +175,8 @@ aside .section-header, .aside .section-header {
 // -----------
 
 .credentials-box {
-  background: @grayLight;
+  background: @grayLighter;
+	color: @grayDarker;
   overflow:hidden;
 
   .border-radius(4px);
@@ -445,8 +446,9 @@ ul.references{
 }
 
 .search-bar{  
-  background: #f8f8f8;
-  border: 1px solid #c0c0c0;
+  background: @search_top_filters_background_color;
+  border: 1px solid @search_top_filters_border_color;
+	color: @search_top_filters_text_color;
   padding: 10px 10px 0 10px;
 /*  .border-radius(5px);*/
   .clearfix();
@@ -770,21 +772,22 @@ ul.breadcrumb {
 // 
 // Panel Expander
 .panel-expander {
-	border-bottom: solid 1px #c4c4c4;
+	border-bottom: solid 1px @search_side_filters_border_color;
 	margin-top: 3px;	
+	color: @search_side_filters_text_color;
 	
   .header {
-  	background: #e9e7e7 no-repeat right -47px;
+  	background: @search_side_filters_header_background_color no-repeat right -47px;
   	padding: 10px 10px;
   	margin: 0;
   	font: bold 14px/100% Arial, Helvetica, sans-serif;
-  	border: solid 1px #c4c4c4;
+  	border: solid 1px @search_side_filters_header_border_color;
   	border-bottom: none;
   	cursor: pointer;
-  	color: #353535;
+  	color: @search_side_filters_header_text_color;
   	
   	&:hover {
-    	background-color: #e3e2e2;
+    	background-color: @search_side_filters_header_background_hover_color;
     }
     &.active {
     	background-position: right 9px;
@@ -793,15 +796,16 @@ ul.breadcrumb {
   }
 
   .content {
-  	background: #f7f7f7;
+  	background: @search_side_filters_background_color;
   	margin: 0;
   	padding: 10px 15px 15px;
-  	border-left: solid 1px #c4c4c4;
-  	border-right: solid 1px #c4c4c4;
+  	border-left: solid 1px @search_side_filters_border_color;
+  	border-right: solid 1px @search_side_filters_border_color;
   	font-size: 12px;
   	overflow: hidden;
   	
   	label{
+			color: @search_side_filters_text_color;
   	  font-size: 12px;
   	}
   }
@@ -833,7 +837,11 @@ ul.breadcrumb {
   
   .right{
     text-align: right;
-    float: right
+    float: right;
+		.label {
+			background-color: @search_side_filters_count_background_color;
+			color: @search_side_filters_count_text_color;
+		}
   }
   
   
@@ -989,7 +997,7 @@ h2.title {
 	background: @red;
 	position:relative;
 	z-index:5001;
-	color: @grayLight;
+	color: @grayLighter;
 	width: 150px;
 	font-size: 12px;
 	border: 2px solid #ddd;
@@ -1157,6 +1165,19 @@ div.start div.hub form input#check_out.textbox {width:118px;}
  * HEADER
  *********************************************************************************************************/
 .header {
+	.logo {		
+		a {
+			text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			background-image: url(@logo_image_path);
+			background-repeat: no-repeat;
+			background-position: center center;
+			width:270px;
+			height:60px;
+			display:block;
+		}
+	}
   > .container {
     height: 65px;
     margin-top: 5px;
@@ -1199,6 +1220,7 @@ div.start div.hub form input#check_out.textbox {width:118px;}
 
 header.header {
   height: 105px;
+	background-color: @header_background_color;
 }
 
 .navbar {	
@@ -1261,8 +1283,11 @@ header.header {
   
 }
 
-.nav .add-item {
-  background-color: #3977B0;  
+.navbar .nav .add-item {
+  background-color: @navbar_add_item_button_background_color;
+	a {
+		color: @navbar_add_item_button_text_color;
+	}
 }
 
 .preference-wrapper{

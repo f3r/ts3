@@ -1,2 +1,8 @@
+- content_for :meta_keywords do
+ = @staticpage.meta_keywords
+ 
+- content_for :meta_description do
+ = @staticpage.meta_description
+  
 - if @staticpage.present?
  = @staticpage.description.html_safe

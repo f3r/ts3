@@ -16,7 +16,7 @@ FactoryGirl.define do
     num_bedrooms { 2 }
     max_guests   { 4 }
     user
-    
+
     factory :published_place do
       published        { true }
 
@@ -28,10 +28,10 @@ FactoryGirl.define do
       amenities_tv { true }
       size_unit    { 'meters' }
       size         { 100 }
-      
-      currency         { "JPY"}
+
+      currency         { "JPY" }
       price_per_month  { 400000 }
-      
+
       photos           { 3.times.collect{ p = Photo.new; p.save(:validate => false); p } }
     end
   end

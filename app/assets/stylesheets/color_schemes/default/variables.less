@@ -1,26 +1,89 @@
-/* BODY */
-
-@bodyBackground:        #fff;
-@textColor:             @grayDark;
-
-@contentBackgroundColor: @bodyBackground;
-
-/* NAVBAR */
-
-@navbarColor: 					#646464;
-@navbarText: 						@grayLight;
-
-
-
 /* OLD */
 
-@grayDark: #333;
-@grayLight: #F2F2F2;
-
-
-@linkColor: #3977B0;
-
-@smallfont: 10px;
+/*@grayDark: #333;*/
+/*@grayLight: #F2F2F2;*/
+/*@smallfont: 10px;*/
 
 @logoColorDark: #3977b0;
 @logoColorLight: #91cef7;
+
+
+/* BODY */
+
+
+
+
+
+/* NAVBAR */
+
+
+
+/* CUSTOM VARIABLES */
+
+@bodyBackground:        															@white;
+@content_background_color: 														@bodyBackground;
+@header_background_color: 														@bodyBackground;
+@logo_image_path:																			"logo.png";
+@textColor:             															@grayDarker;
+@linkColor: 																					#3977B0;
+@smallfont: 																					10px;
+
+// NAVBAR
+@navbarBackground:                										@grayDarker;
+@navbarBackgroundHighlight:       										@grayDark;
+@navbarText: 																					@grayLight;
+@navbar_add_item_button_background_color:							@linkColor;
+@navbar_add_item_button_text_color:										@white;
+
+// DROPDOWN
+@dropdownBackground:            											@white;
+@dropdownBorder:                											rgba(0,0,0,.2);
+@dropdownLinkColor:             											@grayDark;
+@dropdownLinkColorHover:        											@white;
+@dropdownLinkBackgroundHover:   											@linkColor;
+@dropdownDividerTop:            											#e5e5e5;
+@dropdownDividerBottom:         											@white;
+
+// SECTION HEADER
+@forms_section_header_background_color: 							#f4f4f4;
+@forms_section_header_boxshadow_color: 								@white;
+@forms_section_header_text_color: 										#747474;
+
+// SEARCH TOP FILTERS
+@search_top_filters_background_color: #f8f8f8;
+@search_top_filters_border_color: #c0c0c0;
+@search_top_filters_text_color: @grayDarker;
+
+// SEARCH SIDE FILTERS
+@search_side_filters_background_color: 								#f7f7f7;
+@search_side_filters_border_color: 										#c4c4c4;
+@search_side_filters_header_background_color: 				#e9e7e7;
+@search_side_filters_header_background_hover_color:		#e3e2e2;
+@search_side_filters_header_border_color: 						@search_side_filters_border_color;
+@search_side_filters_header_text_color: 							#353535;
+@search_side_filters_text_color: 											@grayDarker;
+@search_side_filters_count_background_color: 					@grayLight;
+@search_side_filters_count_text_color: 								@white;
+
+// SEARCH ITEMS
+
+@search_item_background_color: 												@white;
+@search_item_background_hover_color: 									#f7fdff;
+@search_item_background_border_color: 								#c0c0c0;
+@search_item_background_hover_border_color: 					#c0e4f3;
+@search_item_text_color: 															#454545;
+
+
+/*
+
+
+
+
+@wizard_header_background_color: ;
+@wizard_header_text_color: ;
+@wizard_box_background_color: ;
+@wizard_box_border_color: ;
+
+
+
+*/

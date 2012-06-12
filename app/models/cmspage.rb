@@ -53,5 +53,4 @@ class Cmspage < ActiveRecord::Base
  def link
   nil
  end
-
 end

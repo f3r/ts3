@@ -56,6 +56,8 @@ ActiveAdmin.register Cmspage  do
       unless cmspage.external? #We don't need the description editor for externallinks
         f.input :description ,:input_html => {:class => 'tinymce'}
       end
+      f.input :meta_keywords
+      f.input :meta_description
       f.input :active
     end
     f.buttons
@@ -66,6 +68,8 @@ ActiveAdmin.register Cmspage  do
     column :page_title
     column :page_url
     column("description")  {|cmspage| truncate(cmspage.description)}
+    column :meta_keywords
+    column :meta_description
     column("Status")       {|cmspage| status_tag(cmspage.active ? 'Active' : 'Inactive') }
     default_actions(:name => 'Actions')
   end

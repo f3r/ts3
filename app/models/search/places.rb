@@ -4,6 +4,11 @@ module Search
     column :guests,           :integer, 1
     column :check_in,         :date
     column :check_out,        :date
+    column :min_lat ,         :string
+    column :max_lat,          :string
+    column :min_lng,          :string
+    column :max_lng,          :string
+    column :places_data,      :string
 
     def resource_class
       ::Place
@@ -15,6 +20,11 @@ module Search
 
       add_equals_condition(:place_type_id, self.category_ids)
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
+
+      if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? && !self.max_lng.blank?
+        add_sql_condition(['lat BETWEEN ? AND ?', self.min_lat, self.max_lat])
+        add_sql_condition(['lon BETWEEN ? AND ?', self.min_lng, self.max_lng])
+      end
     end
 
     def order

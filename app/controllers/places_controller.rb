@@ -12,7 +12,6 @@ class PlacesController < PrivateController
 
   def create
     place_params = params[:place]
-    #place_params[:currency] = get_current_currency
 
     @place = Place.new(place_params)
     @place.user = current_user

@@ -56,15 +56,19 @@ ActiveAdmin.register Cmspage  do
       unless cmspage.external? #We don't need the description editor for externallinks
         f.input :description ,:input_html => {:class => 'tinymce'}
       end
-      f.input :meta_keywords
-      f.input :meta_description
+      f.input :meta_keywords,
+        :hint => "Add all keywords that describe your site. Separated by commas",
+        :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
+      f.input :meta_description,
+        :hint => "Create a description of your site for search engines",
+        :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
       f.input :active
     end
     f.buttons
   end
 
   index do
-    id_column
+    column(:id){|cmspage| link_to cmspage.id, edit_admin_cmspage_path(cmspage) }
     column :page_title
     column :page_url
     column("description")  {|cmspage| truncate(cmspage.description)}
@@ -78,12 +82,12 @@ ActiveAdmin.register Cmspage  do
       link_to 'New External Link', new_admin_external_link_path
   end
 
-  # Activate/Deactivate
-  action_item :only => :show do
-    if cmspage.active
-      # link_to 'Deactivate', deactivate_admin_cmspage_path(cmspage),  :method => :put
-    else
-      # link_to 'Activate',   deactivate_admin_cmspage_path(cmspage),   :method => :put
+
+  sidebar "Versions", :only => :edit do
+    unless resource.external? || resource.cmspage_versions.nil?
+      table_for(resource.cmspage_versions) do |t|
+        t.column("Choose a version") {|v| link_to v.display_name, admin_cmspage_version_path(v), :remote => true}
+      end
     end
   end
 end

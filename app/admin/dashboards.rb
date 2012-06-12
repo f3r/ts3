@@ -18,13 +18,13 @@ ActiveAdmin::Dashboards.build do
 
   section "Users - Funnel", :priority => 2 do
     div do
-      google_funnel_chart(AdminDashboard.user_funnel, {:height => 100})
+      google_funnel_chart(AdminDashboard.user_funnel, {:height => 100, :width => 550})
     end
   end
   
   section "Transaction - Funnel", :priority => 40 do
     div do
-      google_funnel_chart(AdminDashboard.transaction_funnel, {:bar_color => "C6D9FD"})
+      google_funnel_chart(AdminDashboard.transaction_funnel, {:bar_color => "C6D9FD", :width => 550})
     end
   end
   

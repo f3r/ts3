@@ -39,6 +39,47 @@ describe PlacesController do
         get :wizard, :id => @place.id
       }.to raise_error(Authorization::NotAuthorized)
     end
+
+    it "shows wizard for place" do
+      login_as @agent
+      get :wizard, :id => @place.id
+      response.should be_success
+      assigns(:place).should == @place
+    end
+
+    it "updates a place field" do
+      login_as @agent
+      put :update, :id => @place.id, :place => {:num_bathrooms => 3}
+      response.should be_success
+
+      @place.reload
+      @place.num_bathrooms.should == 3
+    end
+
+    it "unpublishes a place" do
+      login_as @agent
+
+      @place = create(:published_place, :user => @agent)
+      put :unpublish, :id => @place.id
+      @place.reload
+
+      @place.should_not be_published
+
+      put :publish, :id => @place.id
+      @place.reload
+
+      @place.should be_published
+    end
+
+    it "changes currency" do
+      login_as @agent
+      @place = create(:published_place, :user => @agent)
+
+      put :update_currency, :id => @place.id, :place => {:currency => 'GBP'}
+      @place.reload
+
+      @place.currency.should == 'GBP'
+    end
   end
 
   context "Management" do

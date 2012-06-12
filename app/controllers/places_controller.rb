@@ -1,6 +1,6 @@
 class PlacesController < PrivateController
   layout 'plain'
-  before_filter :find_place, :only => [:wizard, :show, :update, :destroy, :photos]
+  before_filter :find_place, :only => [:wizard, :show, :update, :destroy, :photos, :update_currency, :publish_check, :publish, :unpublish]
 
   def index
     @results = current_user.places
@@ -27,47 +27,46 @@ class PlacesController < PrivateController
   def update
     #result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
     @place.attributes = params[:place]
-    if result['stat'] == "ok"
-      place = result['place']
-      # filter data
-      [:place_type, :user, :photos].each do |k|
-        place[k] = nil
-      end
-      response = {:stat => "ok", :place => place}
+    if @place.save
+      # place = result['place']
+      # # filter data
+      # [:place_type, :user, :photos].each do |k|
+      #   place[k] = nil
+      # end
+      response = {:stat => "ok", :place => @place}
     else
-      response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
+      response = {:stat => "fail", :err => @place.errors, :error_label => error_codes_to_messages(@place.errors).join(', ')}
     end
     render :json => response, :layout => false
   end
 
   def update_currency
-    place = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
-    render :json => {:currency_sign => currency_sign_of(place['place']['currency'])}
+    @place.attributes = params[:place]
+    @place.save
+    render :json => {:currency_sign => currency_sign_of(@place.currency)}
   end
 
   def publish
-    result = Heypal::Place.publish_check(params[:id], current_token)
-    if result['stat'] == "ok"
-      result = Heypal::Place.publish(params[:id], current_token)
+    if @place.publish!
       flash[:notice] = t("places.messages.place_published")
     else
       flash[:error] = t("places.messages.place_publish_error")
     end
-    redirect_to preview_place_path(:id => params[:id])
+    redirect_to place_path(:id => params[:id])
   end
 
   def unpublish
-    place = Heypal::Place.unpublish(params[:id], current_token)
+    @place.unpublish!
     flash[:notice] = t("places.messages.place_unpublished")
-    redirect_to preview_place_path(:id => params[:id])
+    redirect_to place_path(:id => params[:id])
   end
 
   def publish_check
-    result = Heypal::Place.publish_check(params[:id], current_token)
-    if result['stat'] == "ok"
+    if @place.publish_check!
       response = {:stat => "ok"}
     else
-      response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
+      response = {:stat => "fail"}
+      #response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
     end
     render :json => response, :layout => false
   end
@@ -86,7 +85,7 @@ class PlacesController < PrivateController
   end
 
   def show
-    @preview = true
+    @my_places = true
 
     render 'search/show'
   end

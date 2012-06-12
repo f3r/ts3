@@ -5,10 +5,13 @@ class Place < ActiveRecord::Base
 
   geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
-  validates_presence_of   [:title, :place_type_id, :num_bedrooms, :max_guests, :city_id, :user_id]
-  validates_inclusion_of  :size_unit, :in => ["meters", "feet"], :allow_nil => true, :if => :size?
-  #validates_inclusion_of  :stay_unit, :in => STAY_UNITS,  :allow_nil => true,
-  #                        :if => Proc.new { |place| (place.minimum_stay && place.minimum_stay > 0) or (place.maximum_stay && place.maximum_stay > 0) }
+  validates_presence_of   [:title, :place_type_id, :num_bedrooms, :max_guests, :city_id, :user_id], :message => "101"
+  validates_inclusion_of  :size_unit, :in => ["meters", "feet"], :allow_nil => true, :if => :size?, :message => "129"
+  validates_inclusion_of  :stay_unit,
+                          :in => STAY_UNITS,
+                          :message => "129",
+                          :allow_nil => true,
+                          :if => Proc.new { |place| (place.minimum_stay && place.minimum_stay > 0) or (place.maximum_stay && place.maximum_stay > 0) }
 
   validates_numericality_of [
     :num_bedrooms,
@@ -26,11 +29,11 @@ class Place < ActiveRecord::Base
     :price_per_month_usd,
     :minimum_stay,
     :maximum_stay
-  ], :allow_nil => true
+  ], :allow_nil => true, :message => "118"
 
-  validates_numericality_of :maximum_stay, :greater_than_or_equal_to => :minimum_stay, :if => Proc.new { |place| !place.minimum_stay.blank? && place.minimum_stay > 0 && place.maximum_stay != 0 }
+  validates_numericality_of :maximum_stay, :greater_than_or_equal_to => :minimum_stay, :message => "140", :if => Proc.new { |place| !place.minimum_stay.blank? && place.minimum_stay > 0 && place.maximum_stay != 0 }
 
-  validates_numericality_of :city_id
+  validates_numericality_of :city_id, :message => "118"
 
   attr_accessor :amenities, :location, :terms_of_offer
   attr_accessible :currency

@@ -57,7 +57,9 @@
           %li
             %a{:href => '#details-questions', 'data-toggle' => 'tab'}
               = t('places.questions_title', :count => @place.comments.count)
-          - other_properties = @owner.places.published.where('id != ?', @place)
+          - render_other_properties = !current_user?(@owner)
+          -# Why load the places if not needed ;)
+          - other_properties = render_other_properties ? @owner.places.published.where('id != ?', @place) : [] 
           - if other_properties.present?
             %li
               %a{:href => '#other-properties', 'data-toggle' => 'tab'}
@@ -99,7 +101,7 @@
             - @results = other_properties
             .results{:style => "padding-left: 10px; padding-right: 10px;"}
               #search_results
-                = render 'search_results'
+                = render 'search_results' if render_other_properties
             
 
       /******************************************************************************************

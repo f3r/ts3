@@ -15,6 +15,8 @@ class SearchController < ApplicationController
     @search.city_id = @city.id if @city
     @results = @search.results
 
+    @places = ActiveSupport::JSON.encode(@results)
+
 
     respond_to do |format|
       format.js {

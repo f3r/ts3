@@ -98,6 +98,17 @@ class PlacesController < PrivateController
     end
     redirect_to my_places_path
   end
+  
+  def get_place_path
+    if !params[:place_id].nil?
+      place = Place.find(params[:place_id].to_i)
+      path = view_context.seo_place_path(place)
+      response = {:stat => "success",:path => path}
+    else
+      response = {:stat => "error"}
+    end
+      render :json => response, :layout => false
+  end
 
 protected
 

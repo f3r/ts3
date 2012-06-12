@@ -14,6 +14,18 @@ module Search
       ::Place
     end
 
+    attr_accessor :place_type_ids
+
+    def price_range
+      if self.min_price.present? && self.max_price.present?
+        Range.new(self.min_price, self.max_price)
+      end
+    end
+
+    def collection
+      Place.published
+    end
+
     def add_conditions
       add_equals_condition(:city_id, self.city_id)
       add_equals_condition(price_field, self.price_range)
@@ -21,9 +33,9 @@ module Search
       add_equals_condition(:place_type_id, self.category_ids)
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
 
-      if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? && !self.max_lng.blank?
-        add_sql_condition(['lat BETWEEN ? AND ?', self.min_lat, self.max_lat])
-        add_sql_condition(['lon BETWEEN ? AND ?', self.min_lng, self.max_lng])
+      if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? &&  !self.max_lng.blank?
+        add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat ,self.max_lat])
+        add_sql_condition(['lon BETWEEN ? AND ?' ,self.min_lng ,self.max_lng])
       end
     end
 

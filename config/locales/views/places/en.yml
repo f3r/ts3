@@ -31,6 +31,7 @@ en:
     calendar: Calendar
     details: Details
     questions_title: "Questions (%{count})"
+    other_properties: "Other Properties by this agent (%{count})"
     house_rules: House rules
     type: Type
     size: Size

@@ -57,6 +57,12 @@
           %li
             %a{:href => '#details-questions', 'data-toggle' => 'tab'}
               = t('places.questions_title', :count => @place.comments.count)
+          - other_properties = @owner.places.published.where('id != ?', @place)
+          - if other_properties.present?
+            %li
+              %a{:href => '#other-properties', 'data-toggle' => 'tab'}
+                = t('places.other_properties', :count => other_properties.count)
+              
 
         .tab-content
           // Photo Slider pane
@@ -87,6 +93,14 @@
           // Questions Tab
           #details-questions.tab-pane
             = render 'comments/questions'
+            
+          // Other properties
+          #other-properties.tab-pane
+            - @results = other_properties
+            .results{:style => "padding-left: 10px; padding-right: 10px;"}
+              #search_results
+                = render 'search_results'
+            
 
       /******************************************************************************************
       / Description, Minimum stay, Maximum Stay

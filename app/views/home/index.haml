@@ -26,33 +26,7 @@
     .span6
       = gallery :homepage
       
-.tease-social
-  %hr{:class => "style-two"}
-  .links
-    %img{:src => "https://s3.amazonaws.com/squarestays-static/icon.fb.jpg", :width => "30px", :height => "30px"}
-    %span.social-text
-      %a{:href => "https://www.facebook.com/squarestays"}= t("pages.front_page.social.facebook")
-    %img{:src => "https://s3.amazonaws.com/squarestays-static/icon.tw.jpg", :width => "30px", :height => "30px"}
-    %span.social-text
-      %a{:href => "https://twitter.com/#!/Squarestays"}= t("pages.front_page.social.twitter")
-    %img{:src => "https://s3.amazonaws.com/squarestays-static/icon.rss.png", :width => "25px", :height => "25px"}
-    %span.social-text
-      %a{:href => "http://blog.squarestays.com"}= t("pages.front_page.social.blog")
-  %hr{:class => "style-two"}
-  
-.tease-blurb  
-  .tease-header
-    = t("pages.front_page.teaser.title")
-  .row
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/flx.jpg",  :alt => t("pages.front_page.teaser.one")}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/qlty.jpg", :alt => t("pages.front_page.teaser.two")}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/afrd.jpg", :alt => t("pages.front_page.teaser.three")}
-
-.trust
-  .row
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/swg.jpg",  :title => t("pages.front_page.trust.one")}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/nrf.jpg",  :title => t("pages.front_page.trust.two")}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/prnx.jpg", :title => t("pages.front_page.trust.three")}
-    %img{:src => "http://s3.amazonaws.com/squarestays-static/feo.jpg",  :title => t("pages.front_page.trust.four")}
+- home_page_footer = Page.find_by_page_url('home_page_footer')
+= home_page_footer.description.html_safe unless home_page_footer.nil?
     
 = render :partial => "city_modal"

@@ -1,26 +1,26 @@
 module PlacesHelper
 
   # Amenities
-  def amenities_group_1 
+  def amenities_group_1
     [
       [t("places.amenities.kitchen"), :amenities_kitchen],
-      [t("places.amenities.hot_water"), :amenities_hot_water], 
+      [t("places.amenities.hot_water"), :amenities_hot_water],
       [t("places.amenities.elevator"), :amenities_elevator],
       [t("places.amenities.parking_included"), :amenities_parking_included],
       [t("places.amenities.heating"), :amenities_heating],
       [t("places.amenities.handicap"), :amenities_handicap],
       [t("places.amenities.doorman"), :amenities_doorman],
-      [t("places.amenities.aircon"), :amenities_aircon], 
+      [t("places.amenities.aircon"), :amenities_aircon],
       [t("places.amenities.buzzer_intercom"), :amenities_buzzer_intercom],
     ]
   end
 
-  # Furnishings 
+  # Furnishings
   def amenities_group_2
     [
       [t("places.amenities.internet"), :amenities_internet],
       [t("places.amenities.tv"), :amenities_tv],
-      [t("places.amenities.dryer"), :amenities_dryer],    
+      [t("places.amenities.dryer"), :amenities_dryer],
       [t("places.amenities.internet_wifi"), :amenities_internet_wifi],
       [t("places.amenities.cable_tv"), :amenities_cable_tv],
       [t("places.amenities.washer"), :amenities_washer],
@@ -62,8 +62,9 @@ module PlacesHelper
     html
   end
 
-  def place_price(place)
-    "#{get_pref_currency}#{place.price_per_month}"
+  def place_price(place, per_what = :per_month)
+    symbol, amount = place.price(current_currency, per_what)
+    "#{current_currency.label}#{amount}"
   end
 
   def render_photo(photo)
@@ -105,7 +106,7 @@ module PlacesHelper
     hacked_photo_set << place.photos[0] << place.photos[1]
   end
 
-  # TODO: unused, delete? 
+  # TODO: unused, delete?
   def month_count(days)
     date = Date.today
     days_count = Time.days_in_month(date.month, date.year)

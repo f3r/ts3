@@ -29,7 +29,6 @@ class SearchController < ApplicationController
   end
 
   def show
-    #@place = Place.published.find(params[:id])
     @resource = resource_class.published.find(params[:id])
     @owner = @resource.user
   end

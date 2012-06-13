@@ -2,8 +2,9 @@
 module LookupsHelper
   LANGUAGES  = {'en' => 'English', 'es' => 'Spanish'}
   SIZE_UNITS = {'sqm' => I18n.t("units.square_meters_short"), 'sqf' => I18n.t("units.square_feet_short")}
+  # TODO: This must die soon
+  SIZE_UNIT_CONVERSION_BACKEND = {:sqm => "meters", :sqf => "feet"}
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
-
 
   def current_city
     if logged_in? && current_user.prefered_city.present?
@@ -107,13 +108,14 @@ module LookupsHelper
   def cancellation_desc(place)
     t("places.cancellation_policies.#{LookupsHelper::CANCELLATION_POLICIES[place.cancellation_policy]}")
   end
+
   # Should be of this format:
   # {"date_end"=>[120]}
   def error_codes_to_messages(error_hash)
     ret = []
     error_hash.each do |field, error_codes|
       error_codes.each do |error_code|
-        ret << "#{field.humanize}: #{t("errors.#{error_code}")}"
+        ret << "#{field.to_s.humanize}: #{t("errors.#{error_code}")}"
       end
     end
 
@@ -128,5 +130,9 @@ module LookupsHelper
 
   def get_size_unit
     (current_user['pref_size_unit'] if logged_in? && !current_user['pref_size_unit'].blank?) || cookies[:pref_size_unit] || nil
+  end
+
+  def get_size_unit_backend_compatible
+    SIZE_UNIT_CONVERSION_BACKEND[get_size_unit.to_sym]
   end
 end

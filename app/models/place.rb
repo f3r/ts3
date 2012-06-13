@@ -48,7 +48,7 @@ class Place < ActiveRecord::Base
   has_many    :comments,        :dependent => :destroy
   has_many    :transactions,    :dependent => :destroy
   has_many    :photos,          :dependent => :destroy, :order => :position
-  has_many    :favorites,       :dependent => :destroy, :as => :favorable 
+  has_many    :favorites,       :dependent => :destroy, :as => :favorable
 
   before_save   :save_amenities,
                 :convert_prices_in_usd_cents,
@@ -278,7 +278,7 @@ class Place < ActiveRecord::Base
   end
 
   def update_size_fields
-    if (self.size_changed? or self.size_unit_changed?) && !self.size.blank? && !self.size_unit.blank?
+    if self.size
       case size_unit
       when "meters"
         self.size_sqm = size
@@ -287,12 +287,8 @@ class Place < ActiveRecord::Base
         self.size_sqf = size
         self.size_sqm = size * 0.09290304
       end
-    elsif (self.size_changed? or self.size_unit_changed?) && (self.size.blank? or self.size_unit.blank?)
-      self.size = nil
-      self.size_sqm = nil
-      self.size_sqf = nil
-      self.size_unit = nil
     end
+    true
   end
 
   def update_price_sqf_field

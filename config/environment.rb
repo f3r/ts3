@@ -17,6 +17,6 @@ HeyPalFrontEnd::Application.configure do
   })
 
   config.after_initialize do
-    ActionMailer::Base.default_url_options[:host] = FRONTEND_PATH.gsub('http://', '')
+    ActionMailer::Base.default_url_options[:host] = SiteConfig.site_url.gsub('http://', '')
   end
 end

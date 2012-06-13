@@ -2,30 +2,31 @@
 - current_min = @search.min_price || min_price
 - current_max = @search.max_price || max_price
 
-.header= t("places.search.pricing_title")
-= content_tag :div, :id => 'price_filter', :data => {:min => current_min, :max => current_max, :tmin => min_price, :tmax =>  max_price} do
-  .content
-    #max_price.float-right= current_max
-    #min_price= current_min
+- if min_price && max_price
+  .header= t("places.search.pricing_title")
+  = content_tag :div, :id => 'price_filter', :data => {:min => current_min, :max => current_max, :tmin => min_price, :tmax =>  max_price} do
+    .content
+      #max_price.float-right= current_max
+      #min_price= current_min
 
-    .slider{:style => "z-index:1;"}
+      .slider{:style => "z-index:1;"}
 
-:javascript
-  // Initialize Price Sliders
-  var slider = $('#price_filter');
-  $("#price_filter .slider").slider({
-    range: true,
-    min: #{min_price},
-    max: #{max_price},
-    values: [#{current_min}, #{current_max}],
-    step: 100,
-    slide: function( event, ui ) {
-      $("#min_price").html(ui.values[0]);
-      $('#search_min_price').val(ui.values[0]);
-      $("#max_price").html(ui.values[1]);
-      $('#search_max_price').val(ui.values[1]);
-    },
-    change: function() {
-      PlaceFilters.search();
-    }
-  });
+  :javascript
+    // Initialize Price Sliders
+    var slider = $('#price_filter');
+    $("#price_filter .slider").slider({
+      range: true,
+      min: #{min_price},
+      max: #{max_price},
+      values: [#{current_min}, #{current_max}],
+      step: 100,
+      slide: function( event, ui ) {
+        $("#min_price").html(ui.values[0]);
+        $('#search_min_price').val(ui.values[0]);
+        $("#max_price").html(ui.values[1]);
+        $('#search_max_price').val(ui.values[1]);
+      },
+      change: function() {
+        PlaceFilters.search();
+      }
+    });

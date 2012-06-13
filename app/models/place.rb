@@ -86,6 +86,10 @@ class Place < ActiveRecord::Base
     [a_currency.symbol, amount]
   end
 
+  def self.searcher
+    Search::Places
+  end
+
   def primary_photo
     self.photos.first
   end

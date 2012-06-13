@@ -56,6 +56,8 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/my_places'          => 'places#index',              :as => :my_places
 
+  resources :listings do
+  end
 
   ###########################################################################################
   # Saved searches

@@ -11,7 +11,7 @@ class SearchController < ApplicationController
       end
     end
 
-    @search = Search::Places.new(params[:search])
+    @search = searcher.new(params[:search])
     @search.city_id = @city.id if @city
     @results = @search.results
 
@@ -29,12 +29,22 @@ class SearchController < ApplicationController
   end
 
   def show
-    @place = Place.published.find(params[:id])
-    @owner = @place.user
+    #@place = Place.published.find(params[:id])
+    @place = @resource = resource_class.published.find(params[:id])
+    @owner = @resource.user
   end
 
   def favorites
     @results = Favorite.for_user(current_user, Place)
   end
 
+  protected
+
+  def resource_class
+    SiteConfig.product_class
+  end
+
+  def searcher
+    resource_class.searcher
+  end
 end

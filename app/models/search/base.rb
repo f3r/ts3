@@ -8,6 +8,18 @@ module Search
       columns << ActiveRecord::ConnectionAdapters::Column.new(name.to_s, default, sql_type.to_s, null)
     end
 
+    def self.default_columns
+      column :current_page,     :integer, 1
+      column :total_pages,      :integer
+      column :sort_by,          :string
+      column :currency,         :string
+      column :city_id,          :integer
+      column :min_price,        :integer
+      column :max_price,        :integer
+
+      attr_accessor :product_category_ids
+    end
+
     # Override the save method to prevent exceptions.
     def save(validate = true)
       validate ? valid? : true
@@ -48,6 +60,50 @@ module Search
 
     def order
       "created_at DESC"
+    end
+
+    def category_filters
+      filters = []
+      # current_types = self.place_type_ids
+
+      # PlaceType.all.each do |pt|
+      #   self.place_type_ids = pt.id
+      #   if ((count = self.count) > 0)
+      #     checked = current_types && current_types.include?(pt.id.to_s)
+      #     filters << [pt, count, checked]
+      #   end
+      # end
+
+      # self.place_type_ids = current_types
+      # filters
+    end
+
+    def price_range_bounds
+      # Backup the current filter values
+      current_prices = [self.min_price, self.max_price]
+      self.min_price = self.max_price = nil
+
+      # Calculate the range
+      min = self.calculate(:minimum, :price)
+      max = self.calculate(:maximum, :price)
+
+      unless min && max
+        return [nil, nil]
+      end
+      # Convert currency
+
+      # Round to multiples of 100
+      max = (max/100.0).ceil * 100
+      min = (min/100.0).floor * 100
+
+      if min == max
+        max = min + 100
+      end
+
+      # Restore the filter
+      self.min_price, self.max_price = current_prices
+
+      [min, max]
     end
 
     protected

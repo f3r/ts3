@@ -15,8 +15,9 @@
                   %a.btn.save-search{:class => 'trigger_signup', :href => '#'}
                     %i.icon-time
                     =t("alerts.create_alert")
-            
-        %li
-          = render 'place_type_filters'
+
+        - if SiteConfig.product_class == Place
+          %li
+            = render 'place_type_filters'
         %li
           = render 'price_filters'

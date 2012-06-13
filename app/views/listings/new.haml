@@ -1,0 +1,34 @@
+= coded_errors_for @resource
+.row
+  .span10.offset1
+    = form_for @resource, :as => :listing, :url => listings_path, :html => {:id => 'wizard_form', :class => 'new-place'} do |f|
+      %h2.title= t("places.wizard.list_your_place")
+      %fieldset.well.form-horizontal
+        .control-group.required
+          = f.label :city_id, t("places.wizard.what_city_is_your_place_in"), :class => 'control-label'
+          .controls
+            = f.select :city_id, cities_options, :class => "validate[required] span4"
+        .control-group.required
+          = f.label :title, t("places.title"), :class => 'control-label'
+          .controls
+            = f.text_field :title, :class => "validate[required] span6"
+        / .control-group
+        /   = f.label :place_type_id, t("places.wizard.place_type"), :class => 'control-label'
+        /   .controls
+        /     = f.select :place_type_id, place_types_select
+        / .control-group.required
+        /   = f.label :num_bedrooms, t("places.wizard.how_many_bedrooms"), :class => 'control-label'
+        /   .controls
+        /     = f.text_field :num_bedrooms, :class => "validate[required,custom[integer],min[0]] span1"
+        / .control-group.required
+        /   = f.label :max_guests, t("places.wizard.max_guests"), :class => 'control-label'
+        /   .controls
+        /     = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1"
+        .control-group
+          .controls
+            %label.checkbox
+              =# f.check_box :terms, :class => "validate[required]"
+              = t("places.wizard.i_agree_to_the")
+              = link_to t("terms_and_conditions"), terms_path, :target => :blank
+      %br
+        %button.btn.btn-primary.offset7{:type => "submit", :id => "submit_button", :style => "width:200px;"}=raw t("places.wizard.save_and_continue")

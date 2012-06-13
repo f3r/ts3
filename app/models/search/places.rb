@@ -1,14 +1,7 @@
 module Search
   class Places < Search::Base
-    column :current_page,     :integer, 1
-    column :total_pages,      :integer
-    column :sort_by,          :string
-
-    column :city_id,          :integer
+    default_columns
     column :guests,           :integer, 1
-    column :min_price,        :integer
-    column :max_price,        :integer
-    column :currency,         :string
     column :check_in,         :date
     column :check_out,        :date
 

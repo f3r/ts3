@@ -43,7 +43,18 @@ HeyPalFrontEnd::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  config.assets.precompile += %w( wizard.js uploadify/uploadify.css active_admin.css active_admin.js active_admin_custom.js)
+  
+  # TODO: improve this?
+  color_schemes = []
+  basedir = Rails.root + "app/assets/stylesheets/color_schemes/"
+  css_files = Dir.glob(basedir + '*')
+  css_files.each do |directory|
+    file = "color_schemes/" + directory.gsub(basedir.to_s,"") + "/index.css"
+    color_schemes << file if file
+  end
+  assets = %w(wizard.js uploadify/uploadify.css active_admin.css active_admin.js active_admin_custom.js plugins.css)
+  assets += color_schemes
+  config.assets.precompile += assets
 
   # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false

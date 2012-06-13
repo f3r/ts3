@@ -60,10 +60,6 @@ module LookupsHelper
     LANGUAGES[self.get_language] || 'English'
   end
 
-  def get_pref_currency
-    current_currency.label
-  end
-
   def current_currency
     if logged_in? && current_user.pref_currency.present?
       return Currency.find_by_currency_code(current_user.pref_currency)

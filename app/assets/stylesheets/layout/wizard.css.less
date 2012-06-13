@@ -31,9 +31,10 @@ ul#wizard_tabs {
     a {
       padding: 10px;
       display:block;
-      color: @red;
+      color: @wizard_tabs_text_color;
       height: 18px;
       font-size: 14px;
+			background-color: @wizard_tabs_background_color;
       &:hover {
         text-decoration: underline;
       }
@@ -41,8 +42,8 @@ ul#wizard_tabs {
   }
   li.active {
     a {
-      background: #F2F2F2;
-      color: #000;
+      background-color: @wizard_tabs_background_active_color;
+      color: @wizard_tabs_text_active_color;
     }
   }
 }

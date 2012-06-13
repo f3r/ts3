@@ -2,7 +2,8 @@
   .container
     .row
       .span5
-        %h1.logo= link_to SiteConfig.site_name, root_path, :title => SiteConfig.site_name
+        / TODO: GET LOGO PATH ON THE CSS
+        %h1.logo= link_to SiteConfig.site_name, root_path, :title => SiteConfig.site_name, :style => "background-image: url(" + static_asset('logo.png') + ");"
       - if user_signed_in?
         .user_box.logged-in
           .row

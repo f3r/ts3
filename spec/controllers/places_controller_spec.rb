@@ -56,6 +56,16 @@ describe PlacesController do
       @place.num_bathrooms.should == 3
     end
 
+    it "updates a place size" do
+      login_as @agent
+      put :update, :id => @place.id, :place => {:size => 100}
+      response.should be_success
+
+      @place.reload
+
+      @place.size.should == 100
+    end
+
     it "unpublishes a place" do
       login_as @agent
 

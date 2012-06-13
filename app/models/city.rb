@@ -18,8 +18,8 @@ class City < ActiveRecord::Base
   end
 
   def self.routes_regexp
-  	# Matches the name of a city  
-  	if self.any?
+  	# Matches the name of a city
+  	if self.table_exists? && self.any?
   	  Regexp.new(self.all.collect{|city| city.slug if city.respond_to?(:slug)}.join('|'))
   	else
   	  # default
@@ -78,7 +78,7 @@ class City < ActiveRecord::Base
   # def name
   #   I18n.t(self.code)
   # end
-  # 
+  #
   # def country_name
   #   I18n.t(self.country_code)
   # end

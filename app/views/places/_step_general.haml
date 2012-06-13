@@ -16,11 +16,11 @@
         = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"
     .control-group.required
       = f.label :max_guests, t("places.max_guests"), :class => 'control-label'
-      .controls      
+      .controls
         = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1 autosave"
     .control-group
       = f.label :num_bedrooms, t("places.num_bedrooms"), :class => 'control-label'
-      .controls      
+      .controls
         = f.text_field :num_bedrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
     .control-group
       = f.label :num_beds, t("places.num_beds"), :class => 'control-label'
@@ -35,10 +35,7 @@
       = f.label :size, t("places.size"), :class => 'control-label'
       .controls
         = f.text_field :size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
-        = f.text_field :size_sqm, :class => 'autosave_place_unit', :style => 'display:none'
-        = f.text_field :size_sqf, :class => 'autosave_place_unit', :style => 'display:none'
-      
-        = f.select :size_unit, [[t("units.square_meters_short"), "meters"], [t("units.square_feet_short"), "feet"]], {}, :class => "validate[required] span2 autosave_place_unit"
+        = f.select :size_unit, [[t("units.square_meters_short"), "meters"], [t("units.square_feet_short"), "feet"]], {}, :class => "validate[required] span2 autosave"
   %fieldset.well.form-horizontal
     %h3= t("places.wizard.address_title")
     .control-group.required

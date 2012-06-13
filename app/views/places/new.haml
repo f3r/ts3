@@ -25,11 +25,13 @@
           .controls
             = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1"
         .control-group
-          .controls  
+          .controls
             %label.checkbox
               = check_box_tag :place_terms, :class => "validate[required]"
               = t("places.wizard.i_agree_to_the")
               = link_to t("terms_and_conditions"), terms_path, :target => :blank
+        - # TODO: This line must die
+        = f.hidden_field :size_unit, :value => get_size_unit_backend_compatible
       %br
         %button.btn.btn-primary.offset7{:type => "submit", :id => "submit_button", :style => "width:200px;"}=raw t("places.wizard.save_and_continue")
 

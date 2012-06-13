@@ -25,17 +25,12 @@ class PlacesController < PrivateController
   end
 
   def update
-    #result = Heypal::Place.update(params_with_token(:place).merge(:id => params[:id]))
     @place.attributes = params[:place]
     if @place.save
-      # place = result['place']
-      # # filter data
-      # [:place_type, :user, :photos].each do |k|
-      #   place[k] = nil
-      # end
       response = {:stat => "ok", :place => @place}
     else
-      response = {:stat => "fail", :err => @place.errors, :error_label => error_codes_to_messages(@place.errors).join(', ')}
+      err = format_errors(@place.errors.messages)
+      response = {:stat => "fail", :err => err, :error_label => error_codes_to_messages(err).join(', ')}
     end
     render :json => response, :layout => false
   end
@@ -62,11 +57,12 @@ class PlacesController < PrivateController
   end
 
   def publish_check
+
     if @place.publish_check!
       response = {:stat => "ok"}
     else
-      response = {:stat => "fail"}
-      #response = {:stat => "fail", :err => result['err'], :error_label => error_codes_to_messages(result['err']).join(', ')}
+      err = format_errors(@place.errors.messages)
+      response = {:stat => "fail", :err => err, :error_label => error_codes_to_messages(err).join(', ')}
     end
     render :json => response, :layout => false
   end

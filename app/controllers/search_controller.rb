@@ -15,6 +15,7 @@ class SearchController < ApplicationController
     @search.city_id = @city.id if @city
     @results = @search.results
 
+
     respond_to do |format|
       format.js {
         if params[:submitted_action] == 'see_more'

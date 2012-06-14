@@ -25,6 +25,16 @@ class ListingsController < PrivateController
     @resource = collection.find(params[:id])
   end
 
+  def destroy
+    @resource = collection.find(params[:id])
+    if @resource.delete
+      flash[:notice] = t("products.messages.listing_deleted")
+    else
+      flash[:error] = t("products.messages.listing_deletion_error")
+    end
+    redirect_to listings_path
+  end
+
   # def create
   #   place_params = params[:place]
   #   place_params[:access_token] = current_token

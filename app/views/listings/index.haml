@@ -4,7 +4,7 @@
   .span10.offset1
     .results.my_places
       - if @collection.blank?
-        .alert-message.info= t("places.search.no_result")
+        .alert-message.info= t("products.no_listings")
       - else
         %ul.list-display
           #search_result_list

@@ -49,8 +49,8 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.product_class
-    Service
-    #Place
+    #Service
+    Place
   end
 
   def self.product_plural

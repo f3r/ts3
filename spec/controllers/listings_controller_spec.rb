@@ -4,7 +4,7 @@ describe ListingsController do
   before(:each) do
     @agent  = create(:agent)
     login_as @agent
-    ListingsController.stub(:resource_class).and_return(Service)
+    SiteConfig.stub(:product_class).and_return(Service)
   end
 
   it "shows a form for a new listing" do

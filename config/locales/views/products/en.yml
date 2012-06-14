@@ -1,3 +1,17 @@
 en:
   products:
-    my_listings: 'My %{product_plural}'
+    my_listings:        'My %{product_plural}'
+    no_listings:        "You haven't created any listing yet"
+    my_favorites:       'My favorite %{product_plural}'
+    add_a_listing:      'Add a %{product_name}'
+    list_your_product:  'List your %{product_name}'
+    listed:             'Listed'
+    invisible:          'Invisible'
+    wizard:
+      what_city:        'What city?'
+    messages:
+      listing_published:      Your listing is now published!
+      listing_publish_error:  "Sorry, we can not publish your listing because of missing information."
+      listing_unpublished:    Your listing is now invisible
+      listing_deleted:        Listing successfully deleted
+      listing_deletion_error: Listing deletion error

@@ -22,11 +22,12 @@
                     = link_to t("template.header.menu.my_profile"), profile_path
                   - if is_agent? or is_admin?
                     %li{:class => @current_controller == "listings" && @current_action == "index" ? "active" : ""}
-                      = link_to t("template.header.menu.my_places"), listings_path
+                      = link_to t('products.my_listings'), listings_path
                   %li{:class => @current_controller == "places" && @current_action == "favorite_places" ? "active" : ""}
-                    = link_to t("template.header.menu.my_favorite_places"), favorites_search_index_path
-                  %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
-                    = link_to t("template.header.menu.my_alerts"), alerts_path
+                    = link_to t("products.my_favorites"), favorites_search_index_path
+                  - if false
+                    %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
+                      = link_to t("template.header.menu.my_alerts"), alerts_path
 
 
             - else
@@ -36,7 +37,7 @@
             - if user_signed_in?
               - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
                 %li.add-item
-                  = link_to t("template.header.menu.add_a_place"), new_place_path
+                  = link_to t("products.add_a_listing"), new_listing_path
 
               - if message_count == 0
                 %li.read-message

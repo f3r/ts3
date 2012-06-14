@@ -3,7 +3,8 @@
     .row
       .span5
         / TODO: GET LOGO PATH ON THE CSS
-        %h1.logo= link_to SiteConfig.site_name, root_path, :title => SiteConfig.site_name, :style => "background-image: url(" + static_asset('logo.png') + ");"
+        / hack for tse-demo
+        %h1.logo= link_to SiteConfig.site_name, root_path, :title => SiteConfig.site_name, :style => "background-size: 270px 50px; background-image: url(" + static_asset('logo.png') + ");"
       - if user_signed_in?
         .user_box.logged-in
           .row
@@ -15,7 +16,7 @@
                 = link_to t("users.sign_out"), destroy_user_session_path
       - else
         .user_box
-          .row    
+          .row
             .links
               = link_to t("users.sign_in"), login_path_with_ref
               %span.separator /

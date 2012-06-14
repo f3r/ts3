@@ -93,7 +93,7 @@ class Messenger
   end
 
   def self.inbox_status(user)
-    conditions = {:user_id => user.id, :deleted_at => nil}
+    conditions = {:user_id => user.id }
     total = InboxEntry.where(conditions).count
     unread = InboxEntry.where(conditions).where(:read => false).count
 
@@ -105,4 +105,10 @@ class Messenger
     inbox_entry.set_as_archive
     inbox_entry.save!
   end
+  
+  def self.get_respond_user (user , conversation_id)
+    conditions = {:from_id => user.id, :conversation_id => conversation_id }
+    total = Message.where(conditions).count
+  end
+  
 end

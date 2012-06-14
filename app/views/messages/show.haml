@@ -3,8 +3,11 @@
     .actions.pull-right
       = link_to t("messages.mark_unread"), mark_as_unread_message_path(@conversation.id), :method => :put
       - if !@inquiry.deleted_at.present?
-        = link_to t("messages.archive"), set_as_archive_message_path(@conversation.id), :method => :put, :confirm => t("messages.agent_archive_message")
-    
+        - if current_user.role == "agent" && @respond_count == 0
+          = link_to t("messages.archive"), set_as_archive_message_path(@conversation.id), :method => :put, :confirm => t("messages.agent_archive_message")
+        - else 
+          = link_to t("messages.archive"), set_as_archive_message_path(@conversation.id), :method => :put
+          
   - if @inquiry
     .row.target
       = render_target(@conversation.target, :box)

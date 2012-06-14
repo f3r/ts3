@@ -19,6 +19,7 @@ class MessagesController < PrivateController
   def show
     @conversation, @messages ,@inquiry = Messenger.get_conversation_messages(current_user, params[:id])
     Messenger.mark_as_read(current_user, @conversation.id) if @conversation
+    @respond_count = Messenger.get_respond_user(current_user , @conversation.id)if @conversation
   end
 
   # def destroy
@@ -50,5 +51,5 @@ class MessagesController < PrivateController
      redirect_to message_path(params[:id])
     end
   end
-
+  
 end

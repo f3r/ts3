@@ -96,12 +96,13 @@ module ApplicationHelper
   def site_tagline
     SiteConfig.site_tagline
   end
-  
+
   def css_color_scheme
     # FIXME: hardcoded the first result, SiteConfig cache is not getting cleared
-    color_scheme = "color_schemes/#{SiteConfig.first.color_scheme.blank? ? "default" : SiteConfig.first.color_scheme }/index"
+    scheme = SiteConfig.color_scheme.blank? ? "default" : SiteConfig.color_scheme
+    color_scheme = "color_schemes/#{scheme}/index"
   end
-  
+
   def gallery(name)
     g = Gallery.find_by_name(name)
     if !g.nil?

@@ -6,7 +6,9 @@
 
 %link{:rel => "icon", :type => "image/png", :href => "http://squarestays.com/favicon.png"}
 
-= stylesheet_link_tag "application"
+= stylesheet_link_tag 'plugins'
+= stylesheet_link_tag css_color_scheme
+
 = javascript_include_tag "application"
 - if @require_google_apis
   = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'

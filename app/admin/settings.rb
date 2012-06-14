@@ -23,6 +23,7 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :mailer_sender
       f.input :support_email
       f.input :mail_bcc
+      f.input :color_scheme, :as => :select, :collection => SiteConfig.color_schemes, :include_blank => false
     end
 
     f.inputs "Credentials for external services" do
@@ -50,4 +51,5 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
 
     f.buttons
   end
+  
 end

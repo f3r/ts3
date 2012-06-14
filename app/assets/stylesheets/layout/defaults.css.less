@@ -1,37 +1,10 @@
-/*
- * This is a manifest file that'll automatically include all the stylesheets available in this directory
- * and any sub-directories. You're free to add application-wide styles to this file and they'll appear at
- * the top of the compiled file, but it's generally better to create a new file per style scope.
- *
- * TODO: http://rwilcox.tumblr.com/post/9038701675/sass-variables-and-the-rails-3-1-asset-pipeline
- *
- *= require twitter/bootstrap
- *= require jquery/jquery-ui-1.8.16.custom.css
- *= require jquery/south-street/jquery-ui-1.8.16.custom.css
- *= require jquery/jquery.calendar.css
- *= require jquery/validationEngine.jquery.css
- *= require jquery/jquery.bookmark.css
- *= require fullcalendar.css
- *= require heypal
- *= require_self
- *= require_tree . 
-*/
+//********************************************************************************************************* 
+// HELPERS ADDED FROM HEYPAL.CSS.LESS
+//*********************************************************************************************************
 
-@import "twitter/bootstrap/variables";
-@import "twitter/bootstrap/mixins";
-
-@grayDark: #333;
-@smallfont: 10px;
-@linkColor: #3977B0;
-@grayLight: #F2F2F2;
-
-@logoColorDark: #3977b0;
-@logoColorLight: #91cef7;
-
-/********************************************************************************************************* 
- * HELPERS ADDED FROM HEYPAL.CSS.LESS
- *********************************************************************************************************/
-a { color: @linkColor}
+a {
+	color: @linkColor;
+}
 
 .hidden             { display: none !important; }
 .textCenter()       { text-align: center; }
@@ -79,7 +52,7 @@ aside .row, aside .media-grid, .aside .row, .aside .media-grid {
 
 // Sup
 // ---------
-.sup          { color: @grayLight; font-size: @smallfont; }
+.sup          { color: @grayLighter; font-size: @smallfont; }
 a.sup         { color: @linkColor; font-size: @smallfont; }
 .bottom       { margin-bottom: 10px; }
 .bottom-large { margin-bottom: 30px; }
@@ -94,7 +67,7 @@ p.strong {
 }
 
 .hr_line {
-  border-top: 1px solid @grayLight;
+  border-top: 1px solid @grayLighter;
   margin: 25px 0 10px 0;
 }
 
@@ -109,7 +82,7 @@ p.strong {
 
 /* The white background content wrapper */
 .content {
-  background-color: #fff;
+  background-color: @content_background_color;
   padding: 20px 0;
 }
 
@@ -159,7 +132,7 @@ select {
   }
 }
 .active-photo {
-  background: @grayLight;
+  background: @grayLighter;
   padding: 20px 40px;
 }
 .active-label {
@@ -189,10 +162,10 @@ aside .section-header, .aside .section-header, .section-header {
   margin: 0 0 10px;
   padding: 10px 14px;
   line-height: 1em;
-  color: #747474;
-  .box-shadow(inset 0 1px 0 @white);
+  color: @forms_section_header_text_color;
+  .box-shadow(inset 0 1px 0 @forms_section_header_boxshadow_color);
   font-size: 16px;
-  background: #F4F4F4;
+  background: @forms_section_header_background_color;
 }
 aside .section-header, .aside .section-header {
   margin: 0 0 20px;
@@ -202,7 +175,8 @@ aside .section-header, .aside .section-header {
 // -----------
 
 .credentials-box {
-  background: @grayLight;
+  background: @grayLighter;
+	color: @grayDarker;
   overflow:hidden;
 
   .border-radius(4px);
@@ -341,7 +315,7 @@ aside .section-header, .aside .section-header {
     .focal{
       width: 192px;
       height: 180px;
-      background: transparent url(badge.png) no-repeat 0 0;
+      background: transparent url(/assets/badge.png) no-repeat 0 0;
       padding: 5px 0px 10px;
       position: absolute;
       top: -15px;
@@ -440,16 +414,16 @@ ul.references{
     padding: 3px 0 3px 25px;
     
     &.check{
-      background: transparent url(icons/icon.check.png) no-repeat 0 center;
+      background: transparent url(/assets/icons/icon.check.png) no-repeat 0 center;
     }
     &.reviews{
-      background: transparent url(icons/icon.smile.png) no-repeat 0 center;
+      background: transparent url(/assets/icons/icon.smile.png) no-repeat 0 center;
     }
     &.response{
-      background: transparent url(icons/icon.response.png) no-repeat 0 center;
+      background: transparent url(/assets/icons/icon.response.png) no-repeat 0 center;
     }
     &.friends{
-      background: transparent url(icons/icon.people.png) no-repeat 0 center;
+      background: transparent url(/assets/icons/icon.people.png) no-repeat 0 center;
     }    
   }
 } // references
@@ -458,7 +432,7 @@ ul.references{
 // ------------
 .search-bar-container{
   &.sticky {
-    background: transparent url(bg.spillover.png) repeat-x left 0px;
+    background: transparent url(/assets/bg.spillover.png) repeat-x left 0px;
     /*background-color: white;*/
     padding: 20px 0 0;
     position: fixed;
@@ -472,8 +446,9 @@ ul.references{
 }
 
 .search-bar{  
-  background: #f8f8f8;
-  border: 1px solid #c0c0c0;
+  background: @search_top_filters_background_color;
+  border: 1px solid @search_top_filters_border_color;
+	color: @search_top_filters_text_color;
   padding: 10px 10px 0 10px;
 /*  .border-radius(5px);*/
   .clearfix();
@@ -481,13 +456,13 @@ ul.references{
   _zoom: 1;
   margin-bottom: 20px;
 
-  input#search_check_in, input#search_check_out {width:84px;}
+  input#check_in, input#check_out {width:84px;}
   h2 {line-height:23px;}
-/*
+
   form{
     margin: 0;
     .floatLeft();
-  }*/
+  }
   
   fieldset{
     padding: 0;
@@ -536,11 +511,11 @@ ul.references{
     a.current{ opacity: 1;}
     
     .disp-list{
-      background: transparent url(icon.list.png) no-repeat center center;
+      background: transparent url(/assets/icon.list.png) no-repeat center center;
     }
 
     .disp-gallery{
-      background: transparent url(icon.gallery.png) no-repeat center center;
+      background: transparent url(/assets/icon.gallery.png) no-repeat center center;
     }    
   }
 }
@@ -649,11 +624,11 @@ select#address_country {width:200px;}
 }
 .edit_profile_page form .fully_private,
 .edit_profile_page form .private {
-  background-image: url("icon_private.png");
+  background-image: url("/assets/icon_private.png");
 }
 
 .edit_profile_page form .public {
-  background-image: url("icon_public.png");
+  background-image: url("/assets/icon_public.png");
 }
 
 .edit_profile_page .unconfirmed_email span {
@@ -673,8 +648,6 @@ select#address_country {width:200px;}
 // Rent apartment
 
 ul.breadcrumb {
-  .divider { color:#666; }
-  a { color:#333; }
   .back, .root { font-weight: bold; }
 }
 
@@ -731,12 +704,12 @@ ul.breadcrumb {
       line-height: 30px;
     }
     .type {
-      background: url('icons/houseicon.png') no-repeat 0 5px
+      background: url('/assets/icons/houseicon.png') no-repeat 0 5px
     }
 
     .micro {
       font-size: 12px;
-      background: url('icons/sizeicon.png') no-repeat 0 3px;
+      background: url('/assets/icons/sizeicon.png') no-repeat 0 3px;
       line-height: 30px;
       color: #888;
     }
@@ -756,10 +729,10 @@ ul.breadcrumb {
       margin-bottom: 10px;
     }
 
-    #checkin-div { background: url('icons/checkin.png') no-repeat 0 8px }
-    #checkout-div { background: url('icons/checkout.png') no-repeat 0 8px }
-    #guests-div { background: url('icons/maxguests.png') no-repeat 0 8px }
-    #rooms-div { background: url('icons/bedrooms.png') no-repeat 0 8px }
+    #checkin-div { background: url('/assets/icons/checkin.png') no-repeat 0 8px }
+    #checkout-div { background: url('/assets/icons/checkout.png') no-repeat 0 8px }
+    #guests-div { background: url('/assets/icons/maxguests.png') no-repeat 0 8px }
+    #rooms-div { background: url('/assets/icons/bedrooms.png') no-repeat 0 8px }
 
     #checkin-div, #checkout-div, #guests-div, #rooms-div {
       padding-left: 60px;
@@ -797,21 +770,22 @@ ul.breadcrumb {
 // 
 // Panel Expander
 .panel-expander {
-	border-bottom: solid 1px #c4c4c4;
+	border-bottom: solid 1px @search_side_filters_border_color;
 	margin-top: 3px;	
+	color: @search_side_filters_text_color;
 	
   .header {
-  	background: #e9e7e7 no-repeat right -47px;
+  	background: @search_side_filters_header_background_color no-repeat right -47px;
   	padding: 10px 10px;
   	margin: 0;
   	font: bold 14px/100% Arial, Helvetica, sans-serif;
-  	border: solid 1px #c4c4c4;
+  	border: solid 1px @search_side_filters_header_border_color;
   	border-bottom: none;
   	cursor: pointer;
-  	color: #353535;
+  	color: @search_side_filters_header_text_color;
   	
   	&:hover {
-    	background-color: #e3e2e2;
+    	background-color: @search_side_filters_header_background_hover_color;
     }
     &.active {
     	background-position: right 9px;
@@ -820,15 +794,16 @@ ul.breadcrumb {
   }
 
   .content {
-  	background: #f7f7f7;
+  	background: @search_side_filters_background_color;
   	margin: 0;
   	padding: 10px 15px 15px;
-  	border-left: solid 1px #c4c4c4;
-  	border-right: solid 1px #c4c4c4;
+  	border-left: solid 1px @search_side_filters_border_color;
+  	border-right: solid 1px @search_side_filters_border_color;
   	font-size: 12px;
   	overflow: hidden;
   	
   	label{
+			color: @search_side_filters_text_color;
   	  font-size: 12px;
   	}
   }
@@ -860,7 +835,11 @@ ul.breadcrumb {
   
   .right{
     text-align: right;
-    float: right
+    float: right;
+		.label {
+			background-color: @search_side_filters_count_background_color;
+			color: @search_side_filters_count_text_color;
+		}
   }
   
   
@@ -945,7 +924,7 @@ h4.year-header {
   color: @gray;
 }
 
-#search_load_indicator {
+#search-load-indicator {
   left:45%;
   top:50%;
   position:fixed;
@@ -959,15 +938,15 @@ h1.title {
 h2.title {
   padding: 2px 20px;
   text-align: left;
-  background: #1F517F;
-  border: 1px solid @logoColorDark;
-  color: #EDEDED;
+  background-color: @wizard_title_background_color;
+  border: 1px solid @wizard_title_border_color;
+  color: @wizard_title_text_color;
   margin-bottom: 20px;
   -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
 }
 
 .preview-button {
-  width: 100px;
+  width: 120px;
   text-align: center;
 }
 
@@ -1016,7 +995,7 @@ h2.title {
 	background: @red;
 	position:relative;
 	z-index:5001;
-	color: @grayLight;
+	color: @grayLighter;
 	width: 150px;
 	font-size: 12px;
 	border: 2px solid #ddd;
@@ -1053,10 +1032,10 @@ a.tooltip, a.tooltip-link, a.popover-link {
   background-position:left center;
 
   &.check {
-    background-image:url(icons/icon.check.png);
+    background-image:url(/assets/icons/icon.check.png);
   }
   &.ekis {
-    background-image:url(icons/icon.ekis.png);
+    background-image:url(/assets/icons/icon.ekis.png);
   }
 }
 
@@ -1146,13 +1125,13 @@ pre.desc {
 }
 
 .ui-slider-horizontal .ui-state-default {
-  background: transparent url(sliderhandle.png) no-repeat scroll 45% 49%;
+  background: transparent url(/assets/sliderhandle.png) no-repeat scroll 45% 49%;
   border: none;
   top: -5px;
 }
 
 .ui-widget-header, .ui-slider-horizontal {
-  background: url(sliderbase.png) no-repeat 50% 50%;
+  background: url(/assets/sliderbase.png) no-repeat 50% 50%;
   border: #9999cc 1px solid;
 }
 
@@ -1166,8 +1145,8 @@ pre.desc {
 form#wizard_form label.no_minimum_stay,
 form#wizard_form label.no_maximum_stay { float:none; }
 
-div.start div.hub form input#search_check_in.textbox,
-div.start div.hub form input#search_check_out.textbox {width:118px;}
+div.start div.hub form input#check_in.textbox,
+div.start div.hub form input#check_out.textbox {width:118px;}
 
 
 /* Public Site Pages */
@@ -1184,6 +1163,18 @@ div.start div.hub form input#search_check_out.textbox {width:118px;}
  * HEADER
  *********************************************************************************************************/
 .header {
+	.logo {		
+		a {
+			text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			background-repeat: no-repeat;
+			background-position: left center;
+			width:270px;
+			height:60px;
+			display:block;
+		}
+	}
   > .container {
     height: 65px;
     margin-top: 5px;
@@ -1226,9 +1217,15 @@ div.start div.hub form input#search_check_out.textbox {width:118px;}
 
 header.header {
   height: 105px;
+	background-color: @header_background_color;
 }
 
-.navbar {
+.navbar {	
+	.navbar-inner {
+		.container {
+			width:940px;
+		}
+	}
   /* Links in the menu */
   ul.nav > li > a {
     color: white;
@@ -1283,8 +1280,18 @@ header.header {
   
 }
 
-.nav .add-item {
-  background-color: #3977B0;  
+.navbar-fixed-top {
+	.navbar-inner {
+		padding-left: 20px;
+		padding-right: 20px;
+	}
+}
+
+.navbar .nav .add-item {
+  background-color: @navbar_add_item_button_background_color;
+	a {
+		color: @navbar_add_item_button_text_color;
+	}
 }
 
 .preference-wrapper{
@@ -1297,7 +1304,7 @@ header.header {
    .dropdown-toggle{
      display: block;
      padding: 0 10px 0 33px;
-     background: transparent url(blue-arrow-down.png) no-repeat 85px center;      
+     background: transparent url(/assets/blue-arrow-down.png) no-repeat 85px center;      
      color: #333;
      width: 60px;
      font-weight: bold;
@@ -1342,7 +1349,7 @@ header.header {
        padding: 0;
        width: 21px;
        height: 11px;
-       background: transparent url(white.drop.arrow.png) no-repeat center center;              
+       background: transparent url(/assets/white.drop.arrow.png) no-repeat center center;              
        position: absolute;
        top: -11px;
        left: 15px;

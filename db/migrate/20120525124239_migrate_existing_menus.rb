@@ -1,14 +1,14 @@
 class MigrateExistingMenus < ActiveRecord::Migration
   def up
-    hw = MenuSection.create(name: 'how-it-works', display_name: 'How it Works?', mtype: 1, location: 1)
+    hw = MenuSection.create(name: 'how-it-works', display_name: 'How it Works?')
     p = Cmspage.find_by_url 'how-it-works'
     hw.cmspages << p
-    
-    why = MenuSection.create(name: 'why-squarestays', display_name: 'Why SquareStays?', mtype: 1, location: 1)
+
+    why = MenuSection.create(name: 'why-squarestays', display_name: 'Why SquareStays?')
     p = Cmspage.find_by_url 'why'
     why.cmspages << p
-    
-    help = MenuSection.create(name: 'help', display_name: 'Help', mtype: 2, location: 2)
+
+    help = MenuSection.create(name: 'help', display_name: 'Help')
     p = Cmspage.find_by_url 'how-it-works'
     help.cmspages << p
     p = Cmspage.find_by_url 'why'

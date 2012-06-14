@@ -1,0 +1,47 @@
+.tabbed-panel
+  %ul.nav.nav-tabs
+    %li.active
+      %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("places.photos")
+    %li
+      %a{:href => "#map-tab",      'data-toggle' => 'tab'}= t("places.map")
+    %li
+      %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("places.calendar")
+    %li
+      %a{:href => "#details-tab", 'data-toggle' => 'tab'}= t("places.details")
+    - if @place.house_rules.present?
+      %li
+        %a{:href => "#house-rules-tab", 'data-toggle' => 'tab'}= t("places.house_rules")
+    %li
+      %a{:href => '#details-questions', 'data-toggle' => 'tab'}
+        = t('places.questions_title', :count => @place.comments.count)
+
+    - render_other_properties = !current_user?(@owner)
+    -# Why load the places if not needed ;)
+    - other_properties = render_other_properties ? @owner.places.published.where('id != ?', @place) : []
+    - if other_properties.present?
+       %li
+          %a{:href => '#other-properties', 'data-toggle' => 'tab'}
+            = t('places.other_properties', :count => other_properties.count)
+
+  .tab-content
+    // Photo Slider pane
+    = render 'places/photos'
+
+    // Map Pane
+    = render 'places/map'
+
+    // Calendar Pane
+    = render 'places/calendar'
+
+    // Details Pane
+    = render 'places/details'
+
+    // House Rules Pane
+    - if @place.house_rules.present?
+      = render 'places/house_rules'
+
+    // Questions Tab
+    = render 'comments/questions'
+
+    // Other Products by this agent
+    = render 'places/other_properties'

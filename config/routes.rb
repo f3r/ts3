@@ -41,7 +41,6 @@ HeyPalFrontEnd::Application.routes.draw do
       get   :publish_check
       match :availability
     end
-
     resources :photos, :only => [:create, :update, :destroy] do
       collection do
         put :sort
@@ -53,6 +52,9 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
+  match '/my_places'          => 'places#index',              :as => :my_places
+
+
   ###########################################################################################
   # Saved searches
   ###########################################################################################
@@ -61,8 +63,6 @@ HeyPalFrontEnd::Application.routes.draw do
     get 'unpause' => 'alerts#unpause'
   end
   match '/search/code/:search_code' => 'alerts#show_search_code', :as => :show_search_code
-
-  match '/my_places'          => 'places#index',              :as => :my_places
 
   ###########################################################################################
   # Inquiries
@@ -104,7 +104,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/:city'           => 'search#index', :city => City.routes_regexp
 
   # SEO Routes
-  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp
+  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp, :as => :city_place
 
 
   ###########################################################################################

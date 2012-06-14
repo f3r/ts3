@@ -48,20 +48,21 @@
           .span8
             .details_label= t("places.price_per_night")
           .span4
-            .details_value= "#{get_pref_currency}#{@place.price_per_night}"
+            .details_value= place_price(@place, :per_night)
+
       - if @place.price_per_week.present?
         .row-fluid
           .span8
             .details_label= t("places.price_per_week")
           .span4
-            .details_value= number_to_currency @place.price_per_week, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+            .details_value= place_price(@place, :per_week)
+
       - if @place.price_per_month.present?
         .row-fluid
           .span8
             .details_label= t("places.price_per_month")
           .span4
-            .details_value= number_to_currency @place.price_per_month, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-
+            .details_value= place_price(@place, :per_month)
 
     // Price final cleanup, security deposit, cancellation policy
     .span4
@@ -70,19 +71,21 @@
           .span7
             .details_label= t("places.final_cleanup")
           .span5
-            .details_value= number_to_currency @place.price_final_cleanup, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
-      - unless @place.price_security_deposit.blank? || @place.price_security_deposit == 0
+            .details_value= place_price(@place, :final_cleanup)
+
+      - if @place.price_security_deposit && @place.price_security_deposit > 0
         .row-fluid
           .span7
             .details_label= t("places.security_deposit")
           .span5
-            .details_value= number_to_currency @place.price_security_deposit, :unit => currency_sign_of(@place.currency), :strip_insignificant_zeros => true
+            .details_value= place_price(@place, :security_deposit)
+
       .row-fluid
         .span7
           .details_label= t("places.cancellation")
         .span5
           .details_value= cancellation_desc(@place)
-    
+
 .span10{:style => "margin:13px auto 20px 217px"}
   .row-fluid
     // We group all amenities into 4 columns

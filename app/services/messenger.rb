@@ -102,7 +102,7 @@ class Messenger
   
   def self.set_as_archive(user , conversation_id)
     inbox_entry = InboxEntry.where(:user_id => user.id, :conversation_id => conversation_id).first!
-    inbox_entry.mark_as_archive
+    inbox_entry.set_as_archive
     inbox_entry.save!
   end
 end

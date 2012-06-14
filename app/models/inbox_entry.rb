@@ -27,7 +27,7 @@ class InboxEntry < ActiveRecord::Base
     InboxEntry.where(:conversation_id => self.conversation_id).where(['user_id <> ?', self.user_id]).first!
   end
   
-  def mark_as_archive
+  def set_as_archive
     self.deleted_at = Time.now
   end
 

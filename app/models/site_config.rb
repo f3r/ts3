@@ -1,8 +1,8 @@
 class SiteConfig < ActiveRecord::Base
-  after_commit :reset_cache
+  after_save :reset_cache
 
   def self.instance
-    @instance ||= SiteConfig.first || SiteConfig.new
+    @instance = @instance || SiteConfig.first || SiteConfig.new
   end
 
   def self.mail_sysadmins
@@ -50,7 +50,11 @@ class SiteConfig < ActiveRecord::Base
 
   protected
 
-  def reset_cache
+  def self.reset_cache
     @instance = nil
+  end
+
+  def reset_cache
+    self.class.reset_cache
   end
 end

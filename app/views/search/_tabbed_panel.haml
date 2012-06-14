@@ -15,6 +15,15 @@
       %a{:href => '#details-questions', 'data-toggle' => 'tab'}
         = t('places.questions_title', :count => @place.comments.count)
 
+    - @other_properties = []
+    - unless current_user?(@owner)
+      - @other_properties = @owner.places.published.where('id != ?', @place)
+
+    - if @other_properties.present?
+      %li
+        %a{:href => '#other-properties', 'data-toggle' => 'tab'}
+          = t('places.other_properties', :count => @other_properties.count)
+
   .tab-content
     // Photo Slider pane
     = render 'places/photos'
@@ -34,3 +43,7 @@
 
     // Questions Tab
     = render 'comments/questions'
+
+    // Other Products by this agent
+    - if @other_properties.present?
+      = render 'places/other_properties'

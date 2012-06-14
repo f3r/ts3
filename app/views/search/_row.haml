@@ -5,7 +5,7 @@
     = link_to url do
       = image_tag(place.primary_photo.blank? ? "http://placehold.it/150x100" : place.primary_photo.photo.url(:medsmall))
   .info
-    .title  
+    .title
       - unless my_places
         = render 'button_favorite', :favorable => place
       %h3
@@ -13,7 +13,7 @@
 
     .property.data-block
       .title
-        .type.house 
+        .type.house
           = place.place_type.translated_name
         .type.size
           = place_size(place)
@@ -29,7 +29,7 @@
   .data-block.last-child
     .price
       - if place.price_per_month.present?
-        .figure= place_price(place)
+        .figure= place_price(place, :per_month)
         .micro= t("places.per_month")
     - if my_places
       .manage

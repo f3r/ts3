@@ -18,4 +18,10 @@ RSpec.configure do |config|
 
   User.attachment_definitions[:avatar][:path] = "public/system/" + User.attachment_definitions[:avatar][:path]
   Photo.attachment_definitions[:photo][:path] = "public/system/" + Photo.attachment_definitions[:photo][:path]
+
+  config.before(:each) do
+    # Do not depend on external currency service on test mode
+    Currency.any_instance.stub(:from_usd).and_return(666)
+    Place.any_instance.stub(:geocode).and_return(true)
+  end
 end

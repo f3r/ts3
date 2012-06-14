@@ -62,8 +62,9 @@ module PlacesHelper
     html
   end
 
-  def place_price(place)
-    "#{get_pref_currency}#{place.price_per_month}"
+  def place_price(place, per_what = :per_month)
+    symbol, amount = place.price(current_currency, per_what)
+    "#{current_currency.label}#{amount}"
   end
 
   def render_photo(photo)

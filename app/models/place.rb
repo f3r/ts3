@@ -1,6 +1,4 @@
 include GeneralHelper
-require 'money/bank/google_currency'
-Money.default_bank = Money::Bank::GoogleCurrency.new
 
 class Place < ActiveRecord::Base
   using_access_control
@@ -68,6 +66,25 @@ class Place < ActiveRecord::Base
 
   scope :published,    where("published")
   scope :unpublished,  where("not published")
+
+  def price(a_currency = nil, unit = :per_month)
+    a_currency ||= Currency.default
+
+    # If we are asked in the original currency of the place
+    if self.currency == a_currency.currency_code
+      amount = self.send("price_#{unit}")
+    else
+      # If we are asked in the 'special' USD (precalculated with before_save callback)
+      if a_currency.usd?
+        amount = self.send("price_#{unit}_usd")
+      else
+        # Must convert between USD and a_currency
+        amount_usd = self.send("price_#{unit}_usd")
+        amount = a_currency.from_usd(amount_usd/100.0).to_f.to_i
+      end
+    end
+    [a_currency.symbol, amount]
+  end
 
   def primary_photo
     self.photos.first

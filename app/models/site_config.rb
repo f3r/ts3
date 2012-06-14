@@ -2,7 +2,7 @@ class SiteConfig < ActiveRecord::Base
   after_save :reset_cache
 
   def self.instance
-    @instance ||= SiteConfig.first || SiteConfig.new
+    @instance = @instance || SiteConfig.first || SiteConfig.new
   end
 
   def self.mail_sysadmins
@@ -34,9 +34,27 @@ class SiteConfig < ActiveRecord::Base
     name.to_s.upcase.constantize
   end
 
+  # get a list of color_schemes the directory, get name from the first line
+  def self.color_schemes
+    color_schemes = []
+    basedir = Rails.root + "app/assets/stylesheets/color_schemes/"
+    css_files = Dir.glob(basedir + '*')
+    css_files.each do |directory|
+      file = directory + "/index.less"
+      description = File.open(file) {|f| f.readline}.gsub("/*", "").gsub("*/", "").strip!
+      name = directory.gsub(basedir.to_s,"")
+      color_schemes << [description, name] if description && name
+    end
+    return color_schemes
+  end
+
   protected
 
-  def reset_cache
+  def self.reset_cache
     @instance = nil
+  end
+
+  def reset_cache
+    self.class.reset_cache
   end
 end

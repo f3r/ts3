@@ -13,6 +13,9 @@ gem 'haml',          '~>3.1.4'
 gem 'jquery-rails',  '~>1.0.18'
 gem 'activemerchant'
 gem 'less-rails-bootstrap'
+# gem 'less'
+# gem 'less-rails'
+gem 'therubyracer'
 
 gem 'exception_notification'
 gem "recaptcha", :require => "recaptcha/rails"

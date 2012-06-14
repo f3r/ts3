@@ -1,0 +1,20 @@
+.description
+  .row
+    .span8
+      %pre.desc= @place.description
+    .span2.right.span-below
+      .title
+        =t("places.minimum_stay")
+      .micro
+        -if @place.minimum_stay != 0
+          = "#{@place.minimum_stay} #{t(@place.stay_unit)}"
+        -else
+          = t("places.no_minimum")
+    .span2.right
+      .title
+        =t("places.maximum_stay")
+      .micro
+        -if @place.maximum_stay != 0
+          = "#{@place.maximum_stay} #{t(@place.stay_unit)}"
+        -else
+          = t("places.no_maximum")

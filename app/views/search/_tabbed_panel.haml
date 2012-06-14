@@ -15,13 +15,14 @@
       %a{:href => '#details-questions', 'data-toggle' => 'tab'}
         = t('places.questions_title', :count => @place.comments.count)
 
-    - render_other_properties = !current_user?(@owner)
-    -# Why load the places if not needed ;)
-    - other_properties = render_other_properties ? @owner.places.published.where('id != ?', @place) : []
-    - if other_properties.present?
-       %li
-          %a{:href => '#other-properties', 'data-toggle' => 'tab'}
-            = t('places.other_properties', :count => other_properties.count)
+    - @other_properties = []
+    - unless current_user?(@owner)
+      - @other_properties = @owner.places.published.where('id != ?', @place)
+
+    - if @other_properties.present?
+      %li
+        %a{:href => '#other-properties', 'data-toggle' => 'tab'}
+          = t('places.other_properties', :count => @other_properties.count)
 
   .tab-content
     // Photo Slider pane
@@ -44,4 +45,5 @@
     = render 'comments/questions'
 
     // Other Products by this agent
-    = render 'places/other_properties'
+    - if @other_properties.present?
+      = render 'places/other_properties'

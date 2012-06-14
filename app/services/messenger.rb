@@ -1,7 +1,7 @@
 class Messenger
   def self.get_conversations(user, filters = {})
     conditions = {
-      :user_id => user.id, :deleted_at => nil
+      :user_id => user.id
     }
 
     if filters[:target]
@@ -24,7 +24,7 @@ class Messenger
   def self.get_conversation_messages(user, conversation_id)
     inbox_entry = InboxEntry.where(:user_id => user.id, :conversation_id => conversation_id).first!
     conversation = inbox_entry.conversation
-    [conversation, conversation.messages]
+    [conversation, conversation.messages,inbox_entry]
   end
 
   def self.start_conversation(sender, conversation)
@@ -98,5 +98,11 @@ class Messenger
     unread = InboxEntry.where(conditions).where(:read => false).count
 
     {:total => total, :unread => unread}
+  end
+  
+  def self.set_as_archive(user , conversation_id)
+    inbox_entry = InboxEntry.where(:user_id => user.id, :conversation_id => conversation_id).first!
+    inbox_entry.mark_as_archive
+    inbox_entry.save!
   end
 end

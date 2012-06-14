@@ -2,12 +2,14 @@
   = breadcrumb [[t("inquiries.inquiries_title"), messages_path]], conversation_title do
     .actions.pull-right
       = link_to t("messages.mark_unread"), mark_as_unread_message_path(@conversation.id), :method => :put
+      - if !@inquiry.deleted_at.present?
+        = link_to t("messages.archive"), set_as_archive_message_path(@conversation.id), :method => :put, :confirm => t("messages.agent_archive_message")
     
   - if @inquiry
     .row.target
       = render_target(@conversation.target, :box)
 
-  - if @messages.present?
+  - if @messages.present? && !@inquiry.deleted_at.present?
     - @messages.each do |m|
       = render 'message', :m => m
   - else

@@ -17,7 +17,7 @@ class MessagesController < PrivateController
 
   # Retrieves all the messages from a conversation
   def show
-    @conversation, @messages = Messenger.get_conversation_messages(current_user, params[:id])
+    @conversation, @messages ,@inquiry = Messenger.get_conversation_messages(current_user, params[:id])
     Messenger.mark_as_read(current_user, @conversation.id) if @conversation
   end
 
@@ -44,4 +44,11 @@ class MessagesController < PrivateController
     end
     redirect_to messages_path
   end
+  
+  def set_as_archive
+    if Messenger.set_as_archive(current_user, params[:id])
+     redirect_to message_path(params[:id])
+    end
+  end
+
 end

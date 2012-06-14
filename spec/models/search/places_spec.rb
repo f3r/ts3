@@ -24,7 +24,7 @@ describe Search::Places do
     end
 
     it "calculates place type filters" do
-      filters = @search.place_type_filters
+      filters = @search.category_filters
       filters.size.should == 2
 
       filters[0][0].should == @pt1

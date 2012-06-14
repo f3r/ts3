@@ -1,0 +1,12 @@
+.control-group
+  = f.label :place_type_id, t("places.wizard.place_type"), :class => 'control-label'
+  .controls
+    = f.select :place_type_id, place_types_select
+.control-group.required
+  = f.label :num_bedrooms, t("places.wizard.how_many_bedrooms"), :class => 'control-label'
+  .controls
+    = f.text_field :num_bedrooms, :class => "validate[required,custom[integer],min[0]] span1"
+.control-group.required
+  = f.label :max_guests, t("places.wizard.max_guests"), :class => 'control-label'
+  .controls
+    = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1"

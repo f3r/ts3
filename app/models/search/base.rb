@@ -50,6 +50,12 @@ module Search
       results.calculate(operation, field)
     end
 
+    def price_range
+      if self.min_price.present? && self.max_price.present?
+        Range.new(self.min_price, self.max_price)
+      end
+    end
+
     def collection
       raise "Must override"
     end
@@ -64,18 +70,6 @@ module Search
 
     def category_filters
       filters = []
-      # current_types = self.place_type_ids
-
-      # PlaceType.all.each do |pt|
-      #   self.place_type_ids = pt.id
-      #   if ((count = self.count) > 0)
-      #     checked = current_types && current_types.include?(pt.id.to_s)
-      #     filters << [pt, count, checked]
-      #   end
-      # end
-
-      # self.place_type_ids = current_types
-      # filters
     end
 
     def price_range_bounds
@@ -84,8 +78,9 @@ module Search
       self.min_price = self.max_price = nil
 
       # Calculate the range
-      min = self.calculate(:minimum, :price)
-      max = self.calculate(:maximum, :price)
+      price_field = "price_#{self.resource_class.price_unit}"
+      min = self.calculate(:minimum, price_field)
+      max = self.calculate(:maximum, price_field)
 
       unless min && max
         return [nil, nil]
@@ -107,6 +102,10 @@ module Search
     end
 
     protected
+
+    def collection
+      self.resource_class.published
+    end
 
     def calculate_results
       @conditions = {}

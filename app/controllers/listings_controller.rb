@@ -2,9 +2,9 @@ class ListingsController < PrivateController
   layout 'plain'
   # before_filter :find_place, :only => [:wizard, :show, :preview, :photos, :rent, :availability]
 
-  # def index
-  #   @results = reourse_class.where(:user_id => current_user.id)
-  # end
+  def index
+    @collection = resource_class.manageable_by(current_user)
+  end
 
   def new
     @resource = resource_class.new
@@ -151,7 +151,7 @@ class ListingsController < PrivateController
   # end
 
   def collection
-    resource_class.where('products.user_id' => current_user.id)
+    resource_class.manageable_by(current_user)
   end
 
   def resource_class

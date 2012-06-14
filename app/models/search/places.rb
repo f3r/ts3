@@ -7,21 +7,15 @@ module Search
 
     attr_accessor :place_type_ids
 
-    def price_range
-      if self.min_price.present? && self.max_price.present?
-        Range.new(self.min_price, self.max_price)
-      end
-    end
-
-    def collection
-      Place.published
+    def resource_class
+      ::Place
     end
 
     def add_filters
-      add_equals_condition(:city_id, self.city_id)
-      add_equals_condition(:place_type_id, self.place_type_ids)
+      #add_equals_condition(:city_id, self.city_id)
+      #add_equals_condition(:place_type_id, self.place_type_ids)
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
-      add_equals_condition(:price_per_month, self.price_range)
+      #add_equals_condition(:price_per_month, self.price_range)
     end
 
     def order
@@ -41,7 +35,7 @@ module Search
 
     # Information for filters
 
-    def place_type_filters
+    def category_filters
       filters = []
       current_types = self.place_type_ids
 
@@ -66,7 +60,7 @@ module Search
       min = self.calculate(:minimum, :price_per_month)
       max = self.calculate(:maximum, :price_per_month)
 
-      # Convert currency
+      #TODO: Convert currency
 
       # Round to multiples of 100
       max = (max/100.0).ceil * 100   if max

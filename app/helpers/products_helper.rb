@@ -16,6 +16,11 @@ module ProductsHelper
   end
 
   def product_price(product)
-  	"$ 4534"
+    symbol, amount = product.price(current_currency, product.price_unit)
+    "#{current_currency.label}#{amount}"
+  end
+
+  def product_price_unit(product)
+    t(product.price_unit)
   end
 end

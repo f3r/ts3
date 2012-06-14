@@ -21,8 +21,8 @@
                   %li{:class => @current_controller == "users" && @current_action == "show" ? "active" : ""}
                     = link_to t("template.header.menu.my_profile"), profile_path
                   - if is_agent? or is_admin?
-                    %li{:class => @current_controller == "places" && @current_action == "my_places" ? "active" : ""}
-                      = link_to t("template.header.menu.my_places"), my_places_path
+                    %li{:class => @current_controller == "listings" && @current_action == "index" ? "active" : ""}
+                      = link_to t("template.header.menu.my_places"), listings_path
                   %li{:class => @current_controller == "places" && @current_action == "favorite_places" ? "active" : ""}
                     = link_to t("template.header.menu.my_favorite_places"), favorites_search_index_path
                   %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}

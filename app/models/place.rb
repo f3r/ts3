@@ -67,6 +67,14 @@ class Place < ActiveRecord::Base
   scope :published,    where("published")
   scope :unpublished,  where("not published")
 
+  def self.manageable_by(user)
+    self.where(:user_id => user.id)
+  end
+
+  def self.searcher
+    Search::Places
+  end
+
   def price(a_currency = nil, unit = :per_month)
     a_currency ||= Currency.default
 
@@ -84,10 +92,6 @@ class Place < ActiveRecord::Base
       end
     end
     [a_currency.symbol, amount]
-  end
-
-  def self.searcher
-    Search::Places
   end
 
   def primary_photo
@@ -259,6 +263,15 @@ class Place < ActiveRecord::Base
   def convert_prices_in_usd_cents!
     convert_prices_in_usd_cents(true)
     self.save(:validate => false)
+  end
+
+
+  def self.price_unit
+    :per_month
+  end
+
+  def price_unit
+    self.class.price_unit
   end
 
   private

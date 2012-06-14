@@ -1,0 +1,3 @@
+en:
+  products:
+    my_listings: 'My %{product_plural}'

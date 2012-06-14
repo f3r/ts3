@@ -17,7 +17,7 @@
 
     - @other_properties = []
     - unless current_user?(@owner)
-      - @other_properties = @owner.places.published.where('id != ?', @place)
+      - @other_properties = @owner.other_active_properties_except @place
 
     - if @other_properties.present?
       %li

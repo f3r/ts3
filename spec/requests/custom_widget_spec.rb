@@ -18,14 +18,14 @@ describe "CustomWidgetScripts" do
     @site_config.after_body_tag_start = "AFTER BODY START"
     @site_config.save
     visit "/"
-    page.should have_content(@site_config.head_tag)
+    page.should have_content(@site_config.after_body_tag_start)
   end
   
   it "renders script in before body end" do
-    @site_config.after_body_tag_start = "BEFORE BODY END"
+    @site_config.before_body_tag_end = "BEFORE BODY END"
     @site_config.save
     visit "/"
-    page.should have_content(@site_config.head_tag)
+    page.should have_content(@site_config.before_body_tag_end)
   end
 
 end

@@ -6,6 +6,7 @@ describe "Places Management" do
     @currency = create(:currency)
     @city     = create(:city, :name => "Singapore")
     @place    = create(:published_place, :user => @agent)
+    SiteConfig.stub(:product_class).and_return(Place)
   end
 
   def login_as(user)
@@ -17,7 +18,7 @@ describe "Places Management" do
 
   it 'shows places for a city' do
     login_as @agent
-    visit '/my_places'
+    visit '/listings'
     page.should have_content(@place.title)
   end
 end

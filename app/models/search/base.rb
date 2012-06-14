@@ -72,13 +72,16 @@ module Search
       filters = []
     end
 
+    def price_field
+      "price_#{self.resource_class.price_unit}"
+    end
+
     def price_range_bounds
       # Backup the current filter values
       current_prices = [self.min_price, self.max_price]
       self.min_price = self.max_price = nil
 
       # Calculate the range
-      price_field = "price_#{self.resource_class.price_unit}"
       min = self.calculate(:minimum, price_field)
       max = self.calculate(:maximum, price_field)
 
@@ -112,7 +115,7 @@ module Search
       @sql_conditions = []
 
       # Prepare conditions
-      add_filters
+      add_conditions
 
       # Start with base collection
       @results = self.collection
@@ -126,6 +129,12 @@ module Search
       end
 
       @results
+    end
+
+    def add_conditions
+      add_equals_condition('products.city_id', self.city_id)
+      add_equals_condition(price_field, self.price_range)
+      add_filters # From override
     end
 
     def add_equals_condition(key, value)

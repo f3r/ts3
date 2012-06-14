@@ -11,11 +11,12 @@ module Search
       ::Place
     end
 
-    def add_filters
-      #add_equals_condition(:city_id, self.city_id)
-      #add_equals_condition(:place_type_id, self.place_type_ids)
+    def add_conditions
+      add_equals_condition(:city_id, self.city_id)
+      add_equals_condition(price_field, self.price_range)
+
+      add_equals_condition(:place_type_id, self.place_type_ids)
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
-      #add_equals_condition(:price_per_month, self.price_range)
     end
 
     def order
@@ -34,7 +35,6 @@ module Search
 
 
     # Information for filters
-
     def category_filters
       filters = []
       current_types = self.place_type_ids
@@ -49,31 +49,6 @@ module Search
 
       self.place_type_ids = current_types
       filters
-    end
-
-    def price_range_bounds
-      # Backup the current filter values
-      current_prices = [self.min_price, self.max_price]
-      self.min_price = self.max_price = nil
-
-      # Calculate the range
-      min = self.calculate(:minimum, :price_per_month)
-      max = self.calculate(:maximum, :price_per_month)
-
-      #TODO: Convert currency
-
-      # Round to multiples of 100
-      max = (max/100.0).ceil * 100   if max
-      min = (min/100.0).floor * 100  if min
-
-      if min && max && (min == max)
-        max = min + 100
-      end
-
-      # Restore the filter
-      self.min_price, self.max_price = current_prices
-
-      [min, max]
     end
   end
 end

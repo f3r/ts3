@@ -1,18 +1,19 @@
 require 'spec_helper'
 
-describe PlacesController do
+describe ListingsController do
   before(:each) do
     @user  = create(:user)
     @agent = create(:agent)
     @city = create(:city)
     @place_type = create(:place_type)
+    SiteConfig.stub(:product_class).and_return(Place)
   end
 
   context "Creation" do
     it "creates a place" do
       login_as @agent
       expect {
-        post :create, :place => attributes_for(:place, :city_id => @city.id, :place_type_id => @place_type.id)
+        post :create, :listing => attributes_for(:place, :city_id => @city.id, :place_type_id => @place_type.id)
         response.should be_redirect
       }.to change(Place, :count).by(1)
     end
@@ -20,11 +21,11 @@ describe PlacesController do
     it "doens't create a place with validation errors" do
       login_as @agent
       expect {
-        post :create, :place => attributes_for(:place, :title => nil, :city_id => @city.id, :place_type_id => @place_type.id)
+        post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :place_type_id => @place_type.id)
         response.should be_success
       }.to_not change(Place, :count)
 
-      assigns(:place).errors_on(:title).should be_true
+      assigns(:resource).errors_on(:title).should be_true
     end
   end
 
@@ -36,20 +37,20 @@ describe PlacesController do
     it "won't allow Guest to edit a place he doesn't own" do
       login_as @user
       expect {
-        get :wizard, :id => @place.id
-      }.to raise_error(Authorization::NotAuthorized)
+        get :edit, :id => @place.id
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "shows wizard for place" do
       login_as @agent
-      get :wizard, :id => @place.id
+      get :edit, :id => @place.id
       response.should be_success
-      assigns(:place).should == @place
+      assigns(:resource).should == @place
     end
 
     it "updates a place field" do
       login_as @agent
-      put :update, :id => @place.id, :place => {:num_bathrooms => 3}
+      put :update, :id => @place.id, :listing => {:num_bathrooms => 3}
       response.should be_success
 
       @place.reload
@@ -58,7 +59,7 @@ describe PlacesController do
 
     it "updates a place size" do
       login_as @agent
-      put :update, :id => @place.id, :place => {:size => 100}
+      put :update, :id => @place.id, :listing => {:size => 100}
       response.should be_success
 
       @place.reload
@@ -85,7 +86,7 @@ describe PlacesController do
       login_as @agent
       @place = create(:published_place, :user => @agent)
 
-      put :update_currency, :id => @place.id, :place => {:currency => 'GBP'}
+      put :update_currency, :id => @place.id, :listing => {:currency => 'GBP'}
       @place.reload
 
       @place.currency.should == 'GBP'
@@ -102,7 +103,7 @@ describe PlacesController do
       get :index
       response.should be_success
 
-      assigns(:results).count.should == 1
+      assigns(:collection).count.should == 1
     end
 
     it "shows place preview to owner" do
@@ -110,14 +111,14 @@ describe PlacesController do
       get :show, :id => @place.id
       response.should be_success
 
-      assigns(:place).should == @place
+      assigns(:resource).should == @place
     end
 
     it "won't allow Guest to see a place he doesn't own" do
       login_as @user
       expect {
         get :show, :id => @place.id
-      }.to raise_error(Authorization::NotAuthorized)
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
 
     it "deletes a place" do
@@ -132,7 +133,7 @@ describe PlacesController do
       login_as @user
       expect {
         post :destroy, :id => @place.id
-      }.to raise_error(Authorization::NotAuthorized)
+      }.to raise_error(ActiveRecord::RecordNotFound)
     end
   end
 end

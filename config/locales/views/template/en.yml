@@ -5,7 +5,7 @@ en:
   template:
     header:
       menu:
-        find_places: Find a Place
+        find: Find a %{product_name}
         how_it_works: How it works
         why_site: "Why %{site_name}?"
         help: Help

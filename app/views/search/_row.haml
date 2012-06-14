@@ -1,12 +1,13 @@
 - my_places ||= false
+- my_favorites ||= false
 %li{:class => "place_#{place.id}"}
   .thumb.data-block
-    - url = my_places ? place_path(place) : seo_place_path(place)
+    - url = (my_places or my_favorites) ? place_path(place) : seo_place_path(place)
     = link_to url do
       = image_tag(place.primary_photo.blank? ? "http://placehold.it/150x100" : place.primary_photo.photo.url(:medsmall))
   .info
     .title
-      - unless my_places
+      - unless (my_places or my_favorites)
         = render 'button_favorite', :favorable => place
       %h3
         = link_to place.title, url
@@ -26,10 +27,11 @@
         - unless place.num_bathrooms.blank?
           .type.bathroom
             = t("places.bathrooms_count", :count => place.num_bathrooms)
-  .data-block.last-child
+  .pricing.data-block.last-child
     .price
       - if place.price_per_month.present?
-        .figure= place_price(place, :per_month)
+        .figure
+          %span= place_price(place, :per_month)
         .micro= t("places.per_month")
     - if my_places
       .manage
@@ -41,3 +43,10 @@
           %span.label.place_status.label-success=  t("places.listed")
         - else
           %span.label.place_status=  t("places.invisible")
+    - elsif my_favorites
+      .manage
+        %span.edit_delete_buttons
+          = link_to t("favorites.remove_favorite"), favorite_path(:id => place.id, :remove_item => true), :remote => true, :method => :delete, :class => 'btn large small button_remove_favorite', :confirm => t("are_you_sure")
+
+:javascript
+  $('.price .figure').textfill({ maxFontPixels: 26 });

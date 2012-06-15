@@ -38,3 +38,6 @@
 = csrf_meta_tag
 
 = yield :javascripts
+
+-if Rails.env.staging? || Rails.env.production?
+  = raw SiteConfig.head_tag

@@ -77,6 +77,10 @@ module Search
       filters = []
     end
 
+    def amenity_filters
+      filters = []
+    end
+
     def price_unit
       self.resource_class.price_unit
     end

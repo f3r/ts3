@@ -19,6 +19,16 @@ class Product < ActiveRecord::Base
     self.photos.first
   end
 
+  def publish!
+    self.published = true
+    self.save
+  end
+
+  def unpublish!
+    self.published = false
+    self.save
+  end
+
   def price(a_currency = nil, unit = :per_month)
     a_currency ||= Currency.default
 

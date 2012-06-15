@@ -1,6 +1,6 @@
 class ListingsController < PrivateController
   layout 'plain'
-  before_filter :find_resource, :only => [:wizard, :show, :edit, :update, :destroy]
+  before_filter :find_resource, :only => [:wizard, :show, :edit, :update, :destroy, :publish, :unpublish]
 
   def index
     @collection = resource_class.manageable_by(current_user)
@@ -54,6 +54,21 @@ class ListingsController < PrivateController
       flash[:error] = t("products.messages.listing_deletion_error")
     end
     redirect_to listings_path
+  end
+
+  def publish
+    if @resource.publish!
+      flash[:notice] = t("places.messages.place_published")
+    else
+      flash[:error] = t("places.messages.place_publish_error")
+    end
+    redirect_to place_path(:id => params[:id])
+  end
+
+  def unpublish
+    @resource.unpublish!
+    flash[:notice] = t("places.messages.place_unpublished")
+    redirect_to place_path(:id => params[:id])
   end
 
   protected

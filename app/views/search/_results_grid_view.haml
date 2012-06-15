@@ -1,35 +1,35 @@
 %ul
-  - places.each do |place|
-    %li.items-gallery.results{:class => "place_#{place.id}"}
+  - @results.each do |resource|
+    %li.items-gallery.results{:id => dom_id(resource)}
       .box
         .clearfix
-          =  link_to seo_place_path(place) do
+          =  link_to seo_product_url(resource) do
             .feat
-              .thumb{:style => "background-color:#3e3e3e"}= image_tag(place.photos.blank? ? "http://placehold.it/216x144" : place.photos[0].photo.url(:medium))
-            .side    
-              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place.photos.blank? && place.photos[1] ? place.photos[1].photo.url(:small) : "http://placehold.it/106x70"))
-              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!place.photos.blank? && place.photos[2] ? place.photos[2].photo.url(:small) : "http://placehold.it/106x70"))
+              .thumb{:style => "background-color:#3e3e3e"}= image_tag(resource.photos.blank? ? "http://placehold.it/216x144" : resource.photos[0].photo.url(:medium))
+            .side
+              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!resource.photos.blank? && resource.photos[1] ? resource.photos[1].photo.url(:small) : "http://placehold.it/106x70"))
+              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!resource.photos.blank? && resource.photos[2] ? resource.photos[2].photo.url(:small) : "http://placehold.it/106x70"))
         .desc.clearfix
           %h3.title
-            = render 'button_favorite', :favorable => place
-            = link_to place.title, seo_place_path(place), :title => place.title
+            = render 'button_favorite', :favorable => resource
+            = link_to resource.title, seo_product_url(resource), :title => resource.title
           .clearfix
             .property.data-block
               .title
                 .type.house
-                  = place.place_type.translated_name
+                  = resource.place_type.translated_name
                 .type.size
-                  = place_size(place)
+                  = place_size(resource)
 
             .property2.data-block
               .title
-                - unless place.num_bedrooms.blank?
+                - unless resource.num_bedrooms.blank?
                   .type.bedroom
-                    = t("places.bedrooms_count", :count => place.num_bedrooms)
-                - unless place.num_bathrooms.blank?
+                    = t("places.bedrooms_count", :count => resource.num_bedrooms)
+                - unless resource.num_bathrooms.blank?
                   .type.bathroom
-                    = t("places.bathrooms_count", :count => place.num_bathrooms)
+                    = t("places.bathrooms_count", :count => resource.num_bathrooms)
             .price.data-block
-              - if place.price_per_month.present?
-                .figure= place_price(place)
+              - if resource.price_per_month.present?
+                .figure= place_price(resource)
                 .micro= t("places.per_month")

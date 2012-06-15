@@ -21,9 +21,12 @@ class MessagesController < PrivateController
     Messenger.mark_as_read(current_user, @conversation.id) if @conversation
   end
 
-  # def destroy
-  #   flash[:notice] = t("messages.conversation_with_deleted", :name => @with.anonymized_name)
-  # end
+  # Archive a conversation
+  def destroy
+    if Messenger.archive(current_user, params[:id])
+     redirect_to messages_path
+    end
+  end
 
   #mark as read
   def mark_as_read

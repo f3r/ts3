@@ -1,5 +1,6 @@
-:plain
-  #{SiteConfig.after_body_tag_start}
+- if Rails.env.staging? || Rails.env.production?
+  = raw SiteConfig.after_body_tag_start
+
 %header.header
   .container
     .row
@@ -17,7 +18,7 @@
                 = link_to t("users.sign_out"), destroy_user_session_path
       - else
         .user_box
-          .row    
+          .row
             .links
               = link_to t("users.sign_in"), login_path_with_ref
               %span.separator /

@@ -39,5 +39,5 @@
 
 = yield :javascripts
 
-:plain
-  #{SiteConfig.head_tag}
+-if Rails.env.staging? || Rails.env.production?
+  = raw SiteConfig.head_tag

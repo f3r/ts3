@@ -1,9 +1,9 @@
 %footer
   .seo.center
     = footer_menu
-  .seo.center
-    :plain
-      #{SiteConfig.before_body_tag_end}
+  - if Rails.env.staging? || Rails.env.production?
+    .seo.center
+      = raw SiteConfig.before_body_tag_end
 
 -unless logged_in?
   - unless controller_name.eql?('users') && (action_name.eql?('new') || action_name.eql?('connect'))
@@ -11,12 +11,12 @@
       .modal-body.registration
         = link_to 'x', '#', :class => 'close', :style => 'margin-right: 15px;', 'data-dismiss' => 'modal'
         = render :template => 'registrations/new'
-                           
+
     - if params[:trigger_signup]
-      :javascript          
+      :javascript
         $('#popup-registration').modal();
-        
-  :javascript          
+
+  :javascript
     $(function() {
       $(".trigger_signup").click(function() {
         $.ajax({

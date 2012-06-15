@@ -1,5 +1,5 @@
 .conversation
-  = breadcrumb [[t("inquiries.inquiries_title"), messages_path],[conversation_title, seo_place_path(@conversation.target.place)]], '' do
+  = breadcrumb [[t("inquiries.inquiries_title"), messages_path]], link_to(conversation_title,seo_place_path(@conversation.target.place)).html_safe do
     .actions.pull-right
       = link_to t("messages.mark_unread"), mark_as_unread_message_path(@conversation.id), :method => :put
       - if !@inquiry.deleted_at.present?

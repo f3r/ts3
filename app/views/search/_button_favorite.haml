@@ -1,10 +1,10 @@
 %div.button_favorite{:id => dom_id(favorable, 'favorite')}
   - if logged_in?
     - if Favorite.is_favorited?(favorable, current_user)
-      = link_to favorite_path(:id => favorable.id), :remote => true, :method => :delete, :class => 'btn btn-mini btn-success', :rel => 'tooltip', :title => t("favorites.remove_favorite"), "data-page" => @current_action, :onclick => "$(this).tooltip('hide')" do
+      = link_to favorite_path(:id => favorable.id, :place_id => favorable.id), :remote => true, :method => :delete, :class => 'btn btn-mini btn-success', :rel => 'tooltip', :title => t("favorites.remove_favorite"), "data-page" => @current_action, :onclick => "$(this).tooltip('hide')" do
         %i.icon-star-empty.icon-white
     - else
-      = link_to favorites_path(:id => favorable.id), :remote => true, :method => :post, :class => 'btn btn-mini', :rel => 'tooltip', :title => t("favorites.add_favorite"), "data-page" => @current_action, :onclick => "$(this).tooltip('hide')" do
+      = link_to favorites_path(:place_id => favorable.id), :remote => true, :method => :post, :class => 'btn btn-mini', :rel => 'tooltip', :title => t("favorites.add_favorite"), "data-page" => @current_action, :onclick => "$(this).tooltip('hide')" do
         %i.icon-star-empty.icon-black
   - else
     %a.btn.btn-mini{:rel => "tooltip", :title => t("favorites.add_favorite"), :class => "trigger_signup", "data-ref" => favorites_add_path(:place_id =>  favorable.id), :href => "#" }

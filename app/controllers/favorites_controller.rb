@@ -21,7 +21,6 @@ class FavoritesController < PrivateController
     @favorite = Favorite.where(:user_id => current_user.id, :favorable_id => params[:id]).first!
 
     if @favorite.destroy
-      @remove_item = params[:remove_item] ||= false
       find_parent # Reload the parent
       respond_to do |format|
         format.js { render :layout => false }
@@ -34,6 +33,6 @@ class FavoritesController < PrivateController
   private
 
   def find_parent
-    @parent = Place.with_permissions_to(:read).find(params[:id])
+    @parent = Place.with_permissions_to(:read).find(params[:place_id])
   end
 end

@@ -21,7 +21,6 @@
 //= require jquery.validationEngine
 //= require jquery.bootstrap.confirm.popover
 //= require jquery.bookmark
-//= require jquery.textfill
 //= require modernizr
 //= require fullcalendar.min
 //= require twitter/bootstrap

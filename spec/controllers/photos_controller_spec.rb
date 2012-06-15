@@ -10,7 +10,7 @@ describe PhotosController do
   it "uploads a photo" do
     expect {
       post :create, { :place_id => @place.id,
-        :photo => fixture_file_upload("#{Rails.root}/spec/files/prop.jpg", 'image/jpg')
+        :file => fixture_file_upload("#{Rails.root}/spec/files/prop.jpg", 'image/jpg')
       }
       response.should be_success
     }.to change(Photo, :count).by(1)

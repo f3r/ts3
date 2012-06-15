@@ -6,7 +6,7 @@ class PhotosController < ApplicationController
 
   def create
     @place = @parent = Place.find(params[:place_id])
-    @photo = @parent.photos.new(:photo => params[:photo])
+    @photo = @parent.photos.new(:photo => params[:file])
     @photo.save
     @photos = @parent.photos
 

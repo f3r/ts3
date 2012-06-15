@@ -35,6 +35,15 @@ describe "Search" do
       visit "/singapore/#{@place.id}"
       page.should have_content(@place.title)
     end
+    
+    it 'show the other properties by this owner' do
+      owner = @place.user
+      place2 = create(:published_place, :user => owner)
+      place3 = create(:published_place, :user => owner)
+      visit "/singapore/#{@place.id}"
+      page.should have_content(place2.title)
+      page.should have_content(place3.title)
+    end
   end
 
 end

@@ -1,6 +1,4 @@
 include GeneralHelper
-require 'money/bank/google_currency'
-Money.default_bank = Money::Bank::GoogleCurrency.new
 
 class Place < ActiveRecord::Base
   using_access_control
@@ -48,7 +46,7 @@ class Place < ActiveRecord::Base
   has_many    :comments,        :dependent => :destroy
   has_many    :transactions,    :dependent => :destroy
   has_many    :photos,          :dependent => :destroy, :order => :position
-  has_many    :favorites,       :dependent => :destroy, :as => :favorable 
+  has_many    :favorites,       :dependent => :destroy, :as => :favorable
 
   before_save   :save_amenities,
                 :convert_prices_in_usd_cents,
@@ -68,6 +66,25 @@ class Place < ActiveRecord::Base
 
   scope :published,    where("published")
   scope :unpublished,  where("not published")
+
+  def price(a_currency = nil, unit = :per_month)
+    a_currency ||= Currency.default
+
+    # If we are asked in the original currency of the place
+    if self.currency == a_currency.currency_code
+      amount = self.send("price_#{unit}")
+    else
+      # If we are asked in the 'special' USD (precalculated with before_save callback)
+      if a_currency.usd?
+        amount = self.send("price_#{unit}_usd")
+      else
+        # Must convert between USD and a_currency
+        amount_usd = self.send("price_#{unit}_usd")
+        amount = a_currency.from_usd(amount_usd/100.0).to_f.to_i
+      end
+    end
+    [a_currency.symbol, amount]
+  end
 
   def primary_photo
     self.photos.first
@@ -278,7 +295,7 @@ class Place < ActiveRecord::Base
   end
 
   def update_size_fields
-    if (self.size_changed? or self.size_unit_changed?) && !self.size.blank? && !self.size_unit.blank?
+    if self.size
       case size_unit
       when "meters"
         self.size_sqm = size
@@ -287,12 +304,8 @@ class Place < ActiveRecord::Base
         self.size_sqf = size
         self.size_sqm = size * 0.09290304
       end
-    elsif (self.size_changed? or self.size_unit_changed?) && (self.size.blank? or self.size_unit.blank?)
-      self.size = nil
-      self.size_sqm = nil
-      self.size_sqf = nil
-      self.size_unit = nil
     end
+    true
   end
 
   def update_price_sqf_field

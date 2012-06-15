@@ -5,7 +5,7 @@ module ActiveRecord
     end
 
     module ClassMethods
-      
+
       # TODO: Turn this into a gem
       def histo_counts(opts = {})
         opts = {
@@ -16,21 +16,21 @@ module ActiveRecord
 
         start_date = opts[:start_date] # Optional
         end_date = opts[:end_date] # Optional
-        
+
         conditions = "1 = 1"
-        
+
         if start_date
           conditions << " AND date(#{opts[:date_field]}) >= '#{start_date}'"
         end
-        
+
         if end_date
           condtions" AND date(#{opts[:date_field]}) <= '#{end_date}'"
         end
-        
+
         if opts[:extra_conditions]
           conditions << " AND #{opts[:extra_conditions]}"
         end
-        
+
         query = %{
           SELECT date(#{opts[:date_field]}) day, count(1) q
           FROM #{opts[:table_name]}
@@ -46,13 +46,13 @@ module ActiveRecord
       end
 
       private
-      
+
       def matrix_for_result_set(stats, start_date, end_date, cummulative = false)
-        
+
         if stats.empty?
           return []
         end
-        
+
         # Convert result set to date => value hash
         data = {}
         stats.each do |date, value|
@@ -65,7 +65,7 @@ module ActiveRecord
 
         start_date ||= stats.first[0]
         end_date   ||= stats.last[0]
-        
+
         start_date.upto(end_date).each_with_index do |date, idx|
           value = data[date] || 0
           if cummulative
@@ -74,7 +74,6 @@ module ActiveRecord
           else
             chart_data[idx] = [date, value]
           end
-
         end
 
         chart_data

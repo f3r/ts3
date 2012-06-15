@@ -18,7 +18,11 @@
   - else
     =t("messages.no_messages")
   .row
-    .span6
+    .span1
+      .from.center
+        = avatar_image(current_user)
+        = current_user.anonymized_name
+    .span5
       = render 'new'
     - if @conversation.target
       #inquiry_workflow

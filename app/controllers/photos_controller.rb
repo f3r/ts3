@@ -2,9 +2,10 @@ class PhotosController < ApplicationController
   respond_to :js
 
   before_filter :authenticate_user!, :except => [:create]
-  before_filter :find_parent
+  before_filter :find_parent, :except => [:create]
 
   def create
+    @place = @parent = Place.find(params[:place_id])
     @photo = @parent.photos.new(:photo => params[:photo])
     @photo.save
     @photos = @parent.photos

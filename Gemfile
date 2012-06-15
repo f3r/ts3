@@ -13,6 +13,9 @@ gem 'haml',          '~>3.1.4'
 gem 'jquery-rails',  '~>1.0.18'
 gem 'activemerchant'
 gem 'less-rails-bootstrap'
+# gem 'less'
+# gem 'less-rails'
+gem 'therubyracer'
 
 gem 'exception_notification'
 gem "recaptcha", :require => "recaptcha/rails"
@@ -49,7 +52,8 @@ gem 'i18n-active_record',
     :branch => 'rails-3.2',
     :require => 'i18n/active_record'
 
-gem 'dalli' # Memcached
+gem 'memcachier'  # Heroku plugin Memcachier
+gem 'dalli'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
@@ -65,7 +69,7 @@ end
 
 group :test do
   #gem 'turn', :require => false  # Pretty printed test output
-  gem 'faker'  
+  gem 'faker'
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 3.0"
   gem 'capybara'

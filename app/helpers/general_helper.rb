@@ -23,7 +23,7 @@ module GeneralHelper
     fields.map{|param| new_params.merge!(param => params[param]) if params.has_key?(param) && param != :id }
     return new_params
   end
-  
+
   def get_additional_fields(field, object, fields)
     if !object.send("#{field.to_s}").nil?
       additional_object = Rails.cache.fetch("#{field.to_s}_#{object.send("#{field.to_s}_id")}") {
@@ -44,11 +44,11 @@ module GeneralHelper
       false
     end
   end
-  
+
   def exchange_currency(price, old_currency, new_currency)
   begin
     return unless price
-    price.to_money(old_currency).exchange_to(new_currency).to_f    
+    price.to_money(old_currency).exchange_to(new_currency).to_f
   rescue Exception => e
     0
   end
@@ -66,5 +66,5 @@ module GeneralHelper
     end
     return errors
   end
-  
+
 end

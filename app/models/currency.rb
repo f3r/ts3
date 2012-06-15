@@ -1,3 +1,6 @@
+require 'money/bank/google_currency'
+Money.default_bank = Money::Bank::GoogleCurrency.new
+
 class Currency < ActiveRecord::Base
   default_scope :order => 'currency_code ASC'
 
@@ -7,16 +10,20 @@ class Currency < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
-  def self.from_usd(amount)
-    
-  end
-
   def self.default
     self.first
   end
 
   def label
     "#{self.currency_code} #{self.symbol}"
+  end
+
+  def usd?
+    self.currency_code == 'USD'
+  end
+
+  def from_usd(amount_usd)
+    amount_usd.to_money('USD').exchange_to(self.currency_code)
   end
 
   def activate!

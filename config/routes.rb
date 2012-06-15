@@ -70,7 +70,6 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :messages do
     member do
       put :mark_as_unread
-      put :set_as_archive
     end
   end
 

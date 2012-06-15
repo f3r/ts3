@@ -1,9 +1,8 @@
 %footer
   .seo.center
     = footer_menu
-  - if Rails.env.staging? || Rails.env.production?
-    .seo.center
-      = raw SiteConfig.before_body_tag_end
+  .seo.center
+    = raw(SiteConfig.before_body_tag_end) if SiteConfig.before_body_tag_end.present?
 
 -unless logged_in?
   - unless controller_name.eql?('users') && (action_name.eql?('new') || action_name.eql?('connect'))

@@ -2,27 +2,21 @@
   = breadcrumb [[t("inquiries.inquiries_title"), messages_path]], conversation_title do
     .actions.pull-right
       = link_to t("messages.mark_unread"), mark_as_unread_message_path(@conversation.id), :method => :put
-      - if !@inquiry.deleted_at.present?
-        - if current_user.role == "agent" && @respond_count == 0
-          = link_to t("messages.archive"), set_as_archive_message_path(@conversation.id), :method => :put, :confirm => t("messages.agent_archive_message")
-        - else 
-          = link_to t("messages.archive"), set_as_archive_message_path(@conversation.id), :method => :put
-          
+      |
+      = link_to t("messages.archive"), message_path(@conversation.id), :method => :delete, :confirm => t("messages.archive_message")
+
   - if @inquiry
     .row.target
       = render_target(@conversation.target, :box)
 
-  - if @messages.present? && !@inquiry.deleted_at.present?
+  - if @messages.present?
     - @messages.each do |m|
       = render 'message', :m => m
   - else
     =t("messages.no_messages")
+
   .row
-    .span1
-      .from.center
-        = avatar_image(current_user)
-        = current_user.anonymized_name
-    .span5
+    .span6
       = render 'new'
     - if @conversation.target
       #inquiry_workflow

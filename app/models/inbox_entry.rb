@@ -10,6 +10,7 @@ class InboxEntry < ActiveRecord::Base
     self.read = false
   end
 
+  # Logical delete
   def delete
     self.deleted_at = Time.now
   end
@@ -25,10 +26,6 @@ class InboxEntry < ActiveRecord::Base
   # Inbox entry of the other person involved in the conversation
   def other_party
     InboxEntry.where(:conversation_id => self.conversation_id).where(['user_id <> ?', self.user_id]).first!
-  end
-  
-  def set_as_archive
-    self.deleted_at = Time.now
   end
 
 end

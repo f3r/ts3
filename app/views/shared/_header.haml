@@ -1,5 +1,4 @@
-- if Rails.env.staging? || Rails.env.production?
-  = raw SiteConfig.after_body_tag_start
+= raw(SiteConfig.after_body_tag_start) if SiteConfig.after_body_tag_start.present?
 
 %header.header
   .container

@@ -18,7 +18,7 @@ en:
     messsage_error_try_again:   An error occured. Please try again.
     conversation_with_deleted:  "Conversation with %{name} deleted."
     archive:                    Archive
-    agent_archive_message:      You havent responded to this inquiry, are you sure you want to archive it?
+    archive_message:            Are you sure you want to archive it?
 
   inquiries:
     inquiries_title: Inquiries

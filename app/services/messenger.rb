@@ -1,8 +1,6 @@
 class Messenger
   def self.get_conversations(user, filters = {})
-    conditions = {
-      :user_id => user.id, :deleted_at => nil
-    }
+    conditions = {:user_id => user.id, :deleted_at => nil}
 
     if filters[:target]
       target = filters[:target]
@@ -64,6 +62,7 @@ class Messenger
 
     recipient_inbox_entry = sender_inbox_entry.other_party
     recipient_inbox_entry.mark_as_unread
+    recipient_inbox_entry.undelete
     recipient_inbox_entry.save!
 
     # Notifiy recipient only on message not on message with inquiry
@@ -92,11 +91,18 @@ class Messenger
     inbox_entry.save!
   end
 
+  # Retrieve the number of unread messages and the total count
   def self.inbox_status(user)
     conditions = {:user_id => user.id, :deleted_at => nil}
-    total = InboxEntry.where(conditions).count
+    total  = InboxEntry.where(conditions).count
     unread = InboxEntry.where(conditions).where(:read => false).count
 
     {:total => total, :unread => unread}
+  end
+
+  def self.archive(user, conversation_id)
+    inbox_entry = InboxEntry.where(:user_id => user.id, :conversation_id => conversation_id).first!
+    inbox_entry.delete
+    inbox_entry.save!
   end
 end

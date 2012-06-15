@@ -78,21 +78,20 @@ describe Messenger do
       assert message.system
     end
 
-    # it "should deliver reply to recipients that deleted the message" do
-    #   # Sheldon deletes the message
-    #   conversation = Messenger.get_conversations(sheldon, {}).first
-    #   Messenger.delete(sheldon, conversation.id)
-    #   Messenger.get_conversations(sheldon, {}).should be_empty
-    #
-    #   # Penny replies
-    #   @reply = Presenters::Message.new(:body => "Yeah, lets do it!")
-    #   Messenger.add_reply(penny, conversation.id, @reply)
-    #
-    #   # Sheldon receives it
-    #   conversation = Messenger.get_conversations(sheldon, {}).first
-    #   same_message?(conversation, @conversation).should be_true
-    #   conversation.should be_unread
-    # end
+    it "delivers reply to recipients that deleted the message" do
+      Messenger.start_conversation(@consumer, @conversation)
+      # Agent deletes the message
+      conversation = Messenger.get_conversations(@agent).first
+      Messenger.archive(@agent, conversation.id)
+      Messenger.get_conversations(@agent).should be_empty
+
+      # Consumer insists
+      reply = Message.new(:body => "Hey, look at me!")
+      Messenger.add_reply(@consumer, conversation.id, reply)
+
+      # Message appears again on agent inbox
+      Messenger.get_conversations(@agent).should_not be_empty
+    end
   end
 
   context "Conversation messages" do
@@ -172,12 +171,14 @@ describe Messenger do
       status[:unread].should == 0
     end
 
-    #should "update when deleting" do
-      #Messenger.delete(@agent, conversation.id)
-      #status = Messenger.inbox_status(@agent)
-      #assert_equal 0, status[:total]
-      #assert_equal 0, status[:unread]
-    #end
+    it "doesn't count archived messages" do
+      Messenger.start_conversation(@consumer, @conversation)
+      conversation = Messenger.get_conversations(@agent).first
+      Messenger.archive(@agent, conversation.id)
+      status = Messenger.inbox_status(@agent)
+      assert_equal 0, status[:total]
+      assert_equal 0, status[:unread]
+    end
   end
 
   context "Target" do

@@ -30,7 +30,7 @@ class SearchController < ApplicationController
 
   def show
     #@place = Place.published.find(params[:id])
-    @place = @resource = resource_class.published.find(params[:id])
+    @resource = resource_class.published.find(params[:id])
     @owner = @resource.user
   end
 

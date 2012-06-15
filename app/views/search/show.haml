@@ -58,11 +58,11 @@
     cal_lastVisibleDay : #{DateTime.now.end_of_month.to_date},
     cal_events         : #{@availabilities.to_json},
     cal_month          : #{Date.today.month},
-    map_lat            : #{@place['lat']},
-    map_lon            : #{@place['lon']},
-    map_cityName       : '#{@place.city_name}',
-    map_countryName    : '#{@place.country_name}',
+    map_lat            : #{@place.lat},
+    map_lon            : #{@place.lon},
+    map_cityName       : '#{@place.city.name}',
+    map_countryName    : '#{@place.city.country}',
     share_title        : '#{@place.title}',
-    share_url          : '#{@place_url}',
+    share_url          : '#{seo_product_url(@resource)}',
     share_id           : '#{@place.id}'
   });

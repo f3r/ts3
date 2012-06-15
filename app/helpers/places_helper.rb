@@ -139,10 +139,6 @@ module PlacesHelper
     #url_for("/#{city.slug}/#{place['id']}-#{result}")
   end
 
-  def seo_city_path(city)
-    url_for("/#{city.slug}")
-  end
-
   def place_type_filters(place_type_counts)
     filters = []
     place_type_counts.each do |type_name, count|

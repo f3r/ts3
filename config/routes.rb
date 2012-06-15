@@ -108,7 +108,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/:city'           => 'search#index', :city => City.routes_regexp
 
   # SEO Routes
-  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp, :as => :city_place
+  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp, :as => :city_product
 
 
   ###########################################################################################

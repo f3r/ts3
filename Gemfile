@@ -54,6 +54,10 @@ gem 'i18n-active_record',
 
 gem 'dalli' # Memcached
 
+gem 'dynamic_sitemaps', 
+    :git => 'git@github.com:vinu/dynamic_sitemaps.git',
+    :tag => 'v1.0.7'
+
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"

@@ -15,18 +15,15 @@
             = f.hidden_field :city_id
             = f.hidden_field :min_price
             = f.hidden_field :max_price
-            = f.hidden_field :product_category_ids
+            = f.hidden_field :category_ids
             = f.hidden_field :currency
             = f.hidden_field :current_page
             = f.hidden_field :total_pages
-            =# f.select :guests, max_guest_options, :style => "width:100px", :autocomplete => 'off'
-            =# f.text_field :check_in, :placeholder => t("places.search.arriving_on"), :class => 'textbox big check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
-            =# "-"
-            =# f.text_field :check_out, :placeholder => t("places.search.departing_on"), :class => 'textbox big check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
+            = render_overridable_partial('search_fields', :f => f)
 
           .views
             .sorting
-              = t("places.search.sort_by")
+              = t("products.search.sort_by")
               = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'
             .toggle
               = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'

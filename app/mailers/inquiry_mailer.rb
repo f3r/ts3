@@ -1,5 +1,5 @@
 class InquiryMailer < BaseMailer
-  helper 'places'
+  helper :places, :products
 
   # ==Description
   # Email sent to the renter when the user inquires about a place

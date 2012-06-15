@@ -5,7 +5,7 @@ module Search
     column :check_in,         :date
     column :check_out,        :date
 
-    attr_accessor :place_type_ids
+    attr_accessor :category_ids
 
     def resource_class
       ::Place
@@ -15,7 +15,7 @@ module Search
       add_equals_condition(:city_id, self.city_id)
       add_equals_condition(price_field, self.price_range)
 
-      add_equals_condition(:place_type_id, self.place_type_ids)
+      add_equals_condition(:place_type_id, self.category_ids)
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
     end
 
@@ -33,21 +33,26 @@ module Search
       sort_map[self.sort_by]
     end
 
+    def sort_options
+      custom_options = [[I18n.t("places.search.price_size_lowest"), 'price_size_lowest'],
+                        [I18n.t("places.search.price_size_highest"), 'price_size_highest']]
+      super + custom_options
+    end
 
     # Information for filters
     def category_filters
       filters = []
-      current_types = self.place_type_ids
+      current_types = self.category_ids
 
       PlaceType.all.each do |pt|
-        self.place_type_ids = pt.id
-        if ((count = self.count) > 0)
+        self.category_ids = pt.id
+        if ((count = self.count) > -1)
           checked = current_types && current_types.include?(pt.id.to_s)
           filters << [pt, count, checked]
         end
       end
 
-      self.place_type_ids = current_types
+      self.category_ids = current_types
       filters
     end
   end

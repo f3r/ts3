@@ -3,7 +3,7 @@
 - current_max = @search.max_price || max_price
 
 - if min_price && max_price
-  .header= t("places.search.pricing_title")
+  .header= t('products.price_filter', :price_unit => t(@search.price_unit))
   = content_tag :div, :id => 'price_filter', :data => {:min => current_min, :max => current_max, :tmin => min_price, :tmax =>  max_price} do
     .content
       #max_price.float-right= current_max

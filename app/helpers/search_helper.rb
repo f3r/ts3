@@ -1,6 +1,10 @@
 module SearchHelper
+  def sort_options
+  	@search.sort_options
+  end
+
   def search_results_count(results)
-    t("places.search.results", :count => results.count)
+    t("products.search.results", :count => results.count)
   end
 end
 

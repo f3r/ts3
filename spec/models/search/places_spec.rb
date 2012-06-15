@@ -38,7 +38,7 @@ describe Search::Places do
       min.should == 1000
       max.should == 5000
 
-      @search.place_type_ids = [@pt1.id]
+      @search.category_ids = [@pt1.id]
       min, max = @search.price_range_bounds
       min.should == 1000
       max.should == 3000

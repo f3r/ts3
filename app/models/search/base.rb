@@ -17,7 +17,7 @@ module Search
       column :min_price,        :integer
       column :max_price,        :integer
 
-      attr_accessor :product_category_ids
+      attr_accessor :category_ids
     end
 
     # Override the save method to prevent exceptions.
@@ -56,6 +56,11 @@ module Search
       end
     end
 
+    def sort_options
+     [[I18n.t("products.search.price_lowest"), 'price_lowest'],
+      [I18n.t("products.search.price_highest"), 'price_highest']]
+    end
+
     def collection
       raise "Must override"
     end
@@ -72,8 +77,12 @@ module Search
       filters = []
     end
 
+    def price_unit
+      self.resource_class.price_unit
+    end
+
     def price_field
-      "price_#{self.resource_class.price_unit}"
+      "price_#{self.price_unit}"
     end
 
     def price_range_bounds

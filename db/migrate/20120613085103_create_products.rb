@@ -7,7 +7,7 @@ class CreateProducts < ActiveRecord::Migration
       t.text       :description
       t.references :city
       t.string     :address_1, :address_2, :zip
-      t.float      :lat, :long
+      t.float      :lat, :lon
       t.references :currency
       t.integer    :price_per_hour, :price_per_hour_usd
       t.integer    :price_per_week, :price_per_week_usd

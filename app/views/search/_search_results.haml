@@ -1,5 +1,7 @@
 - if @results.blank?
-  .alert-message.info= t("places.search.no_result")
+  .row.no-results
+    .span9
+      .alert.alert-info= t("places.search.no_result")
 - else
   %ul.list-display
     #search_result_list

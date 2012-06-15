@@ -2,9 +2,10 @@ en:
   products:
     my_listings:        'My %{product_plural}'
     no_listings:        "You haven't created any listing yet"
-    my_favorites:       'My favorite %{product_plural}'
+    my_favorites:       'My favorites'
     add_a_listing:      'Add a %{product_name}'
     list_your_product:  'List your %{product_name}'
+    price_filter:       'Price %{price_unit}'
     listed:             'Listed'
     invisible:          'Invisible'
     wizard:
@@ -15,3 +16,11 @@ en:
       listing_unpublished:    Your listing is now invisible
       listing_deleted:        Listing successfully deleted
       listing_deletion_error: Listing deletion error
+    search:
+      sort_by: Sort by
+      results:
+        zero: No results
+        one: "1 result"
+        other: "%{count} results"
+      price_lowest: Price (Lowest First)
+      price_highest: Price (Highest First)

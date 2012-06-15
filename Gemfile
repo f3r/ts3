@@ -52,7 +52,8 @@ gem 'i18n-active_record',
     :branch => 'rails-3.2',
     :require => 'i18n/active_record'
 
-gem 'dalli' # Memcached
+gem 'memcachier'  # Heroku plugin Memcachier
+gem 'dalli'
 
 gem 'dynamic_sitemaps', 
     :git => 'git@github.com:vinu/dynamic_sitemaps.git',
@@ -72,7 +73,7 @@ end
 
 group :test do
   #gem 'turn', :require => false  # Pretty printed test output
-  gem 'faker'  
+  gem 'faker'
   gem 'database_cleaner'
   gem 'factory_girl_rails', "~> 3.0"
   gem 'capybara'

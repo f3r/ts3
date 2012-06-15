@@ -1,6 +1,6 @@
 class Page < Cmspage
 
-  has_many :cmspage_versions, :foreign_key => "cmspage_id", :order => "id DESC"
+  has_many :cmspage_versions, :foreign_key => "cmspage_id", :order => "id DESC", :dependent => :destroy
 
   before_update do |r|
     r.cmspage_versions.create({:content => r.description_was}) if r.description_changed?

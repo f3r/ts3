@@ -165,4 +165,17 @@ describe User do
       user.reset_password_sent_at.should_not be_nil
     end
   end
+  
+  context "associated properties of agent" do
+    before(:each) do
+      @agent    = create(:agent)
+    end
+    it "retrieves the other properties owned" do
+      place1 = create(:published_place, :user => @agent)
+      place2 = create(:published_place, :user => @agent)
+      
+      @agent.other_active_properties_except(place1).count.should == 1
+      @agent.other_active_properties_except(place2).first.id.should == place1.id
+    end
+  end
 end

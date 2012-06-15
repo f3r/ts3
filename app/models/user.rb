@@ -119,6 +119,11 @@ class User < ActiveRecord::Base
     # We use the saeme mechanism as password reset
     self.generate_reset_password_token
   end
+  
+  # Retrieves the other published properties of this user
+  def other_active_properties_except(place)  
+     self.places.published.where('id != ?', place.id)
+  end
 
   private
 
@@ -139,4 +144,5 @@ class User < ActiveRecord::Base
       self.avatar.clear if avatar && !avatar.dirty?
     end
   end
+  
 end

@@ -79,7 +79,7 @@ module Search
       max = (max/100.0).ceil * 100   if max
       min = (min/100.0).floor * 100  if min
 
-      if min == max
+      if min && max && (min == max)
         max = min + 100
       end
 

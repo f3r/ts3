@@ -76,8 +76,8 @@ module Search
       # Convert currency
 
       # Round to multiples of 100
-      max = (max/100.0).ceil * 100
-      min = (min/100.0).floor * 100
+      max = (max/100.0).ceil * 100   if max
+      min = (min/100.0).floor * 100  if min
 
       if min == max
         max = min + 100

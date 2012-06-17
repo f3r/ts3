@@ -55,5 +55,7 @@ module HeyPalFrontEnd
 
     # Add additional asset paths for asset pipeline (sprockets)
     #config.assets.paths << Rails.root.join("app", "assets", "flash")
+    
+    config.active_record.observers = :sitemap_cache_sweeper
   end
 end

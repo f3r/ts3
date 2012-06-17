@@ -57,7 +57,7 @@ gem 'dalli'
 
 gem 'dynamic_sitemaps', 
     :git => 'git@github.com:vinu/dynamic_sitemaps.git',
-    :tag => 'v1.0.7'
+    :tag => 'c1'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"

@@ -8,8 +8,8 @@ GIT
 
 GIT
   remote: git@github.com:vinu/dynamic_sitemaps.git
-  revision: 22fe8105f6b3160d49c07578aae168bbef416055
-  tag: v1.0.7
+  revision: 917dc3b0e45f995b1a1ecbae71b260ac10ce1c34
+  tag: c1
   specs:
     dynamic_sitemaps (1.0.7)
 

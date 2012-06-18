@@ -22,7 +22,7 @@ ActiveAdmin.register Currency do
       f.input :name
       f.input :symbol
       f.input :currency_code
-      f.input :currency_abbreviation, :label => "Currency Short Name", :hint => "Ex: If currency is USD , the Short name Like US"
+      f.input :currency_abbreviation, :label => "Currency Short Name", :hint => "Usually the 2-letter country code, e.g. for USD, the short name is US"
       f.input :country
       f.input :active
     end

@@ -55,10 +55,6 @@ gem 'i18n-active_record',
 gem 'memcachier'  # Heroku plugin Memcachier
 gem 'dalli'
 
-gem 'dynamic_sitemaps', 
-    :git => 'git@github.com:vinu/dynamic_sitemaps.git',
-    :tag => 'c1'
-
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"

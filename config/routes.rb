@@ -1,4 +1,6 @@
 HeyPalFrontEnd::Application.routes.draw do
+  get 'sitemap.xml' => 'cached_sitemaps#sitemap'
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config

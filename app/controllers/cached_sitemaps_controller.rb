@@ -14,18 +14,4 @@ class CachedSitemapsController < SitemapsController
      headers["Last-Modified"] = DateTime.now.httpdate
    end   
   end
-  
 end
-
-
-
-
-
-
-
-
-
-
-
-
-

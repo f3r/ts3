@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
   menu :priority => 1
-  actions :all, :except => [:create, :destroy]
+  actions :all, :except => [:create, :new, :destroy]
 
   controller do
     helper 'admin/users'

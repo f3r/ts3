@@ -5,7 +5,15 @@ module MessagesHelper
 
   def conversation_title
     if @conversation.target
-      "#{t("inquiries.inquiry_on")} #{@conversation.target.title}"
+      "#{@conversation.target.title}"
+    else
+      "#{t("inquiries.conversation_with")} #{@conversation.from.first_name}"
+    end
+  end
+
+  def breadcrumb_conversation_title
+    if @conversation.target
+      ("#{t('inquiries.inquiry_on')} " + link_to(conversation_title,seo_place_path(@conversation.target.place))).html_safe
     else
       "#{t("inquiries.conversation_with")} #{@conversation.from.first_name}"
     end
@@ -14,10 +22,10 @@ module MessagesHelper
   def render_target(target, suffix)
     render("messages/target/inquiry_#{suffix}", :target => target)
   end
-  
-  
+
+
   def  suspicious_message?(msg)
-    
+
     #whole logic
     regexHash = { "email" => [/\b[A-Z0-9_%+-]+[@\[at\]\(at\)]+[A-Z0-9.-]+[\(dot\)\[dot\]\.]+[A-Z]{2,4}\b/i] ,
                   "phone" => [/\(?[0-9+]{3,4}\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}\b/i,
@@ -26,31 +34,31 @@ module MessagesHelper
                 }
 
     regexHash.each do|name,regexArray|
- 
+
       regexArray.each do |regex|
-      
+
         @data = msg.scan(regex)
-      
+
         if !@data.empty?
-          
+
           if name == 'phone'
             @data.each do |value|
               msg.sub!(value, ' [hidden phone number] ')
             end
           end
-          
+
           if name == 'email'
             @data.each do |value|
               msg.sub!(value, ' [hidden email address] ')
             end
           end
-          
+
           if name == 'url'
             @data.each do |value|
               msg.sub!(value[0], ' [hidden website url] ')
             end
           end
-          
+
         end
       end
     end

@@ -1,35 +1,4 @@
 %ul
   - @results.each do |resource|
     %li.items-gallery.results{:id => dom_id(resource)}
-      .box
-        .clearfix
-          =  link_to seo_product_url(resource) do
-            .feat
-              .thumb{:style => "background-color:#3e3e3e"}= image_tag(resource.photos.blank? ? "http://placehold.it/216x144" : resource.photos[0].photo.url(:medium))
-            .side
-              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!resource.photos.blank? && resource.photos[1] ? resource.photos[1].photo.url(:small) : "http://placehold.it/106x70"))
-              .thumb{:style => "background-color:#3e3e3e"}= image_tag((!resource.photos.blank? && resource.photos[2] ? resource.photos[2].photo.url(:small) : "http://placehold.it/106x70"))
-        .desc.clearfix
-          %h3.title
-            = render 'button_favorite', :favorable => resource
-            = link_to resource.title, seo_product_url(resource), :title => resource.title
-          .clearfix
-            .property.data-block
-              .title
-                .type.house
-                  = resource.place_type.translated_name
-                .type.size
-                  = place_size(resource)
-
-            .property2.data-block
-              .title
-                - unless resource.num_bedrooms.blank?
-                  .type.bedroom
-                    = t("places.bedrooms_count", :count => resource.num_bedrooms)
-                - unless resource.num_bathrooms.blank?
-                  .type.bathroom
-                    = t("places.bathrooms_count", :count => resource.num_bathrooms)
-            .price.data-block
-              - if resource.price_per_month.present?
-                .figure= place_price(resource)
-                .micro= t("places.per_month")
+      = render_overridable_partial('grid', :resource => resource)

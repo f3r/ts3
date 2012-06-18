@@ -13,11 +13,19 @@ class Service < ActiveRecord::Base
     Search::Service
   end
 
+  def self.education_statuses
+    [['Completed', 'completed'], ['Student', 'student']]
+  end
+
   def self.price_unit
     :per_hour
   end
 
   def price_unit
     self.class.price_unit
+  end
+
+  def price(a_currency, unit)
+    self.product.price(a_currency, unit)
   end
 end

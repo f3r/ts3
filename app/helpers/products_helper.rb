@@ -1,7 +1,7 @@
 module ProductsHelper
   def render_overridable_partial(partial, *attr)
     views_path = ::Rails.root.to_s + "/app/views"
-    plural_product = SiteConfig.product_class.to_s.pluralize
+    plural_product = SiteConfig.product_class.to_s.tableize
     specific_path = "products/#{plural_product}"
 
     if File.exists?("#{views_path}/#{specific_path}/_#{partial}.haml")

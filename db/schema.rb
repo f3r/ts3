@@ -459,6 +459,7 @@ ActiveRecord::Schema.define(:version => 20120614082220) do
     t.string   "zip"
     t.float    "lat"
     t.float    "lon"
+    t.integer  "radius"
     t.integer  "currency_id"
     t.integer  "price_per_hour"
     t.integer  "price_per_hour_usd"
@@ -473,8 +474,14 @@ ActiveRecord::Schema.define(:version => 20120614082220) do
   end
 
   create_table "services", :force => true do |t|
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+    t.string   "education_status"
+    t.string   "last_institute"
+    t.string   "seeking"
+    t.integer  "language_1"
+    t.integer  "language_2"
+    t.integer  "language_3"
   end
 
   create_table "site_configs", :force => true do |t|

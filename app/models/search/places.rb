@@ -5,8 +5,6 @@ module Search
     column :check_in,         :date
     column :check_out,        :date
 
-    attr_accessor :category_ids
-
     def resource_class
       ::Place
     end

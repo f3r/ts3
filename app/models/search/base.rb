@@ -17,12 +17,19 @@ module Search
       column :min_price,        :integer
       column :max_price,        :integer
 
-      attr_accessor :category_ids
+      attr_reader :category_ids
     end
 
     # Override the save method to prevent exceptions.
     def save(validate = true)
       validate ? valid? : true
+    end
+
+    def category_ids=(ids)
+      if ids.kind_of?(String)
+        ids = ids.split(',')
+      end
+      @category_ids = ids
     end
 
     def results

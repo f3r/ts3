@@ -38,3 +38,5 @@
 = csrf_meta_tag
 
 = yield :javascripts
+
+= raw(SiteConfig.head_tag) if SiteConfig.head_tag.present?

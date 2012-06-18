@@ -10,7 +10,7 @@ describe FavoritesController do
 
   it "creates a new favorite" do
     expect {
-      post :create, :place_id => @place.id
+      post :create, :id => @place.id
     }.to change(Favorite, :count).by(1)
   end
 

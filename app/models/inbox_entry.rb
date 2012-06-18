@@ -10,6 +10,7 @@ class InboxEntry < ActiveRecord::Base
     self.read = false
   end
 
+  # Logical delete
   def delete
     self.deleted_at = Time.now
   end
@@ -26,4 +27,5 @@ class InboxEntry < ActiveRecord::Base
   def other_party
     InboxEntry.where(:conversation_id => self.conversation_id).where(['user_id <> ?', self.user_id]).first!
   end
+
 end

@@ -17,6 +17,8 @@ en:
     message_sent_privately:     Message sent privately
     messsage_error_try_again:   An error occured. Please try again.
     conversation_with_deleted:  "Conversation with %{name} deleted."
+    archive:                    Archive
+    archive_message:            Are you sure you want to archive it?
 
   inquiries:
     inquiries_title: Inquiries

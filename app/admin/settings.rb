@@ -27,11 +27,11 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     end
 
     f.inputs "Credentials for external services" do
-      f.input :gae_tracking_code
-      f.input :fb_app_id
-      f.input :fb_app_secret
-      f.input :tw_app_id
-      f.input :tw_app_secret
+      f.input :gae_tracking_code ,:label=>"Google Analytics Tracking Code"
+      f.input :fb_app_id , :label=>"Facebook App ID"
+      f.input :fb_app_secret, :label=>"Facebook Secret"
+      f.input :tw_app_id, :label=>"Twitter App ID"
+      f.input :tw_app_secret, :label=>"Twitter Secret"
     end
 
     f.inputs "SEO Enhancement" do

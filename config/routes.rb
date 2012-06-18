@@ -1,5 +1,5 @@
 HeyPalFrontEnd::Application.routes.draw do
-  match 'sitemap.xml' => 'sitemaps#sitemap'
+  match 'sitemap.xml' => 'cached_sitemaps#sitemap'
 
   ActiveAdmin.routes(self)
 

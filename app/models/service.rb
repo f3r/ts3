@@ -1,5 +1,7 @@
 class Service < ActiveRecord::Base
-  acts_as :product
+  if Product.table_exists?
+    acts_as :product
+  end
 
   def self.published
     self.where('products.published' => true)

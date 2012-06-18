@@ -28,6 +28,7 @@ class ListingsController < PrivateController
   end
 
   def edit
+    render 'places/wizard'
   end
 
   def update
@@ -62,13 +63,13 @@ class ListingsController < PrivateController
     else
       flash[:error] = t("places.messages.place_publish_error")
     end
-    redirect_to place_path(:id => params[:id])
+    redirect_to listing_path(@resource)
   end
 
   def unpublish
     @resource.unpublish!
     flash[:notice] = t("places.messages.place_unpublished")
-    redirect_to place_path(:id => params[:id])
+    redirect_to listing_path(@resource)
   end
 
   protected

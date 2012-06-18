@@ -7,30 +7,29 @@
     .float-right
       = link_to t("places.invisible"), '#', :class => 'btn secondary', :id => 'listing-status'
 
-    %h1= @place.title
+    %h1= @resource.title
 .row
   .span12
-    .row 
+    .row
       .span3
-        = render :partial => 'sidebar'
+        = render :partial => 'places/sidebar'
         &nbsp;
       .span9
         %h2.title.section_title= t("places.wizard.general_information_title")
         .wizard-wrapper
-          = form_for :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+          = form_for @resource, :as => :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
             = hidden_field_tag :place_id, params[:id]
-            = hidden_field_tag :place_current, @place_basic_info.to_json
             = hidden_field_tag :token, form_authenticity_token, :id => 'token'
             = f.hidden_field :published
             .tab-content
               .panel.tab-pane#1
-                = render 'step_general',   :f => f
+                = render 'places/step_general',   :f => f
               .panel.tab-pane#2
-                = render 'step_photos',    :f => f
+                = render 'places/step_photos',    :f => f
               .panel.tab-pane#3
-                = render 'step_amenities', :f => f
+                = render 'places/step_amenities', :f => f
               .panel.tab-pane#4
-                = render 'step_pricing',   :f => f
+                = render 'places/step_pricing',   :f => f
               .panel.tab-pane#5
                 =# render 'step_calendar',  :f => f
               .panel.tab-pane#6
@@ -40,8 +39,8 @@
   $(function() {
     var wizardStep = "#{params[:step]}";
     // Load initial Panel
-    $('.wizard-wrapper .panel').css("display", "none");  
-    $('.wizard-wrapper .panel').first().css("display", "block");  
+    $('.wizard-wrapper .panel').css("display", "none");
+    $('.wizard-wrapper .panel').first().css("display", "block");
 
     if(wizardStep != "") {
       switchToPanel(wizardStep);

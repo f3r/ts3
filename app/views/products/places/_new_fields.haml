@@ -10,3 +10,5 @@
   = f.label :max_guests, t("places.wizard.max_guests"), :class => 'control-label'
   .controls
     = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1"
+- # TODO: This line must die
+= f.hidden_field :size_unit, :value => get_size_unit_backend_compatible

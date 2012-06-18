@@ -2,7 +2,7 @@ en:
   products:
     my_listings:        'My %{product_plural}'
     no_listings:        "You haven't created any listing yet"
-    my_favorites:       'My favorites'
+    my_favorites:       'My Favorites'
     add_a_listing:      'Add a %{product_name}'
     list_your_product:  'List your %{product_name}'
     price_filter:       'Price %{price_unit}'

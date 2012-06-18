@@ -46,7 +46,7 @@ module Search
 
       PlaceType.all.each do |pt|
         self.category_ids = pt.id
-        if ((count = self.count) > -1)
+        if ((count = self.count) > 0)
           checked = current_types && current_types.include?(pt.id.to_s)
           filters << [pt, count, checked]
         end

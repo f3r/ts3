@@ -35,7 +35,7 @@ class Place < ActiveRecord::Base
 
   validates_numericality_of :city_id, :message => "118"
 
-  attr_accessor :amenities, :location, :terms_of_offer
+  attr_accessor :amenities, :location, :terms_of_offer, :terms
   attr_accessible :currency
   attr_protected :published
 

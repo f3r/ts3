@@ -55,11 +55,20 @@ var PlaceShow = {
     };
 
     var map = new google.maps.Map(document.getElementById('map'),mapOptions);
-
-    var marker = new google.maps.Marker({
-      position: new google.maps.LatLng(lat, lon),
+	
+	var rand = parseFloat((Math.random() * (0.002 - (-.002)) + (-.002)).toFixed(4));
+	var circle_lat = lat +rand ;
+	var circle_lon = lon +rand ;
+    // Add a Circle overlay to the map.
+    var circle = new google.maps.Circle({
       map: map,
-      title: cityName + ', ' + countryName
+	  center: new google.maps.LatLng(circle_lat, circle_lon),
+	  strokeColor: '#004de8',
+      strokeWeight: 1,
+      strokeOpacity: 0.62,
+      fillColor: '#004de8',
+      fillOpacity: 0.27,
+      radius: 500 
     });
   },
 

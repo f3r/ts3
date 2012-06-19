@@ -102,6 +102,5 @@ module Search
 
       [min, max]
     end
->>>>>>> [FIXES #30975769] Search by Map should integrate with frontend Places
   end
 end

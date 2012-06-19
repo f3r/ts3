@@ -2,4 +2,4 @@
 <%= page_replace_html("#search_results", :partial => 'search/search_results') %>
 <%= page_replace_html("#search_filters", :partial => 'search/filters') %>
 <%= "GMaps.clearMarkers();" %>
-<%= "GMaps.createMarkers(created_map, #{map_markers_json(@results)})" %>
+<%= "GMaps.createMarkers(created_map, #{map_markers_json(@results)})".html_safe %>

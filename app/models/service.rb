@@ -19,6 +19,14 @@ class Service < ActiveRecord::Base
     [['Completed', 'completed'], ['Student', 'student']]
   end
 
+  def self.seeking_options
+    [['Live in', 'live_in'], ['Live out', 'live_out']]
+  end
+
+  def self.education_statuses
+    [['Completed', 'completed'], ['Student', 'student']]
+  end
+
   def self.price_unit
     :per_hour
   end

@@ -28,7 +28,7 @@ class ListingsController < PrivateController
   end
 
   def edit
-    render 'places/wizard'
+    #render 'places/wizard'
   end
 
   def update

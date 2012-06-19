@@ -1,6 +1,6 @@
 class ListingsController < PrivateController
   layout 'plain'
-  before_filter :find_resource, :only => [:wizard, :show, :edit, :update, :destroy, :publish, :unpublish]
+  before_filter :find_resource, :only => [:wizard, :show, :edit, :update, :update_currency, :destroy, :publish, :unpublish]
 
   def index
     @collection = resource_class.manageable_by(current_user)
@@ -42,11 +42,11 @@ class ListingsController < PrivateController
     render :json => response, :layout => false
   end
 
-  # def update_currency
-  #   @resource.attributes = params[:listing]
-  #   @resource.save
-  #   render :json => {:currency_sign => currency_sign_of(@resource.currency)}
-  # end
+  def update_currency
+    @resource.attributes = params[:listing]
+    @resource.save
+    render :json => {:currency_sign => currency_sign_of(@resource.currency)}
+  end
 
   def destroy
     if @resource.delete

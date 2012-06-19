@@ -6,8 +6,8 @@ class Photo < ActiveRecord::Base
   has_attached_file :photo, {
      :styles => {
        :large => {
-         :geometry => "602x401>"#,
-         #:watermark_path => "#{Rails.root}/public/images/watermark_icon.png"
+         :geometry => "602x401>",
+         :watermark_path => "#{Rails.root}/public/images/watermark_icon.png"
        },
        :medium => "309x200#",
        :medsmall => "150x100#",
@@ -17,8 +17,8 @@ class Photo < ActiveRecord::Base
      :convert_options => {
         :all => "-quality 70"
       },
-     :path => "places/:parent_id/photos/:id/:style.:extension",
-     :processors => [:rationize]#, :watermark]
+     :path => "places/:parent_id/photos/:id/:style.:extension"#,
+     #:processors => [:rationize, :watermark]
    }
 
   #validates_presence_of :place_id

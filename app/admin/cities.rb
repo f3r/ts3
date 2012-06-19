@@ -73,4 +73,24 @@ ActiveAdmin.register City do
     activated = city.deactivate!
     redirect_to({:action => :show}, :notice =>"The city was deactivated")
   end
+  
+  sidebar "Translations", :only => :edit do
+    div do
+      b do
+        resource.I18n_code
+      end
+    end
+    table_for(Locale.all) do |t|
+      t.column("Locale") {|v| v.code}
+      t.column("Value") do |v| 
+        key = Translation.where(:locale => v.code, :key => resource.I18n_code).first
+        if key.nil?
+          link_to "Create", new_admin_translation_path(:locale => v.code, :key => resource.I18n_code)
+        else
+          "#{key.value} #{link_to('Edit', redirect_edit_admin_translations_path(:locale => v.code, :key => resource.I18n_code))}".html_safe
+        end
+      end
+    end
+  end
+  
 end

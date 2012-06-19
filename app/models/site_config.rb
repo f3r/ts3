@@ -1,6 +1,10 @@
 class SiteConfig < ActiveRecord::Base
+  
   after_save :reset_cache
-
+  
+  has_attached_file :logo,
+    :path => "/static/logo.png"
+  
   def self.instance
     @instance = @instance || SiteConfig.first || SiteConfig.new
   end
@@ -13,8 +17,8 @@ class SiteConfig < ActiveRecord::Base
     if self.running_migrations?
       return self.default_to_constant(name)
     end
-    if self.instance.attributes.has_key?(name.to_s)
-      val = self.instance.attributes[name.to_s] if self.instance
+    if self.instance.respond_to?(name.to_s)
+      val = self.instance.send(name.to_s) if self.instance
       if val.present?
         val
       else

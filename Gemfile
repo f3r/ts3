@@ -3,6 +3,11 @@ source :rubygems
 gem 'rails', '3.2.0'
 gem 'mysql2'
 
+# File Uploads
+gem 'paperclip', "~> 2.4"         # Attachements
+gem 'aws-s3'                      # Upload to Amazon S3
+gem 'aws-sdk'
+
 gem 'devise'
 gem 'dynamic_form'
 gem 'omniauth'
@@ -22,11 +27,6 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'rakismet'
 
 gem 'tinymce-rails'
-
-# File Uploads
-gem 'paperclip', "~> 2.4"         # Attachements
-gem 'aws-s3'                      # Upload to Amazon S3
-gem 'aws-sdk'
 
 gem 'activeadmin'
 gem 'sass-rails'

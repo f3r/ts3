@@ -37,6 +37,10 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Storage" do
       f.input :static_assets_path
     end
+    
+    f.inputs "Photos" do
+      f.input :logo
+    end
 
     f.buttons
   end

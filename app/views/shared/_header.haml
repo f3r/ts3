@@ -4,9 +4,9 @@
   .container
     .row
       .span5
-        / TODO: GET LOGO PATH ON THE CSS
-        / hack for tse-demo
-        %h1.logo= link_to SiteConfig.site_name, root_path, :title => SiteConfig.site_name, :style => "background-size: 318px 40px; background-image: url(" + static_asset('logo.png') + ");"
+        .logo
+          = link_to SiteConfig.site_name, root_path, :title => SiteConfig.site_name do
+            = image_tag SiteConfig.logo.url, :alt => SiteConfig.site_name
       - if user_signed_in?
         .user_box.logged-in
           .row

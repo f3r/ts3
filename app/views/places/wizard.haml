@@ -17,11 +17,11 @@
       .span9
         %h2.title.section_title= t("places.wizard.general_information_title")
         .wizard-wrapper
-          = form_for @resource, :as => :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
-            = hidden_field_tag :place_id, params[:id]
-            = hidden_field_tag :token, form_authenticity_token, :id => 'token'
-            = f.hidden_field :published
-            .tab-content
+          .tab-content
+            = form_for @resource, :as => :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+              = hidden_field_tag :place_id, params[:id]
+              = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+              = f.hidden_field :published
               .panel.tab-pane#1
                 = render 'places/step_general',   :f => f
               .panel.tab-pane#2

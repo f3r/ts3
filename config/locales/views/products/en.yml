@@ -28,3 +28,4 @@ en:
         other: "%{count} results"
       price_lowest: Price (Lowest First)
       price_highest: Price (Highest First)
+      category_filters_title: 'Type'

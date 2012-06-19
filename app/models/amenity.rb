@@ -1,11 +1,7 @@
-class Amenity
-  def id
-    44
-  end
-  def slug
-  	"bu"
-  end
-  def translated_name
-    "Buu"
+class Amenity < ActiveRecord::Base
+  belongs_to :amenity_group
+
+  def self.searchable
+    self.where(:searchable => true)
   end
 end

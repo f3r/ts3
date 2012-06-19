@@ -84,8 +84,15 @@ module Search
       filters = []
     end
 
+    def category_filters_title
+      I18n.t("products.search.category_filters_title")
+    end
+
     def amenity_filters
       filters = []
+    end
+
+    def amenity_filters_title
     end
 
     def price_unit

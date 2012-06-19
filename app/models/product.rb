@@ -4,8 +4,10 @@ class Product < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
   belongs_to :currency
-  has_many   :photos,          :dependent => :destroy, :order => :position, :foreign_key => :place_id
-  has_many   :favorites,       :dependent => :destroy, :as => :favorable
+  has_many   :photos, :dependent => :destroy, :order => :position, :foreign_key => :place_id
+  has_many   :favorites, :dependent => :destroy, :as => :favorable
+  has_many   :product_amenities, :dependent => :destroy
+  has_many   :amenities, :through => :product_amenities
 
   def self.published
     self.where('products.published' => true)

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120614082220) do
+ActiveRecord::Schema.define(:version => 20120619170243) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -54,6 +54,20 @@ ActiveRecord::Schema.define(:version => 20120614082220) do
   end
 
   add_index "alerts", ["user_id"], :name => "index_alerts_on_user_id"
+
+  create_table "amenities", :force => true do |t|
+    t.string   "name"
+    t.boolean  "searchable"
+    t.integer  "amenity_group_id"
+    t.datetime "created_at",       :null => false
+    t.datetime "updated_at",       :null => false
+  end
+
+  create_table "amenity_groups", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
   create_table "authentications", :force => true do |t|
     t.integer  "user_id"
@@ -445,6 +459,11 @@ ActiveRecord::Schema.define(:version => 20120614082220) do
   add_index "places", ["place_type_id"], :name => "index_places_on_place_type_id"
   add_index "places", ["state_name"], :name => "index_places_on_state_name"
   add_index "places", ["user_id"], :name => "index_places_on_user_id"
+
+  create_table "product_amenities", :force => true do |t|
+    t.integer "product_id"
+    t.integer "amenity_id"
+  end
 
   create_table "products", :force => true do |t|
     t.integer  "as_product_id"

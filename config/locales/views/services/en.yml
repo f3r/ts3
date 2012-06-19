@@ -1,10 +1,12 @@
 en:
   services:
-    price_per_hour:     'Hourly rate'
-    description:        'About myself'
+    price_per_hour:         'Hourly rate'
+    description:            'About myself'
     wizard:
-      education_status:   'Education status'
-      last_institute:     'Current/Last institute'
-      work_profile_title: 'Work Profile'
-      seeking_title:      'I am seeking'
-      radius:             'How far are you willing to travel?'
+      education_status:     'Education status'
+      last_institute:       'Current/Last institute'
+      work_profile_title:   'Work Profile'
+      seeking_title:        'I am seeking'
+      radius:               'How far are you willing to travel?'
+    search:
+      amenity_filter_title: 'Special requirements'

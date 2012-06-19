@@ -12,4 +12,8 @@ FactoryGirl.define do
   factory :service do
     product
   end
+
+  factory :amenity do
+    name         { Faker::Name.name }
+  end
  end

@@ -1,14 +1,10 @@
 module Admin::PlacesHelper
-  def public_place_path(place)
-    seo_place_path(place)
-  end
-  
   def place_links_column(place)
     html = link_to('Details', admin_place_path(place), :class => 'member_link')
     html << link_to('Edit', edit_admin_place_path(place), :class => 'member_link')
-    html << link_to_if(place.published, 'View Public', public_place_path(place), :class => 'member_link', :target => '_blank')
+    html << link_to_if(place.published, 'View Public', seo_product_url(place), :class => 'member_link', :target => '_blank')
   end
-  
+
   def place_amenities_row(place)
     amenities = []
     Place.columns.select{|col| col.name =~ /amenities/}.each do |amenity_col|
@@ -16,10 +12,10 @@ module Admin::PlacesHelper
         amenities << amenity_col.name.gsub('amenities_', '')
       end
     end
-    
+
     amenities.join(', ')
   end
-  
+
   def place_photos_row(place)
     return unless place.photos
     place.photos.collect do |record|

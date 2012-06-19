@@ -6,7 +6,7 @@ PlaceFilters =
 
     # Top filters
     $("#search_guests, #search_sort_by").change(PlaceFilters.search)
-    
+
     # Initialize the date pickers
     $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker
       dateFormat: 'yy-mm-dd',
@@ -35,9 +35,9 @@ PlaceFilters =
     # Sticky filters
     $(".search-aside-wrapper").height $(".search-aside").height()
     $(".search-bar-wrapper").height   $(".search-bar").height()
-    
-    $('.search-bar-wrapper, .search-aside-wrapper').waypoint( 
-      (event, direction) -> 
+
+    $('.search-bar-wrapper, .search-aside-wrapper').waypoint(
+      (event, direction) ->
         $(@).children().toggleClass('sticky', direction == "down")
         event.stopPropagation()
       offset: 60)  # NOTE: when you change this, goto application.css.less -> .sticky and change top attr
@@ -80,7 +80,7 @@ PlaceFilters =
 
     lastPage = ->
       $('#search_current_page').val() >= $('#search_total_pages').val()
-    
+
     # Endless scroll
     $(window).scroll ->
       return if PlaceFilters.loading
@@ -92,7 +92,7 @@ PlaceFilters =
       ids = []
       $("#types-list input").each ->
         ids.push($(@).val()) if $(@).is(":checked")
-      $('#search_place_type_ids').val(ids.join());
+      $('#search_category_ids').val(ids.join());
       PlaceFilters.search()
 
   bindPriceFilters: ->

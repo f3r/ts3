@@ -38,8 +38,6 @@ HeyPalFrontEnd::Application.routes.draw do
       get   :wizard
       get   :preview
       put   :update_currency
-      put   :publish
-      put   :unpublish
       get   :publish_check
       match :availability
     end
@@ -54,8 +52,12 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-  match '/my_places'          => 'places#index',              :as => :my_places
-
+  resources :listings do
+    member do
+      put   :publish
+      put   :unpublish
+    end
+  end
 
   ###########################################################################################
   # Saved searches
@@ -106,7 +108,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/:city'           => 'search#index', :city => City.routes_regexp
 
   # SEO Routes
-  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp, :as => :city_place
+  match '/:city/:id'       => 'search#show',  :city => City.routes_regexp, :as => :city_product
 
 
   ###########################################################################################

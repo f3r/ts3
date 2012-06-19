@@ -46,6 +46,8 @@ gem 'validates_timeliness', '~> 3.0.2'
 
 gem "friendly_id", "~> 4.0.1"
 
+gem "acts_as_relation"
+
 # i18n stored in active record
 gem 'i18n-active_record',
     :git => 'git://github.com/svenfuchs/i18n-active_record.git',

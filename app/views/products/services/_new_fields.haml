@@ -1,0 +1,12 @@
+.control-group.required
+  = f.label :description, t("services.wizard.description"), :class => 'control-label'
+  .controls
+    = f.text_area :description, :class => "span8 validate[required]", :rows => 5, :style => "width: 440px;"
+.control-group.required
+  = f.label :education_status, t("services.wizard.education_status"), :class => 'control-label'
+  .controls
+    = f.select :education_status, Service.education_statuses, :class => "input-xlarge validate[required]"
+.control-group
+  = f.label :last_institute, t("services.wizard.last_institute"), :class => 'control-label'
+  .controls
+    = f.text_field :last_institute, :class => "input-xlarge"

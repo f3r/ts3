@@ -1,23 +1,23 @@
 - content_for(:title) do
-  - "#{@place.title} - #{@place.city_name}"
+  - "#{@resource.title} - #{@resource.city.name}"
 
 - require_google_apis
 
 .row
   .span10
-    - if @my_places
-      - unless @place.published
+    - if @my_products
+      - unless @resource.published
         .preview-header
           %p= t(:this_is_preview)
-      = breadcrumb [[t('my_places'), my_places_path]],  @place.title
+      = breadcrumb [[t('products.my_listings'), listings_path]], @resource.title
     - else
-      = breadcrumb [['Search Results', seo_city_path(@place.city)]],  @place.title
+      = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title
   .span2.place-actions
     - if current_user?(@owner)
       .buttons.pull-right
-        = render 'place_options_buttons'
+        = render 'listings/actions'
 
-.row.place_info{:class => "place_#{@place.id}"}
+.row.place_info{:id => dom_id(@resource)}
   .span12
     /******************************************************************************************
     / Name, Price, Inquire Button
@@ -26,43 +26,38 @@
     .accomodation-wrapper
       .header
         .title
-          =# render :partial => 'button_favorite', :locals => { :place_id => @place['id'], :favorited => @place['favorited'] }
-          %h1= @place.title
+          = render 'search/button_favorite', :favorable => @resource
+          %h1= @resource.title
 
           .meta
-            %p= "#{@place.city_name}, #{@place.country_name}"
+            %p= "#{@resource.city.name}, #{@resource.city.country}"
             .share
               %label= t("share_via")
               .sharePlace
         .focal
           %h1.price
-            = place_price(@place)
-            %span.sub= t("places.per_month")
+            = product_price(@resource)
+            %span.sub= product_price_unit(@resource)
           %a{:href => '#inquire_place', :class => 'btn btn-large btn-info', 'data-toggle' => 'modal', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true'}= t("places.inquire")
           %p{:style => "font-size: 9px; font-variant: small-caps; color: #5B5848; margin-top: -3px;"}= t("places.no_obligation")
 
       /******************************************************************************************
       / Tabbed Panel: Photos, Map, Calendar, Details, Amenities, Directions, House Rules, Questions
       /******************************************************************************************
-      = render 'search/tabbed_panel'
+      = render_overridable_partial('tabbed_panel', :resource => @resource)
 
-      /******************************************************************************************
-      / Description, Minimum stay, Maximum Stay
-      /******************************************************************************************
-      = render 'places/description'
-
-= render 'search/inquire_place'
+= render 'search/inquire'
 
 :javascript
   PlaceShow.initialize({
     cal_lastVisibleDay : #{DateTime.now.end_of_month.to_date},
     cal_events         : #{@availabilities.to_json},
     cal_month          : #{Date.today.month},
-    map_lat            : #{@place['lat']},
-    map_lon            : #{@place['lon']},
-    map_cityName       : '#{@place.city_name}',
-    map_countryName    : '#{@place.country_name}',
-    share_title        : '#{@place.title}',
-    share_url          : '#{@place_url}',
-    share_id           : '#{@place.id}'
+    map_lat            : #{@resource.lat},
+    map_lon            : #{@resource.lon},
+    map_cityName       : '#{@resource.city.name}',
+    map_countryName    : '#{@resource.city.country}',
+    share_title        : '#{@resource.title}',
+    share_url          : '#{seo_product_url(@resource)}',
+    share_id           : '#{@resource.id}'
   });

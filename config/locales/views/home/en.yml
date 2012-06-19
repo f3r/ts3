@@ -5,7 +5,7 @@ en:
   pages:
     suggest_thank_you_message: "Thank you for your message. %{site_name} is expanding and we will let you know when '%{city}' is available!"
     front_page:
-      search_button: Find a Place
+      search_button: Find
       search_place_stay_in: Search for a place to stay in
       other_cities: Other cities?
       description:

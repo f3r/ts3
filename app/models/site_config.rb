@@ -1,5 +1,12 @@
 class SiteConfig < ActiveRecord::Base
   after_save :reset_cache
+  
+  has_attached_file :fav_icon,
+    :path => "/static/:basename.:extension"
+    
+  def self.favicon_url
+    self.fav_icon_file_name
+  end
 
   def self.instance
     @instance = @instance || SiteConfig.first || SiteConfig.new

@@ -5,19 +5,19 @@ class PhotosController < ApplicationController
   before_filter :find_parent, :except => [:create]
 
   def create
-    @place = @parent = Place.find(params[:place_id])
-    @photo = @parent.photos.new(:photo => params[:file])
+    @place = @resource = Place.find(params[:place_id])
+    @photo = @resource.photos.new(:photo => params[:file])
     @photo.save
-    @photos = @parent.photos
+    @photos = @resource.photos
 
     render :partial => 'photos/list', :layout => false
   end
 
   def destroy
-    @photo = @parent.photos.find(params[:id])
+    @photo = @resource.photos.find(params[:id])
     @photo.destroy
-    @place = @parent.reload
-    @published = @place.published
+    @place = @resource.reload
+    @published = @resource.published
 
     respond_to do |format|
       format.js{ render :template => 'photos/destroy', :layout => false }
@@ -25,7 +25,7 @@ class PhotosController < ApplicationController
   end
 
   def sort
-    @parent.photos.set_positions(params[:photo_ids])
+    @resource.photos.set_positions(params[:photo_ids])
 
     respond_to do |format|
       format.js{ render :template => 'photos/sort', :layout => false }
@@ -33,7 +33,7 @@ class PhotosController < ApplicationController
   end
 
   def update
-    @photo = @parent.photos.find(params[:id])
+    @photo = @resource.photos.find(params[:id])
     @photo.name = params[:name]
     @photo.save
     respond_to do |format|
@@ -44,6 +44,6 @@ class PhotosController < ApplicationController
   protected
 
   def find_parent
-    @parent = Place.with_permissions_to(:read).find(params[:place_id])
+    @resource = Place.with_permissions_to(:read).find(params[:place_id])
   end
 end

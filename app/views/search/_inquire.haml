@@ -1,5 +1,5 @@
 #inquire_place.modal.hide.fade
-  = form_for(:inquiry, :url => inquiries_path(:place_id => @place.id), :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
+  = form_for(:inquiry, :url => inquiries_path(:place_id => @resource.id), :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
     .modal-header
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
       %h3= t("inquiries.inquiry_modal_title")

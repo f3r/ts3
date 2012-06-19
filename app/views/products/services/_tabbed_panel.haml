@@ -1,0 +1,30 @@
+.tabbed-panel.jobs-panel
+  %ul.nav.nav-tabs
+    %li.active
+      %a{:href => "#main-tab", 'data-toggle' => 'tab'}= t("jobs.main")
+    %li
+      %a{:href => "#work_profile-tab", 'data-toggle' => 'tab'}= t("jobs.work_profile")
+    - if false
+      %li
+        %a{:href => "#map-tab", 'data-toggle' => 'tab'}= t("jobs.map")
+      %li
+        %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("jobs.calendar")
+      %li
+        %a{:href => '#details-questions', 'data-toggle' => 'tab'}
+          = t('jobs.questions', :count => 5)#resource.comments.count)
+
+  .tab-content
+    // Main
+    = render 'products/services/tabs/main', :resource => resource
+
+    // Work profile
+    = render 'products/services/tabs/work_profile', :resource => resource
+
+    // Map Pane
+    =# render 'products/services/tabs/map', :resource => resource
+
+    // Calendar Pane
+    = render 'products/services/tabs/calendar', :resource => resource
+
+    // Questions Tab
+    =# render 'comments/questions'

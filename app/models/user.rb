@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications,  :dependent => :destroy
   has_many :places,           :dependent => :destroy
+  has_many :producs,          :dependent => :destroy
   has_many :comments,         :dependent => :destroy
   has_many :favorites,        :dependent => :destroy
 
@@ -39,7 +40,7 @@ class User < ActiveRecord::Base
       },
      :path => "/avatars/:id/:style.:extension",
      :default_url => "none",
-     :convert_options => { 
+     :convert_options => {
        :large => "-quality 80",
        :medium => "-quality 80",
        :thumb => "-quality 80" }

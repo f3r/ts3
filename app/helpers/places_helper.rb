@@ -126,21 +126,7 @@ module PlacesHelper
   end
 
   def seo_place_path(place)
-    extra = place.title.dup
-    extra.gsub!(/[^\x00-\x7F]+/, '') # Remove anything non-ASCII entirely (e.g. diacritics).
-    extra.gsub!(/[^\w_ \-]+/i, '')   # Remove unwanted chars.
-    extra.gsub!(/[ \-]+/i, '-')      # No more than one of the separator in a row.
-    extra.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
-    extra.downcase!
-
-    city = place.city
-
-    city_place_url(:city => city.slug, :id => "#{place.id}-#{extra}")
-    #url_for("/#{city.slug}/#{place['id']}-#{result}")
-  end
-
-  def seo_city_path(city)
-    url_for("/#{city.slug}")
+    seo_product_url(place)
   end
 
   def place_type_filters(place_type_counts)

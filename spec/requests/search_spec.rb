@@ -3,6 +3,7 @@ require 'spec_helper'
 describe "Search" do
   before(:each) do
     @city = create(:city, :name => "Singapore")
+    SiteConfig.stub(:product_class).and_return(Place)
   end
 
   it "recognizes city seo url" do

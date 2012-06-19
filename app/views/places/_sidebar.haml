@@ -28,12 +28,12 @@
           = t("places.wizard.calendar_title")
 
     .actions
-      - unless @place.published
-        %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@place.id})"}
+      - unless @resource.published
+        %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@resource.id})"}
           %span
             = t("preview")
       - else
-        %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@place.id})"}
+        %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@resource.id})"}
           %span
             = t("places.wizard.back_to_property")
 

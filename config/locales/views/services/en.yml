@@ -1,0 +1,6 @@
+en:
+  services:
+    wizard:
+      description:        'About myself'
+      education_status:   'Education status'
+      last_institute:     'Current/Last institute'

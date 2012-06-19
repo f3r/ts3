@@ -24,7 +24,7 @@ describe Search::Places do
     end
 
     it "calculates place type filters" do
-      filters = @search.place_type_filters
+      filters = @search.category_filters
       filters.size.should == 2
 
       filters[0][0].should == @pt1
@@ -38,7 +38,7 @@ describe Search::Places do
       min.should == 1000
       max.should == 5000
 
-      @search.place_type_ids = [@pt1.id]
+      @search.category_ids = [@pt1.id]
       min, max = @search.price_range_bounds
       min.should == 1000
       max.should == 3000

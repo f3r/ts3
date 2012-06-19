@@ -1,10 +1,12 @@
 - if @results.blank?
-  .alert-message.info= t("places.search.no_result")
+  .row.no-results
+    .span9
+      .alert.alert-info= t("places.search.no_result")
 - else
   %ul.list-display
     #search_result_list
-      = render 'results_list_view', :places => @results
+      = render 'results_list_view'
 
   .show-grid.hide
     #search_result_grid
-      = render 'results_grid_view', :places => @results
+      = render 'results_grid_view'

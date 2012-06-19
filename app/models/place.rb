@@ -274,7 +274,11 @@ class Place < ActiveRecord::Base
     self.class.price_unit
   end
 
-  private
+  def radius
+    0
+  end
+
+private
 
   def delete_cache
     delete_caches([])

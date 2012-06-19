@@ -35,7 +35,7 @@ class Place < ActiveRecord::Base
 
   validates_numericality_of :city_id, :message => "118"
 
-  attr_accessor :amenities, :location, :terms_of_offer
+  attr_accessor :amenities, :location, :terms_of_offer, :terms
   attr_accessible :currency
   attr_protected :published
 
@@ -66,6 +66,14 @@ class Place < ActiveRecord::Base
 
   scope :published,    where("published")
   scope :unpublished,  where("not published")
+
+  def self.manageable_by(user)
+    self.where(:user_id => user.id)
+  end
+
+  def self.searcher
+    Search::Places
+  end
 
   def price(a_currency = nil, unit = :per_month)
     a_currency ||= Currency.default
@@ -255,6 +263,15 @@ class Place < ActiveRecord::Base
   def convert_prices_in_usd_cents!
     convert_prices_in_usd_cents(true)
     self.save(:validate => false)
+  end
+
+
+  def self.price_unit
+    :per_month
+  end
+
+  def price_unit
+    self.class.price_unit
   end
 
   private

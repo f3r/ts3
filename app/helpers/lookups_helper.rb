@@ -81,24 +81,12 @@ module LookupsHelper
     get_language || 'en'
   end
 
-  def get_current_currency
-    current_currency.currency_code if current_currency
-  end
-
   def get_current_size_unit
     get_size_unit || 'sqf'
   end
 
   def max_guest_options
     [[t("places.search.guests", :count => 1), 1], [t("places.search.guests", :count => 3), 3], [t("places.search.guests", :count => 5), 5], [t("places.search.guests", :count => 10), 10]]
-  end
-
-  def sort_options
-    [[t("places.search.price_lowest"), 'price_lowest'], [t("places.search.price_highest"), 'price_highest'], [t("places.search.price_size_lowest"), 'price_size_lowest'], [t("places.search.price_size_highest"), 'price_size_highest']]
-  end
-
-  def empty_place_type
-    {"apartment"=>0, "house"=>0, "villa"=>0, "room"=>0, "other_space"=>0}
   end
 
   def cancellation_desc(place)

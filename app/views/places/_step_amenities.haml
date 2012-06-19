@@ -5,19 +5,19 @@
   %fieldset
     - amenities_group_1.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
-        = a[0]  
+        = check_box_tag "place[#{a[1]}]", @resource[a[1].to_s], @resource[a[1].to_s]
+        = a[0]
   %h3= t("places.wizard.furnishings_title")
   %fieldset
     - amenities_group_2.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
+        = check_box_tag "place[#{a[1]}]", @resource[a[1].to_s], @resource[a[1].to_s]
         = a[0]
   %h3= t("places.wizard.sports_and_recreation_title")
   %fieldset
     - amenities_group_4.each do |a|
       %label.amenity{:for => "place_#{a[1]}"}
-        = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
+        = check_box_tag "place[#{a[1]}]", @resource[a[1].to_s], @resource[a[1].to_s]
         = a[0]
   %h3= t("places.wizard.miscellaneous_title")
   %fieldset
@@ -25,10 +25,10 @@
       %label.amenity{:for => "place_#{a[1]}"}
         -if a[1] == :amenities_smoking_allowed
           = link_to '?', '#', :class => 'tooltip-link', :title => raw(t("places.wizard.amenities.do_you_allow_smoking"))
-          = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
+          = check_box_tag "place[#{a[1]}]", @resource[a[1].to_s], @resource[a[1].to_s]
           = a[0]
         -else
-          = check_box_tag "place[#{a[1]}]", @place[a[1].to_s], @place[a[1].to_s]
+          = check_box_tag "place[#{a[1]}]", @resource[a[1].to_s], @resource[a[1].to_s]
           = a[0]
 .arrows.clearfix
   .float-left

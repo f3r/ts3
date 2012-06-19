@@ -1,0 +1,14 @@
+#types-list
+  .header= t("places.search.type_title")
+  .content
+    %ul{:class => "inputs-list"}
+      - filters.each do |obj, count, checked|
+        %li
+          %span.filter
+            = check_box_tag :place_type_id, obj.id, checked, :id => "#{obj.slug}_filter", :autocomplete => 'off'
+            %label{:for => "#{obj.slug}_filter"}= obj.translated_name
+          %span.right
+            %span.label= count
+
+:javascript
+  PlaceFilters.bindTypeFilters();

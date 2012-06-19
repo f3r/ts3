@@ -63,7 +63,7 @@ en:
   CH: China
   SG: Singapore
   AU: Australia
-  
+
   ####################################################################################
   # Account creation & management
   ####################################################################################
@@ -87,10 +87,10 @@ en:
   login_using:                Login using
   sign_in:                    Sign In
   sign_out:                   Sign Out
-  switch_to_login:            Already have an account? Sign in 
+  switch_to_login:            Already have an account? Sign in
   invalid_login:              Invalid Login
-  password_reset_instruction_sent: Password reset instruction has been sent to your email. 
-  password_reset_failed:      Password reset failed. 
+  password_reset_instruction_sent: Password reset instruction has been sent to your email.
+  password_reset_failed:      Password reset failed.
   signup_complete:            Signup Complete
   signup_complete_text:       "Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it."
   confirm_reset_password:     Confirm your password reset
@@ -124,7 +124,7 @@ en:
   terms_and_conditions: Terms and Conditions
   registration_warning: SquareStays won't publish anything without your prior consent
   cancel_email_change:  Cancel email change
-  
+
   ####################################################################################
   # Section Headers
   ####################################################################################
@@ -173,7 +173,7 @@ en:
 
   ####################################################################################
   # Transactions/Inquiries
-  ####################################################################################  
+  ####################################################################################
 
   confirm_rental:          Confirm Rental Request
   preapprove_rental:       Pre-approve Rental Request
@@ -185,7 +185,7 @@ en:
 
   ####################################################################################
   # Authentications
-  ####################################################################################  
+  ####################################################################################
   link_accounts:      + link account
   edit_account:       Edit Account
   account_settings:   Edit
@@ -193,7 +193,7 @@ en:
   ####################################################################################
   # Wizard
   ####################################################################################
-  
+
   general_info: General Info
   general_information: General Information
   photos: Photos
@@ -217,7 +217,7 @@ en:
   ####################################################################################
   # Place types
   ####################################################################################
-  
+
   apartment: Apartment
   house: House
   villa: Villa
@@ -227,23 +227,23 @@ en:
   ####################################################################################
   # Amenities
   ####################################################################################
-  
+
   kitchen: Kitchen
   hot_water: Hot Water
   hot_tub: Hot Tub
-  elevator: Elevator 
-  parking_included: Parking Space 
+  elevator: Elevator
+  parking_included: Parking Space
   heating: Heating
   handicap: Handicap accessible
   doorman: Doorman
   aircon: Air Conditioning
   buzzer_intercom: Buzzer/Intercom
-  internet: Internet 
+  internet: Internet
   tv: TV
   dryer: Dryer
   internet_wifi: Wifi
-  cable_tv: Cable TV 
-  washer: Washer 
+  cable_tv: Cable TV
+  washer: Washer
   pets_allowed: Pets Allowed
   breakfast: Breakfast
   smoking_allowed: Smoking Allowed
@@ -251,7 +251,7 @@ en:
   family_friendly: Family Friendly
   gym: Gym
   jacuzzi: Jacuzzi
-  tennis: Tennis 
+  tennis: Tennis
   pool: Pool
 
   ####################################################################################
@@ -293,8 +293,8 @@ en:
   sports_and_recreation: "Sports & Recreation"
 
   preview_button: Preview &raquo;
- 
-  final_cleanup: Final Cleanup 
+
+  final_cleanup: Final Cleanup
   final_cleanup_hint: The cost of cleaning the place once rental is finished
   security_deposit: Security Deposit
   security_deposit_hint: The wireframe has this but I don't have the text yer
@@ -423,6 +423,7 @@ en:
   # Place show
   ####################################################################################
   this_is_preview: This is a Preview
+  per_hour: Per Hour
   per_night: Per Night
   per_month: Per Month
   rent: Inquire
@@ -449,7 +450,7 @@ en:
   edit_place: Edit
   delete_place: Delete
   message_user: Send a Message
-  
+
   successfully_added_to_your_favorites: The place was successfully added to your favorites
   share_this_place_with_your_friends: Share this favorite with your friends
   no_thanks: No thanks
@@ -457,7 +458,7 @@ en:
   ####################################################################################
   # Place rent
   ####################################################################################
-  
+
   place_details: Place details
   stay_details: Stay details
   arriving: Arriving
@@ -496,7 +497,7 @@ en:
   ####################################################################################
   # Inquiries
   ####################################################################################
-  
+
   inquiry_success:   "Your inquiry has been sent!"
   inquiry_error:     "There was a problem processing you inquiry, please try again"
   inquiry_guests:
@@ -521,7 +522,7 @@ en:
 
   ####################################################################################
   # Alerts
-  ####################################################################################  
+  ####################################################################################
   alerts: Alerts
   my_alerts: My Alerts
   status: Status
@@ -560,7 +561,7 @@ en:
 
   ####################################################################################
   # Home page
-  ####################################################################################  
+  ####################################################################################
   homepage_search_but: Find a Place
   teaser_center_title: Why should you use SquareStays?
   teaser_1_title:      Flexibility
@@ -604,7 +605,7 @@ en:
   how_payments_1st: "SquareStays listings are designed to have full disclosure and no hidden fees! When you make an inquiry or a reservation, you should know exactly how much it will cost. When you are ready to guarantee your stay, please pay the reservation fee on the site. This will cover all SquareStays fees and guarantee your stay. You will then pay all remaining payments for your stay directly to the listing owner."
   how_payments_2nd: "SquareStays offers payments by credit card, PayPal and bank transfer. Please contact us at %{support_email} with any questions."
   how_travelers_4th: "Of course, you can always send general messages or questions to any other member on the site using the “Send Message” link on the member’s profile page or when viewing the details of any place. If you ever have any problems or questions in communicating with other members, please contact us at %{support_email}"
-  
+
   ####################################################################################
   # Error codes
   ####################################################################################

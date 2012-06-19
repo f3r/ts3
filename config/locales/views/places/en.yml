@@ -68,7 +68,7 @@ en:
       read_rent_agreement: I have read and agree to the lease agreement
       continue: Continue
 
-    cancellation: Cancellation    
+    cancellation: Cancellation
     cancellation_policy: Cancellation Policy
     cancellation_policies:
       flexible: Flexible 30-Day
@@ -125,7 +125,7 @@ en:
 
       next_step: "Next Step &raquo;"
       previous_step: "&laquo; Previous Step"
-      
+
       back_to_property: Back to Property
       photos:
         read_photo_faq: "Read some tips on providing great pictures for your %{site_name} properties"
@@ -182,18 +182,11 @@ en:
         something_went_wrong: Something went wrong. Please check your availabilities again.
 
     search:
-      sort_by: Sort by
-      results:
-        zero: No results
-        one: "1 result"
-        other: "%{count} results"
       guests:
         one: "1 guest"
         other: "%{count} guests"
       arriving_on: Arriving on
       departing_on: Departing on
-      price_lowest: Price (Lowest First)
-      price_highest: Price (Highest First)
       price_size_lowest: Price/Size (Lowest First)
       price_size_highest: Price/Size (Highest First)
       type: Type
@@ -218,19 +211,19 @@ en:
       kitchen: Kitchen
       hot_water: Hot Water
       hot_tub: Hot Tub
-      elevator: Elevator 
-      parking_included: Parking Space 
+      elevator: Elevator
+      parking_included: Parking Space
       heating: Heating
       handicap: Handicap accessible
       doorman: Doorman
       aircon: Air Conditioning
       buzzer_intercom: Buzzer/Intercom
-      internet: Internet 
+      internet: Internet
       tv: TV
       dryer: Dryer
       internet_wifi: Wifi
-      cable_tv: Cable TV 
-      washer: Washer 
+      cable_tv: Cable TV
+      washer: Washer
       pets_allowed: Pets Allowed
       breakfast: Breakfast
       smoking_allowed: Smoking Allowed
@@ -238,7 +231,7 @@ en:
       family_friendly: Family Friendly
       gym: Gym
       jacuzzi: Jacuzzi
-      tennis: Tennis 
+      tennis: Tennis
       pool: Pool
 
     messages:

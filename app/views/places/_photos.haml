@@ -1,7 +1,7 @@
 #photo-slider.tab-pane.active
   .viewport
     %ul.overview
-      - photos = carousel_photoset(@place)
+      - photos = carousel_photoset(@resource)
       - photos.each_cons(3) do |p1, p2, p3|
         %li
           .big
@@ -17,10 +17,10 @@
                 = image_tag(p3.photo.url(:medium))
 
   .slider-nav
-    %a.buttons.prev{:href => "#"} 
+    %a.buttons.prev{:href => "#"}
       =raw('&laquo;')
     %ul.pager
-      - @place.photos.each_with_index do |p, i|
+      - @resource.photos.each_with_index do |p, i|
         %li
           %a{"data-page" => i, :class => "pagenum", :href => "#"}
             = image_tag(p.photo.url(:tiny))

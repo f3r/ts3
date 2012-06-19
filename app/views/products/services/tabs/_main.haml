@@ -1,0 +1,46 @@
+#main-tab.tab-pane.active
+  .row
+    .span3.profile_pic
+      = image_tag "http://placehold.it/185x214"
+
+    .span8
+      .row-fluid
+        .span12
+          %h2
+            Sam W.
+      .row-fluid
+        .span6
+          .row-fluid
+            .span4
+              .details_label= t("jobs.age")
+            .span8
+              .details_value= 35
+          .row-fluid
+            .span4
+              .details_label= t("jobs.speaks")
+            .span8
+              .details_value
+                English, French
+          .row-fluid
+            .span4
+              .details_label= t("jobs.looking_for")
+            .span8
+              .details_value
+                Live out
+        .span6
+          .row-fluid
+            .span8
+              .details_label= t("jobs.educational_status")
+            .span4
+              .details_value
+                Completed
+          .row-fluid
+            .span8
+              .details_label= t("jobs.last_educational_institute")
+            .span4
+              .details_value
+                AGSM
+      .row-fluid.about
+        .span12
+          %h3="#{t("jobs.about_me")}:"
+          %p= resource.description

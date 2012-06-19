@@ -48,6 +48,19 @@ class SiteConfig < ActiveRecord::Base
     return color_schemes
   end
 
+  def self.product_class
+    #Service
+    Place
+  end
+
+  def self.product_plural
+    self.product_name.pluralize
+  end
+
+  def self.product_name
+    self.product_class.to_s
+  end
+
   protected
 
   def self.reset_cache

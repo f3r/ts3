@@ -21,6 +21,6 @@
 :javascript
   $(document).ready(function() {
     if(window.created_map){
-      GMaps.createMarkers(created_map, #{map_markers_json(@results)})
+      GMaps.createMarkers(#{map_markers_json(@results)})
     }
   });

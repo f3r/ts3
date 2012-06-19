@@ -51,6 +51,7 @@ PlaceFilters =
     PlaceFilters.loadingIndicatorOn()
     $('#submitted_action').val('filter')
     $('#search_current_page').val(1)
+    GMaps.clearMarkers()
     $('#new_search').submit()
 
   seeMore: ->

@@ -23,18 +23,17 @@ GMaps =
       mapTypeId: google.maps.MapTypeId.ROADMAP
       streetViewControl: false
 
-    map = new google.maps.Map(document.getElementById('search_map'), myOptions)
+    @map = new google.maps.Map(document.getElementById('search_map'), myOptions)
 
-    window.created_map = map;
-    GMaps.createMarkers(map,places)
-    google.maps.event.addListener map, 'dragend', -> GMaps.setBoundsValues(map)
-    google.maps.event.addListener map, 'zoom_changed', -> GMaps.setBoundsValues(map)
+    GMaps.createMarkers(places)
+    google.maps.event.addListener @map, 'dragend', -> GMaps.setBoundsValues()
+    google.maps.event.addListener @map, 'zoom_changed', -> GMaps.setBoundsValues()
 
   createMarkerObjectsFromString : (places) ->
     data = places.replace(/&quot;/g,'"')
     $.parseJSON(data)
 
-  createMarkers : (map,places) ->
+  createMarkers : (places) ->
     for place in places
       myLatlng = new google.maps.LatLng(place.lat,place.lon)
       marker = new google.maps.Marker
@@ -46,11 +45,11 @@ GMaps =
 
       google.maps.event.addListener marker, 'click', -> GMaps.performMarkerEvent(@)
 
-      marker.setMap map
-      map.addMarker marker
+      marker.setMap @map
+      @map.addMarker marker
 
-  setBoundsValues : (map) ->
-    latLngBounds = map.getBounds()
+  setBoundsValues : ->
+    latLngBounds = @map.getBounds()
 
     if !latLngBounds.isEmpty()
       southWest = latLngBounds.getSouthWest()
@@ -67,12 +66,15 @@ GMaps =
       $('#search_max_lng').val(maxLng)
 
       if $('.results > #search-load-indicator').length == 0
-        map.clearMarkers();
         PlaceFilters.search()
+        
   # Just killed the server method
   performMarkerEvent : (place) ->
     title = place.title
     data  = place.data
     $(location).attr('href', place.data.url)
+    
+  clearMarkers : ->
+    @map.clearMarkers();
 
 window.GMaps = GMaps

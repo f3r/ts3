@@ -88,7 +88,7 @@ class Place < ActiveRecord::Base
       else
         # Must convert between USD and a_currency
         amount_usd = self.send("price_#{unit}_usd").to_i
-        amount = a_currency.from_usd(amount_usd/100.0).to_f.to_i
+        amount = a_currency.from_usd(amount_usd/100.0)
       end
     end
     [a_currency.symbol, amount]

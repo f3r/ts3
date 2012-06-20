@@ -11,6 +11,9 @@ class Product < ActiveRecord::Base
 
   attr_accessor :terms
 
+  validates_presence_of  :currency
+  before_save :convert_prices_to_usd
+
   def self.published
     self.where('products.published' => true)
   end
@@ -47,9 +50,18 @@ class Product < ActiveRecord::Base
       else
         # Must convert between USD and a_currency
         amount_usd = self.send("price_#{unit}_usd")
-        amount = a_currency.from_usd(amount_usd/100.0).to_f.to_i
+        amount = a_currency.from_usd(amount_usd/100.0)
       end
     end
     [a_currency.symbol, amount]
+  end
+
+  protected
+
+  def convert_prices_to_usd
+    return true unless currency
+    self.price_per_hour_usd = self.currency.to_usd(self.price_per_hour) * 100.0 if self.price_per_hour_changed? && self.price_per_hour
+    self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
+    self.price_per_hour_month = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
   end
 end

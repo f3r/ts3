@@ -6,6 +6,7 @@ FactoryGirl.define do
     address_1    { Faker::Address.street_address }
     address_2    { Faker::Address.secondary_address }
     zip          { Faker::Address.zip }
+    currency
     city
   end
 

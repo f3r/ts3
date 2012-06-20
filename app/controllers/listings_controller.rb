@@ -13,6 +13,7 @@ class ListingsController < PrivateController
   def create
     @resource = resource_class.new(params[:listing])
     @resource.user = current_user
+    @resource.currency ||= Currency.default
 
     if @resource.save
       redirect_to edit_listing_path(@resource)

@@ -54,6 +54,8 @@ gem 'i18n-active_record',
     :branch => 'rails-3.2',
     :require => 'i18n/active_record'
 
+gem 'localized_country_select' # i18n country select
+
 gem 'memcachier'  # Heroku plugin Memcachier
 gem 'dalli'
 

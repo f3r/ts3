@@ -20,8 +20,7 @@
         = af.label :country, "#{t(:country)}*", :class => 'control-label'
         .controls
           = icon_tooltip(:public)
-          = af.localized_country_select(:country, [], {:include_blank => t(:choose_country)}, {:class => "validate[required]", :id => "address_country"})
-
+          = af.country_select(:country, [], {:include_blank => t(:choose_country)}, {:class => "validate[required]", :id => "address_country"})
       .control-group
         = af.label :zip, "#{t(:zip)}*", :class => 'control-label'
         .controls

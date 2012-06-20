@@ -4,7 +4,7 @@
 %meta{:content => content_for?(:meta_keywords) ? "#{yield(:meta_keywords)}" : "#{SiteConfig.meta_keywords}", :name => "keywords"}
 %meta{:content => content_for?(:meta_description) ? "#{yield(:meta_description)}" : "#{SiteConfig.meta_description}", :name => "description"}
 
-%link{:rel => "icon", :type => "image/png", :href => "#{static_asset(SiteConfig.favicon_url)}"}
+%link{:rel => "icon", :type => "image/png", :href => "#{SiteConfig.fav_icon.to_s}"}
 
 = stylesheet_link_tag 'plugins'
 = stylesheet_link_tag css_color_scheme

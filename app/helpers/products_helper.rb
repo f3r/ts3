@@ -48,4 +48,9 @@ module ProductsHelper
       "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
     end
   end
+
+  def transaction_length_options
+    opts = SiteConfig.product_class.transaction_length_units
+    options_for_select(opts)
+  end
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619170243) do
+ActiveRecord::Schema.define(:version => 20120620112213) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -113,6 +113,69 @@ ActiveRecord::Schema.define(:version => 20120619170243) do
     t.string   "swift"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "bootstrap_configs", :force => true do |t|
+    t.string   "black"
+    t.string   "grayDarker"
+    t.string   "grayDark"
+    t.string   "gray"
+    t.string   "grayLight"
+    t.string   "grayLighter"
+    t.string   "white"
+    t.string   "blue"
+    t.string   "blueDark"
+    t.string   "green"
+    t.string   "red"
+    t.string   "yellow"
+    t.string   "orange"
+    t.string   "pink"
+    t.string   "purple"
+    t.string   "bodyBackground"
+    t.string   "textColor"
+    t.string   "linkColor"
+    t.string   "linkColorHover"
+    t.string   "sansFontFamily"
+    t.string   "serifFontFamily"
+    t.string   "monoFontFamily"
+    t.string   "baseFontSize"
+    t.string   "baseFontFamily"
+    t.string   "baseLineHeight"
+    t.string   "altFontFamily"
+    t.string   "headingsFontFamily"
+    t.string   "headingsFontWeight"
+    t.string   "headingsColor"
+    t.string   "tableBackground"
+    t.string   "tableBackgroundAccent"
+    t.string   "tableBackgroundHover"
+    t.string   "tableBorder"
+    t.string   "btnBackground"
+    t.string   "btnBackgroundHighlight"
+    t.string   "btnBorder"
+    t.string   "btnPrimaryBackground"
+    t.string   "btnPrimaryBackgroundHighlight"
+    t.string   "btnInfoBackground"
+    t.string   "btnInfoBackgroundHighlight"
+    t.string   "btnSuccessBackground"
+    t.string   "btnSuccessBackgroundHighlight"
+    t.string   "btnWarningBackground"
+    t.string   "btnWarningBackgroundHighlight"
+    t.string   "btnDangerBackground"
+    t.string   "btnDangerBackgroundHighlight"
+    t.string   "btnInverseBackground"
+    t.string   "btnInverseBackgroundHightlight"
+    t.string   "inputBackground"
+    t.string   "inputBorder"
+    t.string   "inputBorderRadius"
+    t.string   "inputDisabledBackground"
+    t.string   "formActionsBackground"
+    t.string   "dropdownBackground"
+    t.string   "dropdownBorder"
+    t.string   "dropdownLinkColor"
+    t.string   "dropdownLinkColorHover"
+    t.string   "dropdownLinkBackgroundHover"
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
   end
 
   create_table "cities", :force => true do |t|
@@ -284,6 +347,8 @@ ActiveRecord::Schema.define(:version => 20120619170243) do
     t.integer  "length_stay"
     t.string   "length_stay_type"
     t.integer  "guests"
+    t.integer  "target_id"
+    t.string   "target_type"
   end
 
   add_index "inquiries", ["place_id"], :name => "index_inquiries_on_place_id"
@@ -366,8 +431,8 @@ ActiveRecord::Schema.define(:version => 20120619170243) do
     t.float    "lon"
     t.text     "directions"
     t.boolean  "amenities_aircon",                        :default => false
-    t.boolean  "amenities_breakfast",                     :default => false
     t.boolean  "amenities_buzzer_intercom",               :default => false
+    t.boolean  "amenities_breakfast",                     :default => false
     t.boolean  "amenities_cable_tv",                      :default => false
     t.boolean  "amenities_dryer",                         :default => false
     t.boolean  "amenities_doorman",                       :default => false
@@ -514,14 +579,14 @@ ActiveRecord::Schema.define(:version => 20120619170243) do
     t.string   "tw_app_id"
     t.string   "tw_app_secret"
     t.string   "mail_bcc"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
+    t.datetime "created_at",                               :null => false
+    t.datetime "updated_at",                               :null => false
+    t.string   "color_scheme",         :default => "none"
     t.string   "site_tagline"
+    t.string   "static_assets_path"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
-    t.string   "color_scheme",         :default => "default"
-    t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"

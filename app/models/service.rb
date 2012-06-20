@@ -31,6 +31,10 @@ class Service < ActiveRecord::Base
     :per_hour
   end
 
+  def self.transaction_length_units
+    [['hour(s)', 'hours']]
+  end
+
   def price_unit
     self.class.price_unit
   end

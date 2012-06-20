@@ -270,6 +270,10 @@ class Place < ActiveRecord::Base
     :per_month
   end
 
+  def self.transaction_length_units
+    [['week(s)', 'weeks'], ['month(s)', 'months']]
+  end
+
   def price_unit
     self.class.price_unit
   end

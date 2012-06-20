@@ -6,7 +6,7 @@ describe TransactionsController do
     @guest   = create(:user, :role => "user")
     @agent   = create(:user, :role => "agent")
     @place   = create(:published_place, :user => @agent)
-    @inquiry = create(:inquiry, :place => @place, :user => @guest)
+    @inquiry = create(:inquiry, :target => @place, :user => @guest)
     @transaction = @inquiry.transaction
   end
 
@@ -76,7 +76,7 @@ describe TransactionsController do
     #   @transaction.update_attribute(:state, 'ready_to_pay')
     #   post :pay, :code => @transaction.transaction_code, :amount => 299
     #   response.should be_success
-    # 
+    #
     #   @transaction.reload
     #   @transaction.state.should == 'paid'
     # end

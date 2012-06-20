@@ -1,26 +1,28 @@
 class Inquiry < ActiveRecord::Base
   belongs_to :user
-  belongs_to :place
+  #belongs_to :place
+  belongs_to :target, :polymorphic => true
+
   has_one :conversation, :as => :target
 
   serialize :extra
 
-  validates_presence_of :user, :place
+  validates_presence_of :user, :target
 
   attr_accessor :message
 
   # Include the Rakismet model
   include Rakismet::Model
 
-  def self.create_and_notify(place, user, params)
+  def self.create_and_notify(resource, user, params)
     inquiry = self.new(
-      :place => place,
+      :target => resource,
       :user => user,
       :extra => params[:extra],
       :guests => params[:guests]
     )
     inquiry.check_in = params[:date_start]
-    inquiry.length = [params[:length_stay], params[:length_stay_type]]
+    inquiry.length   = [params[:length_stay], params[:length_stay_type]]
 
     return inquiry unless inquiry.save
 
@@ -68,6 +70,8 @@ class Inquiry < ActiveRecord::Base
       self.check_out = nil
     else
       case self.length_stay_type.to_sym
+      when :hours
+        length = self.length_stay.hours
       when :days
         length = self.length_stay.days
       when :weeks
@@ -94,13 +98,13 @@ class Inquiry < ActiveRecord::Base
   def start_conversation(message)
     self.message = message
     # Check if there is a previous inquiry
-    prev_inquiry = Inquiry.where(:user_id => self.user.id, :place_id => self.place.id).first
+    prev_inquiry = Inquiry.where(:user_id => self.user.id, :target_id => self.target.id).first
     if prev_inquiry && prev_inquiry.conversation
       conversation = prev_inquiry.conversation
       Messenger.add_reply(self.user, conversation.id, Message.new(:body => message),true)
     else
       conversation = Conversation.new
-      conversation.recipient = self.place.user
+      conversation.recipient = self.target.user
       conversation.body = message
       conversation.target = self
 
@@ -118,7 +122,7 @@ class Inquiry < ActiveRecord::Base
     unless t
       t = Transaction.create(
         :inquiry_id => self.id,
-        :place_id => self.place_id,
+        #:place_id => self.place_id,
         :user_id => self.user_id,
         :check_in => self.check_in,
         :check_out => self.check_out
@@ -132,7 +136,7 @@ class Inquiry < ActiveRecord::Base
   end
 
   def recipient
-    self.place.user if self.place
+    self.target.user if self.target
   end
 
   def send_reminder
@@ -140,7 +144,7 @@ class Inquiry < ActiveRecord::Base
   end
 
   def title
-    self.place.title if self.place
+    self.target.title if self.target
   end
 
   def state

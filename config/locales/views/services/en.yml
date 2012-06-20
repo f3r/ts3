@@ -3,6 +3,7 @@ en:
     price_per_hour:         'Hourly rate'
     description:            'About myself'
     wizard:
+      description:          'About myself'
       education_status:     'Education status'
       last_institute:       'Current/Last institute'
       work_profile_title:   'Work Profile'
@@ -10,3 +11,18 @@ en:
       radius:               'How far are you willing to travel?'
     search:
       amenity_filter_title: 'Special requirements'
+    main: Main
+    work_profile: Work Profile
+    map: Map
+    calendar: Calendar
+    questions: "Questions & Answers (%{count})"
+    age: Age
+    speaks: Speaks
+    looking_for: Looking for
+    educational_status: Educational Status
+    last_educational_institute: Last educational institute
+    domestic_care: Domestic Care
+    personal_care: Personal Care
+    qualifications: Qualifications
+    name_work_profile: "%{name} - Work Profile"
+    about_me: About Me

@@ -9,6 +9,8 @@ class Product < ActiveRecord::Base
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
 
+  attr_accessor :terms
+
   def self.published
     self.where('products.published' => true)
   end

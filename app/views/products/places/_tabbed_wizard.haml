@@ -1,3 +1,7 @@
+- content_for :javascripts do
+  = javascript_include_tag "wizard"
+  = stylesheet_link_tag "uploadify/uploadify.css"
+
 = form_for @resource, :as => :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
   = hidden_field_tag :place_id, params[:id]
   = hidden_field_tag :token, form_authenticity_token, :id => 'token'

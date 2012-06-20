@@ -1,37 +1,17 @@
 #work_profile-tab.tab-pane
   .row
     .span3.profile_pic
-      = image_tag "http://placehold.it/185x214"
+      = image_tag primary_photo(@resource), :width => '200'
 
     .span8
       .row-fluid
         .span12
-          %h2= t("jobs.name_work_profile", :name => "Sam W.")
+          %h2= t("services.name_work_profile", :name => "Sam W.")
       .row-fluid
-        .span4
-          %h3= t("jobs.domestic_care")
-          .row-fluid
-            .w-left-icon.check
-              hello
-          .row-fluid
-            .w-left-icon.check
-              hello
-          .row-fluid
-            .w-left-icon.check
-              hello
-        .span4
-          %h3= t("jobs.personal_care")
-          .row-fluid
-            .w-left-icon.check
-              hello
-          .row-fluid
-            .w-left-icon.check
-              hello
-        .span4
-          %h3= t("jobs.qualifications")
-          .row-fluid
-            .w-left-icon.check
-              hello
-          .row-fluid
-            .w-left-icon.check
-              hello
+        - AmenityGroup.all.each do |ag|
+          .span4
+            %h3= ag.name
+            - ag.amenities.each do |a|
+              .row-fluid
+                - checked = @resource.amenities.include?(a)
+                .w-left-icon{:class => checked ? 'check' : 'ekis'}= a.name

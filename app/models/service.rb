@@ -38,4 +38,20 @@ class Service < ActiveRecord::Base
   def price(a_currency, unit)
     self.product.price(a_currency, unit)
   end
+
+  def seeking_label
+    return unless self.seeking
+    opt = self.class.seeking_options.find{|o| o[1] == self.seeking}
+    opt[0] if opt
+  end
+
+  def education_status_label
+    return unless self.education_status
+    opt = self.class.education_statuses.find{|o| o[1] == self.education_status}
+    opt[0] if opt
+  end
+
+  def primary_photo
+    self.user.avatar.url(:medium) if self.user.avatar?
+  end
 end

@@ -168,7 +168,7 @@ module Search
 
     def add_conditions
       add_equals_condition('products.city_id', self.city_id)
-      add_equals_condition(price_field, self.price_range)
+      add_equals_condition("products.#{self.price_field}", self.price_range)
       add_filters # From override
     end
 

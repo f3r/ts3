@@ -4,7 +4,7 @@
 <%= @renter.anonymized_name %> has sent an inquiry about renting place <%= link_to @place.title, seo_place_path(@place) %>
 <% if @inquiry.check_in %>
 for <%= @inquiry.length_in_words %> starting on <%= @inquiry.check_in.to_formatted_s(:long) %>
-<% end %> 
+<% end %>
 </p>
 <p>
 The system feels this is a spam due to the message with the inquiry.
@@ -17,7 +17,3 @@ The system feels this is a spam due to the message with the inquiry.
     </blockquote>
   </p>
 <% end %>
-
-</br>
-
-<p>Please log in to <%= link_to site_name, frontend_url('/login') %> to view the request. You can reply to your inquiries at the <%= link_to 'messages section', frontend_url('/messages') %>.</p>

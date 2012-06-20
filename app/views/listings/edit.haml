@@ -1,7 +1,10 @@
 .wizard.row
   .span12.title
     .float-right
-      = link_to t("products.invisible"), listing_path(@resource), :class => 'btn secondary', :id => 'listing-status'
+      - if @resource.published?
+        = link_to t("products.listed"), listing_path(@resource), :class => 'btn secondary', :id => 'listing-status'
+      - else
+        = link_to t("products.invisible"), listing_path(@resource), :class => 'btn secondary', :id => 'listing-status'
 
     %h1= @resource.title
 .row

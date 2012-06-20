@@ -7,7 +7,7 @@
           %label.amenity{:for => dom_id(a)}
             = check_box_tag 'listing[amenity_ids][]', a.id, @resource.amenities.include?(a), :id => dom_id(a)
             = a.name
-  = f.submit t(:save)
+  = f.submit t(:save), :class => 'btn btn-primary'
 - if false
   .arrows.clearfix
     .float-left

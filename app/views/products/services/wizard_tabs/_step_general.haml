@@ -23,7 +23,7 @@
         = f.label :radius, t("services.wizard.radius"), :class => 'control-label'
         .controls
           = f.text_field :radius, :class => "input-small validate[required] autosave"
-          = 'KM'
+          = 'km'
       .control-group.required
         = f.label :education_status, t("services.wizard.education_status"), :class => 'control-label'
         .controls
@@ -36,7 +36,7 @@
         = f.label :description, t("services.description"), :class => 'control-label'
         .controls
           = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"
-      = f.submit t(:save)
+      = f.submit t(:save), :class => 'btn btn-primary'
 - if false
   .arrows.clearfix
     .float-right

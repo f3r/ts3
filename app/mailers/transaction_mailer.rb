@@ -24,7 +24,7 @@ class TransactionMailer < BaseMailer
   def request_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Confirmed!'
+    subject    = t("mailers.transaction.request_renter.subject")
     
     mail(:to => recipients, :subject => subject)
   end
@@ -35,7 +35,7 @@ class TransactionMailer < BaseMailer
     @user      = inquiry.place.user
     @renter    = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Confirmed!'
+    subject    = t("mailers.transaction_request_owner.subject")
     
     mail(:to => recipients, :subject => subject)
   end
@@ -48,7 +48,7 @@ class TransactionMailer < BaseMailer
   def approve_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Approved!'
+    subject    = t("mailers.transaction_approve_renter.subject")
 
     mail(:to => recipients, :subject => subject)
   end
@@ -60,7 +60,7 @@ class TransactionMailer < BaseMailer
     @renter    = inquiry.user
 
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Approved!'
+    subject    = t("mailers.transaction_approve_owner.subject")
     
     mail(:to => recipients, :subject => subject)    
   end
@@ -73,7 +73,7 @@ class TransactionMailer < BaseMailer
   def pay_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Transaction Confirmed!'
+    subject    = t("mailers.transaction_pay_renter.subject")
     
     mail(:to => recipients, :subject => subject)    
   end
@@ -84,7 +84,7 @@ class TransactionMailer < BaseMailer
     @user      = inquiry.place.user
     @renter    = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Transaction Confirmed!'
+    subject    = t("mailers.transaction_pay_owner.subject")
     
     mail(:to => recipients, :subject => subject)
   end

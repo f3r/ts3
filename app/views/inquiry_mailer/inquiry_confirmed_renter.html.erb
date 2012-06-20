@@ -1,7 +1,7 @@
-<h2>Dear <%= @user.full_name %>,</h2>
-
-<p>Your inquiry on <%= link_to @place.title, seo_place_path(@place) %> has been sent.</p>
-<br>
-<p>You can manage your inquiries at the <%= link_to 'messages section', messages_url %>.</p>
-<br>
-<p>The property owner or listing agent will get a copy of your request. Normally, your request will be handled within 24-48 hours.</p>
+<h2><%= t("mailers.salutation", :name => @user.full_name) %></h2>
+<% place_link = link_to @place.title, seo_place_path(@place) %>
+<p><%= t("mailers.inquiry_confirmed_renter.intro", :place_link => place_link).html_safe %><p>
+<% messages_link = link_to t("mailers.messages_section"), messages_path %>
+<p><%= t("mailers.inquiry_confirmed_renter.manage_messages", :messages_link => messages_link).html_safe %>
+<br />
+<p><%= t("mailers.inquiry_confirmed_renter.warning") %></p>

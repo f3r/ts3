@@ -7,7 +7,7 @@ class UserMailer < BaseMailer
     @place     = question.place
     @from      = @question.user
     recipients = "#{user.full_name} <#{user.email}>"
-    subject    = t('new_question_subject', :sender => @from.anonymized_name)
+    subject    = t('mailers.new_question.subject', :sender => @from.anonymized_name)
 
     mail(:to => recipients, :subject => subject)
   end
@@ -17,7 +17,7 @@ class UserMailer < BaseMailer
     @question  = question
     @place     = question.place
     recipients = "#{user.full_name} <#{user.email}>"
-    subject    = t('new_question_reply_subject')
+    subject    = t('mailers.new_question_reply.subject')
 
     mail(:to => recipients, :subject => subject)
   end
@@ -29,7 +29,7 @@ class UserMailer < BaseMailer
     @message   = message
     from       = @message.from
     recipients = "#{user.full_name} <#{user.email}>"
-    subject    = t('messages.new_reply_subject', :sender => from.anonymized_name)
+    subject    = t('mailers.new_message_reply.subject', :sender => from.anonymized_name)
 
     mail(:to => recipients, :subject => subject)
   end
@@ -39,7 +39,7 @@ class UserMailer < BaseMailer
   def auto_welcome(user)
     @user      = user
     recipients = "#{user.full_name} <#{user.email}>"
-    subject    = t('devise.registrations.signed_up')
+    subject    = t('mailers.auto_welcome.subject')
 
     mail(:to => recipients, :subject => subject)
   end

@@ -18,5 +18,12 @@ describe SiteConfig do
 
       SiteConfig.site_name.should == 'SquareNew'
     end
+    
+    it "set favicon" do
+       fav_icon = File.open("#{Rails.root}/db/rake_seed_images/favicon.ico")
+       @site_config.fav_icon = fav_icon
+       @site_config.save!
+       SiteConfig.fav_icon_file_name.should == 'favicon.ico'
+   end
   end
 end

@@ -4,7 +4,7 @@ authorization do
   end
 
   role :admin do
-    includes [:default]
+    includes [:default, :agent]
     has_permission_on [:users, :places, :place_types, :addresses, :bank_accounts, :availabilities, :comments], :to => [:manage]
     has_permission_on :users,        :to => [:change_role]
     has_permission_on :places,       :to => [:user_places, :publish, :transactions]
@@ -16,6 +16,9 @@ authorization do
     includes [:default]
     has_permission_on :places, :to => [:create]
     has_permission_on :places, :to => [:manage, :publish, :user_places] do
+      if_attribute :user => is { user }
+    end
+    has_permission_on :services, :to => [:manage] do
       if_attribute :user => is { user }
     end
     has_permission_on [:availabilities, :comments], :to => [:manage] do

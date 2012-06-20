@@ -13,7 +13,7 @@ class Transaction < ActiveRecord::Base
   validates_presence_of :check_in, :check_out, :user_id, :state, :message => "101"
 
   validates_date :check_in, :after => :today, :invalid_date_message => "113", :after_message => "119"
-  validates_date :check_out, :after => :check_in, :invalid_date_message => "113", :after_message => "120"
+  #validates_date :check_out, :after => :check_in, :invalid_date_message => "113", :after_message => "120"
 
   validate :check_min_max_stay
 
@@ -70,6 +70,11 @@ class Transaction < ActiveRecord::Base
 
   def target
     self.inquiry.target
+  end
+
+
+  def code
+    self.transaction_code
   end
 
   private

@@ -5,6 +5,7 @@
         ev.preventDefault();
         ev.stopPropagation();
         $("#mail_view_content").attr('src',($(this).attr('href')));
+        $("#main_content .panel h3").html("Template Preview: " + $(this).html());
         return false;
     });
   });

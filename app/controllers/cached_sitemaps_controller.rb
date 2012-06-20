@@ -2,6 +2,7 @@ class CachedSitemapsController < SitemapsController
   layout false
   
   before_filter :set_headers
+  include ProductsHelper
   
   # TODO: Make the expires configurable
   caches_action :sitemap, {:expires_in => 24.hours}, :cache_path => "sitemap-xml"

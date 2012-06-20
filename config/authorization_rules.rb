@@ -22,7 +22,7 @@ authorization do
       if_permitted_to :manage, :place
     end
     has_permission_on :transactions, :to => [:update, :decline, :pre_approve] do
-      if_permitted_to :manage, :place
+      if_permitted_to :manage, :target
     end
     has_permission_on :bank_accounts, :to => [:manage] do
       if_attribute :user => is { user }

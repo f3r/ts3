@@ -10,7 +10,7 @@ class Transaction < ActiveRecord::Base
   before_create :set_transaction_code
   #after_create :add_inquiry_message
 
-  validates_presence_of :check_in, :check_out, :user_id, :place_id, :state, :message => "101"
+  validates_presence_of :check_in, :check_out, :user_id, :state, :message => "101"
 
   validates_date :check_in, :after => :today, :invalid_date_message => "113", :after_message => "119"
   validates_date :check_out, :after => :check_in, :invalid_date_message => "113", :after_message => "120"
@@ -66,6 +66,10 @@ class Transaction < ActiveRecord::Base
   def add_system_message(msg_id)
     c = self.inquiry.conversation
     Messenger.add_system_message(c.id, msg_id) if c
+  end
+
+  def target
+    self.inquiry.target
   end
 
   private

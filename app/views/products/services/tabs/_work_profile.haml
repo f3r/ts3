@@ -6,7 +6,7 @@
     .span8
       .row-fluid
         .span12
-          %h2= t("services.name_work_profile", :name => "Sam W.")
+          %h2= t("services.name_work_profile", :name => @resource.user.anonymized_name)
       .row-fluid
         - AmenityGroup.all.each do |ag|
           .span4

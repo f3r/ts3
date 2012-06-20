@@ -11,6 +11,7 @@ ActiveAdmin.register Translation do
   end
 
   filter :key
+  filter :value
 
   scope :all, :default => true
   scope :template

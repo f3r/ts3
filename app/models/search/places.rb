@@ -4,9 +4,26 @@ module Search
     column :guests,           :integer, 1
     column :check_in,         :date
     column :check_out,        :date
+    column :min_lat ,         :string
+    column :max_lat,          :string
+    column :min_lng,          :string
+    column :max_lng,          :string
+    column :places_data,      :string
 
     def resource_class
       ::Place
+    end
+
+    attr_accessor :place_type_ids
+
+    def price_range
+      if self.min_price.present? && self.max_price.present?
+        Range.new(self.min_price, self.max_price)
+      end
+    end
+
+    def collection
+      Place.published
     end
 
     def add_conditions
@@ -15,6 +32,11 @@ module Search
 
       add_equals_condition(:place_type_id, self.category_ids)
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
+
+      if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? &&  !self.max_lng.blank?
+        add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat ,self.max_lat])
+        add_sql_condition(['lon BETWEEN ? AND ?' ,self.min_lng ,self.max_lng])
+      end
     end
 
     def order
@@ -52,6 +74,33 @@ module Search
 
       self.category_ids = current_types
       filters
+    end
+
+    def price_range_bounds
+      return nil if self.count == 0
+
+      # Backup the current filter values
+      current_prices = [self.min_price, self.max_price]
+      self.min_price = self.max_price = nil
+
+      # Calculate the range
+      min = self.calculate(:minimum, :price_per_month)
+      max = self.calculate(:maximum, :price_per_month)
+
+      # Convert currency
+
+      # Round to multiples of 100
+      max = (max/100.0).ceil * 100
+      min = (min/100.0).floor * 100
+
+      if min == max
+        max = min + 100
+      end
+
+      # Restore the filter
+      self.min_price, self.max_price = current_prices
+
+      [min, max]
     end
   end
 end

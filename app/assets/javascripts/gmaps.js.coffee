@@ -1,105 +1,80 @@
-$ ->
+GMaps =
+  initialize : (places) ->
+    google.maps.Map.prototype.markers = []
 
-  #############################################################################
-  # Parse the JSON from places into a string (so we can pin it)
-  #############################################################################
-  createMarkerObjectsFromString = (places) ->
+    google.maps.Map.prototype.addMarker = (marker) ->
+      @markers[@markers.length] = marker
+
+    google.maps.Map.prototype.getMarkers = -> @markers
+
+    google.maps.Map.prototype.clearMarkers = ->
+      for marker in @markers
+        marker.setMap(null)
+
+    parentLocationLat = places[0].lat
+    parentLocationLng = places[0].lon
+
+    myOptions =
+      center: new google.maps.LatLng(parentLocationLat, parentLocationLng)
+      zoom: 12
+      mapTypeControl: false
+      zoomControlOptions:
+        position: google.maps.ControlPosition.TOP_LEFT
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+      streetViewControl: false
+
+    @map = new google.maps.Map(document.getElementById('search_map'), myOptions)
+
+    GMaps.createMarkers(places)
+    google.maps.event.addListener @map, 'dragend', -> GMaps.setBoundsValues()
+    google.maps.event.addListener @map, 'zoom_changed', -> GMaps.setBoundsValues()
+
+  createMarkerObjectsFromString : (places) ->
     data = places.replace(/&quot;/g,'"')
     $.parseJSON(data)
 
-  #############################################################################
-  # Add the google pins from places on the map
-  #############################################################################
-  createMarkers = (map,places) ->
-    # Placing markers in Map
+  createMarkers : (places) ->
     for place in places
       myLatlng = new google.maps.LatLng(place.lat,place.lon)
       marker = new google.maps.Marker
         position: myLatlng
-        title: @title
-        data: @id
-
-      # Redirect to page when clicking on marker
-      google.maps.event.addListener marker, 'click', -> performMarkerEvent(@)
-    
-      marker.setMap map
-      map.addMarker marker
-
-  #############################################################################
-  # Set the boundary values on the map
-  #############################################################################
-  setBoundsValues = (map) ->
-    latLngBounds = map.getBounds()
-      
-    if !latLngBounds.isEmpty
-      southWest = latLngBounds.getSouthWest
-      northEast = latLngBounds.getNorthEast
-
-      minLat = southWest.lat
-      minLng = southWest.lng
-      maxLat = northEast.lat
-      maxLng = northEast.lng
-      
-      # setting boundary values
-      $('#min_lat').val(minLat)
-      $('#max_lat').val(maxLat)
-      $('#min_lng').val(minLng)
-      $('#max_lng').val(maxLng)
-      
-      # Only load when no current request is pending
-      if $('.results > #search-load-indicator').length == 0
-        pull_data()
-
-  #############################################################################
-  # Redirect to place details when clicking on Marker
-  #############################################################################
-  performMarkerEvent = (place) ->
-    title = place.title
-    id    = place.data
-    if id != ''
-      $.ajax
-        url: '/get_place_path'
-        type:'POST'
+        title: place.title
         data:
-          place_id: id
-        success: (data) ->
-          if data.stat == 'success'
-            $(location).attr('href', data.path)
+          id: place.id
+          url: place.url
 
-  GMaps =
-  initialize = (places) ->
-    
-      google.maps.Map.prototype.markers = []
-      
-      google.maps.Map.prototype.addMarker = (marker) ->
-        @markers[@markers.length] = marker
-    
-      google.maps.Map.prototype.getMarkers = -> @markers
-      
-      google.maps.Map.prototype.clearMarkers = ->
-        for i in [0..@markers.length]
-          @markers[i].setMap(null)
-      
-      parentLocationLat = places[0].lat
-      parentLocationLng = places[0].lon
+      google.maps.event.addListener marker, 'click', -> GMaps.performMarkerEvent(@)
 
-      # Map options
-      myOptions =
-        center: new google.maps.LatLng(parentLocationLat, parentLocationLng)
-        zoom: 12
-        mapTypeControl: false
-        zoomControlOptions:
-          position: google.maps.ControlPosition.TOP_LEFT
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-        streetViewControl: false
+      marker.setMap @map
+      @map.addMarker marker
 
-      # Initializing Map
-      map = new google.maps.Map(document.getElementById('search_map'), myOptions)
+  setBoundsValues : ->
+    latLngBounds = @map.getBounds()
+
+    if !latLngBounds.isEmpty()
+      southWest = latLngBounds.getSouthWest()
+      northEast = latLngBounds.getNorthEast()
+
+      minLat = southWest.lat()
+      minLng = southWest.lng()
+      maxLat = northEast.lat()
+      maxLng = northEast.lng()
+
+      $('#search_min_lat').val(minLat)
+      $('#search_max_lat').val(maxLat)
+      $('#search_min_lng').val(minLng)
+      $('#search_max_lng').val(maxLng)
+
+      if $('.results > #search-load-indicator').length == 0
+        PlaceFilters.search()
+        
+  # Just killed the server method
+  performMarkerEvent : (place) ->
+    title = place.title
+    data  = place.data
+    $(location).attr('href', place.data.url)
     
-      createMarkers(map,places)
-      
-      # Doing location search when the user pans through the Map
-      google.maps.event.addListener map, 'dragend', -> setBoundsValues(map)
-      
-      # Doing location search when the user performing zoom action
-      google.maps.event.addListener map, 'zoom_changed', -> setBoundsValues(map)
+  clearMarkers : ->
+    @map.clearMarkers();
+
+window.GMaps = GMaps

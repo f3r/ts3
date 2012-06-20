@@ -9,7 +9,7 @@ class InquiryMailer < BaseMailer
     @owner     = inquiry.recipient
     @user      = inquiry.user
     recipient  = "#{@user.full_name} <#{@user.email}>"
-    subject    = t('inquiries.confirmed_renter_subject')
+    subject    = t('mailers.inquiry_confirmed_renter.subject')
 
     mail(:to => recipient, :subject => subject)
   end
@@ -23,7 +23,7 @@ class InquiryMailer < BaseMailer
     @renter    = inquiry.user
 
     recipient  = "#{@owner.full_name} <#{@owner.email}>"
-    subject    = t('inquiries.confirmed_owner_subject')
+    subject    = t('mailers.inquiry_confirmed_owner.subject')
 
     mail(:to => recipient, :subject => subject)
   end
@@ -48,7 +48,7 @@ class InquiryMailer < BaseMailer
     @renter    = inquiry.user
 
     recipient  = "#{@owner.full_name} <#{@owner.email}>"
-    subject    = t('inquiries.reminder_owner_subject')
+    subject    = t('mailers.inquiry_reminder_owner.subject')
 
     mail(:to => recipient, :subject => subject)
   end

@@ -1,6 +1,7 @@
-- min_price, max_price = @search.price_range_bounds
-- current_min = @search.min_price || min_price
-- current_max = @search.max_price || max_price
+- unless @search.price_range_bounds.nil?
+  - min_price, max_price = @search.price_range_bounds
+  - current_min = @search.min_price || min_price
+  - current_max = @search.max_price || max_price
 
 - if min_price && max_price
   .header= t('products.price_filter', :price_unit => t(@search.price_unit))

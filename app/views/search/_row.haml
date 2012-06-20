@@ -1,5 +1,6 @@
-- my_products ||= false
+- my_products  ||= false
 - my_favorites ||= false
+
 %li{:id => dom_id(resource)}
   .thumb.data-block
     - url = my_products ? listing_path(resource) : seo_product_url(resource)

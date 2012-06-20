@@ -19,6 +19,7 @@ ActiveAdmin.register Translation do
   scope :workflow
   scope :inquiries
   scope :messages
+  scope :mailers
 
   index do
     column(:key) {|translation|

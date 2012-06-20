@@ -12,7 +12,6 @@ class PlacesController < PrivateController
 
   def create
     place_params = params[:place]
-    #place_params[:currency] = get_current_currency
 
     @place = Place.new(place_params)
     @place.user = current_user
@@ -98,6 +97,17 @@ class PlacesController < PrivateController
       flash[:error] = t("places.messages.place_deletion_error")
     end
     redirect_to my_places_path
+  end
+  
+  def get_place_path
+    if !params[:place_id].nil?
+      place = Place.find(params[:place_id].to_i)
+      path = view_context.seo_place_path(place)
+      response = {:stat => "success",:path => path}
+    else
+      response = {:stat => "error"}
+    end
+      render :json => response, :layout => false
   end
 
 protected

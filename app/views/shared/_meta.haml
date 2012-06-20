@@ -10,8 +10,8 @@
 = stylesheet_link_tag css_color_scheme
 
 = javascript_include_tag "application"
-- if @require_google_apis
-  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'
+
+= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'
 
 /[if lt IE 9]
   = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'

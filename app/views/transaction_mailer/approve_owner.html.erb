@@ -1,3 +1,2 @@
-<h2>Dear <%= @user.first_name %>,</h2>
-
-<p><%= @renter.anonymized_name %> The tenant has been notified of the rental approval. The tenant has been asked to pay the rental initiation fee. You will be notified when the payment is complete.</p>
+<h2><%= t("mailers.salutation", :name => @user.first_name) %></h2>
+<p><%= t("mailers.transaction_approve_owner.content", :name => @renter.anonymized_name) %></p>

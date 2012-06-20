@@ -1,3 +1,4 @@
-<h2>Dear <%= @user.first_name %>,</h2>
-<p>Your question regarding "<%= @place.title %>" was answered on <%= site_name %>!</p>
-<p><%= link_to 'Click here', place_url(@place, :anchor => 'details-questions') %> to view the response.</p>
+<h2><%= t("mailers.salutation", :name => @user.first_name)%></h2>
+<p><%= t("mailers.new_question_reply.intro", :place_title => @place.title)%><p>
+<% link = link_to t("mailers.click_here"), place_url(@place, :anchor => 'details-questions') %>
+<p><%= t("mailers.new_question_reply.respond", :link => link).html_safe %>

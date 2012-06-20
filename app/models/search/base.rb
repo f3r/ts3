@@ -77,7 +77,15 @@ module Search
     end
 
     def order
-      "created_at DESC"
+      self.sort_by ||= 'price_lowest'
+      sort_map = {
+        "name"               => "title asc",
+        "price_lowest"       => "price_#{self.price_unit}_usd asc",
+        "price_highest"      => "price_#{self.price_unit}_usd desc",
+        "reviews_overall"    => "reviews_overall desc",
+        "most_recent"        => "updated_at desc"
+      }
+      sort_map[self.sort_by]
     end
 
     def category_filters

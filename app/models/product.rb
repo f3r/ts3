@@ -43,6 +43,7 @@ class Product < ActiveRecord::Base
       # If we are asked in the 'special' USD (precalculated with before_save callback)
       if a_currency.usd?
         amount = self.send("price_#{unit}_usd")
+        amount = amount / 100 if amount
       else
         # Must convert between USD and a_currency
         amount_usd = self.send("price_#{unit}_usd")

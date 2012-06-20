@@ -5,10 +5,12 @@ HeyPalFrontEnd::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  if Rails.env.development?
-    require 'preview_mails'
-    mount PreviewMails => 'mail_view'
-  end
+  require 'preview_mails'
+	match "/admin/mail_view" => PreviewMails, :anchor => false, :constraints => lambda { |request|
+    request.env['warden'].authenticated?
+    request.env['warden'].authenticate!
+    %w(admin superadmin).include? request.env['warden'].user.role
+  }
 
   # Redirect http://squarestays.com to http://www.squarestays.com
   constraints(:host => /^squarestays.com/) do

@@ -59,6 +59,8 @@ gem 'dalli'
 
 gem 'dynamic_sitemaps'
 
+gem 'mail_view'
+
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"
@@ -68,7 +70,6 @@ group :development do
   gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
-  gem 'mail_view'
 end
 
 group :test do

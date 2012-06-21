@@ -23,7 +23,7 @@ class Product < ActiveRecord::Base
   end
 
   def primary_photo
-    self.photos.first
+    self.photos.first.url(:medsmall)
   end
 
   def publish!

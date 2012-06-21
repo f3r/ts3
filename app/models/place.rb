@@ -95,7 +95,11 @@ class Place < ActiveRecord::Base
   end
 
   def primary_photo
-    self.photos.first
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    else
+      'http://placehold.it/150x100'
+    end
   end
 
   def publish!

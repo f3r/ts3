@@ -1,0 +1,6 @@
+.legend
+  %p= "The first row must contain the column names."
+  %p= "<strong>Required columns</strong>: #{required_columns}".html_safe
+= form_for :dump, :url=>{:action=>"import_csv"}, :html => { :multipart => true } do |f|
+  = f.file_field :file
+  = submit_tag 'Import'

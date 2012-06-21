@@ -12,7 +12,7 @@ ActiveAdmin.register Inquiry do
   index do |inquiry|
     id_column
     column :user,   :sortable => :user_id
-    column :target ,:sortable => :target_id
+    column :target, :sortable => :target_id
     column :created_at
     default_actions
   end

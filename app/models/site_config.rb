@@ -49,8 +49,7 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.product_class
-    Service
-    #Place
+    PRODUCT_CLASS_NAME.constantize
   end
 
   def self.product_plural

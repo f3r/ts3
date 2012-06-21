@@ -6,7 +6,7 @@
       .span5
         .logo
           = link_to root_path, :title => SiteConfig.site_name do
-            = image_tag SiteConfig.logo.url, :alt => SiteConfig.site_name
+            = image_tag static_asset('logo.png'), :alt => SiteConfig.site_name
       - if user_signed_in?
         .user_box.logged-in
           .row

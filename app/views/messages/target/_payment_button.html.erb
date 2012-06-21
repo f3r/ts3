@@ -1,4 +1,5 @@
 <% inquiry = target; transaction = inquiry.transaction # TODO: Replace %>
+<% # TODO: calculate ammount for services%>
 <% payment_service_for transaction.code, PAYPAL_ACCOUNT, :amount => 300, :currency => 'SGD', :service => :paypal, :html => { :id => 'payment_form' } do |service|
   service.customer :first_name => current_user.first_name,
       :last_name => current_user.last_name,

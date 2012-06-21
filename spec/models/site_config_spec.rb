@@ -18,13 +18,12 @@ describe SiteConfig do
 
       SiteConfig.site_name.should == 'SquareNew'
     end
-    
-    it "set logo" do
-      logo = File.open("#{Rails.root}/db/rake_seed_images/SquareStays.png")
+
+    it "overrides logo with logo.png name regardless of the original name" do
+      logo = File.open("#{Rails.root}/db/rake_seed_images/a_logo.png")
       @site_config.logo = logo
       @site_config.save!
-      SiteConfig.logo_file_name.should == 'SquareStays.png'
+      SiteConfig.logo.url.should =~ /logo.png$/
     end
-    
   end
 end

@@ -8,6 +8,6 @@ end
 
 siteConfig = SiteConfig.first_or_create
 unless siteConfig.logo?
-  siteConfig.logo = File.open("#{Rails.root}/db/rake_seed_images/tse_logo_bg.png")
+  siteConfig.logo = File.open("#{Rails.root}/db/rake_seed_images/logo.png")
   siteConfig.save!
 end

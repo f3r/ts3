@@ -122,7 +122,6 @@ class Inquiry < ActiveRecord::Base
     unless t
       t = Transaction.create(
         :inquiry_id => self.id,
-        #:place_id => self.place_id,
         :user_id => self.user_id,
         :check_in => self.check_in,
         :check_out => self.check_out

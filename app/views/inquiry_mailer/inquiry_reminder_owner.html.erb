@@ -1,8 +1,9 @@
 <h2><%= t("mailers.salutation", :name => @owner.full_name) %></h2>
-<p><%= t("mailers.inquiry_confirmed_owner.intro", :renter_name => @renter.anonymized_name, :place_link => (link_to @place.title, seo_place_path(@place))).html_safe %>
+<p><%= t("mailers.inquiry_confirmed_owner.intro", :renter_name => @renter.anonymized_name, :target_link => (link_to @target.title, seo_product_url(@target))).html_safe %>
+
 <% if @inquiry.check_in %>
 <%= t("mailers.inquiry_confirmed_owner.duration", :length => @inquiry.length_in_words, :starting_on => @inquiry.check_in.to_formatted_s(:long)) %>
-<% end %> 
+<% end %>
 </p>
 </br>
 <p><%= t("mailers.inquiry_reminder_owner.time_reply", :time => time_ago_in_words(@inquiry.created_at)) %></p>

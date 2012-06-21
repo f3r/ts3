@@ -2,14 +2,6 @@ class InquiriesController < ApplicationController
   respond_to :js
 
   def create
-    # :name             => params[:name],
-    # :email            => params[:email],
-    # :date_start       => params[:date_start],
-    # :length_stay      => params[:length_stay],
-    # :length_stay_type => params[:length_stay_type],
-    # :message          => params[:questions]
-
-    # @resource = Place.with_permissions_to(:read).find(params[:place_id])
     @resource = resource_class.published.find(params[:id])
     @user = current_user
 

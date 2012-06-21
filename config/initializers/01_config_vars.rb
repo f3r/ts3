@@ -40,9 +40,3 @@ META_KEYWORDS =         ''
 HEAD_TAG =              ''
 AFTER_BODY_TAG_START =  ''
 BEFORE_BODY_TAG_END =   ''
-#Logo is a paperclip attachement so it should have a url method - Just mimicing it here :)
-LOGO = Class.new do
-  def self.url
-    ''
-  end
-end

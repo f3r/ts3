@@ -44,7 +44,7 @@ describe Currency do
       amount_inr.should_not be_nil
     end
 
-    it "converts to usd" do
+    it "converts to usd", :backend => true do
       currency = create(:currency, :currency_code => 'AUD')
       amount = currency.to_usd(1000)
       amount.should_not be_nil

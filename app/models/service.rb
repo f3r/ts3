@@ -7,6 +7,10 @@ class Service < ActiveRecord::Base
     self.where('products.published' => true)
   end
 
+  def self.unpublished
+    self.where('not products.published')
+  end
+
   def self.manageable_by(user)
     self.where('products.user_id' => user.id)
   end

@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Search::Places do
+describe Search::Place do
   before(:each) do
     @user = create(:user)
-    @search = Search::Places.new
+    @search = Search::Place.new
   end
 
   context "Fields" do

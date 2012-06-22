@@ -38,7 +38,14 @@ module Paperclip
         dst = Tempfile.new([@basename, @format].compact.join("."))
         dst.binmode
 
-        if watermark_path
+        if watermark_path.present?
+          
+          watemark_tmp_file = Tempfile.new([@basename, @format].compact.join(".")) 
+          watemark_tmp_file.binmode
+          watemark_tmp_file.write(open(watermark_path).read())
+          watemark_tmp_file.flush
+          watemark_tmp_file.close()
+          
           command = "composite"
           @position = if @current_geometry.horizontal?
             "NorthEast"
@@ -46,7 +53,7 @@ module Paperclip
             "SouthEast"
           end
 
-          params = "-gravity #{@position} -geometry +0+30 #{watermark_path} #{fromfile} #{transformation_command} #{tofile(dst)}"
+          params = "-gravity #{@position} -geometry +0+30 #{tofile(watemark_tmp_file)} #{fromfile} #{transformation_command} #{tofile(dst)}"
         else
           command = "convert"
           params = "#{fromfile} #{transformation_command} #{tofile(dst)}"
@@ -54,7 +61,7 @@ module Paperclip
 
         begin
           success = Paperclip.run(command, params)
-        rescue PaperclipCommandLineError
+        rescue Cocaine::ExitStatusError => e
           raise PaperclipError, "There was an error processing the watermark for #{@basename}" if @whiny
         end
 

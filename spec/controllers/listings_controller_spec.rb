@@ -5,6 +5,7 @@ describe ListingsController do
     @agent  = create(:agent)
     login_as @agent
     SiteConfig.stub(:product_class).and_return(Service)
+    @currency = create(:currency)
   end
 
   it "shows a form for a new listing" do

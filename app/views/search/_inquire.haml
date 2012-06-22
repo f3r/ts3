@@ -1,5 +1,5 @@
 #inquire_place.modal.hide.fade
-  = form_for(:inquiry, :url => inquiries_path(:place_id => @resource.id), :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
+  = form_for(:inquiry, :url => inquiries_path(:id => @resource.id), :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
     .modal-header
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
       %h3= t("inquiries.inquiry_modal_title")
@@ -24,8 +24,8 @@
         .control-group
           = f.label :length_stay, t("inquiries.staying"), {:class => 'control-label'}
           .controls
-            = f.select :length_stay, options_for_select([1,2,3,4,5,6,7,8,9,'more']), :class => 'small'
-            = f.select :length_stay_type, lenght_stay_type_options, :class => 'small'
+            = f.text_field :length_stay, :class => 'input-small validate[required,integer]'
+            = f.select :length_stay_type, transaction_length_options, :class => 'small'
 
         .control-group
           = f.label :message, t("inquiries.comments_questions"), {:class => 'control-label'}

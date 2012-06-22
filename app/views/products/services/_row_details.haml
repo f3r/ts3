@@ -1,2 +1,2 @@
 .property.data-block
-  = resource.description
+  = truncate(resource.description, :length => 180)

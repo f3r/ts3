@@ -61,7 +61,7 @@ gem 'dalli'
 
 gem 'dynamic_sitemaps'
 
-gem 'mail_view'
+gem 'mail_view', :git => 'git://github.com/37signals/mail_view.git'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"

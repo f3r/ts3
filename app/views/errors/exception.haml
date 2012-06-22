@@ -1,8 +1,5 @@
 - content_for(:title) do
   Error
-.error-page.row
-  .span10.offset1
-    %h2 A Problem occured on this page
-    %p.errro-subhead Our technicians have been notified of this error
-    %span.error-text We apologize for the inconvenience
-    = image_tag '500pic.png', :class => 'error-image'
+- page = Rails.cache.read "page_error_500"  
+- page = Page.find_by_page_url('error_500') if page.nil?
+= raw ((page.description unless page.nil?) || "500") 

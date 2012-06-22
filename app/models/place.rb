@@ -88,14 +88,18 @@ class Place < ActiveRecord::Base
       else
         # Must convert between USD and a_currency
         amount_usd = self.send("price_#{unit}_usd").to_i
-        amount = a_currency.from_usd(amount_usd/100.0).to_f.to_i
+        amount = a_currency.from_usd(amount_usd/100.0)
       end
     end
     [a_currency.symbol, amount]
   end
 
   def primary_photo
-    self.photos.first
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    else
+      'http://placehold.it/150x100'
+    end
   end
 
   def publish!
@@ -268,6 +272,10 @@ class Place < ActiveRecord::Base
 
   def self.price_unit
     :per_month
+  end
+
+  def self.transaction_length_units
+    [['week(s)', 'weeks'], ['month(s)', 'months']]
   end
 
   def price_unit

@@ -10,18 +10,18 @@ en:
       title: 'Welcome to %{site_name}!'
       first_line: '%{site_name} helps you find the best short-term and flexible accommodation for your business and personal travel.'
       content: |
-        We focus on quality stays in major cities worldwide. Browse properties 
-        %{link}. When you’ve found the right place for 
-        you, click the “Inquire” button to get in touch with the property 
+        We focus on quality stays in major cities worldwide. Browse properties
+        %{link}. When you’ve found the right place for
+        you, click the “Inquire” button to get in touch with the property
         owner. We’re here to help you find your home away from home.
     auto_welcome:
       subject: You account was successfully created.
       intro: "Welcome to %{site_name}!"
       content: |
-        %{site_name} helps you find the best short-term and flexible 
+        %{site_name} helps you find the best short-term and flexible
         accommodation for your business and personal travel.
         <br/>
-        We automatically created an account for you so you can easily manage 
+        We automatically created an account for you so you can easily manage
         your inquiries, favorites and alerts.
         Click %{set_password_link} to set a password and activate your account.
     reset_password_instructions:
@@ -44,80 +44,80 @@ en:
       intro: "You have a new message from %{name} waiting for you on %{site_name}!"
       respond: "%{link} to read and respond to this message."
       check_mailbox_info: |
-        You can always check your inbox from your account at %{site_link} to 
-        view and respond to your messages. You'll see an alert on the top 
+        You can always check your inbox from your account at %{site_link} to
+        view and respond to your messages. You'll see an alert on the top
         navigation bar when there are new messages for you.
     inquiry_confirmed_renter:
       subject: "Your Inquiry on %{site_name} has been sent"
-      intro: "Your inquiry on %{place_link} has been sent."
+      intro: "Your inquiry on %{target_link} has been sent."
       manage_messages: "You can manage your inquiries at the %{messages_link}."
       warning: |
-        The property owner or listing agent will get a copy of your request. 
+        The property owner or listing agent will get a copy of your request.
         Normally, your request will be handled within 24-48 hours.
     inquiry_confirmed_owner:
       subject: "You have received an inquiry on %{site_name}"
-      intro: "%{renter_name} has sent you an inquiry about renting your place %{place_link}"
+      intro: "%{renter_name} has sent you an inquiry about your listing %{target_link}"
       duration: "for %{length} starting on %{starting_on}"
       message_from_user: |
         The message from the user is:
         <blockquote>%{message}</blockquote>
       please_login: "Please log in to %{login_link} to view the request. You can reply to your inquiries at the %{messages_link}."
       footer_ps: |
-        P.S. Please remember to respond to your messages and inquiries 
-        promptly. Many people's accommodation needs are urgent, so 
-        the quicker you reply, the quicker you can get your properties 
+        P.S. Please remember to respond to your messages and inquiries
+        promptly. Many people's accommodation needs are urgent, so
+        the quicker you reply, the quicker you can get your properties
         rented out.
     inquiry_reminder_owner:
       subject: "Reminder about a new inquiry on %{site_name}"
       time_reply: "It's been %{time} and you still haven't replied to this inquiry."
       remember: |
-        Please remember to respond to your messages and inquiries promptly. 
-        Many people's accommodation needs are urgent, so the quicker you 
+        Please remember to respond to your messages and inquiries promptly.
+        Many people's accommodation needs are urgent, so the quicker you
         reply, the quicker you can get your properties rented out.
       footer_ps:
     transaction_request_renter:
       subject: Request Confirmed!
       intro: You have confirmed your rental request!
       content: |
-        Once the listing owner has checked all conditions and property 
-        availability, you will be prompted to pay the rental initiation fee 
-        of SGD $300. This will secure the property for you for the duration 
+        Once the listing owner has checked all conditions and property
+        availability, you will be prompted to pay the rental initiation fee
+        of SGD $300. This will secure the property for you for the duration
         of your rental request.
     transaction_request_owner:
       subject: Request Confirmed!
       intro: "%{name} has submitted a rental request, confirming their intent to rent this property!"
       content: |
-        Please double-check the terms of the rental, including the payment 
-        schedule, property availability and other considerations and 
-        requirements you may have. When you are ready, please go to our 
-        %{inquiry_center_link} to confirm the tenant's rental request. 
+        Please double-check the terms of the rental, including the payment
+        schedule, property availability and other considerations and
+        requirements you may have. When you are ready, please go to our
+        %{inquiry_center_link} to confirm the tenant's rental request.
         The tenant will then be prompted to pay the rental confirmation fee.
     transaction_approve_renter:
       subject: Request Approved!
       intro: The listing owner has confirmed your rental request!
       content: |
-        Please login to our %{inquiry_center_link} and use the button at the 
-        bottom to pay the rental initiation fee of SGD $300. This will 
+        Please login to our %{inquiry_center_link} and use the button at the
+        bottom to pay the rental initiation fee of SGD $300. This will
         secure the property for you for the duration of your rental request.
     transaction_approve_owner:
       subject: Request Approved!
       content: |
-        %{name} The tenant has been notified of the rental approval. The 
-        tenant has been asked to pay the rental initiation fee. You will be 
+        %{name} The tenant has been notified of the rental approval. The
+        tenant has been asked to pay the rental initiation fee. You will be
         notified when the payment is complete.
     transaction_pay_renter:
       subject: Transaction Confirmed!
       content: |
-        Congratulations! Your rental is confirmed. The listing owner's 
-        contact details will be sent to you in an email and you will pay the 
+        Congratulations! Your rental is confirmed. The listing owner's
+        contact details will be sent to you in an email and you will pay the
         remainder of your rental fees directly to the listing owner.
         <br/><br/>
         Enjoy your stay and thank you for using %{site_name}!
     transaction_pay_owner:
       subject: Transaction Confirmed!
       content: |
-        Congratulations! This rental is confirmed. The tenant's contact 
-        details will be sent to you in an email and the tenant will pay 
+        Congratulations! This rental is confirmed. The tenant's contact
+        details will be sent to you in an email and the tenant will pay
         the remainder of your rental fees directly to you.
         <br/><br/>
         Thank you for listing your property with %{site_name}!

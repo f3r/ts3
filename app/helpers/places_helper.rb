@@ -139,8 +139,4 @@ module PlacesHelper
     end
     filters
   end
-
-  def lenght_stay_type_options
-    options_for_select([['week(s)', 'weeks'], ['month(s)', 'months']])
-  end
 end

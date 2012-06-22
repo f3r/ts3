@@ -1,5 +1,5 @@
-<%= javascript_include_tag "uploadify-3.1/jquery.uploadify-3.1.min"%>
-<%= stylesheet_link_tag "uploadify/uploadify.css"%>
+<%= javascript_include_tag "/assets/uploadify-3.1/jquery.uploadify-3.1.min.js" %>
+<%= stylesheet_link_tag "/assets/uploadify/uploadify.css"%>
 
 <i>*Remember that photos should be in 602px width and 401px height for optimum visualization</i>
 <br/>
@@ -7,10 +7,10 @@
 
 <script>
 	$(function(){
-		
+
 		var csrf_token = $('meta[name=csrf-token]').attr('content');
 		var csrf_param = $('meta[name=csrf-param]').attr('content');
-		
+
 		var token = '<%=current_active_admin_user.authentication_token%>';
 
 		$('#file_upload').uploadify({
@@ -32,7 +32,7 @@
 			  }
 			}
 		);
-		
+
 		$('#file_upload-button').removeClass('uploadify-button');
 	});
 </script>

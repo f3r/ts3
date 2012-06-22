@@ -6,6 +6,7 @@ else
 end
 
 # SET VARIABLES, DEVELOPMENT, TEST FALLBACKS
+PRODUCT_CLASS_NAME =    ENV['PRODUCT_CLASS_NAME']     || APP_CONFIG['PRODUCT_CLASS_NAME']
 S3_ACCESS_KEY_ID =      ENV['S3_ACCESS_KEY_ID']       || APP_CONFIG['S3_ACCESS_KEY_ID']
 S3_SECRET_ACCESS_KEY =  ENV['S3_SECRET_ACCESS_KEY']   || APP_CONFIG['S3_SECRET_ACCESS_KEY']
 S3_BUCKET =             ENV['S3_BUCKET']              || APP_CONFIG['S3_BUCKET']
@@ -39,9 +40,3 @@ META_KEYWORDS =         ''
 HEAD_TAG =              ''
 AFTER_BODY_TAG_START =  ''
 BEFORE_BODY_TAG_END =   ''
-#fav icon is a paperclip attachement so it should have a url method - Just mimicing it here :)
-FAV_ICON = Class.new do
-  def self.url
-     ''
-  end
-end

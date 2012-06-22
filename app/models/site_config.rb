@@ -1,9 +1,13 @@
 class SiteConfig < ActiveRecord::Base
+  
   after_save :reset_cache
   
   has_attached_file :fav_icon,
     :path => "/static/favicon.ico"
     
+  has_attached_file :logo,
+    :path => "/static/logo.png"
+  
   def self.instance
     @instance = @instance || SiteConfig.first || SiteConfig.new
   end
@@ -52,8 +56,7 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.product_class
-    #Service
-    Place
+    PRODUCT_CLASS_NAME.constantize
   end
 
   def self.product_plural

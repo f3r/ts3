@@ -1,0 +1,22 @@
+.panel.tab-pane#1
+  = render 'products/services/wizard_tabs/step_general'
+.panel.tab-pane#2
+  = render 'products/services/wizard_tabs/step_amenities'
+
+:javascript
+  $(function() {
+    $('.wizard-wrapper .panel').css("display", "none");
+    $('.wizard-wrapper .panel').first().css("display", "block");
+    $('#wizard_form').validationEngine();
+    $('ul#wizard_tabs li a').bind('click', function(){
+      $('#wizard_form').validationEngine('hideAll');
+      var _this = $(this);
+      $('.wizard-wrapper .panel').hide();
+      $(_this.attr('href')).fadeIn('fast');
+      $('.section_title').html(_this.attr('title'));
+      _this.parent().parent().find('.active').removeClass('active');
+      _this.addClass('active');
+      _this.parent().addClass('active');
+      return false;
+    });
+  });

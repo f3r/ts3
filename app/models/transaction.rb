@@ -4,23 +4,18 @@ class Transaction < ActiveRecord::Base
   belongs_to :user
   belongs_to :place
   has_many :transaction_logs, :dependent => :destroy
-  #has_one :availability, :dependent => :destroy
   belongs_to :inquiry
 
   before_create :set_transaction_code
-  #after_create :add_inquiry_message
 
-  validates_presence_of :check_in, :check_out, :user_id, :place_id, :state, :message => "101"
-
-  validates_date :check_in, :after => :today, :invalid_date_message => "113", :after_message => "119"
-  validates_date :check_out, :after => :check_in, :invalid_date_message => "113", :after_message => "120"
-
+  validates_presence_of :check_in, :check_out, :user_id, :state, :message => "101"
+  validates_date :check_in,  :after => :today,          :invalid_date_message => "113", :after_message => "119"
+  validates_date :check_out, :on_or_after => :check_in, :invalid_date_message => "113", :on_or_after_message => "120"
   validate :check_min_max_stay
 
   workflow_column :state
 
   workflow do
-
     state :initial do
       event :request, :transitions_to => :requested
     end
@@ -34,7 +29,6 @@ class Transaction < ActiveRecord::Base
     end
     state :paid
     state :cancelled
-    #state :auto_cancelled
     state :declined
 
     # Check user permissions before every transition
@@ -68,7 +62,15 @@ class Transaction < ActiveRecord::Base
     Messenger.add_system_message(c.id, msg_id) if c
   end
 
-  private
+  def target
+    self.inquiry.target
+  end
+
+  def code
+    self.transaction_code
+  end
+
+private
 
   def generate_transaction_code
     # date + 4 random characters, 1 679 616 posible codes per day.
@@ -111,7 +113,6 @@ class Transaction < ActiveRecord::Base
       unless days <= max_stay or max_stay == 0
         errors.add(:check_out, "142") # over maximum stay
       end
-
     end
   end
 end

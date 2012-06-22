@@ -1,7 +1,5 @@
 - content_for(:title) do
   Page not found
-.error-page.row
-  .span10.offset1
-    %h2 We could not find the page you requested
-    .error-test We apologize for the inconvenience
-    = image_tag '404pic.png', :class => 'error-image'
+- page = Rails.cache.read "page_error_404"  
+- page = Page.find_by_page_url('error_404') if page.nil?
+= raw ((page.description unless page.nil?) || "404")

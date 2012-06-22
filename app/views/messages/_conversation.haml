@@ -8,7 +8,7 @@
 
     .span2.inquiry
       = render_target(conversation.target, :row)
-      
+
     .span4.message
       - if conversation.body.present?
         = truncate(suspicious_message?(conversation.body).html_safe, :length => 80)

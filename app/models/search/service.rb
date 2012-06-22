@@ -26,11 +26,11 @@ module Search
       # end
 
       # self.category_ids = current_types
+      Amenity.searchable.collect{|a| [a, 4, false]}
+    end
 
-      filters << [Amenity.new, 4, 0]
-      filters << [Amenity.new, 2, 1]
-      filters << [Amenity.new, 1, 1]
-      filters
+    def amenity_filters_title
+      I18n.t('services.search.amenity_filter_title')
     end
   end
  end

@@ -3,15 +3,14 @@
 = SiteConfig.custom_meta.html_safe
 %meta{:content => content_for?(:meta_keywords) ? "#{yield(:meta_keywords)}" : "#{SiteConfig.meta_keywords}", :name => "keywords"}
 %meta{:content => content_for?(:meta_description) ? "#{yield(:meta_description)}" : "#{SiteConfig.meta_description}", :name => "description"}
-
-%link{:rel => "icon", :type => "image/png", :href => "http://squarestays.com/favicon.png"}
+%link{:rel => "icon", :type => "image/png", :href => static_asset('favicon.png')}
 
 = stylesheet_link_tag 'plugins'
 = stylesheet_link_tag css_color_scheme
 
 = javascript_include_tag "application"
-- if @require_google_apis
-  = javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'
+
+= javascript_include_tag 'https://maps.googleapis.com/maps/api/js?v=3&sensor=false'
 
 /[if lt IE 9]
   = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'

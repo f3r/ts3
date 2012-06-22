@@ -1,6 +1,6 @@
 .inquiry
   .span2.place
-    = image_tag target.place.primary_photo.photo(:medsmall), :alt => target.place.title
+    = image_tag target.place.primary_photo, :alt => target.place.title
   .span8.details
     - if false
       %span.title= link_to inquiry['place_title'], inquiry['place_url']
@@ -8,7 +8,7 @@
         .guests
           %span.value= t("inquiries.inquiry_guests", :count => inquiry['guests'])
       - if inquiry['check_in'].present?
-        .arriving 
+        .arriving
           %span.key= t("inquiries.arriving_on")
           %span.value= inquiry['check_in']
       - if inquiry['length'].present?

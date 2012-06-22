@@ -26,7 +26,6 @@ module ProductsHelper
     city = product.city
 
     city_product_url(:city => city.slug, :id => "#{product.id}-#{extra}")
-    #url_for("/#{city.slug}/#{place['id']}-#{result}")
   end
 
   def product_price(product)
@@ -36,5 +35,14 @@ module ProductsHelper
 
   def product_price_unit(product)
     t(product.price_unit)
+  end
+
+  def map_markers_json(results)
+    results.collect{|p| {id: p.id, title: p.title, url: seo_product_url(p), lat: p.lat, lon: p.lon}}.to_json
+  end
+
+  def transaction_length_options
+    opts = SiteConfig.product_class.transaction_length_units
+    options_for_select(opts)
   end
 end

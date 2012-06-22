@@ -1,7 +1,2 @@
-<h2>Dear <%= @user.first_name %>,</h2>
-
-<p>Congratulations! Your rental is confirmed. The listing owner's contact details will be sent to you in an email and you will pay the remainder of your rental fees directly to the listing owner.</p>
-
-<br/>
-
-<p>Enjoy your stay and thank you for using <%= site_name %>!</p>
+<h2><%= t("mailers.salutation", :name => @user.first_name) %></h2>
+<p><%= t("mailers.transaction_pay_renter.content").html_safe %></p>

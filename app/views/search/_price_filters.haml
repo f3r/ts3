@@ -1,6 +1,7 @@
-- min_price, max_price = @search.price_range_bounds
-- current_min = @search.min_price || min_price
-- current_max = @search.max_price || max_price
+- unless @search.price_range_bounds.nil?
+  - min_price, max_price = @search.price_range_bounds
+  - current_min = @search.min_price || min_price
+  - current_max = @search.max_price || max_price
 
 - if min_price && max_price
   .header= t('products.price_filter', :price_unit => t(@search.price_unit))
@@ -13,13 +14,12 @@
 
   :javascript
     // Initialize Price Sliders
-    var slider = $('#price_filter');
     $("#price_filter .slider").slider({
       range: true,
       min: #{min_price},
       max: #{max_price},
       values: [#{current_min}, #{current_max}],
-      step: 100,
+      step: 10,
       slide: function( event, ui ) {
         $("#min_price").html(ui.values[0]);
         $('#search_min_price').val(ui.values[0]);

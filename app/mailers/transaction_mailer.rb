@@ -1,4 +1,4 @@
-class TransactionMailer < BaseMailer 
+class TransactionMailer < BaseMailer
 
   def self.mail_dispatcher(event, inquiry)
     case event
@@ -24,19 +24,19 @@ class TransactionMailer < BaseMailer
   def request_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Confirmed!'
-    
+    subject    = t("mailers.transaction.request_renter.subject")
+
     mail(:to => recipients, :subject => subject)
   end
 
   # ==Description
   # Email sent to the owner when the renter clicks "Confirm rental request"
   def request_owner(inquiry)
-    @user      = inquiry.place.user
+    @user      = inquiry.target.user
     @renter    = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Confirmed!'
-    
+    subject    = t("mailers.transaction_request_owner.subject")
+
     mail(:to => recipients, :subject => subject)
   end
 
@@ -48,7 +48,7 @@ class TransactionMailer < BaseMailer
   def approve_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Approved!'
+    subject    = t("mailers.transaction_approve_renter.subject")
 
     mail(:to => recipients, :subject => subject)
   end
@@ -56,13 +56,13 @@ class TransactionMailer < BaseMailer
   # ==Description
   # Email sent to the owner when the owner clicks "Approve Rental Request"
   def approve_owner(inquiry)
-    @user      = inquiry.place.user
+    @user      = inquiry.target.user
     @renter    = inquiry.user
 
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Request Approved!'
-    
-    mail(:to => recipients, :subject => subject)    
+    subject    = t("mailers.transaction_approve_owner.subject")
+
+    mail(:to => recipients, :subject => subject)
   end
 
   ##############################################################################
@@ -73,19 +73,19 @@ class TransactionMailer < BaseMailer
   def pay_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Transaction Confirmed!'
-    
-    mail(:to => recipients, :subject => subject)    
+    subject    = t("mailers.transaction_pay_renter.subject")
+
+    mail(:to => recipients, :subject => subject)
   end
 
   # ==Description
   # Email sent to the owner when the payment is finalized
   def pay_owner(inquiry)
-    @user      = inquiry.place.user
+    @user      = inquiry.target.user
     @renter    = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = 'Transaction Confirmed!'
-    
+    subject    = t("mailers.transaction_pay_owner.subject")
+
     mail(:to => recipients, :subject => subject)
   end
 

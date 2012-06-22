@@ -33,10 +33,11 @@ PlaceFilters =
           to.datepicker("option", "maxDate", date)
 
     # Sticky filters
-    $(".search-aside-wrapper").height $(".search-aside").height()
+    #$(".search-aside-wrapper").height $(".search-aside").height()
     $(".search-bar-wrapper").height   $(".search-bar").height()
+    $(".search_filter_wrapper").height   $(".search_filter").height()
 
-    $('.search-bar-wrapper, .search-aside-wrapper').waypoint(
+    $('.search_filter_wrapper,.search-bar-wrapper').waypoint(
       (event, direction) ->
         $(@).children().toggleClass('sticky', direction == "down")
         event.stopPropagation()
@@ -50,6 +51,7 @@ PlaceFilters =
     PlaceFilters.loadingIndicatorOn()
     $('#submitted_action').val('filter')
     $('#search_current_page').val(1)
+    GMaps.clearMarkers()
     $('#new_search').submit()
 
   seeMore: ->

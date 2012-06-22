@@ -5,6 +5,7 @@ class Translation < ActiveRecord::Base
   scope :workflow,  where("`translations`.`key` LIKE ?", 'workflow.%')
   scope :inquiries,  where("`translations`.`key` LIKE ?", 'inquiries.%')
   scope :messages,  where("`translations`.`key` LIKE ?", 'messages.%')
+  scope :mailers,  where("`translations`.`key` LIKE ?", 'mailers.%')
 
   after_commit :delete_cache
 

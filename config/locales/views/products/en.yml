@@ -8,8 +8,12 @@ en:
     price_filter:       'Price %{price_unit}'
     listed:             'Listed'
     invisible:          'Invisible'
+    title:              'Title'
+    description:        'Description'
     wizard:
       what_city:        'What city?'
+      description_title: Description
+      general_title:     General
     messages:
       listing_published:      Your listing is now published!
       listing_publish_error:  "Sorry, we can not publish your listing because of missing information."
@@ -24,3 +28,4 @@ en:
         other: "%{count} results"
       price_lowest: Price (Lowest First)
       price_highest: Price (Highest First)
+      category_filters_title: 'Type'

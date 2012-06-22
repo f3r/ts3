@@ -6,20 +6,20 @@ ActiveAdmin.register Inquiry do
   scope :without_reply
 
   filter :user
-  filter :place
+  filter :target_type
   filter :created_at
 
   index do |inquiry|
     id_column
-    column :user ,:sortable => :user_id
-    column :place  ,:sortable => :place_id
+    column :user,   :sortable => :user_id
+    column :target, :sortable => :target_id
     column :created_at
     default_actions
   end
 
   show do |inquiry|
     attributes_table do
-      rows :id, :user, :place, :check_in, :length_stay, :length_stay_type, :guests, :created_at
+      rows :id, :user, :target_type, :check_in, :length_stay, :length_stay_type, :guests, :created_at
     end
     if inquiry.conversation
       panel 'Conversation' do

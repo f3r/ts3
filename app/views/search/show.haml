@@ -4,18 +4,19 @@
 - require_google_apis
 
 .row
-  .span10
-    - if @my_products
+  - if @my_products
+    .span10
       - unless @resource.published
         .preview-header
           %p= t(:this_is_preview)
       = breadcrumb [[t('products.my_listings'), listings_path]], @resource.title
+    .span2.place-actions
+      - if current_user?(@owner)
+        .buttons.pull-right
+          = render 'listings/actions'
     - else
-      = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title
-  .span2.place-actions
-    - if current_user?(@owner)
-      .buttons.pull-right
-        = render 'listings/actions'
+      .span12
+        = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title
 
 .row.place_info{:id => dom_id(@resource)}
   .span12
@@ -53,11 +54,11 @@
     cal_lastVisibleDay : #{DateTime.now.end_of_month.to_date},
     cal_events         : #{@availabilities.to_json},
     cal_month          : #{Date.today.month},
-    map_lat            : #{@resource.lat},
-    map_lon            : #{@resource.lon},
+    map_lat            : #{@resource.lat || 'null'},
+    map_lon            : #{@resource.lon || 'null'},
     map_cityName       : '#{@resource.city.name}',
     map_countryName    : '#{@resource.city.country}',
-    map_radius         : #{@resource.radius},
+    map_radius         : #{@resource.radius || 0},
     share_title        : '#{@resource.title}',
     share_url          : '#{seo_product_url(@resource)}',
     share_id           : '#{@resource.id}'

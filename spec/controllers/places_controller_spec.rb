@@ -50,7 +50,7 @@ describe ListingsController do
 
     it "updates a place field" do
       login_as @agent
-      put :update, :id => @place.id, :listing => {:num_bathrooms => 3}
+      xhr :put, :update, :id => @place.id, :listing => {:num_bathrooms => 3}
       response.should be_success
 
       @place.reload
@@ -59,7 +59,7 @@ describe ListingsController do
 
     it "updates a place size" do
       login_as @agent
-      put :update, :id => @place.id, :listing => {:size => 100}
+      xhr :put, :update, :id => @place.id, :listing => {:size => 100}
       response.should be_success
 
       @place.reload

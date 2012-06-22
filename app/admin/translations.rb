@@ -8,9 +8,19 @@ ActiveAdmin.register Translation do
     def scoped_collection
       Translation.where(:locale => "en")
     end
+    
+    def search(chain)
+      #By default the search is only done on en locale, we need to fix up the initial collection to use
+      unless params[:q].nil? 
+        value_q = params[:q]["value_contains"]
+        chain = Translation.order('') if value_q.present?
+      end
+      super
+    end
   end
 
   filter :key
+  filter :value
 
   scope :all, :default => true
   scope :template
@@ -19,6 +29,7 @@ ActiveAdmin.register Translation do
   scope :workflow
   scope :inquiries
   scope :messages
+  scope :mailers
 
   index do
     column(:key) {|translation|

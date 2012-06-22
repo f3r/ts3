@@ -24,8 +24,7 @@ class TransactionMailer < BaseMailer
   def request_renter(inquiry)
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
-    subject    = t("mailers.transaction.request_renter.subject")
-
+    subject    = t("mailers.transaction_request_renter.subject")
     mail(:to => recipients, :subject => subject)
   end
 

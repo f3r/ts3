@@ -16,6 +16,7 @@ gem 'less-rails-bootstrap'
 # gem 'less'
 # gem 'less-rails'
 gem 'therubyracer'
+gem 'plupload-rails'
 
 gem 'exception_notification'
 gem "recaptcha", :require => "recaptcha/rails"

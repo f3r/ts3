@@ -17,10 +17,8 @@
         .clearfix
 
   .well
-    #photoQueue
-
     .upload_wrapper
-      %input{:type => 'file', :name => 'photo_uploader', :class => 'photo_uploader', :id => "photo_uploader" }
+      #uploader
       %p= t("places.wizard.photos.upload_photo_hint")
   .arrows.clearfix
     .float-left
@@ -46,24 +44,28 @@
 
     PhotoManager.initialize('#{sort_place_photos_path(@resource.id)}');
 
-    $('#photo_uploader').uploadify({
-      'uploader'        : '/assets/uploadify/uploadify.swf',
-      'script'          : "/places/#{@resource.id}/photos",
-      'cancelImg'       : '/assets/close.png',
-      'buttonImg'       : '/assets/browse-button.png',
-      'auto'            : true,
-      'multi'           : true,
-      'fileDataName'    : 'file',
-      'fileDesc'        : 'Photos',
-      'buttonText'      : 'Browse222',
-      'width'           : 400,
-      'height'          : 200,
-      'queueID'         : 'photoQueue',
-      'wmode'           : 'transparent',
-      'fileExt'         : '*.jpg;*.png',
-      'scriptData'      : {'_method' : 'post', 'csrf_token' : encodeURI(csrf_param), '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}', 'token' : '#{current_token}' , 'format': 'json' },
-      'onComplete'  : function(event, ID, fileObj, response, data) {
-        PhotoManager.insert(response);
+    $("#uploader").pluploadQueue({
+      runtimes: 'html5,flash,silverlight',
+      url: '/places/#{@resource.id}/photos',
+      max_file_size: '10mb',
+      multiple_queues: true,
+      multipart: true,
+      dragdrop:true,
+      multipart_params: {
+        '_method' : 'post',
+        '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}',
+        'token' : '#{current_token}' ,
+        'csrf_token' : encodeURI(csrf_param),
+        'format': 'json'
+      },
+      filters: [
+        {title: "Images", extensions: "jpg,jpeg,png"}
+      ],
+      init: {
+        FileUploaded: function(up, file, info) {
+          console.log(info["response"]);
+          PhotoManager.insert(info["response"]);
+        }
       }
     });
   });

@@ -47,8 +47,8 @@ ActiveAdmin.register City do
       City.update_all(['position=?', index+1], ['id=?', id])
     end
     delete_caches([
-      "geo_cities_all_active", 
-      "geo_cities_all", 
+      "geo_cities_all_active",
+      "geo_cities_all",
     ])
     render :nothing => true
   end
@@ -61,19 +61,33 @@ ActiveAdmin.register City do
       link_to 'Activate', activate_admin_city_path(city), :method => :put
     end
   end
-  
+
   member_action :activate, :method => :put do
     city = City.find(params[:id])
     activated = city.activate!
     redirect_to({:action => :show}, :notice => (activated ? "The city was activated" : "The city cannot be activated"))
   end
-  
+
   member_action :deactivate, :method => :put do
     city = City.find(params[:id])
     activated = city.deactivate!
     redirect_to({:action => :show}, :notice =>"The city was deactivated")
   end
-  
+
+  collection_action :import_csv, :method => :post do
+    if !params[:dump].blank? && !params[:dump][:file].blank?
+      imported = CsvImport.parse_file(City, params[:dump][:file])
+      flash[:success] = "Imported #{imported} rows"
+    else
+      flash[:success] = "You must select a file"
+    end
+    redirect_to :action => :index
+  end
+
+  sidebar :import_csv_file do
+    render "admin/csv/upload_csv", :required_columns => "name, state, country, country_code"
+  end
+
   sidebar "Translations", :only => :edit do
     div do
       b do
@@ -82,7 +96,7 @@ ActiveAdmin.register City do
     end
     table_for(Locale.all) do |t|
       t.column("Locale") {|v| v.code}
-      t.column("Value") do |v| 
+      t.column("Value") do |v|
         key = Translation.where(:locale => v.code, :key => resource.I18n_code).first
         if key.nil?
           link_to "Create", new_admin_translation_path(:locale => v.code, :key => resource.I18n_code)
@@ -92,5 +106,4 @@ ActiveAdmin.register City do
       end
     end
   end
-  
 end

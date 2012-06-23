@@ -54,10 +54,14 @@ gem 'i18n-active_record',
     :branch => 'rails-3.2',
     :require => 'i18n/active_record'
 
+gem 'localized_country_select' # i18n country select
+
 gem 'memcachier'  # Heroku plugin Memcachier
 gem 'dalli'
 
 gem 'dynamic_sitemaps'
+
+gem 'mail_view', :git => 'git://github.com/37signals/mail_view.git'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
@@ -68,7 +72,6 @@ group :development do
   gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
-  gem 'mail_view'
 end
 
 group :test do

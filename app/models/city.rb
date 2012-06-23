@@ -53,6 +53,10 @@ class City < ActiveRecord::Base
     self.country
   end
 
+  def I18n_code
+    "cities.#{self.name.parameterize('_')}"
+  end
+
   private
 
   def update_cached_complete_name
@@ -74,7 +78,7 @@ class City < ActiveRecord::Base
   def reset_routes_cache
     HeyPalFrontEnd::Application.reload_routes!
   end
-
+  
   # def name
   #   I18n.t(self.code)
   # end

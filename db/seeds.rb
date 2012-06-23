@@ -11,3 +11,7 @@ unless siteConfig.logo?
   siteConfig.logo = File.open("#{Rails.root}/db/rake_seed_images/logo.png")
   siteConfig.save!
 end
+unless siteConfig.fav_icon?
+  siteConfig.fav_icon = File.open("#{Rails.root}/db/rake_seed_images/favicon.ico")
+  siteConfig.save!
+end

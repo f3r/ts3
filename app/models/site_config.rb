@@ -2,6 +2,9 @@ class SiteConfig < ActiveRecord::Base
   
   after_save :reset_cache
   
+  has_attached_file :fav_icon,
+    :path => "/static/favicon.ico"
+    
   has_attached_file :logo,
     :path => "/static/logo.png"
   

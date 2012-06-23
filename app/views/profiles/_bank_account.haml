@@ -19,7 +19,7 @@
       = f.label :holder_country_code, "#{t("addresses.country")}*", :class => 'control-label'
       .controls
         = icon_tooltip(:fully_private)
-        = f.localized_country_select(:holder_country_code, [], {:include_blank => t("choose_country")}, {:class => "validate[required]"})
+        = f.country_select(:holder_country_code, [], {:include_blank => t("choose_country")}, {:class => "validate[required]"})
       = f.hidden_field :holder_country_name
     
     .control-group

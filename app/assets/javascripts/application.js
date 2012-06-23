@@ -4,11 +4,6 @@
 // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // the compiled file.
 //
-// TODO: Check if these are required
-//    require less-1.1.3.min
-//    require jquery.sausage
-//    require jquery.bookmark.ext
-//
 //= require jquery
 //= require jquery_ujs
 //= require jquery-ui
@@ -29,7 +24,7 @@
 //= require_tree .
 
 function customerSupportDialog() {
- $("#fdbk_tab").click(); 
+ $("#fdbk_tab").click();
 }
 
 function showIndicator(elem, html_attr) {
@@ -108,12 +103,12 @@ $(document).ready(function() {
   $("a.tooltip, a[rel=tooltip], a[rel='tooltip nofollow'], button[rel=tooltip], a.tooltip-link").tooltip({
       animation: false,
       placement: 'top',
-  }); 
+  });
 
   $('a[rel=popover], a.popover-link').popover();
 
   $('.dropdown-toggle').dropdown();
-  
+
   $.waypoints.settings.scrollThrottle = 30;
 
   $('.navbar-wrapper').waypoint(function(event, direction) {
@@ -138,7 +133,7 @@ var Expandable = {
     } else {
       section.find('a').show();
       section.find('.inner').slideUp('slow', function(){
-        section.addClass('collapsed');  
+        section.addClass('collapsed');
       });
     }
     })

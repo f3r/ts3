@@ -34,13 +34,13 @@
           %label{:class => "control-label"}= t("places.search.minimum_price")
           .controls
             .input-prepend
-              %span.add-on= currency_sign_of(get_current_currency)
+              %span.add-on= get_current_currency.label
               = text_field_tag "query[min_price]", alert_params['query']['min_price'], :placeholder => t("places.search.minimum_price"), :class => 'span2', 'autocomplete' => 'off'
         .control-group
           %label{:class => "control-label"}= t("places.search.maximum_price")
           .controls
             .input-prepend
-              %span.add-on= currency_sign_of(get_current_currency)
+              %span.add-on= get_current_currency.label
               = text_field_tag "query[max_price]", alert_params['query']['max_price'], :placeholder => t("places.search.maximum_price"), :class => 'span2', 'autocomplete' => 'off'
       .column2
         .control-group

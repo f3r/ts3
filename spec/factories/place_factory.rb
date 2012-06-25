@@ -16,6 +16,7 @@ FactoryGirl.define do
     num_bedrooms { 2 }
     max_guests   { 4 }
     user
+    currency     { create(:currency, :currency_code =>'JPY') }
 
     factory :published_place do
       published        { true }
@@ -29,7 +30,7 @@ FactoryGirl.define do
       size_unit    { 'meters' }
       size         { 100 }
 
-      currency         { "JPY" }
+
       price_per_month  { 400000 }
 
       photos           { 3.times.collect{ p = Photo.new; p.save(:validate => false); p } }

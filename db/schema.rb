@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120620112213) do
+ActiveRecord::Schema.define(:version => 20120621081335) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -579,9 +579,9 @@ ActiveRecord::Schema.define(:version => 20120620112213) do
     t.string   "tw_app_id"
     t.string   "tw_app_secret"
     t.string   "mail_bcc"
-    t.datetime "created_at",                               :null => false
-    t.datetime "updated_at",                               :null => false
-    t.string   "color_scheme",         :default => "none"
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.string   "color_scheme",                 :default => "none"
     t.string   "site_tagline"
     t.string   "static_assets_path"
     t.text     "custom_meta"
@@ -591,6 +591,11 @@ ActiveRecord::Schema.define(:version => 20120620112213) do
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
+    t.string   "photo_watermark_file_name"
+    t.string   "photo_watermark_content_type"
+    t.integer  "photo_watermark_file_size"
+    t.datetime "photo_watermark_updated_at"
   end
 
   create_table "transaction_logs", :force => true do |t|

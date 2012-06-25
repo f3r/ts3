@@ -36,15 +36,6 @@ module GeneralHelper
     end
   end
 
-  def valid_currency?(currency)
-    begin
-      Money.new(1000, currency).currency
-      true
-    rescue Exception => e
-      false
-    end
-  end
-
   def exchange_currency(price, old_currency, new_currency)
   begin
     return unless price

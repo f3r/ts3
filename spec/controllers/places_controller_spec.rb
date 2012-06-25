@@ -6,6 +6,7 @@ describe ListingsController do
     @agent = create(:agent)
     @city = create(:city)
     @place_type = create(:place_type)
+    @currency = create(:currency)
     SiteConfig.stub(:product_class).and_return(Place)
   end
 
@@ -13,7 +14,7 @@ describe ListingsController do
     it "creates a place" do
       login_as @agent
       expect {
-        post :create, :listing => attributes_for(:place, :city_id => @city.id, :place_type_id => @place_type.id)
+        post :create, :listing => attributes_for(:place, :city_id => @city.id, :place_type_id => @place_type.id, :currency_id => @currency.id)
         response.should be_redirect
       }.to change(Place, :count).by(1)
     end
@@ -21,7 +22,7 @@ describe ListingsController do
     it "doens't create a place with validation errors" do
       login_as @agent
       expect {
-        post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :place_type_id => @place_type.id)
+        post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :place_type_id => @place_type.id, :currency_id => @currency.id)
         response.should be_success
       }.to_not change(Place, :count)
 
@@ -86,10 +87,10 @@ describe ListingsController do
       login_as @agent
       @place = create(:published_place, :user => @agent)
 
-      put :update_currency, :id => @place.id, :listing => {:currency => 'GBP'}
+      put :update_currency, :id => @place.id, :listing => {:currency_id => @currency.id}
       @place.reload
 
-      @place.currency.should == 'GBP'
+      @place.currency.should == @currency
     end
   end
 

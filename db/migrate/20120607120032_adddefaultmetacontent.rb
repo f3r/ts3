@@ -8,6 +8,3 @@ class Adddefaultmetacontent < ActiveRecord::Migration
   def down
   end
 end
-
-
-

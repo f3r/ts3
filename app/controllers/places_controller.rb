@@ -37,7 +37,8 @@ class PlacesController < PrivateController
   def update_currency
     @place.attributes = params[:place]
     @place.save
-    render :json => {:currency_sign => currency_sign_of(@place.currency)}
+
+    render :json => {:currency_sign => @place.currency.label}
   end
 
   def publish
@@ -98,7 +99,7 @@ class PlacesController < PrivateController
     end
     redirect_to my_places_path
   end
-  
+
   def get_place_path
     if !params[:place_id].nil?
       place = Place.find(params[:place_id].to_i)

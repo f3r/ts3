@@ -51,7 +51,7 @@ HeyPalFrontEnd::Application.configure do
     file = "color_schemes/" + directory.gsub(basedir.to_s,"") + "/index.css"
     color_schemes << file if file
   end
-  assets = %w(wizard.js uploadify/uploadify.css active_admin.css active_admin.js active_admin_custom.js plugins.css uploadify-3.1/jquery.uploadify-3.1.min.js)
+  assets = %w(wizard.js active_admin.css active_admin.js active_admin_custom.js plugins.css plupload.css)
   assets += color_schemes
   config.assets.precompile += assets
 

@@ -1,5 +1,5 @@
 module Search
-  class Places < Search::Base
+  class Place < Search::Product
     default_columns
     column :guests,           :integer, 1
     column :check_in,         :date
@@ -8,7 +8,6 @@ module Search
     column :max_lat,          :string
     column :min_lng,          :string
     column :max_lng,          :string
-    column :places_data,      :string
 
     def resource_class
       ::Place
@@ -23,7 +22,7 @@ module Search
     end
 
     def collection
-      Place.published
+      resource_class.published
     end
 
     def add_conditions
@@ -74,33 +73,6 @@ module Search
 
       self.category_ids = current_types
       filters
-    end
-
-    def price_range_bounds
-      return nil if self.count == 0
-
-      # Backup the current filter values
-      current_prices = [self.min_price, self.max_price]
-      self.min_price = self.max_price = nil
-
-      # Calculate the range
-      min = self.calculate(:minimum, :price_per_month)
-      max = self.calculate(:maximum, :price_per_month)
-
-      # Convert currency
-
-      # Round to multiples of 100
-      max = (max/100.0).ceil * 100
-      min = (min/100.0).floor * 100
-
-      if min == max
-        max = min + 100
-      end
-
-      # Restore the filter
-      self.min_price, self.max_price = current_prices
-
-      [min, max]
     end
   end
 end

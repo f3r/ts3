@@ -18,6 +18,7 @@ RSpec.configure do |config|
 
   User.attachment_definitions[:avatar][:path] = "public/system/" + User.attachment_definitions[:avatar][:path]
   Photo.attachment_definitions[:photo][:path] = "public/system/" + Photo.attachment_definitions[:photo][:path]
+  SiteConfig.attachment_definitions[:logo][:path] = "public/system/" + SiteConfig.attachment_definitions[:logo][:path]
 
   config.before(:each) do
     # Do not depend on external currency service on test mode

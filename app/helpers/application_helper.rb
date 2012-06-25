@@ -36,8 +36,6 @@ module ApplicationHelper
     ret = ''
 
     if model.errors.any?
-
-
       msgs = []
       model.errors.full_messages.each do |errs|
         msgs << error_codes_to_messages(errs)

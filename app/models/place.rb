@@ -6,6 +6,7 @@ class Place < ActiveRecord::Base
   geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
   validates_presence_of   [:title, :place_type_id, :num_bedrooms, :max_guests, :city_id, :user_id], :message => "101"
+  validates_presence_of   :currency
   validates_inclusion_of  :size_unit, :in => ["meters", "feet"], :allow_nil => true, :if => :size?, :message => "129"
   validates_inclusion_of  :stay_unit,
                           :in => STAY_UNITS,
@@ -49,14 +50,13 @@ class Place < ActiveRecord::Base
   has_many    :favorites,       :dependent => :destroy, :as => :favorable
 
   before_save   :save_amenities,
-                :convert_prices_in_usd_cents,
+                :convert_prices_to_usd,
                 :update_size_fields,
                 :update_price_sqf_field,
                 :geocode
   validate      :validate_publishing,
                 :update_location_fields,
                 :check_zip,
-                :validate_currency,
                 :validate_stays
   after_commit  :delete_cache
 
@@ -115,6 +115,10 @@ class Place < ActiveRecord::Base
   def publish_check!
     self.published = true
     self.valid?
+  end
+
+  def currency=(a_currency)
+    write_attribute(:currency, a_currency.currency_code)
   end
 
   def full_address
@@ -260,16 +264,6 @@ class Place < ActiveRecord::Base
     transactions.each{|x| x.auto_decline! }
   end
 
-  # Include the photos on serialization
-  # def as_json(opts = {})
-  #   super(opts.merge(:include => [:photos]))
-  # end
-  def convert_prices_in_usd_cents!
-    convert_prices_in_usd_cents(true)
-    self.save(:validate => false)
-  end
-
-
   def self.price_unit
     :per_month
   end
@@ -297,19 +291,21 @@ private
   end
 
   # Convert all price fields into USD cents
-  def convert_prices_in_usd_cents(force = false)
-    if !currency.nil?
-      # self.price_per_night_usd        = money_to_usd_cents(self.price_per_night,currency)         if price_per_night_changed? or currency_changed?
-      # self.price_per_week_usd         = money_to_usd_cents(self.price_per_week,currency)          if price_per_week_changed? or currency_changed?
-      self.price_per_month_usd        = money_to_usd_cents(self.price_per_month,currency)         if force || price_per_month_changed? || currency_changed?
-      self.price_final_cleanup_usd    = money_to_usd_cents(self.price_final_cleanup,currency)     if force || price_final_cleanup_changed? || currency_changed?
-      self.price_security_deposit_usd = money_to_usd_cents(self.price_security_deposit,currency)  if force || price_security_deposit_changed? || currency_changed?
-    end
-  end
+  # def convert_prices_in_usd_cents(force = false)
+  #   if !currency.nil?
+  #     # self.price_per_night_usd        = money_to_usd_cents(self.price_per_night,currency)         if price_per_night_changed? or currency_changed?
+  #     # self.price_per_week_usd         = money_to_usd_cents(self.price_per_week,currency)          if price_per_week_changed? or currency_changed?
+  #     self.price_per_month_usd        = money_to_usd_cents(self.price_per_month,currency)         if force || price_per_month_changed? || currency_changed?
+  #     self.price_final_cleanup_usd    = money_to_usd_cents(self.price_final_cleanup,currency)     if force || price_final_cleanup_changed? || currency_changed?
+  #     self.price_security_deposit_usd = money_to_usd_cents(self.price_security_deposit,currency)  if force || price_security_deposit_changed? || currency_changed?
+  #   end
+  # end
 
-  # Convert currency/money into USD cents
-  def money_to_usd_cents(money, currency)
-    money.to_money(currency).exchange_to(:USD).cents if money && currency
+  def convert_prices_to_usd(force = false)
+    return true unless currency
+    if (self.price_per_month_changed? || force) && self.price_per_month
+      self.price_per_month_usd = self.currency.to_usd(self.price_per_month) * 100.0
+    end
   end
 
   def update_location_fields
@@ -453,11 +449,6 @@ private
 
       self.published = false if unpublish_place == true
     end
-  end
-
-  # Adds validation errors if the currency is not supported
-  def validate_currency
-    errors.add(:currency, "135") unless valid_currency?(currency)
   end
 
   # Check for valid zip code, HK doesn't have a standard format.

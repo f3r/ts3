@@ -230,6 +230,8 @@ GEM
       activesupport (>= 2.3.2)
       cocaine (>= 0.0.2)
       mime-types
+    plupload-rails (1.0.6)
+      rails (~> 3.1)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -375,6 +377,7 @@ DEPENDENCIES
   omniauth-facebook
   omniauth-twitter
   paperclip (~> 2.4)
+  plupload-rails
   powder
   quiet_assets
   rails (= 3.2.0)

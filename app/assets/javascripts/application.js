@@ -21,7 +21,8 @@
 //= require fullcalendar.min
 //= require twitter/bootstrap
 //= require_self
-//= require_tree .
+//= require_tree
+
 
 function customerSupportDialog() {
  $("#fdbk_tab").click();

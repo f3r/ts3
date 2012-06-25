@@ -62,7 +62,7 @@ ActiveAdmin.register GalleryItem  do
   collection_action :add_photo, :method => :post do
     config.clear_action_items
     @gallery = Gallery.find(params[:gallery_id])
-    gallery_item = @gallery.gallery_items.new(:photo => params[:Filedata])
+    gallery_item = @gallery.gallery_items.new(:photo => params[:file])
     gallery_item.save!
     render :nothing => true
   end

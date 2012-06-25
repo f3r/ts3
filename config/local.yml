@@ -17,7 +17,6 @@ defaults: &defaults
   RECAPTCHA_PVT_KEY:    6Lcuo9ASAAAAAOYdrtLjPruEU0ZmferG5C_aTCEK
   RAKISMET_KEY:         bcba68e5b091
   RAKISMET_URL:         http://localhost:3005
-  # Paypal
   PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
   PAYPAL_MODE:          test
 

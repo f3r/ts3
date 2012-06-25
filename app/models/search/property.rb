@@ -1,5 +1,5 @@
 module Search
-  class Place < Search::Product
+  class Property < Search::Product
     default_columns
     column :guests,           :integer, 1
     column :check_in,         :date
@@ -10,7 +10,7 @@ module Search
     column :max_lng,          :string
 
     def resource_class
-      ::Place
+      ::Property
     end
 
     attr_accessor :place_type_ids

@@ -18,3 +18,4 @@ en:
     system_msg_request:     "Guest requested to rent this place"
     system_msg_pre_approve: "Agent approved the rental request"
     system_msg_pay:         "Guest paid the rental initiation fee"
+    error_in_transaction:   "There has been an unknown error with your transaction, please contact the administrators"

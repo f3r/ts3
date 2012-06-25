@@ -8,6 +8,13 @@ class Translation < ActiveRecord::Base
   scope :mailers,  where("`translations`.`key` LIKE ?", 'mailers.%')
 
   after_commit :delete_cache
+  
+  has_many :versions, :class_name => 'TranslationVersion', :foreign_key => "translation_id", :order => "id DESC", :dependent => :destroy
+  
+  before_update do |r|
+    r.versions.create({:value => r.value_was}) if r.value_changed?
+  end
+  
 
   def other_language(locale)
     translation = Translation.where(:key => self.key, :locale => locale).first

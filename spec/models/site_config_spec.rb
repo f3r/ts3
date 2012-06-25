@@ -18,19 +18,19 @@ describe SiteConfig do
 
       SiteConfig.site_name.should == 'SquareNew'
     end
-    
+
     it "overrides favicon with favicon.ico name regardless of the original name" do
       fav_icon = File.open("#{Rails.root}/db/rake_seed_images/favicon.png")
       @site_config.fav_icon = fav_icon
       @site_config.save!
-      SiteConfig.fav_icon.url.should =~ /favicon.ico$/
+      SiteConfig.fav_icon.path.should =~ /favicon.ico$/
     end
-   
+
     it "overrides logo with logo.png name regardless of the original name" do
       logo = File.open("#{Rails.root}/db/rake_seed_images/a_logo.png")
       @site_config.logo = logo
       @site_config.save!
-      SiteConfig.logo.url.should =~ /logo.png$/
+      SiteConfig.logo.path.should =~ /\/logo.png$/
     end
   end
 end

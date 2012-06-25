@@ -19,6 +19,3 @@ class CreateProducts < ActiveRecord::Migration
     end
   end
 end
-
-class Service < ActiveRecord::Base
-end

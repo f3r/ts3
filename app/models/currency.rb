@@ -23,7 +23,11 @@ class Currency < ActiveRecord::Base
   end
 
   def from_usd(amount_usd)
-    amount_usd.to_money('USD').exchange_to(self.currency_code)
+    amount_usd.to_money('USD').exchange_to(self.currency_code).to_f.to_i
+  end
+
+  def to_usd(amount)
+    amount.to_money(self.currency_code).exchange_to('USD').to_f.to_i
   end
 
   def activate!

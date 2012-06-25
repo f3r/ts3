@@ -1,12 +1,12 @@
 #types-list
-  .header= t("places.search.type_title")
+  .header= title
   .content
     %ul{:class => "inputs-list"}
       - filters.each do |obj, count, checked|
         %li
           %span.filter
-            = check_box_tag :place_type_id, obj.id, checked, :id => "#{obj.slug}_filter", :autocomplete => 'off'
-            %label{:for => "#{obj.slug}_filter"}= obj.translated_name
+            = check_box_tag :place_type_id, obj.id, checked, :id => dom_id(obj, :filter), :autocomplete => 'off'
+            %label{:for => dom_id(obj, :filter), :title => obj.name}= truncate(obj.name, :length => 25)
           %span.right
             %span.label= count
 

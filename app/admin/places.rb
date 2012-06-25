@@ -1,5 +1,5 @@
 ActiveAdmin.register Place do
-  menu :priority => 2, :parent => 'Places', :label => 'Places' # Fer made me do it
+  menu :priority => 2, :parent => 'E-Commerce', :label => 'Places' # Fer made me do it
 
   controller do
     helper 'admin/places'

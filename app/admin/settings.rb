@@ -37,8 +37,36 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Storage" do
       f.input :static_assets_path
     end
+    
+    f.inputs "Photos" do
+      f.input :fav_icon, :hint => (f.template.image_tag(SiteConfig.fav_icon.url) if SiteConfig.fav_icon?)
+    end
 
+    f.inputs "Photos" do
+      f.input :logo, :hint => (f.template.image_tag(SiteConfig.logo.url) if SiteConfig.logo?)
+    end
+    
+    f.inputs "Watermark" do
+      f.input :photo_watermark, :hint => (f.template.image_tag(SiteConfig.photo_watermark.url)\
+       + f.template.link_to('Clear it', reset_field_admin_setting_path(resource) + "?f=photo_watermark",{:method => :put}) if SiteConfig.photo_watermark?)
+    end
+    
     f.buttons
   end
   
+  member_action :reset_field, :method => :put do
+    which_field = params[:f]
+    
+    unless which_field.nil?
+      which_field = which_field + "="
+      setting = SiteConfig.find(params[:id])
+      if setting.present? and setting.respond_to?(which_field) 
+        setting.send(which_field, nil)
+        setting.save
+      end
+    end
+    
+    redirect_to(edit_admin_setting_path(setting), :notice => "Field cleared")
+  end
+
 end

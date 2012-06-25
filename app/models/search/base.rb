@@ -77,15 +77,29 @@ module Search
     end
 
     def order
-      "created_at DESC"
+      self.sort_by ||= 'price_lowest'
+      sort_map = {
+        "name"               => "title asc",
+        "price_lowest"       => "price_#{self.price_unit}_usd asc",
+        "price_highest"      => "price_#{self.price_unit}_usd desc",
+        "most_recent"        => "updated_at desc"
+      }
+      sort_map[self.sort_by]
     end
 
     def category_filters
       filters = []
     end
 
+    def category_filters_title
+      I18n.t("products.search.category_filters_title")
+    end
+
     def amenity_filters
       filters = []
+    end
+
+    def amenity_filters_title
     end
 
     def price_unit
@@ -153,7 +167,7 @@ module Search
 
     def add_conditions
       add_equals_condition('products.city_id', self.city_id)
-      add_equals_condition(price_field, self.price_range)
+      add_equals_condition("products.#{self.price_field}", self.price_range)
       add_filters # From override
     end
 

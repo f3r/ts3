@@ -40,7 +40,7 @@ FactoryGirl.define do
 
   factory :inquiry do
     user
-    association :place, :factory => :published_place
+    association :target, :factory => :published_place
     check_in    { Date.current + 2.year + 1.day }
     check_out   { Date.current + 2.year + 1.month }
   end

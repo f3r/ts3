@@ -51,4 +51,28 @@ describe MenuSection do
     link.should_not be_persisted
   end
   
+  it "delete a page should delete its entry from menusection" do
+    main = MenuSection.main
+    footer = MenuSection.footer
+    
+    # Let's create a page
+    page1 = FactoryGirl.create(:cmspage)
+    
+    main.cmspages << page1
+    footer.cmspages << page1
+    
+    #Another page
+    page2 = FactoryGirl.create(:cmspage)
+    main.cmspages << page2
+    
+    #Now the count is 2
+    main.cmspages.count.should == 2
+    footer.cmspages.count.should == 1
+    
+    page1.destroy
+    main.cmspages.count.should == 1
+    
+    footer.cmspages.count.should == 0
+  end
+  
 end

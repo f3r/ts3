@@ -3,6 +3,11 @@ source :rubygems
 gem 'rails', '3.2.0'
 gem 'mysql2'
 
+# File Uploads
+gem 'paperclip', "~> 2.4"         # Attachements
+gem 'aws-s3'                      # Upload to Amazon S3
+gem 'aws-sdk'
+
 gem 'devise'
 gem 'dynamic_form'
 gem 'omniauth'
@@ -23,11 +28,6 @@ gem "recaptcha", :require => "recaptcha/rails"
 gem 'rakismet'
 
 gem 'tinymce-rails'
-
-# File Uploads
-gem 'paperclip', "~> 2.4"         # Attachements
-gem 'aws-s3'                      # Upload to Amazon S3
-gem 'aws-sdk'
 
 gem 'activeadmin'
 gem 'sass-rails'
@@ -55,10 +55,14 @@ gem 'i18n-active_record',
     :branch => 'rails-3.2',
     :require => 'i18n/active_record'
 
+gem 'localized_country_select' # i18n country select
+
 gem 'memcachier'  # Heroku plugin Memcachier
 gem 'dalli'
 
 gem 'dynamic_sitemaps'
+
+gem 'mail_view', :git => 'git://github.com/37signals/mail_view.git'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
@@ -69,7 +73,6 @@ group :development do
   gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
-  gem 'mail_view'
 end
 
 group :test do

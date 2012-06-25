@@ -1,15 +1,16 @@
-- inquiry = target # TODO: Replace
-<% payment_service_for inquiry['code'], PAYPAL_ACCOUNT, :amount => 300, :currency => 'SGD', :service => :paypal, :html => { :id => 'payment_form' } do |service|
+<% inquiry = target; transaction = inquiry.transaction # TODO: Replace %>
+<% # TODO: calculate ammount for services%>
+<% payment_service_for transaction.code, PAYPAL_ACCOUNT, :amount => 300, :currency => 'SGD', :service => :paypal, :html => { :id => 'payment_form' } do |service|
   service.customer :first_name => current_user.first_name,
       :last_name => current_user.last_name,
       :email => current_user.email
 
-  service.item_name t(:payment_fee_desc, :title => inquiry['place_title'])
+  service.item_name t(:payment_fee_desc, :title => inquiry.title)
 
   service.customer :first_name => current_user['first_name'],
                    :last_name => current_user['last_name']
 
-  service.invoice inquiry['code']
+  service.invoice transaction.code
 
   # PayPal will POST a callback here when the payment is done
   service.notify_url paypal_callback_url

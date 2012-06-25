@@ -22,6 +22,7 @@ RSpec.configure do |config|
   config.before(:each) do
     # Do not depend on external currency service on test mode
     Currency.any_instance.stub(:from_usd).and_return(666)
+    Currency.any_instance.stub(:to_usd).and_return(1332)
     Place.any_instance.stub(:geocode).and_return(true)
   end
 end

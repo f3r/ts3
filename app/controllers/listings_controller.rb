@@ -13,6 +13,7 @@ class ListingsController < PrivateController
   def create
     @resource = resource_class.new(params[:listing])
     @resource.user = current_user
+    @resource.currency ||= Currency.default
 
     if @resource.save
       redirect_to edit_listing_path(@resource)
@@ -28,7 +29,7 @@ class ListingsController < PrivateController
   end
 
   def edit
-    render 'places/wizard'
+    #render 'places/wizard'
   end
 
   def update
@@ -39,7 +40,11 @@ class ListingsController < PrivateController
       err = format_errors(@resource.errors.messages)
       response = {:stat => "fail", :err => err, :error_label => error_codes_to_messages(err).join(', ')}
     end
-    render :json => response, :layout => false
+    if request.xhr?
+      render :json => response, :layout => false
+    else
+      redirect_to :action => :edit
+    end
   end
 
   def update_currency
@@ -59,7 +64,7 @@ class ListingsController < PrivateController
 
   def publish
     if @resource.publish!
-      flash[:notice] = t("places.messages.place_published")
+      flash[:notice] = t("products.messages.listing_published")
     else
       flash[:error] = t("places.messages.place_publish_error")
     end
@@ -68,7 +73,7 @@ class ListingsController < PrivateController
 
   def unpublish
     @resource.unpublish!
-    flash[:notice] = t("places.messages.place_unpublished")
+    flash[:notice] = t("products.messages.listing_unpublished")
     redirect_to listing_path(@resource)
   end
 

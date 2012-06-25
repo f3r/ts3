@@ -9,6 +9,9 @@ class TransactionsController < PrivateController
         format.js { render :layout => false, :template => "transactions/change_state" }
       end
     else
+      respond_to do |format|
+        format.js { render :layout => false, :template => "transactions/error_message" }
+      end
     end
   end
 end

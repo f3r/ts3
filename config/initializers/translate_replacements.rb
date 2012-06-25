@@ -5,6 +5,7 @@ module ActionView::Helpers::TranslationHelper
     options_with_replacements = options.merge({
       :site_name => SiteConfig.site_name,
       :site_url => SiteConfig.site_url,
+      :site_tagline => SiteConfig.site_tagline,
       :support_email => SiteConfig.support_email,
       :product_name => SiteConfig.product_name,
       :product_plural => SiteConfig.product_plural
@@ -22,6 +23,7 @@ module AbstractController
       options_with_replacements = options.merge({
         :site_name => SiteConfig.site_name,
         :site_url => SiteConfig.site_url,
+        :site_tagline => SiteConfig.site_tagline,
         :support_email => SiteConfig.support_email,
         :product_name => SiteConfig.product_name,
         :product_plural => SiteConfig.product_plural

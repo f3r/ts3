@@ -72,7 +72,7 @@ class Place < ActiveRecord::Base
   end
 
   def self.searcher
-    Search::Places
+    Search::Place
   end
 
   def price(a_currency = nil, unit = :per_month)

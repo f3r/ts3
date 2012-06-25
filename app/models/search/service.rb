@@ -1,5 +1,5 @@
 module Search
-  class Service < Search::Base
+  class Service < Search::Product
     default_columns
 
     def resource_class

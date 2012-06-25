@@ -53,7 +53,8 @@
       multipart_params: {
         '_method' : 'post',
         '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}',
-        'token' : '#{current_token}' ,
+        'auth_token' : '#{current_token}' ,
+        'authenticity_token' : encodeURI(csrf_token),
         'csrf_token' : encodeURI(csrf_param),
         'format': 'json'
       },
@@ -62,7 +63,6 @@
       ],
       init: {
         FileUploaded: function(up, file, info) {
-          console.log(info["response"]);
           PhotoManager.insert(info["response"]);
         }
       }

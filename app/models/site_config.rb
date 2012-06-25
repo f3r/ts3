@@ -8,6 +8,10 @@ class SiteConfig < ActiveRecord::Base
   has_attached_file :logo,
     :path => "/static/logo.png"
   
+  has_attached_file :photo_watermark, {
+    :path => "watermarks/photowatermark.jpg"
+  }
+
   def self.instance
     @instance = @instance || SiteConfig.first || SiteConfig.new
   end
@@ -22,7 +26,7 @@ class SiteConfig < ActiveRecord::Base
     end
     if self.instance.respond_to?(name.to_s)
       val = self.instance.send(name.to_s) if self.instance
-      if val.present?
+      if val == false or val.present?
         val
       else
         # Backward compatibility with config constants
@@ -38,7 +42,7 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.default_to_constant(name)
-    name.to_s.upcase.constantize
+    name.to_s.upcase.safe_constantize
   end
 
   # get a list of color_schemes the directory, get name from the first line

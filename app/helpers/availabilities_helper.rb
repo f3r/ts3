@@ -20,7 +20,7 @@ module AvailabilitiesHelper
     if s['availability_type'] == 1
       'unavailable / manual booking'
     else
-      raw("New Price: <small class='currency-sign'>#{currency_sign_of(p.currency)}</small> #{s['price_per_night']} per night")
+      raw("New Price: <small class='currency-sign'>#{p.currency.label}</small> #{s['price_per_night']} per night")
     end
   end
 
@@ -28,13 +28,13 @@ module AvailabilitiesHelper
     if s['availability_type'] == 1
       'unavailable / manual booking'
     else
-      "New Price: #{currency_sign_of(p.currency)} #{s['price_per_night']} per night"
+      "New Price: #{p.currency.label} #{s['price_per_night']} per night"
     end
   end
 
   def price_availability_plain_calendar(s, p) # self, place
     if s['availability_type'] != 1
-      "#{currency_sign_of(p.currency)} #{s['price_per_night']} / night"
+      "#{p.currency.label} #{s['price_per_night']} / night"
     else
       ""
     end

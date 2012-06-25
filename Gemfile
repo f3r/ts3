@@ -73,6 +73,13 @@ group :development do
   gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
+
+  # Check if we can include ruby-debug in test and does not conflict with semaphoreapp
+  # Debugger, for installation see: http://pastie.org/3293194
+  gem 'linecache19', '0.5.13'
+  gem 'ruby-debug-base19', '0.11.26'
+  gem "ruby-debug19", :require => 'ruby-debug'
+
 end
 
 group :test do
@@ -87,9 +94,4 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-
-  # Debugger, for installation see: http://pastie.org/3293194
-  gem 'linecache19', '0.5.13'
-  gem 'ruby-debug-base19', '0.11.26'
-  gem "ruby-debug19", :require => 'ruby-debug'
 end

@@ -79,7 +79,7 @@ class Place < ActiveRecord::Base
     a_currency ||= Currency.default
 
     # If we are asked in the original currency of the place
-    if self.currency == a_currency.currency_code
+    if self.currency == a_currency
       amount = self.send("price_#{unit}")
     else
       # If we are asked in the 'special' USD (precalculated with before_save callback)
@@ -120,6 +120,21 @@ class Place < ActiveRecord::Base
 
   def currency=(a_currency)
     write_attribute(:currency, a_currency.currency_code)
+  end
+
+  def currency
+    code = read_attribute(:currency)
+    Currency.find_by_currency_code(code) if code
+  end
+
+  def currency_id=(an_id)
+    obj = Currency.find(an_id)
+    self.currency = obj if obj
+  end
+
+  def currency_id
+    obj = self.currency
+    obj.id if obj
   end
 
   def full_address

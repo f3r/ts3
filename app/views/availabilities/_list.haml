@@ -16,7 +16,7 @@
       = select_tag "availability_type", raw("<option value='1'#{' selected="selected"' if a['availability_type'] == 1}>Unavailable</option><option value='2'#{' selected="selected"' if a['availability_type'] == 2}>New Price</option>"), :class => 'availability_type', :id => "availability_type-#{a['id']}"
 
       %span.wrap{:class => "#{' hide' if a['availability_type'] == 1}"}
-        %small.currency-sign= currency_sign_of(place.currency)
+        %small.currency-sign= place.currency.label
         = text_field_tag "price_per_night", "", :placeholder => "New Price", :class => "small", :value => a['price_per_night'], :id => "price_per_night-#{a['id']}"
 
     %div.availability-action

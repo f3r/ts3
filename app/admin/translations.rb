@@ -72,5 +72,11 @@ ActiveAdmin.register Translation do
     end
     active_admin_comments
   end
-
+  
+  sidebar "Versions", :only => :edit do
+    table_for(resource.versions) do |t|
+      t.column("Choose a version") {|v| link_to v.display_name, admin_translation_version_path(v), :remote => true, :title => v.value, :rel => 'tooltip' }
+    end
+  end
+  
 end

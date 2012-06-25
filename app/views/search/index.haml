@@ -18,8 +18,9 @@
       #search_map{:style => "width: 218px;height:210px;border:#ccc 1px solid;"}
       #search_filters.search-aside-wrapper
         = render 'filters'
-
-      =# render 'shared/asm_banner_vertical'
+        - if SiteConfig.sidebar_widget.present?
+          .sidebar-widget
+            = raw(SiteConfig.sidebar_widget)
 
 - if false
   - if logged_in? && @alert_params

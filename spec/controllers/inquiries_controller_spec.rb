@@ -3,6 +3,7 @@ require 'spec_helper'
 describe InquiriesController do
   before(:each) do
     @place = create(:published_place)
+    SiteConfig.stub(:product_class).and_return(Place)
   end
 
   it "sends an inquiry for a registered user" do
@@ -11,14 +12,14 @@ describe InquiriesController do
 
     Inquiry.any_instance.stub(:spam?).and_return(false)
     expect {
-      xhr :post, :create, inquiry_params.merge(:place_id => @place.id)
+      xhr :post, :create, inquiry_params.merge(:id => @place.id)
     }.should change(Inquiry, :count).by(1)
   end
 
   it "sends an inquiry and creates a new user" do
     Inquiry.any_instance.stub(:spam?).and_return(false)
     expect {
-      xhr :post, :create, inquiry_params.merge(:place_id => @place.id, :name => 'michelle', :email => 'michelle@mail.com')
+      xhr :post, :create, inquiry_params.merge(:id => @place.id, :name => 'michelle', :email => 'michelle@mail.com')
     }.should change(Inquiry, :count).by(1)
 
     user = User.last
@@ -27,7 +28,7 @@ describe InquiriesController do
   end
 
   def inquiry_params(params = {})
-    { 
+    {
       :inquiry => {
         :date_start => 1.month.from_now.to_s,
         :length_stay => '2',

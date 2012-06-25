@@ -1,4 +1,4 @@
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * PLACE INQUIRY
  *********************************************************************************************************/
 
@@ -14,16 +14,16 @@
 }
 
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * PLACE INQUIRY
  *********************************************************************************************************/
 #inquire_place  {
   background: #F2F2F2;
-  
+
   .inquiry-sent-msg {
     display: none;
   }
-  
+
   &.sent {
     .inquiry-sent-msg {
       display: block;
@@ -33,7 +33,7 @@
     }
   }
   input {
-    width: 250px;
+    /*width: 250px;*/
   }
   &.modal {
     .control-label {
@@ -43,21 +43,21 @@
       margin-left: 120px;
     }
     max-height: 628px;
-    
+
   }
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * CANCELATION POLICY TEXT
  *********************************************************************************************************/
 #cancellation_policy_text {
-  width: 700px; 
-  height: 500px; 
-  overflow-y: scroll; 
+  width: 700px;
+  height: 500px;
+  overflow-y: scroll;
   overflow-x: hidden;
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * PLACES SHOW
  *********************************************************************************************************/
 #map {
@@ -90,11 +90,11 @@
     }
   }
 }
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * AMENITIES
  *********************************************************************************************************/
 .amenities {
-  
+
   label {
     padding-top: 6px;
     font-size: @baseFontSize + 1;
@@ -127,7 +127,7 @@
   a { float: right }
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * PHOTO SLIDER
  *********************************************************************************************************/
 #photo-slider-control{
@@ -135,37 +135,37 @@
   margin-bottom: 10px;
   a{
     margin: 0 .5em;
-  }  
+  }
 }
 
-#photo-slider {  
+#photo-slider {
   .thumb{
     padding: 4px;
     background-color: #3e3e3e;
-  }  
-  .viewport { 
-    float: left; 
-    width: 913px; 
-    height: 405px; 
-    overflow: hidden; 
-    position: relative; 
-    margin: 0 12px 10px; 
+  }
+  .viewport {
+    float: left;
+    width: 913px;
+    height: 405px;
+    overflow: hidden;
+    position: relative;
+    margin: 0 12px 10px;
   }
   .disable  { opacity: .4; }
-  .overview { 
-    list-style: none; 
-    padding: 0; 
-    margin: 0;  
-    position: absolute; 
-    left: 0; 
-    top: 0; 
-    
+  .overview {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+
     li {
       overflow: hidden;
-      _zoom: 1;  
-      float: left; 
-      margin-right: 20px; 
-      height: 401px; 
+      _zoom: 1;
+      float: left;
+      margin-right: 20px;
+      height: 401px;
       width: 930px;
 
       .big, .small{
@@ -178,7 +178,7 @@
         position: relative;
         background-color:#3e3e3e;
         min-height:401px;
-        
+
         .caption{
           width: 582px;
           position: absolute;
@@ -189,7 +189,7 @@
           color: #fff;
           background: transparent url(/assets/glass.black.png) repeat 0 0;
         }
-      }  
+      }
       .small{
         width: 309px;
 
@@ -210,8 +210,8 @@
       }
     }
   }
-  
-  .slider-nav{     
+
+  .slider-nav{
     background: #f0f0f0;
     border: 1px solid #eee;
     .border-radius(2px);
@@ -220,8 +220,8 @@
     padding: 10px 10px 0;
     float: none;
     position: relative;
-    
-    .buttons { 
+
+    .buttons {
       display: block; width: 10px; height: 40px;  background: #000;
       padding: 5px;
       position: absolute;
@@ -230,54 +230,54 @@
       top: 10px;
       z-index: 1;
       text-indent: -9999px;
-      &.next{ 
+      &.next{
         right: 10px;
         background: transparent url(/assets/icons/icon.arr-right.png) no-repeat right center;
       }
-      &.prev{ 
-        left: 10px;                
+      &.prev{
+        left: 10px;
         background: transparent url(/assets/icons/icon.arr-left.png) no-repeat left center;
-      }    
+      }
     } //buttons
-    
-    
-    .pager { 
-      overflow:hidden; 
-      list-style: none;  
+
+
+    .pager {
+      overflow:hidden;
+      list-style: none;
       float: left;
       margin: 0;
       padding: 0 20px 0 19px;
       width: 900px;
       position: relative;
-      
-      li { 
-        float: left; 
+
+      li {
+        float: left;
         margin: 0 4px 10px;
       }
-      .pagenum { 
-        background-color: #fff; 
-        text-decoration: none; 
-        text-align: center; 
-        padding: 5px; 
-        color: #555555; 
-        font-size: 14px; 
-        font-weight: bold; 
-        display: block; 
+      .pagenum {
+        background-color: #fff;
+        text-decoration: none;
+        text-align: center;
+        padding: 5px;
+        color: #555555;
+        font-size: 14px;
+        font-weight: bold;
+        display: block;
         width: 40px;
         height: 40px;
         .box-shadow(0 1px 1px rgba(0,0,0,.075));
         border-radius: 0;
-        
+
         img{
           display: block;
         }
-       }       
+       }
       .active { color: #fff; background-color:  #2a830e; }
-    }    
+    }
   }
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * SHARE ICONS (Facebook, Twitter,...)
  *********************************************************************************************************/
 
@@ -285,7 +285,7 @@
   .clearfix();
   overflow: hidden;
   width: 120px;
-  
+
   label{
     float: left;
     background: none;
@@ -297,35 +297,35 @@
     width: auto;
     margin-right: 5px;
   }
-  
+
   span.st{
     width: 16px;
     height: 16px;
     text-indent: -9999px;
     margin: 3px 5px 0 0;
     background: #f0f0f0;
-    float: left; 
+    float: left;
 
     &.st_facebook_custom{
       background: transparent url(/assets/icons/facebook.png) 0 0;
-    } 
+    }
     &.st_twitter_custom{
       background: transparent url(/assets/icons/twitter.png) 0 0;
-    } 
+    }
   }
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * TABBED PANEL
  *********************************************************************************************************/
 .tabbed-panel{
-  .border-radius(5px);    
+  .border-radius(5px);
   border: 1px solid #eee;
   overflow: hidden;
   margin: 20px 0;
   _zoom: 1;
-  .clearfix();    
-  
+  .clearfix();
+
   .tabs{
     padding: 5px 10px 0;
     background: #f8f8f8;
@@ -334,18 +334,18 @@
     clear: both;
     padding: 10px;
     background: #fff;
-    
+
     .fine-print{
       margin: 0;
       padding: 0;
-      
+
       .span4{
         width: 198px;
       }
     }
   }
 }
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * MANAGEMENT
  *********************************************************************************************************/
  .place-actions .buttons {

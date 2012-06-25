@@ -13,7 +13,7 @@ module MessagesHelper
 
   def breadcrumb_conversation_title
     if @conversation.target
-      ("#{t('inquiries.inquiry_on')} " + link_to(conversation_title,seo_place_path(@conversation.target.place))).html_safe
+      ("#{t('inquiries.inquiry_on')} " + link_to(conversation_title,seo_product_url(@conversation.target.target))).html_safe
     else
       "#{t("inquiries.conversation_with")} #{@conversation.from.first_name}"
     end

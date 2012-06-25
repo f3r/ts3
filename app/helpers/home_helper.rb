@@ -59,9 +59,7 @@ module HomeHelper
         if menu
           menu.cmspages.all.each do |p|
             html << content_tag(:li,{}) do
-              content_tag(:a,{}) do 
-                link_to p.page_title, p.link
-              end
+              link_to p.page_title, p.link
             end
           end
         end
@@ -99,7 +97,7 @@ module HomeHelper
           html = ""
           menu_section.cmspages.all.each do |p|
             html << content_tag(:li,{}) do
-              content_tag(:a,{}) do 
+              content_tag(:a,{}) do
                 link_to p.page_title, "/" + p.page_url
               end
             end

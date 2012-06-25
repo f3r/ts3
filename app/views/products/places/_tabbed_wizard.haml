@@ -1,0 +1,38 @@
+- content_for :javascripts do
+  = javascript_include_tag "wizard"
+  = stylesheet_link_tag "uploadify/uploadify.css"
+
+= form_for @resource, :as => :place, :class => 'form-stacked', :html => {:id => "wizard_form"} do |f|
+  = hidden_field_tag :place_id, params[:id]
+  = hidden_field_tag :token, form_authenticity_token, :id => 'token'
+  = f.hidden_field :published
+  .panel.tab-pane#1
+    = render 'products/places/wizard_tabs/step_general',   :f => f
+  .panel.tab-pane#2
+    = render 'products/places/wizard_tabs/step_photos',    :f => f
+  .panel.tab-pane#3
+    = render 'products/places/wizard_tabs/step_amenities', :f => f
+  .panel.tab-pane#4
+    = render 'products/places/wizard_tabs/step_pricing',   :f => f
+  .panel.tab-pane#5
+    =# render 'products/places/wizard_tabs/step_calendar',  :f => f
+  .panel.tab-pane#6
+    -#= render 'preview', :f => f
+:javascript
+
+  $(function() {
+    var wizardStep = "#{params[:step]}";
+    // Load initial Panel
+    $('.wizard-wrapper .panel').css("display", "none");
+    $('.wizard-wrapper .panel').first().css("display", "block");
+
+    if(wizardStep != "") {
+      switchToPanel(wizardStep);
+    } else {
+      switchToPanel(1);
+    }
+
+    validatePanels();
+    //Hide errors initially
+    $('.wizard-wrapper .panel .error').removeClass('error');
+  });

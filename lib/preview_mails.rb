@@ -90,7 +90,7 @@ class PreviewMails < MailView
   def an_inquiry
     inquiry = Inquiry.new(
       :created_at => 2.days.ago,
-      :place => Place.first,
+      :target => Place.first,
       :user => User.first,
       :check_in => 1.month.from_now.to_date,
       :length_stay => 1,

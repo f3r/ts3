@@ -7,7 +7,7 @@
     = render 'shared/header'
     .container
       .content
-        .row
+        .row.flash_pre
           - if content_for?(:aside)
             %section.span9
               = flash_messages

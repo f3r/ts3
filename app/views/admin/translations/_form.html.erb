@@ -3,9 +3,9 @@
 	  <% if controller.action_name == "edit" %>
 		<%= f.input :locale, :input_html => { :disabled => true } %>
 		<%= f.input :key, :input_html => { :disabled => true } %>
-    <% elsif params[:locale] && params[:key] %>
-    <%= f.input :locale, :input_html => { :value => params[:locale], :disabled => true } %>
-		<%= f.input :key, :input_html => { :value => params[:key], :disabled => true } %>
+    <% elsif params[:locale] && params[:key] %>    	
+    <%= f.input :locale, :input_html => { :value => params[:locale], :readonly => true } %>
+		<%= f.input :key, :input_html => { :value => params[:key], :readonly => true } %>
     <% else %>
     <%= f.input :locale %>
 		<%= f.input :key %>

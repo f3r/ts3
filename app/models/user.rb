@@ -90,6 +90,12 @@ class User < ActiveRecord::Base
     initials.join(' ')
   end
 
+  def age
+    return unless self.birthdate
+    now = Time.now.utc.to_date
+    now.year - birthdate.year - ((now.month > birthdate.month || (now.month == birthdate.month && now.day >= birthdate.day)) ? 0 : 1)
+  end
+
   def name=(a_name)
     self.first_name, self.last_name = a_name.split(' ', 2)
   end
@@ -120,10 +126,10 @@ class User < ActiveRecord::Base
     # We use the saeme mechanism as password reset
     self.generate_reset_password_token
   end
-  
+
   # Retrieves the other published properties of this user
-  def other_active_properties_except(place)  
-     self.places.published.where('id != ?', place.id)
+  def other_active_properties_except(place)
+    self.places.published.where('id != ?', place.id)
   end
 
   private
@@ -145,5 +151,5 @@ class User < ActiveRecord::Base
       self.avatar.clear if avatar && !avatar.dirty?
     end
   end
-  
+
 end

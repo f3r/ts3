@@ -37,8 +37,16 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Storage" do
       f.input :static_assets_path
     end
+    
+    f.inputs "Photos" do
+      f.input :fav_icon, :hint => (f.template.image_tag(SiteConfig.fav_icon.url) if SiteConfig.fav_icon?)
+    end
+
+    f.inputs "Photos" do
+      f.input :logo, :hint => (f.template.image_tag(SiteConfig.logo.url) if SiteConfig.logo?)
+    end
 
     f.buttons
   end
-  
+
 end

@@ -9,14 +9,11 @@
       %li.arrow
       %li.divider-title= "#{t("template.header.preferences.choose_language")}..."
       %li.divider
-      %li{ get_current_language == "en" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_language => 'en' do
-          %span.check &#10003;
-          = t("template.header.preferences.english_native")
-      %li{ get_current_language == "es" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_language => 'es' do
-          %span.check &#10003;
-          = t("template.header.preferences.spanish_native")
+      - Locale.active.each do |locale|
+        %li{ get_current_language == locale.code ? {:class => "active"} : {} }
+          = link_to :change_preference => true, :pref_language => locale.code do
+            %span.check &#10003;
+            = locale.name_native
       %li.divider
       %li.divider-title= "#{t("template.header.preferences.choose_currency")}..."
       %li.divider

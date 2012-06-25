@@ -5,7 +5,7 @@ describe Place do
     @usd = create(:currency, :currency_code => 'USD')
     @sgd = create(:currency, :currency_code => 'SGD')
     @hkd = create(:currency, :currency_code => 'HKD')
-    @place = build(:place, :currency => 'SGD', :price_per_month => '2000', :price_per_month_usd => '150000')
+    @place = build(:place, :currency => @sgd, :price_per_month => '2000', :price_per_month_usd => '150000')
   end
 
   context "#price" do
@@ -18,7 +18,7 @@ describe Place do
     it "returns the price in usd (using the precalculated value)" do
       symbol, amount = @place.price(@usd)
       symbol.should == @usd.symbol
-      amount.should == @place.price_per_month_usd
+      amount.should == @place.price_per_month_usd / 100
     end
 
     it "converts to a 3rd currency" do

@@ -17,7 +17,7 @@
 
     - @other_properties = []
     - unless current_user?(@owner)
-      - @other_properties = @owner.other_active_properties_except(resource)
+      - @other_properties = @owner.other_published_products(resource)
 
     - if @other_properties.present?
       %li

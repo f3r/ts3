@@ -4,6 +4,7 @@ describe CommentsController do
   before(:each) do
     @user = FactoryGirl.create(:user)
     @agent = FactoryGirl.create(:user)
+    SiteConfig.stub(:product_class).and_return(Property)
   end
 
   context "Guest" do

@@ -175,8 +175,8 @@ describe User do
       place1 = create(:published_place, :user => @agent)
       place2 = create(:published_place, :user => @agent)
 
-      @agent.other_active_properties_except(place1).count.should == 1
-      @agent.other_active_properties_except(place2).first.id.should == place1.id
+      @agent.other_published_products(place1).count.should == 1
+      @agent.other_published_products(place2).first.id.should == place1.id
     end
   end
 end

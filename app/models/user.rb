@@ -100,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.role == 'admin'
+    self.role == 'admin' || self.role == 'superadmin'
   end
 
   def agent?
@@ -126,9 +126,11 @@ class User < ActiveRecord::Base
     self.generate_reset_password_token
   end
 
-  # Retrieves the other published properties of this user
-  def other_active_properties_except(product)
-    self.products.published.where('id <> ?', product.id)
+  # Retrieves the other published products of this user
+  def other_published_products(except = nil)
+    products = SiteConfig.product_class.published
+    products = products.where('products.id <> ?', except.product.id) if except
+    products
   end
 
   private

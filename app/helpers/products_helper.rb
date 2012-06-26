@@ -11,23 +11,6 @@ module ProductsHelper
     end
   end
 
-  def seo_city_path(city)
-    url_for("/#{city.slug}")
-  end
-
-  def seo_product_url(product)
-    extra = product.title.dup
-    extra.gsub!(/[^\x00-\x7F]+/, '') # Remove anything non-ASCII entirely (e.g. diacritics).
-    extra.gsub!(/[^\w_ \-]+/i, '')   # Remove unwanted chars.
-    extra.gsub!(/[ \-]+/i, '-')      # No more than one of the separator in a row.
-    extra.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
-    extra.downcase!
-
-    city = product.city
-
-    city_product_url(:city => city.slug, :id => "#{product.id}-#{extra}")
-  end
-
   def product_price(product)
     symbol, amount = product.price(current_currency, product.price_unit)
     "#{current_currency.label}#{amount}"

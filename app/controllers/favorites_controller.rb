@@ -4,12 +4,12 @@ class FavoritesController < PrivateController
   def create
     @favorite = Favorite.new(:user_id => current_user.id)
 
-    @favorite.favorable = @parent
+    @favorite.favorable = @parent.product
 
     if @favorite.save
       find_parent # Reload the parent
       respond_to do |format|
-        format.html { redirect_to place_path(@parent.id), :flash => { :notice => t("favorites.messages.successfully_added_to_your_favorites") } }
+        format.html { redirect_to seo_product_url(@parent), :flash => { :notice => t("favorites.messages.successfully_added_to_your_favorites") } }
         format.js { render :layout => false }
       end
     else
@@ -18,7 +18,7 @@ class FavoritesController < PrivateController
   end
 
   def destroy
-    @favorite = Favorite.where(:user_id => current_user.id, :favorable_id => params[:id]).first!
+    @favorite = Favorite.where(:user_id => current_user.id, :favorable_id => @parent.product.id).first!
 
     if @favorite.destroy
       @remove_item = params[:remove_item] ||= false
@@ -34,6 +34,6 @@ class FavoritesController < PrivateController
   private
 
   def find_parent
-    @parent = Place.with_permissions_to(:read).find(params[:id])
+    @parent = SiteConfig.product_class.published.find(params[:id])
   end
 end

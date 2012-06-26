@@ -9,19 +9,15 @@ module AuthenticationHelper
   end
 
   def is_agent?
-    return false unless logged_in?
     user = current_user
-    user && user['role'] == 'agent'
+    return false unless user
+    user.agent?
   end
 
   def is_admin?
-    return false unless logged_in?
     user = current_user
-    user && (user['role'] == 'admin' or user['role'] == 'superadmin')
-  end
-
-  def current_token
-    current_user.authentication_token if current_user
+    return false unless user
+    user.admin?
   end
 
   def login_required

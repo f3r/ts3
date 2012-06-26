@@ -3,10 +3,10 @@ class SiteConfig < ActiveRecord::Base
   after_save :reset_cache
 
   has_attached_file :fav_icon,
-    :path => "/static/favicon.ico"
+    :path => "static/favicon.ico"
 
   has_attached_file :logo,
-    :path => "/static/logo.png"
+    :path => "static/logo.png"
 
   has_attached_file :photo_watermark, {
     :path => "watermarks/photowatermark.jpg"

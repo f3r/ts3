@@ -1,5 +1,5 @@
 module Heypal
-  mattr_accessor :base_url  
+  mattr_accessor :base_url
 end
 
-Heypal::base_url = BACKEND_PATH
+#Heypal::base_url = BACKEND_PATH

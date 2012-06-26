@@ -41,9 +41,10 @@ var PlaceComments = {
 
     
     // Show the delete link on mouseover
-    $(".answer").hover(
-      function() { $("#del-reply").show();  },
-      function() { $("#del-reply").hide();  }
+    $(".answer").live('mouseover',
+      function() { $(this).find('.del').show();  });
+    $(".answer").live('mouseleave',  
+      function() { $(this).find('.del').hide();  }
     );
     
     this.disabled_question_button();

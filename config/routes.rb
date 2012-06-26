@@ -60,6 +60,12 @@ HeyPalFrontEnd::Application.routes.draw do
       put :sort, :on => :collection
     end
   end
+  
+  resources :products do
+    resources :questions do
+      post :reply_to_message
+    end
+  end
 
   ###########################################################################################
   # Saved searches

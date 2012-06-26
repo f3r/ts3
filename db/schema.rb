@@ -180,6 +180,7 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.boolean  "owner"
     t.integer  "replying_to"
     t.integer  "comments_count"
+    t.integer  "product_id"
   end
 
   add_index "comments", ["place_id"], :name => "index_comments_on_place_id"
@@ -527,12 +528,13 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
+    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
-    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
+    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
   end
 

@@ -11,8 +11,10 @@ GMaps =
       for marker in @markers
         marker.setMap(null)
 
-    parentLocationLat = places[0].lat
-    parentLocationLng = places[0].lon
+    parentLocationLat = parentLocationLng = 0
+    if places.length is not 0
+      parentLocationLat = places[0].lat
+      parentLocationLng = places[0].lon
 
     myOptions =
       center: new google.maps.LatLng(parentLocationLat, parentLocationLng)

@@ -55,7 +55,7 @@
     map_cityName       : '#{@resource.city.name}',
     map_countryName    : '#{@resource.city.country}',
     map_radius         : #{@resource.radius || 0},
-    share_title        : '#{@resource.title}',
+    share_title        : "#{h(@resource.title)}",
     share_url          : '#{seo_product_url(@resource)}',
     share_id           : '#{@resource.id}'
   });

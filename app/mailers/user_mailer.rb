@@ -15,7 +15,8 @@ class UserMailer < BaseMailer
   def new_question_reply(user, question)
     @user      = user
     @question  = question
-    @place     = question.place
+    #TODO - Remove the place
+    @place     = question.place || question.product
     recipients = "#{user.full_name} <#{user.email}>"
     subject    = t('mailers.new_question_reply.subject')
 

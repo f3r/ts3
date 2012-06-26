@@ -8,11 +8,9 @@
       %a{:href => "#map-tab", 'data-toggle' => 'tab'}= t("jobs.map")
     %li
       %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("jobs.calendar")
-    - if false
-      %li
-        %a{:href => '#details-questions', 'data-toggle' => 'tab'}
-          = t('jobs.questions', :count => 5)#resource.comments.count)
-          - # TODO: check this line above
+    %li
+      %a{:href => '#details-questions', 'data-toggle' => 'tab'}
+        = t('jobs.questions', :count => resource.q_and_a.count)
 
   .tab-content
     = render 'products/services/tabs/main',         :resource => resource
@@ -20,4 +18,11 @@
     = render 'products/services/tabs/map',          :resource => resource
     = render 'products/services/tabs/calendar',     :resource => resource
 
-    =# render 'comments/questions'
+    // Map Pane
+    = render 'products/services/tabs/map', :resource => resource
+
+    // Calendar Pane
+    = render 'products/services/tabs/calendar', :resource => resource
+
+    // Questions Tab
+    = render 'questions/questions'

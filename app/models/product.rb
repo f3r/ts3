@@ -9,7 +9,9 @@ class Product < ActiveRecord::Base
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
-  has_many   :comments, :dependent => :destroy, :foreign_key => :place_id
+
+  has_many   :q_and_a, :class_name => 'Comment', :dependent => :destroy
+
   attr_accessor :terms
 
   validates_presence_of  :currency, :city, :title

@@ -1,7 +1,7 @@
 .control-group
-  = f.label :place_type_id, t("places.wizard.place_type"), :class => 'control-label'
+  = f.label :category_id, t("places.wizard.place_type"), :class => 'control-label'
   .controls
-    = f.select :place_type_id, place_types_select
+    = f.collection_select :category_id, Category.all, :id, :name
 .control-group.required
   = f.label :num_bedrooms, t("places.wizard.how_many_bedrooms"), :class => 'control-label'
   .controls

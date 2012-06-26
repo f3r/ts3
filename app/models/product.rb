@@ -4,10 +4,12 @@ class Product < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
   belongs_to :currency
+  belongs_to :category
   has_many   :photos, :dependent => :destroy, :order => :position, :foreign_key => :place_id
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
+  has_many   :comments, :dependent => :destroy, :foreign_key => :place_id
 
   attr_accessor :terms
 
@@ -28,7 +30,11 @@ class Product < ActiveRecord::Base
   end
 
   def primary_photo
-    self.photos.first.url(:medsmall)
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    else
+      'http://placehold.it/150x100'
+    end
   end
 
   def publish!

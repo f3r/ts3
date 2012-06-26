@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.float    "lat"
+    t.float    "lon"
   end
 
   create_table "alerts", :force => true do |t|
@@ -254,10 +256,10 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "position",           :default => 0
-    t.boolean  "active",             :default => true
+    t.boolean  "active",             :default => false
     t.integer  "gallery_id",         :default => 0
-    t.datetime "created_at",                           :null => false
-    t.datetime "updated_at",                           :null => false
+    t.datetime "created_at",                            :null => false
+    t.datetime "updated_at",                            :null => false
   end
 
   create_table "inbox_entries", :force => true do |t|

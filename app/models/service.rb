@@ -1,4 +1,7 @@
 class Service < ActiveRecord::Base
+  
+  before_save :update_lat_lon_from_address
+  
   if Product.table_exists?
     acts_as :product
   end
@@ -58,6 +61,15 @@ class Service < ActiveRecord::Base
     opt = self.class.education_statuses.find{|o| o[1] == self.education_status}
     opt[0] if opt
   end
+  
+  def update_lat_lon_from_address
+    
+    address = self.user.address
+    return true unless !address.blank?
+      self.lat = address.lat
+      self.lon = address.lon
+  end
+
 
   def primary_photo
     if self.user.avatar?

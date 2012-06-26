@@ -66,6 +66,49 @@ describe ProfilesController do
       address = @user.address
       address.zip.should == '2323'
     end
+    
+    it "create the lat and lon" do
+      post :update, :user => {
+        :address_attributes => {
+          :street => 'Trivandrum',
+          :city => 'Trivandrum',
+          :country => 'India',
+          :zip => '1123'
+        }
+      }
+      @user.address.should be_present
+      @user.reload
+      address = @user.address
+      address.should_not be_nil
+      address.lat.should_not be_nil
+      address.lon.should_not be_nil
+    end
+    
+    it "updates lat and lon when the user updates the address" do
+      Address.create!(
+        :user_id => @user.id,
+        :street => 'Ayer Rajah',
+        :city => 'Singapore',
+        :country => 'SG',
+        :zip => '1123'
+      )
+      @user.address.should be_present
+      createdaddress = @user.address
+
+      post :update, :user => {
+        :address_attributes => {
+          :street => 'Trivandrum',
+          :city => 'Trivandrum',
+          :country => 'India',
+        }
+      }
+      response.should be_redirect
+      @user.reload
+      address = @user.address
+      address.lat.should_not == createdaddress.lat
+      address.lon.should_not == createdaddress.lon
+    end
+    
   end
 
   context "Password" do

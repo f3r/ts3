@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120625191351) do
+ActiveRecord::Schema.define(:version => 20120626164356) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -147,8 +147,6 @@ ActiveRecord::Schema.define(:version => 20120625191351) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-
-  add_index "cmspage_versions", ["created_at"], :unique => true
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
@@ -577,8 +575,6 @@ ActiveRecord::Schema.define(:version => 20120625191351) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
-
-  add_index "translation_versions", ["created_at"], :name => "index_translation_versions_on_created_at", :unique => true
 
   create_table "translations", :force => true do |t|
     t.string   "locale"

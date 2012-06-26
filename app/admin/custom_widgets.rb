@@ -26,6 +26,9 @@ ActiveAdmin.register SiteConfig, :as => 'CustomWidgets' do
       f.input :before_body_tag_end,
         :hint => "Code will be inserted just before </body> tag",
         :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
+      f.input :sidebar_widget,
+        :hint => "Code will be inserted just after the search filters",
+        :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
     end
     f.buttons 
   end

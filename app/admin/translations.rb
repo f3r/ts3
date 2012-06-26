@@ -1,6 +1,6 @@
 ActiveAdmin.register Translation do
   menu :parent => 'CMS'
-
+  
   config.sort_order = 'key_asc'
 
   controller do
@@ -73,7 +73,7 @@ ActiveAdmin.register Translation do
     active_admin_comments
   end
   
-  sidebar "Versions", :only => :edit do
+  sidebar "Versions", :only => :edit, :if => proc{ !resource.versions.empty? } do
     table_for(resource.versions) do |t|
       t.column("Choose a version") {|v| link_to v.display_name, admin_translation_version_path(v), :remote => true, :title => v.value, :rel => 'tooltip' }
     end

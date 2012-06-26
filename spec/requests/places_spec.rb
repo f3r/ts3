@@ -6,7 +6,7 @@ describe "Places Management" do
     @currency = create(:currency)
     @city     = create(:city, :name => "Singapore")
     @place    = create(:published_place, :user => @agent)
-    SiteConfig.stub(:product_class).and_return(Place)
+    SiteConfig.stub(:product_class).and_return(Property)
   end
 
   def login_as(user)

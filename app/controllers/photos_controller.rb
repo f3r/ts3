@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   before_filter :find_parent, :except => [:create]
 
   def create
-    @place = @resource = Place.find(params[:place_id])
+    @place = @resource = Product.find(params[:product_id])
     @photo = @resource.photos.new(:photo => params[:file])
     @photo.save
     @photos = @resource.photos
@@ -44,6 +44,6 @@ class PhotosController < ApplicationController
   protected
 
   def find_parent
-    @resource = Place.with_permissions_to(:read).find(params[:place_id])
+    @resource = Product.manageable_by(current_user).find(params[:product_id])
   end
 end

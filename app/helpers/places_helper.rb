@@ -128,15 +128,4 @@ module PlacesHelper
   def seo_place_path(place)
     seo_product_url(place)
   end
-
-  def place_type_filters(place_type_counts)
-    filters = []
-    place_type_counts.each do |type_name, count|
-      if count > 0
-        place_type = PlaceType.find_by_slug(type_name)
-        filters << [place_type, count]
-      end
-    end
-    filters
-  end
 end

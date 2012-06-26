@@ -9,8 +9,8 @@ DynamicSitemaps::Sitemap.draw do
 
   url root_url, :last_mod => DateTime.now, :change_freq => 'daily', :priority => 1
 
-  Place.published.each do |place|
-    url seo_place_path(place), :last_mod => place.updated_at, :change_freq => 'monthly', :priority => 0.8
+  Product.published.each do |prod|
+    url seo_product_url(prod), :last_mod => prod.updated_at, :change_freq => 'monthly', :priority => 0.8
   end
 
 end

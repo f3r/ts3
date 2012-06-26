@@ -36,6 +36,7 @@ module Search
     def add_conditions
       add_equals_condition('products.city_id', self.city_id)
       add_equals_condition("products.#{self.price_field}", self.price_range)
+      add_equals_condition('products.category_id', self.category_ids)
       add_filters # From override
     end
 
@@ -46,8 +47,21 @@ module Search
       @category_ids = ids
     end
 
+    # Information for filters
     def category_filters
       filters = []
+      current_types = self.category_ids
+
+      Category.all.each do |pt|
+        self.category_ids = pt.id
+        if ((count = self.count) > 0)
+          checked = current_types && current_types.include?(pt.id.to_s)
+          filters << [pt, count, checked]
+        end
+      end
+
+      self.category_ids = current_types
+      filters
     end
 
     def resource_class

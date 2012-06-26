@@ -3,8 +3,10 @@ class Property <  ActiveRecord::Base
     acts_as :product
   end
 
+  validates_presence_of :title, :category_id, :num_bedrooms, :max_guests
+
   def self.searcher
-    Search::Service
+    Search::Property
   end
 
   def self.price_unit

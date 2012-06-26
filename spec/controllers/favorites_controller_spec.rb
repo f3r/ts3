@@ -24,7 +24,7 @@ describe FavoritesController do
   it "doesn't remove another user favorite" do
     fav = create(:favorite, :user_id => @user.id + 1)
     expect {
-      delete :destroy , :id =>  @place.id, :place_id => @place.id
+      delete :destroy , :id =>  @place.id, :product_id => @place.id
     }.to raise_error
   end
 end

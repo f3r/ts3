@@ -18,7 +18,7 @@ FactoryGirl.define do
     user
     currency     { create(:currency, :currency_code =>'JPY') }
 
-    factory :published_property do
+    factory :published_place do
       published        { true }
 
       description  { Faker::Lorem.paragraph }
@@ -26,7 +26,7 @@ FactoryGirl.define do
       address_2    { Faker::Address.secondary_address }
       zip          { Faker::Address.zip }
 
-      amenities_tv { true }
+      amenities    { [build(:amenity)] }
       size_unit    { 'meters' }
       size         { 100 }
 

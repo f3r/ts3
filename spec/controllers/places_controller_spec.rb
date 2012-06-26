@@ -5,26 +5,26 @@ describe ListingsController do
     @user  = create(:user)
     @agent = create(:agent)
     @city = create(:city)
-    @place_type = create(:place_type)
+    @category = create(:category)
     @currency = create(:currency)
-    SiteConfig.stub(:product_class).and_return(Place)
+    SiteConfig.stub(:product_class).and_return(Property)
   end
 
   context "Creation" do
     it "creates a place" do
       login_as @agent
       expect {
-        post :create, :listing => attributes_for(:place, :city_id => @city.id, :place_type_id => @place_type.id, :currency_id => @currency.id)
+        post :create, :listing => attributes_for(:place, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
         response.should be_redirect
-      }.to change(Place, :count).by(1)
+      }.to change(Property, :count).by(1)
     end
 
     it "doens't create a place with validation errors" do
       login_as @agent
       expect {
-        post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :place_type_id => @place_type.id, :currency_id => @currency.id)
+        post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
         response.should be_success
-      }.to_not change(Place, :count)
+      }.to_not change(Property, :count)
 
       assigns(:resource).errors_on(:title).should be_true
     end
@@ -127,7 +127,7 @@ describe ListingsController do
       expect {
         post :destroy, :id => @place.id
         response.should be_redirect
-      }.to change(Place, :count).by(-1)
+      }.to change(Property, :count).by(-1)
     end
 
     it "cannot delete somebody elses place" do

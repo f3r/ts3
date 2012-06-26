@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Search::Place do
+describe Search::Property do
   before(:each) do
     @user = create(:user)
-    @search = Search::Place.new
+    @search = Search::Property.new
   end
 
   context "Fields" do
@@ -15,12 +15,12 @@ describe Search::Place do
 
   context "Results" do
     before(:each) do
-      @pt1 = create(:place_type)
-      @pt2 = create(:place_type)
+      @pt1 = create(:category)
+      @pt2 = create(:category)
 
-      @p1 = create(:published_place, :place_type => @pt1, :price_per_month => 1000)
-      @p2 = create(:published_place, :place_type => @pt2, :price_per_month => 4990)
-      @p3 = create(:published_place, :place_type => @pt1, :price_per_month => 3000)
+      @p1 = create(:published_place, :category => @pt1, :price_per_month => 1000)
+      @p2 = create(:published_place, :category => @pt2, :price_per_month => 4990)
+      @p3 = create(:published_place, :category => @pt1, :price_per_month => 3000)
     end
 
     it "calculates place type filters" do

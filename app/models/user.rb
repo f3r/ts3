@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_one :bank_account
 
   has_many :authentications,  :dependent => :destroy
-  has_many :places,           :dependent => :destroy
   has_many :products,         :dependent => :destroy
   has_many :comments,         :dependent => :destroy
   has_many :favorites,        :dependent => :destroy
@@ -128,8 +127,8 @@ class User < ActiveRecord::Base
   end
 
   # Retrieves the other published properties of this user
-  def other_active_properties_except(place)
-    self.places.published.where('id != ?', place.id)
+  def other_active_properties_except(product)
+    self.products.published.where('id <> ?', product.id)
   end
 
   private

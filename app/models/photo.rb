@@ -1,7 +1,7 @@
 class Photo < ActiveRecord::Base
-  belongs_to :place
+  belongs_to :product
 
-  after_destroy :update_place_status
+  after_destroy :update_product_status
 
   has_attached_file :photo, {
      :styles => {
@@ -53,9 +53,9 @@ class Photo < ActiveRecord::Base
 
   protected
 
-  def update_place_status
-    if self.place && self.place.photos.count < 3
-      self.place.update_attribute(:published, false)
+  def update_product_status
+    if self.product && self.product.photos.count < 3
+      self.product.update_attribute(:published, false)
     end
   end
 end

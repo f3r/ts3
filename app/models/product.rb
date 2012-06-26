@@ -5,7 +5,7 @@ class Product < ActiveRecord::Base
   belongs_to :city
   belongs_to :currency
   belongs_to :category
-  has_many   :photos, :dependent => :destroy, :order => :position, :foreign_key => :place_id
+  has_many   :photos, :dependent => :destroy, :order => :position
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
@@ -52,7 +52,7 @@ class Product < ActiveRecord::Base
     a_currency ||= Currency.default
 
     # If we are asked in the original currency of the place
-    if self.currency == a_currency.currency_code
+    if self.currency == a_currency
       amount = self.send("price_#{unit}")
     else
       # If we are asked in the 'special' USD (precalculated with before_save callback)
@@ -76,9 +76,21 @@ class Product < ActiveRecord::Base
 
   def convert_prices_to_usd
     return true unless currency
-    self.price_per_hour_usd = self.currency.to_usd(self.price_per_hour) * 100.0 if self.price_per_hour_changed? && self.price_per_hour
-    self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
-    self.price_per_hour_month = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
+    [:per_hour, :per_night, :per_week, :per_month, :sale].each do |unit|
+      field = "price_#{unit}"
+      field_usd = "#{field}_usd"
+      if self.changed.include?(field)
+        price_value = read_attribute(field)
+        if price_value
+          price_usd = self.currency.to_usd(price_value) * 100.0
+          write_attribute(field_usd, price_usd)
+        end
+      end
+    end
+    return true
+    #self.price_per_hour_usd = self.currency.to_usd(self.price_per_hour) * 100.0 if self.price_per_hour_changed? && self.price_per_hour
+    #self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
+    #self.price_per_month_usd = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
   end
 
 

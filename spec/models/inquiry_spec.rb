@@ -49,7 +49,7 @@ describe Inquiry do
       @emails.size.should == 2
       inquiry = Inquiry.last
       inquiry.user.should == @user
-      inquiry.target.should == @place
+      inquiry.product.should == @place.product
       inquiry.length_stay.should == 2
       inquiry.length_stay_type.should == 'months'
     end
@@ -76,7 +76,7 @@ describe Inquiry do
       transaction = @inquiry.transaction
       transaction.should_not be_nil
       transaction.user.should == @inquiry.user
-      transaction.target.should == @inquiry.target
+      transaction.product.should == @inquiry.product
       transaction.check_in.should == @inquiry.check_in
       transaction.check_out.should == @inquiry.check_out
     end

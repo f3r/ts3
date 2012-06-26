@@ -1,11 +1,11 @@
 class InquiryMailer < BaseMailer
-  helper :places, :products
+  helper :products
 
   # ==Description
   # Email sent to the renter when the user inquires about a listing
   def inquiry_confirmed_renter(inquiry)
     @inquiry   = inquiry
-    @target    = inquiry.target
+    @target    = inquiry.product
     @owner     = inquiry.recipient
     @user      = inquiry.user
     recipient  = "#{@user.full_name} <#{@user.email}>"
@@ -18,7 +18,7 @@ class InquiryMailer < BaseMailer
   # Email sent to the owner when the user inquires about a listing
   def inquiry_confirmed_owner(inquiry)
     @inquiry   = inquiry
-    @target    = inquiry.target
+    @target    = inquiry.product
     @owner     = inquiry.recipient
     @renter    = inquiry.user
 
@@ -30,7 +30,7 @@ class InquiryMailer < BaseMailer
 
   def inquiry_spam(inquiry)
     @inquiry   = inquiry
-    @target    = inquiry.target
+    @target    = inquiry.product
     @owner     = inquiry.recipient
     @renter    = inquiry.user
 
@@ -43,7 +43,7 @@ class InquiryMailer < BaseMailer
   # Email sent to the owner to remind abount an inquiry that hasn't been replied
   def inquiry_reminder_owner(inquiry)
     @inquiry   = inquiry
-    @target    = inquiry.target
+    @target    = inquiry.product
     @owner     = inquiry.recipient
     @renter    = inquiry.user
 

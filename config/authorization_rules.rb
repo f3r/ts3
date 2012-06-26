@@ -26,7 +26,7 @@ authorization do
       if_permitted_to :manage, :product
     end
     has_permission_on :transactions, :to => [:update, :decline, :pre_approve] do
-      if_permitted_to :manage, :target
+      if_permitted_to :manage, :product
     end
     has_permission_on :bank_accounts, :to => [:manage] do
       if_attribute :user => is { user }
@@ -36,6 +36,13 @@ authorization do
 
   role :user do
     includes [:default]
+    has_permission_on :conversations,   :to => [:index, :show, :update, :mark_as_unread, :unread_count]
+    has_permission_on :alerts, :to => [:manage] do
+      if_attribute :user => is { user }
+    end
+    has_permission_on :transactions,  :to => [:update, :request, :pay] do
+      if_attribute :user_id => is { user.id }
+    end
   end
 
   role :default do
@@ -43,7 +50,6 @@ authorization do
     has_permission_on [:users], :to => [:read, :update, :delete, :transactions] do
       if_attribute :id => is { user.id }
     end
-    has_permission_on :registrations, :to => :destroy
     has_permission_on :addresses, :to => [:manage] do
       if_attribute :user => is { user }
     end
@@ -52,18 +58,6 @@ authorization do
     end
     has_permission_on :comments, :to => :read do
       if_attribute :user => is { user }
-    end
-    has_permission_on :notifications,   :to => [:index, :unread, :mark_as_read]
-    has_permission_on :authentications, :to => [:create, :list, :delete, :get_facebook_oauth_info]
-    has_permission_on :conversations,   :to => [:index, :show, :update, :mark_as_unread, :unread_count]
-    has_permission_on :alerts, :to => [:manage] do
-      if_attribute :user => is { user }
-    end
-    has_permission_on :transactions,  :to => [:update, :request, :pay] do
-      if_attribute :user_id => is { user.id }
-    end
-    has_permission_on :confirmations, :to => [:cancel] do
-      if_attribute :confirmed_at => is_not { blank? }
     end
   end
 

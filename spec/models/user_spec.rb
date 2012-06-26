@@ -169,6 +169,7 @@ describe User do
   context "associated products of agent" do
     before(:each) do
       @agent = create(:agent)
+      SiteConfig.stub(:product_class).and_return(Property)
     end
 
     it "retrieves the other properties owned" do

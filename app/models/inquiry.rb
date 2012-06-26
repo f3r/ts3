@@ -1,13 +1,12 @@
 class Inquiry < ActiveRecord::Base
   belongs_to :user
-  #belongs_to :place
-  belongs_to :target, :polymorphic => true
+  belongs_to :product
 
   has_one :conversation, :as => :target
 
   serialize :extra
 
-  validates_presence_of :user, :target
+  validates_presence_of :user, :product
 
   attr_accessor :message
 
@@ -16,7 +15,7 @@ class Inquiry < ActiveRecord::Base
 
   def self.create_and_notify(resource, user, params)
     inquiry = self.new(
-      :target => resource,
+      :product => resource.product,
       :user => user,
       :extra => params[:extra],
       :guests => params[:guests]
@@ -98,13 +97,13 @@ class Inquiry < ActiveRecord::Base
   def start_conversation(message)
     self.message = message
     # Check if there is a previous inquiry
-    prev_inquiry = Inquiry.where(:user_id => self.user.id, :target_id => self.target.id).first
+    prev_inquiry = Inquiry.where(:user_id => self.user.id, :product_id => self.product_id).first
     if prev_inquiry && prev_inquiry.conversation
       conversation = prev_inquiry.conversation
       Messenger.add_reply(self.user, conversation.id, Message.new(:body => message),true)
     else
       conversation = Conversation.new
-      conversation.recipient = self.target.user
+      conversation.recipient = self.product.user
       conversation.body = message
       conversation.target = self
 
@@ -135,7 +134,7 @@ class Inquiry < ActiveRecord::Base
   end
 
   def recipient
-    self.target.user if self.target
+    self.product.user if self.product
   end
 
   def send_reminder
@@ -143,7 +142,7 @@ class Inquiry < ActiveRecord::Base
   end
 
   def title
-    self.target.title if self.target
+    self.product.title if self.product
   end
 
   def state

@@ -31,7 +31,7 @@ class TransactionMailer < BaseMailer
   # ==Description
   # Email sent to the owner when the renter clicks "Confirm rental request"
   def request_owner(inquiry)
-    @user      = inquiry.target.user
+    @user      = inquiry.product.user
     @renter    = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
     subject    = t("mailers.transaction_request_owner.subject")
@@ -55,7 +55,7 @@ class TransactionMailer < BaseMailer
   # ==Description
   # Email sent to the owner when the owner clicks "Approve Rental Request"
   def approve_owner(inquiry)
-    @user      = inquiry.target.user
+    @user      = inquiry.product.user
     @renter    = inquiry.user
 
     recipients = "#{@user.full_name} <#{@user.email}>"
@@ -80,7 +80,7 @@ class TransactionMailer < BaseMailer
   # ==Description
   # Email sent to the owner when the payment is finalized
   def pay_owner(inquiry)
-    @user      = inquiry.target.user
+    @user      = inquiry.product.user
     @renter    = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
     subject    = t("mailers.transaction_pay_owner.subject")

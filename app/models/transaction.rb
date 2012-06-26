@@ -2,7 +2,7 @@ class Transaction < ActiveRecord::Base
   include Workflow
 
   belongs_to :user
-  belongs_to :place
+  #belongs_to :place
   has_many :transaction_logs, :dependent => :destroy
   belongs_to :inquiry
 
@@ -62,8 +62,8 @@ class Transaction < ActiveRecord::Base
     Messenger.add_system_message(c.id, msg_id) if c
   end
 
-  def target
-    self.inquiry.target
+  def product
+    self.inquiry.product
   end
 
   def code
@@ -97,6 +97,7 @@ private
   end
 
   def check_min_max_stay
+    return true
     check_in = self.check_in.to_date
     check_out = self.check_out.to_date
     total_days = (check_in..check_out).to_a.count

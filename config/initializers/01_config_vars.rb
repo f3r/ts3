@@ -1,9 +1,9 @@
 # LOAD LOCAL CONFIGURATION
 if File.exists?("#{Rails.root}/config/local.yml")
   APP_CONFIG = YAML.load_file("#{Rails.root}/config/local.yml")[Rails.env]
-else
-  APP_CONFIG = {}
 end
+
+APP_CONFIG ||= {}
 
 # SET VARIABLES, DEVELOPMENT, TEST FALLBACKS
 PRODUCT_CLASS_NAME =    ENV['PRODUCT_CLASS_NAME']     || APP_CONFIG['PRODUCT_CLASS_NAME']

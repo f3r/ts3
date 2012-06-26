@@ -148,11 +148,11 @@ ActiveRecord::Schema.define(:version => 20120625191351) do
     t.datetime "updated_at", :null => false
   end
 
-  add_index "cmspage_versions", ["created_at"], :name => "index_cmspage_versions_on_created_at", :unique => true
+  add_index "cmspage_versions", ["created_at"], :unique => true
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",                             :null => false
+    t.string  "page_url",         :default => "",     :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -368,8 +368,8 @@ ActiveRecord::Schema.define(:version => 20120625191351) do
     t.float    "lon"
     t.text     "directions"
     t.boolean  "amenities_aircon",                        :default => false
-    t.boolean  "amenities_breakfast",                     :default => false
     t.boolean  "amenities_buzzer_intercom",               :default => false
+    t.boolean  "amenities_breakfast",                     :default => false
     t.boolean  "amenities_cable_tv",                      :default => false
     t.boolean  "amenities_dryer",                         :default => false
     t.boolean  "amenities_doorman",                       :default => false
@@ -516,8 +516,9 @@ ActiveRecord::Schema.define(:version => 20120625191351) do
     t.string   "tw_app_id"
     t.string   "tw_app_secret"
     t.string   "mail_bcc"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.string   "color_scheme",                 :default => "none"
     t.string   "site_tagline"
     t.string   "static_assets_path"
     t.text     "custom_meta"
@@ -526,13 +527,12 @@ ActiveRecord::Schema.define(:version => 20120625191351) do
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
   end
 

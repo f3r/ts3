@@ -6,17 +6,13 @@
 .row
   - if @my_products
     .span10
-      - unless @resource.published
-        .preview-header
-          %p= t(:this_is_preview)
       = breadcrumb [[t('products.my_listings'), listings_path]], @resource.title
     .span2.place-actions
-      - if current_user?(@owner)
-        .buttons.pull-right
-          = render 'listings/actions'
-    - else
-      .span12
-        = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title
+      .buttons.pull-right
+        = render 'listings/actions'
+  - else
+    .span12
+      = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title
 
 .row.place_info{:id => dom_id(@resource)}
   .span12

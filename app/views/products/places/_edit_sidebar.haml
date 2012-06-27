@@ -28,30 +28,6 @@
           = t("places.wizard.calendar_title")
 
     .actions
-      - unless @resource.published
-        %a.btn.primary.large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPreview(#{@resource.id})"}
-          %span
-            = t("preview")
-      - else
-        %a.btn.btn-info.btn-large.preview-button{:href => '#', :id => "preview_button", :onclick => "goToPlace(#{@resource.id})"}
-          %span
-            = t("places.wizard.back_to_property")
-
-:javascript
-  var timeCount = 0;
-  $(document).ready(function() {
-    $('#wizard_form input[type=text].autosave, #wizard_form textarea.autosave, #wizard_form select.autosave').focus(function() {
-      timeCount = 3000;
-    });
-  });
-
-  function goToPreview(placeId) {
-    setTimeout( function() {
-      window.location = '/places/' + placeId;
-    }, timeCount)
-  }
-  function goToPlace(placeId) {
-    setTimeout( function() {
-      window.location = '/places/' + placeId;
-    }, timeCount)
-  }
+      %a.btn.primary.large.preview-button{:href => listing_path(@resource), :id => "preview_button"}
+        %span
+          = @resource.published ? t("products.listed") : t("products.invisible")

@@ -23,7 +23,7 @@ class ListingsController < PrivateController
   end
 
   def show
-    @my_products = true
+    @my_products = (@resource.user == current_user)
 
     render 'search/show'
   end

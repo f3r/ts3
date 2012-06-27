@@ -7,7 +7,7 @@
     <%= f.input :locale, :input_html => { :value => params[:locale], :readonly => true } %>
 		<%= f.input :key, :input_html => { :value => params[:key], :readonly => true } %>
     <% else %>
-    <%= f.input :locale %>
+    <%= f.input :locale, :as => :select, :collection => Hash[Locale.all.map{|l| [l.code,l.code]}], :include_blank => false %>
 		<%= f.input :key %>
 		<% end %>
 		<%= f.input :value %>

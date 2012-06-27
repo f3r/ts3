@@ -1,17 +1,18 @@
 ActiveAdmin.register Translation do
   menu :parent => 'CMS'
-  
+
   config.sort_order = 'key_asc'
 
   controller do
+    #actions :all, :except => [:new, :create]
     helper 'admin/translations'
     def scoped_collection
       Translation.where(:locale => "en")
     end
-    
+
     def search(chain)
       #By default the search is only done on en locale, we need to fix up the initial collection to use
-      unless params[:q].nil? 
+      unless params[:q].nil?
         value_q = params[:q]["value_contains"]
         chain = Translation.order('') if value_q.present?
       end
@@ -72,11 +73,11 @@ ActiveAdmin.register Translation do
     end
     active_admin_comments
   end
-  
+
   sidebar "Versions", :only => :edit, :if => proc{ !resource.versions.empty? } do
     table_for(resource.versions) do |t|
       t.column("Choose a version") {|v| link_to v.display_name, admin_translation_version_path(v), :remote => true, :title => v.value, :rel => 'tooltip' }
     end
   end
-  
+
 end

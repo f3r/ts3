@@ -56,6 +56,10 @@
   display: none;
 }
 
+.admin_translations .action_item:first-child {
+  display: none;
+}
+
 .translations {
 	display:block; float:left; width: 80%;
 	li{

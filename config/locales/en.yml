@@ -14,8 +14,6 @@ en:
   app_domain: Squarestays.com
   main_page_title: Squarestays.com
   footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
-  terms_of_service: Terms of Service |
-  privacy_policy: Privacy Policy |
   contact: Contact
 
   ####################################################################################
@@ -37,32 +35,6 @@ en:
   my_account:        My Account
   my_profile:        My Profile
   my_favorite_places: My Favorites
-
-  ####################################################################################
-  # Cities
-  ####################################################################################
-
-  hong_kong:          Hong Kong
-  singapore:          Singapore
-  kuala_lumpur:       Kuala Lumpur
-  los_angeles:        Los Angeles
-  manila:             Manila
-  new_york:           New York
-  san_francisco:      San Francisco
-  shanghai:           Shanghai
-  sydney:             Sydney
-
-  ####################################################################################
-  # Countries
-  ####################################################################################
-
-  US: United States
-  HK: Hong Kong
-  MY: Malaysia
-  PH: Philippines
-  CH: China
-  SG: Singapore
-  AU: Australia
 
   ####################################################################################
   # Account creation & management

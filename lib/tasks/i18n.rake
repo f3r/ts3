@@ -4,6 +4,7 @@ namespace :i18n do
 
   namespace :populate do
 
+    # Reads all the i18n yaml files and updates translations
     desc 'Populate the locales and translations tables from all Rails Locale YAML files. Can set LOCALE_YAML_FILES to comma separated list of files to overide'
     task :from_rails => :environment do
 

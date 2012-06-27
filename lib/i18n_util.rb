@@ -1,10 +1,11 @@
 require 'i18n/backend/active_record'
 class I18nUtil
 
-  # Create tanslation records from the YAML file.  Will create the required locales if they do not exist.
+  # Create tanslation records from the YAML file.
+  # Will create the required locales if they do not exist.
   def self.load_from_yml(file_name)
     data = YAML::load(IO.read(file_name))
-    data.each do |code, translations| 
+    data.each do |code, translations|
       if locale = I18n.available_locales.include?(code.to_sym) ? code : nil
         translations_array = extract_translations_from_hash(translations)
         translations_array.each do |key, value|
@@ -14,6 +15,7 @@ class I18nUtil
             key.gsub!('.other', '')
             pluralization_index = 0
           end
+          # We create the translations for Arrays and individual ones
           if value.is_a?(Array)
             value.each_with_index do |v, index|
               create_translation(locale, key, index, v) unless v.nil?
@@ -30,13 +32,20 @@ class I18nUtil
 
   # Finds or creates a translation record and updates the value
   def self.create_translation(locale, key, pluralization_index, value)
-    translation = Translation.find_by_locale_and_key(locale, key) # find existing record by hash key
-    unless translation # or build new one with raw key
-      translation = Translation.new(:locale => locale, :key => key)
-      puts "from yaml create translation for #{locale} : #{key}" unless Rails.env.test?
+    # find existing record by hash key
+    translation = Translation.find_by_locale_and_key(locale, key)
+    # If it doesn't exist, we create a new one
+    if !translation
+      Translation.create(:locale => locale, :key => key, :value => value)
+      puts "Translation: created from yaml (#{locale}.#{key})" unless Rails.env.test?
+    else
+      # If it exists, we only update it if the user hasn't modify it
+      if translation.modified?
+        puts "Translation: WARNING conflict on (#{locale}.#{key})" unless Rails.env.test?
+      else
+        translation.update_column(:value, value) if value != translation.value
+      end
     end
-    translation.value = value
-    translation.save!
   end
 
   def self.extract_translations_from_hash(hash, parent_keys = [])

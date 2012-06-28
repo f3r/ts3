@@ -64,6 +64,8 @@ gem 'dynamic_sitemaps'
 
 gem 'mail_view', :git => 'git://github.com/37signals/mail_view.git'
 
+gem 'newrelic_rpm'
+
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"

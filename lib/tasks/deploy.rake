@@ -1,7 +1,7 @@
 namespace :deploy do
   def cmd(c)
     puts c
-    #system(c) || fail("Error")
+    system(c) || fail("Error")
     puts
   end
 
@@ -13,7 +13,7 @@ namespace :deploy do
 
   task :push do
     puts 'Deploying site to Heroku ...'
-    cmd "git push #{APP} master --force"
+    cmd "git push #{APP} HEAD:master --force"
   end
   
   task :push_config do

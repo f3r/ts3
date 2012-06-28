@@ -13,7 +13,7 @@
         %a{:href => "#house-rules-tab", 'data-toggle' => 'tab'}= t("places.house_rules")
     %li
       %a{:href => '#details-questions', 'data-toggle' => 'tab'}
-        = t('places.questions_title', :count => resource.comments.count)
+        = t('jobs.questions', :count => resource.q_and_a.count)
 
     - @other_properties = []
     - unless current_user?(@owner)

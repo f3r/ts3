@@ -7,7 +7,7 @@ class QuestionsController < ApplicationController
     @comment.product = @product
 
     if @comment.save
-      UserMailer.new_question(@comment.product.user, @comment).deliver if @comment.place
+      UserMailer.new_question(@comment.product.user, @comment).deliver if @comment.product
       render '/questions/create', :layout => nil
     else
       render '/questions/validation_error', :layout => nil

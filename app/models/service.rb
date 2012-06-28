@@ -6,6 +6,10 @@ class Service < ActiveRecord::Base
     acts_as :product
   end
 
+  def self.name
+    'Service'
+  end
+
   def self.published
     self.where('products.published' => true)
   end

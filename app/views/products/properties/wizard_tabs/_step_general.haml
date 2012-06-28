@@ -8,7 +8,7 @@
     .control-group.required
       = f.label :category_id, t("places.type"), :class => 'control-label'
       .controls
-        = f.collection_select :category_id, Category.all, :id, :name, :class => 'validate[required] autosave'
+        = f.collection_select :category_id, Category.all, :id, :name, {}, :class => 'validate[required] autosave'
 
     .control-group
       = f.label :description, t("places.description"), :class => 'control-label'

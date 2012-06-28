@@ -99,8 +99,4 @@ class ListingsController < PrivateController
   def collection
     resource_class.manageable_by(current_user)
   end
-
-  def resource_class
-    SiteConfig.product_class
-  end
 end

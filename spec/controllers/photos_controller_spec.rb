@@ -10,7 +10,7 @@ describe PhotosController do
 
   it "uploads a photo" do
     expect {
-      post :create, { :product_id => @product.id,
+      post :create, { :listing_id => @place.id,
         :file => fixture_file_upload("#{Rails.root}/spec/files/prop.jpg", 'image/jpg')
       }
       response.should be_success
@@ -21,14 +21,14 @@ describe PhotosController do
     @photo = create(:photo, :product => @product)
 
     expect {
-      xhr :post, :destroy, { :product_id => @product.id, :id => @photo.id }
+      xhr :post, :destroy, { :listing_id => @place.id, :id => @photo.id }
       response.should be_success
     }.to change(Photo, :count).by(-1)
   end
 
   it "updates photo label" do
     @photo = create(:photo, :product => @product)
-    xhr :put, :update, :id => @photo.id, :product_id => @product.id, :name => 'Nice view'
+    xhr :put, :update, :id => @photo.id, :listing_id => @place.id, :name => 'Nice view'
     response.should be_success
 
     @photo.reload
@@ -42,7 +42,7 @@ describe PhotosController do
     @place.photos.count.should == 3
     photo = @place.photos.first
 
-    xhr :post, :destroy, {:product_id => @product.id, :id => photo.id}
+    xhr :post, :destroy, {:listing_id => @place.id, :id => photo.id}
     response.should be_success
 
     @place.reload
@@ -57,7 +57,7 @@ describe PhotosController do
 
     ordered_ids = [photo3.id, photo1.id, photo2.id]
 
-    xhr :put, :sort, {:product_id => @product.id, :photo_ids => ordered_ids}
+    xhr :put, :sort, {:listing_id => @place.id, :photo_ids => ordered_ids}
     response.should be_success
 
     photo_ids =  @place.photos.reload.collect(&:id)

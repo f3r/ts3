@@ -43,11 +43,6 @@ HeyPalFrontEnd::Application.routes.draw do
       get   :publish_check
       match :availability
     end
-    resources :photos, :only => [:create, :update, :destroy] do
-      collection do
-        put :sort
-      end
-    end
 
     resources :comments do
       post :reply_to_message
@@ -60,6 +55,9 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :unpublish
       put   :update_currency
       put   :update_address
+    end
+    resources :photos, :only => [:create, :update, :destroy] do
+      put :sort, :on => :collection
     end
   end
 

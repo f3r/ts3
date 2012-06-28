@@ -34,6 +34,6 @@ class FavoritesController < PrivateController
   private
 
   def find_parent
-    @parent = SiteConfig.product_class.published.find(params[:id])
+    @parent = resource_class.published.find(params[:id])
   end
 end

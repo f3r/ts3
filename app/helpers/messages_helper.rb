@@ -12,8 +12,8 @@ module MessagesHelper
   end
 
   def breadcrumb_conversation_title
-    if @conversation.target
-      ("#{t('inquiries.inquiry_on')} " + link_to(conversation_title,seo_product_url(@conversation.target.target))).html_safe
+    if @conversation.target_product
+      ("#{t('inquiries.inquiry_on')} " + link_to(conversation_title, seo_product_url(@conversation.target_product))).html_safe
     else
       "#{t("inquiries.conversation_with")} #{@conversation.from.first_name}"
     end

@@ -5,6 +5,10 @@ class Property <  ActiveRecord::Base
 
   validates_presence_of :title, :category_id, :num_bedrooms, :max_guests
 
+  def self.name
+    'Place'
+  end
+
   def self.searcher
     Search::Property
   end

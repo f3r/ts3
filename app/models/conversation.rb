@@ -34,6 +34,14 @@ class Conversation < ActiveRecord::Base
     ie.user if ie
   end
 
+  def inquiry
+    self.target
+  end
+
+  def target_product
+    self.inquiry.product if self.inquiry
+  end
+
   # def recipient_inbox_entry
   #    self.inbox_entries.where(['user_id <> ?', self.sender_id]).first
   #  end

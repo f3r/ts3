@@ -47,6 +47,10 @@ class Product < ActiveRecord::Base
     self.save
   end
 
+  def publish_check!
+    self.published = true
+    self.valid?
+  end
 
   def price(a_currency = nil, unit = :per_month)
     a_currency ||= Currency.default

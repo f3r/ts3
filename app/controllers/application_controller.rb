@@ -65,4 +65,7 @@ class ApplicationController < ActionController::Base
     session.delete(:user_return_to) || root_url
   end
 
+  def resource_class
+    SiteConfig.product_class
+  end
 end

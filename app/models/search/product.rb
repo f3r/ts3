@@ -65,7 +65,7 @@ module Search
     end
 
     def resource_class
-      Product
+      ::Product
     end
 
     def amenity_filters

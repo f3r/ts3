@@ -11,6 +11,8 @@ class Address < ActiveRecord::Base
   validates_presence_of :street
   validates_presence_of :zip
 
+  attr_accessible :street, :city, :country, :zip, :user_id
+
   def bussiness_address
     [street, city, country, zip].compact.join(', ')
   end

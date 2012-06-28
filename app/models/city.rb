@@ -13,6 +13,8 @@ class City < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
+  attr_accessible :name, :lat, :lon, :state, :country, :country_code, :cached_complete_name, :active, :position, :slug
+
   def self.default
     self.first
   end
@@ -78,7 +80,7 @@ class City < ActiveRecord::Base
   def reset_routes_cache
     HeyPalFrontEnd::Application.reload_routes!
   end
-  
+
   # def name
   #   I18n.t(self.code)
   # end

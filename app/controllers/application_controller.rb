@@ -32,6 +32,8 @@ class ApplicationController < ActionController::Base
       # Set to cookies
       cookies[preference] = value
 
+      # TODO: Fix security issue
+      # Possible unprotected redirect near line 38: redirect_to(params)
       if logged_in?
         session['current_user'] = current_user.change_preference(preference, value)
         redirect_to params

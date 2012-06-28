@@ -9,7 +9,7 @@ class MessagesController < PrivateController
 
   # Add a reply to a conversation
   def update
-    @message = Message.new(params[:message])
+    @message = Message.new(:body => params[:message])
     if Messenger.add_reply(current_user, params[:id], @message)
       redirect_to message_path(params[:id])
     end

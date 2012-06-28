@@ -15,6 +15,8 @@ class Cmspage < ActiveRecord::Base
 
   UNMODIFIABLE_STATIC_PAGE_URLS = ["terms", "fees", "privacy", "contact"]
 
+  attr_accessible :page_title, :page_url, :description, :active, :mandatory, :type, :meta_description, :meta_keywords
+
   def activate!
     self.active = true
     self.save

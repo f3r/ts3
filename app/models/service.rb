@@ -4,6 +4,7 @@ class Service < ActiveRecord::Base
 
   if Product.table_exists?
     acts_as :product
+    accepts_nested_attributes_for :product
   end
 
   def self.name
@@ -94,4 +95,7 @@ class Service < ActiveRecord::Base
     2000
   end
 
+  def display_name
+    self.title
+  end
 end

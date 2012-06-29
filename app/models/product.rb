@@ -10,12 +10,15 @@ class Product < ActiveRecord::Base
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
   has_many   :comments, :dependent => :destroy, :foreign_key => :place_id
-
   attr_accessor :terms
 
-  validates_presence_of  :currency
+  validates_presence_of  :currency, :city, :title
+
+  validates_numericality_of :price_per_night, :price_per_hour, :price_per_month, :price_sale, :allow_nil => true
+
   before_save :convert_prices_to_usd
 
+  geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
   def self.published
     self.where('products.published' => true)
@@ -72,8 +75,11 @@ class Product < ActiveRecord::Base
     [a_currency.symbol, amount]
   end
 
-  # This method is only implemented for services, because the address comes from the profile
   def after_update_address
+  end
+
+  def full_address
+    [address_1, address_2, city.name, city.state, city.country].compact.join(', ')
   end
 
   protected
@@ -96,7 +102,5 @@ class Product < ActiveRecord::Base
     #self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
     #self.price_per_month_usd = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
   end
-
-
 
 end

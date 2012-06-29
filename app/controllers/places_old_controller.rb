@@ -1,4 +1,4 @@
-class PlacesController < PrivateController
+class PlacesOldController < PrivateController
   layout 'plain'
   before_filter :find_place, :only => [:wizard, :show, :update, :destroy, :photos, :update_currency, :publish_check, :publish, :unpublish]
 

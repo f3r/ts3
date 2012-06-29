@@ -6,6 +6,7 @@ describe ListingsController do
     login_as @agent
     SiteConfig.stub(:product_class).and_return(Service)
     @currency = create(:currency)
+    @city = create(:city)
   end
 
   it "shows a form for a new listing" do
@@ -16,7 +17,7 @@ describe ListingsController do
 
   it "creates a new listing" do
     expect {
-      post :create, :listing => attributes_for(:product)
+      post :create, :listing => attributes_for(:product, :city_id => @city.id)
     }.to change(Product, :count).by(1)
     response.should be_redirect
   end

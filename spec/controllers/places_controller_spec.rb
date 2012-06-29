@@ -23,6 +23,7 @@ describe ListingsController do
       login_as @agent
       expect {
         post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
+
         response.should be_success
       }.to_not change(Property, :count)
 

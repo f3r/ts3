@@ -3,7 +3,10 @@ class Property <  ActiveRecord::Base
     acts_as :product
   end
 
-  validates_presence_of :title, :category_id, :num_bedrooms, :max_guests
+  validates_presence_of :category_id, :num_bedrooms, :max_guests, :if => :published?
+  validates_numericality_of :num_bedrooms, :num_beds, :num_bathrooms, :size, :max_guests, :allow_nil => true
+
+  #before_save :update_price_sqf_field, validate_stays
 
   def self.name
     'Place'
@@ -15,6 +18,10 @@ class Property <  ActiveRecord::Base
 
   def self.price_unit
     :per_month
+  end
+
+  def self.transaction_length_units
+    [['week(s)', 'weeks'], ['month(s)', 'months']]
   end
 
   def self.published
@@ -35,5 +42,9 @@ class Property <  ActiveRecord::Base
 
   def price_unit
     self.class.price_unit
+  end
+
+  def radius
+    0
   end
 end

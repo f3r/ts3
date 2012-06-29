@@ -2,20 +2,30 @@ klass = SiteConfig.product_class
 
 ActiveAdmin.register klass do
   menu :priority => 1, :parent => 'E-Commerce'
-
+  
   scope :all, :default => true
   scope :published
   scope :unpublished
   
-  filter :title
-  filter :user
-  filter :city
-  filter :created_at
+  #We clear out the default search sidebar
+  config.clear_sidebar_sections!
+  
+  # These are fixed 
+  filter :product_title
+  filter :product_user_id, {:collection => User.all}
+  filter :product_city_id, {:collection => City.all}
+  
+  #Extra filtered added here
+  if klass.respond_to?('admin_filters')
+    extra_filters = klass.admin_filters
+    extra_filters.each do |fil|
+      filter fil.to_sym
+    end
+  end
   
   controller do
     helper 'admin/products'
   end
-  
   
   index do
     id_column
@@ -39,5 +49,9 @@ ActiveAdmin.register klass do
   end
   
   form :partial => "form"
+  
+  sidebar :filters do
+    active_admin_filters_form_for assigns["search"], filters_config, {:builder => Heypal::ActiveAdmin::ProductFilterFormBuilder}
+  end
   
 end

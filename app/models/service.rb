@@ -98,4 +98,11 @@ class Service < ActiveRecord::Base
   def display_name
     self.title
   end
+  
+  #For the active admin
+  def self.admin_filters
+      #Just enumerate the fields we want to use to filtering in active admin
+      ['education_status','seeking']
+  end
+  
 end

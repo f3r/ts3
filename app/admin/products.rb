@@ -12,8 +12,8 @@ ActiveAdmin.register klass do
   
   # These are fixed 
   filter :product_title
-  filter :product_user_id, {:collection => User.all}
-  filter :product_city_id, {:collection => City.all}
+  filter :product_user_id, {:collection => Proc.new {User.all}}
+  filter :product_city_id, {:collection => Proc.new {City.all}}
   
   #Extra filtered added here
   if klass.respond_to?('admin_filters')

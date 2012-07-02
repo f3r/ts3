@@ -17,7 +17,7 @@ module Search
 
     def price_range
       if self.min_price.present? && self.max_price.present?
-        Range.new(self.min_price, self.max_price)
+        Range.new(self.convert_to_usd(self.min_price), self.convert_to_usd(self.max_price))
       end
     end
 

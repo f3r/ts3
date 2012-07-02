@@ -99,12 +99,12 @@ module Search
     end
 
     def price_field
-      "price_#{self.price_unit}"
+      "price_#{self.price_unit}_usd"
     end
 
     def price_range
       if self.min_price.present? && self.max_price.present?
-        Range.new(self.min_price, self.max_price)
+        Range.new(self.convert_to_usd(self.min_price), self.convert_to_usd(self.max_price))
       end
     end
 
@@ -133,7 +133,17 @@ module Search
       # Restore the filter
       self.min_price, self.max_price = current_prices
 
-      [min, max]
+      [self.convert_from_usd(min), self.convert_from_usd(max)]
+    end
+    
+    def convert_from_usd(amount)
+      return self.currency.from_usd(amount) / 100 if self.currency
+      amount
+    end
+    
+    def convert_to_usd(amount)
+      return self.currency.to_usd(amount) * 100 if self.currency
+      amount
     end
     
     protected

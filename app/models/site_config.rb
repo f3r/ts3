@@ -61,7 +61,6 @@ class SiteConfig < ActiveRecord::Base
 
   def self.product_class
     PRODUCT_CLASS_NAME.constantize
-    Service
   end
 
   def self.product_plural

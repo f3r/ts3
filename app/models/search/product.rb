@@ -33,7 +33,7 @@ module Search
     end
 
     def collection
-      self.resource_class.published
+      resource_class.published
     end
 
     def add_conditions
@@ -95,7 +95,7 @@ module Search
     end
 
     def price_unit
-      self.resource_class.price_unit
+      resource_class.price_unit
     end
 
     def price_field

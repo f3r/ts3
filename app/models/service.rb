@@ -1,5 +1,9 @@
 class Service < ActiveRecord::Base
 
+  as_enum :language_1, [:english, :french, :spanish]
+  as_enum :language_2, [:english, :french, :spanish]
+  as_enum :language_3, [:english, :french, :spanish]
+  
   before_save :fill_in_address
 
   if Product.table_exists?
@@ -7,12 +11,28 @@ class Service < ActiveRecord::Base
     accepts_nested_attributes_for :product
   end
 
-  def self.manageable_by(user)
-    self.where('products.user_id' => user.id)
+  def self.product_name
+    'Service'
   end
 
   def self.searcher
     Search::Service
+  end
+
+  def self.manageable_by(user)
+    self.where('products.user_id' => user.id)
+  end
+
+  def self.published
+    self.where('products.published' => true)
+  end
+
+  def self.unpublished
+    self.where('not products.published')
+  end
+
+  def self.manageable_by(user)
+    self.where('products.user_id' => user.id)
   end
 
   #For the active admin

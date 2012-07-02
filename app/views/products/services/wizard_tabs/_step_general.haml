@@ -16,6 +16,12 @@
           = f.text_field :price_per_hour, :class => "input-small validate[required] autosave"
           = @resource.currency.label
       .control-group.required
+        = f.label :language_1_cd, t("services.wizard.languages"), :class => 'control-label'
+        .controls.languages
+          = f.select :language_1_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
+          = f.select :language_2_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
+          = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true          
+      .control-group.required
         = f.label :seeking, t("services.wizard.seeking_title"), :class => 'control-label'
         .controls
           = f.select :seeking, Service.seeking_options, :include_blank => true, :class => "input-xlarge validate[required] autosave"

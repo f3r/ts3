@@ -19,7 +19,7 @@
               .details_label= t("services.speaks")
             .span8
               .details_value
-                English, French
+                = @resource.spoken_languages || '-'
           .row-fluid
             .span4
               .details_label= t("services.looking_for")

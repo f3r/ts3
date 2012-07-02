@@ -7,18 +7,6 @@ class Service < ActiveRecord::Base
     accepts_nested_attributes_for :product
   end
 
-  def self.product_name
-    'Service'
-  end
-
-  def self.published
-    self.where('products.published' => true)
-  end
-
-  def self.unpublished
-    self.where('not products.published')
-  end
-
   def self.manageable_by(user)
     self.where('products.user_id' => user.id)
   end
@@ -95,6 +83,7 @@ class Service < ActiveRecord::Base
     2000
   end
 
+<<<<<<< HEAD
   def display_name
     self.title
   end
@@ -105,4 +94,14 @@ class Service < ActiveRecord::Base
       ['education_status','seeking']
   end
   
+=======
+  def spoken_languages
+    langs = []
+    langs << self.language_1.capitalize if self.language_1
+    langs << self.language_2.capitalize if self.language_2
+    langs << self.language_3.capitalize if self.language_3
+    langs.join(', ') if langs.any?
+  end
+
+>>>>>>> 1093a5c... Language for services
 end

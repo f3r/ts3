@@ -299,6 +299,8 @@ GEM
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
       rubyzip
+    simple_enum (1.5.1)
+      activesupport (>= 3.0.0)
     sprockets (2.1.3)
       hike (~> 1.2)
       rack (~> 1.0)
@@ -381,6 +383,7 @@ DEPENDENCIES
   rspec-rails
   rspec-rails-uncommitted (~> 2.0)
   sass-rails
+  simple_enum
   therubyracer
   tinymce-rails
   translate-rails3

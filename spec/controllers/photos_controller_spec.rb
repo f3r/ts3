@@ -6,6 +6,7 @@ describe PhotosController do
     login_as @agent
     @place   = create(:place, :user => @agent)
     @product = @place.product
+    SiteConfig.stub(:product_class).and_return(Property)
   end
 
   it "uploads a photo" do

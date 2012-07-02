@@ -88,13 +88,14 @@ PlaceFilters =
       return if PlaceFilters.loading
       PlaceFilters.seeMore() if nearBottomOfPage() && !lastPage()
 
-  bindTypeFilters: ->
+  bindTypeFilters: (field) ->
     # Type filters
-    $("#types-list input").click ->
+    container = $('#' + field + '_filter');
+    container.find('input').click ->
       ids = []
-      $("#types-list input").each ->
+      container.find('input').each ->
         ids.push($(@).val()) if $(@).is(":checked")
-      $('#search_category_ids').val(ids.join());
+      $('#search_' + field).val(ids.join());
       PlaceFilters.search()
 
   bindPriceFilters: ->

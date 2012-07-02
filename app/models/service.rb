@@ -15,6 +15,12 @@ class Service < ActiveRecord::Base
     Search::Service
   end
 
+  #For the active admin
+  def self.admin_filters
+    #Just enumerate the fields we want to use to filtering in active admin
+    ['education_status','seeking']
+  end
+
   def self.education_statuses
     [['Completed', 'completed'], ['Student', 'student']]
   end
@@ -83,18 +89,10 @@ class Service < ActiveRecord::Base
     2000
   end
 
-<<<<<<< HEAD
   def display_name
     self.title
   end
   
-  #For the active admin
-  def self.admin_filters
-      #Just enumerate the fields we want to use to filtering in active admin
-      ['education_status','seeking']
-  end
-  
-=======
   def spoken_languages
     langs = []
     langs << self.language_1.capitalize if self.language_1
@@ -102,6 +100,4 @@ class Service < ActiveRecord::Base
     langs << self.language_3.capitalize if self.language_3
     langs.join(', ') if langs.any?
   end
-
->>>>>>> 1093a5c... Language for services
 end

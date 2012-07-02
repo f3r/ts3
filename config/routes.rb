@@ -19,7 +19,7 @@ HeyPalFrontEnd::Application.routes.draw do
   end
 
   # Redirect http://squarestaY.com to http://www.squarestayS.com
-  constraints(:host => /^(www.)?squarestay.dev/) do
+  constraints(:host => /^(www.)?squarestay.com/) do
     root :to => redirect("http://www.squarestays.com")
     match '/*path', :to => redirect {|params, request| "http://www.squarestays.com/#{params[:path]}"}
   end

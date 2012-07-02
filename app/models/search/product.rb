@@ -11,7 +11,10 @@ module Search
       column :max_price,        :integer
 
       attr_reader :category_ids
+      attr_reader :amenity_ids
     end
+
+    default_columns
 
     def order
       self.sort_by ||= 'price_lowest'
@@ -37,7 +40,12 @@ module Search
       add_equals_condition('products.city_id', self.city_id)
       add_equals_condition("products.#{self.price_field}", self.price_range)
       add_equals_condition('products.category_id', self.category_ids)
+      add_amenities_condition('products.amenities_search', self.amenity_ids)
       add_filters # From override
+    end
+
+    def add_filters
+      # Optional override
     end
 
     def category_ids=(ids)
@@ -66,6 +74,13 @@ module Search
 
     def resource_class
       ::Product
+    end
+
+    def amenity_ids=(ids)
+      if ids.kind_of?(String)
+        ids = ids.split(',')
+      end
+      @amenity_ids = ids
     end
 
     def amenity_filters
@@ -120,5 +135,15 @@ module Search
 
       [min, max]
     end
+    
+    protected
+
+    def add_amenities_condition(field, ids)
+      return if ids.blank?
+
+      str_search = ids.sort.collect{|id| "<#{id}>"}.join('%')
+      add_like_condition(field, str_search)
+    end
+
   end
 end

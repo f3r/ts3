@@ -77,6 +77,6 @@ GMaps =
     $(location).attr('href', product.data.url)
 
   clearMarkers : ->
-    @map.clearMarkers();
+    @map.clearMarkers() if @map;
 
 window.GMaps = GMaps

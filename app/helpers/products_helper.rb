@@ -11,6 +11,14 @@ module ProductsHelper
     end
   end
 
+  def overridable_partial_defined?(partial)
+    views_path = ::Rails.root.to_s + "/app/views"
+    plural_product = SiteConfig.product_class.to_s.tableize
+    specific_path = "products/#{plural_product}"
+
+    File.exists?("#{views_path}/#{specific_path}/_#{partial}.haml")
+  end
+
   def product_price(product)
     symbol, amount = product.price(current_currency, product.price_unit)
     "#{current_currency.label}#{amount}"

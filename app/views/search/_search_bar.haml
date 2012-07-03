@@ -25,6 +25,7 @@
             .sorting
               = t("products.search.sort_by")
               = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'
-            .toggle
-              = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-              = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
+            - if overridable_partial_defined?('grid')
+              .toggle
+                = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
+                = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'

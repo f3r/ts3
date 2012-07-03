@@ -1,5 +1,5 @@
 #inquire_place.modal.hide.fade
-  = form_for(:inquiry, :url => inquiries_path(:id => @resource.id), :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
+  = form_for(:inquiry, :url => '/contacthp', :html => {:method => :post, :remote => true, :id => "inquire_form"}) do |f|
     .modal-header
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
       %h3= t("inquiries.inquiry_modal_title")
@@ -42,3 +42,7 @@
       .inquiry-actions
         %button.btn.btn-large.btn-primary{'data-loading-text' => t("submitting"), 'id' => 'inquire_button', 'autocomplete' => 'off'}=t("inquiries.button_inquire")
       %div.inquiry-sent-msg.btn.btn-large.btn-primary.disabled= t("inquiries.inquiry_sent")
+
+= # Cheap antispam, we change the form target via JS
+:javascript
+  $('#inquire_place form').attr('action', '#{inquiries_path(:id => @resource.id)}')

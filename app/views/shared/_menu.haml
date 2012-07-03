@@ -40,8 +40,7 @@
 
               - if message_count == 0
                 %li.read-message
-                  %a{:href => "#{messages_path}"}
-                    %img{:src => 'http://s3.amazonaws.com/squarestays-static/msgicon_read.png', :height => 40, :width => 42}
+                  = link_to t("messages.no_messages"), messages_path
               - else
                 %li.unread-message{:onclick => "location.href='#{messages_path}';"}
                   = link_to message_count, messages_path

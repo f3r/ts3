@@ -16,6 +16,7 @@ describe Search::Property do
       curr = create(:currency)
       @search.currency = curr
       @search.currency.should == curr
+      @search.currency_id.should == curr.id
     end
     
   end

@@ -5,7 +5,7 @@ module Search
     def self.default_columns
       super
 
-      column :currency,         :string
+      column :currency_id,      :integer
       column :city_id,          :integer
       column :min_price,        :integer
       column :max_price,        :integer
@@ -106,6 +106,14 @@ module Search
       if self.min_price.present? && self.max_price.present?
         Range.new(self.convert_to_usd(self.min_price), self.convert_to_usd(self.max_price))
       end
+    end
+
+    def currency=(a_currency)
+      self.currency_id = a_currency.id
+    end
+    
+    def currency
+      Currency.find(self.currency_id)
     end
 
     def price_range_bounds

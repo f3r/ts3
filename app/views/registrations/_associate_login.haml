@@ -1,6 +1,6 @@
 .section.span5
   %h2= t("users.registration.already_member")
-  %p= t("users.registrations.please_login")
+  %p= t("users.registration.please_login")
 
   = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
     = render 'registrations/oauth_fields', :f => f

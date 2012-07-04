@@ -7,7 +7,7 @@ class Service < ActiveRecord::Base
     accepts_nested_attributes_for :product
   end
 
-  def self.name
+  def self.product_name
     'Service'
   end
 

@@ -9,7 +9,7 @@ class Property <  ActiveRecord::Base
 
   #before_save :update_price_sqf_field, validate_stays
 
-  def self.name
+  def self.product_name
     'Place'
   end
 

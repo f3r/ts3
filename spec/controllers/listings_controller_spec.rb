@@ -26,19 +26,23 @@ describe ListingsController do
     get :edit, :id => @service.id
     response.should be_success
   end
-  
-  it "update the lat and lon when create a new listing" do
-    Address.create!(
-        :user_id => @agent.id,
-        :street => 'Ayer Rajah',
-        :city => 'Singapore',
-        :country => 'SG',
-        :zip => '1123'
-      )
-    @agent.address.should be_present
-    expect {
-      post :create, :listing => attributes_for(:product)
-    }.to change(Product, :count).by(1)
+
+  it "updates the user address" do
+    @service = create(:service, :user => @agent)
+    put :update_address,
+      :id => @service.id,
+      :user => {
+        :address_attributes => {
+          :street => 'Ayer Rajah',
+          :city => 'Singapore',
+          :country => 'SG',
+          :zip => '1123'
+        }
+      }
+
     response.should be_redirect
+    @agent.reload
+    @agent.address.should_not be_nil
+    @agent.address.street.should == 'Ayer Rajah'
   end
 end

@@ -1,7 +1,7 @@
 class Service < ActiveRecord::Base
-  
-  before_save :update_lat_lon_from_address
-  
+
+  before_save :fill_in_address
+
   if Product.table_exists?
     acts_as :product
   end
@@ -61,15 +61,6 @@ class Service < ActiveRecord::Base
     opt = self.class.education_statuses.find{|o| o[1] == self.education_status}
     opt[0] if opt
   end
-  
-  def update_lat_lon_from_address
-    
-    address = self.user.address
-    return true unless !address.blank?
-      self.lat = address.lat
-      self.lon = address.lon
-  end
-
 
   def primary_photo
     if self.user.avatar?
@@ -78,4 +69,25 @@ class Service < ActiveRecord::Base
       static_asset('missing_userpic_200.jpeg')
     end
   end
+
+  def fill_in_address
+    if self.user.address.present?
+      self.lat = self.user.address.lat
+      self.lon = self.user.address.lon
+    end
+    # because this method is a callback, we should return true so validations do not fail
+    true
+  end
+
+  # Called from Address
+  def after_update_address
+    self.fill_in_address
+    self.save
+  end
+
+  # Default radius for the service/show map (2km)
+  def radius
+    2000
+  end
+
 end

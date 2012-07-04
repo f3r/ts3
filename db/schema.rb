@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627062154) do
+ActiveRecord::Schema.define(:version => 20120704073920) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.float    "lat"
-    t.float    "lon"
+    t.decimal  "lat",        :precision => 15, :scale => 12
+    t.decimal  "lon",        :precision => 15, :scale => 12
   end
 
   create_table "alerts", :force => true do |t|
@@ -478,8 +478,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.string   "address_1"
     t.string   "address_2"
     t.string   "zip"
-    t.float    "lat"
-    t.float    "lon"
+    t.decimal  "lat",                 :precision => 15, :scale => 12
+    t.decimal  "lon",                 :precision => 15, :scale => 12
     t.integer  "radius"
     t.integer  "currency_id"
     t.integer  "price_per_hour"
@@ -490,8 +490,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.integer  "price_per_month_usd"
     t.integer  "price_sale"
     t.integer  "price_sale_usd"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
   end
 
   create_table "services", :force => true do |t|

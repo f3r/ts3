@@ -1,21 +1,20 @@
 require 'spec_helper'
 
 describe Service do
-  pending "add some examples to (or delete) #{__FILE__}"
-  
-  it "update lat and lon" do
-    @user = FactoryGirl.create(:user)
-    @address = Address.create(
-      :user_id => @user.id,
-      :street => 'Ayer Rajah',
-      :city => 'Singapore',
-      :country => 'SG',
-      :zip => '1123'
-    )
-    @currency = create(:currency)
+  it "retrieves lat and lon from the user profile" do
+    @user = create(:user)
+    # Mock the geocode method so lat/lon are set upon address save
+    @address = build(:address, :user => @user)
+    @address.should_receive(:geocode) do |arg|
+      @address.lat = 1.672672762676
+      @address.lon = 2.981728727261
+    end
+    @address.save
+
     @service = create(:service, :user => @user)
-    @service.lat.should_not be_nil
-    @service.lon.should_not be_nil
+
+    @service.lat.should == @address.lat
+    @service.lon.should == @address.lon
   end
-  
+
 end

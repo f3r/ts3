@@ -54,6 +54,8 @@ en:
                                   using your existing accounts!
       create_new_account:         Create New Account
       create_account:             Create account
+      sign_up_as_a_senior:        Sign up as a Senior
+      sign_up_as_a_carer:         Sign up as a Carer
       confirm:                    Confirm
       i_accept_the:               I accept the
       switch_to_login:            Already have an account? Sign in 

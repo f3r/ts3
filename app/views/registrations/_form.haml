@@ -17,8 +17,13 @@
         %label.for-checkbox{:for => "terms_and_conditions"}
           = t("users.registration.i_accept_the")
           = link_to t("terms_and_conditions"), terms_path, :target => :blank
-    %button.btn.float-right{:type => 'submit'}
-      = t("users.registration.create_account")
+    
+    %div.signup_button_group      
+      %button.btn.float-left{:type => 'submit', :name => 'user[role]', :value => 'agent'}
+        = t("users.registration.sign_up_as_a_senior")
+      
+      %button.btn.float-right{:type => 'submit', :name => 'user[role]',:value => 'user'}
+        = t("users.registration.sign_up_as_a_carer")
 
   .switch-login
     = t("users.registration.switch_to_login")

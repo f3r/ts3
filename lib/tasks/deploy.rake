@@ -12,7 +12,7 @@ namespace :deploy do
   task :push do
     header 'Deploying site to Heroku ...'
     if %x[git status|grep "working directory clean"|wc -l].to_i == 1
-      cd "git push #{APP} HEAD:master --force"
+      cmd "git push #{APP} HEAD:master --force"
     else
       puts "Please commit all your changes before pushing!"
     end

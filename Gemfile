@@ -4,8 +4,8 @@ gem 'rails', '3.2.0'
 gem 'mysql2'
 
 # File Uploads
-gem 'paperclip', "~> 2.4"         # Attachements
-gem 'aws-s3'                      # Upload to Amazon S3
+gem 'paperclip', "~> 2.4"          # Attachements
+#gem 'aws-s3', :require => 'aws/s3' # Upload to Amazon S3
 gem 'aws-sdk'
 
 gem 'devise'
@@ -75,7 +75,7 @@ group :development do
   gem 'quiet_assets'
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
-
+  gem 'colorize'
   # Check if we can include ruby-debug in test and does not conflict with semaphoreapp
   # Debugger, for installation see: http://pastie.org/3293194
   # gem 'linecache19', '0.5.13'

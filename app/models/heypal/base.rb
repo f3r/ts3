@@ -1,4 +1,4 @@
-##
+# #
 # Proxy class for Heypal REST client. It currently uses the RestClient gem for now.
 class Heypal::Base < Hash
   include ActiveModel::AttributeMethods
@@ -27,8 +27,8 @@ class Heypal::Base < Hash
     def request(path, method = :get, options = {})
 
      Rails.logger.info "Sending to #{path} / #{method} / #{options}"
-  
-      result = case method 
+
+      result = case method
         when :get
           get(resource_url(path), options)
         when :put
@@ -42,10 +42,10 @@ class Heypal::Base < Hash
       @results = parse_json(result)
       Rails.logger.info "Result ---- #{JSON.pretty_generate(@results)}"
 
-      @results    
+      @results
     end
 
-    def find(type, options = {})      
+    def find(type, options = {})
       if type == :first
         find_all(options).first
       elsif type == :all
@@ -89,7 +89,7 @@ class Heypal::Base < Hash
   end
 
   def deserialize(hash)
-    hash.each do |key, value|  
+    hash.each do |key, value|
       instance_variable_set("@#{key}", value)
       self[key] = value
     end

@@ -17,6 +17,8 @@ describe MessagesController do
 
     put :update, :id => 23, :message => {:body => 'adding a reply'}
     response.should redirect_to(message_path(23))
+
+    assigns(:message).body.should == 'adding a reply'
   end
 
   it "marks a conversation as unread" do

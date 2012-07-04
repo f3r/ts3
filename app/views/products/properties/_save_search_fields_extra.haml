@@ -1,0 +1,7 @@
+.control-group
+  %label{:class => "control-label"}= t("places.search.type")
+  - place_types_list.each do |name, id, slug|
+    .controls
+      %label.checkbox
+        = check_box_tag "alert[query[category_ids]][]", id, (alert_params['query']['category_ids'] && alert_params['query']['category_ids'].include?(id.to_s)), :id => "#{slug}_filter"
+        = name

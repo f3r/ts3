@@ -71,8 +71,10 @@ HeyPalFrontEnd::Application.routes.draw do
   # Saved searches
   ###########################################################################################
   resources :alerts do
-    get 'pause' => 'alerts#pause'
-    get 'unpause' => 'alerts#unpause'
+    member do
+      get 'pause' => 'alerts#pause'
+      get 'unpause' => 'alerts#unpause'
+    end
   end
   match '/search/code/:search_code' => 'alerts#show_search_code', :as => :show_search_code
 

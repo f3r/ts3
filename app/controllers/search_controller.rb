@@ -12,8 +12,12 @@ class SearchController < ApplicationController
     end
 
     @search = searcher.new(params[:search])
+    @search.currency = current_currency.currency_code
     @search.city_id = @city.id if @city
     @results = @search.results
+    
+    @alert_params = Alert.new
+    @alert_params.query = @search
 
     respond_to do |format|
       format.js {

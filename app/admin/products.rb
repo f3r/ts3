@@ -50,7 +50,7 @@ ActiveAdmin.register klass do
   
   form :partial => "form"
   
-  sidebar :filters do
+  sidebar :filters, :only => :index do
     active_admin_filters_form_for assigns["search"], filters_config, {:builder => Heypal::ActiveAdmin::ProductFilterFormBuilder}
   end
   

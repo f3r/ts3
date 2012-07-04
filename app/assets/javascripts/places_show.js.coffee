@@ -41,7 +41,7 @@ PlaceShow =
   #*******************************************************************************************
   initializeMap: (lat, lon, cityName, countryName, radius) ->
     mapOptions = {
-      zoom: 15,
+      zoom: 13,
       center: new google.maps.LatLng(lat, lon),
       mapTypeId: google.maps.MapTypeId.ROADMAP,
       zoomControlOptions:
@@ -49,7 +49,6 @@ PlaceShow =
     }
 
     map = new google.maps.Map(document.getElementById('map'),mapOptions)
-
     # We place a marker if radius is zero
     if radius == 0
       marker = new google.maps.Marker({

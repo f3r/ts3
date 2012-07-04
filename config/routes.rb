@@ -58,6 +58,8 @@ HeyPalFrontEnd::Application.routes.draw do
     member do
       put   :publish
       put   :unpublish
+      put   :update_currency
+      put   :update_address
     end
   end
 

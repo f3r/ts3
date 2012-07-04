@@ -12,19 +12,12 @@
       %li
         %a{:href => '#details-questions', 'data-toggle' => 'tab'}
           = t('jobs.questions', :count => 5)#resource.comments.count)
+          - # TODO: check this line above
 
   .tab-content
-    // Main
-    = render 'products/services/tabs/main', :resource => resource
-
-    // Work profile
+    = render 'products/services/tabs/main',         :resource => resource
     = render 'products/services/tabs/work_profile', :resource => resource
+    = render 'products/services/tabs/map',          :resource => resource
+    = render 'products/services/tabs/calendar',     :resource => resource
 
-    // Map Pane
-    = render 'products/services/tabs/map', :resource => resource
-
-    // Calendar Pane
-    = render 'products/services/tabs/calendar', :resource => resource
-
-    // Questions Tab
     =# render 'comments/questions'

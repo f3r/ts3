@@ -11,6 +11,13 @@
           = image_tag('check-disabled.png')
         %a{:href => "#2", :title => t("services.wizard.work_profile_title")}
           = t("services.wizard.work_profile_title")
+      %li
+        .indicator#addressInfo
+          = image_tag('check-disabled.png')
+        %a{:href => "#3", :title => t('users.section_header_billing_address')}
+          = t('services.wizard.address_title')
+
+  - if false
     .actions
       %a.btn.primary.large.preview-button{:href => listing_path(@resource), :id => "preview_button"}
         %span

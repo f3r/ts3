@@ -1,6 +1,6 @@
 class ListingsController < PrivateController
   layout 'plain'
-  before_filter :find_resource, :only => [:wizard, :show, :edit, :update, :update_currency, :destroy, :publish, :unpublish]
+  before_filter :find_resource, :except => [:index, :new, :create]
 
   def index
     @collection = resource_class.manageable_by(current_user)
@@ -51,6 +51,18 @@ class ListingsController < PrivateController
     @resource.attributes = params[:listing]
     @resource.save
     render :json => {:currency_sign => @resource.currency.label}
+  end
+
+  def update_address
+    @user = @resource.user
+    @user.attributes = params[:user]
+
+    if @user.save
+      flash[:notice] = 'You successfully updated your address'
+      redirect_to edit_listing_path(@resource)
+    else
+      render :action => :edit
+    end
   end
 
   def destroy

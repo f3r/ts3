@@ -18,4 +18,12 @@ FactoryGirl.define do
       role                { 'admin' }
     end
   end
+
+  factory :address do
+    user
+    street                { Faker::Name.name }
+    city                  { Faker::Address.city }
+    country               { Faker::Address.country }
+    zip                   { Faker::Address.postcode }
+  end
 end

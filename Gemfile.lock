@@ -288,6 +288,8 @@ GEM
       activesupport (>= 3.0)
       railties (>= 3.0)
       rspec (~> 2.10.0)
+    rspec-rails-uncommitted (2.0.0)
+      rspec-rails (~> 2.0)
     rubyzip (0.9.8)
     sass (3.1.19)
     sass-rails (3.2.5)
@@ -381,6 +383,7 @@ DEPENDENCIES
   recaptcha
   rest-client
   rspec-rails
+  rspec-rails-uncommitted (~> 2.0)
   sass-rails
   therubyracer
   tinymce-rails

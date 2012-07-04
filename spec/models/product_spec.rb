@@ -4,6 +4,8 @@ describe Product do
   before(:each) do
     @product = create(:product)
     @amenities = 3.times.collect{ create(:amenity) }
+    
+    
   end
 
   it "sets nested amenities" do
@@ -19,4 +21,6 @@ describe Product do
     @product.reload
     @product.amenities.should == [@amenities[1], @amenities[2]]
   end
+
+  
 end

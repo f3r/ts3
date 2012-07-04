@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120627062154) do
+ActiveRecord::Schema.define(:version => 20120704073920) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -36,6 +36,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.decimal  "lat",        :precision => 15, :scale => 12
+    t.decimal  "lon",        :precision => 15, :scale => 12
   end
 
   create_table "alerts", :force => true do |t|
@@ -136,9 +138,9 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -150,7 +152,7 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",         :default => "",     :null => false
+    t.string  "page_url",                             :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -164,9 +166,9 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -366,8 +368,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.float    "lon"
     t.text     "directions"
     t.boolean  "amenities_aircon",                        :default => false
-    t.boolean  "amenities_buzzer_intercom",               :default => false
     t.boolean  "amenities_breakfast",                     :default => false
+    t.boolean  "amenities_buzzer_intercom",               :default => false
     t.boolean  "amenities_cable_tv",                      :default => false
     t.boolean  "amenities_dryer",                         :default => false
     t.boolean  "amenities_doorman",                       :default => false
@@ -476,8 +478,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.string   "address_1"
     t.string   "address_2"
     t.string   "zip"
-    t.float    "lat"
-    t.float    "lon"
+    t.decimal  "lat",                 :precision => 15, :scale => 12
+    t.decimal  "lon",                 :precision => 15, :scale => 12
     t.integer  "radius"
     t.integer  "currency_id"
     t.integer  "price_per_hour"
@@ -488,8 +490,8 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.integer  "price_per_month_usd"
     t.integer  "price_sale"
     t.integer  "price_sale_usd"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
   end
 
   create_table "services", :force => true do |t|
@@ -514,14 +516,14 @@ ActiveRecord::Schema.define(:version => 20120627062154) do
     t.string   "tw_app_id"
     t.string   "tw_app_secret"
     t.string   "mail_bcc"
-    t.datetime "created_at",                                       :null => false
-    t.datetime "updated_at",                                       :null => false
-    t.string   "color_scheme",                 :default => "none"
+    t.datetime "created_at",                                          :null => false
+    t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
-    t.string   "static_assets_path"
+    t.string   "color_scheme",                 :default => "default"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"

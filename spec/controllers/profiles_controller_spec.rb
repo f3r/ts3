@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe ProfilesController do
   before(:each) do
-    @user = FactoryGirl.create(:user)
+    @user = create(:user)
     login_as @user
   end
 
@@ -47,24 +47,17 @@ describe ProfilesController do
     end
 
     it "updates the user address" do
-      Address.create!(
-        :user_id => @user.id,
-        :street => 'Ayer Rajah',
-        :city => 'Singapore',
-        :country => 'SG',
-        :zip => '1123'
-      )
+      @address = create(:address, :user => @user)
       @user.address.should be_present
 
-      post :update, :user => {
+      put :update, :user => {
         :address_attributes => {
           :zip => '2323'
         }
       }
       response.should be_redirect
       @user.reload
-      address = @user.address
-      address.zip.should == '2323'
+      @user.address.zip.should == '2323'
     end
   end
 

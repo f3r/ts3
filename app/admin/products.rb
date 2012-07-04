@@ -1,7 +1,7 @@
 klass = SiteConfig.product_class
 
 ActiveAdmin.register klass do
-  menu :priority => 1, :parent => 'E-Commerce'
+  menu :priority => 1, :parent => 'E-Commerce', :label => 'Listings'
   
   scope :all, :default => true
   scope :published

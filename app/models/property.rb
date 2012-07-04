@@ -1,6 +1,7 @@
 class Property <  ActiveRecord::Base
   if Product.table_exists?
     acts_as :product
+    accepts_nested_attributes_for :product
   end
 
   validates_presence_of :category_id, :num_bedrooms, :max_guests, :if => :published?

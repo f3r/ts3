@@ -1,5 +1,5 @@
 GMaps =
-  initialize : (places) ->
+  initialize : (products) ->
     google.maps.Map.prototype.markers = []
 
     google.maps.Map.prototype.addMarker = (marker) ->
@@ -12,9 +12,9 @@ GMaps =
         marker.setMap(null)
 
     parentLocationLat = parentLocationLng = 0
-    if places.length is not 0
-      parentLocationLat = places[0].lat
-      parentLocationLng = places[0].lon
+    if products.length is not 0
+      parentLocationLat = products[0].lat
+      parentLocationLng = products[0].lon
 
     myOptions =
       center: new google.maps.LatLng(parentLocationLat, parentLocationLng)
@@ -27,23 +27,23 @@ GMaps =
 
     @map = new google.maps.Map(document.getElementById('search_map'), myOptions)
 
-    GMaps.createMarkers(places)
-    google.maps.event.addListener @map, 'dragend', -> GMaps.setBoundsValues()
+    GMaps.createMarkers(products)
+    google.maps.event.addListener @map, 'dragend',      -> GMaps.setBoundsValues()
     google.maps.event.addListener @map, 'zoom_changed', -> GMaps.setBoundsValues()
 
-  createMarkerObjectsFromString : (places) ->
-    data = places.replace(/&quot;/g,'"')
+  createMarkerObjectsFromString : (products) ->
+    data = products.replace(/&quot;/g,'"')
     $.parseJSON(data)
 
-  createMarkers : (places) ->
-    for place in places
-      myLatlng = new google.maps.LatLng(place.lat,place.lon)
+  createMarkers : (products) ->
+    for product in products
+      myLatlng = new google.maps.LatLng(product.lat, product.lon)
       marker = new google.maps.Marker
         position: myLatlng
-        title: place.title
+        title: product.title
         data:
-          id: place.id
-          url: place.url
+          id: product.id
+          url: product.url
 
       google.maps.event.addListener marker, 'click', -> GMaps.performMarkerEvent(@)
 
@@ -69,13 +69,13 @@ GMaps =
 
       if $('.results > #search-load-indicator').length == 0
         PlaceFilters.search()
-        
+
   # Just killed the server method
-  performMarkerEvent : (place) ->
-    title = place.title
-    data  = place.data
-    $(location).attr('href', place.data.url)
-    
+  performMarkerEvent : (product) ->
+    title = product.title
+    data  = product.data
+    $(location).attr('href', product.data.url)
+
   clearMarkers : ->
     @map.clearMarkers();
 

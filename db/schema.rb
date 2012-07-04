@@ -117,6 +117,12 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.datetime "updated_at"
   end
 
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "cities", :force => true do |t|
     t.string  "name"
     t.float   "lat"
@@ -138,9 +144,9 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "position",        :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -166,9 +172,9 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "position",        :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -287,6 +293,7 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.integer  "guests"
     t.integer  "target_id"
     t.string   "target_type"
+    t.integer  "product_id"
   end
 
   add_index "inquiries", ["place_id"], :name => "index_inquiries_on_place_id"
@@ -341,6 +348,7 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
     t.integer  "position"
+    t.integer  "product_id"
   end
 
   create_table "place_types", :force => true do |t|
@@ -493,6 +501,37 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.integer  "price_sale_usd"
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
+    t.integer  "category_id"
+    t.integer  "price_per_night"
+    t.integer  "price_per_night_usd"
+    t.string   "amenities_search"
+  end
+
+  create_table "properties", :force => true do |t|
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
+    t.integer  "num_bedrooms"
+    t.integer  "num_beds"
+    t.integer  "num_bathrooms"
+    t.float    "size"
+    t.integer  "max_guests"
+    t.text     "directions"
+    t.integer  "price_final_cleanup",        :default => 0
+    t.integer  "price_security_deposit",     :default => 0
+    t.integer  "price_final_cleanup_usd"
+    t.integer  "price_security_deposit_usd"
+    t.string   "check_in_after"
+    t.string   "check_out_before"
+    t.integer  "minimum_stay",               :default => 0
+    t.integer  "maximum_stay",               :default => 0
+    t.text     "house_rules"
+    t.integer  "cancellation_policy",        :default => 1
+    t.float    "size_sqm"
+    t.float    "size_sqf"
+    t.string   "size_unit"
+    t.float    "price_sqf_usd"
+    t.string   "stay_unit"
+    t.integer  "place_id"
   end
 
   create_table "services", :force => true do |t|
@@ -501,9 +540,9 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.string   "education_status"
     t.string   "last_institute"
     t.string   "seeking"
-    t.integer  "language_1"
-    t.integer  "language_2"
-    t.integer  "language_3"
+    t.integer  "language_1_cd"
+    t.integer  "language_2_cd"
+    t.integer  "language_3_cd"
   end
 
   create_table "site_configs", :force => true do |t|
@@ -520,10 +559,10 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
-    t.string   "color_scheme",                 :default => "default"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "color_scheme",                 :default => "default"
     t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"

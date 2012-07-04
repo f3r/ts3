@@ -11,21 +11,12 @@ module ProductsHelper
     end
   end
 
-  def seo_city_path(city)
-    url_for("/#{city.slug}")
-  end
+  def overridable_partial_defined?(partial)
+    views_path = ::Rails.root.to_s + "/app/views"
+    plural_product = SiteConfig.product_class.to_s.tableize
+    specific_path = "products/#{plural_product}"
 
-  def seo_product_url(product)
-    extra = product.title.dup
-    extra.gsub!(/[^\x00-\x7F]+/, '') # Remove anything non-ASCII entirely (e.g. diacritics).
-    extra.gsub!(/[^\w_ \-]+/i, '')   # Remove unwanted chars.
-    extra.gsub!(/[ \-]+/i, '-')      # No more than one of the separator in a row.
-    extra.gsub!(/^\-|\-$/i, '')      # Remove leading/trailing separator.
-    extra.downcase!
-
-    city = product.city
-
-    city_product_url(:city => city.slug, :id => "#{product.id}-#{extra}")
+    File.exists?("#{views_path}/#{specific_path}/_#{partial}.haml")
   end
 
   def product_price(product)

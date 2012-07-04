@@ -6,9 +6,9 @@
       .controls
         = f.text_field :title, :class => "input-xlarge validate[required] autosave"
     .control-group.required
-      = f.label :place_type_id, t("places.type"), :class => 'control-label'
+      = f.label :category_id, t("places.type"), :class => 'control-label'
       .controls
-        = f.select :place_type_id, place_types_select, {}, :class => 'validate[required] autosave'
+        = f.collection_select :category_id, Category.all, :id, :name, {}, :class => 'validate[required] autosave'
 
     .control-group
       = f.label :description, t("places.description"), :class => 'control-label'

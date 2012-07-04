@@ -7,18 +7,19 @@ describe Favorite do
 
     @favorite = Favorite.create!(
       :user => @user,
-      :favorable => @place
+      :favorable => @place.product
     )
   end
 
   it "stores a user favorite" do
     @favorite.should be_persisted
     @favorite.reload
-    @favorite.favorable_type.should == 'Place'
+    @favorite.favorable_type.should == 'Product'
+    # @favorite.product.should == @place.product
   end
 
   it "retrieves user favorites" do
-    favs = Favorite.for_user(@user, Place)
+    favs = Favorite.for_user(@user, Property)
     favs.size.should == 1
 
     favs[0].should == @place

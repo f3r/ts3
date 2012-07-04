@@ -1,14 +1,6 @@
-class PlacesController < PrivateController
+class PlacesOldController < PrivateController
   layout 'plain'
   before_filter :find_place, :only => [:wizard, :show, :update, :destroy, :photos, :update_currency, :publish_check, :publish, :unpublish]
-
-  def index
-    @results = current_user.places
-  end
-
-  def new
-    @place = Place.new
-  end
 
   def create
     place_params = params[:place]
@@ -67,7 +59,7 @@ class PlacesController < PrivateController
     render :json => response, :layout => false
   end
 
-  def wizard
+  #def wizard
 
     # filter data
   # @place_basic_info = @place
@@ -78,7 +70,7 @@ class PlacesController < PrivateController
   # @photos = @place.photos
   # @availabilities = Heypal::Availability.find_all({:place_id => @place.to_param}, current_token)
     #@city = Heypal::Geo.find_by_city_id(@place.city_id)
-  end
+  #end
 
   def show
     @my_places = true
@@ -114,7 +106,7 @@ class PlacesController < PrivateController
 protected
 
   def find_place
-    @place = Place.with_permissions_to(:manage).find(params[:id])
+    @place = Property.manageable_by(current_user).find(params[:id])
     @owner = @place.user
   end
 end

@@ -45,7 +45,6 @@ class Place < ActiveRecord::Base
   belongs_to  :city
   has_many    :availabilities,  :dependent => :destroy
   has_many    :comments,        :dependent => :destroy
-  has_many    :transactions,    :dependent => :destroy
   has_many    :photos,          :dependent => :destroy, :order => :position
   has_many    :favorites,       :dependent => :destroy, :as => :favorable
 

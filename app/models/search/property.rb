@@ -1,5 +1,5 @@
 module Search
-  class Place < Search::Product
+  class Property < Search::Product
     default_columns
     column :guests,           :integer, 1
     column :check_in,         :date
@@ -10,7 +10,7 @@ module Search
     column :max_lng,          :string
 
     def resource_class
-      ::Place
+      ::Property
     end
 
     attr_accessor :place_type_ids
@@ -25,16 +25,12 @@ module Search
       resource_class.published
     end
 
-    def add_conditions
-      add_equals_condition(:city_id, self.city_id)
-      add_equals_condition(price_field, self.price_range)
-
-      add_equals_condition(:place_type_id, self.category_ids)
+    def add_filters
       add_sql_condition(['max_guests >= ?', self.guests]) if self.guests > 1
 
       if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? &&  !self.max_lng.blank?
-        add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat ,self.max_lat])
-        add_sql_condition(['lon BETWEEN ? AND ?' ,self.min_lng ,self.max_lng])
+        add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat, self.max_lat])
+        add_sql_condition(['lon BETWEEN ? AND ?' , self.min_lng, self.max_lng])
       end
     end
 
@@ -56,23 +52,6 @@ module Search
       custom_options = [[I18n.t("places.search.price_size_lowest"), 'price_size_lowest'],
                         [I18n.t("places.search.price_size_highest"), 'price_size_highest']]
       super + custom_options
-    end
-
-    # Information for filters
-    def category_filters
-      filters = []
-      current_types = self.category_ids
-
-      PlaceType.all.each do |pt|
-        self.category_ids = pt.id
-        if ((count = self.count) > 0)
-          checked = current_types && current_types.include?(pt.id.to_s)
-          filters << [pt, count, checked]
-        end
-      end
-
-      self.category_ids = current_types
-      filters
     end
   end
 end

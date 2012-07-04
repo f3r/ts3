@@ -4,16 +4,23 @@ class Product < ActiveRecord::Base
   belongs_to :user
   belongs_to :city
   belongs_to :currency
-  has_many   :photos, :dependent => :destroy, :order => :position, :foreign_key => :place_id
+  belongs_to :category
+  has_many   :photos, :dependent => :destroy, :order => :position
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
 
+  has_many   :q_and_a, :class_name => 'Comment', :dependent => :destroy
+
   attr_accessor :terms
 
-  validates_presence_of  :currency
+  validates_presence_of  :currency, :city, :title
+
+  validates_numericality_of :price_per_night, :price_per_hour, :price_per_month, :price_sale, :allow_nil => true
+
   before_save :convert_prices_to_usd
 
+  geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
   def self.published
     self.where('products.published' => true)
@@ -28,7 +35,11 @@ class Product < ActiveRecord::Base
   end
 
   def primary_photo
-    self.photos.first.url(:medsmall)
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    else
+      'http://placehold.it/150x100'
+    end
   end
 
   def publish!
@@ -41,12 +52,16 @@ class Product < ActiveRecord::Base
     self.save
   end
 
+  def publish_check!
+    self.published = true
+    self.valid?
+  end
 
   def price(a_currency = nil, unit = :per_month)
     a_currency ||= Currency.default
 
     # If we are asked in the original currency of the place
-    if self.currency == a_currency.currency_code
+    if self.currency == a_currency
       amount = self.send("price_#{unit}")
     else
       # If we are asked in the 'special' USD (precalculated with before_save callback)
@@ -62,19 +77,32 @@ class Product < ActiveRecord::Base
     [a_currency.symbol, amount]
   end
 
-  # This method is only implemented for services, because the address comes from the profile
   def after_update_address
+  end
+
+  def full_address
+    [address_1, address_2, city.name, city.state, city.country].compact.join(', ')
   end
 
   protected
 
   def convert_prices_to_usd
     return true unless currency
-    self.price_per_hour_usd = self.currency.to_usd(self.price_per_hour) * 100.0 if self.price_per_hour_changed? && self.price_per_hour
-    self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
-    self.price_per_hour_month = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
+    [:per_hour, :per_night, :per_week, :per_month, :sale].each do |unit|
+      field = "price_#{unit}"
+      field_usd = "#{field}_usd"
+      if self.changed.include?(field)
+        price_value = read_attribute(field)
+        if price_value
+          price_usd = self.currency.to_usd(price_value) * 100.0
+          write_attribute(field_usd, price_usd)
+        end
+      end
+    end
+    return true
+    #self.price_per_hour_usd = self.currency.to_usd(self.price_per_hour) * 100.0 if self.price_per_hour_changed? && self.price_per_hour
+    #self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
+    #self.price_per_month_usd = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
   end
-
-
 
 end

@@ -1,6 +1,7 @@
 defaults: &defaults
   SITE_URL:             http://localhost:3000
-  PRODUCT_CLASS_NAME:   Service
+  PRODUCT_CLASS_NAME:   Property
+
   # Database and CDN
   S3_ACCESS_KEY_ID:     AKIAJOJEIAZ6LOVHDFDA
   S3_SECRET_ACCESS_KEY: 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
@@ -17,7 +18,6 @@ defaults: &defaults
   RECAPTCHA_PVT_KEY:    6Lcuo9ASAAAAAOYdrtLjPruEU0ZmferG5C_aTCEK
   RAKISMET_KEY:         bcba68e5b091
   RAKISMET_URL:         http://localhost:3005
-  # Paypal
   PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
   PAYPAL_MODE:          test
 

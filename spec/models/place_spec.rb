@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Place do
+describe Property do
   before(:each) do
     @usd = create(:currency, :currency_code => 'USD')
     @sgd = create(:currency, :currency_code => 'SGD')

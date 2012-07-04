@@ -32,7 +32,7 @@
   var updatePhotoLabel = function(photo_id, label) {
     $.ajax({
       type: 'PUT',
-      url: '/places/#{@resource.id}/photos/' + photo_id + '.json',
+      url: '/listings/#{@resource.id}/photos/' + photo_id + '.json',
       data: {name: label}
     });
   };
@@ -41,11 +41,11 @@
     var csrf_token = $('meta[name=csrf-token]').attr('content');
     var csrf_param = $('meta[name=csrf-param]').attr('content');
 
-    PhotoManager.initialize('#{sort_place_photos_path(@resource.id)}');
+    PhotoManager.initialize('#{sort_listing_photos_path(@resource.id)}');
 
-    $("#uploader").pluploadQueue({
+    var uploader = $("#uploader").pluploadQueue({
       runtimes: 'html5,flash,silverlight',
-      url: '/places/#{@resource.id}/photos',
+      url: '/listings/#{@resource.id}/photos',
       max_file_size: '10mb',
       multiple_queues: true,
       multipart: true,
@@ -53,7 +53,6 @@
       multipart_params: {
         '_method' : 'post',
         '#{Rails.application.config.session_options[:key]}' : '#{cookies[Rails.application.config.session_options[:key]]}',
-        'auth_token' : '#{current_token}' ,
         'authenticity_token' : encodeURI(csrf_token),
         'csrf_token' : encodeURI(csrf_param),
         'format': 'json'
@@ -67,5 +66,8 @@
         }
       }
     });
+    / uploader.bind('FilesAdded', function(up, files) {
+    /   uploader.start();
+    / });
   });
 

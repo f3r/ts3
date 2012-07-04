@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   has_one :bank_account
 
   has_many :authentications,  :dependent => :destroy
-  has_many :places,           :dependent => :destroy
   has_many :products,         :dependent => :destroy
   has_many :comments,         :dependent => :destroy
   has_many :favorites,        :dependent => :destroy
@@ -101,7 +100,7 @@ class User < ActiveRecord::Base
   end
 
   def admin?
-    self.role == 'admin'
+    self.role == 'admin' || self.role == 'superadmin'
   end
 
   def agent?
@@ -127,9 +126,11 @@ class User < ActiveRecord::Base
     self.generate_reset_password_token
   end
 
-  # Retrieves the other published properties of this user
-  def other_active_properties_except(place)
-    self.places.published.where('id != ?', place.id)
+  # Retrieves the other published products of this user
+  def other_published_products(except = nil)
+    products = SiteConfig.product_class.published
+    products = products.where('products.id <> ?', except.product.id) if except
+    products
   end
 
   private

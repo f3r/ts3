@@ -2,11 +2,12 @@ class Comment < ActiveRecord::Base
 #  using_access_control
   belongs_to :place
   belongs_to :user
+  belongs_to :product
 
   has_many :answers, :class_name => "Comment", :foreign_key => "replying_to", :dependent => :destroy
   belongs_to :question, :class_name => "Comment", :foreign_key => "replying_to", :counter_cache => true
 
-  validates_presence_of [:user_id, :place_id, :comment]
+  validates_presence_of [:user_id, :comment]
 
   #validate :validates_replying_to
 

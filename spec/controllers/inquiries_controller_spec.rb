@@ -3,7 +3,7 @@ require 'spec_helper'
 describe InquiriesController do
   before(:each) do
     @place = create(:published_place)
-    SiteConfig.stub(:product_class).and_return(Place)
+    SiteConfig.stub(:product_class).and_return(Property)
   end
 
   it "sends an inquiry for a registered user" do

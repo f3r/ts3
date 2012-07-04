@@ -3,7 +3,7 @@ require 'spec_helper'
 describe "Search" do
   before(:each) do
     @city = create(:city, :name => "Singapore")
-    SiteConfig.stub(:product_class).and_return(Place)
+    SiteConfig.stub(:product_class).and_return(Property)
   end
 
   it "recognizes city seo url" do
@@ -36,7 +36,7 @@ describe "Search" do
       visit "/singapore/#{@place.id}"
       page.should have_content(@place.title)
     end
-    
+
     it 'show the other properties by this owner' do
       owner = @place.user
       place2 = create(:published_place, :user => owner)

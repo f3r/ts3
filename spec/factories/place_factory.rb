@@ -5,14 +5,14 @@ FactoryGirl::DefinitionProxy.class_eval do
 end
 
 FactoryGirl.define do
-  factory :place_type do
+  factory :category do
     name { Faker::Lorem.words(2).to_sentence }
   end
 
-  factory :place do
+  factory :place, :class => Property do
     city
     title        { Faker::Lorem.words(2).to_sentence }
-    place_type
+    category
     num_bedrooms { 2 }
     max_guests   { 4 }
     user
@@ -26,7 +26,7 @@ FactoryGirl.define do
       address_2    { Faker::Address.secondary_address }
       zip          { Faker::Address.zip }
 
-      amenities_tv { true }
+      amenities    { [build(:amenity)] }
       size_unit    { 'meters' }
       size         { 100 }
 

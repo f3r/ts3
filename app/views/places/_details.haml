@@ -7,7 +7,7 @@
           .span4
             .details_label= t("places.type")
           .span8
-            .details_value= @resource.place_type.translated_name
+            .details_value= @resource.category.translated_name
         .row-fluid
           .span4
             .details_label= t("places.size")
@@ -44,7 +44,7 @@
 
       // Prices Column (night, week, month)
       .span3
-        - if @resource.price_per_night.present?
+        - if false && @resource.price_per_night.present?
           .row-fluid
             .span8
               .details_label= t("places.price_per_night")

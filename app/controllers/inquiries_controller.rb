@@ -22,11 +22,6 @@ class InquiriesController < ApplicationController
     end
   end
 
-protected
-
-  def resource_class
-    SiteConfig.product_class
-  end
 end
 
 # def confirm_inquiry

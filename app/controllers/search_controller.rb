@@ -34,14 +34,10 @@ class SearchController < ApplicationController
   end
 
   def favorites
-    @results = Favorite.for_user(current_user, Place)
+    @results = Favorite.for_user(current_user, resource_class)
   end
 
   protected
-
-  def resource_class
-    SiteConfig.product_class
-  end
 
   def searcher
     resource_class.searcher

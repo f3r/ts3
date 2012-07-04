@@ -2,7 +2,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery
   include AuthenticationHelper
   include LookupsHelper
-  include AvailabilitiesHelper
+  include RoutesHelper
   before_filter :instantiate_controller_and_action_names
   before_filter :set_locale
   before_filter :change_preferences
@@ -65,4 +65,7 @@ class ApplicationController < ActionController::Base
     session.delete(:user_return_to) || root_url
   end
 
+  def resource_class
+    SiteConfig.product_class
+  end
 end

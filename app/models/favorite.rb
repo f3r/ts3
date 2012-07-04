@@ -1,4 +1,5 @@
 class Favorite < ActiveRecord::Base
+  # TODO: No need for this to be polymorphic anymore, replace with belongs_to :product
   belongs_to :favorable,   :polymorphic => true
   belongs_to :user
 
@@ -7,7 +8,7 @@ class Favorite < ActiveRecord::Base
   validates :favorable_type, :presence => true
 
   def self.for_user(user, klass)
-    klass.joins(:favorites).where('favorites.user_id' => user.id)
+    klass.joins(:product => :favorites).where('favorites.user_id' => user.id)
   end
 
   def self.is_favorited?(obj, user)

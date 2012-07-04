@@ -5,7 +5,7 @@ class PhotosController < ApplicationController
   before_filter :find_parent, :except => [:create]
 
   def create
-    @place = @resource = Place.find(params[:place_id])
+    @resource = resource_class.find(params[:listing_id])
     @photo = @resource.photos.new(:photo => params[:file])
     @photo.save
     @photos = @resource.photos
@@ -16,7 +16,7 @@ class PhotosController < ApplicationController
   def destroy
     @photo = @resource.photos.find(params[:id])
     @photo.destroy
-    @place = @resource.reload
+    @resource.reload
     @published = @resource.published
 
     respond_to do |format|
@@ -44,6 +44,7 @@ class PhotosController < ApplicationController
   protected
 
   def find_parent
-    @resource = Place.with_permissions_to(:read).find(params[:place_id])
+    @resource = resource_class.manageable_by(current_user).find(params[:listing_id])
+    @product = @resource.product
   end
 end

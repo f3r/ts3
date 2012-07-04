@@ -18,7 +18,7 @@ class Product < ActiveRecord::Base
 
   validates_numericality_of :price_per_night, :price_per_hour, :price_per_month, :price_sale, :allow_nil => true
 
-  before_save :convert_prices_to_usd
+  before_save :convert_prices_to_usd, :index_amenities
 
   geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
@@ -32,6 +32,10 @@ class Product < ActiveRecord::Base
 
   def self.manageable_by(user)
     self.where('products.user_id' => user.id)
+  end
+
+  def self.price_unit
+    :sale
   end
 
   def primary_photo
@@ -105,4 +109,12 @@ class Product < ActiveRecord::Base
     #self.price_per_month_usd = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
   end
 
+  def index_amenities
+    ids = self.amenity_ids
+    if ids
+      self.amenities_search = ids.sort.collect{|id| "<#{id}>"}.join(',')
+    else
+      self.amenities_search = nil
+    end
+  end
 end

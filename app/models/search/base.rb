@@ -56,12 +56,15 @@ module Search
 
     protected
 
-    def calculate_results
+    def prepare_conditions
       @conditions = {}
       @sql_conditions = []
-
-      # Prepare conditions
       self.add_conditions
+    end
+
+    def calculate_results
+      # Prepare conditions
+      self.prepare_conditions
 
       # Start with base collection
       @results = self.collection
@@ -82,7 +85,7 @@ module Search
     end
 
     def add_like_condition(key, value)
-      @conditions["#{key}.like"] = "%#{value}%" unless value.blank?
+      @sql_conditions << ["#{key} like ?", "%#{value}%"] unless value.blank?
     end
 
     def add_boolean_condition(key, value)

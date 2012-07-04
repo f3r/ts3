@@ -1,13 +1,26 @@
 class Service < ActiveRecord::Base
 
+  as_enum :language_1, [:english, :french, :spanish]
+  as_enum :language_2, [:english, :french, :spanish]
+  as_enum :language_3, [:english, :french, :spanish]
+  
   before_save :fill_in_address
 
   if Product.table_exists?
     acts_as :product
+    accepts_nested_attributes_for :product
   end
 
-  def self.name
+  def self.product_name
     'Service'
+  end
+
+  def self.searcher
+    Search::Service
+  end
+
+  def self.manageable_by(user)
+    self.where('products.user_id' => user.id)
   end
 
   def self.published
@@ -22,8 +35,10 @@ class Service < ActiveRecord::Base
     self.where('products.user_id' => user.id)
   end
 
-  def self.searcher
-    Search::Service
+  #For the active admin
+  def self.admin_filters
+    #Just enumerate the fields we want to use to filtering in active admin
+    ['education_status','seeking']
   end
 
   def self.education_statuses
@@ -94,4 +109,15 @@ class Service < ActiveRecord::Base
     2000
   end
 
+  def display_name
+    self.title
+  end
+  
+  def spoken_languages
+    langs = []
+    langs << self.language_1.capitalize if self.language_1
+    langs << self.language_2.capitalize if self.language_2
+    langs << self.language_3.capitalize if self.language_3
+    langs.join(', ') if langs.any?
+  end
 end

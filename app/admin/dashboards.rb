@@ -1,3 +1,5 @@
+klass = SiteConfig.product_class
+
 ActiveAdmin::Dashboards.build do
 
   section "Users", :priority => 1 do
@@ -8,11 +10,11 @@ ActiveAdmin::Dashboards.build do
     end
   end
   
-  section "Places", :priority => 1 do
+  section klass.name.pluralize, :priority => 1 do
     div do
-      stats = Place.histo_counts(:cummulative => false)
+      stats = klass.histo_counts(:cummulative => false)
  
-      render('/admin/chart', :title => 'Places', :stats => stats)
+      render('/admin/chart', :title => klass.name.pluralize, :stats => stats)
     end
   end
 

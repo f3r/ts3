@@ -68,7 +68,7 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.product_name
-    self.product_class.name
+    self.product_class.product_name
   end
 
   protected

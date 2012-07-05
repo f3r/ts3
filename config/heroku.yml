@@ -17,6 +17,7 @@ default_config: &default_config
   RECAPTCHA_PUB_KEY:    6Lcoo9ASAAAAALmNU_4LUOy4W11qRueZ9C3FXu3h
   RECAPTCHA_PVT_KEY:    6Lcoo9ASAAAAAHM-sKYibqSA16qaCYR9IaG8SknD
   RAKISMET_KEY:         bcba68e5b091
+  COOKIE_STORE_KEY:     _TSE_Session
 
 ########################################################################################################################################
 squarestays:
@@ -36,9 +37,6 @@ squarestays:
     TW_APP_SECRET:        rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA
     # Security
     SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
-    COOKIE_STORE_KEY:     _SquareStaysProductionFrontEnd_session
-    # External Services
-    RAKISMET_URL:         http://www.squarestays.com/
     # Paypal
     PAYPAL_ACCOUNT:       sales@heypal.com
     PAYPAL_MODE:          production
@@ -61,9 +59,6 @@ squarestage:
     TW_APP_SECRET:        iv3EywCFcm9xzAdSxlsCEnViSdXjDhBz0x9Xxb5Jc
     # Security
     SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
-    COOKIE_STORE_KEY:     _SquareStaysStagingFrontEnd_session
-    # External Services
-    RAKISMET_URL:         http://squarestage.herokuapp.com/
     # Paypal
     PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
     PAYPAL_MODE:          test
@@ -86,9 +81,6 @@ tse-demo:
     TW_APP_SECRET:        8BPpQn2VSqtkMWNYw7CpkY2ZYeyCENaTktRORJjW8
     # Security
     SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
-    COOKIE_STORE_KEY:     _SquareStaysStagingFrontEnd_session
-    # External Services
-    RAKISMET_URL:         http://demo.thesharingengine.com/
     # Paypal
     PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
     PAYPAL_MODE:          test
@@ -113,9 +105,6 @@ siltroopers:
     TW_APP_SECRET:        rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA
     # Security
     SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
-    COOKIE_STORE_KEY:     _TSE_Session
-    # External Services
-    RAKISMET_URL:         http://siltroopers.herokuapp.com/
     # Paypal
     PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
     PAYPAL_MODE:          test

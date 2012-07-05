@@ -30,5 +30,6 @@
 :javascript
   $(document).ready(function() {
     PlaceFilters.initialize('#search_bar');
-    GMaps.initialize(#{map_markers_json(@results)});
+    GMaps.initialize(#{@city.lat}, #{@city.lon});
+    GMaps.createMarkers(#{map_markers_json(@results)});
   });

@@ -17,8 +17,11 @@
             = f.hidden_field :max_price
             = f.hidden_field :category_ids
             = f.hidden_field :amenity_ids
-            = f.hidden_field :currency_id
-
+            = f.hidden_field :min_lat
+            = f.hidden_field :max_lat
+            = f.hidden_field :min_lng
+            = f.hidden_field :max_lng
+            = f.hidden_field :currency
             = f.hidden_field :current_page
             = f.hidden_field :total_pages
             = render_overridable_partial('search_fields', :f => f)

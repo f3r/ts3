@@ -19,7 +19,7 @@ class PlacesToProperties < ActiveRecord::Migration
       prop.currency = place.currency
       prop.place_id = place.id
 
-      if prop.save
+      unless prop.save
         puts "WARNING: Couldn't save prop #{place.id}: #{prop.errors.full_messages}"
       end
     end

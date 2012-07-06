@@ -41,6 +41,10 @@ class Property <  ActiveRecord::Base
     [['week(s)', 'weeks'], ['month(s)', 'months']]
   end
 
+  def self.user_reached_limit?(user)
+    false
+  end
+
   def price_unit
     self.class.price_unit
   end

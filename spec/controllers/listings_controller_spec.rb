@@ -46,4 +46,13 @@ describe ListingsController do
     @agent.address.should_not be_nil
     @agent.address.street.should == 'Ayer Rajah'
   end
+
+  it "limits the number of listings" do
+    get :new
+    response.should be_success
+
+    @service = create(:service, :user => @agent)
+    get :new
+    response.should redirect_to(edit_listing_path(@service))
+  end
 end

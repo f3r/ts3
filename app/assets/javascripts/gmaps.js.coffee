@@ -1,5 +1,5 @@
 GMaps =
-  initialize : (products) ->
+  initialize : (initialLat, initialLng) ->
     google.maps.Map.prototype.markers = []
 
     google.maps.Map.prototype.addMarker = (marker) ->
@@ -12,12 +12,12 @@ GMaps =
         marker.setMap(null)
 
     parentLocationLat = parentLocationLng = 0
-    if products.length is not 0
-      parentLocationLat = products[0].lat
-      parentLocationLng = products[0].lon
+
+    initialLng ||= 0
+    initialLng ||= 0
 
     myOptions =
-      center: new google.maps.LatLng(parentLocationLat, parentLocationLng)
+      center: new google.maps.LatLng(initialLat, initialLng)
       zoom: 12
       mapTypeControl: false
       zoomControlOptions:
@@ -26,8 +26,8 @@ GMaps =
       streetViewControl: false
 
     @map = new google.maps.Map(document.getElementById('search_map'), myOptions)
+    #@bounds = new google.maps.LatLngBounds()
 
-    GMaps.createMarkers(products)
     google.maps.event.addListener @map, 'dragend',      -> GMaps.setBoundsValues()
     google.maps.event.addListener @map, 'zoom_changed', -> GMaps.setBoundsValues()
 
@@ -49,6 +49,8 @@ GMaps =
 
       marker.setMap @map
       @map.addMarker marker
+      #@bounds.extend myLatlng
+    #@map.fitBounds(@bounds)
 
   setBoundsValues : ->
     latLngBounds = @map.getBounds()

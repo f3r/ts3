@@ -9,6 +9,10 @@ module Search
       column :city_id,          :integer
       column :min_price,        :integer
       column :max_price,        :integer
+      column :min_lat,          :string
+      column :max_lat,          :string
+      column :min_lng,          :string
+      column :max_lng,          :string
 
       attr_reader :category_ids
       attr_reader :amenity_ids
@@ -41,6 +45,12 @@ module Search
       add_equals_condition("products.#{self.price_field}", self.price_range)
       add_equals_condition('products.category_id', self.category_ids)
       add_amenities_condition('products.amenities_search', self.amenity_ids)
+
+      if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? &&  !self.max_lng.blank?
+        add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat, self.max_lat])
+        add_sql_condition(['lon BETWEEN ? AND ?' , self.min_lng, self.max_lng])
+      end
+
       add_filters # From override
     end
 
@@ -113,7 +123,7 @@ module Search
     end
     
     def currency
-      Currency.find(self.currency_id)
+      Currency.find(self.currency_id) if self.currency_id
     end
 
     def price_range_bounds

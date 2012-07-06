@@ -7,6 +7,10 @@ class ListingsController < PrivateController
   end
 
   def new
+    if resource_class.user_reached_limit?(current_user)
+      flash[:notice] = t('products.user_reached_limit')
+      redirect_to edit_listing_path(collection.first)
+    end
     @resource = resource_class.new
   end
 

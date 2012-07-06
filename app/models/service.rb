@@ -61,6 +61,10 @@ class Service < ActiveRecord::Base
     [['hour(s)', 'hours']]
   end
 
+  def self.user_reached_limit?(user)
+    self.manageable_by(user).count >= 1
+  end
+
   def price_unit
     self.class.price_unit
   end

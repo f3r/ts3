@@ -29,7 +29,7 @@ module ProductsHelper
   end
 
   def map_markers_json(results)
-    results.collect{|p| {id: p.id, title: p.title, url: seo_product_url(p), lat: p.lat, lon: p.lon}}.to_json
+    results.reject{|p| !p.geocoded? }.collect{|p| {id: p.id, title: p.title, url: seo_product_url(p), lat: p.lat, lon: p.lon}}.to_json
   end
 
   def transaction_length_options

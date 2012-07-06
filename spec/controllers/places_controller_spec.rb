@@ -33,7 +33,7 @@ describe ListingsController do
 
   context "Wizard" do
     before(:each) do
-      @place = create(:place, :user => @agent)
+      @place = create(:property, :user => @agent)
     end
 
     it "won't allow Guest to edit a place he doesn't own" do
@@ -97,7 +97,7 @@ describe ListingsController do
 
   context "Management" do
     before(:each) do
-      @place = create(:place, :user => @agent)
+      @place = create(:property, :user => @agent)
     end
 
     it "shows my places" do

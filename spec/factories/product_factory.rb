@@ -1,4 +1,8 @@
 FactoryGirl.define do
+  factory :category do
+    name { Faker::Lorem.words(2).to_sentence }
+  end
+
   factory :product do
     user
     title        { Faker::Lorem.words(2).to_sentence }

@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   include User::Social
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
-                  :remember_me, :pref_language, :pref_currency, :pref_size_unit, :pref_city, :role, :passport_number, :address_attributes, :delete_avatar
+                  :remember_me, :pref_language, :pref_currency, :pref_size_unit, :pref_city, :passport_number, :signup_role, :address_attributes, :delete_avatar
 
   belongs_to :prefered_city, :class_name => 'City', :foreign_key => 'pref_city'
 
@@ -98,6 +98,11 @@ class User < ActiveRecord::Base
 
   def name=(a_name)
     self.first_name, self.last_name = a_name.split(' ', 2)
+  end
+
+  def signup_role=(a_role)
+    return false unless [:user, :agent].include?(a_role.to_sym)
+    self.role = a_role
   end
 
   def admin?

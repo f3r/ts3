@@ -10,6 +10,7 @@ en:
     invisible:          'Invisible'
     title:              'Title'
     description:        'Description'
+    user_reached_limit: 'You cannot add more listings'
     wizard:
       what_city:        'What city?'
       description_title: Description

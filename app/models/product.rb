@@ -81,14 +81,18 @@ class Product < ActiveRecord::Base
     [a_currency.symbol, amount]
   end
 
-  def after_update_address
-  end
-
   def full_address
     [address_1, address_2, city.name, city.state, city.country].compact.join(', ')
   end
 
+  def geocoded?
+    self.lat.present? && self.lon.present?
+  end
+
   protected
+
+  def after_update_address
+  end
 
   def convert_prices_to_usd
     return true unless currency

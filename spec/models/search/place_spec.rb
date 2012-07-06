@@ -11,6 +11,14 @@ describe Search::Property do
       @search.city_id = 1
       @search.city_id.should == 1
     end
+    
+    it "supports currency" do
+      curr = create(:currency)
+      @search.currency = curr
+      @search.currency.should == curr
+      @search.currency_id.should == curr.id
+    end
+    
   end
 
   context "Results" do
@@ -34,9 +42,11 @@ describe Search::Property do
     end
 
     it "calculates price filters" do
+      @search.currency = create(:currency,:currency_code => 'USD')
       min, max = @search.price_range_bounds
+      
       min.should == 1000
-      max.should == 5000
+      max.should == 4990
 
       @search.category_ids = [@pt1.id]
       min, max = @search.price_range_bounds

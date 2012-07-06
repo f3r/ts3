@@ -12,7 +12,7 @@ class SearchController < ApplicationController
     end
 
     @search = searcher.new(params[:search])
-    @search.currency = current_currency.currency_code
+    @search.currency ||= current_currency
     @search.city_id = @city.id if @city
     @results = @search.results
     

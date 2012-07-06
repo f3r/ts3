@@ -1,6 +1,6 @@
 defaults: &defaults
   SITE_URL:             http://localhost:3000
-  PRODUCT_CLASS_NAME:   Property
+  PRODUCT_CLASS_NAME:   Service
 
   # Database and CDN
   S3_ACCESS_KEY_ID:     AKIAJOJEIAZ6LOVHDFDA
@@ -20,14 +20,13 @@ defaults: &defaults
   RAKISMET_URL:         http://localhost:3005
   PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
   PAYPAL_MODE:          test
+  COOKIE_STORE_KEY:     _TSE_Session
 
 development:
   <<: *defaults
   S3_BUCKET:        squarestays-img-dev
-  COOKIE_STORE_KEY: _SquareStaysDevelopmentBackEnd_session
 
 test:
   <<: *defaults
   STORAGE:          filesystem
   S3_BUCKET:        squarestays-img-test
-  COOKIE_STORE_KEY: _SquareStaysTestBackEnd_session

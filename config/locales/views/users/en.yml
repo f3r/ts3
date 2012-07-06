@@ -13,16 +13,16 @@ en:
     email:                      E-mail
     email_address:              E-Mail Address
     email_example:              e.g. mail@mail.com
-    billing_address:            Billing Address                                                        
-    unconfirmed_email:          Unconfirmed email                                                      
-    cancel_email_change:        Cancel email change                                                    
-    birthdate:                  Birthdate                                                              
-    gender:                     Gender                                                                 
+    billing_address:            Billing Address
+    unconfirmed_email:          Unconfirmed email
+    cancel_email_change:        Cancel email change
+    birthdate:                  Birthdate
+    gender:                     Gender
     gender_undisclosed:         Undisclosed
     gender_unknown:             Undisclosed
-    gender_male:                Male                                                                   
-    gender_female:              Female                                                                 
-    mobile_phone:               Mobile Phone Number                                                    
+    gender_male:                Male
+    gender_female:              Female
+    mobile_phone:               Mobile Phone Number
     passport_number:            Passport number
     password:                   Password
     confirm_password:           Confirm Password
@@ -54,9 +54,11 @@ en:
                                   using your existing accounts!
       create_new_account:         Create New Account
       create_account:             Create account
+      sign_up_as_user:            Sign up as a Senior
+      sign_up_as_agent:           Sign up as a Carer
       confirm:                    Confirm
       i_accept_the:               I accept the
-      switch_to_login:            Already have an account? Sign in 
+      switch_to_login:            Already have an account? Sign in
       here:                       Here
       create_an_account_using:    Create an Account using
       reset_password:             Reset Password
@@ -79,7 +81,7 @@ en:
     section_header_billing_address:   Billing Address
     section_header_user_password:     Password
     section_header_bank_account:      Bank Account
-    
+
     bank_accounts:
       holder_name:          Holder Name
       account_number:       Account number

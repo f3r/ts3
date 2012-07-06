@@ -16,9 +16,3 @@
 
       %li
         = render 'price_filters'
-:javascript
-  $(document).ready(function() {
-    if(window.created_map){
-      GMaps.createMarkers(#{map_markers_json(@results)})
-    }
-  });

@@ -123,7 +123,7 @@ module Search
     end
     
     def currency
-      Currency.find(self.currency_id)
+      Currency.find(self.currency_id) if self.currency_id
     end
 
     def price_range_bounds

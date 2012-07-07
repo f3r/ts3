@@ -3,6 +3,8 @@ include GeneralHelper
 class Place < ActiveRecord::Base
   using_access_control
 
+  STAY_UNITS = ["weeks", "months"]
+
   geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
   validates_presence_of   [:title, :place_type_id, :num_bedrooms, :max_guests, :city_id, :user_id], :message => "101"

@@ -1,5 +1,4 @@
 DynamicSitemaps::Sitemap.draw do
-
   # default per_page is 50.000 which is the specified maximum.
   # TODO
   # Will move this config

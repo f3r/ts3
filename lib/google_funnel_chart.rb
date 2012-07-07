@@ -70,3 +70,5 @@ module GoogleFunnelChart
     end
   end
 end
+
+ActionView::Base.send :include, GoogleFunnelChart::Helpers

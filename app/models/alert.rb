@@ -10,7 +10,6 @@ class Alert < ActiveRecord::Base
   belongs_to :user
   serialize :query
   serialize :results
-  
   belongs_to :search, :class_name => SiteConfig.product_class.searcher.name
   
   accepts_nested_attributes_for :search
@@ -20,14 +19,29 @@ class Alert < ActiveRecord::Base
   def self.send_alerts
     alerts = Alert.find_by_sql(["
       SELECT * from alerts 
-      WHERE ((schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?)) AND active = ?",
+      WHERE ((schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?)) AND active and alert_type = ?",
       "daily", Time.now - 1.day,
       "weekly", Time.now - 1.week,
       "monthly", Time.now - 1.month,
-      true
+      SiteConfig.product_name.capitalize
     ])
-      
-    #TODO Add logic to send the alert mails      
+    
+    if !alerts.blank?
+        for alert in alerts
+          if alert.valid_alert?
+            #TODO: REFINE REFINE
+            new_results = []
+            recently_added = []
+            if alert.search.count > 0
+              city = City.find(alert.search.city_id)
+              mailer = AlertMailer.send_alert(alert.user, alert, city, new_results, recently_added)
+              if mailer.deliver
+                alert.update_delivered(new_results) #if new_results
+              end
+            end
+          end
+        end
+    end
   end
   
   # keeps alerts for a while, avoids breaking links sent through email
@@ -50,6 +64,31 @@ class Alert < ActiveRecord::Base
     params
   end
   
+  def valid_alert?
+    #TODO Check if the alert is still valid
+    true
+  end  
+  
+  def update_delivered(new_results)
+    new_results_ids = new_results.map{|x| x[:id]}
+    results_ids = (self.results + new_results_ids).uniq
+    ActiveRecord::Base.record_timestamps = false
+    self.update_attributes({:delivered_at => Date.today, :results => results_ids})
+    ActiveRecord::Base.record_timestamps = true
+  end
+  
+  
+  def get_results(opts = {})
+    search = self.search
+    resource_class = search.resource_class
+    if opts[:search_type] == "new_results"
+      exclude_ids = self.results
+      if exclude_ids.present?
+        search.add_sql_condition(["#{resource_class.table_name}.id not in (?)", exclude_ids])
+      end
+    end
+    get_full_results(search)
+  end
   
   private    
     def set_search_code
@@ -76,8 +115,16 @@ class Alert < ActiveRecord::Base
       self.delivered_at = Date.today
     end
     
-    def valid_alert?
-      #TODO Check if the alert is still valid
+    def get_full_results(search)
+      search = search.detach
+      results = []
+      results += search.results.all.to_a
+      for page in (2..search.total_pages)
+        search = search.detach
+        search.current_page = page
+        results += search.results.all.to_a
+      end
+      results
     end
   
 end

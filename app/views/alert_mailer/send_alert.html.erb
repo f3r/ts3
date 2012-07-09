@@ -1,52 +1,14 @@
 
 <h2>Dear <%= @user.first_name %>, here is your <%= @alert.schedule %> alert</h2>
 
-<% if !@alert["query"]["city_id"].blank? %>
+<% if !@city %>
   <li><%= @city.cached_complete_name %></li>
 <% end %>
 
-<% if !@alert["query"]["min_price"].blank? %>
-  <li>Minimum price: <%= "#{@alert["query"]["min_price"]}" %></li>
-<% end %>
-
-<% if !@alert["query"]["max_price"].blank? %>
-  <li>Maximum price: <%= "#{@alert["query"]["max_price"]}" %></li>
-<% end %>
-
-<% if !@alert["query"]["guests"].blank? %>
-  <li>Guests: <%= "#{@alert["query"]["guests"]}" %></li>
-<% end %>
-
-<% if !@alert["query"]["check_in"].blank? %>
-  <li>Check in: <%= "#{@alert["query"]["check_in"]}" %></li>
-<% end %>
-
-<% if !@alert["query"]["check_out"].blank? %>
-  <li>Check out: <%= "#{@alert["query"]["check_out"]}" %></li>
-<% end %>
-
-<%= link_to "Edit",  frontend_url("/alerts/#{@alert[:id]}/edit") %>
-<%= link_to "Pause", frontend_url("/alerts/#{@alert[:id]}/pause") %>
-
-<%= image_tag "http://www.google.com/staticmap?center=#{@city.lat},#{@city.lon}&markers=#{@city.lat},#{@city.lon},red&zoom=4&size=150x150" %>
-
-
-<% if !@new_results.blank? %>
-<h3>New results</h3>
-<ul>              
-  <% for place in @new_results %>
-    <li><%= link_to place[:title], seo_place_path(place) %></li>
-  <% end %>
-</ul>
-<% end %>
-
-<% if !@recently_added.blank? %>
-<h3>Recently added</h3>
-<ul>
-  <% for place in @recently_added %>
-    <li><%= link_to place[:title], seo_place_path(place) %></li>
-  <% end %>
-</ul>
-<% end %>
-
-<%= link_to "View more results", frontend_url("/search/code/#{@alert[:search_code]}") %>
+<br/>
+There are (<%= @alert.search.count%>) <%= SiteConfig.product_name.capitalize.pluralize%> matching your criteria.
+<%= link_to "View them", show_search_code_url(@alert[:search_code]) %>
+<br/><br/><br/>
+Manage your alert 
+<%= link_to "Edit",  edit_alert_url(@alert) %>
+<%= link_to "Pause", pause_alert_url(@alert) %>

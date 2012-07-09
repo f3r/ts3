@@ -3,7 +3,7 @@ module RoutesHelper
     url_for("/#{city.slug}")
   end
 
-  def seo_product_url(product)
+  def seo_product_url(product, url_params = {})
     extra = product.title.dup
     extra.gsub!(/[^\x00-\x7F]+/, '') # Remove anything non-ASCII entirely (e.g. diacritics).
     extra.gsub!(/[^\w_ \-]+/i, '')   # Remove unwanted chars.
@@ -13,6 +13,6 @@ module RoutesHelper
 
     city = product.city
 
-    city_product_url(:city => city.slug, :id => "#{product.id}-#{extra}")
+    city_product_url(url_params.merge(:city => city.slug, :id => "#{product.id}-#{extra}"))
   end
 end

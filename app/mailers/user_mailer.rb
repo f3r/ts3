@@ -4,7 +4,7 @@ class UserMailer < BaseMailer
   def new_question(user, question)
     @user      = user
     @question  = question
-    @place     = question.place
+    @product   = question.product
     @from      = @question.user
     recipients = "#{user.full_name} <#{user.email}>"
     subject    = t('mailers.new_question.subject', :sender => @from.anonymized_name)
@@ -15,8 +15,7 @@ class UserMailer < BaseMailer
   def new_question_reply(user, question)
     @user      = user
     @question  = question
-    #TODO - Remove the place
-    @place     = question.place || question.product
+    @product   = question.product
     recipients = "#{user.full_name} <#{user.email}>"
     subject    = t('mailers.new_question_reply.subject')
 

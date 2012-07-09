@@ -11,6 +11,8 @@ en:
     title:              'Title'
     description:        'Description'
     user_reached_limit: 'You cannot add more listings'
+    reviews_title:      'Reviews'
+    no_reviews:         'No reviews yet'
     wizard:
       what_city:        'What city?'
       description_title: Description

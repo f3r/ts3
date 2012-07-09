@@ -36,4 +36,17 @@ module ProductsHelper
     opts = SiteConfig.product_class.transaction_length_units
     options_for_select(opts)
   end
+
+  def can_review?(product, user)
+    user && !(user == product.user) && !Review.exists?(:user_id => user.id, :product_id => product.id)
+  end
+
+  def stars(n)
+    n = 0 if n < 0 
+    n = 5 if n > 5
+    blank = 5 - n
+    html = n.times.collect{ content_tag(:i, '', :class => 'icon-star big') }.join
+    html << blank.times.collect{ content_tag(:i, '', :class => 'icon-star-empty') }.join
+    content_tag :div, html.html_safe, :class => 'stars', :title => "#{n}/5"
+  end
 end

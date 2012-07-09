@@ -1,0 +1,21 @@
+#reviews-tab.tab-pane
+  .span9.offset1
+    .form-vertical.well
+      = form_for :review, :url => product_reviews_path(@product) do |f|
+        .control-group
+          = f.label :score, 'Rate services on a scale of 1-5'
+          .score-input
+            - (1..5).each do |i|
+              = f.radio_button :score, i, :class => 'star-picker validate[groupRequired[score]]'
+        %br
+        %br
+        .control-group
+          = f.label :body, 'Write a few lines about your experience'
+          = f.text_area :body, :class => 'span7 validate[required]', :rows => 6
+        
+        .actions
+          = f.button t("submit"), :id => 'ask-btn',  :class => "btn btn-primary"
+
+:javascript
+  $('.star-picker').rating({required: true});
+  $('#reviews-tab form').validationEngine();

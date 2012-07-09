@@ -10,7 +10,7 @@ class AlertMailer < BaseMailer
     @recently_added = recently_added
     
     recipients = "#{user.full_name} <#{user.email}>"
-    subject    = 'Your places search alert'
+    subject    = "Your #{SiteConfig.product_name.downcase.pluralize} search alert"
 
     mail(:to => recipients, :subject => subject)
   end

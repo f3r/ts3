@@ -60,7 +60,7 @@ HeyPalFrontEnd::Application.routes.draw do
       put :sort, :on => :collection
     end
   end
-  
+
   resources :products do
     resources :questions do
       post :reply_to_message
@@ -77,8 +77,8 @@ HeyPalFrontEnd::Application.routes.draw do
       get 'unpause' => 'alerts#unpause'
     end
   end
-  match '/search/code/:search_code' => 'search#code', :as => :show_search_code
-  match '/search/alert/:alert_id' => 'search#alert', :as => :show_search_alert
+  match '/search/code/:search_code' => 'search#code',  :as => :show_search_code
+  match '/search/alert/:alert_id'   => 'search#alert', :as => :show_search_alert
 
   match '/my_places'          => 'places#index',              :as => :my_places
   match '/get_place_path'     => 'places#get_place_path',     :as => :get_place_path

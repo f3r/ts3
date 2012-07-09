@@ -3,7 +3,7 @@ class Alert < ActiveRecord::Base
 
   validates_presence_of [:user_id, :schedule]
   validates_inclusion_of :delivery_method, :in => ["email", "sms", "email_sms"]
-  validates_inclusion_of :schedule, :in => ["daily", "weekly", "monthly"]
+  validates_inclusion_of :schedule,        :in => ["daily", "weekly", "monthly"]
 
   before_create :set_search_code
   before_create :set_delivered_at
@@ -20,11 +20,9 @@ class Alert < ActiveRecord::Base
   default_scope where(:deleted_at => nil, :alert_type => SiteConfig.product_name)
 
   def self.send_alerts
-    alerts = Alert.find_by_sql(["
-      SELECT * from alerts
-      WHERE ((schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?)) AND active and alert_type = ?",
-      "daily", Time.now - 1.day,
-      "weekly", Time.now - 1.week,
+    alerts = Alert.where(["((schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?)) AND active and alert_type = ?",
+      "daily",   Time.now - 1.day,
+      "weekly",  Time.now - 1.week,
       "monthly", Time.now - 1.month,
       SiteConfig.product_name.capitalize
     ])

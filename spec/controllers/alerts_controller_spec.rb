@@ -9,20 +9,20 @@ describe AlertsController do
   it "creates an alert" do
     login_as @user
     expect {
-      post :create, :alert => {:schedule => "monthly", "delivery_method"=>"email", :search_attributes => {"city_id" => @city.id}}
+      post :create, :alert => {:schedule => "monthly", :delivery_method =>"email", :search_attributes => {:city_id => @city.id}}
     }.to change(Alert, :count).by(1)
   end
 
   it "creates a search" do
     login_as @user
     expect {
-      post :create, :alert => {:schedule => "monthly", "delivery_method"=>"email", :search_attributes => {"city_id" => @city.id}}
+      post :create, :alert => {:schedule => "monthly", :delivery_method =>"email", :search_attributes => {:city_id => @city.id}}
     }.to change(Search::Base, :count).by(1)
   end
 
   it "creates a search of correct type" do
     login_as @user
-    post :create, :alert => {:schedule => "monthly", "delivery_method"=>"email", :search_attributes => {"city_id" => @city.id}}
+    post :create, :alert => {:schedule => "monthly", :delivery_method =>"email", :search_attributes => {:city_id => @city.id}}
     response.should be_redirect
     last_search = Search::Base.last
     last_search.class.should == SiteConfig.product_class.searcher
@@ -30,7 +30,7 @@ describe AlertsController do
 
   it "soft deletes an alert" do
     login_as @user
-    new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {"city_id" => @city.id})
+    new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {:city_id => @city.id})
     expect {
       put :destroy, :id => new_alert.id
     }.to change(Alert, :count).by(-1)
@@ -41,7 +41,7 @@ describe AlertsController do
 
   it "pauses an alert" do
     login_as @user
-    new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {"city_id" => @city.id})
+    new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {:city_id => @city.id})
     new_alert.active = true
     new_alert.save
     post :pause, :id => new_alert.id
@@ -52,7 +52,7 @@ describe AlertsController do
 
   it "unpauses an alert" do
     login_as @user
-    new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {"city_id" => @city.id})
+    new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {:city_id => @city.id})
     new_alert.active = false
     new_alert.save
     post :unpause, :id => new_alert.id

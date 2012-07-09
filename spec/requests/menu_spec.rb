@@ -48,7 +48,7 @@ describe "Menu" do
       end
 
       it "shows new again" do
-        service = create(:place, :user => @agent)
+        service = create(:property, :user => @agent)
         visit "/"
         find(:xpath,"/html/body/header/div[2]/div/div/div/div/ul[2]/li/a")[:href].should == "/listings/new"
       end

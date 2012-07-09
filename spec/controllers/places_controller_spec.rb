@@ -14,7 +14,7 @@ describe ListingsController do
     it "creates a place" do
       login_as @agent
       expect {
-        post :create, :listing => attributes_for(:place, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
+        post :create, :listing => attributes_for(:property, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
         response.should be_redirect
       }.to change(Property, :count).by(1)
     end
@@ -22,7 +22,7 @@ describe ListingsController do
     it "doens't create a place with validation errors" do
       login_as @agent
       expect {
-        post :create, :listing => attributes_for(:place, :title => nil, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
+        post :create, :listing => attributes_for(:property, :title => nil, :city_id => @city.id, :category_id => @category.id, :currency_id => @currency.id)
 
         response.should be_success
       }.to_not change(Property, :count)

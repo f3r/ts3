@@ -20,7 +20,8 @@ module MessagesHelper
   end
 
   def render_target(target, suffix)
-    render("messages/target/inquiry_#{suffix}", :target => target)
+    listing = target.product.specific if target && target.product
+    render("messages/target/inquiry_#{suffix}", :target => target, :listing => listing)
   end
 
 

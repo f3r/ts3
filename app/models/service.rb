@@ -93,6 +93,10 @@ class Service < ActiveRecord::Base
     end
   end
 
+  def inquiry_photo
+    nil
+  end
+
   def fill_in_address
     if self.user.address.present?
       self.lat = self.user.address.lat
@@ -116,7 +120,20 @@ class Service < ActiveRecord::Base
   def display_name
     self.title
   end
-  
+
+
+  def language_ids=(ids)
+    self.language_1_cd, self.language_2_cd, self.language_3_cd = ids
+  end
+
+  def language_ids
+    ids = []
+    ids << self.language_1_cd if self.language_1_cd
+    ids << self.language_2_cd if self.language_2_cd
+    ids << self.language_3_cd if self.language_3_cd
+    ids
+  end
+
   def spoken_languages
     langs = []
     langs << self.language_1.capitalize if self.language_1

@@ -15,12 +15,17 @@
         .controls
           = f.text_field :price_per_hour, :class => "input-small validate[required] autosave"
           = @resource.currency.label
-      .control-group.required
-        = f.label :language_1_cd, t("services.wizard.languages"), :class => 'control-label'
+      .control-group
+        = f.label :languages_ids, t("services.wizard.languages"), :class => 'control-label'
         .controls.languages
-          = f.select :language_1_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-          = f.select :language_2_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-          = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true          
+          - Service.language_1s.each do |key, id|
+            = label_tag "language_#{id}" do
+              = check_box_tag 'listing[language_ids][]', id, @resource.language_ids.include?(id), :id => "language_#{id}"
+              = key.capitalize
+          - if false
+            = f.select :language_1_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
+            = f.select :language_2_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
+            = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true          
       .control-group.required
         = f.label :seeking, t("services.wizard.seeking_title"), :class => 'control-label'
         .controls

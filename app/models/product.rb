@@ -46,6 +46,13 @@ class Product < ActiveRecord::Base
     end
   end
 
+  # Photo representation for the inquiry
+  def inquiry_photo
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    end
+  end
+
   def publish!
     self.published = true
     self.save

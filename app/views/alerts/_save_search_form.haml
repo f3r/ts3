@@ -1,81 +1,43 @@
-= form_tag @current_action == "edit" ? alert_path(alert_params['id']) : alerts_path, :class => "form-horizontal", :method => @current_action == "edit" ? :put : :post do
-
-  = hidden_field_tag "query[currency]", alert_params['query']['currency']
-  = hidden_field_tag "alert_type", alert_params['alert_type']
-
+- extra_fields = nil
+= form_for @alert, :html => {:class => "form-horizontal"} do |f|  
   .modal-header
     %h3=t(@current_action == "edit" ? "alerts.edit_alert" : "alerts.create_alert")
   .modal-body
     %fieldset
       .column1
         .control-group
-          %label{:class => "control-label"}= t("alerts.settings")
-          .controls
-            = select_tag "schedule", options_for_select([[t("alerts.daily"), "daily"], [t("alerts.weekly"), "weekly"], [t("alerts.monthly"), "monthly"]], alert_params['schedule'])
-            = select_tag "delivery_method", options_for_select([[t("alerts.email"), "email"]], alert_params['delivery_method'])
-        .control-group
+        %label{:class => "control-label"}= t("alerts.settings")
+        .controls
+          = select "alert", 'schedule', options_for_select([[t("alerts.daily"), "daily"], [t("alerts.weekly"), "weekly"], [t("alerts.monthly"), "monthly"]], @alert.schedule)
+          = select 'alert', 'delivery_method', options_for_select([[t("alerts.email"), "email"]], @alert.delivery_method)
+        = f.fields_for :search do |search_form|
+          = search_form.hidden_field :currency_id
+          .control-group
           %label{:class => "control-label"}= t("places.search.city")
           .controls
-            = select_tag "query[city_id]", options_for_select(cities_options, alert_params['query']['city_id'])
-        .control-group
-          %label{:class => "control-label"}= t("places.guests")
-          .controls
-            = select_tag "query[guests]", options_for_select(max_guest_options, alert_params['query']['guests'])
-        .control-group
-          %label{:class => "control-label"}= t("places.search.dates")
-          .controls
-            = text_field_tag "query[check_in]", alert_params['query']['check_in'], :placeholder => t("places.search.arriving_on"), :class => 'span2 check-in-picker', "data-date" => :from, 'autocomplete' => 'off'
-            = text_field_tag "query[check_out]", alert_params['query']['check_out'], :placeholder => t("places.search.departing_on"), :class => 'span2 check-out-picker', "data-date" => :to, 'autocomplete' => 'off'
-        .control-group
+            = search_form.select(:city_id, options_for_select(cities_options, @alert.search.city_id))
+          = render_overridable_partial('save_search_fields', :search_form => search_form)
+          .control-group
           %label{:class => "control-label"}= t("places.search.sort_by")
           .controls
-            = select_tag "query[sort]", options_for_select(sort_options, alert_params['query']['sort'] || 'price_highest'), :class => 'medium'
-        .control-group
+            = search_form.select :sort_by, options_for_select(@alert.search.sort_options, @alert.search.sort_by || 'price_highest'), :class => 'medium'
+          .control-group
           %label{:class => "control-label"}= t("places.search.minimum_price")
           .controls
             .input-prepend
-              %span.add-on= get_current_currency.label
-              = text_field_tag "query[min_price]", alert_params['query']['min_price'], :placeholder => t("places.search.minimum_price"), :class => 'span2', 'autocomplete' => 'off'
-        .control-group
+              %span.add-on= current_currency.label
+              = search_form.text_field :min_price, :placeholder => t("places.search.minimum_price"), :class => 'span2', 'autocomplete' => 'off'
+          .control-group
           %label{:class => "control-label"}= t("places.search.maximum_price")
           .controls
             .input-prepend
-              %span.add-on= get_current_currency.label
-              = text_field_tag "query[max_price]", alert_params['query']['max_price'], :placeholder => t("places.search.maximum_price"), :class => 'span2', 'autocomplete' => 'off'
+              %span.add-on= current_currency.label
+              = search_form.text_field :max_price, :placeholder => t("places.search.maximum_price"), :class => 'span2', 'autocomplete' => 'off'
+              -# I am unable to get the search form out of the scope
+              - extra_fields = render_overridable_partial('save_search_fields_extra', :search_form => search_form)
       .column2
-        .control-group
-          %label{:class => "control-label"}= t("places.search.type")
-          - place_types_list.each do |name, id, slug|
-            .controls
-              %label.checkbox
-                = check_box_tag "query[place_type_ids][]", id, (alert_params['query']['place_type_ids'] && alert_params['query']['place_type_ids'].include?(id.to_s)), :id => "#{slug}_filter"
-                = name
-
+        = extra_fields
+        
   .modal-footer
     %button.btn{:onclick => "$('.modal').modal('hide'); return false;"}=t("cancel")
     %button.btn.btn-primary=t("submit")
-
-:javascript
-  // Initialize the date pickers
-  $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker({
-    dateFormat: 'yy-mm-dd',
-    minDate: +1,
-    onSelect: function(selectedDate) {
-      var me = $(this);
-      var who = me.attr("data-date");
-      var instance = me.data("datepicker");
-
-      var date = $.datepicker.parseDate(
-            instance.settings.dateFormat ||
-            $.datepicker._defaults.dateFormat,
-            selectedDate, instance.settings);
-
-      if (who == 'from') {
-        from = me.next();
-        from.datepicker("option", "minDate", date);
-      } else {
-        to = me.prev();
-        to.datepicker("option", "maxDate", date);
-      }
-    }
-  });

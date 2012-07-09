@@ -25,9 +25,8 @@
                       = link_to t('products.my_listings'), listings_path
                   %li{:class => @current_controller == "places" && @current_action == "favorite_places" ? "active" : ""}
                     = link_to t("products.my_favorites"), favorites_search_index_path
-                  - if false
-                    %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
-                      = link_to t("template.header.menu.my_alerts"), alerts_path
+                  %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
+                    = link_to t("template.header.menu.my_alerts"), alerts_path
 
 
             - else

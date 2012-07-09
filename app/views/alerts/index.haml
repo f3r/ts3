@@ -1,10 +1,13 @@
+- disable_query_col = true
+
 - if @alerts.blank?
   .alert.alert-info= t("alerts.no_alerts")
 - else
   %table.table.table-striped.alerts
     %tr
       %th= t("alerts.status")
-      %th= t("alerts.query")
+      - if not disable_query_col
+        %th= t("alerts.query")
       %th= t("alerts.schedule")
       %th= t("alerts.delivery_method")
       %th
@@ -15,34 +18,35 @@
             %span.label.label-success= t("alerts.active")
           - else
             %span.label= t("alerts.inactive")
-        %td
-          %ul
-            - if !alert["query"]["min_price"].blank?
-              %li= "#{t("alerts.minimum_price")}: #{alert["query"]["min_price"]}"
-            -  if !alert["query"]["max_price"].blank?
-              %li= "#{t("alerts.maximum_price")}: #{alert["query"]["max_price"]}"
-            - if !alert["query"]["guests"].blank?
-              %li= "#{t("places.guests")}: #{alert["query"]["guests"]}"
-            - if !alert["query"]["check_in"].blank?
-              %li= "#{t("alerts.check_in")}: #{alert["query"]["check_in"]}"
-            - if !alert["query"]["check_out"].blank?
-              %li= "#{t("alerts.check_out")}: #{alert["query"]["check_out"]}"
+        - if not disable_query_col
+          %td
+            %ul
+              - if !alert["query"]["min_price"].blank?
+                %li= "#{t("alerts.minimum_price")}: #{alert["query"]["min_price"]}"
+              -  if !alert["query"]["max_price"].blank?
+                %li= "#{t("alerts.maximum_price")}: #{alert["query"]["max_price"]}"
+              - if !alert["query"]["guests"].blank?
+                %li= "#{t("places.guests")}: #{alert["query"]["guests"]}"
+              - if !alert["query"]["check_in"].blank?
+                %li= "#{t("alerts.check_in")}: #{alert["query"]["check_in"]}"
+              - if !alert["query"]["check_out"].blank?
+                %li= "#{t("alerts.check_out")}: #{alert["query"]["check_out"]}"
         %td= t("alerts.#{alert["schedule"]}")
         %td= t("alerts.#{alert["delivery_method"]}")
         %td
           %div.btn-group
-            = link_to alert_path(alert['id']), :class => "results btn btn-small" do
+            = link_to show_search_alert_path(alert['id']), :class => "results btn btn-small" do
               %i.icon-search
               =t("alerts.view_results")                
             = link_to edit_alert_path(alert['id']), :class => "edit btn btn-small" do
               %i.icon-cog
               =t("alerts.settings")                
             - if alert["active"]
-              = link_to alert_pause_path(alert['id']), :class => "pause btn btn-small" do
+              = link_to pause_alert_path(alert['id']), :class => "pause btn btn-small" do
                 %i.icon-pause
                 =t("alerts.pause")                
             - else
-              = link_to alert_unpause_path(alert['id']), :class => "unpause btn btn-small" do
+              = link_to unpause_alert_path(alert['id']), :class => "unpause btn btn-small" do
                 %i.icon-play
                 =t("alerts.unpause")                
             = link_to alert_path(alert['id']), :class => "delete btn btn-danger", :method => :delete, :confirm => t("are_you_sure") do

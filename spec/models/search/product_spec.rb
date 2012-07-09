@@ -7,6 +7,9 @@ describe Search::Product do
   end
 
   it "searches amenities" do
+    am1 = create(:amenity, :id => 3)
+    am1 = create(:amenity, :id => 4)
+    am1 = create(:amenity, :id => 1)
     @search.amenity_ids = [3, 4, 1]
 
     @search.send(:prepare_conditions) # Protected method

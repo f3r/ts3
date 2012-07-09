@@ -84,6 +84,13 @@ class PreviewMails < MailView
   def transaction_pay_owner
     TransactionMailer.pay_owner(an_inquiry)
   end
+  
+  def search_alert
+    alert = Alert.first
+    user = alert.user
+    city = City.find(alert.search.city_id)
+    AlertMailer.send_alert(user, alert, city, [], [])
+  end
 
   private
 

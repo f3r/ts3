@@ -1,52 +1,33 @@
 class AlertsController < ApplicationController
   layout 'plain'
-  before_filter :login_required, :except => [:show_search_code]
+  before_filter :login_required
 
   def index
-    @alerts = Heypal::Alert.list(current_token)
+    @alerts = current_user.alerts
   end
 
-  def show_search_code
-    @search_params = Heypal::Alert.get_search_params(params[:search_code])
-    if !@search_params['query'].blank?
-      redirect_to search_path(@search_params['query'])
-    else
-      flash[:error] = t("alerts.error_invalid_or_expired_search")
-      redirect_to root_path
-    end
-  end
-  
-  def show
-    @alert = Heypal::Alert.show(params[:id], current_token)
-    redirect_to search_path(@alert['alert']['query'])
-  end
-  
   def edit
-    @alert = Heypal::Alert.show(params[:id], current_token)
+    @alert = current_user.alerts.find(params[:id])
     render :layout => false
   end
 
   def create
-    alert_params = params.merge({:access_token => current_token})
-    @alert = Heypal::Alert.create(alert_params)
-
-    if @alert[0] == true
+    @alert = current_user.alerts.new(params[:alert])
+    if @alert.save
       flash[:success] = t("alerts.message_alert_created")
-      redirect_to alerts_path
     else
-      puts @alert[1].inspect
       flash[:error] = t("alerts.error_alert")
-      redirect_to alerts_path
     end
-
+    redirect_to alerts_path
   end
 
   def update
-    @alert = Heypal::Alert.update(params[:id], current_token, params)
-    if @alert[0] == true
+    params[:alert][:search_attributes][:category_ids] = params[:alert][:search_attributes][:category_ids] || []
+    params[:alert][:search_attributes][:amenity_ids]  = params[:alert][:search_attributes][:amenity_ids]  || []
+
+    @alert = current_user.alerts.find(params[:id])
+    if @alert.update_attributes(params[:alert])
       flash[:success] = t("alerts.message_alert_updated")
-    elsif @alert[0] == false && @alert[1]['query'].include?(119)
-      flash[:error] = t("alerts.error_alert_check_dates")
     else
       flash[:error] = t("alerts.error_alert")
     end
@@ -54,8 +35,8 @@ class AlertsController < ApplicationController
   end
 
   def destroy
-    @alert = Heypal::Alert.delete(params[:id], current_token)
-    if @alert['stat'] == 'ok'
+    @alert = current_user.alerts.find(params[:id])
+    if @alert.soft_delete
       flash[:success] = t("alerts.message_alert_deleted")
     else
       flash[:error] = t("alerts.error_alert")
@@ -64,8 +45,9 @@ class AlertsController < ApplicationController
   end
 
   def pause
-    @alert = Heypal::Alert.update(params[:alert_id], current_token, {:active => false})
-    if @alert[0] == true
+    @alert = current_user.alerts.find(params[:id])
+    @alert.active = false
+    if @alert.save
       flash[:success] = t("alerts.message_alert_paused")
     else
       flash[:error] = t("alerts.error_alert")
@@ -74,11 +56,10 @@ class AlertsController < ApplicationController
   end
 
   def unpause
-    @alert = Heypal::Alert.update(params[:alert_id], current_token, {:active => true})
-    if @alert[0] == true
+    @alert = current_user.alerts.find(params[:id])
+    @alert.active = true
+    if @alert.save
       flash[:success] = t("alerts.message_alert_unpaused")
-    elsif @alert[0] == false && @alert[1]['query'].include?(119)
-      flash[:error] = t("alerts.error_alert_check_dates")
     else
       flash[:error] = t("alerts.error_alert")
     end

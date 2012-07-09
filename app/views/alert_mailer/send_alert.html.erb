@@ -1,0 +1,12 @@
+
+<h2>Dear <%= @user.first_name %>, here is your <%= @alert.schedule %> alert</h2>
+<% if @city %>
+  <li><%= @city.cached_complete_name %></li>
+<% end %>
+
+<p>There are (<%= @alert.search.count%>) <%= SiteConfig.product_name.capitalize.pluralize%> matching your criteria. <%= link_to "View them", show_search_code_url(@alert[:search_code]) %></p>
+<br/>
+<p><i> Manage your alert</i> =>
+<%= link_to "Edit",  edit_alert_url(@alert) %> | 
+<%= link_to "Pause", pause_alert_url(@alert) %>
+</p>

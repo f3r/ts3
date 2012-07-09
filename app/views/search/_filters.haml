@@ -1,9 +1,8 @@
 .search-aside
   .panel-wrap
     %ul.panel-expander
-      - if false
-        %li
-          = render 'button_alert'
+      %li
+        = render 'button_alert'
 
       - category_filters = @search.category_filters
       - unless category_filters.empty?

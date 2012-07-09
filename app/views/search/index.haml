@@ -22,10 +22,9 @@
           .sidebar-widget
             = raw(SiteConfig.sidebar_widget)
 
-- if false
-  - if logged_in? && @alert_params
-    #save_search.modal.hide.fade
-      = render :partial => 'alerts/save_search_form', :locals => { :alert_params => @alert_params }
+- if logged_in? && @alert
+  #save_search.modal.hide.fade
+    = render :partial => 'alerts/save_search_form'
 
 :javascript
   $(document).ready(function() {

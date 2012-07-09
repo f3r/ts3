@@ -1,24 +1,18 @@
 module Search
   class Product < Search::Base
-
-  	# Columns that all searches support
-    def self.default_columns
-      super
-
-      column :currency_id,      :integer
-      column :city_id,          :integer
-      column :min_price,        :integer
-      column :max_price,        :integer
-      column :min_lat,          :string
-      column :max_lat,          :string
-      column :min_lng,          :string
-      column :max_lng,          :string
-
-      attr_reader :category_ids
-      attr_reader :amenity_ids
-    end
-
-    default_columns
+  
+    #attr_reader :category_ids
+    #attr_accessor :amenity_ids
+    
+    has_and_belongs_to_many :amenities, 
+                            :class_name => "::Amenity", 
+                            :join_table => 'search_amenities', 
+                            :foreign_key => 'search_id'
+    has_and_belongs_to_many :categories, 
+                      :class_name => "::Category", 
+                      :join_table => 'search_categories', 
+                      :foreign_key => 'search_id'
+                            
 
     def order
       self.sort_by ||= 'price_lowest'
@@ -60,20 +54,20 @@ module Search
 
     def category_ids=(ids)
       if ids.kind_of?(String)
+        ids = ids.gsub("[","").gsub("]","")
         ids = ids.split(',')
       end
-      @category_ids = ids
+      super(ids)
     end
 
     # Information for filters
     def category_filters
       filters = []
       current_types = self.category_ids
-
       Category.all.each do |pt|
         self.category_ids = pt.id
         if ((count = self.count) > 0)
-          checked = current_types && current_types.include?(pt.id.to_s)
+          checked = current_types && current_types.include?(pt.id)
           filters << [pt, count, checked]
         end
       end
@@ -88,9 +82,10 @@ module Search
 
     def amenity_ids=(ids)
       if ids.kind_of?(String)
+        ids = ids.gsub("[","").gsub("]","")
         ids = ids.split(',')
       end
-      @amenity_ids = ids
+      super(ids)
     end
 
     def amenity_filters
@@ -162,6 +157,24 @@ module Search
     def convert_to_usd(amount)
       return self.currency.to_usd(amount) * 100 if self.currency
       amount
+    end
+    
+    #We need deep copy of the search - but not tied to the db
+    #So it behaves as new record - and if needed we can save it
+    def detach
+      other = self.class.new
+      other.sort_by = self.sort_by
+      other.currency_id = self.currency_id
+      other.city_id = self.city_id
+      other.min_price = self.min_price
+      other.max_price = self.max_price
+      other.min_lat = self.min_lat
+      other.max_lat = self.max_lat
+      other.min_lng = self.min_lng
+      other.max_lng = self.max_lng
+      other.category_ids = self.category_ids
+      other.amenity_ids = self.amenity_ids
+      other
     end
     
     protected

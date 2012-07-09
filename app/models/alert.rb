@@ -10,9 +10,10 @@ class Alert < ActiveRecord::Base
   before_create :set_alert_type
 
   belongs_to :user
+  belongs_to :search, :class_name => SiteConfig.product_class.searcher.name
+
   serialize :query
   serialize :results
-  belongs_to :search, :class_name => SiteConfig.product_class.searcher.name
 
   accepts_nested_attributes_for :search
 
@@ -28,21 +29,17 @@ class Alert < ActiveRecord::Base
       SiteConfig.product_name.capitalize
     ])
 
-    if !alerts.blank?
-        for alert in alerts
-          if alert.valid_alert?
-            #TODO: REFINE REFINE
-            new_results = []
-            recently_added = []
-            if alert.search.count > 0
-              city = City.find(alert.search.city_id)
-              mailer = AlertMailer.send_alert(alert.user, alert, city, new_results, recently_added)
-              if mailer.deliver
-                alert.update_delivered(new_results) #if new_results
-              end
-            end
-          end
+    alerts.each do |alert|
+      if alert.valid_alert? && alert.search.count > 0
+        new_results    = []
+        recently_added = []
+        city   = City.find(alert.search.city_id)
+        mailer = AlertMailer.send_alert(alert.user, alert, city, new_results, recently_added)
+
+        if mailer.deliver
+          alert.update_delivered(new_results)
         end
+      end
     end
   end
 
@@ -92,41 +89,41 @@ class Alert < ActiveRecord::Base
     get_full_results(search)
   end
 
-  private
-    def set_search_code
-      self.search_code = generate_search_code
-    end
+private
+  def set_search_code
+    self.search_code = generate_search_code
+  end
 
-    def set_alert_type
-      self.alert_type = SiteConfig.product_name.capitalize
-    end
+  def set_alert_type
+    self.alert_type = SiteConfig.product_name.capitalize
+  end
 
-    # used for short url
-    def generate_search_code
-      search_code = Time.now.strftime("%y%m%d#{SecureRandom.urlsafe_base64(4).upcase}")
-      search = Alert.find_by_search_code(search_code)
-      if search
-        self.generate_search_code
-      else
-        search_code
-      end
+  # used for short url
+  def generate_search_code
+    search_code = Time.now.strftime("%y%m%d#{SecureRandom.urlsafe_base64(4).upcase}")
+    # We make sure the search code is unique
+    if Alert.find_by_search_code(search_code)
+      self.generate_search_code
+    else
+      search_code
     end
+  end
 
-    # set initial delivery day as today.
-    def set_delivered_at
-      self.delivered_at = Date.today
-    end
+  # set initial delivery day as today.
+  def set_delivered_at
+    self.delivered_at = Date.today
+  end
 
-    def get_full_results(search)
+  def get_full_results(search)
+    search   = search.detach
+    results  = []
+    results += search.results.all.to_a
+    for page in (2..search.total_pages)
       search = search.detach
-      results = []
+      search.current_page = page
       results += search.results.all.to_a
-      for page in (2..search.total_pages)
-        search = search.detach
-        search.current_page = page
-        results += search.results.all.to_a
-      end
-      results
     end
+    results
+  end
 
 end

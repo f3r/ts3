@@ -1,27 +1,26 @@
 require 'spec_helper'
+
 describe AlertsController do
   before(:each) do
     @user = create(:user)
     @city = create(:city)
     SiteConfig.stub(:product_class).and_return(Service)
+    login_as @user
   end
 
   it "creates an alert" do
-    login_as @user
     expect {
       post :create, :alert => {:schedule => "monthly", :delivery_method =>"email", :search_attributes => {:city_id => @city.id}}
     }.to change(Alert, :count).by(1)
   end
 
   it "creates a search" do
-    login_as @user
     expect {
       post :create, :alert => {:schedule => "monthly", :delivery_method =>"email", :search_attributes => {:city_id => @city.id}}
     }.to change(Search::Base, :count).by(1)
   end
 
   it "creates a search of correct type" do
-    login_as @user
     post :create, :alert => {:schedule => "monthly", :delivery_method =>"email", :search_attributes => {:city_id => @city.id}}
     response.should be_redirect
     last_search = Search::Base.last
@@ -29,7 +28,6 @@ describe AlertsController do
   end
 
   it "soft deletes an alert" do
-    login_as @user
     new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {:city_id => @city.id})
     expect {
       put :destroy, :id => new_alert.id
@@ -40,7 +38,6 @@ describe AlertsController do
   end
 
   it "pauses an alert" do
-    login_as @user
     new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {:city_id => @city.id})
     new_alert.active = true
     new_alert.save
@@ -51,7 +48,6 @@ describe AlertsController do
   end
 
   it "unpauses an alert" do
-    login_as @user
     new_alert = @user.alerts.create(:schedule => "monthly", :delivery_method=>"email", :search_attributes => {:city_id => @city.id})
     new_alert.active = false
     new_alert.save

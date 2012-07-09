@@ -17,4 +17,11 @@ describe Service do
     @service.lon.should == @address.lon
   end
 
+  it "assings multiple languages" do
+    @service = build(:service)
+    @service.language_ids = [0, 1]
+    @service.language_1_cd.should == 0
+    @service.language_2_cd.should == 1
+  end
+
 end

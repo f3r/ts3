@@ -11,6 +11,8 @@
     %li
       %a{:href => '#details-questions', 'data-toggle' => 'tab'}
         = t('jobs.questions', :count => resource.q_and_a.count)
+    %li
+      %a{:href => '#reviews-tab', 'data-toggle' => 'tab'}= t('products.reviews_title')
 
   .tab-content
     = render 'products/services/tabs/main',         :resource => resource
@@ -26,3 +28,9 @@
 
     // Questions Tab
     = render 'questions/questions'
+
+    // Reviews tab
+    - if can_review?(resource, current_user)
+      = render 'reviews/new'
+    - else
+      = render 'reviews/summary'

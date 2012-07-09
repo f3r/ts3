@@ -9,6 +9,7 @@ class Product < ActiveRecord::Base
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
+  has_many   :reviews, :dependent => :destroy
 
   has_many   :q_and_a, :class_name => 'Comment', :dependent => :destroy
 
@@ -87,6 +88,10 @@ class Product < ActiveRecord::Base
 
   def geocoded?
     self.lat.present? && self.lon.present?
+  end
+
+  def review_avg
+    self.reviews.average(:score).to_i
   end
 
   protected

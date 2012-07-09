@@ -28,6 +28,7 @@ class ListingsController < PrivateController
 
   def show
     @my_products = (@resource.user == current_user)
+    @product = @resource.product
 
     render 'search/show'
   end

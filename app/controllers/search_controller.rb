@@ -46,6 +46,7 @@ class SearchController < ApplicationController
 
   def show
     @resource = resource_class.published.find(params[:id])
+    @product = @resource.product
     @owner = @resource.user
   end
 

@@ -65,6 +65,7 @@ HeyPalFrontEnd::Application.routes.draw do
     resources :questions do
       post :reply_to_message
     end
+    resources :reviews, :only => [:create]
   end
 
   ###########################################################################################

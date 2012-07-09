@@ -3,9 +3,9 @@
     %span.value= t("inquiries.inquiry_guests", :count => target.guests)
 - if target.check_in
   .arriving 
-    %span.key= t("inquiries.arriving_on")
-    %span.value= target.check_in
+    %span.key= t("products.inquiries.start_date")
+    %span.value= l(target.check_in, :format => :long)
 - if target.length_in_words
   .stay
-    %span.key= t("inquiries.staying")
+    %span.key= t("products.inquiries.duration")
     %span.value= target.length_in_words

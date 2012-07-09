@@ -30,3 +30,6 @@ en:
       price_lowest: Price (Lowest First)
       price_highest: Price (Highest First)
       category_filters_title: 'Type'
+    inquiries:
+      start_date:       'Date'
+      duration:         'Duration'

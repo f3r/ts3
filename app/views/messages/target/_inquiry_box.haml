@@ -1,17 +1,16 @@
 .inquiry
-  .span2.place
-    = image_tag target.place.primary_photo, :alt => target.place.title
+  - if listing.inquiry_photo
+    .span2.photo
+      = image_tag listing.inquiry_photo, :alt => listing.title
   .span8.details
-    - if false
-      %span.title= link_to inquiry['place_title'], inquiry['place_url']
-      - if inquiry['guests'].present?
-        .guests
-          %span.value= t("inquiries.inquiry_guests", :count => inquiry['guests'])
-      - if inquiry['check_in'].present?
-        .arriving
-          %span.key= t("inquiries.arriving_on")
-          %span.value= inquiry['check_in']
-      - if inquiry['length'].present?
-        .stay
-          %span.key= t("inquiries.staying")
-          %span.value= inquiry['length']
+    %span.title= link_to listing.title, seo_product_url(listing)
+    - if target.guests.present?
+      .guests
+        %span.value= t("inquiries.inquiry_guests", :count => target.guests)
+    - if target.check_in.present?
+      .arriving
+        %span.key= t("products.inquiries.start_date")
+        %span.value= I18n.l(target.check_in, :format => :long)
+      .stay
+        %span.key= t("products.inquiries.duration")
+        %span.value= target.length_in_words

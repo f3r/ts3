@@ -93,6 +93,10 @@ class Service < ActiveRecord::Base
     end
   end
 
+  def inquiry_photo
+    nil
+  end
+
   def fill_in_address
     if self.user.address.present?
       self.lat = self.user.address.lat

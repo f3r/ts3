@@ -1,9 +1,5 @@
 module Search
   class Property < Search::Product
-    default_columns
-    column :guests,           :integer, 1
-    column :check_in,         :date
-    column :check_out,        :date
 
     def resource_class
       ::Property
@@ -43,6 +39,14 @@ module Search
       custom_options = [[I18n.t("places.search.price_size_lowest"), 'price_size_lowest'],
                         [I18n.t("places.search.price_size_highest"), 'price_size_highest']]
       super + custom_options
+    end
+    
+    def detach
+      other = super
+      other.guests = self.guests
+      other.check_in = self.check_in
+      other.check_out = self.check_out
+      other
     end
   end
 end

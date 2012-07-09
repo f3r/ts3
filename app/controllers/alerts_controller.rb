@@ -5,21 +5,6 @@ class AlertsController < ApplicationController
   def index
     @alerts = current_user.alerts
   end
-
-  def show_search_code
-    @alert = Alert.unscoped.find_by_search_code(params[:search_code]) 
-    if !@alert.query.blank?
-      redirect_to search_index_path(@alert.search_params)
-    else
-      flash[:error] = t("alerts.error_invalid_or_expired_search")
-      redirect_to root_path
-    end
-  end
-  
-  def show
-    @alert = current_user.alerts.find(params[:id])
-    redirect_to search_index_path(@alert.search_params)
-  end
   
   def edit
     @alert = current_user.alerts.find(params[:id])
@@ -36,12 +21,13 @@ class AlertsController < ApplicationController
       flash[:error] = t("alerts.error_alert")
       redirect_to alerts_path
     end
-
   end
 
   def update
-    @alert = current_user.alerts.find(params[:id])
+    params[:alert][:search_attributes][:category_ids] = params[:alert][:search_attributes][:category_ids] || []
+    params[:alert][:search_attributes][:amenity_ids] = params[:alert][:search_attributes][:amenity_ids] || []
     
+    @alert = current_user.alerts.find(params[:id])    
     if @alert.update_attributes(params[:alert])
       flash[:success] = t("alerts.message_alert_updated")
     #elsif @alert[0] == false && @alert[1]['query'].include?(119)

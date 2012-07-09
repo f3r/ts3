@@ -35,7 +35,7 @@
         %td= t("alerts.#{alert["delivery_method"]}")
         %td
           %div.btn-group
-            = link_to alert_path(alert['id']), :class => "results btn btn-small" do
+            = link_to show_search_alert_path(alert['id']), :class => "results btn btn-small" do
               %i.icon-search
               =t("alerts.view_results")                
             = link_to edit_alert_path(alert['id']), :class => "edit btn btn-small" do

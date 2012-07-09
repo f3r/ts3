@@ -1,26 +1,10 @@
 module Search
   class Base < ActiveRecord::Base
-    def self.columns
-      @columns ||= []
-    end
-
-    def self.column(name, sql_type = nil, default = nil, null = true)
-      columns << ActiveRecord::ConnectionAdapters::Column.new(name.to_s, default, sql_type.to_s, null)
-    end
-
-    # Columns that all searches support
-    def self.default_columns
-      # Pagination and ordering
-      column :current_page,     :integer, 1
-      column :total_pages,      :integer
-      column :sort_by,          :string
-    end
-
-    # Override the save method to prevent exceptions.
-    def save(validate = true)
-      validate ? valid? : true
-    end
-
+  
+    self.table_name = 'searches'
+        
+    attr_accessor :current_page, :total_pages
+    
     def results
       unless @results
         @results = calculate_results

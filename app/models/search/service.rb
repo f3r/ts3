@@ -1,6 +1,5 @@
 module Search
   class Service < Search::Product
-    default_columns
 
     def resource_class
       ::Service
@@ -15,7 +14,7 @@ module Search
 
     def amenity_filters
       Amenity.searchable.collect do |a|
-        checked = self.amenity_ids && self.amenity_ids.include?(a.id.to_s)
+        checked = self.amenity_ids && self.amenity_ids.include?(a.id)
         count = nil # TODO count
         [a, count, checked]
       end

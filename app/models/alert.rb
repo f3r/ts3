@@ -1,7 +1,7 @@
 require 'securerandom'
 class Alert < ActiveRecord::Base
   
-  validates_presence_of [:query, :user_id, :schedule], :message => "101"
+  validates_presence_of [:user_id, :schedule], :message => "101"
   validates_inclusion_of :delivery_method, :in => ["email", "sms", "email_sms"], :message => "103"
   validates_inclusion_of :schedule, :in => ["daily", "weekly", "monthly"], :message => "103"
   
@@ -10,6 +10,10 @@ class Alert < ActiveRecord::Base
   belongs_to :user
   serialize :query
   serialize :results
+  
+  belongs_to :search, :class_name => SiteConfig.product_class.searcher.name
+  
+  accepts_nested_attributes_for :search
   
   default_scope where(:deleted_at => nil, :alert_type => SiteConfig.product_name)
   

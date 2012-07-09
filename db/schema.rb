@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120704073920) do
+ActiveRecord::Schema.define(:version => 20120707074013) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -53,6 +53,7 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.datetime "deleted_at"
     t.datetime "created_at",                           :null => false
     t.datetime "updated_at",                           :null => false
+    t.integer  "search_id"
   end
 
   add_index "alerts", ["user_id"], :name => "index_alerts_on_user_id"
@@ -158,7 +159,7 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",         :default => "",     :null => false
+    t.string  "page_url",                             :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -534,6 +535,34 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.integer  "place_id"
   end
 
+  create_table "search_amenities", :force => true do |t|
+    t.integer "search_id"
+    t.integer "amenity_id"
+  end
+
+  create_table "search_categories", :force => true do |t|
+    t.integer "search_id"
+    t.integer "category_id"
+  end
+
+  create_table "searches", :force => true do |t|
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.string   "type"
+    t.integer  "currency_id"
+    t.integer  "city_id"
+    t.integer  "min_price"
+    t.integer  "max_price"
+    t.string   "max_lat"
+    t.string   "min_lat"
+    t.string   "min_lng"
+    t.string   "max_lng"
+    t.integer  "guests",      :default => 1
+    t.datetime "check_in"
+    t.datetime "check_out"
+    t.string   "sort_by"
+  end
+
   create_table "services", :force => true do |t|
     t.datetime "created_at",       :null => false
     t.datetime "updated_at",       :null => false
@@ -559,20 +588,20 @@ ActiveRecord::Schema.define(:version => 20120704073920) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
+    t.string   "static_assets_path"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
-    t.string   "color_scheme",                 :default => "default"
-    t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
+    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
-    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
+    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
   end
 

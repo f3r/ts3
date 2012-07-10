@@ -1,5 +1,5 @@
-<%= page_replace("##{dom_id(@parent, 'favorite')}",
-  :partial => 'search/button_favorite', :locals => { :favorable => @parent }) %>
+<%= page_replace("##{dom_id(@resource, 'favorite')}",
+  :partial => 'search/button_favorite', :locals => { :favorable => @resource }) %>
 
-<%= open_modal :share_place_modal, 'search/sharing_options', :place => @parent %>
+<%= open_modal :share_place_modal, 'search/sharing_options', :place => @resource %>
 stButtons.locateElements();

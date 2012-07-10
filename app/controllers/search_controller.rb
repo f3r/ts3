@@ -18,8 +18,7 @@ class SearchController < ApplicationController
     @results = @search.results
 
     @alert = Alert.new
-    @alert.search_id = @search.id
-    @alert_params = @alert
+    @alert.search = @search
 
     respond_to do |format|
       format.js {

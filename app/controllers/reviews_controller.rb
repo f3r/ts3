@@ -4,7 +4,7 @@ class ReviewsController < PrivateController
     @review = @product.reviews.new(params[:review])
     @review.user = current_user
 
-    @listing = @product.specific
+    @resource = @product.specific
 
     if @review.save
       flash[:notice] = 'Review submitted'
@@ -12,6 +12,6 @@ class ReviewsController < PrivateController
       flash[:error] = 'There was an error submitting the review'
     end
 
-    redirect_to seo_product_url(@listing)
+    redirect_to seo_product_url(@resource)
   end
 end

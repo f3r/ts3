@@ -75,7 +75,6 @@ end
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'rspec-rails-uncommitted', "~> 2.0"
   gem 'debugger'
   gem 'jazz_hands'
 end

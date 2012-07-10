@@ -12,6 +12,8 @@ module Search
                       :class_name => "::Category",
                       :join_table => 'search_categories',
                       :foreign_key => 'search_id'
+    
+    belongs_to :currency
 
 
     def order
@@ -111,14 +113,6 @@ module Search
       if self.min_price.present? && self.max_price.present?
         Range.new(self.convert_to_usd(self.min_price), self.convert_to_usd(self.max_price))
       end
-    end
-
-    def currency=(a_currency)
-      self.currency_id = a_currency.id
-    end
-
-    def currency
-      Currency.find(self.currency_id) if self.currency_id
     end
 
     def price_range_bounds

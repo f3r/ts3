@@ -1,5 +1,4 @@
-class QuestionsController < ApplicationController
-  before_filter :login_required
+class QuestionsController < PrivateController
   before_filter :find_product
 
   def create

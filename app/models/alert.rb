@@ -10,14 +10,11 @@ class Alert < ActiveRecord::Base
   before_create :set_alert_type
 
   belongs_to :user
-  belongs_to :search, :class_name => SiteConfig.product_class.searcher.name
-
-  serialize :query
-  serialize :results
+  belongs_to :search, :class_name => Search::Base
 
   accepts_nested_attributes_for :search
 
-  default_scope where(:deleted_at => nil, :alert_type => SiteConfig.product_name)
+  default_scope where(:deleted_at => nil)
 
   def self.send_alerts
     alerts = Alert.where(["((schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?)) AND active and alert_type = ?",
@@ -47,18 +44,6 @@ class Alert < ActiveRecord::Base
     self.deleted_at = Time.now
     self.save
     ActiveRecord::Base.record_timestamps = true
-  end
-
-  def search_params
-    #don't touch the original
-    params = {}
-    query_new = self.query.dup
-    city_slug = City.find(query_new['city_id']).slug
-    params['city'] = city_slug
-    query_new.each do |k, v|
-      params = params.merge({"search[#{k}]" => v})
-    end
-    params
   end
 
   def valid_alert?

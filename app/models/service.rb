@@ -19,10 +19,6 @@ class Service < ActiveRecord::Base
     Search::Service
   end
 
-  def self.manageable_by(user)
-    self.where('products.user_id' => user.id)
-  end
-
   def self.published
     self.where('products.published' => true)
   end

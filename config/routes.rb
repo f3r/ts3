@@ -35,20 +35,6 @@ HeyPalFrontEnd::Application.routes.draw do
                                :sign_up => 'signup',
                                :sign_out => 'logout' }
 
-  resources :places do
-    member do
-      get   :wizard
-      get   :preview
-      put   :update_currency
-      get   :publish_check
-      match :availability
-    end
-
-    resources :comments do
-      post :reply_to_message
-    end
-  end
-
   resources :listings do
     member do
       put   :publish
@@ -77,11 +63,9 @@ HeyPalFrontEnd::Application.routes.draw do
       get 'unpause' => 'alerts#unpause'
     end
   end
+
   match '/search/code/:search_code' => 'search#code',  :as => :show_search_code
   match '/search/alert/:alert_id'   => 'search#alert', :as => :show_search_alert
-
-  match '/my_places'          => 'places#index',              :as => :my_places
-  match '/get_place_path'     => 'places#get_place_path',     :as => :get_place_path
 
   ###########################################################################################
   # Inquiries

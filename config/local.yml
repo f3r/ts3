@@ -28,5 +28,6 @@ development:
 
 test:
   <<: *defaults
+  PRODUCT_CLASS_NAME:   Property
   STORAGE:          filesystem
   S3_BUCKET:        squarestays-img-test

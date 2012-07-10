@@ -40,7 +40,7 @@ class PreviewMails < MailView
 
   def new_message_reply
     user = User.first
-    UserMailer.new_message_reply(user, Message.first)
+    UserMailer.new_message_reply(user, Message.where(['system is null']).first)
   end
 
   ###############################################################
@@ -86,7 +86,7 @@ class PreviewMails < MailView
   end
   
   def search_alert
-    alert = Alert.first
+    alert = Alert.last
     user = alert.user
     city = City.find(alert.search.city_id)
     AlertMailer.send_alert(user, alert, city, [], [])
@@ -97,7 +97,7 @@ class PreviewMails < MailView
   def an_inquiry
     inquiry = Inquiry.new(
       :created_at => 2.days.ago,
-      :target => Place.first,
+      :product => Product.first,
       :user => User.first,
       :check_in => 1.month.from_now.to_date,
       :length_stay => 1,

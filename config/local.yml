@@ -1,6 +1,6 @@
 defaults: &defaults
   SITE_URL:             http://localhost:3000
-  PRODUCT_CLASS_NAME:   Property
+  PRODUCT_CLASS_NAME:   Service
 
   # Database and CDN
   S3_ACCESS_KEY_ID:     AKIAJOJEIAZ6LOVHDFDA
@@ -28,5 +28,6 @@ development:
 
 test:
   <<: *defaults
+  PRODUCT_CLASS_NAME:   Property
   STORAGE:          filesystem
   S3_BUCKET:        squarestays-img-test

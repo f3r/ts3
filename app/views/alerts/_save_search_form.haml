@@ -1,9 +1,8 @@
-.modal-header
-  %h3=t(@current_action == "edit" ? "alerts.edit_alert" : "alerts.create_alert")
-
-.modal-body
-  = form_for @alert, :html => {:class => "form-horizontal"} do |f|
-    = f.fields_for :search do |search_form|
+= form_for @alert, :html => {:class => "form-horizontal"} do |f|
+  = f.fields_for :search do |search_form|
+    .modal-header
+      %h3=t(@current_action == "edit" ? "alerts.edit_alert" : "alerts.create_alert")
+    .modal-body 
       %fieldset
         .column1
           .control-group
@@ -41,6 +40,6 @@
         .column2
           = render_overridable_partial('save_search_fields_extra', :search_form => search_form)
 
-.modal-footer
-  %button.btn{:onclick => "$('.modal').modal('hide'); return false;"}=t("cancel")
-  %button.btn.btn-primary=t("submit")
+      .modal-footer
+        %button.btn{:onclick => "$('.modal').modal('hide'); return false;"}=t("cancel")
+        %button.btn.btn-primary=t("submit")

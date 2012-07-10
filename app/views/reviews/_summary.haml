@@ -5,7 +5,7 @@
     .row
       .span9.offset1
         .average
-          %h2= 'Review average'
+          %h2= t('products.review_average_label')
           = stars(@product.review_avg)
         - reviews = @product.reviews.limit(5)
         - reviews.each do |review|

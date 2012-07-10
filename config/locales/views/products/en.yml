@@ -13,6 +13,9 @@ en:
     user_reached_limit: 'You cannot add more listings'
     reviews_title:      'Reviews'
     no_reviews:         'No reviews yet'
+    review_score_label: 'Rate services on a scale of 1-5'
+    review_body_label:  'Write a few lines about your experience'
+    review_average_label: 'Review average'
     wizard:
       what_city:        'What city?'
       description_title: Description

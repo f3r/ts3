@@ -1,6 +1,6 @@
 module HomeHelper
   def login_path_with_ref
-    black_list = ['/', '/signup', '/login']
+    black_list = ['/', '/signup', '/login', '/users/login', '/users/signup']
     current_path = request.path
 
     if current_path && !black_list.include?(current_path)
@@ -11,7 +11,7 @@ module HomeHelper
   end
 
   def signup_path_with_ref
-    black_list = ['/', '/signup', '/login']
+    black_list = ['/', '/signup', '/login', '/users/login', '/users/signup']
     current_path = request.path
 
     if current_path && !black_list.include?(current_path)

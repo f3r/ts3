@@ -27,7 +27,7 @@
 
   .switch-login
     = t("users.registration.switch_to_login")
-    = link_to t("users.registration.here"), new_user_session_path
+    = link_to t("users.registration.here"), login_path_with_ref
 
 :javascript
   $(document).ready(function(){

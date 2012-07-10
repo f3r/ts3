@@ -23,10 +23,3 @@ class InquiriesController < ApplicationController
   end
 
 end
-
-# def confirm_inquiry
-#   if logged_in? || verify_recaptcha()
-# =>else
-#     @recaptcha_error = true
-#   end
-# end

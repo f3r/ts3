@@ -1,7 +1,6 @@
-class AlertsController < ApplicationController
+class AlertsController < PrivateController
   layout 'plain'
-  before_filter :login_required
-
+  
   def index
     @alerts = current_user.alerts
   end
@@ -12,7 +11,11 @@ class AlertsController < ApplicationController
   end
 
   def create
+    search_params = params[:alert].delete(:search_attributes)
+    @search = resource_class.searcher.new(search_params)
     @alert = current_user.alerts.new(params[:alert])
+    @alert.search = @search
+    
     if @alert.save
       flash[:success] = t("alerts.message_alert_created")
     else

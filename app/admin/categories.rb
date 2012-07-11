@@ -1,4 +1,4 @@
-ActiveAdmin.register PlaceType do
+ActiveAdmin.register Category do
   menu :parent => 'Settings'
   filter :name
 
@@ -10,7 +10,7 @@ ActiveAdmin.register PlaceType do
 
   collection_action :import_csv, :method => :post do
     if !params[:dump].blank? && !params[:dump][:file].blank?
-      imported = CsvImport.parse_file(PlaceType, params[:dump][:file])
+      imported = CsvImport.parse_file(Category, params[:dump][:file])
       flash[:success] = "Imported #{imported} rows"
     else
       flash[:success] = "You must select a file"

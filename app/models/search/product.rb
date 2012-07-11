@@ -1,9 +1,6 @@
 module Search
   class Product < Search::Base
 
-    #attr_reader :category_ids
-    #attr_accessor :amenity_ids
-
     has_and_belongs_to_many :amenities,
                             :class_name => "::Amenity",
                             :join_table => 'search_amenities',
@@ -14,6 +11,13 @@ module Search
                       :foreign_key => 'search_id'
     
     belongs_to :currency
+    
+    # This is used when the search is used with alert mail
+    # 
+    attr_accessor :exclude_ids
+    
+    # This is used to find the recently added results
+    attr_accessor :date_from
 
 
     def order
@@ -45,6 +49,14 @@ module Search
       if !self.min_lat.blank? && !self.max_lat.blank? && !self.min_lng.blank? &&  !self.max_lng.blank?
         add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat, self.max_lat])
         add_sql_condition(['lon BETWEEN ? AND ?' , self.min_lng, self.max_lng])
+      end
+      
+      if self.exclude_ids.present?
+        add_sql_condition(["#{resource_class.table_name}.id not in (?)", exclude_ids])
+      end
+      
+      if self.date_from.present?
+        add_sql_condition(["#{resource_class.table_name}.created_at > ?", self.date_from])
       end
 
       add_filters # From override
@@ -168,6 +180,8 @@ module Search
       other.max_lng      = self.max_lng
       other.category_ids = self.category_ids
       other.amenity_ids  = self.amenity_ids
+      other.exclude_ids  = self.exclude_ids
+      other.date_from    = self.date_from
       other
     end
 

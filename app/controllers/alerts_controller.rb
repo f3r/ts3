@@ -7,7 +7,12 @@ class AlertsController < PrivateController
 
   def edit
     @alert = current_user.alerts.find(params[:id])
-    render :layout => false
+    respond_to do |format|
+      format.html
+      format.js {
+        render :layout => false
+      }
+    end
   end
 
   def create

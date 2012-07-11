@@ -11,14 +11,14 @@ describe Search::Property do
       @search.city_id = 1
       @search.city_id.should == 1
     end
-    
+
     it "supports currency" do
       curr = create(:currency)
       @search.currency = curr
       @search.currency.should == curr
       @search.currency_id.should == curr.id
     end
-    
+
   end
 
   context "Results" do
@@ -44,7 +44,7 @@ describe Search::Property do
     it "calculates price filters" do
       @search.currency = create(:currency,:currency_code => 'USD')
       min, max = @search.price_range_bounds
-      
+
       min.should == 1000
       max.should == 4990
 
@@ -52,6 +52,26 @@ describe Search::Property do
       min, max = @search.price_range_bounds
       min.should == 1000
       max.should == 3000
+    end
+
+    it "accepts and excludes an id" do
+      @search.category_ids = [@pt1.id]
+      @search.exclude_ids = [@p1.id]
+      @search.count.should == 1
+    end
+
+    it "returns items created after a date" do
+      @p3.created_at = Date.today - 1.day
+      @p3.save
+      @search.category_ids = [@pt1.id]
+      @search.date_from = Date.today
+      @search.count.should == 1
+    end
+
+    it "no recent items" do
+      @search.category_ids = [@pt1.id]
+      @search.date_from = Date.today + 1.day
+      @search.count.should == 0
     end
   end
 end

@@ -4,6 +4,8 @@ namespace :deploy do
   CONFIRM   = "#{APP_SETUP} --confirm #{APP}"
   DB_PATH   = "mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/"
   EMAILS    = "fer@heypal.com,nico@heypal.com"
+  S3_ACCESS_KEY_ID     = 'AKIAJOJEIAZ6LOVHDFDA'
+  S3_SECRET_ACCESS_KEY = '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'
 
   task :full => [:push_config, :push, :migrate, :after_migrate, :restart]
 

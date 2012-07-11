@@ -38,15 +38,9 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :static_assets_path
     end
     
-    f.inputs "Photos" do
+    f.inputs "Images" do
       f.input :fav_icon, :hint => (f.template.image_tag(SiteConfig.fav_icon.url) if SiteConfig.fav_icon?)
-    end
-
-    f.inputs "Photos" do
       f.input :logo, :hint => (f.template.image_tag(SiteConfig.logo.url) if SiteConfig.logo?)
-    end
-    
-    f.inputs "Watermark" do
       f.input :photo_watermark, :hint => (f.template.image_tag(SiteConfig.photo_watermark.url)\
        + f.template.link_to('Clear it', reset_field_admin_setting_path(resource) + "?f=photo_watermark",{:method => :put}) if SiteConfig.photo_watermark?)
     end

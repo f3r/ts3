@@ -58,7 +58,7 @@ namespace :deploy do
 
   task :addons do
     header_subsection 'Adding Heroku Addons'
-    cmd "heroku addons:add deployhooks:email recipient=#{EMAILS} subject=\"[Heroku] {{app}} deployed\" body=\"{{user}} deployed {{head}} to {{url}}\" #{CONFIRM}"
+    cmd "heroku addons:add deployhooks:email --recipient=#{EMAILS} --subject=\"[Heroku] {{app}} deployed\" --body=\"{{user}} deployed {{head}} to {{url}}\" #{CONFIRM}"
     cmd "heroku addons:add amazon_rds url=#{DB_PATH}#{APP} #{CONFIRM}"
     cmd "heroku addons:add memcachier:25 #{CONFIRM}"
     cmd "heroku addons:add newrelic:standard #{CONFIRM}"

@@ -36,8 +36,8 @@
             </h1>
             <div style="float: right; display: inline; margin-top: 0px; color: #717171; font: normal 11px Helvetica, Arial, sans-serif;  ">
               Follow us on 
-              <a href="https://www.facebook.com/squarestays"><img src="https://s3.amazonaws.com/squarestays-static/icon.fb.jpg" alt="facebook" style="margin-bottom: -5px;" width="20px"></a>
-              <a href="https://twitter.com/#!/Squarestays"  ><img src="https://s3.amazonaws.com/squarestays-static/icon.tw.jpg" alt="twitter"  style="margin-bottom: -5px;" width="20px"></a>                  
+              <a href="<%= t('facebook_url')%>"><img src="https://s3.amazonaws.com/squarestays-static/icon.fb.jpg" alt="facebook" style="margin-bottom: -5px;" width="20px"></a>
+              <a href="<%= t('twitter_url') %>"><img src="https://s3.amazonaws.com/squarestays-static/icon.tw.jpg" alt="twitter"  style="margin-bottom: -5px;" width="20px"></a>                  
             </div>  
           </td>              
         </tr>
@@ -46,19 +46,19 @@
           <td class="message" valign="top">
             <%= yield %>
             <br>
-            <p>If you have any questions, please email us at <%= support_email %><p>
+            <p><%= t('mailers.have_any_question') %><p>
             <br>
             <p>Thanks,</p>
-            <p><i>-- The <%= site_name %> team</i></p>
+            <p><i><%= t('mailers.signature') %></i></p>
             <br>
-            <p>P.S.  Do you want to list properties for rent on <%= site_name %>? Please contact us at <%= support_email %> and become an approved property owner on <%= site_name %>!</p>
+            <p><%= t('mailers.ps_message') %></p>
           </td>
         </tr>
 
         <tr>
           <td class="footer">
             <p class="links_footer">
-              <a href="<%= terms_url %>">  Terms of Service</a>
+              <a href="<%= terms_url %>">Terms of Service</a>
               <a href="<%= privacy_url %>">Privacy Policy</a>
             </p>                                
           </td>

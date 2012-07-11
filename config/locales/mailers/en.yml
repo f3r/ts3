@@ -121,3 +121,7 @@ en:
         the remainder of your rental fees directly to you.
         <br/><br/>
         Thank you for listing your property with %{site_name}!
+    have_any_question: 'If you have any questions, please email us at %{support_email}'
+    signature:         '-- The %{site_name} team'
+    ps_message: |
+      P.S.  Do you want to publish on %{site_name}? Please contact us at %{support_email} and become an approved property owner on %{site_name}!

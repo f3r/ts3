@@ -35,5 +35,13 @@
             = link_to alert_path(alert.id), :class => "delete btn btn-danger", :method => :delete, :confirm => t("are_you_sure") do
               %i.icon-trash.icon-white
               =t("delete")                
-
+:javascript
+  // Very basic hash based navigation :)
+  $(function(){
+    var hash = window.location.hash;
+    if(hash.length) {
+      var the_hash = hash.substring(1,hash.length);
+      $.getScript(window.location.pathname + the_hash);
+    }
+  });
 #edit.modal.hide

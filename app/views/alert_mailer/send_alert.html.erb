@@ -23,6 +23,6 @@
 <%= link_to "View more results", show_search_code_url(@alert[:search_code]) %>
 <br/> <br/>
 <p><i> Manage your alert</i> =>
-<%= link_to "Edit",  edit_alert_url(@alert) %> | 
+<%= link_to "Edit",  "#{alerts_url}#/#{@alert.id}/edit" %> | 
 <%= link_to "Pause", pause_alert_url(@alert) %>
 </p>

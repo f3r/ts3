@@ -6,6 +6,9 @@ class I18nUtil
   def self.load_from_yml(file_name)
     data = YAML::load(IO.read(file_name))
     data.each do |code, translations|
+      unless code
+        puts "WARNING: Yaml file without code: #{file_name}"
+      end
       if locale = I18n.available_locales.include?(code.to_sym) ? code : nil
         translations_array = extract_translations_from_hash(translations)
         translations_array.each do |key, value|

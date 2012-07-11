@@ -4,7 +4,7 @@ authorization do
   end
 
   role :admin do
-    includes [:default, :agent]
+    includes [:default, :agent, :user]
     has_permission_on [:users, :products, :categories, :addresses, :bank_accounts, :availabilities, :comments], :to => [:manage]
     has_permission_on :users, :to => [:change_role]
   end

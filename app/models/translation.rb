@@ -12,6 +12,8 @@ class Translation < ActiveRecord::Base
 
   has_many :versions, :class_name => 'TranslationVersion', :foreign_key => "translation_id", :order => "id DESC", :dependent => :destroy
 
+  validates_presence_of :locale, :key
+
   before_update do |r|
     r.versions.create({:value => r.value_was}) if r.value_changed?
   end

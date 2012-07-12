@@ -1,11 +1,12 @@
-USERS = [['Jeremy Snyder', 'jeremy.a.snyder@gmail.com'],
- ['Fer Santana', 'fernandomartinsantana@gmail.com'],
- ['Nicolas Gaivironsky', 'nico@heypal.com']]
+USERS = [
+  ['Jeremy Snyder', 'jeremy.a.snyder@gmail.com'],
+  ['Fer Santana', 'fernandomartinsantana@gmail.com'],
+  ['Nicolas Gaivironsky', 'nico@heypal.com']
+]
 
 site_config = SiteConfig.first_or_create
-
-site_config.logo ||= File.open("#{Rails.root}/db/rake_seed_images/logo.png")
-site_config.fav_icon ||= File.open("#{Rails.root}/db/rake_seed_images/favicon.png")
+site_config.logo = File.open("#{Rails.root}/db/rake_seed_images/logo.png") unless site_config.logo?
+site_config.fav_icon = File.open("#{Rails.root}/db/rake_seed_images/favicon.png") unless site_config.fav_icon?
 site_config.custom_meta ||= %{
   <meta name="robots" content="noodp" />
   <meta name="slurp" content="noydir" />
@@ -55,36 +56,43 @@ unless MenuSection.exists?(name: 'main')
   MenuSection.create_defaults
 end
 
-#Cmspage.create(
-#     hw = MenuSection.create(name: 'how-it-works', display_name: 'How it Works?')
-#     p = Cmspage.find_by_url 'how-it-works'
-#     hw.cmspages << p
+unless Cmspage.count >= 9
+  # Render a haml view
+  app = HeyPalFrontEnd::Application
+  app.routes.default_url_options = { :host => '' }
+  controller = ApplicationController.new
+  view = ActionView::Base.new("db/pages", {}, controller)
+  view.class_eval do
+    include ApplicationHelper
+    include app.routes.url_helpers
+  end
 
-#     why = MenuSection.create(name: 'why-squarestays', display_name: 'Why SquareStays?')
-#     p = Cmspage.find_by_url 'why'
-#     why.cmspages << p
+  pages = [
+    ['Terms', 'terms', 'footer'],
+    ['Fees', 'fees'],
+    ['Privacy Policy', 'privacy', 'footer'],
+    ['Contact Information', 'contact', 'footer'],
+    ['Home page - Footer', 'home_page_footer'],
+    ['Error - 404', 'error_404'],
+    ['Error - 500', 'error_500'],
+    ['How it works', 'how-it-works', 'help'],
+    ['Why', 'why', 'help']
+  ]
 
-#     help = MenuSection.create(name: 'help', display_name: 'Help')
-#     p = Cmspage.find_by_url 'how-it-works'
-#     help.cmspages << p
-#     p = Cmspage.find_by_url 'why'
-#     help.cmspages << p
-#     p = Cmspage.find_by_url 'singapore-city-guide'
-#     help.cmspages << p
-#     p = Cmspage.find_by_url 'hong-kong-city-guide'
-#     help.cmspages << p
-#     p = Cmspage.find_by_url 'kuala-lumpur-city-guide'
-#     help.cmspages << p
+  pages.each do |title, url, menu_name|
+    next if Cmspage.exists?(page_url: url)
 
-# Cmspage.create({:page_title => "Home page - Footer", :page_url => 'home_page_footer', 
-# :description => "<div class=\"tease-social\"><hr class=\"style-two\" />\r\n<div class=\"links\"><img src=\"https://s3.amazonaws.com/squarestays-static/icon.fb.jpg\" alt=\"\" width=\"30px\" height=\"30px\" /> <span class=\"social-text\"> <a href=\"https://www.facebook.com/squarestays\">Join us on Facebook</a> </span> <img src=\"https://s3.amazonaws.com/squarestays-static/icon.tw.jpg\" alt=\"\" width=\"30px\" height=\"30px\" /> <span class=\"social-text\"> <a href=\"https://twitter.com/#!/Squarestays\">Follow us on Twitter</a> </span> <img src=\"https://s3.amazonaws.com/squarestays-static/icon.rss.png\" alt=\"\" width=\"25px\" height=\"25px\" /> <span class=\"social-text\"> <a href=\"http://blog.squarestays.com\">Read our Blog</a> </span></div>\r\n<hr class=\"style-two\" /></div>\r\n<div class=\"tease-blurb\">\r\n<div class=\"tease-header\">Why should you use SquareStayz?</div>\r\n<div class=\"row\"><img src=\"http://s3.amazonaws.com/squarestays-static/flx.jpg\" alt=\"SquareStayz offers flexible, high-quality accommodations for you. SquareStayz is the destination site to find your perfect short-term or medium-term stay.\" /> <img src=\"http://s3.amazonaws.com/squarestays-static/qlty.jpg\" alt=\"SquareStayz works with professional Agents and Landlords to ensure a comfortable and professional experience you can trust.\" /> <img src=\"http://s3.amazonaws.com/squarestays-static/afrd.jpg\" alt=\"SquareStayz offers high quality and distinct properties - have your own home away from home for less then the price of a 5 star hotel.\" /></div>\r\n</div>\r\n<div class=\"trust\">\r\n<div class=\"row\"><img title=\"Small World Group\" src=\"http://s3.amazonaws.com/squarestays-static/swg.jpg\" alt=\"\" /> <img title=\"National Research Foundation\" src=\"http://s3.amazonaws.com/squarestays-static/nrf.jpg\" alt=\"\" /> <img title=\"PropNex\" src=\"http://s3.amazonaws.com/squarestays-static/prnx.jpg\" alt=\"\" /> <img title=\"Far East Organization\" src=\"http://s3.amazonaws.com/squarestays-static/feo.jpg\" alt=\"\" /></div>\r\n</div>", 
-# :active => true, :mandatory => true})    
-
-#     Page.create({:page_title => "Error - 404", :page_url => 'error_404', 
-#     :description => "<div class=\"error-page row\">\r\n<div class=\"span10 offset1\">\r\n<h2>We could not find the page you requested</h2>\r\n<div class=\"error-test\">We apologize for the inconvenience</div>\r\n<img class=\"error-image\" src=\"/assets/404pic.png\" alt=\"404pic\" /></div>\r\n</div>", 
-#     :active => true, :mandatory => true})
-    
-#     Page.create({:page_title => "Error - 500", :page_url => 'error_500', 
-#     :description => "<div class=\"error-page row\">\r\n<div class=\"span10 offset1\">\r\n<h2>A Problem occured on this page</h2>\r\n<p class=\"errro-subhead\">Our technicians have been notified of this error</p>\r\n<span class=\"error-text\">We apologize for the inconvenience</span> <img class=\"error-image\" src=\"/assets/500pic.png\" alt=\"500pic\" /></div>\r\n</div>", 
-#     :active => true, :mandatory => true})
-        
+    html = view.render(template: url)
+    page = Cmspage.create(
+      page_title: title,
+      page_url: url,
+      description: html,
+      active: true,
+      mandatory: true
+    )
+    if menu_name
+      menu = MenuSection.find_by_name(menu_name)
+      menu.cmspages << page
+    end
+  end
+end

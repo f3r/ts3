@@ -50,7 +50,7 @@ namespace :deploy do
     cmd "heroku maintenance:off #{APP_SETUP}"
   end
 
-  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :new_database]
+  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :new_database, :new_database_setup]
 
   task :new_app_heroku do
     header 'Creating new site infrastructure'
@@ -106,7 +106,6 @@ private
     system(c) || fail("Error")
   end
 
-  # TODO: Add colors
   def header(m)
     puts("*".blue*80)
     puts("*#{m.chomp.center(78)}*".blue)

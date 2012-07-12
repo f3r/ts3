@@ -1,15 +1,23 @@
 module Search
   class Product < Search::Base
 
+    # I need atleast points in the slider
+    PRICE_SLIDER_STEPS = 100
+
+    #attr_reader :category_ids
+    #attr_accessor :amenity_ids
+
+    attr_reader :price_step
+
     has_and_belongs_to_many :amenities,
                             :class_name => "::Amenity",
                             :join_table => 'search_amenities',
                             :foreign_key => 'search_id'
     has_and_belongs_to_many :categories,
-                      :class_name => "::Category",
-                      :join_table => 'search_categories',
-                      :foreign_key => 'search_id'
-    
+                            :class_name => "::Category",
+                            :join_table => 'search_categories',
+                            :foreign_key => 'search_id'
+
     belongs_to :currency
     
     # This is used when the search is used with alert mail
@@ -32,8 +40,8 @@ module Search
     end
 
     def sort_options
-     [[I18n.t("products.search.price_lowest"), 'price_lowest'],
-      [I18n.t("products.search.price_highest"), 'price_highest']]
+      [[I18n.t("products.search.price_lowest"), 'price_lowest'],
+       [I18n.t("products.search.price_highest"), 'price_highest']]
     end
 
     def collection
@@ -131,6 +139,10 @@ module Search
       # Backup the current filter values
       current_prices = [self.min_price, self.max_price]
       self.min_price = self.max_price = nil
+      current_category_ids = self.category_ids
+      self.category_ids = []
+      current_amenity_ids = self.amenity_ids
+      self.amenity_ids = []
 
       # Calculate the range
       min = self.calculate(:minimum, price_field)
@@ -140,10 +152,8 @@ module Search
         return [nil, nil]
       end
       # Convert currency
-
-      # Round to multiples of 100
-      max = (max/100.0).ceil * 100
-      min = (min/100.0).floor * 100
+      max = self.round_up(self.convert_from_usd(max))
+      min = self.round_down(self.convert_from_usd(min))
 
       if min == max
         max = min + 100
@@ -151,8 +161,12 @@ module Search
 
       # Restore the filter
       self.min_price, self.max_price = current_prices
+      self.category_ids = current_category_ids
+      self.amenity_ids  = current_amenity_ids
 
-      [self.convert_from_usd(min), self.convert_from_usd(max)]
+      @price_step = self.calculate_price_step(min,max)
+
+      [min,max]
     end
 
     def convert_from_usd(amount)
@@ -192,6 +206,32 @@ module Search
 
       str_search = ids.sort.collect{|id| "<#{id}>"}.join('%')
       add_like_condition(field, str_search)
+    end
+
+    def calculate_price_step(min, max)
+      @price_step = (max - min) / PRICE_SLIDER_STEPS
+      case @price_step
+      when 0..10
+        @price_step = self.round_down(@price_step, 5)
+      when 11..100
+        @price_step = self.round_down(@price_step, 10)
+      else
+        @price_step = 100
+      end
+      
+      if @price_step <= 0
+        @price_step = 1
+      end
+      @price_step
+    end
+
+    #We could add this as an extension to the numeric class
+    def round_up(the_num, nearest = 10)
+      the_num % nearest == 0 ? the_num : (the_num + nearest - (the_num % nearest))
+    end
+
+    def round_down(the_num, nearest = 10)
+      the_num % nearest == 0 ? the_num : (the_num - (the_num % nearest))
     end
 
   end

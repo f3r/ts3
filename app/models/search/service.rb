@@ -4,16 +4,6 @@ module Search
     def resource_class
       ::Service
     end
-    
-    def price_range_bounds
-      #Save the amenity_filters
-      amenity_ids = self.amenity_ids
-      self.amenity_ids = []
-      range_bounds = super
-      #restore it
-      self.amenity_ids = amenity_ids
-      range_bounds
-    end
 
     def add_filters
     end

@@ -51,7 +51,7 @@ describe Search::Property do
       @search.category_ids = [@pt1.id]
       min, max = @search.price_range_bounds
       min.should == 1000
-      max.should == 3000
+      max.should == 4990
     end
 
     it "accepts and excludes an id" do

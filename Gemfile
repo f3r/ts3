@@ -62,7 +62,6 @@ group :development do
   gem 'heroku_san', "~> 2.1.4"  # Manages multiple production environments
   gem 'translate-rails3', :require => 'translate'
   gem 'colorize'
-  gem 'pry'
 end
 
 group :test do
@@ -76,5 +75,5 @@ end
 group :development, :test do
   gem 'rspec-rails'
   gem 'debugger'
-  gem 'jazz_hands'
+  #gem 'jazz_hands'
 end

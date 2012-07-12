@@ -18,6 +18,8 @@ default_config: &default_config
   RECAPTCHA_PVT_KEY:    6Lcoo9ASAAAAAHM-sKYibqSA16qaCYR9IaG8SknD
   RAKISMET_KEY:         bcba68e5b091
   COOKIE_STORE_KEY:     _TSE_Session
+  PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
+  PAYPAL_MODE:          test
 
 ########################################################################################################################################
 squarestays:
@@ -95,7 +97,7 @@ siltroopers:
     PRODUCT_CLASS_NAME:   Service
     # Database and CDN
     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/siltroopers
-    S3_BUCKET:            silvertroopers
+    S3_BUCKET:            siltroopers
     S3_ACCESS_KEY_ID:     AKIAJOJEIAZ6LOVHDFDA
     S3_SECRET_ACCESS_KEY: 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  
     # Social Networks

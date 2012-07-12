@@ -97,8 +97,7 @@ namespace :deploy do
 
   task :new_database_setup do
     header_subsection 'Importing schema in db & creating initial data'
-    cmd "heroku run rake db:migrate #{APP_SETUP}"
-    cmd "heroku run rake db:seed #{APP_SETUP}"
+    cmd "heroku run rake db:setup #{APP_SETUP}"
   end
 
 private

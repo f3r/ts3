@@ -17,7 +17,7 @@
 
   :javascript
     $(function() {
-      $(".trigger_signup").click(function() {
+      $(".trigger_signup").live('click',function() {
         $.ajax({
           type: 'PUT',
           url: '/set_ref.json',

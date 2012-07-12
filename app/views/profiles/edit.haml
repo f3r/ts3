@@ -1,6 +1,6 @@
 #edit_profile.edit_profile_page
   = render 'users/user_left_column', :user => current_user, :editable => true
-  
+
   .span6
     = render "profiles/user_information"
     = render "profiles/billing_address"
@@ -11,11 +11,13 @@
     .form-horizontal.accounts
       .section-header=t(:linked_accounts)
       = render "users/linked_accounts", :user => @user
+
+
+- if @user.address
   #map-tab.span3
     %div#map
     .clearfix
 
-:javascript
-  UserEdit.initialize();
-  PlaceShow.initializeMap(#{@user.address.lat || 'null'}, #{@user.address.lon || 'null'}, '#{@user.address.city}','#{@user.address.country}', 0);
-  
+  :javascript
+    UserEdit.initialize();
+    PlaceShow.initializeMap(#{@user.address.lat || 'null'}, #{@user.address.lon || 'null'}, '#{@user.address.city}','#{@user.address.country}', 0);

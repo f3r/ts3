@@ -80,40 +80,61 @@
 
 .start{
   .hub{
-    padding: 52px 5px 0;
-    
-    h1{
+    h1#search_in {
       font-weight: normal;
       font-size: 19px;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-      margin-bottom: 12px;
-      
+      margin: 50px 0 20px;
+			text-align:center;
       a{
         color: #3977b0;
         font-weight: bold;
         padding-right: 16px;
         background: transparent url(/assets/blue-arrow-down.png) no-repeat right center;
-		outline: 0;
-        
+				outline: 0;
         &:hover{
           text-decoration: none;
         }
       }
     }
-    
     input.textbox{
-      padding: 9px 8px 8px 8px;
-      margin: 0 10px 0 0;
-      float: left;
+			padding: 9px 8px 8px 8px;
+			margin: 0 10px 0 0;
+			float: left;
     }    
-    
-    .btn{
-      float: left;
-      margin: -1px 0 0 0;
-      padding: 9px 14px 9px;
-      width: auto;
-    }
-    
+		p#search_button {
+			margin:0;
+			text-align:center;
+			.btn {
+				width:168px;
+				height:23px;
+				padding-top:12px;
+				font-weight:bold;
+			}
+		}
+    #description {
+			color: #3977B0;
+	    margin: 40px 0 0;
+	    padding-left: 43px;
+			.description_one {
+				font-size: 18px;
+			}
+			.description_two {
+				font-size:12px;
+				float:left;
+				margin-right:7px;
+				line-height:85%;
+			}
+			.description_three {
+				font-size:18px;
+				float:left;
+			}
+			.description_four {
+				font-size:18px;
+				margin-left: 75px;
+			}
+		}
+		
   }
     
   #teaser-pics{
@@ -199,7 +220,7 @@
 #country-select {
   list-style-type:none;
   position: absolute;
-  margin: 0 100px 0 264px;
+  margin: 0 100px 0 290px;
   top: 234px;
   display: none;
   background: #fff;
@@ -254,27 +275,6 @@
     border-bottom-left-radius: 4px;
   }
 }
-
-
-#fp-liner {
-  float: left;
-  color: #99CCFF;
-  p {
-    line-height: .7;
-
-    &:last-child {
-      margin-left: 75px;
-    }
-  }
-  span {
-    font-size: 12px;
-  }
-  b {
-    font-weight: normal;
-    font-size: 18px;
-  }
-}
-
 
 /********************************************************************************************************* 
  * WHY SQUARESTAYS

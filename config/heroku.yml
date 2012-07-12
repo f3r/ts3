@@ -121,3 +121,17 @@ brandedbabes:
     S3_BUCKET:            brandedbabes
     # Security
     SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
+
+########################################################################################################################################
+foliohouse:
+########################################################################################################################################
+  app:   foliohouse
+  config:
+    <<: *default_config
+    SITE_URL:             http://foliohouse.herokuapp.com
+    PRODUCT_CLASS_NAME:   Property
+    # Database and CDN
+    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/foliohouse
+    S3_BUCKET:            foliohouse
+    # Security
+    SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b

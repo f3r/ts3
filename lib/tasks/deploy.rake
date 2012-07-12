@@ -50,7 +50,7 @@ namespace :deploy do
     cmd "heroku maintenance:off #{APP_SETUP}"
   end
 
-  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :new_database, :new_database_setup]
+  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :push_config, :push, :new_database_setup, :after_migrate]
 
   task :new_app_heroku do
     header 'Creating new site infrastructure'
@@ -61,7 +61,7 @@ namespace :deploy do
   task :addons do
     header_subsection 'Adding Heroku Addons'
     cmd "heroku addons:add deployhooks:email --recipient=#{EMAILS} --subject=\"[Heroku] {{app}} deployed\" --body=\"{{user}} deployed {{head}} to {{url}}\" #{CONFIRM}"
-    cmd "heroku addons:add amazon_rds url=#{DB_PATH}#{APP} #{CONFIRM}"
+    cmd "heroku addons:add amazon_rds --url=#{DB_PATH}#{APP} #{CONFIRM}"
     cmd "heroku addons:add memcachier:25 #{CONFIRM}"
     cmd "heroku addons:add newrelic:standard #{CONFIRM}"
     cmd "heroku addons:add sendgrid:starter #{CONFIRM}"

@@ -9,7 +9,7 @@ ActiveAdmin.register Comment, :as => "Question" do
 
   index do
     id_column
-    column :place, :sortable => :place_id
+    column :product, :sortable => :product_id
     column :user, :sortable => :user_id
     column 'Question', :comment
     column('Answer') {|q| q.reply.comment if q.reply }
@@ -21,7 +21,7 @@ ActiveAdmin.register Comment, :as => "Question" do
   show do |question|
     attributes_table do
       row :id
-      row :place
+      row :product
       row("QUESTION") {question.comment}
       row :user
       row( question.replying_to.present? ? 'REPLYING TO' : 'ANSWER') do
@@ -40,7 +40,7 @@ ActiveAdmin.register Comment, :as => "Question" do
   form do |f|
     f.inputs do
       f.input :id, :input_html => { :disabled => true }
-      f.input :place, :input_html => { :disabled => true }
+      f.input :product, :input_html => { :disabled => true }
       f.input :comment, :label => "Question"
       f.input :user, :input_html => { :disabled => true }
       f.input :created_at, :input_html => { :disabled => true }

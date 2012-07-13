@@ -4,7 +4,8 @@ class UserMailer < BaseMailer
   def new_question(user, question)
     @user      = user
     @question  = question
-    @product   = question.product
+    # we need the get the actual product - so the seo path is rendered correctly
+    @product   = question.product.as_product
     @from      = @question.user
     recipients = "#{user.full_name} <#{user.email}>"
     subject    = t('mailers.new_question.subject', :sender => @from.anonymized_name)
@@ -15,7 +16,8 @@ class UserMailer < BaseMailer
   def new_question_reply(user, question)
     @user      = user
     @question  = question
-    @product   = question.product
+    # we need the get the actual product - so the seo path is rendered correctly    
+    @product   = question.product.as_product
     recipients = "#{user.full_name} <#{user.email}>"
     subject    = t('mailers.new_question_reply.subject')
 

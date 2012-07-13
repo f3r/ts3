@@ -114,4 +114,6 @@ module ApplicationHelper
     base_path = SiteConfig.static_assets_path
     "#{base_path}/#{filename}"
   end
+
+  module_function :static_asset
 end

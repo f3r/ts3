@@ -46,4 +46,15 @@ ActiveAdmin.register User do
     redirect_to({:action => :show}, :notice => "The user is now an agent")
   end
 
+  # Make Admin
+  action_item :only => :show do
+    link_to('Make Admin', make_agent_admin_user_path(user), :method => :put,
+      :confirm => 'Are you sure you want to turn the user into an agent?') if !user.admin?
+  end
+
+  member_action :make_admin, :method => :put do
+    user = User.find(params[:id])
+    user.update_attribute(:role, 'admin')
+    redirect_to({:action => :show}, :notice => "The user is now an admin")
+  end
 end

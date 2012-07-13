@@ -85,7 +85,7 @@ class Service < ActiveRecord::Base
     if self.user.avatar?
       self.user.avatar.url(:thumb)
     else
-      static_asset('missing_userpic_200.jpeg')
+      ApplicationHelper.static_asset('missing_userpic_200.jpeg')
     end
   end
 

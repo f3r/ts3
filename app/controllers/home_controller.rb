@@ -1,7 +1,6 @@
 class HomeController < ApplicationController
   def robot
-    robots = File.read(Rails.root + "config/robots.#{Rails.env}.txt")
-    render :text => robots, :layout => false, :content_type => "text/plain"
+    render :layout => false, :content_type => "text/plain"
   end
 
   def set_ref

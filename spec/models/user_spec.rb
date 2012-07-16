@@ -169,12 +169,14 @@ describe User do
   context "associated products of agent" do
     before(:each) do
       @agent = create(:agent)
+      @agent2 = create(:agent)
       SiteConfig.stub(:product_class).and_return(Property)
     end
 
     it "retrieves the other properties owned" do
       place1 = create(:published_place, :user => @agent)
       place2 = create(:published_place, :user => @agent)
+      place3 = create(:published_place, :user => @agent2)
 
       @agent.other_published_products(place1).count.should == 1
       @agent.other_published_products(place2).first.id.should == place1.id

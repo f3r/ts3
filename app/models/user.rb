@@ -134,7 +134,8 @@ class User < ActiveRecord::Base
 
   # Retrieves the other published products of this user
   def other_published_products(except = nil)
-    products = SiteConfig.product_class.published
+    #retrive the products of this user
+    products = SiteConfig.product_class.published.where('user_id = ?', self.id)
     products = products.where('products.id <> ?', except.product.id) if except
     products
   end

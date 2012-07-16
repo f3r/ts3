@@ -11,6 +11,7 @@ en:
     title:              'Title'
     description:        'Description'
     user_reached_limit: 'You cannot add more listings'
+    updated:            'Listing updated'
     reviews_title:      'Reviews'
     no_reviews:         'No reviews yet'
     review_score_label: 'Rate services on a scale of 1-5'
@@ -38,3 +39,7 @@ en:
     inquiries:
       start_date:       'Date'
       duration:         'Duration'
+    price_per_month:    'Price per month'
+    price_per_hour:     'Price per hour'
+    price_per_day:      'Price per day'
+    price_sale:         'Sale price'

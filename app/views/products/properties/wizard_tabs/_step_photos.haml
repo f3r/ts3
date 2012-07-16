@@ -1,30 +1,31 @@
 .panel-wrapper
-  .alert.alert-info
-    = link_to t("places.wizard.photos.read_photo_faq"), home_photo_faq_path
-  .clearfix
-  .photo_wrapper
+  = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
+    .alert.alert-info
+      = link_to t("places.wizard.photos.read_photo_faq"), home_photo_faq_path
+    .clearfix
+    .photo_wrapper
 
-  .clearfix
-  .photos_wrapper.well
-    %p= t("places.wizard.photos.tip")
+    .clearfix
+    .photos_wrapper.well
+      %p= t("places.wizard.photos.tip")
 
-    .primary_marker
-      = t("places.wizard.photos.primary")
-    .row
-      .span9
-        %ul.gallery#photos_list
-          = render 'photos/list'
-        .clearfix
+      .primary_marker
+        = t("places.wizard.photos.primary")
+      .row
+        .span9
+          %ul.gallery#photos_list
+            = render 'photos/list'
+          .clearfix
 
-  .well
-    .upload_wrapper
-      #uploader
-      %p= t("places.wizard.photos.upload_photo_hint")
-  .arrows.clearfix
-    .float-left
-      %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t("places.wizard.previous_step")
-    .float-right
-      %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t("places.wizard.next_step")
+    .well
+      .upload_wrapper
+        #uploader
+        %p= t("places.wizard.photos.upload_photo_hint")
+    .arrows.clearfix
+      .float-left
+        %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t("places.wizard.previous_step")
+      .float-right
+        %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t("places.wizard.next_step")
 
 :javascript
   /* TODO: Finish moving this to wizard.js */
@@ -66,8 +67,5 @@
         }
       }
     });
-    / uploader.bind('FilesAdded', function(up, files) {
-    /   uploader.start();
-    / });
   });
 

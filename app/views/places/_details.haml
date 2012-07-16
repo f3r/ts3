@@ -44,7 +44,7 @@
 
       // Prices Column (night, week, month)
       .span3
-        - if false && @resource.price_per_night.present?
+        - if @resource.price_per_night.present?
           .row-fluid
             .span8
               .details_label= t("places.price_per_night")
@@ -65,6 +65,12 @@
             .span4
               .details_value= place_price(@resource, :per_month)
 
+        - if @resource.price_sale.present?
+          .row-fluid
+            .span8
+              .details_label= t("products.price_sale")
+            .span4
+              .details_value= place_price(@resource, :sale)
       // Price final cleanup, security deposit, cancellation policy
       .span4
         - if @resource.price_final_cleanup && @resource.price_final_cleanup > 0
@@ -81,7 +87,7 @@
             .span5
               .details_value= place_price(@resource, :security_deposit)
 
-        .row-fluid
+        .row-fluid.cancellation
           .span7
             .details_label= t("places.cancellation")
           .span5

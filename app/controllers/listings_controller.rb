@@ -48,6 +48,7 @@ class ListingsController < PrivateController
     if request.xhr?
       render :json => response, :layout => false
     else
+      flash[:notice] = t('products.updated')
       redirect_to :action => :edit
     end
   end
@@ -86,6 +87,11 @@ class ListingsController < PrivateController
       flash[:error] = t("places.messages.place_publish_error")
     end
     redirect_to listing_path(@resource)
+  end
+
+  def publish_check
+    response = {:stat => "ok"}
+    render :json => response, :layout => false
   end
 
   def unpublish

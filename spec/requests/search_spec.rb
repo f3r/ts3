@@ -4,6 +4,7 @@ describe "Search" do
   before(:each) do
     @city = create(:city, :name => "Singapore")
     SiteConfig.stub(:product_class).and_return(Property)
+    Property.stub(:price_unit).and_return(:per_month)
   end
 
   it "recognizes city seo url" do

@@ -1,84 +1,88 @@
 .panel-wrapper
-  %fieldset.well.form-horizontal
-    %h3= t("places.wizard.description_title")
-    .control-group.required
-      = f.label :title, t("places.title"), :class => 'control-label'
-      .controls
-        = f.text_field :title, :class => "input-xlarge validate[required] autosave"
-    .control-group.required
-      = f.label :category_id, t("places.type"), :class => 'control-label'
-      .controls
-        = f.collection_select :category_id, Category.all, :id, :name, {}, :class => 'validate[required] autosave'
-
-    .control-group
-      = f.label :description, t("places.description"), :class => 'control-label'
-      .controls
-        = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"
-    .control-group.required
-      = f.label :max_guests, t("places.max_guests"), :class => 'control-label'
-      .controls
-        = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1 autosave"
-    .control-group
-      = f.label :num_bedrooms, t("places.num_bedrooms"), :class => 'control-label'
-      .controls
-        = f.text_field :num_bedrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
-    .control-group
-      = f.label :num_beds, t("places.num_beds"), :class => 'control-label'
-      .controls
-        = f.text_field :num_beds, :class => "validate[custom[integer],min[0]] span1 autosave"
-    .control-group
-      = f.label :num_bathrooms, t("places.num_bathrooms"), :class => 'control-label'
-      .controls
-        = f.text_field :num_bathrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
-
-    .control-group.required
-      = f.label :size, t("places.size"), :class => 'control-label'
-      .controls
-        = f.text_field :size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
-        = f.select :size_unit, [[t("units.square_meters_short"), "meters"], [t("units.square_feet_short"), "feet"]], {}, :class => "validate[required] span2 autosave"
-  %fieldset.well.form-horizontal
-    %h3= t("places.wizard.address_title")
-    .control-group.required
-      = f.label :city_id, t("addresses.city"), :class => 'control-label'
-      .controls
-        = f.select :city_id, cities_options, {}, { :class => "validate[required] autosave input-xlarge"}
-    - if false
-      .control-group
-        = f.label :city, t("addresses.city"), :class => 'control-label'
+  = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
+    %fieldset.well.form-horizontal
+      %h3= t("places.wizard.description_title")
+      .control-group.required
+        = f.label :title, t("places.title"), :class => 'control-label'
         .controls
-          = @city['name']
+          = f.text_field :title, :class => "input-xlarge validate[required] autosave"
+      .control-group.required
+        = f.label :category_id, t("places.type"), :class => 'control-label'
+        .controls
+          = f.collection_select :category_id, Category.all, :id, :name, {}, :class => 'validate[required] autosave'
 
       .control-group
-        = f.label :state, t("addresses.state"), :class => 'control-label'
+        = f.label :description, t("places.description"), :class => 'control-label'
         .controls
-          = @city['state']['name']
-
+          = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"
+      .control-group.required
+        = f.label :max_guests, t("places.max_guests"), :class => 'control-label'
+        .controls
+          = f.text_field :max_guests, :class => "validate[required,custom[integer],min[0]] span1 autosave"
       .control-group
-        = f.label :country, t("addresses.country"), :class => 'control-label'
+        = f.label :num_bedrooms, t("places.num_bedrooms"), :class => 'control-label'
         .controls
-          = @city['country']['name']
+          = f.text_field :num_bedrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
+      .control-group
+        = f.label :num_beds, t("places.num_beds"), :class => 'control-label'
+        .controls
+          = f.text_field :num_beds, :class => "validate[custom[integer],min[0]] span1 autosave"
+      .control-group
+        = f.label :num_bathrooms, t("places.num_bathrooms"), :class => 'control-label'
+        .controls
+          = f.text_field :num_bathrooms, :class => "validate[custom[integer],min[0]] span1 autosave"
 
-    .control-group.required
-      = f.label :address_1, t("addresses.address_1"), :class => 'control-label'
-      .controls
-        = f.text_field :address_1, :class => "input-xlarge validate[required] autosave"
-        %p.help-block
-          = t("addresses.address_1_help")
-    .control-group
-      = f.label :address_2, t("addresses.address_2"), :class => 'control-label'
-      .controls
-        = f.text_field :address_2, :class => "input-xlarge autosave"
-        %p.help-block
-          = t("addresses.address_2_help")
-    .control-group.required#zip_input
-      = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
-      .controls
-        = f.text_field :zip, :class => "input-xlarge validate[required] span3 autosave"
-    .control-group
-      = f.label :directions, t("addresses.directions"), :class => 'control-label'
-      .controls
-        = f.text_area :directions, :class => "span6 autosave", :rows => 5
+      .control-group.required
+        = f.label :size, t("places.size"), :class => 'control-label'
+        .controls
+          = f.text_field :size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
+          = f.select :size_unit, [[t("units.square_meters_short"), "meters"], [t("units.square_feet_short"), "feet"]], {}, :class => "validate[required] span2 autosave"
+      = f.submit t(:save), :class => 'btn btn-primary'
+      
+  = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
+    %fieldset.well.form-horizontal
+      %h3= t("places.wizard.address_title")
+      .control-group.required
+        = f.label :city_id, t("addresses.city"), :class => 'control-label'
+        .controls
+          = f.select :city_id, cities_options, {}, { :class => "validate[required] autosave input-xlarge"}
+      - if false
+        .control-group
+          = f.label :city, t("addresses.city"), :class => 'control-label'
+          .controls
+            = @city['name']
 
+        .control-group
+          = f.label :state, t("addresses.state"), :class => 'control-label'
+          .controls
+            = @city['state']['name']
+
+        .control-group
+          = f.label :country, t("addresses.country"), :class => 'control-label'
+          .controls
+            = @city['country']['name']
+
+      .control-group.required
+        = f.label :address_1, t("addresses.address_1"), :class => 'control-label'
+        .controls
+          = f.text_field :address_1, :class => "input-xlarge validate[required] autosave"
+          %p.help-block
+            = t("addresses.address_1_help")
+      .control-group
+        = f.label :address_2, t("addresses.address_2"), :class => 'control-label'
+        .controls
+          = f.text_field :address_2, :class => "input-xlarge autosave"
+          %p.help-block
+            = t("addresses.address_2_help")
+      .control-group.required#zip_input
+        = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
+        .controls
+          = f.text_field :zip, :class => "input-xlarge validate[required] span3 autosave"
+      .control-group
+        = f.label :directions, t("addresses.directions"), :class => 'control-label'
+        .controls
+          = f.text_area :directions, :class => "span6 autosave", :rows => 5
+      = f.submit t(:save), :class => 'btn btn-primary'
 .arrows.clearfix
   .float-right
     %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t("places.wizard.next_step")

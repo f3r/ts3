@@ -25,7 +25,7 @@ module ProductsHelper
   end
 
   def product_price_unit(product)
-    t(product.price_unit)
+    t(SiteConfig.price_unit)
   end
 
   def map_markers_json(results)

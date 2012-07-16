@@ -71,6 +71,10 @@ class SiteConfig < ActiveRecord::Base
     self.product_class.product_name
   end
 
+  def self.price_unit
+    self.product_class.price_unit
+  end
+
   protected
 
   def self.reset_cache

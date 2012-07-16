@@ -66,6 +66,7 @@ class Service < ActiveRecord::Base
   end
 
   def price(a_currency, unit)
+    unit ||= self.class.price_unit  
     self.product.price(a_currency, unit)
   end
 

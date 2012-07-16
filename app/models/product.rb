@@ -69,7 +69,8 @@ class Product < ActiveRecord::Base
     self.valid?
   end
 
-  def price(a_currency = nil, unit = :per_month)
+  def price(a_currency = nil, unit = nil)
+    unit ||= self.class.price_unit  
     a_currency ||= Currency.default
 
     # If we are asked in the original currency of the place

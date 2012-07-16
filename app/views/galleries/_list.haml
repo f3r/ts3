@@ -1,5 +1,5 @@
 #teaser-pics
   - g_items.each do |image| 
-    %a.thumbnail{:href => "#{image.link}"}
+    = link_to image.link, :class => "thumbnail" do
       .description= "#{image.label}"
-      %img{:src => "#{image.image_url}"}
+      = image_tag image.image_url

@@ -1221,12 +1221,27 @@ header.header {
       height: 40px;
     }
 
-    .unread-message {
-      background-image: url('http://s3.amazonaws.com/squarestays-static/msgicon_unread.png');
-      height: 40px;
+
+		.read-message, .unread-message {
+			height: 40px;
       width: 42px;
       position: relative;
       cursor: pointer;
+		}
+		.read-message {
+		  background-image: url('http://s3.amazonaws.com/squarestays-static/msgicon_read.png');
+			text-indent: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			a {
+				display:block;
+				width:42px;
+				height:40px;
+			}
+		}
+
+    .unread-message {
+      background-image: url('http://s3.amazonaws.com/squarestays-static/msgicon_unread.png');
 
       a {
         background-color: #d86e00;
@@ -1338,6 +1353,12 @@ header.header {
      }
    }
   }
+}
+
+.alert-info {
+	a {
+    color: #08c;		
+	}
 }
 
 /*********************************************************************************************************

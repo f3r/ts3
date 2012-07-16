@@ -71,6 +71,8 @@ class TransactionMailer < BaseMailer
   # Email sent to the renter when the payment is finalized
   def pay_renter(inquiry)
     @user      = inquiry.user
+    @owner     = inquiry.product.user
+    @product   = inquiry.product
     recipients = "#{@user.full_name} <#{@user.email}>"
     subject    = t("mailers.transaction_pay_renter.subject")
 
@@ -82,6 +84,7 @@ class TransactionMailer < BaseMailer
   def pay_owner(inquiry)
     @user      = inquiry.product.user
     @renter    = inquiry.user
+    @product   = inquiry.product
     recipients = "#{@user.full_name} <#{@user.email}>"
     subject    = t("mailers.transaction_pay_owner.subject")
 

@@ -53,7 +53,6 @@ describe Search::Property do
       min.should == 1000
       max.should == 4990
     end
-
     it "accepts and excludes an id" do
       @search.category_ids = [@pt1.id]
       @search.exclude_ids = [@p1.id]

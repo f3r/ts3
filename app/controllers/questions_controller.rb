@@ -21,7 +21,8 @@ class QuestionsController < PrivateController
     @comment = current_user.comments.new(comment_params)
 
     if @comment.save
-      UserMailer.new_question_reply(@comment.user, @comment).deliver
+      #Send the mail to the asker 
+      UserMailer.new_question_reply(@comment.question.user, @comment).deliver
       respond_to do |format|
         format.js { render :layout => false }
       end

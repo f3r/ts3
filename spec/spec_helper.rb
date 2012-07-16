@@ -25,10 +25,10 @@ RSpec.configure do |config|
   config.before(:each) do
     # Do not depend on external currency service on test mode
     Currency.any_instance.stub(:from_usd) do |arg|
-        arg / 2
+        arg
       end
     Currency.any_instance.stub(:to_usd) do |arg|
-      arg * 2
+      arg
     end
     Place.any_instance.stub(:geocode).and_return(true)
   end

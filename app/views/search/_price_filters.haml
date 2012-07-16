@@ -19,7 +19,7 @@
       min: #{min_price},
       max: #{max_price},
       values: [#{current_min}, #{current_max}],
-      step: 10,
+      step: #{@search.price_step},
       slide: function( event, ui ) {
         $("#min_price").html(ui.values[0]);
         $('#search_min_price').val(ui.values[0]);

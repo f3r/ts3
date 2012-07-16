@@ -24,4 +24,4 @@ module Search
       I18n.t('services.search.amenity_filter_title')
     end
   end
- end
+end

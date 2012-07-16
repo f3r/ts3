@@ -89,7 +89,9 @@ class PreviewMails < MailView
     alert = Alert.last
     user = alert.user
     city = City.find(alert.search.city_id)
-    AlertMailer.send_alert(user, alert, city, [], [])
+    new_results = alert.search.resource_class.limit(2).all
+    recently_added = alert.search.resource_class.limit(2).offset(2).all
+    AlertMailer.send_alert(user, alert, city, new_results, recently_added)
   end
 
   private

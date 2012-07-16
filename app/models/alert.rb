@@ -12,30 +12,39 @@ class Alert < ActiveRecord::Base
   belongs_to :user
   belongs_to :search, :class_name => Search::Base
 
+  # For saving the result_ids
+  serialize :results
+
   accepts_nested_attributes_for :search
 
   default_scope where(:deleted_at => nil)
 
   def self.send_alerts
     alerts = Alert.where(["((schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?) OR (schedule = ? AND delivered_at < ?)) AND active and alert_type = ?",
-      "daily",   Time.now - 1.day,
-      "weekly",  Time.now - 1.week,
-      "monthly", Time.now - 1.month,
-      SiteConfig.product_name.capitalize
-    ])
+                          "daily",   Time.now - 1.day,
+                          "weekly",  Time.now - 1.week,
+                          "monthly", Time.now - 1.month,
+                          SiteConfig.product_name.capitalize
+                          ])
 
+    count = 0
     alerts.each do |alert|
-      if alert.valid_alert? && alert.search.count > 0
+      if alert.valid_alert?
         new_results    = []
         recently_added = []
-        city   = City.find(alert.search.city_id)
-        mailer = AlertMailer.send_alert(alert.user, alert, city, new_results, recently_added)
-
-        if mailer.deliver
-          alert.update_delivered(new_results)
+        city           = City.find(alert.search.city_id)
+        new_results    = alert.get_results(:search_type => "new_results")
+        recently_added = alert.get_results(:search_type => "recently_added")
+        if new_results.present? or recently_added.present?
+          mailer = AlertMailer.send_alert(alert.user, alert, city, new_results, recently_added)
+          if mailer.deliver
+            alert.update_delivered(new_results)
+            count += 1
+          end
         end
       end
     end
+    count
   end
 
   # keeps alerts for a while, avoids breaking links sent through email
@@ -53,7 +62,9 @@ class Alert < ActiveRecord::Base
 
   def update_delivered(new_results)
     new_results_ids = new_results.map{|x| x[:id]}
-    results_ids = (self.results + new_results_ids).uniq
+    results_ids = []
+    results_ids = self.results if self.results.present?
+    results_ids += new_results_ids
     ActiveRecord::Base.record_timestamps = false
     self.update_attributes({:delivered_at => Date.today, :results => results_ids})
     ActiveRecord::Base.record_timestamps = true
@@ -61,18 +72,20 @@ class Alert < ActiveRecord::Base
 
 
   def get_results(opts = {})
-    search = self.search
+    search = self.search.detach
     resource_class = search.resource_class
     if opts[:search_type] == "new_results"
       exclude_ids = self.results
       if exclude_ids.present?
-        search.add_sql_condition(["#{resource_class.table_name}.id not in (?)", exclude_ids])
+        search.exclude_ids = exclude_ids
       end
+    elsif opts[:search_type] == "recently_added"
+      search.date_from = self.delivered_at
     end
     get_full_results(search)
   end
 
-private
+  private
   def set_search_code
     self.search_code = generate_search_code
   end

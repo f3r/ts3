@@ -17,7 +17,7 @@
 
   :javascript
     $(function() {
-      $(".trigger_signup").click(function() {
+      $(".trigger_signup").live('click',function() {
         $.ajax({
           type: 'PUT',
           url: '/set_ref.json',
@@ -29,3 +29,14 @@
         return false;
       });
     });
+    
+:javascript
+  $(function(){
+    var hash = window.location.hash;
+    if(hash.length) {
+      var forms = $('form');
+      $.each(forms, function(index,form){
+        $(form).attr('action', $(form).attr('action') + hash);
+      });
+    }
+  });

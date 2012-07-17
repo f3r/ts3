@@ -46,7 +46,7 @@ class Preferences < ActiveRecord::Base
   end
 
   def self.current_speed_unit(current_user, cookies)
-    current_speed_unit = current_user.prefered_speed_unit if current_user.present?
+    current_speed_unit = current_user.prefered_speed_unit if current_user.present? 
     current_speed_unit = self.get_speed_unit_from_cookie(cookies) if current_speed_unit.blank?
     current_speed_unit = Preferences.speed_units.kmh if current_speed_unit.blank?
     current_speed_unit
@@ -69,10 +69,10 @@ class Preferences < ActiveRecord::Base
   end
 
   def self.get_size_unit_from_cookie(cookies)
-    self.size_units[cookies[:size_unit]] if cookies[:size_unit].present?
+    self.size_units[cookies[:size_unit_id]] if cookies[:size_unit_id].present?
   end
 
   def self.get_speed_unit_from_cookie(cookies)
-    Preferences.speed_units[cookies[:speed_unit]] if cookies[:speed_unit].present?
+    self.speed_units[cookies[:speed_unit_id]] if cookies[:speed_unit_id].present?
   end
 end

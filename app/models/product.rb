@@ -101,6 +101,10 @@ class Product < ActiveRecord::Base
     self.reviews.average(:score).to_i
   end
 
+  def has_any_paid_transactions?(user)
+    Transaction.joins(:inquiry).where('state = ?', :paid).where('transactions.user_id = ?', user).where('inquiries.product_id = ?', self.id).count > 0
+  end
+
   protected
 
   def after_update_address

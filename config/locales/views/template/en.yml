@@ -24,6 +24,7 @@ en:
       preferences:
         choose_language: Choose language
         choose_currency: Choose currency
-        choose_unit: Choose unit
+        choose_size_unit: Choose size unit
+        choose_speed_unit: Choose speed unit
         english_native: English
         spanish_native: Español

@@ -16,16 +16,16 @@ class User < ActiveRecord::Base
   include User::Social
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
-                  :remember_me, :pref_language, :pref_currency, :pref_size_unit, :pref_city, :passport_number, :signup_role, :address_attributes, :delete_avatar
+                  :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar
 
-  belongs_to :prefered_city, :class_name => 'City', :foreign_key => 'pref_city'
 
   # TODO: check if we need this
-  # has_many :addresses,        :dependent => :destroy
+  # has_many :addresses, :dependent => :destroy
 
   has_one :address
   has_one :bank_account
-
+  has_one :preferences
+  
   has_many :authentications,  :dependent => :destroy
   has_many :products,         :dependent => :destroy
   has_many :comments,         :dependent => :destroy
@@ -51,6 +51,7 @@ class User < ActiveRecord::Base
   before_save :ensure_authentication_token, :check_avatar_url
   before_save :check_delete_avatar
   after_create :send_on_create_welcome_instructions
+  after_create :add_user_preferences
 
   scope :consumer, where("role = 'user'")
   scope :agent,    where("role = 'agent'")
@@ -122,9 +123,13 @@ class User < ActiveRecord::Base
   end
 
   def change_preference(pref, value)
-    if pref =~ /pref_/
-      self.update_attribute(pref, value)
-    end
+   # if pref =~ /pref_/
+   if self.preferences
+     self.preferences.update_attribute(pref, value)
+   else
+     
+   end
+   # end
   end
 
   def generate_set_password_token
@@ -138,6 +143,26 @@ class User < ActiveRecord::Base
     products = SiteConfig.product_class.published.where('user_id = ?', self.id)
     products = products.where('products.id <> ?', except.product.id) if except
     products
+  end
+  
+  def prefered_language
+    return self.preferences.locale if self.preferences
+  end
+  
+  def prefered_currency
+    return self.preferences.currency if self.preferences
+  end
+  
+  def prefered_city
+    return self.preferences.city if self.preferences
+  end
+  
+  def prefered_speed_unit
+    return self.preferences.speed_unit_id if self.preferences
+  end
+  
+  def prefered_size_unit
+    return self.preferences.size_unit_id if self.preferences
   end
 
   private
@@ -159,5 +184,9 @@ class User < ActiveRecord::Base
       self.avatar.clear if avatar && !avatar.dirty?
     end
   end
-
+  
+  def add_user_preferences
+    self.build_preferences
+  end
+  
 end

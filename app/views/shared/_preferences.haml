@@ -1,35 +1,11 @@
-- curr = current_currency
 %ul.tab.preference-wrapper
   %li#toggle-preferences.dropdown
     %a.dropdown-toggle{:href => "#"}
-      - if curr
+      - if current_currency
         %span.selector_label
-          = curr.label
+          = current_currency.label
     %ul.dropdown-menu
       %li.arrow
-      %li.divider-title= "#{t("template.header.preferences.choose_language")}..."
-      %li.divider
-      - Locale.active.each do |locale|
-        %li{ get_current_language == locale.code ? {:class => "active"} : {} }
-          = link_to :change_preference => true, :pref_language => locale.code do
-            %span.check &#10003;
-            = locale.name_native
-      %li.divider
-      %li.divider-title= "#{t("template.header.preferences.choose_currency")}..."
-      %li.divider
-        - Currency.active.each do |a_cur|
-          %li{curr == a_cur ? {:class => "active"} : {} }
-            = link_to :change_preference => true, :pref_currency => a_cur.currency_code do
-              %span.check &#10003;
-              %span.option-label= a_cur.label
-      %li.divider
-      %li.divider-title= "#{t("template.header.preferences.choose_unit")}..."
-      %li.divider
-      %li{ get_current_size_unit == "sqm" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_size_unit => 'sqm' do
-          %span.em <span class="check">&#10003;</span> m²
-          =t("units.square_meters")
-      %li{ get_current_size_unit == "sqf" ? {:class => "active"} : {} }
-        = link_to :change_preference => true, :pref_size_unit => 'sqf' do
-          %span.em <span class="check">&#10003;</span> ft²
-          =t("units.square_feet")
+        - PreferenceSection.active.each do |pref_section|
+          = render "shared/#{pref_section.code}"
+        

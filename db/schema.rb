@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120712122357) do
+ActiveRecord::Schema.define(:version => 20120717050431) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -472,6 +472,26 @@ ActiveRecord::Schema.define(:version => 20120712122357) do
   add_index "places", ["state_name"], :name => "index_places_on_state_name"
   add_index "places", ["user_id"], :name => "index_places_on_user_id"
 
+  create_table "preference_sections", :force => true do |t|
+    t.string   "name"
+    t.string   "code"
+    t.integer  "position"
+    t.boolean  "active",     :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  create_table "preferences", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "locale_id"
+    t.integer  "currency_id"
+    t.integer  "size_unit_id"
+    t.integer  "speed_unit_id"
+    t.integer  "city_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
   create_table "product_amenities", :force => true do |t|
     t.integer "product_id"
     t.integer "amenity_id"
@@ -697,15 +717,11 @@ ActiveRecord::Schema.define(:version => 20120712122357) do
     t.string   "avatar_content_type"
     t.integer  "avatar_file_size"
     t.datetime "avatar_updated_at"
-    t.string   "pref_language"
-    t.string   "pref_currency"
     t.string   "first_name"
     t.string   "last_name"
     t.string   "role",                                  :default => "user"
-    t.string   "pref_size_unit"
     t.string   "passport_number"
     t.string   "unconfirmed_email"
-    t.integer  "pref_city"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

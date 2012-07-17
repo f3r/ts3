@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
   include AuthenticationHelper
   include LookupsHelper
   include RoutesHelper
+  include PreferenceHelper
+  include AvailabilitiesHelper
   before_filter :instantiate_controller_and_action_names
   before_filter :set_locale
   before_filter :change_preferences
@@ -20,17 +22,24 @@ class ApplicationController < ActionController::Base
 
   def change_preferences
     if params.delete(:change_preference)
-      preference = if params.key?("pref_language")
-        :pref_language
-      elsif params.key?("pref_currency")
-        :pref_currency
-      elsif params.key?("pref_size_unit")
-        :pref_size_unit
+      
+      if params.key?("locale")
+        preference = :locale
+        value = Locale.find_by_code(params.delete(preference))
+      elsif params.key?("currency")
+        preference = :currency
+        value = Currency.find_by_currency_code(params.delete(preference))
+      elsif params.key?("size_unit_id")
+        preference = :size_unit_id
+        value = Preferences.size_units[params.delete(preference)]
+      elsif params.key?("speed_unit_id")
+        preference = :speed_unit_id
+        value = Preferences.speed_units[params.delete(preference)]
       end
 
-      value = params.delete(preference)
       # Set to cookies
-      cookies[preference] = value
+      cookie_value = params.delete(preference)
+      cookies[preference] = cookie_value
 
       # TODO: Fix security issue
       # Possible unprotected redirect near line 38: redirect_to(params)

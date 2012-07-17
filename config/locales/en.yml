@@ -85,6 +85,12 @@ en:
   square_feet:                Square feet
   square_meters_short:        "m²"
   square_feet_short:          "ft²"
+  kilometer_per_hour:         Kilometer per Hour
+  meter_per_hour:             Meter per Hour
+  kilometer_per_hour_short:   "kmh"
+  meter_per_hour_short:       "mph"
+  
+  
 
   ####################################################################################
   # General field names and validation errors

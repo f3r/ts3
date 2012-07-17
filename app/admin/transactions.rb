@@ -30,7 +30,7 @@ ActiveAdmin.register Transaction do
      attributes_table do
       row("Transaction No") {transaction.id }
       row :user
-      row :place
+      row :inquiry
       row :state
       row("Created Date") {transaction.created_at }
       panel "Transaction log Details" do

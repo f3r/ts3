@@ -141,6 +141,10 @@ class Inquiry < ActiveRecord::Base
     InquiryMailer.inquiry_reminder_owner(self).deliver
   end
 
+  def listing
+    self.product.specific if self.product
+  end
+
   def title
     self.product.title if self.product
   end

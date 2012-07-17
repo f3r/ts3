@@ -25,16 +25,16 @@ class ApplicationController < ActionController::Base
       
       if params.key?("locale")
         preference = :locale
-        value = Locale.find_by_code(params.delete(preference))
+        value = Locale.find_by_code(params[preference])
       elsif params.key?("currency")
         preference = :currency
-        value = Currency.find_by_currency_code(params.delete(preference))
-      elsif params.key?("size_unit_id")
-        preference = :size_unit_id
-        value = Preferences.size_units[params.delete(preference)]
-      elsif params.key?("speed_unit_id")
-        preference = :speed_unit_id
-        value = Preferences.speed_units[params.delete(preference)]
+        value = Currency.find_by_currency_code(params[preference])
+      elsif params.key?("size_unit")
+        preference = :size_unit
+        value = params[preference]
+      elsif params.key?("speed_unit")
+        preference = :speed_unit
+        value = params[preference]
       end
 
       # Set to cookies

@@ -50,7 +50,7 @@ class Service < ActiveRecord::Base
   end
 
   def self.price_unit
-    :per_hour
+    SiteConfig.price_unit
   end
 
   def self.transaction_length_units
@@ -65,8 +65,7 @@ class Service < ActiveRecord::Base
     self.class.price_unit
   end
 
-  def price(a_currency, unit)
-    unit ||= self.class.price_unit  
+  def price(a_currency, unit) 
     self.product.price(a_currency, unit)
   end
 

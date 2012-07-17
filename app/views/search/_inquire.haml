@@ -15,17 +15,17 @@
             = f.label :email, t("users.email"), {:class => 'control-label'}
             .controls
               = text_field_tag :email, nil, :placeholder => t("users.email_example"), :class => 'validate[required]'
-
-        .control-group
-          = f.label :date_start_label, t("inquiries.arriving"), {:class => 'control-label'}
-          .controls
-            = text_field_tag "date_start_label", nil, :placeholder => t("date_select"), :class => 'validate[required] textbox medium datepicker', :id => 'inquiry_date_start_label'
-            = f.hidden_field :date_start
-        .control-group
-          = f.label :length_stay, t("inquiries.staying"), {:class => 'control-label'}
-          .controls
-            = f.text_field :length_stay, :class => 'input-small validate[required,integer]'
-            = f.select :length_stay_type, transaction_length_options, :class => 'small'
+        - if show_inquiry_length_fields?
+          .control-group
+            = f.label :date_start_label, t("inquiries.arriving"), {:class => 'control-label'}
+            .controls
+              = text_field_tag "date_start_label", nil, :placeholder => t("date_select"), :class => 'validate[required] textbox medium datepicker', :id => 'inquiry_date_start_label'
+              = f.hidden_field :date_start
+          .control-group
+            = f.label :length_stay, t("inquiries.staying"), {:class => 'control-label'}
+            .controls
+              = f.text_field :length_stay, :class => 'input-small validate[required,integer]'
+              = f.select :length_stay_type, transaction_length_options, :class => 'small'
 
         .control-group
           = f.label :message, t("inquiries.comments_questions"), {:class => 'control-label'}

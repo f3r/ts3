@@ -32,11 +32,6 @@ module ProductsHelper
     results.reject{|p| !p.geocoded? }.collect{|p| {id: p.id, title: p.title, url: seo_product_url(p), lat: p.lat, lon: p.lon}}.to_json
   end
 
-  def transaction_length_options
-    opts = SiteConfig.product_class.transaction_length_units
-    options_for_select(opts)
-  end
-
   def can_review?(product, user)
     user && !(user == product.user) && !Review.exists?(:user_id => user.id, :product_id => product.id) && product.has_any_paid_transactions?(user)
   end

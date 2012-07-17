@@ -40,6 +40,7 @@ en:
       start_date:       'Date'
       duration:         'Duration'
     price_per_month:    'Price per month'
+    price_per_week:     'Price per week'
     price_per_hour:     'Price per hour'
-    price_per_day:      'Price per day'
+    price_per_night:    'Price per night'
     price_sale:         'Sale price'

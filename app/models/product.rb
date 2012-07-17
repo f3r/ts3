@@ -36,7 +36,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.price_unit
-    :sale
+    SiteConfig.price_unit
   end
 
   def primary_photo
@@ -84,7 +84,7 @@ class Product < ActiveRecord::Base
       else
         # Must convert between USD and a_currency
         amount_usd = self.send("price_#{unit}_usd")
-        amount = a_currency.from_usd(amount_usd/100.0)
+        amount = a_currency.from_usd(amount_usd/100.0) if amount_usd
       end
     end
     [a_currency.symbol, amount]
@@ -125,6 +125,7 @@ class Product < ActiveRecord::Base
 protected
 
   def after_update_address
+    return true
   end
 
   def index_amenities

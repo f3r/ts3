@@ -14,6 +14,15 @@ module InquiriesHelper
   #   }
   #   "https://www.sandbox.paypal.com/cgi-bin/webscr?" + values.map { |k,v| "#{k}=#{v}"  }.join("&")
   # end
+  def transaction_length_options
+    opts = SiteConfig.transaction_length_options
+    options_for_select(opts)
+  end
+
+  def show_inquiry_length_fields?
+    opts = SiteConfig.transaction_length_options
+    opts.any?
+  end
 
   def payment_notification_url(inquiry)
     paypal_callback_url

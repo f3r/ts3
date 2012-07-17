@@ -31,5 +31,6 @@ RSpec.configure do |config|
       arg
     end
     Place.any_instance.stub(:geocode).and_return(true)
+    SiteConfig.any_instance.stub(:price_units).and_return([:per_month])
   end
 end

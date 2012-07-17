@@ -19,7 +19,7 @@ class Property <  ActiveRecord::Base
   end
 
   def self.price_unit
-    :per_month
+    SiteConfig.price_unit
   end
 
   def self.transaction_length_units
@@ -51,7 +51,6 @@ class Property <  ActiveRecord::Base
   end
 
   def price(a_currency, unit = nil)
-    unit ||= self.class.price_unit
     self.product.price(a_currency, unit)
   end
 

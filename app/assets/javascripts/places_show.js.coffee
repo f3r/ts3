@@ -18,7 +18,7 @@ PlaceShow =
 
       # Lazy load map
       if $(e.target).attr('href') == '#map-tab'
-        self.PlaceShow.initializeMap(opts.map_lat, opts.map_lon, opts.map_cityName, opts.map_countryName, opts.map_radius)
+        self.PlaceShow.initializeMap(opts.map_lat, opts.map_lon, opts.map_cityName, opts.map_countryName, opts.map_radius, "map")
     )
 
     if window.location.hash
@@ -39,7 +39,7 @@ PlaceShow =
   #*******************************************************************************************
   # Google Map initialization
   #*******************************************************************************************
-  initializeMap: (lat, lon, cityName, countryName, radius) ->
+  initializeMap: (lat, lon, cityName, countryName, radius, element_id) ->
     mapOptions = {
       zoom: 13,
       center: new google.maps.LatLng(lat, lon),
@@ -48,7 +48,7 @@ PlaceShow =
         position: google.maps.ControlPosition.TOP_LEFT
     }
 
-    map = new google.maps.Map(document.getElementById('map'),mapOptions)
+    map = new google.maps.Map(document.getElementById(element_id),mapOptions)
     # We place a marker if radius is zero
     if radius == 0
       marker = new google.maps.Marker({

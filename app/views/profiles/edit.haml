@@ -15,9 +15,9 @@
 
 - if @user.address
   #map-tab.span3
-    %div#map
+    #profile_map{:style => "width: 218px;height:210px;border:#ccc 1px solid;"}
     .clearfix
 
   :javascript
     UserEdit.initialize();
-    PlaceShow.initializeMap(#{@user.address.lat || 'null'}, #{@user.address.lon || 'null'}, '#{@user.address.city}','#{@user.address.country}', 0);
+    PlaceShow.initializeMap(#{@user.address.lat || 'null'}, #{@user.address.lon || 'null'}, '#{@user.address.city}','#{@user.address.country}', 0, "profile_map");

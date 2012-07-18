@@ -1,6 +1,6 @@
-- if @resource.published
-  = button_to t("places.unpublish"), unpublish_listing_path(@resource), :method => :put, :class => 'btn primary medium preview-button unpublish'
-- else
-  = button_to t("places.publish"), publish_listing_path(@resource), :method => :put, :class => 'btn primary medium preview-button unpublish'
-
-= button_to t("places.edit"), edit_listing_path(@resource), :method => :get, :class => 'btn medium edit'
+.manage.pull-right
+  = button_to t("places.edit"), edit_listing_path(@resource), :method => :get, :class => 'btn medium edit'
+  - if @resource.published
+    %span.label.place_status.label-success=  t("products.listed")
+  - else
+    %span.label.place_status=  t("products.invisible")

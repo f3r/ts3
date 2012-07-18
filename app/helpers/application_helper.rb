@@ -8,12 +8,15 @@ module ApplicationHelper
   end
 
   def flash_messages
-    $flash_keys ||= [:error, :success, :notice, :warning, :alert]
+    $flash_keys ||= [:error, :success, :notice, :warning, :alert, :info]
     return unless messages = flash.keys.select{|k| $flash_keys.include?(k)}
 
     formatted_messages = messages.map do |type|
       content_tag :div, :class => "alert alert-#{type.to_s}", :style => "margin-top:25px" do
-        message_for_item(flash[type], flash["#{type}_item".to_sym])
+        html = ''
+        html << content_tag(:button, '&#215;'.html_safe, :class => 'close', 'data-dismiss' => 'alert')
+        html << message_for_item(flash[type], flash["#{type}_item".to_sym])
+        html.html_safe
       end
     end
     flash.clear # strictly clear the flash messages

@@ -1,3 +1,6 @@
+- content_for :javascripts do
+  = javascript_include_tag "wizard"
+
 .services-wizard
   .panel.tab-pane#1
     = render 'products/services/wizard_tabs/step_general'

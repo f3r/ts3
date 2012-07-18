@@ -7,6 +7,7 @@ en:
     list_your_product:  'List your %{product_name}'
     price_filter:       'Price %{price_unit}'
     preview:            'Preview'
+    view_listing:       'View'
     listed:             'Listed'
     invisible:          'Invisible'
     title:              'Title'

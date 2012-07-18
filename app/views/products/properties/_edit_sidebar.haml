@@ -27,8 +27,3 @@
           = image_tag('check.png')
         %a{:href => "#5", :title => t("places.wizard.calendar_title")}
           = t("places.wizard.calendar_title")
-
-    .actions
-      %a.btn.primary.large.preview-button{:href => listing_path(@resource), :id => "preview_button"}
-        %span
-          = @resource.published ? t("products.listed") : t("products.invisible")

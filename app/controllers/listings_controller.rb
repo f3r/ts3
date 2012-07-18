@@ -35,6 +35,9 @@ class ListingsController < PrivateController
 
   def edit
     #render 'places/wizard'
+    if !@resource.published? && !flash[:notice]
+      flash.now[:info] = "Your listing is not published. Complete the wizard and click on 'Publish'"
+    end
   end
 
   def update
@@ -82,11 +85,13 @@ class ListingsController < PrivateController
 
   def publish
     if @resource.publish!
-      flash[:notice] = t("products.messages.listing_published")
+      flash[:success] = t("products.messages.listing_published")
+      redirect_to listing_path(@resource)
     else
       flash[:error] = t("places.messages.place_publish_error")
+      redirect_to edit_listing_path(@resource)
     end
-    redirect_to listing_path(@resource)
+    
   end
 
   def publish_check
@@ -96,8 +101,8 @@ class ListingsController < PrivateController
 
   def unpublish
     @resource.unpublish!
-    flash[:notice] = t("products.messages.listing_unpublished")
-    redirect_to listing_path(@resource)
+    #flash[:notice] = t("products.messages.listing_unpublished")
+    redirect_to edit_listing_path(@resource)
   end
 
   protected

@@ -32,20 +32,52 @@ describe User do
   end
 
   context "Preferences" do
+    
+    it "should be an instance of Preferences" do
+      user.preferences.should be_an_instance_of(Preferences)
+    end
+    
+    it "initialy all preferences should be nil" do
+      user.prefered_currency.should be_nil
+      user.prefered_language.should be_nil
+      user.prefered_city.should be_nil
+      user.prefered_size_unit.should be_nil
+      user.prefered_speed_unit.should be_nil
+    end
+    
     it "stores prefered city" do
       city = create(:city)
-      user.change_preference(:pref_city, city.id)
+      user.change_preference(:city, city)
       user.reload
       user.prefered_city.should == city
     end
 
-    it "stores prefered currency"
+    it "stores prefered currency" do
+      currency = create(:currency)
+      user.change_preference(:currency, currency)
+      user.reload
+      user.prefered_currency.symbol.should == '$'
+    end
 
     it "stores prefered language" do
-      user.change_preference(:pref_language, 'pt')
+      locale = create(:locale)
+      user.change_preference(:locale, locale)
       user.reload
-      user.pref_language.should == 'pt'
+      user.prefered_language.code.should == 'MyString'
     end
+     
+    it "Getting prefered size unit" do
+      user.change_preference(:size_unit_id, 0)
+      user.reload
+      user.prefered_size_unit.should == 0
+    end
+    
+    it "Getting prefered speed unit" do
+      user.change_preference(:speed_unit_id, 0)
+      user.reload
+      user.prefered_speed_unit.should == 0
+    end
+    
   end
 
   context "OAuth" do

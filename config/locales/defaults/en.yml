@@ -37,10 +37,14 @@ en:
       info@%{site_domain}</p>
 
   units:
-    square_meters: Square meters
-    square_feet: Square feet
-    square_meters_short: "m²"
-    square_feet_short: "ft²"
+    sqm: Square meters
+    sqf: Square feet
+    sqm_short: "m²"
+    sqf_short: "ft²"
+    kmh: Kilometer per Hour
+    mph: Meter per Hour
+    kmh_short: "kmh"
+    mph_short: "mph"
     
   roles:
     admin: Admin

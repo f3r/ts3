@@ -5,8 +5,7 @@ en:
   ####################################################################################
   # App General Stuff
   ####################################################################################
-  app_name:   Squarestays
-  site_title: '%{site_name} - Trusted Stays'
+  app_name:   '%{site_name}'
   submit:     Submit
   submitting: Submitting
   cancel:     Cancel

@@ -108,19 +108,21 @@ en:
     transaction_pay_renter:
       subject: Transaction Confirmed!
       content: |
-        Congratulations! Your rental is confirmed. The listing owner's
-        contact details will be sent to you in an email and you will pay the
-        remainder of your rental fees directly to the listing owner.
-        <br/><br/>
-        Enjoy your stay and thank you for using %{site_name}!
+        <p>Congratulations! You will be renting %{product_title} from %{owner_address}</p> <p>We recommend you
+        contact the listing owner as soon as possible to coordinate and confirm any remaining items.</p>
+        <br/>
+        <p>Enjoy your stay and thank you for using %{site_name}!</p>
     transaction_pay_owner:
       subject: Transaction Confirmed!
       content: |
-        Congratulations! This rental is confirmed. The tenant's contact
-        details will be sent to you in an email and the tenant will pay
-        the remainder of your rental fees directly to you.
-        <br/><br/>
-        Thank you for listing your property with %{site_name}!
+        <p>Congratulations! Your property %{product_title} has been rented on %{site_name}.</p> 
+        <p>The tenant's contact details are: </p>
+        %{renter_address}
+        <br/>
+        <p>The tenant will pay the remainder of the rental fees directly to you.</p>
+        <p>We recommend you contact the tenant as soon as possible to coordinate and confirm any remaining items.</p>        
+        <br/>
+        <p>Thank you for listing your property with %{site_name}!</p>
     have_any_question: 'If you have any questions, please email us at %{support_email}'
     signature:         '-- The %{site_name} team'
     ps_message: |

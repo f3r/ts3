@@ -1,2 +1,12 @@
 <h2><%= t("mailers.salutation", :name => @user.first_name) %></h2>
-<p><%= t("mailers.transaction_pay_renter.content").html_safe %></p>
+<%
+#TODO: Add More info as required - for now just adding email and mobile
+address_data = []
+address_data << "(e) #{@owner.email}"
+address_data << "(m) #{@owner.phone_mobile}" if @owner.phone_mobile.present?
+owner_address = content_tag :p do
+  address_data.reduce('') {|c,x|
+    c << content_tag(:li, x)
+  }.html_safe
+end %>
+<%= t("mailers.transaction_pay_renter.content", :product_title => @product.title, :owner_address => owner_address).html_safe %>

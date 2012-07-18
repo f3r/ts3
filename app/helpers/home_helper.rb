@@ -34,10 +34,28 @@ module HomeHelper
   end
 
   def main_menu
-    html = ""
     menu = MenuSection.main
     return unless menu
 
+    create_menu_html( menu )
+  end
+  
+  def main_menu_user
+    menu = MenuSection.user_menu
+    return unless menu
+
+    create_menu_html( menu )
+  end
+  
+  def main_menu_agent
+    menu = MenuSection.agent_menu
+    return unless menu
+
+    create_menu_html( menu )
+  end
+  
+  def create_menu_html( menu )
+    html = ""
     menu.cmspages.each do |p|
       html << menu_link_to(p.page_title, p.link)
     end

@@ -94,9 +94,11 @@ class Service < ActiveRecord::Base
   end
 
   def fill_in_address
-    if self.user.address.present?
-      self.lat = self.user.address.lat
-      self.lon = self.user.address.lon
+    if (address = self.user.address)
+      self.address_1 = address.street
+      self.zip = address.zip
+      self.lat = address.lat
+      self.lon = address.lon
     end
     # because this method is a callback, we should return true so validations do not fail
     true

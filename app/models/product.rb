@@ -105,11 +105,6 @@ class Product < ActiveRecord::Base
     Transaction.joins(:inquiry).where('state = ?', :paid).where('transactions.user_id = ?', user).where('inquiries.product_id = ?', self.id).count > 0
   end
 
-  protected
-
-  def after_update_address
-  end
-
   def convert_prices_to_usd
     return true unless currency
     [:per_hour, :per_night, :per_week, :per_month, :sale].each do |unit|
@@ -123,10 +118,12 @@ class Product < ActiveRecord::Base
         end
       end
     end
-    return true
-    #self.price_per_hour_usd = self.currency.to_usd(self.price_per_hour) * 100.0 if self.price_per_hour_changed? && self.price_per_hour
-    #self.price_per_week_usd = self.currency.to_usd(self.price_per_week) * 100.0 if self.price_per_week_changed? && self.price_per_week
-    #self.price_per_month_usd = self.currency.to_usd(self.price_per_month) * 100.0 if self.price_per_month_changed? && self.price_per_month
+    true
+  end
+
+protected
+
+  def after_update_address
   end
 
   def index_amenities

@@ -93,11 +93,11 @@
           .span5
             .details_value= cancellation_desc(@resource)
 
-  .span10{:style => "margin:13px auto 20px 217px"}
-    .row-fluid
-      // We group all amenities into 4 columns
-      - amenities = display_place_amenities(@resource)
-      - amenities.in_groups_of(4) do |amenity_group|
-        .span2
-          - amenity_group.each do |amenity|
-            .w-left-icon.check= amenity
+  - unless @resource.amenities.blank?
+    .span10.offset1{:style => "margin: 15px auto 20px 68px"}
+      .row-fluid
+        - @resource.amenities.in_groups_of(4) do |ag|
+          .span2
+            - ag.each do |amenity|
+              - if amenity
+                .w-left-icon.check= amenity.name

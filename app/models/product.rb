@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
 
   validates_presence_of  :currency, :city, :title
 
-  validates_numericality_of :price_per_night, :price_per_hour, :price_per_month, :price_sale, :allow_nil => true
+  validates_numericality_of :price_per_day, :price_per_hour, :price_per_week, :price_per_month, :price_sale, :allow_nil => true
 
   before_save :convert_prices_to_usd, :index_amenities
 
@@ -108,7 +108,7 @@ class Product < ActiveRecord::Base
 
   def convert_prices_to_usd
     return true unless currency
-    [:per_hour, :per_night, :per_week, :per_month, :sale].each do |unit|
+    [:per_hour, :per_day, :per_week, :per_month, :sale].each do |unit|
       field = "price_#{unit}"
       field_usd = "#{field}_usd"
       if self.changed.include?(field)

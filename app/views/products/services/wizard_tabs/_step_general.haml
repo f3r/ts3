@@ -10,11 +10,13 @@
         = f.label :title, t("products.title"), :class => 'control-label'
         .controls
           = f.text_field :title, :class => "input-xlarge validate[required] autosave"
-      .control-group.required
-        = f.label :price_per_hour, t("services.price_per_hour"), :class => 'control-label'
-        .controls
-          = f.text_field :price_per_hour, :class => "input-small validate[required] autosave"
-          = @resource.currency.label
+      - if false
+        .control-group.required
+          = f.label :price_per_hour, t("services.price_per_hour"), :class => 'control-label'
+          .controls
+            = f.text_field :price_per_hour, :class => "input-small validate[required] autosave"
+            = @resource.currency.label
+      = render 'products/price_fields', :f => f
       .control-group
         = f.label :languages_ids, t("services.wizard.languages"), :class => 'control-label'
         .controls.languages

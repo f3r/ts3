@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120716175944) do
+ActiveRecord::Schema.define(:version => 20120718080648) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -524,8 +524,8 @@ ActiveRecord::Schema.define(:version => 20120716175944) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.integer  "category_id"
-    t.integer  "price_per_night"
-    t.integer  "price_per_night_usd"
+    t.integer  "price_per_day"
+    t.integer  "price_per_day_usd"
     t.string   "amenities_search"
   end
 
@@ -641,7 +641,7 @@ ActiveRecord::Schema.define(:version => 20120716175944) do
     t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
-    t.boolean  "enable_price_per_night"
+    t.boolean  "enable_price_per_day"
     t.boolean  "enable_price_per_week"
     t.boolean  "enable_price_per_month"
     t.boolean  "enable_price_sale"

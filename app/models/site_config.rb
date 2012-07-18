@@ -76,7 +76,7 @@ class SiteConfig < ActiveRecord::Base
     units << :sale      if self.enable_price_sale?
     units << :per_month if self.enable_price_per_month?
     units << :per_week  if self.enable_price_per_week?
-    units << :per_night if self.enable_price_per_night?
+    units << :per_day   if self.enable_price_per_day?
     units << :per_hour  if self.enable_price_per_hour?
     units
   end
@@ -85,7 +85,7 @@ class SiteConfig < ActiveRecord::Base
     units = []
     units << ['month(s)', 'months'] if self.enable_price_per_month?
     units << ['week(s)',  'weeks']  if self.enable_price_per_week?
-    units << ['night(s)', 'nights'] if self.enable_price_per_night?
+    units << ['day(s)',   'days']   if self.enable_price_per_day?
     units << ['hour(s)',  'hours']  if self.enable_price_per_hour?
     units
   end

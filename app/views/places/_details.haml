@@ -44,12 +44,12 @@
 
       // Prices Column (night, week, month)
       .span3
-        - if @resource.price_per_night.present?
+        - if @resource.price_per_day.present?
           .row-fluid
             .span8
-              .details_label= t("places.price_per_night")
+              .details_label= t("places.price_per_day")
             .span4
-              .details_value= place_price(@resource, :per_night)
+              .details_value= place_price(@resource, :per_day)
 
         - if @resource.price_per_week.present?
           .row-fluid

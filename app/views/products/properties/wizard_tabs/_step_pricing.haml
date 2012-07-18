@@ -74,7 +74,7 @@
   .float-left
     %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t("places.wizard.previous_step")
   .float-right
-    %a.btn.primary{:href => "javascript:switchToPanel('#5')"}=raw t("places.wizard.next_step")
+    %a.btn.primary{:href => "#{listing_path(@resource)}"}= t("products.preview")
 
   = render :partial => 'places/cancellation_policy'
 

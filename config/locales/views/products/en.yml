@@ -6,6 +6,7 @@ en:
     add_a_listing:      'Add a %{product_name}'
     list_your_product:  'List your %{product_name}'
     price_filter:       'Price %{price_unit}'
+    preview:            'Preview'
     listed:             'Listed'
     invisible:          'Invisible'
     title:              'Title'

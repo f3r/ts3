@@ -25,16 +25,11 @@ module ProductsHelper
   end
 
   def product_price_unit(product)
-    t(product.price_unit)
+    t(SiteConfig.price_unit)
   end
 
   def map_markers_json(results)
     results.reject{|p| !p.geocoded? }.collect{|p| {id: p.id, title: p.title, url: seo_product_url(p), lat: p.lat, lon: p.lon}}.to_json
-  end
-
-  def transaction_length_options
-    opts = SiteConfig.product_class.transaction_length_units
-    options_for_select(opts)
   end
 
   def can_review?(product, user)

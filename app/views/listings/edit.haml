@@ -1,6 +1,15 @@
-.wizard.row
-  .span12.title
-    %h1= @resource.title
+.wizard
+  .row.title-bar
+    .span10.title
+      %h1= @resource.title
+    .span2
+      .listing-actions.pull-right
+        - if @resource.published
+          = button_to t("products.view_listing"), listing_path(@resource), :method => :get, :class => 'btn'
+          = button_to t("places.unpublish"), unpublish_listing_path(@resource), :method => :put, :class => 'btn btn-danger'
+        - else
+          = button_to t("products.preview"), listing_path(@resource), :method => :get, :class => 'btn'
+          = button_to t("places.publish"), publish_listing_path(@resource), :method => :put, :class => 'btn btn-success'
 .row
   .span12
     .row
@@ -9,6 +18,6 @@
         &nbsp;
       .span9
         %h2.title.section_title= t("places.wizard.general_information_title")
-        .wizard-wrapper.services-wizard
+        .wizard-wrapper
           .tab-content
             = render_overridable_partial('tabbed_wizard')

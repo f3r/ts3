@@ -21,13 +21,9 @@
           = image_tag('check-disabled.png')
         %a{:href => "#4", :title => t("places.wizard.price_and_conditions_title")}
           = t("places.wizard.price_and_conditions_title")
+    - if false
       %li
         .indicator
           = image_tag('check.png')
         %a{:href => "#5", :title => t("places.wizard.calendar_title")}
           = t("places.wizard.calendar_title")
-
-    .actions
-      %a.btn.primary.large.preview-button{:href => listing_path(@resource), :id => "preview_button"}
-        %span
-          = @resource.published ? t("products.listed") : t("products.invisible")

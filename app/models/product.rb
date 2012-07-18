@@ -17,7 +17,7 @@ class Product < ActiveRecord::Base
 
   validates_presence_of  :currency, :city, :title
 
-  validates_numericality_of :price_per_night, :price_per_hour, :price_per_month, :price_sale, :allow_nil => true
+  validates_numericality_of :price_per_day, :price_per_hour, :price_per_week, :price_per_month, :price_sale, :allow_nil => true
 
   before_save :convert_prices_to_usd, :index_amenities
 
@@ -36,7 +36,7 @@ class Product < ActiveRecord::Base
   end
 
   def self.price_unit
-    :sale
+    SiteConfig.price_unit
   end
 
   def primary_photo
@@ -69,7 +69,8 @@ class Product < ActiveRecord::Base
     self.valid?
   end
 
-  def price(a_currency = nil, unit = :per_month)
+  def price(a_currency = nil, unit = nil)
+    unit ||= self.class.price_unit  
     a_currency ||= Currency.default
 
     # If we are asked in the original currency of the place
@@ -83,7 +84,7 @@ class Product < ActiveRecord::Base
       else
         # Must convert between USD and a_currency
         amount_usd = self.send("price_#{unit}_usd")
-        amount = a_currency.from_usd(amount_usd/100.0)
+        amount = a_currency.from_usd(amount_usd/100.0) if amount_usd
       end
     end
     [a_currency.symbol, amount]
@@ -107,7 +108,7 @@ class Product < ActiveRecord::Base
 
   def convert_prices_to_usd
     return true unless currency
-    [:per_hour, :per_night, :per_week, :per_month, :sale].each do |unit|
+    [:per_hour, :per_day, :per_week, :per_month, :sale].each do |unit|
       field = "price_#{unit}"
       field_usd = "#{field}_usd"
       if self.changed.include?(field)
@@ -124,6 +125,7 @@ class Product < ActiveRecord::Base
 protected
 
   def after_update_address
+    return true
   end
 
   def index_amenities

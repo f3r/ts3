@@ -4,6 +4,7 @@ describe Search::Product do
   before(:each) do
     #@user = create(:user)
     @search = Search::Product.new
+
   end
 
   it "searches amenities" do
@@ -23,7 +24,9 @@ describe Search::Product do
     before(:each) do
       @pt1 = create(:category)
       @search.currency = create(:currency,:currency_code => 'USD')
+      @search.stub(:price_unit).and_return(:sale)
     end
+
     it "returns price step single product" do
       @p1 = create(:product, :category => @pt1, :price_sale => 1000,:published => true)
       @search.category_ids = [@pt1.id]

@@ -5,8 +5,7 @@ en:
   ####################################################################################
   # App General Stuff
   ####################################################################################
-  app_name:   Squarestays
-  site_title: '%{site_name} - Trusted Stays'
+  app_name:   '%{site_name}'
   submit:     Submit
   submitting: Submitting
   cancel:     Cancel
@@ -403,9 +402,10 @@ en:
   # Place show
   ####################################################################################
   this_is_preview: This is a Preview
-  per_hour: Per Hour
-  per_night: Per Night
+  per_hour:  Per Hour
+  per_day:   Per Day
   per_month: Per Month
+  sale: Sale Price
   rent: Inquire
 
   map: Map
@@ -415,7 +415,7 @@ en:
   bed: Bed
   guest: Guest
   bathroom: Bathrooms
-  price_per_night: Price per Night
+  price_per_day:  Price per Day
   price_per_week: Price per Week
   price_per_month: Price per Month
   cancellation: Cancellation

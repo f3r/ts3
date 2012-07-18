@@ -41,6 +41,7 @@ HeyPalFrontEnd::Application.routes.draw do
       put   :unpublish
       put   :update_currency
       put   :update_address
+      get   :publish_check
     end
     resources :photos, :only => [:create, :update, :destroy] do
       put :sort, :on => :collection

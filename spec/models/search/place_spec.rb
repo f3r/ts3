@@ -4,6 +4,7 @@ describe Search::Property do
   before(:each) do
     @user = create(:user)
     @search = Search::Property.new
+    Property.stub(:price_unit).and_return(:per_month)
   end
 
   context "Fields" do

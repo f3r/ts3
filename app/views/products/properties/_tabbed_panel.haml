@@ -4,8 +4,9 @@
       %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("places.photos")
     %li
       %a{:href => "#map-tab",      'data-toggle' => 'tab'}= t("places.map")
-    %li
-      %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("places.calendar")
+    - if SiteConfig.calendar?
+      %li
+        %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("places.calendar")
     %li
       %a{:href => "#details-tab", 'data-toggle' => 'tab'}= t("places.details")
     - if resource.house_rules.present?
@@ -32,7 +33,8 @@
     = render 'places/map'
 
     // Calendar Pane
-    = render 'places/calendar'
+    - if SiteConfig.calendar?
+      = render 'places/calendar'
 
     // Details Pane
     = render 'places/details'
@@ -56,7 +58,7 @@
   .row
     .span8
       %pre.desc= resource.description
-    .span2.right.span-below
+    .span2.right.span-below.min-stay
       .title
         =t("places.minimum_stay")
       .micro
@@ -64,7 +66,7 @@
           = "#{resource.minimum_stay} #{t(resource.stay_unit)}"
         -else
           = t("places.no_minimum")
-    .span2.right
+    .span2.right.max-stay
       .title
         =t("places.maximum_stay")
       .micro

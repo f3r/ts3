@@ -7,9 +7,8 @@
   - if @my_products
     .span10
       = breadcrumb [[t('products.my_listings'), listings_path]], @resource.title
-    .span2.place-actions
-      .buttons.pull-right
-        = render 'listings/actions'
+    .span2.listing-actions
+      = render 'listings/actions'
   - else
     .span12
       = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title

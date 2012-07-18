@@ -639,11 +639,11 @@ es:
     num_bedrooms: "Número de habitaciones"
     num_beds: "Número de camas"
     per_month: "Por mes"
-    per_night: "Por noche"
+    per_day: "Por noche"
     per_week: "Por semana"
     photos: Fotos
     price_per_month: "Precio por mes"
-    price_per_night: "Precio por noche"
+    price_per_day: "Precio por noche"
     price_per_week: "Precio por semana"
     publish: Publicar
     questions: 

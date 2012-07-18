@@ -280,7 +280,7 @@ class Place < ActiveRecord::Base
   end
 
   def self.price_unit
-    :per_month
+    SiteConfig.price_unit
   end
 
   def self.transaction_length_units

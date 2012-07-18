@@ -26,7 +26,7 @@ class SiteConfig < ActiveRecord::Base
     end
     if self.instance.respond_to?(name.to_s)
       val = self.instance.send(name.to_s) if self.instance
-      if val == false or val.present?
+      if !val.nil?
         val
       else
         # Backward compatibility with config constants
@@ -69,6 +69,34 @@ class SiteConfig < ActiveRecord::Base
 
   def self.product_name
     self.product_class.product_name
+  end
+
+  def price_units
+    units = []
+    units << :sale      if self.enable_price_sale?
+    units << :per_month if self.enable_price_per_month?
+    units << :per_week  if self.enable_price_per_week?
+    units << :per_day   if self.enable_price_per_day?
+    units << :per_hour  if self.enable_price_per_hour?
+    units
+  end
+
+  def transaction_length_options
+    units = []
+    units << ['month(s)', 'months'] if self.enable_price_per_month?
+    units << ['week(s)',  'weeks']  if self.enable_price_per_week?
+    units << ['day(s)',   'days']   if self.enable_price_per_day?
+    units << ['hour(s)',  'hours']  if self.enable_price_per_hour?
+    units
+  end
+
+  def price_unit
+    units = self.price_units
+    if units.blank?
+      raise "Must enable a price unit"
+    else
+      units.first
+    end
   end
 
   protected

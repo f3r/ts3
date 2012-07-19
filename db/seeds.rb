@@ -62,6 +62,11 @@ unless Currency.exists?(currency_code: "USD")
   })
 end
 
+PreferenceSection.find_or_create!({:name => "Language", :code => "language_pref", :position => 1, :active => true})
+PreferenceSection.create({:name => "Currency", :code => "currency_pref", :position => 2, :active => true})
+PreferenceSection.create({:name => "Size Unit", :code => "size_unit_pref", :position => 3, :active => true})
+PreferenceSection.create({:name => "Speed Unit", :code => "speed_unit_pref", :position => 4, :active => true})
+
 ###############################################################################
 # CREATING GALLERIES
 ###############################################################################

@@ -5,6 +5,8 @@ ActiveAdmin.register City do
 
   controller do
     helper 'admin/cities'
+    actions :index, :create, :show, :edit, :update
+
     def scoped_collection
       City.unscoped
     end
@@ -16,30 +18,24 @@ ActiveAdmin.register City do
 
   filter :name
   filter :state
-  filter :country
-  filter :country_code, :as => :select, :collection => proc { City.select(["country_code as name"]).find(:all, :group => "country_code") }
+  filter :country, :as => :select, :collection => proc { City.select(["country as name"]).find(:all, :group => "country_code") }
 
-  form do |f|
-    f.inputs do
-      f.input :name
-      f.input :lat
-      f.input :lon
-      f.input :state
-      f.input :country
-      f.input :country_code
-      f.input :active
-    end
-    f.buttons
-  end
+  form :partial => "new"
 
   index do
     id_column
     column :name
     column :state
     column :country
-    column :country_code
     column("Status")      {|city| status_tag(city.active ? 'Active' : 'Inactive') }
     column("Actions")     {|city| city_links_column(city) }
+  end
+
+  show do
+    attributes_table do
+      rows :name, :state, :country, :active
+      row('Map'){|city|  static_image_map(city)}
+    end
   end
 
   collection_action :sort, :method => :post do
@@ -84,9 +80,22 @@ ActiveAdmin.register City do
     redirect_to :action => :index
   end
 
-  sidebar :import_csv_file do
-    render "admin/csv/upload_csv", :required_columns => "name, state, country, country_code"
+
+  collection_action :geonames_search, :method => :get do
+    name = params[:geo_search][:name] if params[:geo_search]
+    country_code = params[:geo_search][:country_code] if params[:geo_search]
+
+    @results = City.geonames_search(name, country_code)
+    render 'admin/cities/results'
   end
+
+  action_item :only => :index do
+    link_to 'Add new', geonames_search_admin_cities_path
+  end
+
+  # sidebar :import_csv_file do
+  #   render "admin/csv/upload_csv", :required_columns => "name, state, country, country_code"
+  # end
 
   sidebar "Translations", :only => :edit do
     div do

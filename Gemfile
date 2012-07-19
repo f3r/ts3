@@ -45,12 +45,9 @@ gem 'i18n-active_record',               # i18n stored in active record
   :branch => 'rails-3.2',
   :require => 'i18n/active_record'
 
-gem "recaptcha",
-  :require => "recaptcha/rails"
+#gem "recaptcha", :require => "recaptcha/rails"
 
-gem 'rest-client',
-  :require => 'rest_client'
-
+gem 'geonames'
 
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"

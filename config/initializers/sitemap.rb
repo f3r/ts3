@@ -1,5 +1,3 @@
-#TODO: Make this service/place independent
-include PlacesHelper
 DynamicSitemaps::Sitemap.draw do
 
   # default per_page is 50.000 which is the specified maximum.

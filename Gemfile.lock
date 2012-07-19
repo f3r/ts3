@@ -137,6 +137,7 @@ GEM
       actionpack (~> 3.0)
     friendly_id (4.0.6)
     geocoder (1.1.2)
+    geonames (0.2.2)
     google_currency (2.1.0)
       money (~> 5.0.0)
       multi_json (>= 1.0.0)
@@ -265,7 +266,6 @@ GEM
     rakismet (1.2.1)
     rdoc (3.12)
       json (~> 1.4)
-    recaptcha (0.3.4)
     responders (0.9.1)
       railties (~> 3.1)
     rest-client (1.6.7)
@@ -351,6 +351,7 @@ DEPENDENCIES
   faker
   friendly_id (~> 4.0.1)
   geocoder
+  geonames
   google_currency
   haml (~> 3.1.4)
   heroku_san (~> 2.1.4)
@@ -373,8 +374,6 @@ DEPENDENCIES
   quiet_assets
   rails (= 3.2.0)
   rakismet
-  recaptcha
-  rest-client
   rspec-rails
   sass-rails
   simple_enum

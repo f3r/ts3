@@ -52,11 +52,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Threat as 404
-  rescue_from RestClient::ResourceNotFound do |exception|
-    raise ActiveRecord::RecordNotFound
-  end
-
   private
 
   def set_current_user

@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   has_one :address
   has_one :bank_account
   has_one :preferences
-  
+
   has_many :authentications,  :dependent => :destroy
   has_many :products,         :dependent => :destroy
   has_many :comments,         :dependent => :destroy
@@ -127,7 +127,7 @@ class User < ActiveRecord::Base
    if self.preferences
      self.preferences.update_attribute(pref, value)
    else
-     
+
    end
    # end
   end
@@ -144,28 +144,28 @@ class User < ActiveRecord::Base
     products = products.where('products.id <> ?', except.product.id) if except
     products
   end
-  
+
   def prefered_language
     return self.preferences.locale if self.preferences
   end
-  
+
   def prefered_currency
     return self.preferences.currency if self.preferences
   end
-  
+
   def prefered_city
     return self.preferences.city if self.preferences
   end
-  
+
   def prefered_speed_unit
     return self.preferences.speed_unit_id if self.preferences
   end
-  
+
   def prefered_size_unit
     return self.preferences.size_unit_id if self.preferences
   end
 
-  private
+private
 
   def send_on_create_welcome_instructions
     RegistrationMailer.welcome_instructions(self).deliver unless skip_welcome
@@ -184,9 +184,9 @@ class User < ActiveRecord::Base
       self.avatar.clear if avatar && !avatar.dirty?
     end
   end
-  
+
   def add_user_preferences
     self.build_preferences
   end
-  
+
 end

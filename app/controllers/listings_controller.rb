@@ -34,8 +34,7 @@ class ListingsController < PrivateController
   end
 
   def edit
-    #render 'places/wizard'
-    if !@resource.published? && !flash[:notice]
+    if !@resource.published? && !flash[:notice] && !flash[:error]
       flash.now[:info] = "Your listing is not published. Complete the wizard and click on 'Publish'"
     end
   end

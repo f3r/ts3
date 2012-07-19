@@ -11,6 +11,11 @@ namespace :deploy do
 
   task :quick => [:push]
 
+  task :create_remote do
+    header 'Creating new git remote locally'
+    cmd "git remote add #{APP} git@heroku.com:#{APP}.git"
+  end
+
   task :push do
     header 'Deploying site to Heroku ...'
     if %x[git status|grep "working directory clean"|wc -l].to_i == 1
@@ -50,7 +55,7 @@ namespace :deploy do
     cmd "heroku maintenance:off #{APP_SETUP}"
   end
 
-  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :push_config, :push, :new_database_setup, :after_migrate]
+  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :push_config, :create_remote, :push, :new_database_setup, :after_migrate]
 
   task :new_app_heroku do
     header 'Creating new site infrastructure'

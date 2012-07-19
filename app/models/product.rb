@@ -19,7 +19,7 @@ class Product < ActiveRecord::Base
 
   validates_numericality_of :price_per_day, :price_per_hour, :price_per_week, :price_per_month, :price_sale, :allow_nil => true
 
-  before_save :convert_prices_to_usd, :index_amenities
+  before_save :geocode, :convert_prices_to_usd, :index_amenities
 
   geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 

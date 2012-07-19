@@ -24,6 +24,18 @@ module MessagesHelper
     render("messages/target/inquiry_#{suffix}", :target => target, :listing => listing)
   end
 
+  def mask_or_dontmask_msg(conversation_or_message)
+    conversation = conversation_or_message.kind_of?(Message) ? conversation_or_message.conversation : conversation_or_message
+
+    if conversation_or_message.body.present?
+      product = conversation.target_product
+      if product and product.has_any_paid_transactions?(conversation.sender)
+        return conversation_or_message.body
+      else
+        return suspicious_message?(conversation_or_message.body)
+      end
+    end
+  end
 
   def  suspicious_message?(msg)
 
@@ -31,8 +43,8 @@ module MessagesHelper
     regexHash = { "email" => [/\b[A-Z0-9_%+-]+[@\[at\]\(at\)]+[A-Z0-9.-]+[\(dot\)\[dot\]\.]+[A-Z]{2,4}\b/i] ,
                   "phone" => [/\(?[0-9+]{3,4}\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}\b/i,
                               /\(?[0-9+]{2,3}\)?[-. ]?[0-9]{4}[-. ]?[0-9]{4}\b/i],#33 3333 3333, 33-3333-3333, 33.3333.3333  and a '+' symbol in all combinations
-                   "url" => [/((http|https):[^\s]+(\\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?)/,/((www).[^\s]+(\\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?)/,/([^\s]+(\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk|hk|sg)+(\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?))/]
-                }
+                  "url" => [/((http|https):[^\s]+(\\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?)/,/((www).[^\s]+(\\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?)/,/([^\s]+(\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk|hk|sg)+(\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?))/]
+                  }
 
     regexHash.each do|name,regexArray|
 

@@ -19,11 +19,15 @@
           = link_to t("terms_and_conditions"), terms_path, :target => :blank
 
     %div.signup_button_group
-      %button.btn.btn-primary.float-left#agent{:type => 'submit', :name => 'user[signup_role]', :value => 'agent'}
-        = t("users.registration.sign_up_as_agent")
+      - if SiteConfig.agent_need_approval
+        %button.btn.float-right#user{:type => 'submit', :name => 'user[signup_role]', :value => 'user'}
+          = t("users.registration.create_account")
+      - else
+        %button.btn.btn-primary.float-left#agent{:type => 'submit', :name => 'user[signup_role]', :value => 'agent'}
+          = t("users.registration.sign_up_as_agent")
 
-      %button.btn.btn-primary.float-right#user{:type => 'submit', :name => 'user[signup_role]', :value => 'user'}
-        = t("users.registration.sign_up_as_user")
+        %button.btn.btn-primary.float-right#user{:type => 'submit', :name => 'user[signup_role]', :value => 'user'}
+          = t("users.registration.sign_up_as_user")
 
   .switch-login
     = t("users.registration.switch_to_login")

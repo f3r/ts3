@@ -9,7 +9,7 @@ DynamicSitemaps::Sitemap.draw do
 
   url root_url, :last_mod => DateTime.now, :change_freq => 'daily', :priority => 1
 
-  Product.published.each do |prod|
+  SiteConfig.product_class.published.each do |prod|
     url seo_product_url(prod), :last_mod => prod.updated_at, :change_freq => 'monthly', :priority => 0.8
   end
 

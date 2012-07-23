@@ -48,7 +48,7 @@ ActiveAdmin.register User do
 
   # Make Admin
   action_item :only => :show do
-    link_to('Make Admin', make_agent_admin_user_path(user), :method => :put,
+    link_to('Make Admin', make_admin_admin_user_path(user), :method => :put,
       :confirm => 'Are you sure you want to turn the user into an admin?') if !user.admin?
   end
 

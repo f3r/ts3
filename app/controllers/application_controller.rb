@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_locale
   before_filter :change_preferences
   before_filter :set_current_user
+  before_filter :set_subject_for_exception_notification
 
   def set_locale
     I18n.locale = get_current_language
@@ -73,5 +74,9 @@ class ApplicationController < ActionController::Base
 
   def resource_class
     SiteConfig.product_class
+  end
+  
+  def set_subject_for_exception_notification
+    request.env["exception_notifier.options"] = {:email_prefix => "[#{Rails.env.capitalize}] [#{SiteConfig.site_name}] "}
   end
 end

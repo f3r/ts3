@@ -8,7 +8,7 @@
     %h3 City Search
     .panel_contents
       = form_for :geo_search, :url => geonames_search_admin_cities_path, :method => :get do |f|
-        = f.text_field :name, :value => params[:name], :style => 'width:400px'
+        = f.text_field :name, :value => (params[:geo_search][:name] if params[:geo_search]), :style => 'width:400px'
         = f.country_select :country_code, [], {:include_blank => 'All countries'}
         = f.submit 'Search'
 

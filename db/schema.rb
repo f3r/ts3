@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719065607) do
+ActiveRecord::Schema.define(:version => 20120720043211) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -135,6 +135,7 @@ ActiveRecord::Schema.define(:version => 20120719065607) do
     t.boolean "active",               :default => false
     t.integer "position"
     t.string  "slug"
+    t.integer "geoname_id"
   end
 
   add_index "cities", ["country"], :name => "index_cities_on_country"

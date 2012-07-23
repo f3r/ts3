@@ -13,7 +13,7 @@ class City < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
-  attr_accessible :name, :lat, :lon, :state, :country, :country_code, :cached_complete_name, :active, :position, :slug
+  attr_accessible :name, :lat, :lon, :state, :country, :country_code, :cached_complete_name, :active, :position, :slug, :geoname_id
 
   def self.default
     self.first
@@ -27,6 +27,31 @@ class City < ActiveRecord::Base
   	  # default
   	  /singapore/
   	end
+  end
+
+  def self.geonames_search(name, country_code = nil)
+    criteria = Geonames::ToponymSearchCriteria.new
+    criteria.name = name unless name.blank?
+    criteria.country_code = country_code unless country_code.blank?
+    criteria.max_rows = '10'
+    criteria.feature_codes = ['PPL', 'PPL?']
+    Geonames::WebService.search(criteria).toponyms.collect{|t| self.new_from_geonames(t)}
+  end
+
+  # def self.new_from_geoname_id(g_id)
+
+  # end
+
+  def self.new_from_geonames(toponym)
+    City.new(
+      :name => toponym.name,
+      :country => toponym.country_name,
+      :country_code => toponym.country_code,
+      :geoname_id => toponym.geoname_id,
+      :lat => toponym.latitude,
+      :lon => toponym.longitude,
+      :active => true
+    )
   end
 
   def activate!
@@ -57,6 +82,10 @@ class City < ActiveRecord::Base
 
   def I18n_code
     "cities.#{self.name.parameterize('_')}"
+  end
+
+  def geocoded?
+    self.lat.present? && self.lon.present?
   end
 
   private

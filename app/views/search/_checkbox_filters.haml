@@ -6,7 +6,7 @@
         %li
           %span.filter
             = check_box_tag :category_id, obj.id, checked, :id => dom_id(obj, :filter), :autocomplete => 'off'
-            %label{:for => dom_id(obj, :filter), :title => obj.name}= truncate(obj.name, :length => 25)
+            %label{:for => dom_id(obj, :filter), :title => obj.name}= obj.name
           %span.right
             - if count
               %span.label= count

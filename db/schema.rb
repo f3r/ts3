@@ -642,6 +642,7 @@ ActiveRecord::Schema.define(:version => 20120719062859) do
     t.boolean  "enable_price_per_week"
     t.boolean  "enable_price_per_month"
     t.boolean  "enable_price_sale"
+    t.boolean  "agent_need_approval",          :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|

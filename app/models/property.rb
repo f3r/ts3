@@ -4,7 +4,7 @@ class Property <  ActiveRecord::Base
     accepts_nested_attributes_for :product
   end
 
-  validates_presence_of :category_id, :num_bedrooms, :max_guests, :if => :published?
+  validates_presence_of :category_id, :num_bedrooms, :max_guests, :size, :if => :published?
   validates_numericality_of :num_bedrooms, :num_beds, :num_bathrooms, :size, :max_guests, :allow_nil => true
   validate :validate_publishing
 

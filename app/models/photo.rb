@@ -1,6 +1,7 @@
 class Photo < ActiveRecord::Base
   belongs_to :product
 
+  before_create :set_initial_position
   after_destroy :update_product_status
 
   has_attached_file :photo, {
@@ -57,5 +58,10 @@ class Photo < ActiveRecord::Base
     if self.product && self.product.photos.count < 3
       self.product.update_attribute(:published, false)
     end
+  end
+  
+  def set_initial_position
+    #Place it to the laaaast :)
+    self.position = 9999999
   end
 end

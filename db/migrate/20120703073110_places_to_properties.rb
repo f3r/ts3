@@ -12,6 +12,8 @@ class PlacesToProperties < ActiveRecord::Migration
 
       pt_id = attr.delete('place_type_id')
       currency_str = attr.delete('currency')
+      attr['price_per_day'] = attr.delete('price_per_night')
+      attr['price_per_day_usd'] = attr.delete('price_per_night_usd')
       attr.delete('photos_old')
 
       prop = Property.new(attr)
@@ -32,5 +34,11 @@ class PlacesToProperties < ActiveRecord::Migration
   end
 
   def down
+  end
+end
+
+class ::Product
+  def self.price_unit
+    :per_month
   end
 end

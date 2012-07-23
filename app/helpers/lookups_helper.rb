@@ -3,7 +3,7 @@ module LookupsHelper
   CANCELLATION_POLICIES = {1 => :flexible, 3 => :strict}
 
   def cities_options
-    cities = City.all.collect{|city| ["#{t('cities.' + city.name.parameterize('_'))}, #{t('countries.' + city.country_code)}", city.id]}
+    cities = City.all.collect{|city| [city.complete_name, city.id]}
   end
 
   def currencies_options

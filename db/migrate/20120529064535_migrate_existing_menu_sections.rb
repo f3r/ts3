@@ -2,7 +2,21 @@ class MigrateExistingMenuSections < ActiveRecord::Migration
   def up
     MenuSection.reset_column_information
     MenuSection.destroy_all
-    MenuSection.create_defaults
+    # Create all the defaults
+    [
+      ["main",          "main",       "Menu for users that are not signed in"],
+      ["help",          "help",       "Menu for additional help topics"],
+      ["footer",        "footer",     "Footer links"],
+      ["menu_consumer", "User Menu",  "Menu for consumers users"],
+      ["menu_agent",    "Agent Menu", "Menu for agent users"]
+    ].each do |name, display_name, description|
+      # next if MenuSection.exists?(name: name)
+      MenuSection.create!({
+        :name         => name,
+        :display_name => display_name,
+        :description  => description
+      })
+    end
 
     #Creating the main menu
     main = MenuSection.main

@@ -12,5 +12,5 @@
       = m.from.anonymized_name
     .span11
       .body
-        = suspicious_message?(simple_format h(m.body)).html_safe
+        = simple_format h(mask_or_dontmask_msg(m)).html_safe
       %span.time.pull-right= t("time_ago", :time => time_ago_in_words(m.created_at))

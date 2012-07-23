@@ -8,6 +8,7 @@ FactoryGirl.define do
     zip          { Faker::Address.zip }
     currency
     city
+    price_per_month { 1000 }
   end
 
   factory :service do

@@ -30,7 +30,7 @@ RSpec.configure do |config|
     Currency.any_instance.stub(:to_usd) do |arg|
       arg
     end
-    Place.any_instance.stub(:geocode).and_return(true)
+    Product.any_instance.stub(:geocode).and_return(true)
     SiteConfig.any_instance.stub(:price_units).and_return([:per_month])
   end
 end

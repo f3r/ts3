@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120719065607) do
+ActiveRecord::Schema.define(:version => 20120719062859) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -315,6 +315,7 @@ ActiveRecord::Schema.define(:version => 20120719065607) do
     t.string   "display_name", :null => false
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
+    t.text     "description"
   end
 
   add_index "menu_sections", ["name"], :name => "index_menu_sections_on_name", :unique => true

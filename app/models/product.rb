@@ -15,11 +15,12 @@ class Product < ActiveRecord::Base
 
   attr_accessor :terms
 
-  validates_presence_of  :currency, :city, :title
+  validates_presence_of :currency, :city, :title
+  validates_presence_of :price_field, :if => :published?
 
   validates_numericality_of :price_per_day, :price_per_hour, :price_per_week, :price_per_month, :price_sale, :allow_nil => true
 
-  before_save :convert_prices_to_usd, :index_amenities
+  before_save :geocode, :convert_prices_to_usd, :index_amenities
 
   geocoded_by :full_address, :latitude  => :lat, :longitude => :lon
 
@@ -55,18 +56,18 @@ class Product < ActiveRecord::Base
   end
 
   def publish!
-    self.published = true
-    self.save
+    self.specific.published = true
+    self.specific.save
   end
 
   def unpublish!
-    self.published = false
-    self.save
+    # Without validations
+    self.update_attribute(:published, false)
   end
 
   def publish_check!
-    self.published = true
-    self.valid?
+    self.specific.published = true
+    self.specific.save
   end
 
   def price(a_currency = nil, unit = nil)
@@ -88,6 +89,11 @@ class Product < ActiveRecord::Base
       end
     end
     [a_currency.symbol, amount]
+  end
+
+  def price_field
+    unit = self.class.price_unit
+    self.send("price_#{unit}")
   end
 
   def full_address

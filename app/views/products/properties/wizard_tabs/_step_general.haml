@@ -36,7 +36,7 @@
         = f.label :size, t("places.size"), :class => 'control-label'
         .controls
           = f.text_field :size, :class => "validate[required,custom[integer],min[0]] span2 autosave"
-          = f.select :size_unit, [[t("units.square_meters_short"), "meters"], [t("units.square_feet_short"), "feet"]], {}, :class => "validate[required] span2 autosave"
+          = f.select :size_unit, [[t("square_meters_short"), "meters"], [t("square_feet_short"), "feet"]], {}, :class => "validate[required] span2 autosave"
       = f.submit t(:save), :class => 'btn btn-primary'
       
   = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|

@@ -15,12 +15,15 @@
         %span#see_more_load_indicator.hide= image_tag('loading.gif')
         =# link_to_function 'see more', 'PlaceFilters.seeMore()'
     .span3
-      #search_map{:style => "width: 218px;height:210px;border:#ccc 1px solid;"}
-      #search_filters.search-aside-wrapper
-        = render 'filters'
-        - if SiteConfig.sidebar_widget.present?
-          .sidebar-widget
-            = raw(SiteConfig.sidebar_widget)
+      .search_filter_wrapper
+        .search-filter-container
+          .search_filter#search_filter
+            #search_map{:style => "width: 218px;height:210px;border:#ccc 1px solid;"}
+            #search_filters.search-aside-wrapper
+              = render 'filters'
+              - if SiteConfig.sidebar_widget.present?
+                .sidebar-widget
+                  = raw(SiteConfig.sidebar_widget)
 
 - if logged_in? && @alert
   #save_search.modal.hide.fade

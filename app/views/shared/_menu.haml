@@ -28,6 +28,8 @@
                   %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}
                     = link_to t("template.header.menu.my_alerts"), alerts_path
 
+              = main_menu_user  if current_user.consumer?
+              = main_menu_agent if current_user.agent?
 
             - else
               = main_menu

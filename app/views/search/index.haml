@@ -1,5 +1,9 @@
 - content_for(:title) do
   - @city.name
+  
+- content_for(:meta_description) do
+  - "#{@city.name} - #{SiteConfig.meta_description}"
+
 
 %section.clearfix
   .row

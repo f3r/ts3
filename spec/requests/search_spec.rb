@@ -9,12 +9,12 @@ describe "Search" do
 
   it "recognizes city seo url" do
     assert_routing({ :path => "/singapore", :method => :get },
-      { :controller => 'search', :action => 'index', :city => 'singapore' })
+                   { :controller => 'search', :action => 'index', :city => 'singapore' })
   end
 
   it "recognizes place seo url" do
     assert_routing({ :path => "/singapore/23-nice-house", :method => :get },
-      { :controller => 'search', :action => 'show', :city => 'singapore', :id => '23-nice-house' })
+                   { :controller => 'search', :action => 'show', :city => 'singapore', :id => '23-nice-house' })
   end
 
   context "Place Results/Details" do
@@ -46,6 +46,25 @@ describe "Search" do
       page.should have_content(place2.title)
       page.should have_content(place3.title)
     end
+  end
+
+  context "meta description" do
+    before(:each) do
+      create(:currency)
+      @place = create(:published_place, :city => @city)
+    end
+    
+    it "has the description of product" do
+      visit "/singapore/#{@place.id}"
+      find("meta[name='description']")[:content].should == @place.description
+    end
+    
+    it "has the city name" do
+      SiteConfig.stub(:meta_description).and_return("meta-decription")
+      visit "/singapore"
+      find("meta[name='description']")[:content].should == "#{@city.name} - #{SiteConfig.meta_description}"
+    end
+    
   end
 
 end

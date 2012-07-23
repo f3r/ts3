@@ -1,6 +1,9 @@
 - content_for(:title) do
   - "#{@resource.title} - #{@resource.city.name}"
 
+- content_for(:meta_description) do
+  - "#{@resource.description}"
+
 - require_google_apis
 
 .row

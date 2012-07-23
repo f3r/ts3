@@ -16,7 +16,8 @@
 
   .data-block.last-child
     .price
-      .figure= product_price(resource)
+      .figure
+        %span.autosize= product_price(resource)
       .micro= product_price_unit(resource)
     - if my_products
       .manage
@@ -32,6 +33,3 @@
       .manage
         %span.edit_delete_buttons
           = link_to t("favorites.remove_favorite"), favorite_path(:id => resource.id, :remove_item => true), :remote => true, :method => :delete, :class => 'btn large small button_remove_favorite', :confirm => t("are_you_sure")
-
-:javascript
-  $('.price .figure').textfill({ maxFontPixels: 26 });

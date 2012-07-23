@@ -9,3 +9,7 @@
         %ul.list-display
           #search_result_list
             = render :partial => 'search/row', :collection => @collection, :as => :resource, :locals => {:my_products => true}
+
+
+:javascript
+  $('.price .figure').textfill({ maxFontPixels: 26 });

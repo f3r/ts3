@@ -8,20 +8,20 @@
           .control-group
             %label{:class => "control-label"}= t("alerts.settings")
             .controls
-              = select "alert", 'schedule', options_for_select([[t("alerts.daily"), "daily"], [t("alerts.weekly"), "weekly"], [t("alerts.monthly"), "monthly"]], @alert.schedule)
-              = select 'alert', 'delivery_method', options_for_select([[t("alerts.email"), "email"]], @alert.delivery_method)
+              = select "alert", 'schedule', [[t("alerts.daily"), "daily"], [t("alerts.weekly"), "weekly"], [t("alerts.monthly"), "monthly"]]
+              = select 'alert', 'delivery_method', [[t("alerts.email"), "email"]]
               = search_form.hidden_field :currency_id
 
           .control-group
             %label{:class => "control-label"}= t("places.search.city")
             .controls
-              = search_form.select(:city_id, options_for_select(cities_options, @alert.search.city_id))
+              = search_form.select(:city_id, cities_options)
           = render_overridable_partial('save_search_fields', :search_form => search_form)
 
           .control-group
             %label{:class => "control-label"}= t("places.search.sort_by")
             .controls
-              = search_form.select :sort_by, options_for_select(@alert.search.sort_options, @alert.search.sort_by || 'price_highest'), :class => 'medium'
+              = search_form.select :sort_by, @alert.search.sort_options, :class => 'medium'
 
           .control-group
             %label{:class => "control-label"}= t("places.search.minimum_price")

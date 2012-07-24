@@ -83,7 +83,7 @@ class Service < ActiveRecord::Base
 
   def primary_photo
     if self.user.avatar?
-      self.user.avatar.url(:thumb)
+      self.user.avatar.url(:medium)
     else
       ApplicationHelper.static_asset('missing_userpic_200.jpeg')
     end

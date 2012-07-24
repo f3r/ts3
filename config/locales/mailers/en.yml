@@ -15,15 +15,12 @@ en:
         you, click the “Inquire” button to get in touch with the property
         owner. We’re here to help you find your home away from home.
     auto_welcome:
-      subject: You account was successfully created.
+      subject: 'Welcome to %{site_name}!'
       intro: "Welcome to %{site_name}!"
       content: |
-        %{site_name} helps you find the best short-term and flexible
-        accommodation for your business and personal travel.
-        <br/>
-        We automatically created an account for you so you can easily manage
-        your inquiries, favorites and alerts.
-        Click %{set_password_link} to set a password and activate your account.
+        %{site_name} helps you find the best short-term and flexible accommodation for your business and personal travel.
+        We automatically created an account for you so you can easily manage your inquiries, favorites and alerts.
+      set_password: 'Click %{set_password_link} to set a password and activate your account.'
     reset_password_instructions:
       subject: 'Reset password instructions'
       intro: "Someone has requested a link to change your password, and you can do this through the link below."
@@ -123,7 +120,7 @@ en:
         <p>We recommend you contact the tenant as soon as possible to coordinate and confirm any remaining items.</p>        
         <br/>
         <p>Thank you for listing your property with %{site_name}!</p>
-    have_any_question: 'If you have any questions, please email us at %{support_email}'
+    have_any_question_html: 'If you have any questions, please email us at %{support_email_link}'
     signature:         '-- The %{site_name} team'
     ps_message: |
       P.S.  Do you want to publish on %{site_name}? Please contact us at %{support_email} and become an approved property owner on %{site_name}!

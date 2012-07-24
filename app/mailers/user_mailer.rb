@@ -38,11 +38,11 @@ class UserMailer < BaseMailer
 
   # ==Description
   # Email sent when we create an user account automatically (from an inquiry)
-  def auto_welcome(user)
+  def auto_welcome(user, message = nil)
     @user      = user
     recipients = "#{user.full_name} <#{user.email}>"
     subject    = t('mailers.auto_welcome.subject')
-
+    @message   = message || t('mailers.auto_welcome.content')
     mail(:to => recipients, :subject => subject)
   end
 end

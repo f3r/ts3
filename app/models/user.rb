@@ -58,7 +58,7 @@ class User < ActiveRecord::Base
   scope :admin,    where("role = 'admin' or role = 'superadmin'")
 
   # Creates a new user with a random password automatically
-  def self.auto_signup(name, email)
+  def self.auto_signup(name, email, role = 'user', message = nil)
     first_name, last_name = name.split(' ', 2)
     password = Devise.friendly_token[0,20]
     user = self.new(
@@ -68,16 +68,26 @@ class User < ActiveRecord::Base
       :password => password,
       :password_confirmation => password
     )
-
+    user.signup_role = role
     user.generate_set_password_token
+    user.skip_welcome = true
 
     Authorization::Maintenance::without_access_control do
       if user.save
-        UserMailer.auto_welcome(user).deliver
+        UserMailer.auto_welcome(user, message).deliver
       end
     end
 
     user
+  end
+
+  def self.send_invitations(list, role, message)
+    count = 0
+    list.each do |user_hash|
+      user = User.auto_signup(user_hash[:name], user_hash[:email], role, message)
+      count += 1 if user.persisted?
+    end
+    count
   end
 
   def full_name
@@ -104,6 +114,10 @@ class User < ActiveRecord::Base
   def signup_role=(a_role)
     return false unless [:user, :agent].include?(a_role.to_sym)
     self.role = a_role
+  end
+
+  def super_admin?
+    self.role == 'superadmin'
   end
 
   def admin?

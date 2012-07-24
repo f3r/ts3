@@ -183,6 +183,10 @@ describe User do
   end
 
   context "auto_signup" do
+    before(:each) do
+      @emails = ActionMailer::Base.deliveries = []
+    end
+
     it "creates a new user account" do
       name = "Stewie Griffin"
       email = "ste@gmail.com"
@@ -195,6 +199,23 @@ describe User do
       user.should be_persisted # saved
       user.reset_password_token.should_not be_nil
       user.reset_password_sent_at.should_not be_nil
+    end
+    
+    it "invites users" do
+      list = [
+        { :email => 'user1@email.com', :name => 'User 1' },
+        { :email => 'user2@email.com', :name => 'User 2' }
+      ]
+      msg = 'Hey please signup!'
+      expect {
+        User.send_invitations(list, 'agent', msg).should == 2
+      }.to change(User, :count).by(2)
+
+      @emails.size.should == 2
+      @emails[0].body.should include('Hey please signup!')
+
+      user = User.last
+      user.should be_agent
     end
   end
 

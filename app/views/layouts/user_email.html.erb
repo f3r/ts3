@@ -46,12 +46,17 @@
           <td class="message" valign="top">
             <%= yield %>
             <br>
-            <p><%= t('mailers.have_any_question') %><p>
+            <p><%= t('mailers.have_any_question_html') %><p>
             <br>
             <p>Thanks,</p>
             <p><i><%= t('mailers.signature') %></i></p>
-            <br>
-            <p><%= t('mailers.ps_message') %></p>
+            <% if content_for?(:footer_ps) %>
+              <br>
+              <%= content_for(:footer_ps) %>
+            <% else %>
+              <br>
+              <p><%= t('mailers.ps_message') %></p>
+            <% end %>
           </td>
         </tr>
 

@@ -14,4 +14,8 @@ class AdminUser < ActiveRecord::Base
   def role_symbols
     [:admin]
   end
+
+  def super_admin?
+    self.role == 'superadmin'
+  end
 end

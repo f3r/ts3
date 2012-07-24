@@ -1,5 +1,5 @@
 ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
-  menu false
+  menu :label => "Advanced Config", :parent => 'Settings', :if => lambda { |tabs| current_active_admin_user.super_admin? }
 
   controller do
     actions :index, :edit, :update

@@ -5,7 +5,7 @@ HeyPalFrontEnd::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  require 'preview_mails'
+  require_dependency 'preview_mails'
 	match "/admin/mail_view" => PreviewMails, :anchor => false, :constraints => lambda { |request|
     request.env['warden'].authenticated?
     request.env['warden'].authenticate!

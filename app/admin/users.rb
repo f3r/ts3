@@ -57,4 +57,29 @@ ActiveAdmin.register User do
     user.update_attribute(:role, 'admin')
     redirect_to({:action => :show}, :notice => "The user is now an admin")
   end
+
+  action_item :only => :index do
+    link_to('Invite users', invite_admin_users_path)
+  end
+
+  collection_action :invite, :method => :get do
+    render 'admin/invitations/new'
+  end
+
+  collection_action :send_invitations, :method => :post do
+    if !params[:invitation] || !params[:invitation][:file]
+      flash[:success] = "You must select a file"
+      redirect_to :action => :invite
+    else
+      list = CsvImport.to_hashes(params[:invitation][:file])
+      count = User.send_invitations(list, params[:invitation][:role], params[:invitation][:message])
+      if count > 0
+        flash[:success] = "#{count} Invitations sent"
+        redirect_to :action => :index
+      else
+        flash[:error] = "No invitations were sent"
+        redirect_to :action => :invite
+      end
+    end
+  end
 end

@@ -82,6 +82,34 @@ describe MessagesHelper do
       altrd_meg = suspicious_message?(msg)
       altrd_meg.should == "Testing message helper method with url  [hidden website url] "
     end
+    
+    it "returns default phone number text" do
+      msg = "Testing message helper method with phone number 23456 3434"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
+    
+    it "returns default phone number text" do
+      msg = "Testing message helper method with phone number 2345 34345"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
+    
+    it "returns default phone number text" do
+      msg = "Testing message helper method with phone number 2345 3434"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
+   
+    it "returns default phone number text" do
+      msg = "Testing message helper method with phone number 23452 34344"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
 
     it "returns default phone number message text" do
       msg = "Testing message helper method with phone number 333 333 3333"
@@ -103,7 +131,35 @@ describe MessagesHelper do
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
+    
+    it "returns default phone number message text (1 2 3 4 5 6 7 8 9 0)" do
+      msg = "Testing message helper method with phone number 1 2 3 4 5 6 7 8 9 0"
+      altrd_meg = suspicious_message?(msg)
 
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
+    
+    it "returns default phone number message text (1-2-3-4-5-6-7-8-9-0)" do
+      msg = "Testing message helper method with phone number 1-2-3-4-5-6-7-8-9-0"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end
+
+    it "returns default phone number message text (1.2.3.4.5.6.7.8.9.0)" do
+      msg = "Testing message helper method with phone number 1.2.3.4.5.6.7.8.9.0"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end 
+    
+    it "returns default phone number message text (22 333 33 222)" do
+      msg = "Testing message helper method with phone number 22 333 33 222"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
+    end 
+    
     it "returns phone number and email text" do
       msg = "Testing message helper method with phone number 22 2222 2222 and email addess test@gmail.com"
       altrd_meg = suspicious_message?(msg)

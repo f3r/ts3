@@ -140,7 +140,7 @@ namespace :deploy do
 private
   def cmd(c)
     puts(" > #{c}".light_blue)
-    #system(c) || fail("Error")
+    system(c) || fail("Error")
   end
 
   def cmd_confirm(c)

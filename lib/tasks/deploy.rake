@@ -130,7 +130,7 @@ namespace :deploy do
   task :all_sites do
     site_list.each do |site|
       unless commits_behind(site) == 0
-        cmd "rake deploy:full APP=#{site} | tee 'log/deploy.log'"
+        cmd "rake deploy:full APP=#{site} | tee -a 'log/deploy.log'"
       end
     end
   end

@@ -28,7 +28,7 @@ squarestays:
   config:
     <<: *default_config
     SITE_URL:             http://www.squarestays.com
-    PRODUCT_CLASS_NAME:   Place
+    PRODUCT_CLASS_NAME:   Property
     # Database and CDN
     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/SquareStays_production
     S3_BUCKET:            squarestays-img-production
@@ -72,7 +72,7 @@ tse-demo:
   config:
     <<: *default_config
     SITE_URL:             http://demo.thesharingengine.com
-    PRODUCT_CLASS_NAME:   Place
+    PRODUCT_CLASS_NAME:   Property
     # Database and CDN
     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/tsedemo
     S3_BUCKET:            tsedemo

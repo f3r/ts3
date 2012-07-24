@@ -39,7 +39,11 @@ class I18nUtil
     translation = Translation.find_by_locale_and_key(locale, key)
     # If it doesn't exist, we create a new one
     if !translation
-      Translation.create(:locale => locale, :key => key, :value => value)
+      # We should remove the callbacks on save so that we dont run into
+      # problems by clearing memcached too often
+      Translation.skip_callback(:save, :after, :delete_cache)
+      Translation.create!(:locale => locale, :key => key, :value => value)
+      Translation.set_callback(:save, :after, :delete_cache)
       puts "Translation: created from yaml (#{locale}.#{key})" unless Rails.env.test?
     else
       # If it exists, we only update it if the user hasn't modify it

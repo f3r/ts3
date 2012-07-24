@@ -151,7 +151,7 @@ private
   def header(m)
     puts
     puts("*".blue*80)
-    puts("*#{m.chomp.center(78)}*".blue)
+    puts("*#{m.chomp.center(78)}*".white)
     puts("*".blue*80)
   end
 

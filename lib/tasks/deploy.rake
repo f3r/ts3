@@ -137,6 +137,14 @@ namespace :deploy do
     cmd "heroku run rake seeds:#{site_type(app).downcase} #{app_setup}"
   end
 
+  task :tests_passing do
+    require 'json'
+    semaphore_url = "https://semaphoreapp.com/api/v1/projects/b6034116ec9990fdfd70b3f45bae9724a63e82ff/master/status?auth_token=kxmz4M2K2yFqAPKcbKPK"
+    test_passing = Curl.get(semaphore_url).body_str
+    JSON.parse(test_passing)['result']
+  end
+
+
 private
   def cmd(c)
     puts(" > #{c}".light_blue)
@@ -150,9 +158,9 @@ private
 
   def header(m)
     puts
-    puts("*".blue*80)
+    puts("*".white*80)
     puts("*#{m.chomp.center(78)}*".white)
-    puts("*".blue*80)
+    puts("*".white*80)
   end
 
   def header_subsection(m)
@@ -164,6 +172,13 @@ private
 
   def commits_behind(site)
     %x[ git log #{site}/master..master --pretty=oneline --abbrev-commit | wc -l ].to_i
+  end
+
+  def tests_passing
+    require 'json'
+    semaphore_url = "https://semaphoreapp.com/api/v1/projects/b6034116ec9990fdfd70b3f45bae9724a63e82ff/master/status?auth_token=kxmz4M2K2yFqAPKcbKPK"
+    test_passing = Curl.get(semaphore_url).body_str
+    JSON.parse(test_passing)['result']
   end
 
   # Parses heroku.yml and return a list of keys, except default_config

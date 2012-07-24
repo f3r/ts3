@@ -1,5 +1,3 @@
-require 'psych' #Latest YAML parser
-
 namespace :deploy do
   DB_PATH   = "mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/"
   EMAILS    = "fer@heypal.com,nico@heypal.com"
@@ -164,6 +162,7 @@ private
   end
 
   def site_list
+    require 'psych' #Latest YAML parser
     # Parses heroku.yml and return a list of keys, except default_config
     Psych.load_file('config/heroku.yml').delete_if {|k,v| k == "default_config" }.keys
   end

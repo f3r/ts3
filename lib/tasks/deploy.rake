@@ -1,11 +1,23 @@
+require 'psych' #Latest YAML parser
+
 namespace :deploy do
-  APP       = ENV['APP'] || 'squarestage'
-  APP_SETUP = "--app #{APP}"
-  CONFIRM   = "#{APP_SETUP} --confirm #{APP}"
   DB_PATH   = "mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/"
   EMAILS    = "fer@heypal.com,nico@heypal.com"
   S3_ACCESS_KEY_ID     = 'AKIAJOJEIAZ6LOVHDFDA'
   S3_SECRET_ACCESS_KEY = '+IAdwXN9Ea8cA/TE8/1VNn+DoMf+hg/h8B8YDV0Z'
+
+  def app
+    ENV['APP'] || raise("Please specify app name with APP=<name of your app>")
+  end
+
+  def app_setup
+    "--app #{app}"
+  end
+
+  def app_confirm
+    "#{app_setup} --confirm #{app}"
+  end
+
 
   task :full => [:push_config, :push, :migrate, :after_migrate, :restart]
 
@@ -13,13 +25,13 @@ namespace :deploy do
 
   task :create_remote do
     header 'Creating new git remote locally'
-    cmd "git remote add #{APP} git@heroku.com:#{APP}.git"
+    cmd "git remote add #{app} git@heroku.com:#{app}.git"
   end
 
   task :push do
     header 'Deploying site to Heroku ...'
     if %x[git status|grep "working directory clean"|wc -l].to_i == 1
-      cmd "git push #{APP} HEAD:master --force"
+      cmd "git push #{app} HEAD:master --force"
     else
       puts "Please commit all your changes before pushing!"
     end
@@ -27,32 +39,32 @@ namespace :deploy do
 
   task :push_config do
     header 'Pushing configuration ...'
-    cmd "rake #{APP} heroku:config"
+    cmd "rake #{app} heroku:config"
   end
 
   task :restart do
     header 'Restarting app servers ...'
-    cmd "heroku restart #{APP_SETUP}"
+    cmd "heroku restart #{app_setup}"
   end
 
   task :migrate do
     header 'Running database migrations ...'
-    cmd "heroku run rake db:migrate #{APP_SETUP}"
+    cmd "heroku run rake db:migrate #{app_setup}"
   end
 
   task :after_migrate do
     header 'Loading new translations ...'
-    cmd "heroku run rake i18n:populate:from_rails #{APP_SETUP}"
+    cmd "heroku run rake i18n:populate:from_rails #{app_setup}"
   end
 
   task :off do
     header 'Putting the app into maintenance mode ...'
-    cmd "heroku maintenance:on #{APP_SETUP}"
+    cmd "heroku maintenance:on #{app_setup}"
   end
 
   task :on do
     header 'Taking the app out of maintenance mode ...'
-    cmd "heroku maintenance:off #{APP_SETUP}"
+    cmd "heroku maintenance:off #{app_setup}"
   end
 
   task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :push_config, :create_remote, :push, :new_database_setup, :after_migrate]
@@ -60,26 +72,26 @@ namespace :deploy do
   task :new_app_heroku do
     header 'Creating new site infrastructure'
     header_subsection 'Creating app in heroku'
-    cmd "heroku apps:create #{APP}"
+    cmd "heroku apps:create #{app}"
   end
 
   task :addons do
     header_subsection 'Adding Heroku Addons'
-    cmd "heroku addons:add deployhooks:email --recipient=#{EMAILS} --subject=\"[Heroku] {{app}} deployed\" --body=\"{{user}} deployed {{head}} to {{url}}\" #{CONFIRM}"
-    cmd "heroku addons:add amazon_rds --url=#{DB_PATH}#{APP} #{CONFIRM}"
-    cmd "heroku addons:add memcachier:25 #{CONFIRM}"
-    cmd "heroku addons:add newrelic:standard #{CONFIRM}"
-    cmd "heroku addons:add sendgrid:starter #{CONFIRM}"
-    cmd "heroku addons:add scheduler:standard #{CONFIRM}"
+    cmd_confirm "heroku addons:add deployhooks:email --recipient=#{EMAILS} --subject=\"[Heroku] {{app}} deployed\" --body=\"{{user}} deployed {{head}} to {{url}}\""
+    cmd_confirm "heroku addons:add amazon_rds --url=#{DB_PATH}#{app}"
+    cmd_confirm "heroku addons:add memcachier:25"
+    cmd_confirm "heroku addons:add newrelic:standard"
+    cmd_confirm "heroku addons:add sendgrid:starter"
+    cmd_confirm "heroku addons:add scheduler:standard"
   end
 
   task :addons_open_browser do
     # configure addons in the web
     header_subsection 'Configure Addons (open in browser)'
-    cmd "heroku addons:open sendgrid #{APP_SETUP}"
+    cmd "heroku addons:open sendgrid #{app_setup}"
     # rake places:send_email_alerts
     # rake places:recalculate_prices
-    cmd "heroku addons:open scheduler #{APP_SETUP}"
+    cmd "heroku addons:open scheduler #{app_setup}"
   end
 
   task :new_s3_bucket do
@@ -88,7 +100,6 @@ namespace :deploy do
       s3 = AWS::S3.new(:access_key_id => S3_ACCESS_KEY_ID, :secret_access_key => S3_SECRET_ACCESS_KEY)
       bucket = s3.buckets.create(APP)
       puts " > Bucket #{APP} successfully created".light_blue
-      # TODO: check whether buckets are public or private
     rescue Exception => e
       puts("[ERROR] #{e.message}".red)
       s3.buckets.each {|b| puts("  > #{b.name}".red) }
@@ -105,10 +116,34 @@ namespace :deploy do
     cmd "heroku run rake db:setup #{APP_SETUP}"
   end
 
+  task :status do
+    site_list.each do |site|
+      commit_count = commits_behind(site)
+      if commit_count == 0
+        puts "[ Updated ] -- #{site}".green
+      else
+        puts "[#{commit_count} behind] -- #{site}".red
+      end
+    end
+  end
+
+  task :all_sites do
+    site_list.each do |site|
+      unless commits_behind(site) == 0
+        cmd "rake deploy:full APP=#{site} | tee 'log/deploy.log'"
+      end
+    end
+  end
+
 private
   def cmd(c)
     puts(" > #{c}".light_blue)
     system(c) || fail("Error")
+  end
+
+  def cmd_confirm(c)
+    puts(" > #{c} #{app_confirm}".light_blue)
+    system("#{c} #{app_confirm}") || fail("Error")
   end
 
   def header(m)
@@ -122,5 +157,14 @@ private
     puts("-".cyan*80)
     puts("|#{m.chomp.center(78)}|".cyan)
     puts("-".cyan*80)
+  end
+
+  def commits_behind(site)
+    %x[ git log #{site}/master..master --pretty=oneline --abbrev-commit | wc -l ].to_i
+  end
+
+  def site_list
+    # Parses heroku.yml and return a list of keys, except default_config
+    Psych.load_file('config/heroku.yml').delete_if {|k,v| k == "default_config" }.keys
   end
 end

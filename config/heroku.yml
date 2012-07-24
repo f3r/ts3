@@ -163,3 +163,18 @@ trekurious-tse:
     S3_BUCKET:            trekurious-tse
     # Security
     SECRET_TOKEN:         1210f2e0cf9feb5f9393f652f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee4de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
+
+########################################################################################################################################
+services-tse:
+########################################################################################################################################
+  app:   services-tse
+  config:
+    <<: *default_config
+    SITE_URL:             http://services-tse.herokuapp.com
+    PRODUCT_CLASS_NAME:   Service
+    # Database and CDN
+    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/services-tse
+    S3_BUCKET:            services-tse
+    # Security
+    SECRET_TOKEN:         f9393af9c01f5545187ee4df652f1b533f99e512dee04b8f019125f0b6b6d0dc90ff603d0cc8e1703e495082130d54ed1cb7023cc11cb3a9b1210f2e0cf9feb5
+

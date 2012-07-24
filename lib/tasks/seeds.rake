@@ -1,10 +1,10 @@
 namespace :seeds do
   desc "Load initial data for silvertroopers"
-  task :services => :environment do
+  task :service => :environment do
     require Rails.root.to_s + '/db/services/seeds.rb'
   end
 
-  task :properties => :environment do
+  task :property => :environment do
     require Rails.root.to_s + '/db/properties/seeds.rb'
   end
 end

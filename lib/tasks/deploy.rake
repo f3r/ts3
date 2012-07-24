@@ -17,7 +17,7 @@ namespace :deploy do
   end
 
 
-  task :full => [:push_config, :push, :migrate, :after_migrate, :restart]
+  task :full => [:push_config, :push, :migrate, :load_translations, :restart]
 
   task :quick => [:push]
 
@@ -50,7 +50,7 @@ namespace :deploy do
     cmd "heroku run rake db:migrate #{app_setup}"
   end
 
-  task :after_migrate do
+  task :load_translations do
     header 'Loading new translations ...'
     cmd "heroku run rake i18n:populate:from_rails #{app_setup}"
   end
@@ -65,7 +65,7 @@ namespace :deploy do
     cmd "heroku maintenance:off #{app_setup}"
   end
 
-  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :push_config, :create_remote, :push, :new_database_setup, :after_migrate]
+  task :new_site => [:new_app_heroku, :addons, :addons_open_browser, :new_s3_bucket, :push_config, :create_remote, :push, :new_database_setup, :load_translations, :load_seeds]
 
   task :new_app_heroku do
     header 'Creating new site infrastructure'
@@ -77,7 +77,7 @@ namespace :deploy do
     header_subsection 'Adding Heroku Addons'
     cmd_confirm "heroku addons:add deployhooks:email --recipient=#{EMAILS} --subject=\"[Heroku] {{app}} deployed\" --body=\"{{user}} deployed {{head}} to {{url}}\""
     cmd_confirm "heroku addons:add amazon_rds --url=#{DB_PATH}#{app}"
-    cmd_confirm "heroku addons:add memcachier:25"
+    cmd_confirm "heroku addons:add memcachier:dev"
     cmd_confirm "heroku addons:add newrelic:standard"
     cmd_confirm "heroku addons:add sendgrid:starter"
     cmd_confirm "heroku addons:add scheduler:standard"
@@ -87,8 +87,8 @@ namespace :deploy do
     # configure addons in the web
     header_subsection 'Configure Addons (open in browser)'
     cmd "heroku addons:open sendgrid #{app_setup}"
-    # rake places:send_email_alerts
-    # rake places:recalculate_prices
+    # rake alerts:send_alert
+    # rake refresh:all
     cmd "heroku addons:open scheduler #{app_setup}"
   end
 
@@ -96,8 +96,8 @@ namespace :deploy do
     header_subsection 'Creating Amazon S3 buckets'
     begin
       s3 = AWS::S3.new(:access_key_id => S3_ACCESS_KEY_ID, :secret_access_key => S3_SECRET_ACCESS_KEY)
-      bucket = s3.buckets.create(APP)
-      puts " > Bucket #{APP} successfully created".light_blue
+      bucket = s3.buckets.create(app)
+      puts " > Bucket #{app} successfully created".light_blue
     rescue Exception => e
       puts("[ERROR] #{e.message}".red)
       s3.buckets.each {|b| puts("  > #{b.name}".red) }
@@ -106,12 +106,12 @@ namespace :deploy do
 
   task :new_database do
     header_subsection 'Creating database in RDS'
-    cmd "heroku run rake db:create #{APP_SETUP}"
+    cmd "heroku run rake db:create #{app_setup}"
   end
 
   task :new_database_setup do
     header_subsection 'Importing schema in db & creating initial data'
-    cmd "heroku run rake db:setup #{APP_SETUP}"
+    cmd "heroku run rake db:setup #{app_setup}"
   end
 
   task :status do
@@ -133,10 +133,14 @@ namespace :deploy do
     end
   end
 
+  task :load_seeds do
+    cmd "heroku run rake seeds:#{site_type(app).downcase} #{app_setup}"
+  end
+
 private
   def cmd(c)
     puts(" > #{c}".light_blue)
-    system(c) || fail("Error")
+    #system(c) || fail("Error")
   end
 
   def cmd_confirm(c)
@@ -145,6 +149,7 @@ private
   end
 
   def header(m)
+    puts
     puts("*".blue*80)
     puts("*#{m.chomp.center(78)}*".blue)
     puts("*".blue*80)
@@ -161,9 +166,15 @@ private
     %x[ git log #{site}/master..master --pretty=oneline --abbrev-commit | wc -l ].to_i
   end
 
+  # Parses heroku.yml and return a list of keys, except default_config
   def site_list
-    require 'psych' #Latest YAML parser
-    # Parses heroku.yml and return a list of keys, except default_config
+    require 'psych'
     Psych.load_file('config/heroku.yml').delete_if {|k,v| k == "default_config" }.keys
+  end
+
+  # Returns Services/Properties for a given site based on heroku.yml
+  def site_type(site)
+    require 'psych'
+    Psych.load_file('config/heroku.yml')["#{site}"]['config']['PRODUCT_CLASS_NAME']
   end
 end

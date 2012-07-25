@@ -117,6 +117,15 @@ module ApplicationHelper
     base_path = SiteConfig.static_assets_path
     "#{base_path}/#{filename}"
   end
+  
+  def new_or_edit_listing
+    resource_class = SiteConfig.product_class
+    if resource_class.user_reached_limit?(current_user)
+      link_to t("products.edit_listing"), edit_listing_path(resource_class.manageable_by(current_user).first)
+    else
+      link_to t("products.add_a_listing"), new_listing_path
+    end
+  end
 
   module_function :static_asset
 end

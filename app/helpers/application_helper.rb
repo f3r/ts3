@@ -23,6 +23,15 @@ module ApplicationHelper
     raw(formatted_messages.join)
   end
 
+  def notification_box(notification)
+    content_tag :div, :class => "alert alert-info" do
+      html = ''
+      html << content_tag(:button, '&#215;'.html_safe, :class => 'close', 'data-dismiss' => 'alert')
+      html << notification
+      html.html_safe
+    end
+  end
+  
   def message_for_item(message, item = nil)
     if item.is_a?(Array)
       message % link_to(*item)

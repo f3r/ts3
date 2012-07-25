@@ -86,6 +86,9 @@ class User < ActiveRecord::Base
     list.each do |user_hash|
       user = User.auto_signup(user_hash[:name], user_hash[:email], role, message)
       count += 1 if user.persisted?
+      user.phone_mobile = user_hash[:phone] if user_hash[:phone]
+      user.created_at = user_hash[:created_at] if user_hash[:created_at]
+      user
     end
     count
   end

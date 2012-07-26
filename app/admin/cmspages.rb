@@ -10,6 +10,9 @@ ActiveAdmin.register Cmspage  do
   scope :all, :default => true
   scope :active
   scope :inactive
+  scope "System" do |pages|
+    pages.system
+  end
 
   filter :page_title
 
@@ -75,7 +78,7 @@ ActiveAdmin.register Cmspage  do
     column :meta_keywords
     column :meta_description
     column("Status")       {|cmspage| status_tag(cmspage.active ? 'Active' : 'Inactive') }
-    default_actions(:name => 'Actions')
+    column("Actions") {|cmspage| cmspage_links_column(cmspage)}
   end
 
   action_item  do

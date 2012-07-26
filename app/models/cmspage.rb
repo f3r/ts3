@@ -9,6 +9,7 @@ class Cmspage < ActiveRecord::Base
 
   scope :active,    where("active")
   scope :inactive,  where("not active")
+  scope :system,    where("mandatory")
 
   has_many :cmspage_menu_sections, :dependent => :destroy
   has_many :menu_sections, :through => :cmspage_menu_sections

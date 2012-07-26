@@ -1,5 +1,6 @@
 en:
   products:
+    name_label:         'Place'
     my_listings:        'My %{product_plural}'
     no_listings:        "You haven't created any listing yet"
     my_favorites:       'My Favorites'

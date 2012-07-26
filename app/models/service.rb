@@ -12,7 +12,7 @@ class Service < ActiveRecord::Base
   end
 
   def self.product_name
-    'Service'
+    I18n.t('products.name_label')
   end
 
   def self.searcher

@@ -38,11 +38,15 @@ module MessagesHelper
   end
 
   def  suspicious_message?(msg)
+    
+    #return msg
 
     #whole logic
     regexHash = { "email" => [/\b[A-Z0-9_%+-]+[@\[at\]\(at\)]+[A-Z0-9.-]+[\(dot\)\[dot\]\.]+[A-Z]{2,4}\b/i] ,
                   "phone" => [/\(?[0-9+]{3,4}\)?[-. ]?[0-9]{3}[-. ]?[0-9]{4}\b/i,
-                              /\(?[0-9+]{2,3}\)?[-. ]?[0-9]{4}[-. ]?[0-9]{4}\b/i],#33 3333 3333, 33-3333-3333, 33.3333.3333  and a '+' symbol in all combinations
+                              /\(?[0-9+]{2,3}\)?[-. ]?[0-9]{4}[-. ]?[0-9]{4}\b/i,
+                              /\(?[0-9+]{4,5}\)?[-. ]?[0-9]{4,5}\b/i],   #33 3333 3333, 33-3333-3333, 33.3333.3333  and a '+' symbol in all combinations
+                  "phone_special" => [/\(?[0-9+]{1,10}\)?[-. ]?\b/i],
                   "url" => [/((http|https):[^\s]+(\\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?)/,/((www).[^\s]+(\\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?)/,/([^\s]+(\.(com|edu|gov|mil|net|org|biz|info|name|museum|us|ca|uk|hk|sg)+(\?[a-z0-9_-]+=[a-z0-9 ',.-]*(&amp;[a-z0-9_-]+=[a-z0-9 ',.-]*)*)?))/]
                   }
 
@@ -51,6 +55,7 @@ module MessagesHelper
       regexArray.each do |regex|
 
         @data = msg.scan(regex)
+        
 
         if !@data.empty?
 
@@ -58,6 +63,15 @@ module MessagesHelper
             @data.each do |value|
               msg.sub!(value, ' [hidden phone number] ')
             end
+            
+          end
+          
+          if name == 'phone_special'
+            phone_number = ""
+            @data.each do |value|
+              phone_number << value
+            end
+            msg.sub!(phone_number, ' [hidden phone number] ') if phone_number.length > 0
           end
 
           if name == 'email'

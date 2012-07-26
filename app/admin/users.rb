@@ -28,11 +28,18 @@ ActiveAdmin.register User do
   end
 
   show do |ad|
-    rows = default_attribute_table_rows.reject {|a| a =~ /password/}
+    rows = default_attribute_table_rows.reject {|a| a =~ /password|avatar/}
     attributes_table *rows do
+      row(:avatar) {|u| image_tag(u.avatar.url('thumb'))}
     end
   end
 
+  form do |f|
+    f.inputs :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :sign_in_count, :current_sign_in_at,
+    :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at, :authentication_token,
+    :created_at, :updated_at, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :first_name, :last_name, :role, :passport_number, :unconfirmed_email
+    f.buttons
+  end
 
   # Make Agent
   action_item :only => :show do

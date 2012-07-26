@@ -651,7 +651,7 @@ ActiveRecord::Schema.define(:version => 20120725051339) do
     t.boolean  "agent_need_approval",          :default => true
   end
 
-  create_table "transaction_logs", :force => true do |t|
+   create_table "transaction_logs", :force => true do |t|
     t.integer  "transaction_id"
     t.string   "state"
     t.string   "previous_state"

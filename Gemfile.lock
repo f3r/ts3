@@ -98,6 +98,7 @@ GEM
     colorize (0.5.8)
     columnize (0.3.6)
     commonjs (0.2.6)
+    curb (0.8.1)
     dalli (2.0.5)
     database_cleaner (0.8.0)
     debugger (1.1.4)
@@ -339,6 +340,7 @@ DEPENDENCIES
   capybara
   coffee-rails (~> 3.2.1)
   colorize
+  curb
   dalli
   database_cleaner
   debugger

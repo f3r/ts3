@@ -20,6 +20,9 @@
       .figure
         %span.autosize= product_price(resource)
       .micro= product_price_unit(resource)
+      -if resource.product.has_review?
+        .reviews
+          = stars(resource.product.review_avg)
     - if my_products
       .manage
         %span.edit_delete_buttons

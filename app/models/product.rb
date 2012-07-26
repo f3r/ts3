@@ -107,6 +107,10 @@ class Product < ActiveRecord::Base
   def review_avg
     self.reviews.average(:score).to_i
   end
+  
+  def has_review?
+    self.reviews.any?
+  end
 
   def has_any_paid_transactions?(user)
     Transaction.joins(:inquiry).where('state = ?', :paid).where('transactions.user_id = ?', user).where('inquiries.product_id = ?', self.id).count > 0

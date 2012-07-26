@@ -94,7 +94,7 @@ USERS.each do |name, email|
     u = User.new
     u.name         = name
     u.email        = email
-    u.role         = 'admin'
+    u.role         = 'superadmin'
     u.password     = '3ngin3'
     u.skip_welcome = true
     u.save!

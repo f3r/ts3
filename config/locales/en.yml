@@ -66,7 +66,7 @@ en:
   password_reset_failed:      Password reset failed.
   signup_complete:            Signup Complete
   signup_complete_text:       "Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it."
-  confirm_reset_password:     Confirm your password reset
+  confirm_reset_password:     Confirm the password
   enter_your_new_password:    Enter your new password
   choose_a_password:          Choose a password for your account
   password_reset_success:     Password reset successful

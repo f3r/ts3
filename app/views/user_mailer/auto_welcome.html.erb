@@ -1,4 +1,8 @@
 <h2><%= t("mailers.salutation", :name => @user.first_name) %></h2>
 <p><%= t('mailers.auto_welcome.intro') %></p>
-<% set_password_link = link_to t("mailers.here"), edit_password_url(@user, :reset_password_token => @user.reset_password_token) %>
-<p><%= t("mailers.auto_welcome.content", :set_password_link => set_password_link).html_safe %></p>
+<%= simple_format(@message.html_safe) %>
+<% set_password_link = link_to t("mailers.here"), edit_password_url(@user, :reset_password_token => @user.reset_password_token, :welcome => true) %>
+<p><%= t("mailers.auto_welcome.set_password", :set_password_link => set_password_link).html_safe %></p>
+<% content_for(:footer_ps) do %>
+  <p></p>
+<% end %>

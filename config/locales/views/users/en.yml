@@ -69,7 +69,7 @@ en:
       signup_complete:            Signup Complete
       signup_complete_text:       "Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it."
       choose_a_password:          Choose a password for your account
-      confirm_reset_password:     Confirm your password reset
+      confirm_reset_password:     Confirm the password
       enter_your_new_password:    Enter your new password
       registration_warning:       "%{site_name} won't publish anything without your prior consent"
       already_member:             "Already a %{site_name} member?"

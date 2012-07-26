@@ -38,6 +38,11 @@ en:
       price_lowest: Price (Lowest First)
       price_highest: Price (Highest First)
       category_filters_title: 'Type'
+    search_map:
+      redo_search: Redo search in map
+      redo_prompt_text: Check this box to see new search results as you move the map
+      redo_yes: Yes, please
+      redo_no: No, thanks
     inquiries:
       start_date:       'Date'
       duration:         'Duration'

@@ -1,5 +1,7 @@
+initial_prompt = false
 GMaps =
   initialize : (initialLat, initialLng) ->
+    initial_prompt = true
     google.maps.Map.prototype.markers = []
 
     google.maps.Map.prototype.addMarker = (marker) ->
@@ -54,23 +56,30 @@ GMaps =
 
   setBoundsValues : ->
     latLngBounds = @map.getBounds()
+    if $('#redo_map').is(':checked')
+      if !latLngBounds.isEmpty()
+        southWest = latLngBounds.getSouthWest()
+        northEast = latLngBounds.getNorthEast()
 
-    if !latLngBounds.isEmpty()
-      southWest = latLngBounds.getSouthWest()
-      northEast = latLngBounds.getNorthEast()
+        minLat = southWest.lat()
+        minLng = southWest.lng()
+        maxLat = northEast.lat()
+        maxLng = northEast.lng()
 
-      minLat = southWest.lat()
-      minLng = southWest.lng()
-      maxLat = northEast.lat()
-      maxLng = northEast.lng()
+        $('#search_min_lat').val(minLat)
+        $('#search_max_lat').val(maxLat)
+        $('#search_min_lng').val(minLng)
+        $('#search_max_lng').val(maxLng)
 
-      $('#search_min_lat').val(minLat)
-      $('#search_max_lat').val(maxLat)
-      $('#search_min_lng').val(minLng)
-      $('#search_max_lng').val(maxLng)
-
-      if $('.results > #search-load-indicator').length == 0
-        PlaceFilters.search()
+        if $('.results > #search-load-indicator').length == 0
+          PlaceFilters.search()
+    else
+      if initial_prompt == true
+        initial_prompt = false
+        $('#first_time_map_question').show();
+        $("#first_time_map_question").delay(12800).fadeOut(800);
+      else
+        $('#first_time_map_question').hide();
 
   # Just killed the server method
   performMarkerEvent : (product) ->

@@ -1,0 +1,13 @@
+.powered
+  %a{:href => "http://thesharingengine.com/", :target => "_blank"}
+    %img{:src => asset_path('poweredby.png')}
+    
+:javascript
+  $(function() {
+    $('.powered').mouseover(function(){
+      $(this).animate({right:'-8px'}, 'slow');
+    });
+    $('.powered').mouseleave(function(){
+      $(this).animate({right:'-242px'}, 'slow');
+    });    
+  });

@@ -2,7 +2,7 @@ ActiveAdmin.register Cmspage  do
   menu :label => "Pages", :parent => 'CMS'
 
   controller do
-    actions :all, :except => [:show]
+    actions :all
   end
 
   config.sort_order = 'id_asc'
@@ -24,6 +24,10 @@ ActiveAdmin.register Cmspage  do
         session[:frommenu] = params[:frommenu]
       end
       new!
+    end
+    
+    def show
+      redirect_to edit_admin_cmspage_path(resource)
     end
 
     def create

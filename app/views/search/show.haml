@@ -26,8 +26,12 @@
       .header
         .title
           = render 'search/button_favorite', :favorable => @resource
-          %h1= @resource.title
-
+          %h1
+            = @resource.title
+            -if @resource.product.has_review?
+              .review_average{:style => "text-align: right;"}
+                = stars(@resource.product.review_avg)
+            
           .meta
             %p= "#{@resource.city.name}, #{@resource.city.country}"
             .share

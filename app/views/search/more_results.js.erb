@@ -1,3 +1,3 @@
 <%= page_append("#search_result_list", :partial => 'search/results_list_view', :locals => {:places => @results}) %>
-<%= "GMaps.createMarkers(#{map_markers_json(@results)});".html_safe %>
+<%= "GMaps.createMarkers(#{map_markers_json(@results)},false);".html_safe %>
 

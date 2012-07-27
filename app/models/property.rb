@@ -11,7 +11,7 @@ class Property <  ActiveRecord::Base
   #before_save :update_price_sqf_field
 
   def self.product_name
-    I18n.t('product_name')
+    'Place'
   end
 
   def self.searcher

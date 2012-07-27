@@ -108,6 +108,7 @@ class ListingsController < PrivateController
 
   def find_resource
     @resource = collection.find(params[:id])
+    @product = @resource.product
     @owner = @resource.user
   end
 

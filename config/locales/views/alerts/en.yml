@@ -37,3 +37,4 @@ en:
     message_alert_paused: The alert has been successfully paused
     message_alert_unpaused: The alert has been successfully unpaused
     message_alert_updated: The alert has been successfully updated
+    email_subject: "Your %{product_plural} search alert"

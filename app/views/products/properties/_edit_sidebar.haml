@@ -1,26 +1,37 @@
 .wizard-aside-wrapper
   .wizard-aside
     %ul.nav.nav-tabs.nav-stacked#wizard_tabs
+      - wizard_tabs.each do |tab_name|
+        %li
+          .indicator= image_tag('check-disabled.png')
+          %a{:href => "#tab_#{tab_name}", :title => t("products.wizard.#{tab_name}_title")}
+            = t("products.wizard.#{tab_name}_title")
+    - if false
       %li.active
         .indicator#generalInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#1", :title => t("places.wizard.general_information_title")}
-          = t("places.wizard.general_information_title")
+        %a{:href => "#1", :title => t("products.wizard.general_information_title")}
+          = t("products.wizard.general_information_title")
       %li
         .indicator#photoInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#2", :title => t("places.wizard.photos_title")}
-          = t("places.wizard.photos_title")
+        %a{:href => "#2", :title => t("products.wizard.photos_title")}
+          = t("products.wizard.photos_title")
+      %li
+        .indicator#photoInfo
+          = image_tag('check-disabled.png')
+        %a{:href => "#2", :title => t("products.wizard.panoramas_title")}
+          = t("products.wizard.panoramas_title")
       %li
         .indicator#amenitiesInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#3", :title => t("places.wizard.amenities_title")}
-          = t("places.wizard.amenities_title")
+        %a{:href => "#3", :title => t("products.wizard.amenities_title")}
+          = t("products.wizard.amenities_title")
       %li
         .indicator#priceInfo
           = image_tag('check-disabled.png')
-        %a{:href => "#4", :title => t("places.wizard.price_and_conditions_title")}
-          = t("places.wizard.price_and_conditions_title")
+        %a{:href => "#4", :title => t("products.wizard.price_and_conditions_title")}
+          = t("products.wizard.price_and_conditions_title")
     - if false
       %li
         .indicator

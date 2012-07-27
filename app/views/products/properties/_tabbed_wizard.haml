@@ -1,18 +1,9 @@
 - content_for :javascripts do
   = javascript_include_tag "wizard"
 
-.panel.tab-pane#1
-  = render 'products/properties/wizard_tabs/step_general'
-.panel.tab-pane#2
-  = render 'products/properties/wizard_tabs/step_photos'
-.panel.tab-pane#3
-  = render 'products/properties/wizard_tabs/step_amenities'
-.panel.tab-pane#4
-  = render 'products/properties/wizard_tabs/step_pricing'
-.panel.tab-pane#5
-  =# render 'products/places/wizard_tabs/step_calendar',  :f => f
-.panel.tab-pane#6
-  =# render 'preview', :f => f
+- wizard_tabs.each do |tab_name|
+  .panel.tab-pane{:id => "tab_#{tab_name}"}
+    = render "products/properties/wizard_tabs/step_#{tab_name}"
 
 :javascript
   $(function() {

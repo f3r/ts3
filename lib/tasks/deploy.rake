@@ -71,6 +71,7 @@ namespace :deploy do
     header 'Creating new site infrastructure'
     header_subsection 'Creating app in heroku'
     cmd "heroku apps:create #{app}"
+    cmd "heroku sharing:add nico@heypal.com"
   end
 
   task :addons do

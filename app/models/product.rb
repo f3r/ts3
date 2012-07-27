@@ -6,6 +6,7 @@ class Product < ActiveRecord::Base
   belongs_to :currency
   belongs_to :category
   has_many   :photos, :dependent => :destroy, :order => :position
+  has_many   :panoramas, :dependent => :destroy
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities

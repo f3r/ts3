@@ -1,7 +1,7 @@
 .panel-wrapper
   = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
     %fieldset.well.form-horizontal
-      %h3= t("places.wizard.description_title")
+      %h3= t("products.wizard.description_title")
       .control-group.required
         = f.label :title, t("places.title"), :class => 'control-label'
         .controls
@@ -41,7 +41,7 @@
       
   = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
     %fieldset.well.form-horizontal
-      %h3= t("places.wizard.address_title")
+      %h3= t("products.wizard.address_title")
       .control-group.required
         = f.label :city_id, t("addresses.city"), :class => 'control-label'
         .controls

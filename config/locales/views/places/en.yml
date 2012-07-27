@@ -101,20 +101,6 @@ en:
 
     title: Title
     wizard:
-      description_title: Description
-      general_information_title: General Information
-      address_title: Address
-      photos_title: Photos
-      amenities_title: Amenities
-      calendar_title: Calendar
-      price_and_conditions_title: Price and Conditions
-      pricing_title: Pricing
-      additional_costs_title: Additional Costs
-      terms_title: Terms
-      place_and_building_facilities_title: "Place & Building facilities"
-      furnishings_title: Conveniences
-      miscellaneous_title: Miscellaneous
-      sports_and_recreation_title: "Sports & Recreation"
       list_your_place: List Your Place
       what_city_is_your_place_in: What city is your place in?
       place_type: What kind of place is it?

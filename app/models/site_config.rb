@@ -64,11 +64,11 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.product_plural
-    self.product_name.pluralize
+    I18n.t('product_name_plural')
   end
 
   def self.product_name
-    self.product_class.product_name
+    I18n.t('product_name')
   end
 
   def price_units

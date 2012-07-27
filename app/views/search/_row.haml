@@ -1,9 +1,10 @@
 - my_products  ||= false
 - my_favorites ||= false
+- url = my_products ? listing_path(resource) : seo_product_url(resource)
 
-%li{:id => dom_id(resource)}
+%li.search-item-clickable{:id => dom_id(resource), "data-url" => url}
   .thumb.data-block
-    - url = my_products ? listing_path(resource) : seo_product_url(resource)
+    
     = link_to url do
       = image_tag(resource.primary_photo)
   .info

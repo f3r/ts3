@@ -91,7 +91,7 @@ class Alert < ActiveRecord::Base
   end
 
   def set_alert_type
-    self.alert_type = SiteConfig.product_name.capitalize
+    self.alert_type = SiteConfig.product_class.name
   end
 
   # used for short url

@@ -9,7 +9,7 @@ describe Alert do
     new_alert = @user.alerts.create(:schedule => "monthly", :query => {'test'=>'test'})
     new_alert.should be_persisted
     new_alert.search_code.should_not be_nil
-    new_alert.alert_type.should == SiteConfig.product_name
+    new_alert.alert_type.should == SiteConfig.product_class.name
   end
 
 end

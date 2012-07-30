@@ -30,7 +30,9 @@ ActiveAdmin.register User do
   show do |ad|
     rows = default_attribute_table_rows.reject {|a| a =~ /password|avatar/}
     attributes_table *rows do
-      row(:avatar) {|u| image_tag(u.avatar.url('thumb'))}
+      row(:avatar) {|u|
+        image_tag(u.avatar.url('thumb')) if u.avatar?
+      }
     end
   end
 

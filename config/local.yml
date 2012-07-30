@@ -28,10 +28,10 @@ defaults: &defaults
 
 development:
   <<: *defaults
-  S3_BUCKET:        squarestays-img-dev
+  S3_BUCKET:            squarestays-img-dev
 
 test:
   <<: *defaults
   PRODUCT_CLASS_NAME:   Property
-  STORAGE:          filesystem
-  S3_BUCKET:        squarestays-img-test
+  STORAGE:              filesystem
+  S3_BUCKET:            squarestays-img-test

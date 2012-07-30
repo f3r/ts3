@@ -10,7 +10,7 @@
     .span9
       = render 'search_bar'
       .results{:style => "padding-top: 10px;"}
-        %span#search_load_indicator.hide
+        #search_load_indicator.hide
           = image_tag('loading.gif', :alt => 'loading')
         #search_results
           = render 'search_results'

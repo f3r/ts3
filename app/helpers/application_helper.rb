@@ -135,6 +135,13 @@ module ApplicationHelper
       link_to t("products.add_a_listing"), new_listing_path
     end
   end
+  
+  def render_add_listing_notification
+    resource_class = SiteConfig.product_class
+    if resource_class.manageable_by(current_user).count == 0
+      render :partial => "listings/add_a_listing_notification"
+    end
+  end
 
   module_function :static_asset
 end

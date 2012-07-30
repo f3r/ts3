@@ -1,5 +1,8 @@
 = raw(SiteConfig.after_body_tag_start) if SiteConfig.after_body_tag_start.present?
 
+- if user_signed_in? and current_user.agent?
+  = render_add_listing_notification
+
 %header.header
   .container
     .row

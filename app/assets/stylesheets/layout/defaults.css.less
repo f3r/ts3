@@ -1376,6 +1376,19 @@ header.header {
 	}
 }
 
+.fav {
+  width: 25px;
+  height: 24px;
+  display:block;  
+  background: transparent url(/assets/fav-star.png) no-repeat center 1px;
+  &.active {
+    background: transparent url(/assets/fav-star.png) no-repeat center -50px;
+  }  
+  &:hover {
+    background: transparent url(/assets/fav-star.png) no-repeat center -25px;
+  }
+}
+
 /*********************************************************************************************************
 * FOOTER
 *********************************************************************************************************/

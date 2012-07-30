@@ -9,8 +9,6 @@
       = image_tag(resource.primary_photo)
   .info
     .title
-      - unless my_products
-        = render 'button_favorite', :favorable => resource
       %h3
         = link_to resource.title, url
     = render_overridable_partial('row_details', :resource => resource)

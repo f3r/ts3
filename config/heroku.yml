@@ -189,3 +189,16 @@ campuspedal-tse:
     S3_BUCKET:            campuspedal-tse
     # Security
     SECRET_TOKEN:         1501f9af3e701744698b9610a3eb14b42d40ccfec4900baddee97cc223b53633a3f71a0e469f56e64338f0c7e50e5f2f139f85337d5ace1c350e33730afed4d7
+
+########################################################################################################################################
+interns-tse:
+  app:   interns-tse
+  config:
+    <<: *default_config
+    SITE_URL:             http://interns-tse.herokuapp.com
+    PRODUCT_CLASS_NAME:   Service
+    # Database and CDN
+    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/interns-tse
+    S3_BUCKET:            interns-tse
+    # Security
+    SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7

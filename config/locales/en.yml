@@ -16,6 +16,8 @@ en:
   contact: Contact
   facebook_url: 'https://www.facebook.com/squarestays'
   twitter_url:  'https://twitter.com/Squarestays'
+  product_name: 'Place'
+  product_name_plural: 'Places'
 
   ####################################################################################
   # App Menus

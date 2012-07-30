@@ -3,8 +3,9 @@
 - url = my_products ? listing_path(resource) : seo_product_url(resource)
 
 %li.search-item-clickable{:id => dom_id(resource), "data-url" => url}
+  
   .thumb.data-block
-    
+    %span{:class => "marker_point" ,:id => "marker_point_#{resource.id}"}
     = link_to url do
       = image_tag(resource.primary_photo)
   .info

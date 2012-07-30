@@ -47,7 +47,7 @@
   $(document).ready(function() {
     PlaceFilters.initialize('#search_bar');
     GMaps.initialize(#{@city.lat}, #{@city.lon});
-    GMaps.createMarkers(#{map_markers_json(@results)});
+    GMaps.createMarkers(#{map_markers_json(@results)},true);
     
     $("#redo_map").live("click", function(){ 
       GMaps.setBoundsValues();

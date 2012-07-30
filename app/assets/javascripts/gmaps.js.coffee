@@ -46,6 +46,9 @@ GMaps =
     for product in products
       image = "http://chart.apis.google.com/chart?chst=d_map_pin_letter_withshadow&chld="+initialMarkerCount+"|F27629|2D2D2D";
       
+      property = "#marker_point_"+ product.id;
+      $(property).html(initialMarkerCount);
+      
       myLatlng = new google.maps.LatLng(product.lat, product.lon)
       marker = new google.maps.Marker
         position: myLatlng

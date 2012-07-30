@@ -10,6 +10,7 @@ USERS = [
 site_config = SiteConfig.first_or_create
 site_config.logo = File.open("#{Rails.root}/db/rake_seed_images/logo.png") unless site_config.logo?
 site_config.fav_icon = File.open("#{Rails.root}/db/rake_seed_images/favicon.png") unless site_config.fav_icon?
+site_config.photo_watermark = File.open("#{Rails.root}/db/rake_seed_images/logo-watermark.png") unless site_config.photo_watermark?
 site_config.custom_meta ||= %{
   <meta name="robots" content="noodp" />
   <meta name="slurp" content="noydir" />

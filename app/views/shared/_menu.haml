@@ -38,7 +38,7 @@
             - if user_signed_in?
               - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
                 %li.add-item
-                  = link_to t("products.add_a_listing"), new_listing_path
+                  = new_or_edit_listing
 
               - if message_count == 0
                 %li.read-message

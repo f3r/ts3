@@ -48,10 +48,9 @@ class User < ActiveRecord::Base
   attr_accessor :delete_avatar, :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true
   
-  validates_presence_of :paypal_email, :if => Proc.new {|user| user.agent? || user.admin?}
   validates_format_of :paypal_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new {|user| user.paypal_email.present?}
 
-  before_save :ensure_authentication_token, :check_avatar_url
+  before_save :ensure_authentication_token, :check_avatar_url, :set_paypal_email
   before_save :check_delete_avatar
   after_create :send_on_create_welcome_instructions
   after_create :add_user_preferences
@@ -209,6 +208,12 @@ private
 
   def add_user_preferences
     self.build_preferences
+  end
+  
+  def set_paypal_email
+    if self.agent? || self.admin?
+      self.paypal_email = self.email if !self.paypal_email.present?
+    end
   end
 
 end

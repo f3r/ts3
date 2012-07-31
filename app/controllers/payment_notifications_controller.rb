@@ -11,6 +11,8 @@ class PaymentNotificationsController < ApplicationController
       @result = @transaction.received_payment!(params)
     end
 
-    render :nothing => true
+    # render :nothing => true
+    flash[:notice] = "Payment Processed Successfuly!"
+    redirect_to root_url
   end
 end

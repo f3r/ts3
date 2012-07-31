@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   include User::Social
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
-                  :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar
+                  :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar, :paypal_email
 
 
   # TODO: check if we need this
@@ -47,6 +47,9 @@ class User < ActiveRecord::Base
 
   attr_accessor :delete_avatar, :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true
+  
+  validates_presence_of :paypal_email, :if => Proc.new {|user| user.agent? || user.admin?}
+  validates_format_of :paypal_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new {|user| user.paypal_email.present?}
 
   before_save :ensure_authentication_token, :check_avatar_url
   before_save :check_delete_avatar

@@ -11,6 +11,7 @@ en:
     full_name:                  Full Name
     name_example:               e.g. John Smith
     email:                      E-mail
+    paypal_email:               Paypal Email
     email_address:              E-Mail Address
     email_example:              e.g. mail@mail.com
     billing_address:            Billing Address

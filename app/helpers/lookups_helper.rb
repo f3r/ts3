@@ -44,6 +44,9 @@ module LookupsHelper
   # Should be of this format:
   # {"date_end"=>[120]}
   def error_codes_to_messages(error_hash)
+    
+    return error_hash unless error_hash.kind_of?(Hash)
+    
     ret = []
     error_hash.each do |field, error_codes|
       error_codes.each do |error_code|

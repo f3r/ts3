@@ -74,6 +74,8 @@ class User < ActiveRecord::Base
     user.signup_role = role
     user.generate_set_password_token
     user.skip_welcome = true
+    
+    user.paypal_email = user.email if user.agent? || user.admin?
 
     Authorization::Maintenance::without_access_control do
       if user.save

@@ -1,5 +1,6 @@
 en:
   products:
+    no_listings_home:   "You haven't created any listing yet, <a href='%{link}'> Create one </a>"
     my_listings:        'My %{product_plural}'
     no_listings:        "You haven't created any listing yet"
     my_favorites:       'My Favorites'

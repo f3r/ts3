@@ -1,0 +1,17 @@
+.add_listing_notification_wrapper
+  .add_listing_notification
+    %a.close{:href => "javascript:{}"}
+      x
+    = t('products.no_listings_home', :link => new_listing_path).html_safe
+
+:javascript
+$(document).ready(function(){
+  $('.add_listing_notification .close').click(function(){
+    $('.add_listing_notification').fadeOut('slow');
+  });
+
+  $('.add_listing_notification').waypoint(function(e,direction){
+    $('.add_listing_notification_wrapper').toggleClass('sticky', direction === "down");
+  });
+
+});

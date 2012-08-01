@@ -41,7 +41,7 @@ en:
     edit:                       Edit
     profile_required_message:   "Please click Edit on your profile to enter additional information needed to make reservations on %{site_name}."
     required_fields:            Required fields
-    link_paypal:                Link your Paypal
+    link_paypal:                Get from my Paypal account
 
     registration:
       login:                      Login

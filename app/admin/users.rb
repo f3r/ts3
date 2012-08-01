@@ -37,9 +37,7 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs :email, :encrypted_password, :reset_password_token, :reset_password_sent_at, :remember_created_at, :sign_in_count, :current_sign_in_at,
-    :last_sign_in_at, :current_sign_in_ip, :last_sign_in_ip, :password_salt, :confirmation_token, :confirmed_at, :confirmation_sent_at, :authentication_token,
-    :created_at, :updated_at, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :first_name, :last_name, :role, :passport_number, :unconfirmed_email
+    f.inputs :email, :first_name, :last_name, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :passport_number
     f.buttons
   end
 

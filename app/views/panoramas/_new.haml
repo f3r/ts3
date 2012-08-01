@@ -5,10 +5,6 @@
         Panorama SWF
       = f.file_field :swf
     %li
-      %label
-        Thumbnail
-      = f.file_field :photo
-    %li
       %h3 HTML5
     %li
       %label
@@ -18,4 +14,4 @@
       %li
         %label= "Tile File #{i}"
         = f.file_field "asset_#{i}"
-  = f.submit 'Save'
+  = f.submit 'Save', :class => 'btn btn-primary'

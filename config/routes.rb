@@ -46,7 +46,7 @@ HeyPalFrontEnd::Application.routes.draw do
     resources :photos, :only => [:create, :update, :destroy] do
       put :sort, :on => :collection
     end
-    resources :panoramas, :only => [:new, :create]
+    resources :panoramas, :only => [:new, :create, :destroy]
   end
 
   resources :products do

@@ -1,7 +1,7 @@
 class Panorama < ActiveRecord::Base
   belongs_to :product
   
-  [:photo, :asset_0, :asset_1, :asset_2, :asset_3, :asset_4, :asset_5].each do |field|
+  [:asset_0, :asset_1, :asset_2, :asset_3, :asset_4, :asset_5].each do |field|
     attr_accessor "#{field}_file_name"
     attr_accessor "#{field}_content_type"
     attr_accessor "#{field}_file_size"
@@ -16,6 +16,17 @@ class Panorama < ActiveRecord::Base
   has_attached_file :swf, :url => "/:class/:id/:filename", :path => "/:class/:id/:filename"
 
   before_save :generate_html
+
+  def embed_url
+    self.html.url.gsub('https', 'http')
+  end
+  
+  def formats
+    supported = []
+    supported << 'Flash' if self.swf?
+    supported << 'Html5' if self.xml?
+    supported.join(', ')
+  end
 
   protected
 

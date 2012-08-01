@@ -4,6 +4,7 @@ PlaceShow =
     # INITIALIZERS
     #*******************************************************************************************
     isCalendarOpen = false
+    @.initializePanoramas()
     @.initializeSlider()
     @.initializeSharePlace(opts.share_title, opts.share_url, opts.share_id)
     @.inquireModal()
@@ -36,6 +37,29 @@ PlaceShow =
         slider.tinycarousel_move($(this).attr('data-page'))
         false
 
+  initializePanoramas: ->
+    pano_iframe = $('#panorama_container iframe')
+    pano_list = $('#panoramas_list')
+    if pano_list.length > 0
+      idx = 0
+      length = pano_list.find('a').length
+      showPanorama = ->
+        url = pano_list.find('a').eq(idx).attr('href')
+        pano_iframe.attr('src', url)
+
+      $('#panorama_container .prev').click ->
+        if idx > 0
+          idx -= 1
+          showPanorama()
+        false
+
+      $('#panorama_container .next').click ->
+        if idx < length - 1
+          idx += 1
+          showPanorama()
+        false
+        
+      showPanorama()
   #*******************************************************************************************
   # Google Map initialization
   #*******************************************************************************************

@@ -43,9 +43,9 @@
       if(!embedded){
         document.writeln('<div id="container" style="width:600px;height:400px;"></div>');
         // default to a static image
-        var img = document.createElement('img');
-        img.src = '<%= panorama.photo.url(:large) %>';
-        document.getElementById('container').appendChild(img);        
+        /*var img = document.createElement('img');
+        img.src = '<%#= panorama.photo.url(:large) %>';
+        document.getElementById('container').appendChild(img);*/
       }
 		</script>
 	</body>

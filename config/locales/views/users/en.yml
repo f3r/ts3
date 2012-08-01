@@ -11,6 +11,7 @@ en:
     full_name:                  Full Name
     name_example:               e.g. John Smith
     email:                      E-mail
+    paypal_email:               Paypal Email
     email_address:              E-Mail Address
     email_example:              e.g. mail@mail.com
     billing_address:            Billing Address
@@ -40,6 +41,7 @@ en:
     edit:                       Edit
     profile_required_message:   "Please click Edit on your profile to enter additional information needed to make reservations on %{site_name}."
     required_fields:            Required fields
+    link_paypal:                Link your Paypal
 
     registration:
       login:                      Login

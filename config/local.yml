@@ -19,7 +19,11 @@ defaults: &defaults
   RAKISMET_KEY:         bcba68e5b091
   RAKISMET_URL:         http://localhost:3005
   PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
-  PAYPAL_MODE:          test
+  PAYPAL_API_USERNAME:  vinu+p_1342437795_biz_api1.xminds.com
+  PAYPAL_API_PASS:      "1342437832"
+  PAYPAL_API_SIGN:      AfFVH5KGuTqC6Ah83zaYyBQ9xWPpAwZADVB.UWIDY7lf4hCQbGvZq.CC
+  PAYPAL_APP_ID:        APP-80W284485P519543T
+  PAYPAL_MODE: test  
   COOKIE_STORE_KEY:     _TSE_Session
 
 development:

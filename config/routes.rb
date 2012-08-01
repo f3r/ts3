@@ -110,6 +110,9 @@ HeyPalFrontEnd::Application.routes.draw do
   # SEO Routes
   match '/:city/:id'       => 'search#show',  :city => City.routes_regexp, :as => :city_product
 
+  # Paypal permissions callback
+  get 'paypalpermissions/callback' => 'paypalpermissions#callback', :as => 'paypalpermissions_callback'
+  get 'paypalpermissions/start_request' => 'paypalpermissions#start_request', :as => 'paypalpermissions_start'
 
   ###########################################################################################
   # Detecting untranslated stringd

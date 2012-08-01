@@ -49,6 +49,8 @@ gem 'i18n-active_record',               # i18n stored in active record
 
 gem 'geonames'
 
+gem 'paypal_permissions'
+
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"

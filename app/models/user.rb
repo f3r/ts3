@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
   has_one :address
   has_one :bank_account
   has_one :preferences
+  has_one :paypal_auth_info
 
   has_many :authentications,  :dependent => :destroy
   has_many :products,         :dependent => :destroy

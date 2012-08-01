@@ -46,7 +46,18 @@
     .controls
       = icon_tooltip(:private)
       = f.date_select :birthdate, :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
-  
+  - if @user.agent? || @user.admin?
+    .control-group
+      = f.label :paypal_info, "#{t("users.paypal_email")}*", :class => 'control-label'
+      .controls
+        = icon_tooltip(:private)
+        %span{:style => "margin-top: 6px; position: absolute;"}
+          - if @user.paypal_auth_info.present?
+            = @user.paypal_auth_info.email
+          - else
+            %a{:href => paypalpermissions_start_path}
+              = t("users.link_paypal")
+            
   .clearfix
   .span4.float-right
     = f.submit t("save"), :class => 'btn btn-primary'

@@ -160,19 +160,20 @@ form div.required label:after {
   z-index: 999999999;
   &.sticky {
     top: 0px;
-    position: fixed;
+    position: relative;
   }
-  
+
   .add_listing_notification {
     font-size: 15px;
-    text-align: center;  
-    //border: 1px solid blue;
-    border-radius: 4px 4px 4px 4px;
-    margin: 8px auto;
+    text-align: center;
+    margin: 0px auto;
     padding: 10px;
-    width: 80%;
-    background: @forms_section_header_background_color;
-  }  
+    width: 99%;
+    background-color: #D9EDF7;
+    border: 1px solid #BCE8F1;
+    color: #3A87AD;
+    margin-bottom:10px;
+  }
 }
 
 
@@ -1400,11 +1401,11 @@ header.header {
 .fav {
   width: 25px;
   height: 24px;
-  display:block;  
+  display:block;
   background: transparent url(/assets/fav-star.png) no-repeat center 1px;
   &.active {
     background: transparent url(/assets/fav-star.png) no-repeat center -50px;
-  }  
+  }
   &:hover {
     background: transparent url(/assets/fav-star.png) no-repeat center -25px;
   }

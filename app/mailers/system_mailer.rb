@@ -1,5 +1,6 @@
 class SystemMailer < BaseMailer
-  default :to => SiteConfig.mail_bcc
+  default :to => SiteConfig.support_email
+  default :bcc  => SiteConfig.mail_bcc
 
   # ==Description
   # Email sent when the user sends feedback

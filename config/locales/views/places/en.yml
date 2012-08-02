@@ -56,6 +56,7 @@ en:
     currency: Currency
     check_in_after: Check In After
     check_out_before: Check Out Before
+    rules: House Rules
 
     # TODO: delete with rent.haml
     rent:

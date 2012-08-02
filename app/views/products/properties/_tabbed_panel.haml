@@ -48,10 +48,6 @@
     // Details Pane
     = render 'products/properties/tabs/details', :resource => resource
 
-    // House Rules Pane
-    - if resource.house_rules.present?
-      = render 'products/properties/tabs/house_rules', :resource => resource
-
     // Questions Tab
     = render 'questions/questions'
 
@@ -66,7 +62,13 @@
 .description
   .row
     .span8
-      %pre.desc= resource.description
+      - if resource.description.present?
+        .title= t('places.description')
+        .desc= simple_format(resource.description)
+      - if resource.house_rules.present?
+        .title= t('places.rules')
+        .desc= simple_format(resource.house_rules)
+
     .span2.right.span-below.min-stay
       .title
         =t("places.minimum_stay")

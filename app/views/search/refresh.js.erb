@@ -4,4 +4,5 @@
 <% if logged_in? && @alert %>
 <%= page_replace_html("#save_search", :partial => 'alerts/save_search_form') %>
 <% end %>
-<%= "GMaps.clearMarkers();GMaps.createMarkers(#{map_markers_json(@results)})".html_safe %>
+<%= "GMaps.clearMarkers();GMaps.createMarkers(#{map_markers_json(@results)},true)".html_safe %>
+

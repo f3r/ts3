@@ -15,4 +15,31 @@ module ComponentsHelper
       html.html_safe
     end
   end
+
+  def wizard_tabs
+    unless @wizard_tabs
+      @wizard_tabs = []
+      @wizard_tabs << :general
+      @wizard_tabs << :photos    if SiteConfig.photos?
+      @wizard_tabs << :panoramas if SiteConfig.panoramas?
+      @wizard_tabs << :amenities if AmenityGroup.any?
+      @wizard_tabs << :pricing
+      #tabs << :calendar if SiteConfig.calendar?
+    end
+    @wizard_tabs
+  end
+
+  def previous_wizard_tab(current_tab)
+    current_pos = wizard_tabs.index(current_tab.to_sym)
+    if current_pos > 0
+      wizard_tabs[current_pos - 1]
+    end
+  end
+
+  def next_wizard_tab(current_tab)
+    current_pos = wizard_tabs.index(current_tab.to_sym)
+    if current_pos < wizard_tabs.length - 1
+      wizard_tabs[current_pos + 1]
+    end
+  end
 end

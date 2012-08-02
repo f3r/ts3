@@ -1,53 +1,4 @@
 module PlacesHelper
-
-  # Amenities
-  def amenities_group_1
-    [
-      [t("places.amenities.kitchen"), :amenities_kitchen],
-      [t("places.amenities.hot_water"), :amenities_hot_water],
-      [t("places.amenities.elevator"), :amenities_elevator],
-      [t("places.amenities.parking_included"), :amenities_parking_included],
-      [t("places.amenities.heating"), :amenities_heating],
-      [t("places.amenities.handicap"), :amenities_handicap],
-      [t("places.amenities.doorman"), :amenities_doorman],
-      [t("places.amenities.aircon"), :amenities_aircon],
-      [t("places.amenities.buzzer_intercom"), :amenities_buzzer_intercom],
-    ]
-  end
-
-  # Furnishings
-  def amenities_group_2
-    [
-      [t("places.amenities.internet"), :amenities_internet],
-      [t("places.amenities.tv"), :amenities_tv],
-      [t("places.amenities.dryer"), :amenities_dryer],
-      [t("places.amenities.internet_wifi"), :amenities_internet_wifi],
-      [t("places.amenities.cable_tv"), :amenities_cable_tv],
-      [t("places.amenities.washer"), :amenities_washer],
-    ]
-  end
-
-  # Misc
-  def amenities_group_3
-    [
-      [t("places.amenities.pets_allowed"), :amenities_pets_allowed],
-      [t("places.amenities.breakfast"), :amenities_breakfast],
-      [t("places.amenities.smoking_allowed"), :amenities_smoking_allowed],
-      [t("places.amenities.suitable_events"), :amenities_suitable_events],
-      [t("places.amenities.family_friendly"), :amenities_family_friendly],
-    ]
-  end
-
-  def amenities_group_4
-    [
-      [t("places.amenities.gym"), :amenities_gym],
-      [t("places.amenities.jacuzzi"), :amenities_jacuzzi],
-      [t("places.amenities.hot_tub"), :amenities_hot_tub],
-      [t("places.amenities.tennis"), :amenities_tennis],
-      [t("places.amenities.pool"), :amenities_pool],
-    ]
-  end
-
   def place_size(place)
     html = ""
     unit = get_current_size_unit
@@ -123,9 +74,5 @@ module PlacesHelper
       end
     end
     months
-  end
-
-  def seo_place_path(place)
-    seo_product_url(place)
   end
 end

@@ -70,12 +70,6 @@
         = f.text_area :house_rules, :class => "span5 autosave", :rows => 5
     = f.submit t(:save), :class => 'btn btn-primary'
 
-.arrows.clearfix
-  .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t("places.wizard.previous_step")
-  .float-right
-    %a.btn.primary{:href => "#{listing_path(@resource)}"}= t("products.preview")
-
   = render :partial => 'products/properties/wizard_tabs/cancellation_policy'
 
 :javascript

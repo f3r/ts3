@@ -10,8 +10,3 @@
     = link_to 'Upload Panorama', new_listing_panorama_path(@resource), :remote => true, :data => {:toggle => 'modal', :target => '#panorama_modal'}, :class => 'btn btn-large'
   .well
     = render 'panoramas/list', :product => @product, :actions => true
-  .arrows.clearfix
-    .float-left
-      %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t("places.wizard.previous_step")
-    .float-right
-      %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t("places.wizard.next_step")

@@ -1,16 +1,4 @@
 module ProductsHelper
-  def wizard_tabs
-    tabs = []
-    tabs << :general
-    tabs << :photos if SiteConfig.photos?
-    tabs << :panoramas if SiteConfig.panoramas?
-    tabs << :amenities
-    tabs << :pricing
-    #tabs << :calendar if SiteConfig.calendar?
-
-    tabs
-  end
-
   def render_overridable_partial(partial, *attr)
     views_path = ::Rails.root.to_s + "/app/views"
     plural_product = SiteConfig.product_class.to_s.tableize

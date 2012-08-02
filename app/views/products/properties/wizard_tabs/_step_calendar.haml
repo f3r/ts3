@@ -12,10 +12,6 @@
   %div#all-availabilities
     = #render 'availabilities/list_all', :availabilities => @availabilities, :place => @place
 
-.arrows.clearfix
-  .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t("places.wizard.previous_step")
-
 :javascript
 
   $("#open-new-availability").unbind('click').click(function() {

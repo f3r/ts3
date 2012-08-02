@@ -21,11 +21,6 @@
         .span8
           %ul.gallery#photos_list
             = render 'photos/list'
-    .arrows.clearfix
-      .float-left
-        %a.btn.primary{:href => "javascript:switchToPanel('#1')"}=raw t("places.wizard.previous_step")
-      .float-right
-        %a.btn.primary{:href => "javascript:switchToPanel('#3')"}=raw t("places.wizard.next_step")
 
 :javascript
   /* TODO: Finish moving this to wizard.js */

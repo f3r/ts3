@@ -319,6 +319,9 @@ GEM
       execjs (>= 0.3.0)
       multi_json (>= 1.0.2)
     uuidtools (2.1.2)
+    valid_email (0.0.4)
+      activemodel
+      mail
     validates_timeliness (3.0.11)
       timeliness (~> 0.3.6)
     warden (1.1.1)
@@ -383,6 +386,7 @@ DEPENDENCIES
   tinymce-rails
   translate-rails3
   uglifier (>= 1.0.3)
+  valid_email
   validates_timeliness (~> 3.0.2)
   will_paginate (= 3.0.2)
   workflow

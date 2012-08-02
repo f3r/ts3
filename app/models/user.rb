@@ -1,4 +1,5 @@
 require 'declarative_authorization/maintenance'
+require 'valid_email'
 class User < ActiveRecord::Base
   devise :database_authenticatable, # Encrypting Password and validating authenticity of user
          :registerable,             # Users can sign up :)
@@ -48,7 +49,7 @@ class User < ActiveRecord::Base
   attr_accessor :delete_avatar, :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true
   
-  validates_format_of :paypal_email, :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i, :if => Proc.new {|user| user.paypal_email.present?}
+  validates :paypal_email, :email => true, :if => Proc.new {|user| user.paypal_email.present?}
 
   before_save :ensure_authentication_token, :check_avatar_url, :set_paypal_email
   before_save :check_delete_avatar
@@ -74,8 +75,6 @@ class User < ActiveRecord::Base
     user.generate_set_password_token
     user.skip_welcome = true
     
-    user.paypal_email = user.email if user.agent? || user.admin?
-
     Authorization::Maintenance::without_access_control do
       if user.save
         UserMailer.auto_welcome(user, message).deliver

@@ -2,6 +2,7 @@
   .clearfix
     =  link_to seo_product_url(resource) do
       .feat
+        %span{:class => "marker_point" ,:id => "grid_marker_point_#{resource.id}"}
         .thumb{:style => "background-color:#3e3e3e"}= image_tag(resource.photos.blank? ? "http://placehold.it/216x144" : resource.photos[0].photo.url(:medium))
       .side
         .thumb{:style => "background-color:#3e3e3e"}= image_tag((!resource.photos.blank? && resource.photos[1] ? resource.photos[1].photo.url(:small) : "http://placehold.it/106x70"))

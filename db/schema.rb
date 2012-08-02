@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120725051339) do
+ActiveRecord::Schema.define(:version => 20120727034901) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(:version => 20120725051339) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",                             :null => false
+    t.string  "page_url",         :default => "",     :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -333,6 +333,14 @@ ActiveRecord::Schema.define(:version => 20120725051339) do
   end
 
   add_index "messages", ["conversation_id"], :name => "index_messages_on_conversation_id"
+
+  create_table "panoramas", :force => true do |t|
+    t.integer "product_id"
+    t.string  "photo_file_name"
+    t.text    "xml"
+    t.string  "html_file_name"
+    t.string  "swf_file_name"
+  end
 
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
@@ -630,13 +638,12 @@ ActiveRecord::Schema.define(:version => 20120725051339) do
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
     t.boolean  "charge_total",                 :default => false
     t.integer  "fee_amount",                   :default => 300
@@ -648,9 +655,11 @@ ActiveRecord::Schema.define(:version => 20120725051339) do
     t.boolean  "enable_price_per_month"
     t.boolean  "enable_price_sale"
     t.boolean  "agent_need_approval",          :default => true
+    t.boolean  "panoramas",                    :default => false
+    t.boolean  "photos",                       :default => true
   end
 
-   create_table "transaction_logs", :force => true do |t|
+  create_table "transaction_logs", :force => true do |t|
     t.integer  "transaction_id"
     t.string   "state"
     t.string   "previous_state"

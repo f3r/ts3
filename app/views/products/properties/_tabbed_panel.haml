@@ -1,7 +1,11 @@
 .tabbed-panel
   %ul.nav.nav-tabs
-    %li.active
-      %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("places.photos")
+    - if show_product_panoramas?(@product)
+      %li
+        %a{:href => "#panoramas-tab", 'data-toggle' => 'tab'}= t("products.panoramas")
+    - if SiteConfig.photos?
+      %li
+        %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("places.photos")
     %li
       %a{:href => "#map-tab",      'data-toggle' => 'tab'}= t("places.map")
     - if SiteConfig.calendar?
@@ -26,29 +30,30 @@
           = t('places.other_properties', :count => @other_properties.count)
 
   .tab-content
-    // Photo Slider pane
-    = render 'places/photos'
+    - if show_product_panoramas?(@product)
+      // Panorama pane
+      = render 'products/properties/tabs/panoramas', :resource => resource
+
+    - if SiteConfig.photos?
+      // Photo Slider pane
+      = render 'products/properties/tabs/photos', :resource => resource
 
     // Map Pane
-    = render 'places/map'
+    = render 'products/properties/tabs/map', :resource => resource
 
     // Calendar Pane
     - if SiteConfig.calendar?
-      = render 'places/calendar'
+      = render 'products/properties/tabs/calendar', :resource => resource
 
     // Details Pane
-    = render 'places/details'
-
-    // House Rules Pane
-    - if resource.house_rules.present?
-      = render 'places/house_rules'
+    = render 'products/properties/tabs/details', :resource => resource
 
     // Questions Tab
     = render 'questions/questions'
 
     // Other Products by this agent
     - if @other_properties.present?
-      = render 'places/other_properties'
+      = render 'products/properties/tabs/other_properties', :resource => resource      
 
 
 /******************************************************************************************
@@ -57,7 +62,13 @@
 .description
   .row
     .span8
-      %pre.desc= resource.description
+      - if resource.description.present?
+        .title= t('places.description')
+        .desc= simple_format(resource.description)
+      - if resource.house_rules.present?
+        .title= t('places.rules')
+        .desc= simple_format(resource.house_rules)
+
     .span2.right.span-below.min-stay
       .title
         =t("places.minimum_stay")
@@ -74,3 +85,6 @@
           = "#{resource.maximum_stay} #{t(resource.stay_unit)}"
         -else
           = t("places.no_maximum")
+
+:javascript
+  $('.nav-tabs a:first').tab('show');

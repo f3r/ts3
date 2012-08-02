@@ -20,10 +20,26 @@ en:
     review_score_label: 'Rate services on a scale of 1-5'
     review_body_label:  'Write a few lines about your experience'
     review_average_label: 'Review average'
+    panoramas:          'Panoramas'
     wizard:
       what_city:        'What city?'
       description_title: Description
       general_title:     General
+      description_title: Description
+      general_title: General Information
+      address_title: Address
+      photos_title: Photos
+      panoramas_title: Panoramas
+      amenities_title: Amenities
+      calendar_title: Calendar
+      price_and_conditions_title: Price and Conditions
+      pricing_title: Pricing
+      additional_costs_title: Additional Costs
+      terms_title: Terms
+      place_and_building_facilities_title: "Place & Building facilities"
+      furnishings_title: Conveniences
+      miscellaneous_title: Miscellaneous
+      sports_and_recreation_title: "Sports & Recreation"
     messages:
       listing_published:      Your listing is now published!
       listing_publish_error:  "Sorry, we can not publish your listing because of missing information."

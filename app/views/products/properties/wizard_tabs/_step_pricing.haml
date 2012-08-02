@@ -5,7 +5,7 @@
         .input.required
           = f.label :currency, t("places.currency"), :style => "width:auto;margin-right:10px;"
           = f.select :currency_id, currencies_options, {}, :class => 'validate[required]'
-    %h3=t("places.wizard.pricing_title")
+    %h3=t("products.wizard.pricing_title")
     %fieldset
       / .input
       /   = f.label :price_per_week, t("places.price_per_week")
@@ -76,7 +76,7 @@
   .float-right
     %a.btn.primary{:href => "#{listing_path(@resource)}"}= t("products.preview")
 
-  = render :partial => 'places/cancellation_policy'
+  = render :partial => 'products/properties/wizard_tabs/cancellation_policy'
 
 :javascript
   $('#place_currency').val("#{@resource.currency}");

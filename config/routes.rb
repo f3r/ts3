@@ -46,6 +46,7 @@ HeyPalFrontEnd::Application.routes.draw do
     resources :photos, :only => [:create, :update, :destroy] do
       put :sort, :on => :collection
     end
+    resources :panoramas, :only => [:new, :create, :destroy]
   end
 
   resources :products do
@@ -60,8 +61,8 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   resources :alerts do
     member do
-      get 'pause' => 'alerts#pause'
-      get 'unpause' => 'alerts#unpause'
+      get :pause
+      get :unpause
     end
   end
 

@@ -1,5 +1,5 @@
 .panel.tab-pane{:id => "tab_#{tab_name}"}
-  = render "products/properties/wizard_tabs/step_#{tab_name}", :layout => 'wizard_step'
+  = render "products/#{SiteConfig.product_class.to_s.tableize}/wizard_tabs/step_#{tab_name}", :layout => 'wizard_step'
 
   .arrows.clearfix
     .float-left

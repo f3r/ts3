@@ -22,9 +22,8 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :site_tagline
       f.input :mailer_sender
       f.input :support_email
-      f.input :mail_bcc
     end
-
+    
     f.inputs "Credentials for external services" do
       f.input :gae_tracking_code ,:label=>"Google Analytics Tracking Code"
       f.input :fb_app_id , :label=>"Facebook App ID"

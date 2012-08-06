@@ -18,6 +18,7 @@ ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
   form do |f|
   	f.inputs "Advanced Settings" do
   	  f.input :color_scheme, :as => :select, :collection => SiteConfig.color_schemes, :include_blank => false
+      f.input :mail_bcc
   	  #f.input :fee_amount
   	  #f.input :charge_total
   	  #f.input :fee_is_fixed

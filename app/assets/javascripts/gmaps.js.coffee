@@ -19,10 +19,12 @@ GMaps =
 
     initialLng ||= 0
     initialLng ||= 0
+    searchBack = true
 
     myOptions =
       center: new google.maps.LatLng(initialLat, initialLng)
       zoom: 12
+      scrollwheel: false
       mapTypeControl: false
       zoomControlOptions:
         position: google.maps.ControlPosition.TOP_LEFT
@@ -30,10 +32,10 @@ GMaps =
       streetViewControl: false
 
     @map = new google.maps.Map(document.getElementById('search_map'), myOptions)
-    #@bounds = new google.maps.LatLngBounds()
+    @bounds = new google.maps.LatLngBounds()
 
-    google.maps.event.addListener @map, 'dragend',      -> GMaps.setBoundsValues()
-    google.maps.event.addListener @map, 'zoom_changed', -> GMaps.setBoundsValues()
+    google.maps.event.addListener @map, 'dragend',      -> GMaps.setBoundsValuesOnDrag()
+    google.maps.event.addListener @map, 'zoom_changed', -> GMaps.setBoundsValuesOnZoom()
 
   createMarkerObjectsFromString : (products) ->
     data = products.replace(/&quot;/g,'"')
@@ -65,16 +67,31 @@ GMaps =
       marker.setMap @map
       @map.addMarker marker
       initialMarkerCount++;
-      #@bounds.extend myLatlng
-    #@map.fitBounds(@bounds)
+      @bounds.extend myLatlng
+      
+    if(!GMaps.searchBack)  
+      @map.fitBounds @bounds
 
+  setSearchBack : (flag)->
+    GMaps.searchBack = flag
+      
+  setBoundsValuesOnDrag : ->
+    GMaps.searchBack = false
+    GMaps.setBoundsValues()
+  
+  setBoundsValuesOnZoom : ->
+    if(!GMaps.searchBack)
+      GMaps.searchBack = true
+      return
+      
+    GMaps.setBoundsValues()
+    
   setBoundsValues : ->
     latLngBounds = @map.getBounds()
     if $('#redo_map').is(':checked')
       if !latLngBounds.isEmpty()
         southWest = latLngBounds.getSouthWest()
         northEast = latLngBounds.getNorthEast()
-
         minLat = southWest.lat()
         minLng = southWest.lng()
         maxLat = northEast.lat()
@@ -85,7 +102,7 @@ GMaps =
         $('#search_min_lng').val(minLng)
         $('#search_max_lng').val(maxLng)
 
-        if $('.results > #search-load-indicator').length == 0
+        if $('#search_load_indicator').is(':visible') == false
           PlaceFilters.search()
     else
       if initial_prompt == true

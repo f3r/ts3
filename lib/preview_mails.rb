@@ -4,23 +4,23 @@ class PreviewMails < MailView
   # REGISTRATION_MAILER
   ###############################################################
   def welcome_instructions
-    user = User.first
+    user = getUser()
     RegistrationMailer.welcome_instructions(user)
   end
 
   def reset_password
-    user = User.first
+    user = getUser()
     RegistrationMailer.reset_password_instructions(user)
   end
 
   def new_question
-    user = User.first
-    question = Comment.first
+    user = getUser()
+    question = getComment()
     UserMailer.new_question(user, question)
   end
 
   def new_question_reply
-    question = Comment.first
+    question = getComment()
     user = question.user
     UserMailer.new_question_reply(user, question)
   end
@@ -34,12 +34,12 @@ class PreviewMails < MailView
   # USER_MAILER
   ###############################################################
   def auto_welcome
-    user = User.first
+    user = getUser()
     UserMailer.auto_welcome(user)
   end
 
   def new_message_reply
-    user = User.first
+    user = getUser()
     UserMailer.new_message_reply(user, Message.where(['system is null']).first)
   end
 
@@ -87,7 +87,9 @@ class PreviewMails < MailView
   
   def search_alert
     alert = Alert.last
-    user = alert.user
+    user = getUser()
+    alert.search = getSearch()
+    
     city = City.find(alert.search.city_id)
     new_results = alert.search.resource_class.limit(2).all
     recently_added = alert.search.resource_class.limit(2).offset(2).all
@@ -99,8 +101,8 @@ class PreviewMails < MailView
   def an_inquiry
     inquiry = Inquiry.new(
       :created_at => 2.days.ago,
-      :product => Product.first,
-      :user => User.first,
+      :product => getProduct(),
+      :user => getUser(),
       :check_in => 1.month.from_now.to_date,
       :length_stay => 1,
       :length_stay_type => 'months',
@@ -110,4 +112,42 @@ class PreviewMails < MailView
       }
     )
   end
+  
+  def getUser
+    user = User.new(
+      :id => 9999,
+      :email => "preview@heypal.com",
+      :first_name => "Heypal",
+      :last_name => "SE",
+      :birthdate  => Date.current - 20.year ,
+      :password => "heypal_preview",
+      :password_confirmation => "heypal_preview",
+      :confirmed_at  => 1.day.ago ,
+      :role => "user")
+  end
+  
+  def getComment
+    comment = Comment.new(
+      :user => getUser(),
+      :comment => "Mail preview comments",
+      :product_id => getProduct())
+  end
+  
+  def getSearch
+    search = Property.searcher.new({:id => 9999, :city_id => City.active.first})
+  end
+  
+  def getProduct
+    product = Product.new(
+      :user => getUser(),
+      :title => "Mail preview title",
+      :description =>"Mail preview description",
+      :address_1   => "Heypal",
+      :address_2  => "Search engine",
+      :zip  => "123456",
+      :currency => Currency.active.first,
+      :city => City.active.first,
+      :price_per_month => 1000)
+  end
+  
 end

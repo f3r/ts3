@@ -70,6 +70,10 @@ class Transaction < ActiveRecord::Base
     self.transaction_code
   end
 
+  def total_amount
+    300
+  end
+
 private
 
   def generate_transaction_code

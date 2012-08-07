@@ -210,6 +210,7 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.boolean "active",                :default => false
     t.integer "position"
     t.string  "currency_abbreviation"
+    t.boolean "default",               :default => false
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -648,10 +649,11 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
-    t.string   "static_assets_path"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "color_scheme",                 :default => "default"
+    t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
@@ -663,6 +665,9 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "photo_watermark_updated_at"
     t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"

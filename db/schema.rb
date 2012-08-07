@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120727034901) do
+ActiveRecord::Schema.define(:version => 20120731072923) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -146,9 +146,9 @@ ActiveRecord::Schema.define(:version => 20120727034901) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -174,9 +174,9 @@ ActiveRecord::Schema.define(:version => 20120727034901) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -630,20 +630,20 @@ ActiveRecord::Schema.define(:version => 20120727034901) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
-    t.string   "static_assets_path"
+    t.string   "color_scheme",                 :default => "default"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
@@ -741,6 +741,7 @@ ActiveRecord::Schema.define(:version => 20120727034901) do
     t.string   "role",                                  :default => "user"
     t.string   "passport_number"
     t.string   "unconfirmed_email"
+    t.string   "paypal_email"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

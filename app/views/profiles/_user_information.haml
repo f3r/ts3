@@ -46,6 +46,13 @@
     .controls
       = icon_tooltip(:private)
       = f.date_select :birthdate, :order => [:day, :month, :year], :start_year => 1930, :end_year => Date.today.year - 18, :include_blank => true, :size => 5
+
+  - if @user.agent? || @user.admin?
+    .control-group
+      = f.label :paypal_email, "#{t("users.paypal_email")}*", :class => 'control-label'
+      .controls
+        = icon_tooltip(:private)
+        = f.text_field :paypal_email, :class => "validate[required,custom[email]]"
   
   .clearfix
   .span4.float-right

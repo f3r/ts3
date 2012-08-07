@@ -9,7 +9,7 @@ FactoryGirl.define do
     confirmed_at          { 1.day.ago }
     skip_welcome          { true }
     role                  { 'user' }
-
+    paypal_email        { Faker::Internet.email }
     factory :agent do
       role                { 'agent' }
     end

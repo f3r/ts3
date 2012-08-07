@@ -1,4 +1,5 @@
 require 'declarative_authorization/maintenance'
+require 'valid_email'
 class User < ActiveRecord::Base
   devise :database_authenticatable, # Encrypting Password and validating authenticity of user
          :registerable,             # Users can sign up :)
@@ -16,7 +17,7 @@ class User < ActiveRecord::Base
   include User::Social
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
-                  :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar
+                  :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar, :paypal_email
 
 
   # TODO: check if we need this
@@ -47,8 +48,10 @@ class User < ActiveRecord::Base
 
   attr_accessor :delete_avatar, :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true
+  
+  validates :paypal_email, :email => true, :if => Proc.new {|user| user.paypal_email.present?}
 
-  before_save :ensure_authentication_token, :check_avatar_url
+  before_save :ensure_authentication_token, :check_avatar_url, :set_paypal_email
   before_save :check_delete_avatar
   after_create :send_on_create_welcome_instructions
   after_create :add_user_preferences
@@ -71,7 +74,7 @@ class User < ActiveRecord::Base
     user.signup_role = role
     user.generate_set_password_token
     user.skip_welcome = true
-
+    
     Authorization::Maintenance::without_access_control do
       if user.save
         UserMailer.auto_welcome(user, message).deliver
@@ -204,6 +207,12 @@ private
 
   def add_user_preferences
     self.build_preferences
+  end
+  
+  def set_paypal_email
+    if self.agent? || self.admin?
+      self.paypal_email = self.email if !self.paypal_email.present?
+    end
   end
 
 end

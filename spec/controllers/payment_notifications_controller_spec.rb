@@ -10,7 +10,7 @@ describe PaymentNotificationsController do
     ActiveMerchant::Billing::Integrations::Paypal::Notification.stub(:new => stub(:item_number => id, :item_id => id, :acknowledge => true, :complete? => true))
 
     post :create, :item_number => 'abc', :mc_gross => "300.00"
-    response.should be_success
+    response.should be_redirect
     @transaction.reload
     @transaction.paid?.should be_true
   end

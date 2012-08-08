@@ -70,29 +70,37 @@ class Transaction < ActiveRecord::Base
     self.transaction_code
   end
 
-  def total_amount
-    amount = 0
+  def zero_with_currency
+    0.to_money(Currency.default.currency_code)
+  end
 
-    amount += self.product_amount
+  def total_amount
+    amount = self.product_amount
 
     amount += self.fee_amount
 
     amount
   end
 
+  # Total amount string with the currency symbol
+  def total_amount_display
+    amount = self.total_amount
+    "#{amount.currency.iso_code} #{amount.currency.symbol}#{amount.to_f}"
+  end
+
   def product_amount
     if SiteConfig.charge_total
       self.inquiry.price
     else
-      0
+      zero_with_currency
     end
   end
 
   def fee_amount
     if SiteConfig.fee_is_fixed
-      fee = SiteConfig.fee_amount
+      fee = SiteConfig.fee_amount.to_money(Currency.default.currency_code)
     else
-      fee = SiteConfig.fee_amount / 100.0 * self.inquiry.price
+      fee = self.inquiry.price * SiteConfig.fee_amount / 100.0
     end
   end
 

@@ -649,25 +649,21 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
+    t.string   "color_scheme",                 :default => "default"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
-    t.boolean  "charge_total",                 :default => false
-    t.integer  "fee_amount",                   :default => 300
-    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"
@@ -678,6 +674,9 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
     t.boolean  "enable_message_masking",       :default => true
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|

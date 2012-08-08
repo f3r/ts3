@@ -5,7 +5,7 @@ FactoryGirl::DefinitionProxy.class_eval do
 end
 
 FactoryGirl.define do
-  factory :property, :class => Property do
+  factory :property do
     city
     title        { Faker::Lorem.words(2).to_sentence }
     category

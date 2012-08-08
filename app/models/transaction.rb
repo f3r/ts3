@@ -71,7 +71,29 @@ class Transaction < ActiveRecord::Base
   end
 
   def total_amount
-    300
+    amount = 0
+
+    amount += self.product_amount
+
+    amount += self.fee_amount
+
+    amount
+  end
+
+  def product_amount
+    if SiteConfig.charge_total
+      self.inquiry.price
+    else
+      0
+    end
+  end
+
+  def fee_amount
+    if SiteConfig.fee_is_fixed
+      fee = SiteConfig.fee_amount
+    else
+      fee = SiteConfig.fee_amount / 100.0 * self.inquiry.price
+    end
   end
 
 private

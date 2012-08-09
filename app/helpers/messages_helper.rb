@@ -32,14 +32,14 @@ module MessagesHelper
       if product and product.has_any_paid_transactions?(conversation.sender)
         return conversation_or_message.body
       else
-        return suspicious_message?(conversation_or_message.body)
+        return suspicious_message?(conversation_or_message.body,SiteConfig.enable_message_masking)
       end
     end
   end
 
-  def  suspicious_message?(msg)
+  def  suspicious_message?(msg,status)
     
-    #return msg
+    return msg if false == status
 
     #whole logic
     regexHash = { "email" => [/\b[A-Z0-9_%+-]+[@\[at\]\(at\)]+[A-Z0-9.-]+[\(dot\)\[dot\]\.]+[A-Z]{2,4}\b/i] ,

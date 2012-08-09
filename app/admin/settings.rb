@@ -40,6 +40,10 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
       f.input :agent_need_approval, :label=>"Agent need approval for Registration"
     end
     
+    f.inputs "Message Masking" do
+      f.input :enable_message_masking, :label=>"Change message masking status"
+    end
+    
     f.inputs "Images" do
       f.input :fav_icon, :hint => (f.template.image_tag(SiteConfig.fav_icon.url) if SiteConfig.fav_icon?)
       f.input :logo, :hint => (f.template.image_tag(SiteConfig.logo.url) if SiteConfig.logo?)

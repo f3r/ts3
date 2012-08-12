@@ -72,7 +72,7 @@ class Product < ActiveRecord::Base
   end
 
   def price(a_currency = nil, unit = nil)
-    unit ||= self.class.price_unit  
+    unit ||= self.class.price_unit
     a_currency ||= Currency.default
 
     # If we are asked in the original currency of the place
@@ -97,6 +97,15 @@ class Product < ActiveRecord::Base
     self.send("price_#{unit}")
   end
 
+  def money_price(unit = nil)
+    unit ||= self.class.price_unit
+
+    amount = self.send("price_#{unit}")
+    if amount
+      amount.to_money(self.currency.currency_code)
+    end
+  end
+
   def full_address
     [address_1, address_2, city.name, city.state, city.country].compact.join(', ')
   end
@@ -108,7 +117,7 @@ class Product < ActiveRecord::Base
   def review_avg
     self.reviews.average(:score).to_i
   end
-  
+
   def has_review?
     self.reviews.any?
   end

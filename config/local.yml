@@ -19,7 +19,7 @@ defaults: &defaults
   RAKISMET_KEY:         bcba68e5b091
   RAKISMET_URL:         http://localhost:3005
   PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
-  PAYPAL_MODE:          test
+  PAYPAL_MODE:          'test'
   COOKIE_STORE_KEY:     _TSE_Session
 
 development:

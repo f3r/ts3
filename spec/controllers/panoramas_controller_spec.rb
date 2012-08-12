@@ -4,7 +4,7 @@ describe PanoramasController do
   before(:each) do
     @agent   = create(:agent)
     login_as @agent
-    @place   = create(:place, :user => @agent)
+    @place   = create(:property, :user => @agent)
     @product = @place.product
     SiteConfig.stub(:product_class).and_return(Property)
 

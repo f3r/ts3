@@ -4,14 +4,16 @@ describe Inquiry do
   before(:each) do
     @user = create(:user)
     @place = create(:published_place)
+    @product = @place.product
     Inquiry.any_instance.stub(:spam?).and_return(false)
     @emails = ActionMailer::Base.deliveries = []
   end
 
-  context "#length=" do
+  context "Price/Length" do
     before(:each) do
       @inquiry = Inquiry.new
       @inquiry.check_in = Date.today
+      @inquiry.product = @product
     end
 
     it "supports weeks" do
@@ -37,6 +39,22 @@ describe Inquiry do
 
       @inquiry.length = ['1', 'bla']
       @inquiry.length_in_words.should be_nil
+    end
+
+    it "calculates the price (in months)" do
+      @inquiry.length = ['2', 'months']
+      @product.class.stub(:price_unit).and_return(:per_month)
+      @product.stub(:price_per_hour).and_return(15)
+      price = @inquiry.price
+      price.to_f.should == (2 * @product.price_per_month).to_f
+    end
+
+    it "calculates the price (in hours)" do
+      @product.class.stub(:price_unit).and_return(:per_hour)
+      Product.any_instance.stub(:price_per_hour).and_return(15)
+      @inquiry.length = ['4', 'hours']
+      price = @inquiry.price
+      price.to_f.should == 60.0
     end
   end
 

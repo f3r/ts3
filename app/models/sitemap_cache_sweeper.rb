@@ -1,3 +1,3 @@
 class SitemapCacheSweeper < DynamicSitemaps::CacheSweeper
-  observe Place
+  observe Product
 end

@@ -19,9 +19,9 @@ ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
   	f.inputs "Advanced Settings" do
   	  f.input :color_scheme, :as => :select, :collection => SiteConfig.color_schemes, :include_blank => false
       f.input :mail_bcc
-  	  #f.input :fee_amount
-  	  #f.input :charge_total
-  	  #f.input :fee_is_fixed
+  	  f.input :fee_amount, :hint => '(Amount as total or percentage of the transaction amount)'
+  	  f.input :fee_is_fixed, :hint => '(Is the fee fixed or a percentage?)'
+      f.input :charge_total, :hint => '(Charge the transaction total)'
   	  f.input :calendar, :hint => '(Show calendar tab and availability management)'
     end
     f.inputs "Pricing Units" do

@@ -3,7 +3,7 @@ class Service < ActiveRecord::Base
   as_enum :language_1, [:english, :french, :spanish]
   as_enum :language_2, [:english, :french, :spanish]
   as_enum :language_3, [:english, :french, :spanish]
-  
+
   before_save :fill_in_address
 
   if Product.table_exists?
@@ -65,7 +65,7 @@ class Service < ActiveRecord::Base
     self.class.price_unit
   end
 
-  def price(a_currency, unit) 
+  def price(a_currency, unit)
     self.product.price(a_currency, unit)
   end
 

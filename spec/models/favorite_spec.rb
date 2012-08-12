@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Favorite do
   before(:each) do
     @user  = build_stubbed(:user)
-    @place = create(:place)
+    @place = create(:property)
 
     @favorite = Favorite.create!(
       :user => @user,

@@ -337,3 +337,6 @@ module GoogleVisualization
 
   end
 end
+
+ActionView::Base.send :include, GoogleVisualization::Helpers
+

@@ -12,7 +12,7 @@ class Messenger
     inbox_entries.each do |inbox_entry|
       conversation = inbox_entry.conversation
       conversation.from = conversation.other_party(user)
-      conversation.body = conversation.last_message.body
+      conversation.body = conversation.last_message.summary
       conversation.read = inbox_entry.read
       conversations << conversation
     end

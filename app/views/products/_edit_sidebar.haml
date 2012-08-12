@@ -1,0 +1,8 @@
+.wizard-aside-wrapper
+  .wizard-aside
+    %ul.nav.nav-tabs.nav-stacked#wizard_tabs
+      - wizard_tabs.each do |tab_name|
+        %li
+          .indicator= image_tag('check-disabled.png')
+          %a{:href => "#tab_#{tab_name}", :title => t("products.wizard.#{tab_name}_title")}
+            = t("products.wizard.#{tab_name}_title")

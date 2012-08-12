@@ -1,16 +1,4 @@
 module ProductsHelper
-  def wizard_tabs
-    tabs = []
-    tabs << :general
-    tabs << :photos if SiteConfig.photos?
-    tabs << :panoramas if SiteConfig.panoramas?
-    tabs << :amenities
-    tabs << :pricing
-    #tabs << :calendar if SiteConfig.calendar?
-
-    tabs
-  end
-
   def render_overridable_partial(partial, *attr)
     views_path = ::Rails.root.to_s + "/app/views"
     plural_product = SiteConfig.product_class.to_s.tableize
@@ -29,6 +17,28 @@ module ProductsHelper
     specific_path = "products/#{plural_product}"
 
     File.exists?("#{views_path}/#{specific_path}/_#{partial}.haml")
+  end
+
+  def wizard_step_defined?(tab_name)
+    views_path = ::Rails.root.to_s + "/app/views"
+    plural_product = SiteConfig.product_class.to_s.tableize
+    specific_path = "products/#{plural_product}"
+
+    File.exists?("#{views_path}/#{specific_path}/wizard_tabs/_step_#{tab_name}.haml")
+  end
+
+  def wizard_tabs
+    unless @wizard_tabs
+      @wizard_tabs = []
+      @wizard_tabs << :general
+      @wizard_tabs << :photos    if wizard_step_defined?(:photos) && SiteConfig.photos?
+      @wizard_tabs << :panoramas if wizard_step_defined?(:panoramas) && SiteConfig.panoramas?
+      @wizard_tabs << :traits    if wizard_step_defined?(:traits) && AmenityGroup.any?
+      @wizard_tabs << :pricing   if wizard_step_defined?(:pricing)
+      @wizard_tabs << :address   if wizard_step_defined?(:address)
+      #tabs << :calendar if SiteConfig.calendar?
+    end
+    @wizard_tabs
   end
 
   def product_price(product)

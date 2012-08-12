@@ -10,8 +10,3 @@
             = check_box_tag 'listing[amenity_ids][]', a.id, @resource.amenities.include?(a), :id => dom_id(a)
             = a.name
     = f.submit t(:save), :class => 'btn btn-primary'
-  .arrows.clearfix
-    .float-left
-      %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t("places.wizard.previous_step")
-    .float-right
-      %a.btn.primary{:href => "javascript:switchToPanel('#4')"}=raw t("places.wizard.next_step")

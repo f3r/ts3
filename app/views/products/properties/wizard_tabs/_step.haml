@@ -1,0 +1,12 @@
+.panel.tab-pane{:id => "tab_#{tab_name}"}
+  = render "products/#{SiteConfig.product_class.to_s.tableize}/wizard_tabs/step_#{tab_name}", :layout => 'wizard_step'
+
+  .arrows.clearfix
+    .float-left
+      - prev_tab = previous_wizard_tab(tab_name)
+      - if prev_tab
+        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{prev_tab}')"}=raw t("places.wizard.previous_step")
+    .float-right
+      - next_tab = next_wizard_tab(tab_name)
+      - if next_tab
+        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{next_tab}')"}=raw t("places.wizard.next_step")

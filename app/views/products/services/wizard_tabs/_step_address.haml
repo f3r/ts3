@@ -2,8 +2,3 @@
   = form_for :user, :url => update_address_listing_path, :method => :put, :html => {:id => "change_address", :class => 'form-horizontal'} do |f|
     = render "profiles/billing_address_fields", :f => f
     = f.submit t(:save), :class => 'btn btn-primary'
-.arrows.clearfix
-  .float-left
-    %a.btn.primary{:href => "javascript:switchToPanel('#2')"}=raw t("places.wizard.previous_step")
-  .float-right
-    %a.btn.primary{:href => "#{listing_path(@resource)}"}= t("products.preview")

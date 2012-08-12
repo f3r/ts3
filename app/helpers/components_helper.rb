@@ -15,4 +15,18 @@ module ComponentsHelper
       html.html_safe
     end
   end
+
+  def previous_wizard_tab(current_tab)
+    current_pos = wizard_tabs.index(current_tab.to_sym)
+    if current_pos > 0
+      wizard_tabs[current_pos - 1]
+    end
+  end
+
+  def next_wizard_tab(current_tab)
+    current_pos = wizard_tabs.index(current_tab.to_sym)
+    if current_pos < wizard_tabs.length - 1
+      wizard_tabs[current_pos + 1]
+    end
+  end
 end

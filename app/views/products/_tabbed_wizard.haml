@@ -2,8 +2,7 @@
   = javascript_include_tag "wizard"
 
 - wizard_tabs.each do |tab_name|
-  .panel.tab-pane{:id => "tab_#{tab_name}"}
-    = render "products/properties/wizard_tabs/step_#{tab_name}"
+  = render "products/properties/wizard_tabs/step", :tab_name => tab_name
 
 :javascript
   $(function() {

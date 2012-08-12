@@ -1,5 +1,5 @@
 class InquiriesController < ApplicationController
-  respond_to :js
+  respond_to :js, :html
 
   def create
     @resource = resource_class.published.find(params[:id])
@@ -17,9 +17,14 @@ class InquiriesController < ApplicationController
       @inquiry = Inquiry.create_and_notify(@resource, @user, params[:inquiry])
     end
 
-    respond_to do |format|
-      format.js { render :layout => false, :template => "inquiries/create" }
+    # Quick hack to get status from mobile version
+    # TODO: Fix with MIME types
+    if params[:mobile].present?
+      redirect_to mobile_inquire_path
+    else
+      respond_to do |format|
+        format.js { render :layout => false, :template => "inquiries/create" }
+      end
     end
   end
-
 end

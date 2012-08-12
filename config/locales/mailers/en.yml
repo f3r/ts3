@@ -115,7 +115,6 @@ en:
         <p>Congratulations! Your property %{product_title} has been rented on %{site_name}.</p> 
         <p>The tenant's contact details are: </p>
         %{renter_address}
-        <br/>
         <p>The tenant will pay the remainder of the rental fees directly to you.</p>
         <p>We recommend you contact the tenant as soon as possible to coordinate and confirm any remaining items.</p>        
         <br/>

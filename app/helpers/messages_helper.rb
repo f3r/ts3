@@ -37,9 +37,9 @@ module MessagesHelper
     end
   end
 
-  def  suspicious_message?(msg,status)
-    
-    return msg if false == status
+  def  suspicious_message?(msg, status=true)
+
+    return msg unless status
 
     #whole logic
     regexHash = { "email" => [/\b[A-Z0-9_%+-]+[@\[at\]\(at\)]+[A-Z0-9.-]+[\(dot\)\[dot\]\.]+[A-Z]{2,4}\b/i] ,
@@ -55,7 +55,7 @@ module MessagesHelper
       regexArray.each do |regex|
 
         @data = msg.scan(regex)
-        
+
 
         if !@data.empty?
 
@@ -63,9 +63,9 @@ module MessagesHelper
             @data.each do |value|
               msg.sub!(value, ' [hidden phone number] ')
             end
-            
+
           end
-          
+
           if name == 'phone_special'
             phone_number = ""
             @data.each do |value|

@@ -51,7 +51,7 @@ HeyPalFrontEnd::Application.configure do
     file = "color_schemes/" + directory.gsub(basedir.to_s,"") + "/index.css"
     color_schemes << file if file
   end
-  assets = %w(wizard.js active_admin.css active_admin.js active_admin_custom.js plugins.css plupload.css active_admin_custom.css)
+  assets = %w(wizard.js active_admin.css places_show.js klass.min.js photoswipe.css code.photoswipe.jquery-3.0.5.min.js code.photoswipe-3.0.5.min.js  mobiscroll-2.0.1.custom.min.css mobiscroll-2.0.1.custom.min.js active_admin.js active_admin_custom.js plugins.css plupload.css active_admin_custom.css)
   assets += color_schemes
   config.assets.precompile += assets
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120731072923) do
+ActiveRecord::Schema.define(:version => 20120809044616) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -146,9 +146,9 @@ ActiveRecord::Schema.define(:version => 20120731072923) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "position",        :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(:version => 20120731072923) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",                             :null => false
+    t.string  "page_url",         :default => "",     :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -174,9 +174,9 @@ ActiveRecord::Schema.define(:version => 20120731072923) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "position",        :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -341,12 +341,30 @@ ActiveRecord::Schema.define(:version => 20120731072923) do
     t.string  "swf_file_name"
   end
 
+  create_table "payment_logs", :force => true do |t|
+    t.integer "payment_id"
+    t.string  "state"
+    t.string  "previous_state"
+    t.text    "additional_data"
+  end
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
     t.string   "status"
     t.string   "txn_id"
     t.integer  "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "amount"
+    t.text     "note"
+    t.integer  "recipient_id"
+    t.integer  "transaction_id"
+    t.string   "state"
+    t.datetime "added_at"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
@@ -654,6 +672,7 @@ ActiveRecord::Schema.define(:version => 20120731072923) do
     t.boolean  "agent_need_approval",          :default => true
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
+    t.boolean  "enable_message_masking",       :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|
@@ -749,6 +768,5 @@ ActiveRecord::Schema.define(:version => 20120731072923) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
   add_index "users", ["role"], :name => "index_users_on_role"
-
 
 end

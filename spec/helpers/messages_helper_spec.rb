@@ -82,28 +82,28 @@ describe MessagesHelper do
       altrd_meg = suspicious_message?(msg)
       altrd_meg.should == "Testing message helper method with url  [hidden website url] "
     end
-    
+
     it "returns default phone number text" do
       msg = "Testing message helper method with phone number 23456 3434"
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
-    
+
     it "returns default phone number text" do
       msg = "Testing message helper method with phone number 2345 34345"
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
-    
+
     it "returns default phone number text" do
       msg = "Testing message helper method with phone number 2345 3434"
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
-   
+
     it "returns default phone number text" do
       msg = "Testing message helper method with phone number 23452 34344"
       altrd_meg = suspicious_message?(msg)
@@ -131,14 +131,14 @@ describe MessagesHelper do
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
-    
+
     it "returns default phone number message text (1 2 3 4 5 6 7 8 9 0)" do
       msg = "Testing message helper method with phone number 1 2 3 4 5 6 7 8 9 0"
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
-    
+
     it "returns default phone number message text (1-2-3-4-5-6-7-8-9-0)" do
       msg = "Testing message helper method with phone number 1-2-3-4-5-6-7-8-9-0"
       altrd_meg = suspicious_message?(msg)
@@ -151,15 +151,15 @@ describe MessagesHelper do
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
-    end 
-    
+    end
+
     it "returns default phone number message text (22 333 33 222)" do
       msg = "Testing message helper method with phone number 22 333 33 222"
       altrd_meg = suspicious_message?(msg)
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
-    end 
-    
+    end
+
     it "returns phone number and email text" do
       msg = "Testing message helper method with phone number 22 2222 2222 and email addess test@gmail.com"
       altrd_meg = suspicious_message?(msg)
@@ -188,7 +188,7 @@ describe MessagesHelper do
       @agent = create(:agent)
       @property = create(:published_place, :user => @agent)
     end
-    
+
     it "masked message" do
       inquiry = create(:inquiry, :product => @property.product)
       inquiry.start_conversation("my email test@test.com")
@@ -204,7 +204,7 @@ describe MessagesHelper do
       transaction.save
       mask_or_dontmask_msg(Message.last).should == "my email test@test.com"
     end
-    
+
     it "masked conversation body" do
       inquiry = create(:inquiry, :product => @property.product)
       inquiry.start_conversation("my email test@test.com")
@@ -213,13 +213,13 @@ describe MessagesHelper do
       conversation.body = conversation.last_message.body
       mask_or_dontmask_msg(conversation).should == "my email  [hidden email address] "
     end
-    
+
     it "not masked conversation body" do
       inquiry = create(:inquiry, :product => @property.product)
       inquiry.start_conversation("my email test@test.com")
       transaction = inquiry.transaction
       transaction.state = :paid
-      transaction.save      
+      transaction.save
       conversation = Conversation.last
       conversation.body = conversation.last_message.body
       mask_or_dontmask_msg(conversation).should == "my email test@test.com"

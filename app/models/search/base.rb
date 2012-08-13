@@ -1,10 +1,11 @@
 module Search
   class Base < ActiveRecord::Base
-  
+
     self.table_name = 'searches'
-        
+
     attr_accessor :current_page, :total_pages
-    
+    attr_writer :per_page
+
     def results
       unless @results
         @results = calculate_results
@@ -13,7 +14,7 @@ module Search
         @results = @results.order(self.order)
 
         # Pagination
-        @results = @results.paginate(:page => self.current_page, :per_page => 10)
+        @results = @results.paginate(:page => self.current_page, :per_page => self.per_page)
         self.current_page = @results.current_page
         self.total_pages = @results.total_pages
       end
@@ -28,6 +29,11 @@ module Search
     def calculate(operation, field)
       @results = calculate_results
       results.calculate(operation, field)
+    end
+
+
+    def per_page
+      @per_page || 10
     end
 
     def collection

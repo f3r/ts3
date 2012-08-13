@@ -8,6 +8,7 @@
 //= require jquery_ujs
 //= require jquery-ui
 //= require jquery.ui.touch.punch.min
+//= require jquery.mobile
 //= require jquery.tinycarousel.min
 //= require jquery.cycle.all
 //= require jquery.waypoints.min

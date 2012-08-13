@@ -3,7 +3,7 @@ class City < ActiveRecord::Base
   friendly_id :name, use: :slugged
 
   default_scope order: 'position ASC'
-  has_many :places
+  has_many :products
 
   before_save :update_cached_complete_name
   after_save :reset_routes_cache

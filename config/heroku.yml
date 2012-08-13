@@ -202,3 +202,16 @@ interns-tse:
     S3_BUCKET:            interns-tse
     # Security
     SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
+
+########################################################################################################################################
+models-tse:
+  app:   models-tse
+  config:
+    <<: *default_config
+    SITE_URL:             http://models-tse.herokuapp.com
+    PRODUCT_CLASS_NAME:   Service
+    # Database and CDN
+    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/models-tse
+    S3_BUCKET:            models-tse
+    # Security
+    SECRET_TOKEN:         0cccfec4900baddee971501f9af3e70a3f71a0e469f56e64338f1744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7

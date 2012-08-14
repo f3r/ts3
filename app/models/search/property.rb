@@ -40,13 +40,5 @@ module Search
                         [I18n.t("places.search.price_size_highest"), 'price_size_highest']]
       super + custom_options
     end
-    
-    def detach
-      other = super
-      other.guests = self.guests
-      other.check_in = self.check_in
-      other.check_out = self.check_out
-      other
-    end
   end
 end

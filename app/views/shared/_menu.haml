@@ -36,11 +36,10 @@
 
           %ul.nav.pull-right
             - if user_signed_in?
-              - if (current_user['role'] == 'admin' || current_user['role'] == 'agent')
-                %li.add-item
-                  = new_or_edit_listing
+              - if permitted_to?(:manage, :products)
+                %li.add-item= new_or_edit_listing
 
-              - if message_count == 0
+              - if message_count.zero?
                 %li.read-message
                   = link_to t("messages.no_messages"), messages_path
               - else

@@ -22,10 +22,6 @@ class Property <  ActiveRecord::Base
     SiteConfig.price_unit
   end
 
-  def self.transaction_length_units
-    [['week(s)', 'weeks'], ['month(s)', 'months']]
-  end
-
   def self.published
     self.where('products.published' => true)
   end
@@ -36,10 +32,6 @@ class Property <  ActiveRecord::Base
 
   def self.manageable_by(user)
     self.where('products.user_id' => user.id)
-  end
-
-  def self.transaction_length_units
-    [['week(s)', 'weeks'], ['month(s)', 'months']]
   end
 
   def self.user_reached_limit?(user)

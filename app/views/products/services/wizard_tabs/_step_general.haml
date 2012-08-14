@@ -3,10 +3,6 @@
     %fieldset.well.form-horizontal
       %h3= t("products.wizard.general_title")
       .control-group.required
-        = f.label :city_id, t("products.wizard.what_city"), :class => 'control-label'
-        .controls
-          = f.select :city_id, cities_options, :class => "validate[required] span4"
-      .control-group.required
         = f.label :title, t("products.title"), :class => 'control-label'
         .controls
           = f.text_field :title, :class => "input-xlarge validate[required] autosave"
@@ -27,7 +23,7 @@
           - if false
             = f.select :language_1_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
             = f.select :language_2_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-            = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true          
+            = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
       .control-group.required
         = f.label :seeking, t("services.wizard.seeking_title"), :class => 'control-label'
         .controls

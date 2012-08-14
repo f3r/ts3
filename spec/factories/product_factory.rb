@@ -22,4 +22,8 @@ FactoryGirl.define do
   factory :amenity do
     name         { Faker::Name.name }
   end
+
+  factory :custom_field do
+    label        { Faker::Name.name }
+  end
  end

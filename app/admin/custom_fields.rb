@@ -4,7 +4,7 @@ ActiveAdmin.register CustomField  do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :type, :as => :select, :collection => CustomField.types, :include_blank => false
+      f.input :type_cd, :as => :select, :collection => CustomField.types, :include_blank => false
       f.input :required
       f.input :label
       f.input :hint

@@ -53,10 +53,6 @@ class Service < ActiveRecord::Base
     SiteConfig.price_unit
   end
 
-  def self.transaction_length_units
-    [['hour(s)', 'hours']]
-  end
-
   def self.user_reached_limit?(user)
     self.manageable_by(user).count >= 1
   end

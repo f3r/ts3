@@ -3,6 +3,8 @@
 ####################################################################################
 en:
   site_title: "%{site_name} - %{site_tagline}"
+  default_site_title: The Sharing Engine
+  default_site_tagline: Powered by The Sharing Engine
   submit: Submit
   submitting: Submitting
   cancel: Cancel

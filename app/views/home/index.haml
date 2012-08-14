@@ -2,19 +2,19 @@
   .row
     .span6
       .hub
-        .drop_down_button_area
-          .btn-group
-            %button.btn.btn-large.btn-info
-              =t("search_place_stay_in").html_safe
-            %button.btn.btn-large.btn-info.dropdown-toggle{"data-toggle" => "dropdown"}
-              %span.caret
-            %ul.dropdown-menu
-              %li
+        .btn-group
+          %button.btn.btn-large.btn-primary
+            = t("pages.front_page.search_place_stay_in")
+          %button.btn.btn-large.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
+            = link_to current_city.name, "/#{current_city.slug}", :id => "open-country-select", :style => "color: #FFF"
+            %span.caret
+          %ul.dropdown-menu.pull-right
+            %li
               - City.active.each do |city|
-                %li= link_to city.name, "/#{city.slug}"
-              %li= link_to t("pages.front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
-             
-              
+                %li
+                  = link_to city.name, "/#{city.slug}"
+              %li.divider
+              %li=link_to t("pages.front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
         #description
           %p.description_one= t("pages.front_page.description.one").html_safe
           %p.description_two= t("pages.front_page.description.two").html_safe

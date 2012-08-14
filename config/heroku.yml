@@ -96,8 +96,8 @@ siltroopers:
     # Security
     SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
     # Paypal
-    PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
-    PAYPAL_MODE:          test
+    PAYPAL_ACCOUNT:       sales@heypal.com
+    PAYPAL_MODE:          production
 
 ########################################################################################################################################
 brandedbabes:

@@ -2,16 +2,19 @@
   .row
     .span6
       .hub
-        %h1#search_in
-          =t("pages.front_page.search_place_stay_in")
-          = link_to current_city.name, "/#{current_city.slug}", :id => "open-country-select"
-        %ul#country-select.dropdown
-          %li.arrow
-          - City.active.each do |city|
-            %li= link_to city.name, "/#{city.slug}"
-          %li= link_to t("pages.front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
-        %p#search_button
-          = link_to t("pages.front_page.search_button"), "/#{current_city.slug}", :class => "btn btn-large btn-primary"
+        .drop_down_button_area
+          .btn-group
+            %button.btn.btn-large.btn-info
+              =t("search_place_stay_in").html_safe
+            %button.btn.btn-large.btn-info.dropdown-toggle{"data-toggle" => "dropdown"}
+              %span.caret
+            %ul.dropdown-menu
+              %li
+              - City.active.each do |city|
+                %li= link_to city.name, "/#{city.slug}"
+              %li= link_to t("pages.front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
+             
+              
         #description
           %p.description_one= t("pages.front_page.description.one").html_safe
           %p.description_two= t("pages.front_page.description.two").html_safe

@@ -78,6 +78,16 @@ class SiteConfig < ActiveRecord::Base
       self.product_class.product_name
     end
   end
+  
+  def site_name
+    return read_attribute(:site_name) if read_attribute(:site_name).present?
+    I18n.t!("default_site_title")
+  end
+  
+  def site_tagline
+    return read_attribute(:site_tagline) if read_attribute(:site_tagline).present?
+    I18n.t!("default_site_tagline")
+  end
 
   def price_units
     units = []

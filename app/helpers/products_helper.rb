@@ -85,7 +85,7 @@ module ProductsHelper
 
     html = case cf.type
     when :dropdown
-      select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => !cf.required?, :id => field_id, :class => klasses }
+      select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses }
     when :checkbox
       check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
     else
@@ -103,5 +103,18 @@ module ProductsHelper
     end
 
     html
+  end
+
+  def custom_field_value(cf, resource)
+    field_value = resource.custom_values[cf.name]
+    value = case cf.type
+    when :dropdown
+      field_value.humanize if field_value
+    when :checkbox
+      field_value ? 'Yes' : 'No'
+    else
+      field_value
+    end
+    value || '-'
   end
 end

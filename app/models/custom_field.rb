@@ -4,6 +4,6 @@ class CustomField < ActiveRecord::Base
   validates_presence_of :label, :name
 
   def options
-    self.values.split(',').collect{|opt| [opt.capitalize, opt]}
+    self.values.split(',').collect{|opt| [opt.humanize, opt]}
   end
 end

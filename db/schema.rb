@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120809044616) do
+ActiveRecord::Schema.define(:version => 20120814084319) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -34,8 +34,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.string   "country"
     t.string   "zip"
     t.integer  "user_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.decimal  "lat",        :precision => 15, :scale => 12
     t.decimal  "lon",        :precision => 15, :scale => 12
   end
@@ -78,16 +78,16 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.string   "uid"
     t.string   "token"
     t.string   "secret"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   add_index "authentications", ["provider"], :name => "index_authentications_on_provider"
   add_index "authentications", ["user_id"], :name => "index_authentications_on_user_id"
 
   create_table "availabilities", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
     t.integer  "place_id"
     t.date     "date_start"
     t.date     "date_end"
@@ -114,8 +114,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.string   "branch_code"
     t.string   "iban"
     t.string   "swift"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",          :null => false
+    t.datetime "updated_at",          :null => false
   end
 
   create_table "categories", :force => true do |t|
@@ -160,7 +160,7 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",                             :null => false
+    t.string  "page_url",         :default => "",     :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -180,8 +180,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
   end
 
   create_table "comments", :force => true do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "user_id"
     t.integer  "place_id"
     t.text     "comment"
@@ -213,6 +213,18 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.boolean "default",               :default => false
   end
 
+  create_table "custom_fields", :force => true do |t|
+    t.string   "name"
+    t.string   "label"
+    t.string   "hint"
+    t.integer  "type_cd"
+    t.text     "values"
+    t.string   "validations"
+    t.boolean  "required"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0
     t.integer  "attempts",   :default => 0
@@ -222,8 +234,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "locked_at"
     t.datetime "failed_at"
     t.string   "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
@@ -341,14 +353,7 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.string  "html_file_name"
     t.string  "swf_file_name"
   end
-  
-  create_table "payment_logs", :force => true do |t|
-    t.integer "payment_id"
-    t.string  "state"
-    t.string  "previous_state"
-    t.text    "additional_data"
-  end
-  
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -357,17 +362,6 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.integer  "transaction_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
-  
-  create_table "payments", :force => true do |t|
-    t.integer "amount"
-    t.text "note"
-    t.integer "recipient_id"
-    t.integer "transaction_id"
-    t.string "state"
-    t.datetime "added_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -383,8 +377,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
 
   create_table "place_types", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "places", :force => true do |t|
@@ -453,8 +447,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.float    "reviews_communication_avg",               :default => 0.0
     t.float    "reviews_location_avg",                    :default => 0.0
     t.float    "reviews_value_avg",                       :default => 0.0
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                                 :null => false
+    t.datetime "updated_at",                                                 :null => false
     t.integer  "price_final_cleanup_usd"
     t.integer  "price_security_deposit_usd"
     t.float    "size_sqm"
@@ -555,6 +549,7 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.integer  "price_per_day"
     t.integer  "price_per_day_usd"
     t.string   "amenities_search"
+    t.text     "custom_values"
   end
 
   create_table "properties", :force => true do |t|
@@ -649,20 +644,20 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
-    t.string   "static_assets_path"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "static_assets_path"
+    t.string   "color_scheme",                 :default => "default"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
@@ -673,10 +668,10 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.boolean  "agent_need_approval",          :default => true
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
-    t.boolean  "enable_message_masking",       :default => true
     t.boolean  "charge_total",                 :default => false
     t.integer  "fee_amount",                   :default => 300
     t.boolean  "fee_is_fixed",                 :default => true
+    t.boolean  "enable_message_masking",       :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|
@@ -684,8 +679,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.string   "state"
     t.string   "previous_state"
     t.text     "additional_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
   end
 
   add_index "transaction_logs", ["transaction_id"], :name => "index_transaction_logs_on_transaction_id"
@@ -704,8 +699,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.float    "service_percentage"
     t.float    "sub_total"
     t.text     "additional_data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                    :null => false
+    t.datetime "updated_at",                                    :null => false
     t.string   "transaction_code"
     t.integer  "inquiry_id"
   end
@@ -734,12 +729,12 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
   add_index "translations", ["locale", "key"], :name => "index_translations_on_locale_and_key", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                     :null => false
-    t.string   "encrypted_password",     :limit => 128,                     :null => false
+    t.string   "email",                  :default => "",     :null => false
+    t.string   "encrypted_password",     :default => "",     :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",          :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -749,8 +744,8 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "authentication_token"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
     t.string   "gender"
     t.date     "birthdate"
     t.string   "timezone"
@@ -761,7 +756,7 @@ ActiveRecord::Schema.define(:version => 20120809044616) do
     t.datetime "avatar_updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "role",                                  :default => "user"
+    t.string   "role",                   :default => "user"
     t.string   "passport_number"
     t.string   "unconfirmed_email"
     t.string   "paypal_email"

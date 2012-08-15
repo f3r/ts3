@@ -76,13 +76,20 @@ module ProductsHelper
     field_name  = "listing[custom_fields][#{cf.name}]"
     field_value = resource.custom_values[cf.name]
     field_id    = "custom_field_#{cf.name}"
+
+    validation_klasses = []
+    validation_klasses << 'required' if cf.required?
+    validation_klasses << 'custom[integer]' if cf.integer?
+    validation_klasses << cf.validations if cf.validations.present?
+    klasses = "validate[#{validation_klasses.join(',')}] "
+
     html = case cf.type
     when :dropdown
-      select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => !cf.required?, :id => field_id }
+      select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => !cf.required?, :id => field_id, :class => klasses }
     when :checkbox
-      check_box_tag field_name, true, field_value, :id => field_id
+      check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
     else
-      text_field_tag field_name, field_value, :id => field_id
+      text_field_tag field_name, field_value, :id => field_id, :class => klasses
     end
 
     if cf.hint.present?

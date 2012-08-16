@@ -1,6 +1,8 @@
 ActiveAdmin.register CustomField  do
   menu :label => "Custom Fields", :parent => 'Settings', :if => lambda { |tabs| current_active_admin_user.super_admin? }
 
+  config.clear_sidebar_sections!
+
   form do |f|
     f.inputs do
       f.input :name

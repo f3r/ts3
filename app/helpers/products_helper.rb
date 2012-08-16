@@ -74,7 +74,7 @@ module ProductsHelper
 
   def custom_field_input(cf, resource)
     field_name  = "listing[custom_fields][#{cf.name}]"
-    field_value = resource.custom_values[cf.name] if resource.custom_values
+    field_value = resource.custom_fields[cf.name]
     field_id    = "custom_field_#{cf.name}"
 
     validation_klasses = []
@@ -106,7 +106,7 @@ module ProductsHelper
   end
 
   def custom_field_value(cf, resource)
-    field_value = resource.custom_values[cf.name]
+    field_value = resource.custom_fields[cf.name]
     value = case cf.type
     when :dropdown
       field_value.humanize if field_value

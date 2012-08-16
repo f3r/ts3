@@ -150,7 +150,7 @@ class Product < ActiveRecord::Base
   end
 
   def custom_fields
-    self.custom_values
+    self.custom_values || {}
   end
 
 protected

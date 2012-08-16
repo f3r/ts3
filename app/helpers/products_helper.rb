@@ -74,7 +74,7 @@ module ProductsHelper
 
   def custom_field_input(cf, resource)
     field_name  = "listing[custom_fields][#{cf.name}]"
-    field_value = resource.custom_values[cf.name]
+    field_value = resource.custom_values[cf.name] if resource.custom_values
     field_id    = "custom_field_#{cf.name}"
 
     validation_klasses = []

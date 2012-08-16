@@ -88,7 +88,20 @@ ActiveAdmin.register Cmspage  do
   action_item  do
       link_to 'New External Link', new_admin_external_link_path
   end
-
+  
+  collection_action :image_upload, :method => :post do
+    #TODO: Do we need to store the cmspage id?    
+    cmspage_image = CmspageImage.create(:image => params[:file])
+    render :text => { :filelink => cmspage_image.image.url }.to_json
+  end
+  
+  collection_action :images, :method => :get do
+    images = []
+    CmspageImage.all.each do |cms_image|
+      images << {"thumb" => cms_image.image.url(:thumb), "image" => cms_image.image.url}
+    end
+    render :text => images.to_json
+  end
 
   sidebar "Versions", :only => :edit do
     unless resource.external? || resource.cmspage_versions.nil?

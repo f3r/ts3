@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120814084319) do
+ActiveRecord::Schema.define(:version => 20120816072144) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -142,6 +142,15 @@ ActiveRecord::Schema.define(:version => 20120814084319) do
   add_index "cities", ["country_code"], :name => "index_cities_on_country_code"
   add_index "cities", ["slug"], :name => "index_cities_on_slug", :unique => true
   add_index "cities", ["state"], :name => "index_cities_on_state"
+
+  create_table "cmspage_images", :force => true do |t|
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
+  end
 
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"

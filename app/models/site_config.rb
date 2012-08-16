@@ -26,10 +26,12 @@ class SiteConfig < ActiveRecord::Base
     end
     if self.instance.respond_to?(name.to_s)
       val = self.instance.send(name.to_s) if self.instance
+      
       if !val.nil?
         val
       else
         # Backward compatibility with config constants
+       return if name.to_s.upcase == "FB_APP_ID" || name.to_s.upcase == "TW_APP_ID"
        self.default_to_constant(name)
       end
     else
@@ -43,7 +45,7 @@ class SiteConfig < ActiveRecord::Base
 
   def self.default_to_constant(name)
     name.to_s.upcase.safe_constantize
-  end
+  end 
 
   # get a list of color_schemes the directory, get name from the first line
   def self.color_schemes

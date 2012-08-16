@@ -27,10 +27,12 @@
               %span.separator /
               = link_to t("users.register"), signup_path_with_ref
           .row.other_signups
-            = link_to user_omniauth_authorize_path(:facebook) do
-              = image_tag 'signin_facebook.png', :alt => t("users.registration.sign_in_with", :provider => "Facebook")
-            = link_to user_omniauth_authorize_path(:twitter) do
-              = image_tag 'sign-in-with-twitter-l.png', :alt => t("users.registration.sign_in_with", :provider => "Twitter")
+            -if SiteConfig.fb_app_id.present?
+              = link_to user_omniauth_authorize_path(:facebook) do
+                = image_tag 'signin_facebook.png', :alt => t("users.registration.sign_in_with", :provider => "Facebook")
+            -if SiteConfig.tw_app_id.present?
+              = link_to user_omniauth_authorize_path(:twitter) do
+                = image_tag 'sign-in-with-twitter-l.png', :alt => t("users.registration.sign_in_with", :provider => "Twitter")
                             
       = render 'shared/preferences'
   = render 'shared/menu'

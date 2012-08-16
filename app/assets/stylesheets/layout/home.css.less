@@ -1,11 +1,11 @@
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * HOMEPAGE
  *********************************************************************************************************/
 .info {
  form { margin: 0; }
  .well { padding-top: 5px; }
- .intro { 
-   margin-bottom: 20px; 
+ .intro {
+   margin-bottom: 20px;
  }
   h4 {
    margin-top: 7px;
@@ -15,7 +15,7 @@
 
 .trust .row {
   text-align: center;
-  
+
   img {
     display: inline;
     margin: 20px 20px 0;
@@ -41,7 +41,7 @@
       margin: 0 4px;
     }
   }
-  
+
   .tease-header{
     position: absolute;
     top: -20px;
@@ -52,7 +52,7 @@
     width: 871px;
     height: 49px;
   }
-  
+
   .wrapper{
     background: #ebebeb;
     border: 1px solid #c0c0c0;
@@ -60,12 +60,12 @@
     overflow: hidden;
     padding: 5px 13px 13px 13px;
     height: 184px;
-    
+
     .title{
       text-align: center;
       font-weight: bold;
     }
-    
+
     img{
       float: right;
       margin-left: 10px;
@@ -81,27 +81,18 @@
 .start{
   .hub{
     h1#search_in {
-      font-weight: normal;
-      font-size: 19px;
+      font-weight: bold;
+      font-size: 23px;
       font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
       margin: 50px 0 20px;
 			text-align:center;
-      a{
-        color: #3977b0;
-        font-weight: bold;
-        padding-right: 16px;
-        background: transparent url(/assets/blue-arrow-down.png) no-repeat right center;
-				outline: 0;
-        &:hover{
-          text-decoration: none;
-        }
-      }
+      color: #164066;
     }
     input.textbox{
 			padding: 9px 8px 8px 8px;
 			margin: 0 10px 0 0;
 			float: left;
-    }    
+    }
 		p#search_button {
 			margin:0;
 			text-align:center;
@@ -112,35 +103,35 @@
 				font-weight:bold;
 			}
 		}
+
+    #button_homepage {
+      margin-left: 141px;
+      .button_left {
+        height: 45px;
+        width: 170px;
+      }
+      .button_right {
+        left: 0px;
+        height: 45px;
+        width: 34px;
+      }
+    }
+
     #description {
 			color: #3977B0;
-	    margin: 40px 0 0;
-	    padding-left: 43px;
-			.description_one {
+	    margin: 105px 0 0;
+			p {
 				font-size: 18px;
-			}
-			.description_two {
-				font-size:12px;
-				float:left;
-				margin-right:7px;
-				line-height:85%;
-			}
-			.description_three {
-				font-size:18px;
-				float:left;
-			}
-			.description_four {
-				font-size:18px;
-				margin-left: 75px;
+        text-align: center;
 			}
 		}
-		
+
   }
-    
+
   #teaser-pics{
     height: 309px;
-    
-    .thumbnail{      
+
+    .thumbnail{
       display: block;
       background: #fff;
       -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius: 5px;
@@ -150,26 +141,26 @@
       width: 450px;
       height: 296px;
       overflow: hidden;
-      
+
       img{
         display: block;
         width: 450px;
-        height: 296px;        
+        height: 296px;
       }
-      
+
       .description{
         color: #f0f0f0;
         background: transparent url(/assets/glass.black.png) repeat 0 0;
         width: 430px;
         height: 20px;
-        padding: 10px;        
+        padding: 10px;
         position: absolute;
         left: 4px;
         font-size: 14px;
         bottom: 4px;
         z-index: 2;
       }
-    }    
+    }
   }
 
   #nav{
@@ -188,32 +179,36 @@
         background:  transparent url(/assets/dot.em.png) no-repeat center center;
       }
     }
-  } 
+  }
 }
 
 .tease-social {
- text-align: center; 
+ text-align: center;
  margin: 40px 0 10px;
  hr.style-two {
      border: 0;
      height: 1px;
      margin: 3px 0 5px;
-     background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0)); 
-     background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0)); 
-     background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0)); 
-     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0)); 
+     background-image: -webkit-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0));
+     background-image:    -moz-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0));
+     background-image:     -ms-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0));
+     background-image:      -o-linear-gradient(left, rgba(0,0,0,0), rgba(0,0,0,0.45), rgba(0,0,0,0));
  }
- 
+
  .social-text {
    position: relative;
  }
- 
+
  img {
    margin-left: 30px;
    &:first {
      margin-left: 0px;
    }
  }
+}
+
+.drop_down_button_area {
+  padding-left:100px;
 }
 
 #country-select {
@@ -250,7 +245,7 @@
 	  margin-left:3px
     }
   }
-  
+
   li:first-child + li {
     -webkit-border-top-left-radius: 4px;
     -webkit-border-top-right-radius: 4px;
@@ -275,7 +270,7 @@
   }
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * WHY SQUARESTAYS
  *********************************************************************************************************/
 #why {
@@ -283,16 +278,16 @@
     text-align:center;
     margin-bottom: 40px;
   }
-  
+
   .singapore-first img {
     width: 900px;
   }
 }
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * HOW SQUARESTAYS WORKS
  *********************************************************************************************************/
- 
+
 #how {
   .well {
     overflow: hidden;
@@ -318,7 +313,7 @@
 
 
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * PHOTO FAQ
  *********************************************************************************************************/
 
@@ -341,7 +336,7 @@
       right: 20px;
       top: 15px;
     }
- 	
+
     img {
       float: right;
       width: 400px;
@@ -352,7 +347,7 @@
 }
 
 
-/********************************************************************************************************* 
+/*********************************************************************************************************
  * ERROR PAGES
  *********************************************************************************************************/
 .error-page {

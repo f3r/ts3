@@ -6,7 +6,12 @@
     %p Loading...
 
 .panel-wrapper
-  .actions
-    = link_to 'Upload Panorama', new_listing_panorama_path(@resource), :remote => true, :data => {:toggle => 'modal', :target => '#panorama_modal'}, :class => 'btn btn-large'
+  .alert.alert-info
+    = link_to t("products.wizard.panoramas_link"), 'http://gardengnomesoftware.com/pano2vr_example.php', :target => '_blank'
   .well
-    = render 'panoramas/list', :product => @product, :actions => true
+    .upload_wrapper
+      = link_to new_listing_panorama_path(@resource), :remote => true, :data => {:toggle => 'modal', :target => '#panorama_modal'} do
+        %img{:src => asset_path('upload-panoramas.png')}
+      %p.hint= t("products.wizard.upload_panoramas_hint")
+
+  = render 'panoramas/list', :product => @product, :actions => true

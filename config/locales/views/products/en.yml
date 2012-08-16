@@ -22,6 +22,8 @@ en:
     review_average_label: 'Review average'
     panoramas:          'Panoramas'
     wizard:
+      panoramas_link:   'Use Pano2VR to generate the panoramas'
+      upload_panoramas_hint: 'We support Flash and HTML5 panoramas.'
       what_city:        'What city?'
       description_title: Description
       general_title:     General

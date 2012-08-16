@@ -1,7 +1,7 @@
 .property.data-block
   .title
     .type.house
-      = resource.category.translated_name
+      = resource.category.translated_name if resource.category
     .type.size
       = place_size(resource)
 

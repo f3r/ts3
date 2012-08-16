@@ -5,9 +5,9 @@
     .well
       .upload_wrapper#up_container
         %a#upload{:href => "javascript:{}"}
-          %img{:src => asset_path('browse-button.png')}
-        %p= t("places.wizard.photos.upload_photo_hint")
-      
+          %img{:src => asset_path('upload-photos.png')}
+        %p.hint= t("places.wizard.photos.upload_photo_hint")
+
     .clearfix
     .photo_wrapper
 
@@ -41,8 +41,8 @@
     var csrf_token = $('meta[name=csrf-token]').attr('content');
     var csrf_param = $('meta[name=csrf-param]').attr('content');
 
-    PhotoManager.initialize('#{sort_listing_photos_path(@resource.id)}');    
-   
+    PhotoManager.initialize('#{sort_listing_photos_path(@resource.id)}');
+
     var uploader = new plupload.Uploader({
     browse_button: 'upload',
     container: 'up_container',
@@ -72,9 +72,9 @@
         $('.active-label input[type=text]').focus();
         PhotoManager.adjustScroll();
       }
-    }            
+    }
     });
-    
+
     uploader.init();
 
     uploader.bind('FilesAdded', function(up, files) {
@@ -87,13 +87,13 @@
             up.refresh(); // Reposition Flash/Silverlight
             up.start();
         });
-    
+
     uploader.bind('UploadProgress', function(up, file) {
             $('#' + file.id + " b").html(file.percent + "%");
             if(file.percent == 100)
             {
               $('#' + file.id + " b").html(file.percent + "% almost there ...");
             }
-        });        
+        });
   });
 

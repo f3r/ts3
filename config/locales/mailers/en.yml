@@ -20,7 +20,7 @@ en:
       content: |
         %{site_name} helps you find the best short-term and flexible accommodation for your business and personal travel.
         We automatically created an account for you so you can easily manage your inquiries, favorites and alerts.
-      set_password: 'Click %{set_password_link} to set a password and activate your account.'
+      set_password: 'Click here to set a password and activate your account'
     reset_password_instructions:
       subject: 'Reset password instructions'
       intro: "Someone has requested a link to change your password, and you can do this through the link below."
@@ -112,11 +112,11 @@ en:
     transaction_pay_owner:
       subject: Transaction Confirmed!
       content: |
-        <p>Congratulations! Your property %{product_title} has been rented on %{site_name}.</p> 
+        <p>Congratulations! Your property %{product_title} has been rented on %{site_name}.</p>
         <p>The tenant's contact details are: </p>
         %{renter_address}
         <p>The tenant will pay the remainder of the rental fees directly to you.</p>
-        <p>We recommend you contact the tenant as soon as possible to coordinate and confirm any remaining items.</p>        
+        <p>We recommend you contact the tenant as soon as possible to coordinate and confirm any remaining items.</p>
         <br/>
         <p>Thank you for listing your property with %{site_name}!</p>
     have_any_question_html: 'If you have any questions, please email us at %{support_email_link}'

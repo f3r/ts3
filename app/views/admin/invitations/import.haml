@@ -1,15 +1,12 @@
-= form_for :invitation, :url => send_invitation_admin_users_path do |f|
+= form_for :invitation, :url => import_invitations_admin_users_path do |f|
   %fieldset.inputs
     %legend
-      %span Invitate user
+      %span Invitation
     %ol
       %li
-        %label Full Name
-        = f.text_field :name
-      %li
-        %label Email
-        = f.text_field :email
-        %p.inline-hints= 'Email from a new or existing user'
+        %label CSV
+        = f.file_field :file
+        %p.inline-hints= 'CSV columns: name, email'
       %li
         %label Role
         = f.select :role, [['Consumer', 'consumer'], ['Agent', 'agent']]
@@ -21,6 +18,6 @@
   %fieldset.buttons
     %ol
       %li.commit.button
-        = f.submit 'Send invitation'
+        = f.submit 'Send invitations'
       %li.cancel
         = link_to 'Cancel', admin_users_path

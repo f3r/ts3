@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 
   attr_accessor :delete_avatar, :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true
-  
+
   validates :paypal_email, :email => true, :if => Proc.new {|user| user.paypal_email.present?}
 
   before_save :ensure_authentication_token, :check_avatar_url, :set_paypal_email
@@ -64,17 +64,23 @@ class User < ActiveRecord::Base
   def self.auto_signup(name, email, role = 'user', message = nil)
     first_name, last_name = name.split(' ', 2)
     password = Devise.friendly_token[0,20]
-    user = self.new(
-      :first_name => first_name,
-      :last_name => last_name,
-      :email => email,
-      :password => password,
-      :password_confirmation => password
-    )
-    user.signup_role = role
+
+    user = User.find_by_email(email)
+
+    unless user
+      user = self.new(
+        :first_name => first_name,
+        :last_name => last_name,
+        :email => email,
+        :password => password,
+        :password_confirmation => password
+      )
+      user.signup_role = role
+    end
+
     user.generate_set_password_token
     user.skip_welcome = true
-    
+
     Authorization::Maintenance::without_access_control do
       if user.save
         UserMailer.auto_welcome(user, message).deliver
@@ -208,7 +214,7 @@ private
   def add_user_preferences
     self.build_preferences
   end
-  
+
   def set_paypal_email
     if self.agent? || self.admin?
       self.paypal_email = self.email if !self.paypal_email.present?

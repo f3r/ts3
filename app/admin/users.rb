@@ -66,14 +66,32 @@ ActiveAdmin.register User do
   end
 
   action_item :only => :index do
-    link_to('Invite users', invite_admin_users_path)
+    link_to('New Invitation', invite_admin_users_path)
+  end
+
+  action_item :only => :index do
+    link_to('Invite from CSV', invite_csv_admin_users_path)
   end
 
   collection_action :invite, :method => :get do
     render 'admin/invitations/new'
   end
 
-  collection_action :send_invitations, :method => :post do
+  collection_action :invite_csv, :method => :get do
+    render 'admin/invitations/import'
+  end
+
+  collection_action :send_invitation, :method => :post do
+    user = User.auto_signup(params[:invitation][:name], params[:invitation][:email], params[:invitation][:role], params[:invitation][:message])
+    if user.persisted?
+      flash[:success] = "Invitations sent"
+    else
+      flash[:error] = "There was an error sending the invitation"
+    end
+    redirect_to :action => :index
+  end
+
+  collection_action :import_invitations, :method => :post do
     if !params[:invitation] || !params[:invitation][:file]
       flash[:success] = "You must select a file"
       redirect_to :action => :invite

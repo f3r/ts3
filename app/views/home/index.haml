@@ -29,3 +29,8 @@
 = home_page_footer.description.html_safe unless home_page_footer.nil?
 
 = render :partial => "city_modal"
+
+:javascript
+  $('#button_homepage ul a').click(function(){
+    $('#button_homepage button a').html($(this).html());
+  });

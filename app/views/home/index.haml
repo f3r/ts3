@@ -2,30 +2,30 @@
   .row
     .span6
       .hub
-        .btn-group
-          %button.btn.btn-large.btn-primary
-            = t("pages.front_page.search_place_stay_in")
-          %button.btn.btn-large.btn-primary.dropdown-toggle{"data-toggle" => "dropdown"}
+        %h1#search_in
+          =t("pages.front_page.search_place_stay_in")
+
+        .btn-group#button_homepage
+          %button.btn.btn-large.btn-primary.button_left
             = link_to current_city.name, "/#{current_city.slug}", :id => "open-country-select", :style => "color: #FFF"
+          %button.btn.btn-large.btn-primary.dropdown-toggle.button_right{"data-toggle" => "dropdown"}
             %span.caret
-          %ul.dropdown-menu.pull-right
+          %ul.dropdown-menu.pull-left{:style => "width:201px"}
             %li
               - City.active.each do |city|
                 %li
                   = link_to city.name, "/#{city.slug}"
               %li.divider
               %li=link_to t("pages.front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
+
         #description
-          %p.description_one= t("pages.front_page.description.one").html_safe
-          %p.description_two= t("pages.front_page.description.two").html_safe
-          %p.description_three= t("pages.front_page.description.three").html_safe
-          %p.description_four= t("pages.front_page.description.four").html_safe
-        &nbsp;
-    
+          %p= t("pages.front_page.description.one").html_safe
+          %p= t("pages.front_page.description.two").html_safe
+
     .span6
       = gallery :homepage
-      
+
 - home_page_footer = Page.find_by_page_url('home_page_footer')
 = home_page_footer.description.html_safe unless home_page_footer.nil?
-    
+
 = render :partial => "city_modal"

@@ -69,7 +69,9 @@ en:
       resend_confirmation_code:   Resend Confirmation Code
       signup_complete:            Signup Complete
       signup_complete_text:       "Thanks for signing up! However, you need to confirm your account. Please check your email and click the link to verify it."
+      set_password_welcome_title: 'Hello %{user_name}'
       choose_a_password:          Choose a password for your account
+      set_password_welcome_text:  'We have automatically created an account for you. Please choose a secure password to continue.'
       confirm_reset_password:     Confirm the password
       enter_your_new_password:    Enter your new password
       registration_warning:       "%{site_name} won't publish anything without your prior consent"

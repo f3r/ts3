@@ -19,11 +19,11 @@ module Search
                             :foreign_key => 'search_id'
 
     belongs_to :currency
-    
+
     # This is used when the search is used with alert mail
-    # 
+    #
     attr_accessor :exclude_ids
-    
+
     # This is used to find the recently added results
     attr_accessor :date_from
 
@@ -58,11 +58,11 @@ module Search
         add_sql_condition(['lat BETWEEN ? AND ?' , self.min_lat, self.max_lat])
         add_sql_condition(['lon BETWEEN ? AND ?' , self.min_lng, self.max_lng])
       end
-      
+
       if self.exclude_ids.present?
         add_sql_condition(["#{resource_class.table_name}.id not in (?)", exclude_ids])
       end
-      
+
       if self.date_from.present?
         add_sql_condition(["#{resource_class.table_name}.created_at > ?", self.date_from])
       end
@@ -179,26 +179,6 @@ module Search
       amount
     end
 
-    #We need deep copy of the search - but not tied to the db
-    #So it behaves as new record - and if needed we can save it
-    def detach
-      other = self.class.new
-      other.sort_by      = self.sort_by
-      other.currency_id  = self.currency_id
-      other.city_id      = self.city_id
-      other.min_price    = self.min_price
-      other.max_price    = self.max_price
-      other.min_lat      = self.min_lat
-      other.max_lat      = self.max_lat
-      other.min_lng      = self.min_lng
-      other.max_lng      = self.max_lng
-      other.category_ids = self.category_ids
-      other.amenity_ids  = self.amenity_ids
-      other.exclude_ids  = self.exclude_ids
-      other.date_from    = self.date_from
-      other
-    end
-
     protected
 
     def add_amenities_condition(field, ids)
@@ -218,7 +198,7 @@ module Search
       else
         @price_step = 100
       end
-      
+
       if @price_step <= 0
         @price_step = 1
       end

@@ -25,6 +25,7 @@ en:
       what_city:        'What city?'
       description_title: Description
       general_title:     General
+      custom_fields_title: Details
       description_title: Description
       general_title: General Information
       address_title: Address

@@ -1,11 +1,6 @@
 .panel-wrapper
   = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
     %fieldset.well.form-horizontal
-      %h3= t("products.wizard.general_title")
-      .control-group.required
-        = f.label :city_id, t("products.wizard.what_city"), :class => 'control-label'
-        .controls
-          = f.select :city_id, cities_options, :class => "validate[required] span4"
       .control-group.required
         = f.label :title, t("products.title"), :class => 'control-label'
         .controls
@@ -27,24 +22,12 @@
           - if false
             = f.select :language_1_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
             = f.select :language_2_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-            = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true          
-      .control-group.required
-        = f.label :seeking, t("services.wizard.seeking_title"), :class => 'control-label'
-        .controls
-          = f.select :seeking, Service.seeking_options, :include_blank => true, :class => "input-xlarge validate[required] autosave"
+            = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
       .control-group.required
         = f.label :radius, t("services.wizard.radius"), :class => 'control-label'
         .controls
           = f.text_field :radius, :class => "input-small validate[required] autosave"
           = 'km'
-      .control-group.required
-        = f.label :education_status, t("services.wizard.education_status"), :class => 'control-label'
-        .controls
-          = f.select :education_status, Service.education_statuses, :include_blank => true, :class => "input-xlarge validate[required] autosave"
-      .control-group
-        = f.label :last_institute, t("services.wizard.last_institute"), :class => 'control-label'
-        .controls
-          = f.text_field :last_institute, :class => "input-xlarge autosave"
       .control-group
         = f.label :description, t("services.description"), :class => 'control-label'
         .controls

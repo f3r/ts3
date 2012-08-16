@@ -65,4 +65,30 @@ describe Product do
       price.currency_as_string.should == @sgd.currency_code
     end
   end
+
+  context "Custom Fields" do
+    before(:each) do
+      create(:custom_field, :name => 'favorite_food')
+      create(:custom_field, :name => 'favorite_film')
+      @product = build(:product)
+    end
+
+    it "sets the custom field" do
+      @product.custom_fields = {:favorite_food => 'pizza'}
+      @product.custom_fields[:favorite_food].should == 'pizza'
+
+      @product.save.should be_true
+      @product.reload
+
+      @product.custom_fields[:favorite_food].should == 'pizza'
+    end
+
+    it "updates fields independently" do
+      @product.custom_fields = {:favorite_food => 'pizza', :favorite_film => 'Torrente'}
+      @product.custom_fields[:favorite_film].should == 'Torrente'
+
+      @product.custom_fields = {:favorite_food => 'hot dogs'}
+      @product.custom_fields[:favorite_film].should == 'Torrente'
+    end
+  end
 end

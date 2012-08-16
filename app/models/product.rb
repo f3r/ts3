@@ -12,8 +12,9 @@ class Product < ActiveRecord::Base
   has_many   :product_amenities, :dependent => :destroy
   has_many   :amenities, :through => :product_amenities
   has_many   :reviews, :dependent => :destroy
-
   has_many   :q_and_a, :class_name => 'Comment', :dependent => :destroy
+
+  serialize :custom_values
 
   attr_accessor :terms
 
@@ -141,6 +142,15 @@ class Product < ActiveRecord::Base
       end
     end
     true
+  end
+
+  def custom_fields=(values)
+    self.custom_values ||= {}
+    self.custom_values.merge!(values)
+  end
+
+  def custom_fields
+    self.custom_values
   end
 
 protected

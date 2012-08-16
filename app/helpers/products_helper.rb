@@ -31,6 +31,7 @@ module ProductsHelper
     unless @wizard_tabs
       @wizard_tabs = []
       @wizard_tabs << :general
+      @wizard_tabs << :custom_fields if CustomField.any?
       @wizard_tabs << :photos    if wizard_step_defined?(:photos) && SiteConfig.photos?
       @wizard_tabs << :panoramas if wizard_step_defined?(:panoramas) && SiteConfig.panoramas?
       @wizard_tabs << :traits    if wizard_step_defined?(:traits) && AmenityGroup.any?
@@ -69,5 +70,51 @@ module ProductsHelper
     html = n.times.collect{ content_tag(:i, '', :class => 'icon-star big') }.join
     html << blank.times.collect{ content_tag(:i, '', :class => 'icon-star-empty') }.join
     content_tag :div, html.html_safe, :class => 'stars', :title => "#{n}/5"
+  end
+
+  def custom_field_input(cf, resource)
+    field_name  = "listing[custom_fields][#{cf.name}]"
+    field_value = resource.custom_values[cf.name]
+    field_id    = "custom_field_#{cf.name}"
+
+    validation_klasses = []
+    validation_klasses << 'required' if cf.required?
+    validation_klasses << 'custom[integer]' if cf.integer?
+    validation_klasses << cf.validations if cf.validations.present?
+    klasses = "validate[#{validation_klasses.join(',')}] "
+
+    html = case cf.type
+    when :dropdown
+      select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses }
+    when :checkbox
+      check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
+    else
+      text_field_tag field_name, field_value, :id => field_id, :class => klasses
+    end
+
+    if cf.hint.present?
+      if cf.type == :checkbox
+        html = content_tag(:label, :class => 'checkbox') do
+          "#{html} <span class='checkbox-help-block'>#{cf.hint}</span>".html_safe
+        end
+      else
+        html << content_tag(:p, cf.hint, :class => 'help-block')
+      end
+    end
+
+    html
+  end
+
+  def custom_field_value(cf, resource)
+    field_value = resource.custom_values[cf.name]
+    value = case cf.type
+    when :dropdown
+      field_value.humanize if field_value
+    when :checkbox
+      field_value ? 'Yes' : 'No'
+    else
+      field_value
+    end
+    value || '-'
   end
 end

@@ -12,16 +12,8 @@ DynamicSitemaps::Sitemap.draw do
   end
   
   #Get the cmspages linked with the menu sections
-  page_ids = []
-  [:main, :help, :footer].each do |ms_name|
-    menu_section = MenuSection.find_by_name(ms_name)
-    pages = menu_section.cmspages
-    for page in pages
-      if not page.kind_of?(ExternalLink) and not page.id.in?(page_ids)
-        url "#{root_url}#{page.page_url}", :change_freq => 'monthly', :priority => 0.7
-        page_ids << page.id
-      end
-    end
+  Page.active.each do |page|
+    url "#{root_url}#{page.page_url}", :change_freq => 'monthly', :priority => 0.7
   end
   
   SiteConfig.product_class.published.each do |prod|

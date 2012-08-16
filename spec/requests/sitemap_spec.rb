@@ -16,7 +16,7 @@ describe "Sitemap" do
     visit "/sitemap.xml"
     h = Hash.from_xml(page.html)
     h['html']['body']['urlset']['url'].length == 2
-    h['html']['body']['urlset']['url'][1].should have_content(p.title)
+    h['html']['body']['urlset']['url'][2].should have_content(p.title)
     #page.should have_content("www.sitemaps.org")
   end
 

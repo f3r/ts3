@@ -23,7 +23,7 @@ class ApplicationController < ActionController::Base
 
   def change_preferences
     if params.delete(:change_preference)
-      
+
       if params.key?("locale")
         preference = :locale
         value = Locale.find_by_code(params[preference])
@@ -68,14 +68,21 @@ class ApplicationController < ActionController::Base
     session[:user_return_to] = request.url unless params[:controller] == "sessions"
   end
 
-  def after_sign_in_path
-    session.delete(:user_return_to) || root_url
+  def after_sign_in_path_for(user)
+    debugger
+    if session[:user_return_to]
+      session.delete(:user_return_to)
+    elsif user.agent? && Product.manageable_by(user).count.zero?
+      new_listing_path
+    else
+      root_url
+    end
   end
 
   def resource_class
     SiteConfig.product_class
   end
-  
+
   def set_subject_for_exception_notification
     request.env["exception_notifier.options"] = {:email_prefix => "[#{Rails.env.capitalize}] [#{SiteConfig.site_name}] "}
   end

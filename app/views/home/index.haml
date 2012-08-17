@@ -15,7 +15,6 @@
                 = link_to city.name, "/#{city.slug}", :class => 'city'
             %li.divider
             %li= link_to t("pages.front_page.other_cities"), new_feedback_path, :remote => true
-
         #description
           %p= t("pages.front_page.description.one").html_safe
           %p= t("pages.front_page.description.two").html_safe

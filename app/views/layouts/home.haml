@@ -16,12 +16,13 @@
     
     :javascript
       $(document).ready(function() {
-        $('#teaser-pics') 
-          .after('<div id="nav">') 
+        $('.gallery-pics').each(function(index){
+          $(this).after('<div class="gallery-nav gnav' + index+ '">')
           .cycle({ 
             fx:     'fade', 
             speed:  'slow', 
             timeout: 4000, 
-            pager:  '#nav' 
+            pager:  '.gnav' + index 
           });
+        });          
       });

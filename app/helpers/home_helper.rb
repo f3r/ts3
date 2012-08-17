@@ -127,4 +127,22 @@ module HomeHelper
       end
     end
   end
+  
+  def parse_cms_embeds(contents)
+    #Atm we have only one
+    render_gallery_into(contents)
+  end
+  
+  private
+  def render_gallery_into(content)
+    g_regx = /\[\[\ ?gallery_(\w+) ?\]\]/
+    
+    gallery_names = content.scan(g_regx)    
+    gallery_names.each do |gallery_name|
+      gallery_content = gallery(gallery_name[0]) || ""
+      content = content.sub(g_regx, gallery_content)
+    end
+    content.html_safe
+  end
+  
 end

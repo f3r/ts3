@@ -5,4 +5,5 @@
  = @staticpage.meta_description
   
 - if @staticpage.present?
- = @staticpage.description.html_safe
+ .cmspagewrapper
+  = parse_cms_embeds(@staticpage.description).html_safe

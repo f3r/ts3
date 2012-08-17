@@ -69,7 +69,6 @@ class ApplicationController < ActionController::Base
   end
 
   def after_sign_in_path_for(user)
-    debugger
     if session[:user_return_to]
       session.delete(:user_return_to)
     elsif user.agent? && Product.manageable_by(user).count.zero?

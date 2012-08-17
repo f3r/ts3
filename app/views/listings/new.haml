@@ -8,6 +8,7 @@
           = f.label :city_id, t("products.wizard.what_city"), :class => 'control-label'
           .controls
             = f.select :city_id, cities_options, :class => "validate[required] span4"
+            %span= link_to t("pages.front_page.other_cities"), new_feedback_path, :remote => true
         .control-group.required
           = f.label :title, t("places.title"), :class => 'control-label'
           .controls

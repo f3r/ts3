@@ -16,7 +16,7 @@
                 %li
                   = link_to city.name, "/#{city.slug}"
               %li.divider
-              %li=link_to t("pages.front_page.other_cities"), "#city_modal", "data-toggle" => "modal"
+              %li= link_to t("pages.front_page.other_cities"), new_feedback_path, :remote => true
 
         #description
           %p= t("pages.front_page.description.one").html_safe
@@ -27,8 +27,6 @@
 
 - home_page_footer = Page.find_by_page_url('home_page_footer')
 = home_page_footer.description.html_safe unless home_page_footer.nil?
-
-= render :partial => "city_modal"
 
 :javascript
   $('#button_homepage ul a').click(function(){

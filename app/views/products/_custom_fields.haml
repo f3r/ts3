@@ -1,9 +1,8 @@
-= form_for :resource_custom, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
-  %fieldset.well.form-horizontal
-    - CustomField.all.each do |cf|
-      .control-group{:class => cf.required ? 'required' : ''}
-        = label_tag "custom_field_#{cf.name}", cf.label, :class => 'control-label'
-        .controls
-          = custom_field_input(cf, @resource)
+%fieldset.well.form-horizontal
+  - CustomField.all.each do |cf|
+    .control-group{:class => cf.required ? 'required' : ''}
+      = label_tag "custom_field_#{cf.name}", cf.label, :class => 'control-label'
+      .controls
+        = custom_field_input(cf, @resource)
 
-    = f.submit t(:save), :class => 'btn btn-primary'
+  = f.submit t(:save), :class => 'btn btn-primary'

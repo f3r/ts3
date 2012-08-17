@@ -1,6 +1,7 @@
 .panel.tab-pane{:id => "tab_#{tab_name}"}
-  = render "products/#{SiteConfig.product_class.to_s.tableize}/wizard_tabs/step_#{tab_name}", :layout => 'wizard_step'
-
+  = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
+    = render "products/#{SiteConfig.product_class.to_s.tableize}/wizard_tabs/step_#{tab_name}", :layout => 'wizard_step', :f => f
+    = f.hidden_field :completed_steps, :value => tab_number
   .arrows.clearfix
     .float-left
       - prev_tab = previous_wizard_tab(tab_name)

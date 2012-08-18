@@ -18,4 +18,8 @@ class AdminUser < ActiveRecord::Base
   def super_admin?
     self.role == 'superadmin'
   end
+
+  def agent?
+    false
+  end
 end

@@ -1,9 +1,8 @@
 - if resource.errors.any?
   %div{:class => 'alert alert-error'}
     = error_messages_for resource
-.credentials-box
-  - if params[:welcome]
-    = hidden_field_tag :welcome, params[:welcome]
-    = render 'set'
-  - else
-    = render 'reset'
+- if params[:welcome]
+  = hidden_field_tag :welcome, params[:welcome]
+  = render 'set'
+- else
+  = render 'reset'

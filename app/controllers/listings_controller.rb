@@ -74,7 +74,7 @@ class ListingsController < PrivateController
   end
 
   def destroy
-    if @resource.delete
+    if @resource.destroy
       flash[:notice] = t("products.messages.listing_deleted")
     else
       flash[:error] = t("products.messages.listing_deletion_error")
@@ -90,7 +90,7 @@ class ListingsController < PrivateController
       flash[:error] = t("places.messages.place_publish_error")
       redirect_to edit_listing_path(@resource)
     end
-    
+
   end
 
   def publish_check

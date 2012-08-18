@@ -31,7 +31,7 @@ module ApplicationHelper
       html.html_safe
     end
   end
-  
+
   def message_for_item(message, item = nil)
     if item.is_a?(Array)
       message % link_to(*item)
@@ -126,7 +126,7 @@ module ApplicationHelper
     base_path = SiteConfig.static_assets_path
     "#{base_path}/#{filename}"
   end
-  
+
   def new_or_edit_listing
     resource_class = SiteConfig.product_class
     if resource_class.user_reached_limit?(current_user)
@@ -135,10 +135,9 @@ module ApplicationHelper
       link_to t("products.add_a_listing"), new_listing_path
     end
   end
-  
+
   def render_add_listing_notification
-    resource_class = SiteConfig.product_class
-    if resource_class.manageable_by(current_user).count == 0
+    if Product.manageable_by(current_user).count.zero?
       render :partial => "listings/add_a_listing_notification"
     end
   end

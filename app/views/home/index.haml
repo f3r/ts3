@@ -6,17 +6,15 @@
           =t("pages.front_page.search_place_stay_in")
 
         .btn-group#button_homepage
-          %button.btn.btn-large.btn-primary.button_left
-            = link_to current_city.name, "/#{current_city.slug}", :id => "open-country-select", :style => "color: #FFF"
+          %button.btn.btn-large.btn-primary.button_left{:onclick =>"location.href='/#{current_city.slug}'"}= current_city.name
           %button.btn.btn-large.btn-primary.dropdown-toggle.button_right{"data-toggle" => "dropdown"}
             %span.caret
           %ul.dropdown-menu.pull-left{:style => "width:201px"}
-            %li
-              - City.active.each do |city|
-                %li
-                  = link_to city.name, "/#{city.slug}"
-              %li.divider
-              %li= link_to t("pages.front_page.other_cities"), new_feedback_path, :remote => true
+            - City.active.each do |city|
+              %li
+                = link_to city.name, "/#{city.slug}", :class => 'city'
+            %li.divider
+            %li= link_to t("pages.front_page.other_cities"), new_feedback_path, :remote => true
 
         #description
           %p= t("pages.front_page.description.one").html_safe
@@ -29,6 +27,6 @@
 = home_page_footer.description.html_safe unless home_page_footer.nil?
 
 :javascript
-  $('#button_homepage ul a').click(function(){
-    $('#button_homepage button a').html($(this).html());
+  $('#button_homepage a.city').click(function(){
+    $('#button_homepage .button_left').html($(this).html());
   });

@@ -1,12 +1,12 @@
 #details-questions.tab-pane
   - if !logged_in?
     .row
-      .span12{:style => "text-align:center"}
+      .span11{:style => "text-align:center"}
         %a.btn.btn-large.btn-primary{:href => login_path_with_ref}= t("places.questions.ask_question")
   - else
     - unless current_user?(@owner)
       .row
-        .span12{:style => "text-align:center"}
+        .span11{:style => "text-align:center"}
           %a#open-ask-btn.btn.btn-large.btn-primary= t("places.questions.ask_question")
 
     .row

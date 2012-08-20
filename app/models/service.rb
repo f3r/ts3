@@ -4,6 +4,8 @@ class Service < ActiveRecord::Base
   as_enum :language_2, [:english, :french, :spanish]
   as_enum :language_3, [:english, :french, :spanish]
 
+  before_save :fill_in_address
+
   if Product.table_exists?
     acts_as :product
     accepts_nested_attributes_for :product
@@ -46,7 +48,9 @@ class Service < ActiveRecord::Base
   end
 
   def primary_photo
-    if self.user.avatar?
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    elsif self.user.avatar?
       self.user.avatar.url(:medium)
     else
       ApplicationHelper.static_asset('missing_userpic_200.jpeg')
@@ -54,7 +58,30 @@ class Service < ActiveRecord::Base
   end
 
   def inquiry_photo
-    nil
+    if self.photos.first
+      self.photos.first.photo(:medsmall)
+    elsif self.user.avatar?
+      self.user.avatar.url(:medium)
+    else
+      ApplicationHelper.static_asset('missing_userpic_200.jpeg')
+    end
+  end
+
+  def fill_in_address
+    if (address = self.user.address)
+      self.address_1 = address.street
+      self.zip = address.zip
+      self.lat = address.lat
+      self.lon = address.lon
+    end
+    # because this method is a callback, we should return true so validations do not fail
+    true
+  end
+
+  # Called from Address
+  def after_update_address
+    self.fill_in_address
+    self.save
   end
 
   # Default radius for the service/show map (2km)

@@ -2,6 +2,9 @@
   %ul.nav.nav-tabs
     %li.active
       %a{:href => "#main-tab", 'data-toggle' => 'tab'}= t("jobs.main")
+    - if SiteConfig.photos?
+      %li
+        %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("jobs.photos")
     - if AmenityGroup.any?
       %li
         %a{:href => "#work_profile-tab", 'data-toggle' => 'tab'}= t("jobs.work_profile")
@@ -17,18 +20,12 @@
 
   .tab-content
     = render 'products/services/tabs/main',         :resource => resource
+    - if SiteConfig.photos?
+      = render 'products/properties/tabs/photos', :resource => resource
     - if AmenityGroup.any?
       = render 'products/services/tabs/work_profile', :resource => resource
     = render 'products/services/tabs/map',          :resource => resource
     = render 'products/services/tabs/calendar',     :resource => resource
-
-    // Map Pane
-    = render 'products/services/tabs/map', :resource => resource
-
-    // Calendar Pane
-    = render 'products/services/tabs/calendar', :resource => resource
-
-    // Questions Tab
     = render 'questions/questions'
 
     // Reviews tab

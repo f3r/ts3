@@ -19,6 +19,11 @@ module Paperclip
     def make
       dst = Tempfile.new([@basename, @format].compact.join("."))
       dst.binmode
+      
+      # Init the parameters - to avoid the chance of getting errors, 
+      # if the uploaded image is a square one
+      new_width = @current_geometry.width
+      new_height = @current_geometry.height
 
       if @current_geometry.vertical?
         new_width = @current_geometry.width

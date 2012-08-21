@@ -31,8 +31,7 @@ class SiteConfig < ActiveRecord::Base
         val
       else
         # Backward compatibility with config constants
-       return if name.to_s.upcase == "FB_APP_ID" || name.to_s.upcase == "TW_APP_ID"
-       self.default_to_constant(name)
+        self.default_to_constant(name)
       end
     else
       super

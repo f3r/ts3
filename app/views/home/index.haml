@@ -21,7 +21,7 @@
           %p= t("pages.front_page.description.two").html_safe
 
     .span6
-      = gallery :homepage
+      = parse_cms_embeds(Page.find_by_page_url('home_page_right').present? ? Page.find_by_page_url('home_page_right').description : "")
 
 - home_page_footer = Page.find_by_page_url('home_page_footer')
 = home_page_footer.description.html_safe unless home_page_footer.nil?

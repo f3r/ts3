@@ -126,7 +126,7 @@ end
 ###############################################################################
 # CREATING CMS PAGES
 ###############################################################################
-unless Cmspage.count >= 9
+unless Cmspage.count >= 10
   # Render a haml view
   app = HeyPalFrontEnd::Application
   app.routes.default_url_options = { :host => '' }
@@ -147,7 +147,8 @@ unless Cmspage.count >= 9
     ['Privacy Policy',      'privacy',      'footer'],
     ['Contact Information', 'contact',      'footer'],
     ['How it works',        'how-it-works', 'help'],
-    ['Why',                 'why',          'help']
+    ['Why',                 'why',          'help'],
+    ['Home page - Right',   'home_page_right']
   ]
 
   pages.each do |title, url, menu_name|

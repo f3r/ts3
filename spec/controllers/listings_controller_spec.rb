@@ -30,21 +30,14 @@ describe ListingsController do
 
   it "updates the user address" do
     @service = create(:service, :user => @agent)
-    put :update_address,
+    city = create(:city)
+    post :update,
       :id => @service.id,
-      :user => {
-        :address_attributes => {
-          :street => 'Ayer Rajah',
-          :city => 'Singapore',
-          :country => 'SG',
-          :zip => '1123'
-        }
-      }
+      :listing => attributes_for(:product, :city_id => city.id)
 
     response.should be_redirect
-    @agent.reload
-    @agent.address.should_not be_nil
-    @agent.address.street.should == 'Ayer Rajah'
+    @service.reload
+    @service.city_id.should == city.id
   end
 
   it "limits the number of listings" do

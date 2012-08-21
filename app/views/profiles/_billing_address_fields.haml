@@ -7,16 +7,11 @@
         = af.text_field :street, :class => "validate[required]"
 
     .control-group
-      = af.label :city, "#{t(:city)}*", :class => 'control-label'
+      = af.label :city_id, "#{t(:city)}*", :class => 'control-label'
       .controls
         = icon_tooltip(:public)
-        = af.text_field :city, :class => "validate[required]"
+        = af.select :city_id, cities_options, {}, { :class => "validate[required]", :style => "width: 220px;"}
 
-    .control-group
-      = af.label :country, "#{t(:country)}*", :class => 'control-label'
-      .controls
-        = icon_tooltip(:public)
-        = af.country_select(:country, [], {:include_blank => t(:choose_country)}, {:class => "validate[required]", :id => "address_country"})
     .control-group
       = af.label :zip, "#{t(:zip)}*", :class => 'control-label'
       .controls

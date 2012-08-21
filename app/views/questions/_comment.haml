@@ -1,6 +1,6 @@
 .span9.offset1.question-container{:id => "qdiv-#{comment.id}"}
   .row-fluid.question
-    .span4
+    .span3
       .user_box
         -if comment.user
           .user_photo= avatar_image(comment.user)
@@ -13,7 +13,7 @@
     - if current_user?(@owner)
       = link_to 'X', product_question_path(comment.product_id, comment.id, :type => 'question'), :remote => true, :method => :delete, :confirm => t("places.questions.delete_this_question"), :class => "del hide"
 
-    .span8
+    .span9
       .user_message= comment.comment
       .time= time_ago_in_words(comment.created_at)
 

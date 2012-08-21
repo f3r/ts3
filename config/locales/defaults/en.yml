@@ -47,12 +47,13 @@ en:
     mph: Meter per Hour
     kmh_short: "kmh"
     mph_short: "mph"
-    
+
   roles:
     admin: Admin
+    superadmin: SuperAdmin
     agent: Agent
     user: User
-    
+
   addresses:
     address_1: Address 1
     address_2: Address 2

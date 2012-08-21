@@ -23,4 +23,17 @@ module AuthenticationHelper
   def login_required
     authenticate_user!
   end
+
+  def social_enabled
+    SiteConfig.fb_app_id.present? || SiteConfig.tw_app_id.present?
+  end
+
+  def facebook_enabled
+    SiteConfig.fb_app_id.present?
+  end
+
+  def twitter_enabled
+    SiteConfig.tw_app_id.present?
+  end
+
 end

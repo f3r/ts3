@@ -1,28 +1,28 @@
 .section.span5
-  -if SiteConfig.fb_app_id.present? || SiteConfig.tw_app_id.present?
+  -if social_enabled
     %h2.bottom-large= t("users.registration.create_an_account_using")
-  
-  -if SiteConfig.fb_app_id.present?
+
+  -if facebook_enabled
     = link_to user_omniauth_authorize_path(:facebook) do
       = image_tag 'signin_facebook.png', :alt => t("users.registration.sign_in_with", :provider => "Facebook"), :class => 'bottom'
   %br
-  -if SiteConfig.tw_app_id.present?
+  -if twitter_enabled
     = link_to user_omniauth_authorize_path(:twitter) do
       = image_tag 'sign-in-with-twitter-l.png', :alt => t("users.registration.sign_in_with", :provider => "Twitter")
-      
-  -if !SiteConfig.fb_app_id.present? && !SiteConfig.tw_app_id.present?
+
+  -if social_enabled
+    %p.bottom-part
+      = simple_format t("users.registration.sign_in_provider_info")
+  -else
     .start
       .hub
         #description
-          %p.description_one= t("pages.front_page.description.one").html_safe
-          %p.description_two= t("pages.front_page.description.two").html_safe
+          %p.description_one=   t("pages.front_page.description.one").html_safe
+          %p.description_two=   t("pages.front_page.description.two").html_safe
           %p.description_three= t("pages.front_page.description.three").html_safe
           %br
-          %p.description_four= t("pages.front_page.description.four").html_safe
+          %p.description_four=  t("pages.front_page.description.four").html_safe
         &nbsp;
-  -else
-    %p.bottom-part
-      = simple_format t("users.registration.sign_in_provider_info")
-    
+
 %br.clearfix
 %br

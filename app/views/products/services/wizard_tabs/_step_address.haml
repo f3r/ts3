@@ -1,4 +1,4 @@
-= form_for @resource, :as => :listing, :url => listing_path(@resource), :html => {:id => "change_address", :method => :put, :class => 'form-horizontal'} do |f|
+.panel-wrapper
   %fieldset.well.form-horizontal
     %h3= t("products.wizard.address_title")
     .control-group.required
@@ -22,4 +22,3 @@
       = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
       .controls
         = f.text_field :zip, :class => "input-xlarge validate[required] span3 autosave"
-    = f.submit t(:save), :class => 'btn btn-primary'

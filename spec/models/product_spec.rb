@@ -91,4 +91,26 @@ describe Product do
       @product.custom_fields[:favorite_film].should == 'Torrente'
     end
   end
+
+  context "Wizard" do
+    before(:each) do
+      @product = create(:product)
+    end
+
+    it "moves the wizard step forward" do
+      @product.completed_steps.should == 0
+
+      @product.wizard_step = 1
+      @product.save
+      @product.completed_steps.should == 1
+    end
+
+    it "tracks the max completed wizard step" do
+      @product.update_attribute(:completed_steps, 2)
+
+      @product.wizard_step = 1
+      @product.save
+      @product.completed_steps.should == 2
+    end
+  end
 end

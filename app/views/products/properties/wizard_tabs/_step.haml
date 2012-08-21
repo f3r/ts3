@@ -1,13 +1,18 @@
-.panel.tab-pane{:id => "tab_#{tab_name}"}
+.panel{:id => "tab_#{tab_name}"}
   = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
     = render "products/#{SiteConfig.product_class.to_s.tableize}/wizard_tabs/step_#{tab_name}", :layout => 'wizard_step', :f => f
-    = f.hidden_field :completed_steps, :value => tab_number
+    = f.hidden_field :wizard_step, :value => tab_number
+    = hidden_field_tag :s, tab_number
+
+    - if @wizard.last_step?
+      = f.submit t(:save).html_safe, :class => 'btn btn-primary pull-right'
+    - else
+      = f.submit t(:save_and_continue).html_safe, :class => 'btn btn-primary pull-right'
+- if false
   .arrows.clearfix
     .float-left
-      - prev_tab = previous_wizard_tab(tab_name)
-      - if prev_tab
-        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{prev_tab}')"}=raw t("places.wizard.previous_step")
+      - if @wizard.previous_step
+        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{@wizard.previous_step}')"}=raw t("places.wizard.previous_step")
     .float-right
-      - next_tab = next_wizard_tab(tab_name)
-      - if next_tab
-        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{next_tab}')"}=raw t("places.wizard.next_step")
+      - if @wizard.next_step
+        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{@wizard.next_step}')"}=raw t("places.wizard.next_step")

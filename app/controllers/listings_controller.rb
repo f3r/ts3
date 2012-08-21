@@ -34,6 +34,7 @@ class ListingsController < PrivateController
   end
 
   def edit
+    @wizard = Wizard.new(@resource, params[:s])
     if !@resource.published? && !flash[:notice] && !flash[:error]
       flash.now[:info] = "Your listing is not published. Complete the wizard and click on 'Publish'"
     end
@@ -51,7 +52,7 @@ class ListingsController < PrivateController
       render :json => response, :layout => false
     else
       flash[:notice] = t('products.updated')
-      redirect_to :action => :edit
+      redirect_to :action => :edit, :s => Wizard.new(@resource, params[:s]).next_step
     end
   end
 

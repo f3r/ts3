@@ -22,7 +22,7 @@ FactoryGirl.define do
   factory :address do
     user
     street                { Faker::Name.name }
-    city                  { Faker::Address.city }
+    city                  { create(:city) }
     country               { Faker::Address.country }
     zip                   { Faker::Address.postcode }
   end

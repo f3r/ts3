@@ -31,10 +31,11 @@ describe ProfilesController do
 
   context "Address" do
     it "stores the user address" do
+      city = create(:city)
       post :update, :user => {
         :address_attributes => {
           :street => 'Ayer Rajah',
-          :city => 'Singapore',
+          :city_id => city.id,
           :country => 'SG',
           :zip => '1123'
         }

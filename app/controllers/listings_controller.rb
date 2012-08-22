@@ -12,6 +12,7 @@ class ListingsController < PrivateController
       redirect_to edit_listing_path(collection.first)
     end
     @resource = resource_class.new
+    @resource.currency ||= Currency.default
   end
 
   def create

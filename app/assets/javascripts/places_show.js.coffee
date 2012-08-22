@@ -37,6 +37,9 @@ PlaceShow =
         slider.tinycarousel_move($(this).attr('data-page'))
         false
 
+  #*******************************************************************************************
+  # Panoramas
+  #*******************************************************************************************
   initializePanoramas: ->
     pano_iframe = $('#panorama_container iframe')
     pano_list = $('#panoramas_list')
@@ -58,8 +61,9 @@ PlaceShow =
           idx += 1
           showPanorama()
         false
-        
+
       showPanorama()
+
   #*******************************************************************************************
   # Google Map initialization
   #*******************************************************************************************
@@ -182,10 +186,13 @@ PlaceShow =
       sites: ['facebook', 'twitter', 'google'],
       showAllText: 'Show all ({n})',
       title: title,
-      hint: 'Share this place',
+      hint: 'Share this!',
       url: url
     })
 
+  #*******************************************************************************************
+  # Inquiry modal window
+  #*******************************************************************************************
   inquireModal: ->
     $('#inquire_place').on('shown', ->
       add_datepicker()

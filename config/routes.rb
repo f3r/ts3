@@ -139,6 +139,7 @@ HeyPalFrontEnd::Application.routes.draw do
   match '/fees'                     => 'home#staticpage' , :pages => :fees
   match '/privacy'                  => 'home#staticpage' , :pages => :privacy
   match '/contact'                  => 'home#staticpage' , :pages => :contact
+  match '/alive'                    => 'home#alive'
 
   get '/robots.txt' => 'home#robot'
 

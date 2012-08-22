@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     elsif user.agent? && Product.manageable_by(user).count.zero?
       new_listing_path
     else
-      root_url
+      super
     end
   end
 
@@ -99,8 +99,10 @@ class ApplicationController < ActionController::Base
       user_role  = 'guest'
       user_email = nil
     end
+    
+    params_cleaned = clean_params_for_logger(params)
 
-    entry = {
+    entry = {      
       :url        => request.url.to_s,
       :controller => controller_name,
       :action     => action_name,
@@ -110,11 +112,23 @@ class ApplicationController < ActionController::Base
       :user_email => user_email
     }
 
-    if request.get?
-      filtered_params = params.except(:controller, :action)
-      entry[:params] = filtered_params if filtered_params.present?
-    end
+    entry[:params] = params_cleaned if params_cleaned.present?
 
     AppLogger.create(entry)
+
+  end
+
+  private
+  def clean_params_for_logger(params)
+    params = params.except(:controller, :action, :utf8)
+    params.each do |key, value|
+      if value.is_a? ::Rack::Test::UploadedFile or value.is_a? ::ActionDispatch::Http::UploadedFile
+        params[key] =  value.inspect
+      end
+      if(value.is_a? HashWithIndifferentAccess)
+        params[key] = clean_params_for_logger(value)
+      end
+    end
+    params
   end
 end

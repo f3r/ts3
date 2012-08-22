@@ -18,10 +18,11 @@ describe Service do
   end
   
   it "square sized image should work with paperclip upload" do
-    square = File.open("#{Rails.root}/db/rake_seed_images/square.png")
-    @service = create(:service)
-    @service.photos.new(:photo => square)
-    @service.save
-    @service.photos.first should_not be_nil
-  end
+     square = File.open("#{Rails.root}/db/rake_seed_images/square.png")
+     @service = create(:service)
+     @service.photos.new(:photo => square)
+     @service.save
+      
+     @service.photos.first should_not be_nil
+   end
 end

@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  #skip_before_filter :nombre, :only => :alive
+  skip_before_filter :log_request, :only => :alive
 
   def robot
     render :layout => false, :content_type => "text/plain"

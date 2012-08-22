@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120820080721) do
+ActiveRecord::Schema.define(:version => 20120822021656) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -69,6 +69,31 @@ ActiveRecord::Schema.define(:version => 20120820080721) do
 
   create_table "amenity_groups", :force => true do |t|
     t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "appLogger", :force => true do |t|
+    t.string   "url"
+    t.string   "method"
+    t.string   "controller"
+    t.text     "params"
+    t.integer  "user_id"
+    t.string   "user_role"
+    t.string   "user_email"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "app_loggers", :force => true do |t|
+    t.string   "url"
+    t.string   "controller"
+    t.string   "action"
+    t.string   "method"
+    t.text     "params"
+    t.string   "user_id"
+    t.string   "user_role"
+    t.string   "user_email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -170,7 +195,7 @@ ActiveRecord::Schema.define(:version => 20120820080721) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",                             :null => false
+    t.string  "page_url",         :default => "",     :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -364,13 +389,6 @@ ActiveRecord::Schema.define(:version => 20120820080721) do
     t.string  "swf_file_name"
   end
 
-  create_table "payment_logs", :force => true do |t|
-    t.integer "payment_id"
-    t.string "state"
-    t.string "previous_state"
-    t.text "additional_data"
-  end
-
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -379,17 +397,6 @@ ActiveRecord::Schema.define(:version => 20120820080721) do
     t.integer  "transaction_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
-
-  create_table "payments", :force => true do |t|
-    t.integer "amount"
-    t.text "note"
-    t.integer "recipient_id"
-    t.integer "transaction_id"
-    t.string "state"
-    t.datetime "added_at"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -680,13 +687,12 @@ ActiveRecord::Schema.define(:version => 20120820080721) do
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"

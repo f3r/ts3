@@ -10,6 +10,7 @@ class ApplicationController < ActionController::Base
   before_filter :change_preferences
   before_filter :set_current_user
   before_filter :set_subject_for_exception_notification
+  before_filter :log_request
 
   def set_locale
     I18n.locale = get_current_language
@@ -84,5 +85,29 @@ class ApplicationController < ActionController::Base
 
   def set_subject_for_exception_notification
     request.env["exception_notifier.options"] = {:email_prefix => "[#{Rails.env.capitalize}] [#{SiteConfig.site_name}] "}
+  end
+
+  def log_request
+
+    if current_user
+      user_id    = current_user.id
+      user_role  = current_user.role
+      user_email = current_user.email
+    else
+      user_id    = request.cookies["_session_id"]
+      user_role  = 'guest'
+      user_email = 'guest@guest.com'
+    end
+
+    foo = AppLogger.create(
+      :url        => request.url.to_s,
+      :controller => controller_name,
+      :action     => action_name,
+      :method     => request.method,
+      :params     => params.except(:controller, :action),
+      :user_id    => user_id,
+      :user_role  => user_role,
+      :user_email => user_email
+    )
   end
 end

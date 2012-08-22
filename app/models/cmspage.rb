@@ -5,7 +5,9 @@ class Cmspage < ActiveRecord::Base
   validates_presence_of   :page_url,   :message => "101"
 
   validates_uniqueness_of :page_url, :message => "Page Already exist with this name"
-  validates_exclusion_of  :page_url, :in => proc {get_all_active_city_name} , :message => "Can't use this as page url (city name)"
+  validates_exclusion_of  :page_url, :in => proc {url_blacklist} , :message => "Can't use this name as page url"
+
+  before_validation :url_downcase
 
   scope :active,    where("active")
   scope :inactive,  where("not active")
@@ -13,8 +15,6 @@ class Cmspage < ActiveRecord::Base
 
   has_many :cmspage_menu_sections, :dependent => :destroy
   has_many :menu_sections, :through => :cmspage_menu_sections
-
-  UNMODIFIABLE_STATIC_PAGE_URLS = ["terms", "fees", "privacy", "contact"]
 
   attr_accessible :page_title, :page_url, :description, :active, :mandatory, :type, :meta_description, :meta_keywords
 
@@ -33,25 +33,30 @@ class Cmspage < ActiveRecord::Base
     Cmspage.where(:active => 1, :page_url => url).first if url
   end
 
- def self.get_all_active_city_name
-   @fields      = [:name]
-   cityname  = []
-   city_names = City.select(@fields).all
-   city_names.each do |city_name|
-     cityname << city_name["name"]
-   end
-   return cityname
- end
+  def self.url_blacklist
+    blacklist = active_city_names
+    blacklist.concat(['alive', 'search', 'profile'])
+  end
 
- def to_s
-  page_title + " [" + page_url + "]"
- end
+  def self.active_city_names
+    City.select([:name]).collect{|c| c.name.downcase}
+  end
 
- def external?
-  false
- end
+  def to_s
+    page_title + " [" + page_url + "]"
+  end
 
- def link
-  nil
- end
+  def external?
+    false
+  end
+
+  def link
+    nil
+  end
+
+  protected
+
+  def url_downcase
+    self.page_url.downcase! if self.page_url_changed?
+  end
 end

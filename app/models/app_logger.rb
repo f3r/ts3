@@ -1,4 +1,5 @@
 class AppLogger < ActiveRecord::Base
+  serialize :params, JSON
 
   scope :all, :default => true
   scope :guest,  where("user_role = \"guest\"")

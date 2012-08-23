@@ -90,24 +90,31 @@ class ApplicationController < ActionController::Base
   def log_request
 
     if current_user
+      return true if current_user.super_admin?
       user_id    = current_user.id
       user_role  = current_user.role
       user_email = current_user.email
     else
-      user_id    = request.cookies["_session_id"]
+      user_id    = request.cookies[COOKIE_STORE_KEY]
       user_role  = 'guest'
-      user_email = 'guest@guest.com'
+      user_email = nil
     end
 
-    foo = AppLogger.create(
+    entry = {
       :url        => request.url.to_s,
       :controller => controller_name,
       :action     => action_name,
       :method     => request.method,
-      :params     => params.except(:controller, :action),
       :user_id    => user_id,
       :user_role  => user_role,
       :user_email => user_email
-    )
+    }
+
+    if request.get?
+      filtered_params = params.except(:controller, :action)
+      entry[:params] = filtered_params if filtered_params.present?
+    end
+
+    AppLogger.create(entry)
   end
 end

@@ -4,6 +4,7 @@
     %meta{ :name => "viewport", :content => "width=device-width, initial-scale=1" }
     %meta{:charset => "utf-8"}
     %meta{:name => "apple-mobile-web-app-capable", :content => "yes"}
+    %meta{:name => "google", :value => "notranslate" }
     %title= content_for?(:title) ? "#{yield(:title)} | #{t("site_title", :site_tagline => SiteConfig.site_tagline)}" : t("site_title", :site_tagline => SiteConfig.site_tagline)
 
     = stylesheet_link_tag    'http://code.jquery.com/mobile/1.2.0-alpha.1/jquery.mobile-1.2.0-alpha.1.min.css'

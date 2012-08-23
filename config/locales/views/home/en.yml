@@ -4,6 +4,7 @@
 en:
   pages:
     suggest_thank_you_message: "Thank you for your message. %{site_name} is expanding and we will let you know when '%{city}' is available!"
+    contact_query_response_message: "Thank you for contacting us, our support team will contact you soon."
     front_page:
       search_button: Find
       search_place_stay_in: Search for a place to stay in

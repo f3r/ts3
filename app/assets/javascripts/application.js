@@ -100,6 +100,51 @@ $(document).ready(function() {
       e.preventDefault();
     }
   });
+  
+  if ($("#contact_form").length > 0) {
+  	$("#contact_submit").click(function(){
+  	
+  		$(".contact_error").hide();
+  		var hasError = false;
+  		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+  		
+  		var name = $('#contact_name').val();
+  		
+  		if (name == '') {
+  			$("#contact_name").after('<span class="contact_error">Please enter your Name.</span>');
+  			hasError = true;
+  		}
+  		
+  		var emailaddress = $("#contact_email").val();
+  		if (emailaddress == '') {
+  			$("#contact_email").after('<span class="contact_error">Please enter your email address.</span>');
+  			hasError = true;
+  		}
+  		else 
+  			if (!emailReg.test(emailaddress)) {
+  				$("#contact_email").after('<span class="contact_error">Enter a valid email address.</span>');
+  				hasError = true;
+  			}
+  		
+  		var subject = $('#contact_subject').val();
+  		
+  		if (subject == '') {
+  			$("#contact_subject").after('<span class="contact_error">Please enter Subject.</span>');
+  			hasError = true;
+  		}
+  		
+  		var message = $.trim($('#contact_query').val());
+		
+  		if (message == null || message == '' || message.indexOf('\n') > 0) {
+  			$("#contact_query").after('<span class="contact_error">Please enter Message.</span>');
+  			hasError = true;
+  		}
+  		
+  		if (hasError == true) {
+  			return false;
+  		}
+  	});
+  }
 
   $("form.validated").validationEngine();
 

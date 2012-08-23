@@ -11,4 +11,11 @@ class FeedbacksController < ApplicationController
     flash[:notice] = t("pages.suggest_thank_you_message", :city => params[:message])
     redirect_to root_path
   end
+  
+  def contact
+    SystemMailer.user_contact(params[:contact]).deliver
+
+    flash[:notice] = t("pages.contact_query_response_message")
+    redirect_to root_path
+  end
 end

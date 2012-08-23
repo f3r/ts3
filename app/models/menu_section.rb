@@ -9,7 +9,6 @@ class MenuSection < ActiveRecord::Base
 
   has_many :cmspages, :through => :cmspage_menu_sections,
     :conditions => "active = 1",
-    :include => :cmspage_menu_sections,
     :order => "position ASC"
 
   def self.main

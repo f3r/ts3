@@ -13,7 +13,6 @@ class HomeController < ApplicationController
   end
 
   def staticpage
-    #get the content from back-end
     @staticpage = Cmspage.find_by_url(params[:pages])
     raise ActiveRecord::RecordNotFound unless @staticpage
   end

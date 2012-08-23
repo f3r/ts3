@@ -4,9 +4,6 @@ module Search
     # I need atleast points in the slider
     PRICE_SLIDER_STEPS = 100
 
-    #attr_reader :category_ids
-    #attr_accessor :amenity_ids
-
     attr_reader :price_step
 
     has_and_belongs_to_many :amenities,

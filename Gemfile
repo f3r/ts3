@@ -63,6 +63,7 @@ group :development do
   gem 'colorize'
   gem 'curb'
   #gem 'pry'
+  gem 'bullet'
 end
 
 group :test do
@@ -77,4 +78,5 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'debugger'
   #gem 'jazz_hands'
+  gem 'thin'
 end

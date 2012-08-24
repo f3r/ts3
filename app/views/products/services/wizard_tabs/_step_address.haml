@@ -22,3 +22,11 @@
       = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
       .controls
         = f.text_field :zip, :class => "input-xlarge validate[required] span3 autosave"
+    - if SiteConfig.fixed_radius
+      = f.hidden_field :radius, :value => SiteConfig.fixed_radius
+    - else
+      .control-group.required
+        = f.label :radius, t("services.wizard.radius"), :class => 'control-label'
+        .controls
+          = f.text_field :radius, :class => "input-small validate[required] autosave"
+          = 'km'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120822021656) do
+ActiveRecord::Schema.define(:version => 20120824040452) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -696,6 +696,7 @@ ActiveRecord::Schema.define(:version => 20120822021656) do
     t.integer  "fee_amount",                   :default => 300
     t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "enable_message_masking",       :default => true
+    t.integer  "fixed_radius"
   end
 
   create_table "transaction_logs", :force => true do |t|

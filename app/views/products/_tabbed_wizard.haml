@@ -1,23 +1,7 @@
 - content_for :javascripts do
-  = javascript_include_tag "wizard"
+  =# javascript_include_tag "wizard"
 
-- wizard_tabs.each do |tab_name|
-  = render "products/properties/wizard_tabs/step", :tab_name => tab_name
+= render "products/properties/wizard_tabs/step", :tab_name => @wizard.current_step_name, :tab_number => @wizard.current_step
 
 :javascript
-  $(function() {
-    $('.wizard-wrapper .panel').css("display", "none");
-    $('.wizard-wrapper .panel').first().css("display", "block");
-    $('.wizard-wrapper form').validationEngine();
-    $('ul#wizard_tabs li a').bind('click', function(){
-      $('.wizard-wrapper form').validationEngine('hideAll');
-      var _this = $(this);
-      $('.wizard-wrapper .panel').hide();
-      $(_this.attr('href')).fadeIn('fast');
-      $('.section_title').html(_this.attr('title'));
-      _this.parent().parent().find('.active').removeClass('active');
-      _this.addClass('active');
-      _this.parent().addClass('active');
-      return false;
-    });
-  });
+  $('#wizard_form').validationEngine();

@@ -144,6 +144,17 @@ class Product < ActiveRecord::Base
     true
   end
 
+  def wizard_step
+    self.completed_steps
+  end
+
+  def wizard_step=(step)
+    step_number = step.to_i
+    if step_number > self.completed_steps
+      self.completed_steps = step_number
+    end
+  end
+
   def custom_fields=(values)
     self.custom_values ||= {}
     self.custom_values.merge!(values)

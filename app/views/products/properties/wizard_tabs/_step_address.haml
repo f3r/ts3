@@ -22,3 +22,7 @@
       = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
       .controls
         = f.text_field :zip, :class => "input-xlarge validate[required] span3 autosave"
+    .control-group
+      = f.label :directions, t("addresses.directions"), :class => 'control-label'
+      .controls
+        = f.text_area :directions, :class => "span6 autosave", :rows => 5

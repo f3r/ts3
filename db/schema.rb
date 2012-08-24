@@ -73,18 +73,6 @@ ActiveRecord::Schema.define(:version => 20120822021656) do
     t.datetime "updated_at", :null => false
   end
 
-  create_table "appLogger", :force => true do |t|
-    t.string   "url"
-    t.string   "method"
-    t.string   "controller"
-    t.text     "params"
-    t.integer  "user_id"
-    t.string   "user_role"
-    t.string   "user_email"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
   create_table "app_loggers", :force => true do |t|
     t.string   "url"
     t.string   "controller"
@@ -578,13 +566,14 @@ ActiveRecord::Schema.define(:version => 20120822021656) do
     t.integer  "price_per_month_usd"
     t.integer  "price_sale"
     t.integer  "price_sale_usd"
-    t.datetime "created_at",                                          :null => false
-    t.datetime "updated_at",                                          :null => false
+    t.datetime "created_at",                                                         :null => false
+    t.datetime "updated_at",                                                         :null => false
     t.integer  "category_id"
     t.integer  "price_per_day"
     t.integer  "price_per_day_usd"
     t.string   "amenities_search"
     t.text     "custom_values"
+    t.integer  "completed_steps",                                     :default => 0
   end
 
   create_table "properties", :force => true do |t|

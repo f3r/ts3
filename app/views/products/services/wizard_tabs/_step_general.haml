@@ -1,35 +1,29 @@
 .panel-wrapper
-  = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
-    %fieldset.well.form-horizontal
+  %fieldset.well.form-horizontal
+    .control-group.required
+      = f.label :title, t("products.title"), :class => 'control-label'
+      .controls
+        = f.text_field :title, :class => "input-xlarge validate[required] autosave"
+    - if false
       .control-group.required
-        = f.label :title, t("products.title"), :class => 'control-label'
+        = f.label :price_per_hour, t("services.price_per_hour"), :class => 'control-label'
         .controls
-          = f.text_field :title, :class => "input-xlarge validate[required] autosave"
-      - if false
-        .control-group.required
-          = f.label :price_per_hour, t("services.price_per_hour"), :class => 'control-label'
-          .controls
-            = f.text_field :price_per_hour, :class => "input-small validate[required] autosave"
-            = @resource.currency.label
-      = render 'products/price_fields', :f => f
-      .control-group
-        = f.label :languages_ids, t("services.wizard.languages"), :class => 'control-label'
-        .controls.languages
-          - Service.language_1s.each do |key, id|
-            = label_tag "language_#{id}" do
-              = check_box_tag 'listing[language_ids][]', id, @resource.language_ids.include?(id), :id => "language_#{id}"
-              = key.capitalize
-          - if false
-            = f.select :language_1_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-            = f.select :language_2_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-            = f.select :language_3_cd, Service.language_1s_for_select(:value), :class => "input-small validate[required] autosave", :include_blank => true
-      .control-group.required
-        = f.label :radius, t("services.wizard.radius"), :class => 'control-label'
-        .controls
-          = f.text_field :radius, :class => "input-small validate[required] autosave"
-          = 'km'
-      .control-group
-        = f.label :description, t("services.description"), :class => 'control-label'
-        .controls
-          = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"
-      = f.submit t(:save), :class => 'btn btn-primary'
+          = f.text_field :price_per_hour, :class => "input-small validate[required] autosave"
+          = @resource.currency.label
+    = render 'products/price_fields', :f => f
+    .control-group
+      = f.label :languages_ids, t("services.wizard.languages"), :class => 'control-label'
+      .controls.languages
+        - Service.language_1s.each do |key, id|
+          = label_tag "language_#{id}" do
+            = check_box_tag 'listing[language_ids][]', id, @resource.language_ids.include?(id), :id => "language_#{id}"
+            = key.capitalize
+    .control-group.required
+      = f.label :radius, t("services.wizard.radius"), :class => 'control-label'
+      .controls
+        = f.text_field :radius, :class => "input-small validate[required] autosave"
+        = 'km'
+    .control-group
+      = f.label :description, t("services.description"), :class => 'control-label'
+      .controls
+        = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"

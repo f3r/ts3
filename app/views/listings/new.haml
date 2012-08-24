@@ -1,5 +1,5 @@
 = coded_errors_for @resource
-.row
+.row.wizard-wrapper
   .span10.offset1
     = form_for @resource, :as => :listing, :url => listings_path, :html => {:id => 'wizard_form', :class => 'new-place'} do |f|
       %h2.title= t("products.list_your_product")

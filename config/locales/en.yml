@@ -90,8 +90,8 @@ en:
   meter_per_hour:             Meter per Hour
   kilometer_per_hour_short:   "kmh"
   meter_per_hour_short:       "mph"
-  
-  
+
+
 
   ####################################################################################
   # General field names and validation errors

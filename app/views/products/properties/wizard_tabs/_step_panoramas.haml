@@ -6,9 +6,9 @@
     %p Loading...
 
 .panel-wrapper
-  .alert.alert-info
-    = link_to t("products.wizard.panoramas_link"), 'http://gardengnomesoftware.com/pano2vr_example.php', :target => '_blank'
   .well
+    .alert.alert-info
+      = link_to t("products.wizard.panoramas_link"), 'http://gardengnomesoftware.com/pano2vr_example.php', :target => '_blank'
     .upload_wrapper
       = link_to new_listing_panorama_path(@resource), :remote => true, :data => {:toggle => 'modal', :target => '#panorama_modal'} do
         %img{:src => asset_path('upload-panoramas.png')}

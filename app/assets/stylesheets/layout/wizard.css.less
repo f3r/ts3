@@ -16,8 +16,17 @@
       display: inline;
     }
   }
+
+  .nav .completed a {
+    background-color: green;
+  }
 }
 
+.wizard-aside-wrapper .actions {
+  text-align: center;
+  .btn { width: 180px; }
+  .unpublish { color: red; }
+}
 .wizard-wrapper {
   .help-block, .checkbox-help-block {
     color: #666666;
@@ -27,6 +36,13 @@
   p.hint {
     text-align: center;
     font-style: italic;
+  }
+  h2.title {
+    margin-bottom: 0px;
+    border-radius: 5px 5px 0 0;
+  }
+  fieldset.well {
+    border-radius: 0 0 4px 4px;
   }
 }
 
@@ -57,11 +73,19 @@ ul#wizard_tabs {
       }
     }
   }
-  li.active {
-    a {
-      background-color: @wizard_tabs_background_active_color;
-      color: @wizard_tabs_text_active_color;
+  li.active a {
+    background-color: @wizard_tabs_background_active_color;
+    color: @wizard_tabs_text_active_color;
+    font-weight: bold;
+  }
+  li.disabled a {
+    color: #999;
+    &:hover {
+      text-decoration: none;
     }
+  }
+  li.enabled a {
+    color: @wizard_tabs_text_active_color;
   }
 }
 
@@ -75,12 +99,6 @@ ul#wizard_tabs {
   .actions {
     margin-left: 20px;
   }
-}
-
-.wizard-aside.sticky {
-  position: fixed;
-  top: 45px;
-
 }
 
 .availability-action {

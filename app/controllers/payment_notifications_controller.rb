@@ -7,7 +7,7 @@ class PaymentNotificationsController < ApplicationController
     transaction_code = notify.item_id
 
     @transaction = Transaction.find_by_transaction_code(transaction_code)
-    if notify.acknowledge #&& notify.complete?
+    if not @transaction.paid? && notify.acknowledge #&& notify.complete?
       @result = @transaction.received_payment!(params)
     end
 

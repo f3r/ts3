@@ -46,8 +46,7 @@ class ListingsController < PrivateController
     if @resource.save
       response = {:stat => "ok", :place => @resource}
     else
-      err = format_errors(@resource.errors.messages)
-      response = {:stat => "fail", :err => err, :error_label => error_codes_to_messages(err).join(', ')}
+      response = {:stat => "fail", :err => @resource.errors.full_messages}
     end
     if request.xhr?
       render :json => response, :layout => false

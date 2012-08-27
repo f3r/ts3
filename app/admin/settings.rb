@@ -57,6 +57,10 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
 
     f.buttons
   end
+  
+  action_item do
+      link_to "FAQ for Admins", "/adminfaq"
+  end
 
   member_action :reset_field, :method => :put do
     which_field = params[:f]

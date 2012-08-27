@@ -1,6 +1,6 @@
 class SiteConfig < ActiveRecord::Base
 
-  after_save :reset_cache
+  after_save :reset_cache, :refresh_devise_omniauth
 
   has_attached_file :fav_icon,
     :path => "static/favicon.ico"
@@ -126,5 +126,17 @@ class SiteConfig < ActiveRecord::Base
 
   def reset_cache
     self.class.reset_cache
+  end
+  
+  def refresh_devise_omniauth
+    if self.fb_app_id_changed? || self.fb_app_secret_changed?
+      Devise.omniauth_configs[:facebook].instance_variable_get("@strategy").client_id = self.fb_app_id
+      Devise.omniauth_configs[:facebook].instance_variable_get("@strategy").client_secret = self.fb_app_secret
+    end
+    
+    if self.tw_app_id_changed? || self.tw_app_secret_changed?
+      Devise.omniauth_configs[:twitter].instance_variable_get("@strategy").consumer_key = self.tw_app_id
+      Devise.omniauth_configs[:twitter].instance_variable_get("@strategy").consumer_secret  = self.tw_app_secret
+    end
   end
 end

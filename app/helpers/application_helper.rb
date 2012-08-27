@@ -136,9 +136,16 @@ module ApplicationHelper
     end
   end
 
-  def render_add_listing_notification
-    if Product.manageable_by(current_user).count.zero?
-      render :partial => "listings/add_a_listing_notification"
+  def head_notification_agent
+    if user_signed_in? and current_user.agent?
+      html = ""
+      if Product.manageable_by(current_user).count.zero?
+        html << t('products.no_listings_home', :link => new_listing_path).html_safe
+      # If no published listing
+      elsif not current_user.products.published.any?
+        html << t('products.no_published_listings', :link => edit_listing_path(current_user.products.first)).html_safe
+      end
+      notification_box html
     end
   end
 

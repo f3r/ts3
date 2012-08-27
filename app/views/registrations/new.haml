@@ -3,14 +3,12 @@
     = error_messages_for @user
 
 - if @user && @user.oauth_token?
-  .row.oauth-box
-    .span.avatar
-      =image_tag @user.avatar_url
-    .span
-      %h1
-        Hello
-    .span6{:style => "line-height: 40px; font-size: 2em;"}
-      = @user.full_name
+  .user_data_head
+    .row
+      .oauth-box
+        = image_tag @user.avatar_url
+        %b Hello
+        = @user.full_name
   .credentials-box.registration.row-fluid
     %br
     = render :partial => 'registrations/form'

@@ -75,9 +75,9 @@ en:
       confirm_reset_password:     Confirm the password
       enter_your_new_password:    Enter your new password
       registration_warning:       "%{site_name} won't publish anything without your prior consent"
-      already_member:             "Already a %{site_name} member?"
+      already_member:             Already A Member ?
       hello:                      Hello
-      please_login:               Please log in
+      please_login:               "Login to %{site_name}"
 
     section_header_user_profile:      Personal Information
     section_header_user_information:  User Information

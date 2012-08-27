@@ -196,6 +196,37 @@ aside .section-header, .aside .section-header {
 // Registration
 // -----------
 
+.user_data_head{
+  -webkit-border-top-left-radius: 5px;
+  -webkit-border-top-right-radius: 5px;
+  -moz-border-radius-topleft: 5px;
+  -moz-border-radius-topright: 5px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  background: #1F517F;
+  color: #FFFFFF;
+  height: 40px;
+  margin-bottom: 1px;
+  padding: 3px;
+  width: auto;
+
+  .oauth-box{
+    img{
+      -webkit-border-radius: 3px;
+      -moz-border-radius: 3px;
+      border-radius: 3px;
+      margin-left:25px;
+      margin-bottom:5px;
+      width: 38px;
+      height: 38px;
+    }
+
+    line-height: 40px;
+    font-size: 26px;
+  }
+
+}
+
 .credentials-box {
   background: @grayLighter;
   color: @grayDarker;
@@ -205,6 +236,23 @@ aside .section-header, .aside .section-header {
   .section {
     padding: 10px;
     margin-bottom: 25px;
+
+    .form_container{
+      padding-top:20px;
+    }
+    span{
+      font-size:15px;
+      font-weight:bold;
+      line-height:15px;
+    }
+    b{
+      padding-left:5px;
+      color:#265076;
+    }
+    .associate_clear_fix{
+      display:block;
+      padding-top:120px;
+    }
   }
   .bored {
     border-right: 1px solid lighten(@gray, 20%);
@@ -234,9 +282,10 @@ aside .section-header, .aside .section-header {
 .login .bottom-part { margin-top: 30px; }
 
 .oauth-box {
+  line-height: 40px;
   .avatar img {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
   }
 }
 

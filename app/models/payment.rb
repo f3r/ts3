@@ -2,6 +2,7 @@ class Payment < ActiveRecord::Base
   include Workflow
   belongs_to :recipient, :class_name => 'User'
   belongs_to :transaction
+  belongs_to :currency
 
   has_many :payment_logs, :dependent => :destroy
 

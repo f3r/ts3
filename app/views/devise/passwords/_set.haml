@@ -1,6 +1,7 @@
 .span8.offset2
-  %h1= t("users.registration.set_password_welcome_title", :user_name => @user.full_name)
-  %p{:style => 'margin-bottom: 30px;'}= t("users.registration.set_password_welcome_text")
+  - if @user
+    %h1= t("users.registration.set_password_welcome_title", :user_name => @user.full_name)
+    %p{:style => 'margin-bottom: 30px;'}= t("users.registration.set_password_welcome_text")
   .credentials-box{:style => 'height:242px'}
     .section
       %h3= t("users.registration.choose_a_password")

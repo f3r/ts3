@@ -1,7 +1,7 @@
-- content_for(:title) {"#{SiteConfig.site_name} Mobile"}
+- content_for(:title) {"#{SiteConfig.site_name}"}
 
-%ul{"data-role"=>"listview", "data-inset"=>"true", "data-filter"=>"true"}
-  - @cities.each do |city|
-    %li
-      = link_to city.name, "/mobile/search/#{city.slug}"
-      %span{:class => "ui-li-count ui-btn-up-c ui-btn-corner-all"}= city.num
+= link_to mobile_cities_path, {:style => "text-decoration:none"} do
+  %center
+    = image_tag static_asset('logo.png'), {:style => "margin-top: 100px", :width => "290px"}
+    %p{:style => "color:#999;"}
+      %i click to continue

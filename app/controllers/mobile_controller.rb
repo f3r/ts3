@@ -2,10 +2,13 @@ class MobileController < ApplicationController
   layout 'mobile'
 
   def index
+  end
+
+  def cities
     @cities = City.unscoped.active.joins(:products).select('cities.id, cities.name, cities.slug, count(products.id) as num').where('products.published').group('cities.id').order('count(products.id) desc')
 
     respond_to do |f|
-      f.html { render "mobile/index" }
+      f.html { render "mobile/cities" }
     end
   end
 

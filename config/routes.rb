@@ -117,6 +117,7 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
 
   match 'mobile'               => 'mobile#index',       :as => :mobile
+  match 'mobile/cities'        => 'mobile#cities',      :as => :mobile_cities
   match 'mobile/search/:city'  => 'mobile#search',      :as => :mobile_search, :city => City.routes_regexp
   match 'mobile/info/:id'      => 'mobile#show_info',   :as => :mobile_show_info
   match 'mobile/map/:id'       => 'mobile#show_map',    :as => :mobile_show_map

@@ -5,18 +5,18 @@
 %h3= @product.title
 %p= "<strong>#{product_price(@resource)}</strong> <i>#{product_price_unit(@resource)}</i>".html_safe
 %p
-  = "#{@resource.category.translated_name}"
+  = @resource.category.translated_name if @resource.category
   = descriptive_key(t('places.size'), place_size(@resource))
   = descriptive_key(t('places.bedrooms'),  @resource.num_bedrooms)
   = descriptive_key(t("places.beds"), @resource.num_beds)
   = descriptive_key(t("places.guests"), t('places.guests_range', :count => @resource.max_guests))
   = descriptive_key(t("places.bathrooms"), @resource.num_bathrooms)
 
-%div{"data-role" => :collapsible, "data-content-theme"=>:c}
+%div{"data-role" => :collapsible, "data-content-theme"=>:c, "data-mini" => "true", "data-collapsed" => "false"}
   %h3 Description
   %p= @product.description
 
-%div{"data-role" => :collapsible, "data-content-theme"=>:c}
+%div{"data-role" => :collapsible, "data-content-theme"=>:c, "data-mini" => "true", "data-collapsed" => "false"}
   %h3 Price
   - if @resource.price_per_day.present? and @resource.price_per_day != 0
     = keyvalue(t("price_per_day"),           place_price(@resource, :per_day))
@@ -36,12 +36,12 @@
   - if @resource.price_security_deposit.present? and @resource.price_security_deposit != 0
     = keyvalue(t("places.security_deposit"), place_price(@resource, :security_deposit))
 
-%div{"data-role" => :collapsible, "data-content-theme"=>:c}
+%div{"data-role" => :collapsible, "data-content-theme"=>:c, "data-mini" => "true", "data-collapsed" => "false"}
   %h3= t("places.cancellation")
   %p= cancellation_desc(@resource)
 
 - if @resource.amenities.count != 0
-  %div{"data-role" => :collapsible, "data-content-theme"=>:c}
+  %div{"data-role" => :collapsible, "data-content-theme"=>:c, "data-mini" => "true", "data-collapsed" => "false"}
     %h3 Amenities
     - @resource.amenities.each do |amenity|
       %p= amenity.name

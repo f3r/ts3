@@ -1,26 +1,26 @@
 .panel-wrapper
-  = form_for @resource, :as => :listing, :url => listing_path(@resource), :class => 'form-stacked', :html => {:id => "wizard_form", :method => :put} do |f|
-    .alert.alert-info
-      = link_to t("places.wizard.photos.read_photo_faq"), home_photo_faq_path
-    .well
-      .upload_wrapper#up_container
-        %a#upload{:href => "javascript:{}"}
-          %img{:src => asset_path('upload-photos.png')}
-        %p.hint= t("places.wizard.photos.upload_photo_hint")
+  .well
+    - if false
+      .alert.alert-info
+        = link_to t("places.wizard.photos.read_photo_faq"), home_photo_faq_path
+    .upload_wrapper#up_container
+      %a#upload{:href => "javascript:{}"}
+        %img{:src => asset_path('upload-photos.png')}
+      %p.hint= t("places.wizard.photos.upload_photo_hint")
 
-    .clearfix
-    .photo_wrapper
+  .clearfix
+  .photo_wrapper
 
-    .clearfix
-    .photos_wrapper.well
-      %p= t("places.wizard.photos.tip")
+  .clearfix
+  .photos_wrapper.well
+    %p= t("places.wizard.photos.tip")
 
-      .primary_marker
-        = t("places.wizard.photos.primary")
-      .row
-        .span8
-          %ul.gallery#photos_list
-            = render 'photos/list'
+    .primary_marker
+      = t("places.wizard.photos.primary")
+    .row
+      .span8
+        %ul.gallery#photos_list
+          = render 'photos/list'
 
 :javascript
   /* TODO: Finish moving this to wizard.js */

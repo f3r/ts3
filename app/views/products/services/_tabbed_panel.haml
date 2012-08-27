@@ -2,7 +2,7 @@
   %ul.nav.nav-tabs
     %li.active
       %a{:href => "#main-tab", 'data-toggle' => 'tab'}= t("jobs.main")
-    - if SiteConfig.photos?
+    - if SiteConfig.photos? && resource.photos.any?
       %li
         %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("jobs.photos")
     - if AmenityGroup.any?

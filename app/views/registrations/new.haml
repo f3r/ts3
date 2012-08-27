@@ -4,12 +4,10 @@
 
 - if @user && @user.oauth_token?
   .user_data_head
-    .row.oauth-box
-      %span.avatar
+    .row
+      .oauth-box
         = image_tag @user.avatar_url
-      %span.welcome
-        %b
-          Hello
+        %b Hello
         = @user.full_name
   .credentials-box.registration.row-fluid
     %br

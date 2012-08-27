@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     elsif user.agent? && Product.manageable_by(user).count.zero?
       new_listing_path
     else
-      root_url
+      super
     end
   end
 

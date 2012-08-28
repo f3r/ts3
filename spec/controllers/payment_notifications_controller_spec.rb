@@ -26,7 +26,7 @@ describe PaymentNotificationsController do
     #Let's post 3 requests
     (1..3).each do
       post :create, :item_number => 'abc', :mc_gross => "300.00"
-      response.should be_success
+      response.should be_redirect
     end
     @transaction.reload
     @transaction.paid?.should be_true

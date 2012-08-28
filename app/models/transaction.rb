@@ -66,6 +66,10 @@ class Transaction < ActiveRecord::Base
     self.inquiry.product
   end
 
+  def name
+    "##{self.id}"
+  end
+
   def code
     self.transaction_code
   end

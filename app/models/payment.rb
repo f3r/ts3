@@ -52,11 +52,11 @@ class Payment < ActiveRecord::Base
 
   private
 
-  def self.pending(duration = 48.hours)
+  def self.pending(delay = 48.hours)
     #Get the Payments with state = :ready and has the transaction state :paid
     payments = self.joins(:transaction => :inquiry).where('payments.state = ?', :ready)
     .where('transactions.state = ?', :paid)
-    .where('inquiries.check_out <= ?', Time.now - duration)
+    .where('inquiries.pay_at <= ?', Time.now - delay)
   end
 
   def log_payment(options={})

@@ -94,10 +94,6 @@ class Inquiry < ActiveRecord::Base
     end
   end
 
-  def price
-    self.product.money_price * self.length_stay
-  end
-
   def start_conversation(message)
     self.message = message
     # Check if there is a previous inquiry

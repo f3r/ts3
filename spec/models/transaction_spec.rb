@@ -5,7 +5,7 @@ describe Transaction do
     @usd = create(:currency, :currency_code => 'USD')
     Currency.stub(:default).and_return(@usd)
   	@inquiry = create(:inquiry)
-    Inquiry.any_instance.stub(:price).and_return(1000.to_money('USD'))
+    Transaction.any_instance.stub(:price).and_return(1000.to_money('USD'))
   end
 
   it "charges a flat booking fee" do

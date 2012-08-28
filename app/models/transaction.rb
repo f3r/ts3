@@ -94,7 +94,7 @@ class Transaction < ActiveRecord::Base
 
   def product_amount
     if SiteConfig.charge_total
-      self.inquiry.price
+      self.price
     else
       zero_with_currency
     end
@@ -104,9 +104,25 @@ class Transaction < ActiveRecord::Base
     if SiteConfig.fee_is_fixed
       fee = SiteConfig.fee_amount.to_money(Currency.default.currency_code)
     else
-      fee = self.inquiry.price * SiteConfig.fee_amount / 100.0
+      fee = self.price * SiteConfig.fee_amount / 100.0
     end
   end
+
+  def price(a_currency = nil)
+    a_currency ||= Currency.default
+    unit = case self.inquiry.length_stay_type.to_sym
+      when :hours
+        :per_hour
+      when :days
+        :per_day
+      when :weeks
+        :per_week
+      when :months
+        :per_month
+      end
+    self.product.money_price(unit, a_currency) * self.inquiry.length_stay
+  end
+
 
 private
 

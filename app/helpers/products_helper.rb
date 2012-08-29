@@ -28,6 +28,14 @@ module ProductsHelper
     t(SiteConfig.price_unit)
   end
 
+  def product_status_badge(product)
+    if product.published?
+      content_tag :span, t("products.listed"), :class => 'label product-status label-success'
+    else
+      content_tag :span, t("products.invisible"), :class => 'label product-status'
+    end
+  end
+
   def map_markers_json(results)
     results.reject{|p| !p.geocoded? }.collect{|p| {id: p.id, title: p.title, url: seo_product_url(p), lat: p.lat, lon: p.lon}}.to_json
   end

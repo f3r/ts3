@@ -2,6 +2,9 @@
   .row.title-bar
     .span10.title
       %h1= @resource.title
+    .span2
+      .listing-badge.pull-right
+        = product_status_badge(@resource)
   - if false
     .span2
       .listing-actions.pull-right

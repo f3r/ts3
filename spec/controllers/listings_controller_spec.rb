@@ -48,4 +48,20 @@ describe ListingsController do
     get :new
     response.should redirect_to(edit_listing_path(@service))
   end
+
+  it "autopublish listings" do
+    @service = create(:service, :user => @agent)
+    @service.should_not be_published
+    last_step = Wizard.new(@service).total_steps
+
+    post :update,
+      :id => @service.id,
+      :s => last_step,
+      :listing => {:wizard_step => last_step}
+
+    response.should redirect_to(listing_path(@service))
+    @service.reload
+
+    @service.should be_published
+  end
 end

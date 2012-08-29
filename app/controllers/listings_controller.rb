@@ -1,4 +1,4 @@
-class ListingsController < PrivateController
+  class ListingsController < PrivateController
   layout 'plain'
   before_filter :find_resource, :except => [:index, :new, :create]
 
@@ -43,16 +43,24 @@ class ListingsController < PrivateController
 
   def update
     @resource.attributes = params[:listing]
-    if @resource.save
+    @wizard = Wizard.new(@resource, params[:s])
+
+    if @wizard.save
       response = {:stat => "ok", :place => @resource}
     else
       response = {:stat => "fail", :err => @resource.errors.full_messages}
     end
+
     if request.xhr?
       render :json => response, :layout => false
     else
-      flash[:notice] = t('products.updated')
-      redirect_to :action => :edit, :s => Wizard.new(@resource, params[:s]).next_step
+      if @wizard.just_finished?
+        flash[:notice] = t('products.messages.listing_published')
+        redirect_to :action => :show
+      else
+        flash[:notice] = t('products.updated')
+        redirect_to :action => :edit, :s => @wizard.next_step
+      end
     end
   end
 

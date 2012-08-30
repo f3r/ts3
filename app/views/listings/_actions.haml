@@ -1,6 +1,3 @@
 .manage.pull-right
   = button_to t("places.edit"), edit_listing_path(@resource), :method => :get, :class => 'btn medium edit'
-  - if @resource.published
-    %span.label.place_status.label-success=  t("products.listed")
-  - else
-    %span.label.place_status=  t("products.invisible")
+  = product_status_badge(@resource)

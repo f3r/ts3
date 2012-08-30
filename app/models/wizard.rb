@@ -5,6 +5,15 @@ class Wizard
     @requested_step = step.to_i if step
   end
 
+  def save
+    if @resource.save
+      if self.last_step? && !@resource.published?
+        @just_finished = @resource.publish!
+      end
+    else
+      return false
+    end
+  end
 
   def wizard_step_defined?(tab_name)
     views_path = ::Rails.root.to_s + "/app/views"
@@ -34,18 +43,23 @@ class Wizard
   end
 
   def current_step
-    unless @current_step
-      @current_step = if @requested_step
-        @requested_step
+    if @requested_step
+      @requested_step
+    else
+      if @resource.completed_steps < total_steps
+        @resource.completed_steps + 1
       else
-        if @resource.completed_steps < total_steps
-          @resource.completed_steps + 1
-        else
-          1
-        end
+        1
       end
     end
-    @current_step
+  end
+
+  # def completed?
+  #   @resource.completed_steps >= total_steps
+  # end
+
+  def just_finished?
+    @just_finished
   end
 
   def completed_step?(n)

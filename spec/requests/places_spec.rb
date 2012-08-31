@@ -9,13 +9,6 @@ describe "Places Management" do
     SiteConfig.stub(:product_class).and_return(Property)
   end
 
-  def login_as(user)
-    visit '/users/login'
-    fill_in 'user[email]',    :with => @agent.email
-    fill_in 'user[password]', :with => @agent.password
-    click_button 'Login'
-  end
-
   it 'shows places for a city' do
     login_as @agent
     visit '/listings'

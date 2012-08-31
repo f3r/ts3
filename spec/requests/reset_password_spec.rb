@@ -16,6 +16,20 @@ describe "Reset password" do
     @user.reset_password_token.should_not be_nil
   end
 
+  it "shows the reset password form" do
+    @user.send(:generate_reset_password_token)
+    @user.save!
+
+    get edit_user_password_path, :reset_password_token => @user.reset_password_token
+    response.should be_success
+  end
+
+
+  it "redirects to login if the token was already used" do
+    get edit_user_password_path, :reset_password_token => 'nonono'
+    response.should be_redirect
+  end
+
   it "returns error for a nonexistent email" do
     post user_password_path, :user => {:email => Faker::Internet.email}
     response.should be_success

@@ -101,6 +101,8 @@ $(document).ready(function() {
     }
   });
 
+  $("form.validated").validationEngine();
+
   $("a.tooltip, a[rel=tooltip], a[rel='tooltip nofollow'], button[rel=tooltip], a.tooltip-link").tooltip({
       animation: false,
       placement: 'top',

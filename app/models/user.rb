@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
          :omniauthable              # OAuth support
 
   include User::Social
+  include User::Roles
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
                   :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar, :paypal_email
@@ -126,26 +127,6 @@ class User < ActiveRecord::Base
   def signup_role=(a_role)
     return false unless [:user, :agent].include?(a_role.to_sym)
     self.role = a_role
-  end
-
-  def super_admin?
-    self.role == 'superadmin'
-  end
-
-  def admin?
-    self.role == 'admin' || self.role == 'superadmin'
-  end
-
-  def agent?
-    self.role == 'agent'
-  end
-
-  def consumer?
-    self.role == 'user'
-  end
-
-  def role_symbols
-    [role.to_sym]
   end
 
   def change_preference(pref, value)

@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   include RoutesHelper
   include PreferenceHelper
   include AvailabilitiesHelper
+  include ControllableUser
+
   before_filter :instantiate_controller_and_action_names
   before_filter :set_locale
   before_filter :change_preferences

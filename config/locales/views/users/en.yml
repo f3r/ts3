@@ -113,3 +113,7 @@ en:
       authentication_fail:                          We are unable to authenticate you at the moment. Please try again.
       connected_with_account:                       "%{oauth_provider} is connected in your account."
       successfully_updated_billing:                 You successfully updated your billing address
+
+  take_control_bar_message: "You are now administering the account of %{full_name} (%{email})."
+  release_control: "Release Control"
+  take_control: "Take Control"

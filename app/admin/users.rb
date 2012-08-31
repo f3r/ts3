@@ -1,9 +1,47 @@
 ActiveAdmin.register User do
   menu :priority => 1
-  actions :all, :except => [:create, :new, :destroy]
+  actions :all, :except => [:destroy]
 
   controller do
     helper 'admin/users'
+
+    def new
+      @user = User.new
+
+      # Transport some extra data in the form
+      @user.class_eval do
+        attr_accessor :send_invitation
+        attr_accessor :invitation_text
+      end
+      @user.invitation_text = I18n.t('mailers.auto_welcome.content')
+      new!
+    end
+
+    def create
+      @user = User.new
+      @user.class_eval do
+        attr_accessor :send_invitation
+        attr_accessor :invitation_text
+      end
+
+      @user.attributes = params[:user]
+
+      @user.send_invitation = params[:user][:send_invitation]
+      @user.invitation_text = params[:user][:invitation_text]
+
+      if @user.save_without_password
+        if @user.send_invitation == '1'
+          UserMailer.auto_welcome(@user, @user.invitation_text).deliver
+          flash[:success] = "User created."
+        else
+          flash[:success] = "User created and invitation sent."
+        end
+
+        redirect_to admin_user_path(@user)
+      else
+        respond_with @user
+      end
+    end
   end
 
   scope :all, :default => true
@@ -28,7 +66,7 @@ ActiveAdmin.register User do
   end
 
   show do |ad|
-    rows = default_attribute_table_rows.reject {|a| a =~ /password|avatar/}
+    rows = default_attribute_table_rows.reject {|a| a =~ /password|avatar|token|confirm/}
     attributes_table *rows do
       row(:avatar) {|u|
         image_tag(u.avatar.url('thumb')) if u.avatar?
@@ -37,8 +75,24 @@ ActiveAdmin.register User do
   end
 
   form do |f|
-    f.inputs :email, :first_name, :last_name, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :passport_number
-    f.buttons
+    f.inputs do
+      [:first_name, :last_name, :email].each do |field|
+        f.input field
+      end
+      if f.object.new_record?
+        f.input :role, :as => :select, :collection => [['Consumer', 'user'], ['Agent', 'agent']]
+        f.input :send_invitation, :as => :boolean
+        f.input :invitation_text, :as => :text
+      end
+
+      if !f.object.new_record?
+        f.input :gender, :as => :select, :collection => [[t("users.gender_male"), 'male'], [t("users.gender_female"), 'female']]
+        [:birthdate, :timezone, :phone_mobile, :avatar, :passport_number].each do |field|
+          f.input field
+        end
+      end
+      f.buttons
+    end
   end
 
   # Make Agent
@@ -83,31 +137,12 @@ ActiveAdmin.register User do
     redirect_to admin_users_path
   end
 
-  # Invite
-  action_item :only => :index do
-    link_to('New Invitation', invite_admin_users_path)
-  end
-
-  collection_action :invite, :method => :get do
-    render 'admin/invitations/new'
-  end
-
   action_item :only => :index do
     link_to('Invite from CSV', invite_csv_admin_users_path)
   end
 
   collection_action :invite_csv, :method => :get do
     render 'admin/invitations/import'
-  end
-
-  collection_action :send_invitation, :method => :post do
-    user = User.auto_signup(params[:invitation][:name], params[:invitation][:email], params[:invitation][:role], params[:invitation][:message])
-    if user.persisted?
-      flash[:success] = "Invitations sent"
-    else
-      flash[:error] = "There was an error sending the invitation"
-    end
-    redirect_to :action => :index
   end
 
   collection_action :import_invitations, :method => :post do

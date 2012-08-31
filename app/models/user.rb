@@ -20,7 +20,6 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
                   :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar, :paypal_email
 
-
   # TODO: check if we need this
   # has_many :addresses, :dependent => :destroy
 
@@ -64,7 +63,6 @@ class User < ActiveRecord::Base
   # Creates a new user with a random password automatically
   def self.auto_signup(name, email, role = 'user', message = nil)
     first_name, last_name = name.split(' ', 2)
-    password = Devise.friendly_token[0,20]
 
     user = User.find_by_email(email)
 
@@ -72,23 +70,28 @@ class User < ActiveRecord::Base
       user = self.new(
         :first_name => first_name,
         :last_name => last_name,
-        :email => email,
-        :password => password,
-        :password_confirmation => password
+        :email => email
       )
       user.signup_role = role
     end
 
-    user.generate_set_password_token
-    user.skip_welcome = true
-
-    Authorization::Maintenance::without_access_control do
-      if user.save
-        UserMailer.auto_welcome(user, message).deliver
-      end
+    if user.save_without_password
+      UserMailer.auto_welcome(user, message).deliver
     end
 
     user
+  end
+
+  def save_without_password
+    unless self.password
+      self.password = self.password_confirmation = Devise.friendly_token[0,20]
+    end
+
+    self.generate_set_password_token
+    self.skip_welcome = true
+    Authorization::Maintenance::without_access_control do
+      self.save
+    end
   end
 
   def self.send_invitations(list, role, message)

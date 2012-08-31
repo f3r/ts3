@@ -65,16 +65,35 @@ ActiveAdmin.register User do
     redirect_to({:action => :show}, :notice => "The user is now an admin")
   end
 
+  # Take control
+  action_item :only => :show do
+    link_to('Take Control', take_control_admin_user_path(user), :method => :post) if !user.admin?
+  end
+
+  member_action :take_control, :method => :post do
+    target_user = User.find(params[:id])
+    if target_user
+      current_admin_user.take_control(target_user)
+      sign_in_and_redirect current_admin_user.user
+    end
+  end
+
+  collection_action :release_control, :method => :post do
+    current_admin_user.release_control
+    redirect_to admin_users_path
+  end
+
+  # Invite
   action_item :only => :index do
     link_to('New Invitation', invite_admin_users_path)
   end
 
-  action_item :only => :index do
-    link_to('Invite from CSV', invite_csv_admin_users_path)
-  end
-
   collection_action :invite, :method => :get do
     render 'admin/invitations/new'
+  end
+
+  action_item :only => :index do
+    link_to('Invite from CSV', invite_csv_admin_users_path)
   end
 
   collection_action :invite_csv, :method => :get do

@@ -3,7 +3,7 @@
 - if current_user && current_user.is_taken?
   .head_take_control
     = t(:take_control_bar_message, :full_name => current_user.full_name, :email => current_user.email)
-    = link_to t(:release_control), '/private/urc'
+    = link_to t(:release_control), release_control_admin_users_path, :method => :post
 
 .head_notification
   = head_notification_agent

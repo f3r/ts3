@@ -31,6 +31,16 @@ class User
       [role.to_sym]
     end
 
+    def take_control(target_user)
+      self.controls_user = target_user
+      self.save
+    end
+
+    def release_control
+      self.controls_user = nil
+      self.save
+    end
+
     # The user that is currently being controlled
     def controlled_user
       if admin? && self.controls_user_id

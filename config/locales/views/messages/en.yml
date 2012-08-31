@@ -43,3 +43,12 @@ en:
     inquiry_on:         Inquiry on
     conversation_with:  Conversation with
     existing_account_please_login: "You already have an account registered with that email, please login before sending your inquiry."
+    
+  contact_requests:
+    contact_request_modal_title: Contact Us
+    contact_request_subject: Subject
+    contact_request_message: Message
+    button_contact: Submit
+    contact_request_error: "There was a problem processing your contact, please try again"
+    contact_request_success_title: "Your contact request has been sent!"
+    contact_request_sent_msg: "Received your contact request, Our support team will contact you shortly."

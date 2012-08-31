@@ -101,6 +101,19 @@ $(document).ready(function() {
     }
   });
   
+  $('.alert-message').remove();
+  $("#contact_form").validationEngine("attach",{
+    promptPosition : "bottomRight:-10,-10",
+    relative : true,
+    onValidationComplete : function(form, status){
+      if(status == true){
+        $("#contact_button").button('loading');
+        form.validationEngine('detach');
+        form.submit();
+	  }
+    }
+  });
+  
   if ($("#contact_form").length > 0) {
   	$("#contact_submit").click(function(){
   	

@@ -8,8 +8,6 @@ class City < ActiveRecord::Base
   before_save :update_cached_complete_name
   after_save :reset_routes_cache
 
-  after_commit  :delete_cache
-
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
@@ -94,16 +92,6 @@ class City < ActiveRecord::Base
     unless self.cached_complete_name == self.complete_name
       self.update_cached
     end
-  end
-
-  # Expires the cache after a city is modified or added
-  def delete_cache
-    delete_caches([
-      "geo_cities_all_active",
-      "geo_cities_all",
-      'geo_cities_' + country_code,
-      'geo_cities_' + country_code + '_' + (state ? state.parameterize : "")
-    ])
   end
 
   def reset_routes_cache

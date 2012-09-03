@@ -12,20 +12,14 @@ describe "AfterLoginRedirect" do
     end
 
     it "user with no listing redirected to new listing url" do
-      visit '/users/login'
-      fill_in 'user[email]',    :with => @agent.email
-      fill_in 'user[password]', :with => @agent.password
-      click_button 'Login'
+      login_as @agent
       current_path.should == "/listings/new"
     end
 
     it "user with a listing redirected root url" do
       SiteConfig.stub(:product_class).and_return(Property)
       prop = create(:property, :user => @agent)
-      visit '/users/login'
-      fill_in 'user[email]',    :with => @agent.email
-      fill_in 'user[password]', :with => @agent.password
-      click_button 'Login'
+      login_as @agent
       current_path.should == "/"
     end
   end

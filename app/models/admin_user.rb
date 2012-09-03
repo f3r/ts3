@@ -1,6 +1,8 @@
 class AdminUser < ActiveRecord::Base
   self.table_name= :users
 
+  include User::Roles
+
   default_scope where(["role = ? or role = ?", "admin", "superadmin"])
 
   # Include default devise modules. Others available are:
@@ -21,5 +23,9 @@ class AdminUser < ActiveRecord::Base
 
   def agent?
     false
+  end
+
+  def user
+    User.find(self.id)
   end
 end

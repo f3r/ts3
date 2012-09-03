@@ -62,7 +62,7 @@ class SearchController < ApplicationController
   private
 
   def show_alert_search(alert, act_as_new = true)
-    @search = alert.search.detach
+    @search = alert.search
     @city = City.find(@search.city_id)
     @results = @search.results
     @alert = alert

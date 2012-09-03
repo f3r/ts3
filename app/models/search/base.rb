@@ -21,6 +21,10 @@ module Search
       @results
     end
 
+    def clear_results
+      @results = nil
+    end
+
     def count
       @results = calculate_results
       @results.count

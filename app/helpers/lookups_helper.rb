@@ -7,7 +7,7 @@ module LookupsHelper
   end
 
   def currencies_options
-    Currency.active.collect{|cur| [cur.currency_code, cur.id]}
+    Currency.active.collect{|cur| [cur.label, cur.id]}
   end
 
   def currency_sign_of(code)

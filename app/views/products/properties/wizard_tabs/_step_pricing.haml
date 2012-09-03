@@ -72,3 +72,7 @@
 :javascript
   $('#place_currency').val("#{@resource.currency}");
   $(".currency-sign, .currency-sign-id").html('#{@resource.currency.label}');
+  $("#listing_currency_id").change(function () {
+    selected_currency = $('#listing_currency_id option:selected').html();
+    $(".currency-sign").html(selected_currency);
+  });

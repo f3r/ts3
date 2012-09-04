@@ -3,8 +3,14 @@ class PreviewMails < MailView
   ###############################################################
   # REGISTRATION_MAILER
   ###############################################################
-  def welcome_instructions
+  def welcome_consumer
     user = getUser()
+    RegistrationMailer.welcome_instructions(user)
+  end
+  
+  def welcome_agent
+    user = getUser()
+    user.role = 'agent'
     RegistrationMailer.welcome_instructions(user)
   end
 
@@ -241,6 +247,7 @@ class PreviewMails < MailView
       :query => {'currency' => 'USD', 'guests' => "1"} ,
       :alert_type => 'Property', 
       :active => 1, 
+      :role => 'user',
       :delivery_method => 'email',
       :schedule => 'monthly', 
       :search_code => '120429MQ0F3A'

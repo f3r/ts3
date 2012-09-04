@@ -1,4 +1,4 @@
-class ContactController < ApplicationController
+class ContactsController < ApplicationController
   respond_to :js, :html
    
   def create
@@ -7,6 +7,7 @@ class ContactController < ApplicationController
     if user.present?
       params[:contact_request][:name] = user.full_name
       params[:contact_request][:email] = user.email
+      params[:contact_request][:subject] = "#{user.full_name} sent a contact request."
     end
     
     @contact = ContactRequest.create_contact(params[:contact_request])
@@ -14,7 +15,7 @@ class ContactController < ApplicationController
     SystemMailer.user_contact(params[:contact_request]).deliver if @contact.persisted?
     
     respond_to do |format|
-      format.js { render :layout => false, :template => "contact/create" }
+      format.js { render :layout => false, :template => "contacts/create" }
     end
   end
 end

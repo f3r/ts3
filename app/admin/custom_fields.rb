@@ -12,6 +12,7 @@ ActiveAdmin.register CustomField  do
       f.input :hint
       f.input :validations
       f.input :values
+      f.input :more_info_label, :hint => "Only valid with Yes_No_Text field"
     end
     f.buttons
   end

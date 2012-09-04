@@ -19,7 +19,8 @@ PlaceShow =
 
       # Lazy load map
       if $(e.target).attr('href') == '#map-tab'
-        self.PlaceShow.initializeMap(opts.map_lat, opts.map_lon, opts.map_cityName, opts.map_countryName, opts.map_radius, "map")
+        if opts.map_lat != 'null' && opts.map_lon != 'null'
+          self.PlaceShow.initializeMap(opts.map_lat, opts.map_lon, opts.map_cityName, opts.map_countryName, opts.map_radius, "map")
     )
 
     if window.location.hash

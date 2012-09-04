@@ -6,8 +6,9 @@
     - if SiteConfig.photos?
       %li
         %a{:href => "#photo-slider", 'data-toggle' => 'tab'}= t("places.photos")
-    %li
-      %a{:href => "#map-tab", 'data-toggle' => 'tab'}= t("places.map")
+    - if resource.lat.present? && resource.lon.present?
+      %li
+        %a{:href => "#map-tab", 'data-toggle' => 'tab'}= t("places.map")
     - if SiteConfig.calendar?
       %li
         %a{:href => "#calendar-tab", 'data-toggle' => 'tab'}= t("places.calendar")
@@ -38,8 +39,9 @@
       // Photo Slider pane
       = render 'products/properties/tabs/photos', :resource => resource
 
-    // Map Pane
-    = render 'products/properties/tabs/map', :resource => resource
+    - if resource.lat.present? && resource.lon.present?
+      // Map Pane
+      = render 'products/properties/tabs/map', :resource => resource
 
     // Calendar Pane
     - if SiteConfig.calendar?

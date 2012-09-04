@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831083700) do
+ActiveRecord::Schema.define(:version => 20120831083855) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -217,6 +217,16 @@ ActiveRecord::Schema.define(:version => 20120831083700) do
   add_index "comments", ["place_id"], :name => "index_comments_on_place_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "contact_requests", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "conversations", :force => true do |t|
     t.integer  "target_id"
     t.string   "target_type"
@@ -376,7 +386,7 @@ ActiveRecord::Schema.define(:version => 20120831083700) do
     t.string  "html_file_name"
     t.string  "swf_file_name"
   end
-
+  
   create_table "payment_logs", :force => true do |t|
     t.integer "payment_id"
     t.string  "state"
@@ -406,7 +416,7 @@ ActiveRecord::Schema.define(:version => 20120831083700) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
-
+  
   create_table "photos", :force => true do |t|
     t.integer  "place_id"
     t.string   "name"
@@ -712,11 +722,12 @@ ActiveRecord::Schema.define(:version => 20120831083700) do
     t.boolean  "agent_need_approval",          :default => true
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
+    t.boolean  "enable_message_masking",       :default => true
     t.boolean  "charge_total",                 :default => false
     t.integer  "fee_amount",                   :default => 300
     t.boolean  "fee_is_fixed",                 :default => true
-    t.boolean  "enable_message_masking",       :default => true
     t.integer  "fixed_radius"
+    t.boolean  "show_contact",                 :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|

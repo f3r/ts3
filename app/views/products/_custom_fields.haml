@@ -1,6 +1,22 @@
 %fieldset.well.form-horizontal
   - CustomField.all.each do |cf|
-    .control-group{:class => cf.required ? 'required' : ''}
+    .control-group{:class => cf.required ? 'required' : '', :id => "cf_#{cf.name}"}
       = label_tag "custom_field_#{cf.name}", cf.label, :class => 'control-label'
       .controls
         = custom_field_input(cf, @resource)
+    - if cf.yes_no? and cf.linked_field.present?
+      :javascript
+        $(document).ready(function(){
+            $("#custom_field_#{cf.name}").live('change', function(){
+                if($(this).val() == 1) {
+                  $("#cf_#{cf.linked_field.name}").show();
+                }
+                else {
+                  $("#cf_#{cf.linked_field.name}").hide();
+                  $("#custom_field_#{cf.linked_field.name}").val("");
+                  $('#wizard_form').validationEngine('hide');
+                }
+            });
+
+            $("#custom_field_#{cf.name}").trigger('change');
+        });

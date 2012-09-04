@@ -12,6 +12,7 @@ ActiveAdmin.register CustomField  do
       f.input :hint
       f.input :validations
       f.input :values
+      f.input :linked_field, :as => :select, :hint => "This works only with 'Yes No' field"
     end
     f.buttons
   end

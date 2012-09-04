@@ -169,9 +169,9 @@ ActiveRecord::Schema.define(:version => 20120831083855) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -197,9 +197,9 @@ ActiveRecord::Schema.define(:version => 20120831083855) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -254,8 +254,9 @@ ActiveRecord::Schema.define(:version => 20120831083855) do
     t.text     "values"
     t.string   "validations"
     t.boolean  "required"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
+    t.integer  "linked_field_id"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -393,7 +394,7 @@ ActiveRecord::Schema.define(:version => 20120831083855) do
     t.string "previous_state"
     t.text "additional_data"
   end
-  
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -414,7 +415,7 @@ ActiveRecord::Schema.define(:version => 20120831083855) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-  
+
   create_table "photos", :force => true do |t|
     t.integer  "place_id"
     t.string   "name"
@@ -711,6 +712,9 @@ ActiveRecord::Schema.define(:version => 20120831083855) do
     t.datetime "photo_watermark_updated_at"
     t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"

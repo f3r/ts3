@@ -9,11 +9,10 @@ en:
       subject: 'Welcome to %{site_name}!'
       title: 'Welcome to %{site_name}!'
       first_line: '%{site_name} helps you find the best short-term and flexible accommodation for your business and personal travel.'
-      content: |
-        We focus on quality stays in major cities worldwide. Browse properties
-        %{link}. When you’ve found the right place for
-        you, click the “Inquire” button to get in touch with the property
-        owner. We’re here to help you find your home away from home.
+      content_consumer: |
+        Please login to your account to easily manage your inquiries, favorites and alerts.
+      content_agent: |
+        Please login to your account so you can easily update your profile, create listings, manage your inquiries and alerts.
     auto_welcome:
       subject: 'Welcome to %{site_name}!'
       intro: "Welcome to %{site_name}!"

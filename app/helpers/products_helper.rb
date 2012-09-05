@@ -95,15 +95,21 @@ module ProductsHelper
   def custom_field_value(cf, resource)
     field_value = resource.custom_fields[cf.name]
     value = case cf.type
-    when :dropdown
-      field_value.humanize if field_value
-    when :checkbox
-      field_value ? 'Yes' : 'No'
-    when :yes_no
-      CustomField.YES_NO_HASH.keys[field_value.to_i] if field_value.present? and field_value.match(/^\d+$/)
-    else
-      field_value
-    end
+              when :dropdown
+                field_value.humanize if field_value
+              when :checkbox
+                field_value ? 'Yes' : 'No'
+              when :yes_no
+                if field_value.present? and field_value.match(/^\d+$/)
+                  value = CustomField.YES_NO_HASH.keys[field_value.to_i]
+                  if field_value.to_i == 1 and cf.linked_field.present?
+                    value = value + " (#{custom_field_value(cf.linked_field, resource)})"
+                  end
+                  value
+                end
+              else
+                field_value
+            end
     value || '-'
   end
 

@@ -109,6 +109,10 @@ class User < ActiveRecord::Base
   def full_name
     [first_name, last_name].compact.join(' ')
   end
+  
+  def has_reset_password
+    return (self.sign_in_count == 0 && self.reset_password_token.present?) ? false : true
+  end
 
   def anonymized_name
     initials = []

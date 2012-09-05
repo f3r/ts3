@@ -389,6 +389,13 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
     t.string  "swf_file_name"
   end
 
+  create_table "payment_logs", :force => true do |t|
+    t.integer "payment_id"
+    t.string "state"
+    t.string "previous_state"
+    t.text "additional_data"
+  end
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"

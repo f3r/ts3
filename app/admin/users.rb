@@ -62,6 +62,7 @@ ActiveAdmin.register User do
     column :created_at
     column :confirmed_at
     column :last_sign_in_at
+    column ("Set_Password") { |user| reminder_status(user.has_reset_password)}
     column("Actions")     {|user| user_links_column(user) }
   end
 
@@ -70,6 +71,9 @@ ActiveAdmin.register User do
     attributes_table *rows do
       row(:avatar) {|u|
         image_tag(u.avatar.url('thumb')) if u.avatar?
+      }
+      row("Password set") { |u|
+        reminder_status(u.has_reset_password)
       }
     end
   end
@@ -94,7 +98,7 @@ ActiveAdmin.register User do
       f.buttons
     end
   end
-
+  
   # Make Agent
   action_item :only => :show do
     link_to('Make Agent', make_agent_admin_user_path(user), :method => :put,
@@ -143,6 +147,20 @@ ActiveAdmin.register User do
       current_admin_user.take_control(target_user)
       sign_in_and_redirect current_admin_user.user
     end
+  end
+  
+  # Send Password Reset Reminder
+  action_item :only => :show do
+    if !user.has_reset_password
+      link_to("Send Reminder", send_reset_password_reminder_admin_user_path(user), :method => :post,
+        :confirm => 'Are you sure you want to send password reset reminder?')
+    end
+  end
+  
+  member_action :send_reset_password_reminder, :method => :post do
+    user = User.find(params[:id])
+    UserMailer.password_reset_reminder(user).deliver if user
+    redirect_to({:action => :show}, :notice => "Sent password reset reminder.")
   end
 
   collection_action :release_control, :method => :post do

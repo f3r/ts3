@@ -18,6 +18,11 @@ class PreviewMails < MailView
     user = getUser()
     RegistrationMailer.reset_password_instructions(user)
   end
+  
+  def reset_password_reminder
+    user = getUser()
+    UserMailer.password_reset_reminder(user)
+  end
 
   def new_question
     user = getUser()

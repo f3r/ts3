@@ -27,6 +27,10 @@ en:
         If you didn't request this, please ignore this email.<br /><br />
         Your password won't change until you access the link above and create a new one.
       change_my_password: Change my password
+    reset_password_reminder_instructions:
+      subject:  "%{site_name} Reminder: Reset your password."
+      intro: "Please change your password at your earliest convenience. You can do this through the link below."
+      set_password: 'Click here to reset your password and activate your account.'
     new_question:
       subject: "You have a new question from %{sender} on %{site_name}"
       intro: "You have a question from %{name} regarding %{place_title} waiting for you on %{site_name}!"

@@ -45,4 +45,11 @@ class UserMailer < BaseMailer
     @message   = message || t('mailers.auto_welcome.content')
     mail(:to => recipients, :subject => subject)
   end
+  
+  def password_reset_reminder(user)
+    @user      = user
+    recipients = "#{user.full_name} <#{user.email}>"
+    subject    = t('mailers.reset_password_reminder_instructions.subject')
+    mail(:to => recipients, :subject => subject)
+  end
 end

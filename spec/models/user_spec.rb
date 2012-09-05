@@ -200,6 +200,11 @@ describe User do
       user.reset_password_token.should_not be_nil
       user.reset_password_sent_at.should_not be_nil
     end
+    
+    it "Does the autosignup user reset his password?" do
+       user = User.auto_signup("Baiju John", "baijucjohn@gmail.com")
+       user.has_reset_password.should == false
+    end
 
     it "re-invites existing user" do
       user = create(:agent)

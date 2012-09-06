@@ -4,7 +4,8 @@
 
 %li{:id => dom_id(resource), "data-url" => url, :class => my_products ? 'search-item' : 'search-item-clickable'}
   .thumb.data-block
-    %span{:class => "marker_point" ,:id => "marker_point_#{resource.id}"}
+    - if !my_products
+      %span{:class => "marker_point" ,:id => "marker_point_#{resource.id}"}
     = link_to url do
       = image_tag(resource.primary_photo)
   .info

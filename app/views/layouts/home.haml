@@ -3,26 +3,26 @@
   %head
     = render 'shared/meta'
 
-  %body
+  %body{:id => @body_id}
     = render 'shared/header'
 
     .container
       .content
         = flash_messages
         = yield
-    .container    
+    .container
       .content
         = render 'shared/footer'
-    
+
     :javascript
       $(document).ready(function() {
         $('.gallery-pics').each(function(index){
           $(this).after('<div class="gallery-nav gnav' + index+ '">')
-          .cycle({ 
-            fx:     'fade', 
-            speed:  'slow', 
-            timeout: 4000, 
-            pager:  '.gnav' + index 
+          .cycle({
+            fx:     'fade',
+            speed:  'slow',
+            timeout: 4000,
+            pager:  '.gnav' + index
           });
-        });          
+        });
       });

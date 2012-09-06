@@ -69,12 +69,39 @@ module ProductsHelper
     klasses = "validate[#{validation_klasses.join(',')}] "
 
     html = case cf.type
-    when :dropdown
-      select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses }
-    when :checkbox
-      check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
-    else
-      text_field_tag field_name, field_value, :id => field_id, :class => klasses
+             when :dropdown, :yes_no, :yes_no_text
+               select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses}
+             when :checkbox
+               check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
+             else
+               text_field_tag field_name, field_value, :id => field_id, :class => klasses
+           end
+
+    if cf.yes_no_text? and cf.more_info_label.present?
+      extra_field_name = "listing[custom_fields][#{cf.name_extra}]"
+      extra_field_value = resource.custom_fields[cf.name_extra]
+      extra_field_id    = "custom_field_#{cf.name_extra}"
+      #TODO: Clean the below a bit
+      html << content_tag(:span, :id => "cf_extra_#{extra_field_id}") do
+        "&nbsp;&nbsp;#{cf.more_info_label}&nbsp;&nbsp;#{text_field_tag(extra_field_name, extra_field_value, :id => extra_field_id)}".html_safe
+      end
+
+      html << javascript_tag do
+        %Q{
+           $(document).ready(function(){
+                $("##{field_id}").on('change', function(){
+                          if($(this).val() == 'yes') {
+                            $("#cf_extra_#{extra_field_id}").show();
+                          }
+                          else {
+                            $("#cf_extra_#{extra_field_id}").hide();
+                          }
+                    });
+                $("##{field_id}").triggerHandler('change');
+            });
+
+        }.html_safe
+      end
     end
 
     if cf.hint.present?
@@ -93,13 +120,22 @@ module ProductsHelper
   def custom_field_value(cf, resource)
     field_value = resource.custom_fields[cf.name]
     value = case cf.type
-    when :dropdown
-      field_value.humanize if field_value
-    when :checkbox
-      field_value ? 'Yes' : 'No'
-    else
-      field_value
-    end
+              when :dropdown
+                field_value.humanize if field_value
+              when :checkbox
+                field_value ? 'Yes' : 'No'
+              when :yes_no
+                CustomField.YES_NO_HASH.invert[field_value]
+              when :yes_no_text
+                value = CustomField.YES_NO_HASH.invert[field_value]
+                if field_value == "yes" and cf.more_info_label.present?
+                  more_info_value = resource.custom_fields[cf.name_extra]
+                  value = value + " (#{more_info_value})" if more_info_value.present?
+                end
+                value
+              else
+                field_value
+            end
     value || '-'
   end
 

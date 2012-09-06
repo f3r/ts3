@@ -17,9 +17,11 @@ class CustomField < ActiveRecord::Base
     "#{self.name}_extra"
   end
 
+  # Why this hash? the keys can be from I18n for different langs
+  # But the values has to remain same - so the js and code checking will work fine :)
   def self.YES_NO_HASH
     #TODO have the no and yes labels translated?
-    #Let's give no preference ;)
-  {"No" => 0, "Yes" => 1}
+    #Let's give 'No' preference ;)
+  {"No" => "no", "Yes" => "yes"}
   end
 end

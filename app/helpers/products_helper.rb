@@ -89,15 +89,15 @@ module ProductsHelper
       html << javascript_tag do
         %Q{
            $(document).ready(function(){
-                $("##{field_id}").live('change', function(){
-                          if($(this).val() == 1) {
+                $("##{field_id}").on('change', function(){
+                          if($(this).val() == 'yes') {
                             $("#cf_extra_#{extra_field_id}").show();
                           }
                           else {
                             $("#cf_extra_#{extra_field_id}").hide();
                           }
                     });
-                $("##{field_id}").trigger('change');
+                $("##{field_id}").triggerHandler('change');
             });
 
         }.html_safe
@@ -125,16 +125,14 @@ module ProductsHelper
               when :checkbox
                 field_value ? 'Yes' : 'No'
               when :yes_no
-                CustomField.YES_NO_HASH.keys[field_value.to_i] if field_value.present? and field_value.match(/^\d+$/)
+                CustomField.YES_NO_HASH.invert[field_value]
               when :yes_no_text
-                if field_value.present? and field_value.match(/^\d+$/)
-                  value = CustomField.YES_NO_HASH.keys[field_value.to_i] if field_value.present? and field_value.match(/^\d+$/)
-                  if field_value.to_i == 1 and cf.more_info_label.present?
-                    more_info_value = resource.custom_fields[cf.name_extra]
-                    value = value + " (#{more_info_value})" if more_info_value.present?
-                  end
-                  value
+                value = CustomField.YES_NO_HASH.invert[field_value]
+                if field_value == "yes" and cf.more_info_label.present?
+                  more_info_value = resource.custom_fields[cf.name_extra]
+                  value = value + " (#{more_info_value})" if more_info_value.present?
                 end
+                value
               else
                 field_value
             end

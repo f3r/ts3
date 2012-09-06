@@ -1,6 +1,16 @@
 class PasswordsController < Devise::PasswordsController
   layout 'application'
 
+  def create
+    self.resource = User.find_or_initialize_with_errors(Devise.reset_password_keys, resource_params, :not_found)
+    if resource.disabled?
+      set_flash_message :notice, :disabled
+      redirect_to new_user_session_path
+      return
+    end
+    super
+  end
+
   def edit
     self.resource = resource_class.new
     resource.reset_password_token = params[:reset_password_token]

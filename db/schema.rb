@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120905124909) do
+ActiveRecord::Schema.define(:version => 20120906075238) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -289,9 +289,10 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
   end
 
   create_table "galleries", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                               :null => false
+    t.integer  "transition_speed", :default => 1000
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "gallery_items", :force => true do |t|
@@ -378,6 +379,13 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
     t.string  "swf_file_name"
   end
 
+  create_table "payment_logs", :force => true do |t|
+    t.integer "payment_id"
+    t.string  "state"
+    t.string  "previous_state"
+    t.text    "additional_data"
+  end
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -386,6 +394,28 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
     t.integer  "transaction_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "amount"
+    t.text     "note"
+    t.integer  "recipient_id"
+    t.integer  "transaction_id"
+    t.string   "state"
+    t.datetime "added_at"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "paypal_auth_infos", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "email"
+    t.string   "ppp_access_token"
+    t.string   "ppp_access_token_verifier"
+    t.text     "personal_data_paypal_response"
+    t.text     "permissions_response"
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -669,10 +699,10 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
+    t.string   "color_scheme",                 :default => "default"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
@@ -684,9 +714,6 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
     t.text     "sidebar_widget"
-    t.boolean  "charge_total",                 :default => false
-    t.integer  "fee_amount",                   :default => 300
-    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"
@@ -696,6 +723,9 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
     t.boolean  "agent_need_approval",          :default => true
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "enable_message_masking",       :default => true
     t.integer  "fixed_radius"
   end
@@ -787,6 +817,7 @@ ActiveRecord::Schema.define(:version => 20120905124909) do
     t.string   "unconfirmed_email"
     t.string   "paypal_email"
     t.integer  "controls_user_id"
+    t.boolean  "disabled",                              :default => false
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

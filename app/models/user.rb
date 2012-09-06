@@ -175,6 +175,33 @@ class User < ActiveRecord::Base
     return self.preferences.size_unit_id if self.preferences
   end
 
+  # Overrides active_for_authentication? from Devise::Models::Activatable for disabling from admin
+  # by verifying whether a user is disabled
+  def active_for_authentication?
+    super && !disabled?
+  end
+
+  # Overwrites invalid_message from Devise::Models::Authenticatable to define
+  # the correct reason for blocking the sign in.
+  def inactive_message
+    disabled? ? :disabled : super
+  end
+
+  # Disables the user
+  def disable
+    self.disabled = true
+    self.save
+  end
+
+  ## Disables the user and unpublishes things
+  def disable_and_unpublish_listings
+    self.transaction do
+      self.disable
+      self.products.published.update_all(:published => false)
+      self.save
+    end
+  end
+
 private
 
   def send_on_create_welcome_instructions

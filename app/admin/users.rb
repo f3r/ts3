@@ -119,6 +119,19 @@ ActiveAdmin.register User do
     redirect_to({:action => :show}, :notice => "The user is now an admin")
   end
 
+  #Disable User
+  action_item :only => :show do
+    link_to('Disable User', disable_admin_user_path(user), :method => :put,
+            :confirm => "Are you sure you want to disable this user?\nNote: Doing so will unpublish all listings this user owns") if !user.disabled?
+  end
+
+  member_action :disable, :method => :put do
+    user = User.find(params[:id])
+    user.disable_and_unpublish_listings
+    redirect_to({:action => :show}, :notice => "The user has been disabled")
+  end
+
+
   # Take control
   action_item :only => :show do
     link_to('Take Control', take_control_admin_user_path(user), :method => :post) if !user.admin?

@@ -1,5 +1,5 @@
 - if @results
-  = render :partial => 'row', :collection => @results, :as => :resource
+  = render :partial => 'row', :collection => @results, :as => :resource, :locals => {:my_products => my_products}
 - else
   %li
     .thumb.data-block

@@ -1,3 +1,5 @@
+- my_products  ||= false
+
 - if @results.blank?
   .row.no-results
     .span9
@@ -5,7 +7,7 @@
 - else
   %ul.list-display
     #search_result_list
-      = render 'results_list_view'
+      = render 'results_list_view', :my_products => my_products
 
   .show-grid.hide
     %ul

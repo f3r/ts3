@@ -1,15 +1,12 @@
 class ContactRequest < ActiveRecord::Base
-  
-  validates_presence_of :name, :email,:message
-  
-  scope :active,    where("active")
-  scope :inactive,  where("not active")
-  
-  attr_accessible :name,:email,:subject,:message,:active
-  
+
+  validates_presence_of :name, :email, :message
+
+  attr_accessible :name,:email,:message
+
   # Include the Rakismet model
   include Rakismet::Model
-  
+
   def self.create_contact(params)
     contact = self.create(params)
     self.rakismet_attrs(:content => params[:message])

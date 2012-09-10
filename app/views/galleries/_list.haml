@@ -1,5 +1,19 @@
-.gallery-pics
-  - g_items.each do |image| 
+.gallery-pics{:id => "g_#{gallery.name}"}
+  - g_items.each do |image|
     = link_to image.link, :class => "thumbnail" do
       .description= "#{image.label}"
       = image_tag image.image_url
+
+:javascript
+  $(document).ready(function(){
+    $("#g_#{gallery.name}").after(
+      '<div class="gallery-nav gnav#{gallery.name}">'
+    )
+    .cycle({
+        fx:     'fade',
+        speed:  'slow',
+        timeout: #{gallery.transition_speed},
+        pager:  '.gnav#{gallery.name}'
+        });
+  });
+

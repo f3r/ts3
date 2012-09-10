@@ -9,3 +9,4 @@ public/system/**
 .rvmrc
 config/local.yml
 config/locales/log/
+.idea/

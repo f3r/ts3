@@ -117,7 +117,7 @@ module ApplicationHelper
     g = Gallery.find_by_name(name)
     if !g.nil?
       @g_items = g.gallery_items.active
-      render :partial => "galleries/list", :locals => { :g_items => @g_items }
+      render :partial => "galleries/list", :locals => { :g_items => @g_items, :gallery => g }
     end
   end
 

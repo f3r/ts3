@@ -289,9 +289,10 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
   end
 
   create_table "galleries", :force => true do |t|
-    t.string   "name",       :null => false
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.string   "name",                               :null => false
+    t.integer  "transition_speed", :default => 1000
+    t.datetime "created_at",                         :null => false
+    t.datetime "updated_at",                         :null => false
   end
 
   create_table "gallery_items", :force => true do |t|

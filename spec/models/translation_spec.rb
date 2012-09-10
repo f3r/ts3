@@ -105,29 +105,29 @@ describe Translation do
     it "accept default placeholders" do
       @translation.value = "Singapore %{site_name}"
       @translation.save
-      
-      @translation.value.should == "Singapore %{site_name}"
+
+      I18n.t('cities.singapore').should == "Singapore %{site_name}"
     end
     
     it "will not accept wrong placeholders" do
       @translation.value = "Singapore %{site_name1}"
       @translation.save
       
-      @translation.value.should == "Singapore"
+      I18n.t('cities.singapore').should == "Singapore"
     end
     
     it "will not accept wrong placeholders" do
       @translation.value = "Singapore %{link}"
       @translation.save
       
-      @translation.value.should == "Singapore"
+      I18n.t('cities.singapore').should == "Singapore"
     end
     
      it "accept correct placeholders" do
       @translation.value = "Singapore %{site_name} %{site_url}"
       @translation.save
       
-      @translation.value.should == "Singapore %{site_name} %{site_url}"
+      I18n.t('cities.singapore').should == "Singapore %{site_name} %{site_url}"
     end
   end
 end

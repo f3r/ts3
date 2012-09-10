@@ -388,14 +388,14 @@ ActiveRecord::Schema.define(:version => 20120912052840) do
     t.string  "html_file_name"
     t.string  "swf_file_name"
   end
-  
+
   create_table "payment_logs", :force => true do |t|
     t.integer "payment_id"
     t.string "state"
     t.string "previous_state"
     t.text "additional_data"
   end
-  
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -405,7 +405,7 @@ ActiveRecord::Schema.define(:version => 20120912052840) do
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
-  
+
   create_table "payments", :force => true do |t|
     t.integer "amount"
     t.text "note"
@@ -706,12 +706,13 @@ ActiveRecord::Schema.define(:version => 20120912052840) do
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
+    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
-    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
+    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
     t.boolean  "charge_total",                 :default => false
     t.integer  "fee_amount",                   :default => 300
@@ -726,6 +727,9 @@ ActiveRecord::Schema.define(:version => 20120912052840) do
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
     t.boolean  "enable_message_masking",       :default => true
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.integer  "fixed_radius"
     t.boolean  "show_contact",                 :default => true
   end

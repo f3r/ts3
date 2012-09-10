@@ -7,7 +7,7 @@ class Translation < ActiveRecord::Base
   scope :messages,   where("`translations`.`key` LIKE ?", 'messages.%')
   scope :mailers,    where("`translations`.`key` LIKE ?", 'mailers.%')
 
-  before_save   :validate_placeholders 
+  validate      :validate_placeholders 
   after_save    :delete_cache
   after_destroy :delete_cache
 
@@ -64,9 +64,11 @@ class Translation < ActiveRecord::Base
     if new_placeholders.present?
       non_allowed = new_placeholders - allowed_placeholders
       if non_allowed.present?
-        self.value = self.value_was
+        errors.add(:value, I18n.t('errors.translations.placeholders_not_allowed'))
+        return false
       end
     end
+    return true
   end
   
   def interpolation_keys( string )

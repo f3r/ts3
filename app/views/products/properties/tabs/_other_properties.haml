@@ -1,6 +1,5 @@
 #other-properties.tab-pane
   - @results = @other_properties
-  - @my_products = true
   .results{:style => "padding-left: 10px; padding-right: 10px;"}
     #search_results
-      = render 'search_results', :results => @results
+      = render 'search_results', :results => @results, :my_products => true

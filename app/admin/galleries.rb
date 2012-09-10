@@ -17,7 +17,7 @@ ActiveAdmin.register Gallery do
   form do |f|
     f.inputs do
       f.input :name
-      f.input :transition_speed, :hint => "In milliseconds"
+      f.input :transition_speed, :hint => "In miliseconds"
     end
     f.buttons
   end

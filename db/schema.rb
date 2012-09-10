@@ -169,9 +169,9 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "position",        :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -183,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",                             :null => false
+    t.string  "page_url",         :default => "",     :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -197,9 +197,9 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
-    t.integer  "position",        :default => 0
+    t.datetime "created_at",                                  :null => false
+    t.datetime "updated_at",                                  :null => false
+    t.integer  "position",        :limit => 2, :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -289,10 +289,9 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
   end
 
   create_table "galleries", :force => true do |t|
-    t.string   "name",                               :null => false
-    t.integer  "transition_speed", :default => 1000
-    t.datetime "created_at",                         :null => false
-    t.datetime "updated_at",                         :null => false
+    t.string   "name",       :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "gallery_items", :force => true do |t|
@@ -379,13 +378,6 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
     t.string  "swf_file_name"
   end
 
-  create_table "payment_logs", :force => true do |t|
-    t.integer "payment_id"
-    t.string  "state"
-    t.string  "previous_state"
-    t.text    "additional_data"
-  end
-
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -394,28 +386,6 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
     t.integer  "transaction_id"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
-
-  create_table "payments", :force => true do |t|
-    t.integer  "amount"
-    t.text     "note"
-    t.integer  "recipient_id"
-    t.integer  "transaction_id"
-    t.string   "state"
-    t.datetime "added_at"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "paypal_auth_infos", :force => true do |t|
-    t.integer  "user_id"
-    t.string   "email"
-    t.string   "ppp_access_token"
-    t.string   "ppp_access_token_verifier"
-    t.text     "personal_data_paypal_response"
-    t.text     "permissions_response"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
   end
 
   create_table "photos", :force => true do |t|
@@ -721,11 +691,11 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
     t.boolean  "enable_price_per_month"
     t.boolean  "enable_price_sale"
     t.boolean  "agent_need_approval",          :default => true
-    t.boolean  "panoramas",                    :default => false
-    t.boolean  "photos",                       :default => true
     t.boolean  "charge_total",                 :default => false
     t.integer  "fee_amount",                   :default => 300
     t.boolean  "fee_is_fixed",                 :default => true
+    t.boolean  "panoramas",                    :default => false
+    t.boolean  "photos",                       :default => true
     t.boolean  "enable_message_masking",       :default => true
     t.integer  "fixed_radius"
   end

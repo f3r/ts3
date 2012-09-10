@@ -13,6 +13,11 @@ FactoryGirl.define do
     currency
     city
     price_per_month { 1000 }
+
+    factory :published_product do
+      published { true }
+    end
+
   end
 
   factory :service do

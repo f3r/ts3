@@ -242,4 +242,24 @@ describe User do
       @agent.other_published_products(place2).first.id.should == place1.id
     end
   end
+
+  context "user disable" do
+
+    it "disables him" do
+      agent = create(:agent)
+      agent.disable
+      agent.disabled.should be_true
+    end
+
+    it "unpublishes the listings owned" do
+      agent = create(:agent)
+
+      pro1 = create(:published_product, :user => agent)
+      pro2 = create(:published_product, :user => agent)
+
+      agent.products.published.count.should == 2
+      agent.disable_and_unpublish_listings
+      agent.products.published.count.should == 0
+    end
+  end
 end

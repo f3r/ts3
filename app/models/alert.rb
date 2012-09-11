@@ -33,8 +33,8 @@ class Alert < ActiveRecord::Base
         new_results    = []
         recently_added = []
         city           = City.find(alert.search.city_id)
-        new_results    = alert.get_results(:search_type => "new_results")
-        recently_added = alert.get_results(:search_type => "recently_added")
+        new_results    = alert.get_results({:search_type => "new_results"})
+        recently_added = alert.get_results({:search_type => "recently_added"}, new_results)
         if new_results.present? or recently_added.present?
           mailer = AlertMailer.send_alert(alert.user, alert, city, new_results, recently_added)
           if mailer.deliver
@@ -71,8 +71,8 @@ class Alert < ActiveRecord::Base
   end
 
 
-  def get_results(opts = {})
-    search = self.search.detach
+  def get_results(opts = {}, prev_results = nil)
+    search = self.search
     resource_class = search.resource_class
     if opts[:search_type] == "new_results"
       exclude_ids = self.results
@@ -82,6 +82,7 @@ class Alert < ActiveRecord::Base
     elsif opts[:search_type] == "recently_added"
       search.date_from = self.delivered_at
     end
+    search.exclude_ids = prev_results.map{|r| r[:id]} if prev_results.present?
     get_full_results(search)
   end
 
@@ -111,11 +112,12 @@ class Alert < ActiveRecord::Base
   end
 
   def get_full_results(search)
-    search   = search.detach
     results  = []
+    search.clear_results
     results += search.results.all.to_a
-    for page in (2..search.total_pages)
-      search = search.detach
+    total_pages = search.total_pages
+    for page in (2..total_pages)
+      search.clear_results
       search.current_page = page
       results += search.results.all.to_a
     end

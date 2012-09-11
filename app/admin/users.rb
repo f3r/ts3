@@ -94,7 +94,7 @@ ActiveAdmin.register User do
         f.input :send_invitation, :as => :boolean
         f.input :invitation_text, :as => :text
       end
-      f.input :role, :as => :select, :collection => [['Consumer', 'user'], ['Agent', 'agent'], ['Admin', 'admin']], :include_blank => false
+      f.input :role, :as => :select, :collection => [[I18n.t('users.role_user'), 'user'], [I18n.t('users.role_agent'), 'agent'], [I18n.t('users.role_admin'), 'admin']], :include_blank => false
 
       if !f.object.new_record?
         f.input :gender, :as => :select, :collection => [[t("users.gender_male"), 'male'], [t("users.gender_female"), 'female']]

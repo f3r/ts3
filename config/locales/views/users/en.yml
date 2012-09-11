@@ -41,6 +41,9 @@ en:
     edit:                       Edit
     profile_required_message:   "Please click Edit on your profile to enter additional information needed to make reservations on %{site_name}."
     required_fields:            Required fields
+    role_user:                  Consumer
+    role_agent:                 Agent
+    role_admin:                 Admin
 
     registration:
       login:                      Login

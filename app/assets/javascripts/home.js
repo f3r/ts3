@@ -19,4 +19,5 @@ $(document).ready(function() {
   $('#my-modal').bind('hidden', function () {
     $("#country-select").hide();
   });
+
 });

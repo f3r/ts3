@@ -101,6 +101,51 @@ $(document).ready(function() {
     }
   });
 
+  $('.alert-message').remove();
+  $("#contact_form").validationEngine("attach",{
+    promptPosition : "bottomRight:-10,-10",
+    relative : true,
+    onValidationComplete : function(form, status){
+      if(status == true){
+        $("#contact_button").button('loading');
+        form.validationEngine('detach');
+        form.submit();
+	  }
+    }
+  });
+
+  if ($("#contact_form").length > 0) {
+  	$("#contact_submit").click(function(){
+
+  		$(".contact_error").hide();
+  		var hasError = false;
+  		var emailReg = /^([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?$/;
+
+  		if ($('#contact_name').val() == '') {
+  			$("#contact_name").after('<span class="contact_error">Please enter your Name.</span>');
+  			hasError = true;
+  		}
+
+  		if ($("#contact_email").val() == '') {
+  			$("#contact_email").after('<span class="contact_error">Please enter your email address.</span>');
+  			hasError = true;
+  		}
+  		else
+  			if (!emailReg.test($("#contact_email").val())) {
+  				$("#contact_email").after('<span class="contact_error">Enter a valid email address.</span>');
+  				hasError = true;
+  			}
+
+  		var message = $.trim($('#contact_query').val());
+  		if (message == null || message == '' || message.indexOf('\n') > 0) {
+  			$("#contact_query").after('<span class="contact_error">Please enter Message.</span>');
+  			hasError = true;
+  		}
+
+  		return !hasError;
+  	});
+  }
+
   $("form.validated").validationEngine();
 
   $("a.tooltip, a[rel=tooltip], a[rel='tooltip nofollow'], button[rel=tooltip], a.tooltip-link").tooltip({

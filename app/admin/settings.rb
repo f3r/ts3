@@ -43,6 +43,10 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Message Masking" do
       f.input :enable_message_masking, :label=>"Hide emails, phone numbers, etc in messages between users"
     end
+    
+    f.inputs "Show Contact Form" do
+      f.input :show_contact, :label=>"Show Contact Form"
+    end
 
     f.inputs "Images" do
       f.input :fav_icon, :hint => (f.template.image_tag(SiteConfig.fav_icon.url) if SiteConfig.fav_icon?)

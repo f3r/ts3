@@ -105,7 +105,10 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
+  
   resources :feedbacks, :only => [:new, :create]
+  
+  resources :contacts, :only => [:create]
   match '/:city'           => 'search#index', :city => City.routes_regexp
 
   # SEO Routes

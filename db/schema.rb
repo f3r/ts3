@@ -217,6 +217,16 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
   add_index "comments", ["place_id"], :name => "index_comments_on_place_id"
   add_index "comments", ["user_id"], :name => "index_comments_on_user_id"
 
+  create_table "contact_requests", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.string   "subject"
+    t.text     "message"
+    t.boolean  "active",     :default => true
+    t.datetime "created_at",                   :null => false
+    t.datetime "updated_at",                   :null => false
+  end
+
   create_table "conversations", :force => true do |t|
     t.integer  "target_id"
     t.string   "target_type"
@@ -699,6 +709,7 @@ ActiveRecord::Schema.define(:version => 20120906075238) do
     t.boolean  "photos",                       :default => true
     t.boolean  "enable_message_masking",       :default => true
     t.integer  "fixed_radius"
+    t.boolean  "show_contact",                 :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|

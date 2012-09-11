@@ -52,9 +52,9 @@ ActiveAdmin.register User do
   end
 
   scope :all, :default => true
-  scope :consumer
-  scope :agent
-  scope :admin
+  scope I18n.t('users.role_user'),  :consumer
+  scope I18n.t('users.role_agent'), :agent
+  scope I18n.t('users.role_admin'), :admin
 
   filter :email
   filter :first_name

@@ -20,9 +20,6 @@ class User < ActiveRecord::Base
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
                   :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar, :paypal_email
 
-  # TODO: check if we need this
-  # has_many :addresses, :dependent => :destroy
-
   has_one :address
   has_one :bank_account
   has_one :preferences
@@ -110,6 +107,10 @@ class User < ActiveRecord::Base
     [first_name, last_name].compact.join(' ')
   end
 
+  def has_reset_password
+    self.sign_in_count != 0 || !self.reset_password_token.present?
+  end
+
   def anonymized_name
     initials = []
     initials << "#{first_name[0]}." if first_name
@@ -133,13 +134,9 @@ class User < ActiveRecord::Base
   end
 
   def change_preference(pref, value)
-   # if pref =~ /pref_/
    if self.preferences
      self.preferences.update_attribute(pref, value)
-   else
-
    end
-   # end
   end
 
   def generate_set_password_token
@@ -156,23 +153,23 @@ class User < ActiveRecord::Base
   end
 
   def prefered_language
-    return self.preferences.locale if self.preferences
+    self.preferences.locale if self.preferences
   end
 
   def prefered_currency
-    return self.preferences.currency if self.preferences
+    self.preferences.currency if self.preferences
   end
 
   def prefered_city
-    return self.preferences.city if self.preferences
+    self.preferences.city if self.preferences
   end
 
   def prefered_speed_unit
-    return self.preferences.speed_unit_id if self.preferences
+    self.preferences.speed_unit_id if self.preferences
   end
 
   def prefered_size_unit
-    return self.preferences.size_unit_id if self.preferences
+    self.preferences.size_unit_id if self.preferences
   end
 
   # Overrides active_for_authentication? from Devise::Models::Activatable for disabling from admin

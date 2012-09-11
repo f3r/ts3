@@ -27,9 +27,9 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Credentials for external services" do
       f.input :gae_tracking_code ,:label=>"Google Analytics Tracking Code"
       f.input :fb_app_id , :label=>"Facebook App ID"
-      f.input :fb_app_secret, :label=>"Facebook Secret"
+      f.input :fb_app_secret, :label=>"Facebook Secret",:hint => (f.template.link_to('How to connect Facebook?', admin_admin_faq_path+"#facebook_faq"))
       f.input :tw_app_id, :label=>"Twitter App ID"
-      f.input :tw_app_secret, :label=>"Twitter Secret"
+      f.input :tw_app_secret, :label=>"Twitter Secret",:hint => (f.template.link_to('How to connect Twitter?', admin_admin_faq_path+"#twitter_faq"))
     end
 
     f.inputs "Storage" do
@@ -58,10 +58,6 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.buttons
   end
   
-  action_item do
-      link_to "FAQ for Admins", "/adminfaq"
-  end
-
   member_action :reset_field, :method => :put do
     which_field = params[:f]
 

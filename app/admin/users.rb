@@ -65,7 +65,7 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :full_name
-    column(:role)         {|user| status_tag(user.role) }
+    column(:role)         {|user| status_tag(I18n.t("users.role_#{user.role}"), user.role) }
     column :created_at
     column :confirmed_at
     column :last_sign_in_at

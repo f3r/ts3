@@ -44,6 +44,7 @@ en:
     role_user:                  Consumer
     role_agent:                 Agent
     role_admin:                 Admin
+    role_superadmin:            SuperAdmin
 
     registration:
       login:                      Login

@@ -80,7 +80,7 @@ module ApplicationHelper
     if user.avatar?
       user.avatar.url(:thumb)
     else
-      "https://s3.amazonaws.com/squarestays-static/missing_userpic_200.jpeg"
+      asset_path "missing_userpic_200.jpeg"
     end
   end
 

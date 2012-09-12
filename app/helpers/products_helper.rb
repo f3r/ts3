@@ -104,6 +104,21 @@ module ProductsHelper
       end
     end
 
+    if cf.date?
+      # Add a datepicker to the field
+      html << javascript_tag do
+        %Q{
+          $(document).ready(function(){
+              $("##{field_id}").datepicker({
+                  dateFormat: "#{cf.date_format}"
+              });
+          });
+
+        }.html_safe
+
+      end
+    end
+
     if cf.hint.present?
       if cf.type == :checkbox
         html = content_tag(:label, :class => 'checkbox') do

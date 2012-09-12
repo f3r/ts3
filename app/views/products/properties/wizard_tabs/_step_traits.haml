@@ -3,6 +3,9 @@
     = "#{t("places.wizard.amenities.select_one")}"
   - AmenityGroup.all.each do |ag|
     %h3= ag.name
+    - if ag.prompt_text.present?
+      .alert.alert-information.alert-block
+        %p= ag.prompt_text    
     %fieldset
       - ag.amenities.each do |a|
         %label.amenity{:for => dom_id(a)}

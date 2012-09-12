@@ -134,6 +134,8 @@ en:
       amenities:
         select_one: Please select at least one
         do_you_allow_smoking: Do you allow smoking in your apartment/balcony?
+        select_all: select all
+        select_none: select none
       calendar:
         calendar_hint: Please let us know what dates the place is available for rent
         add_new: Add New

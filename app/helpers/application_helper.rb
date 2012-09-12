@@ -137,16 +137,20 @@ module ApplicationHelper
   end
 
   def head_notification_agent
+    html = ""
     if user_signed_in? and current_user.agent?
+      resource_class = SiteConfig.product_class
       html = ""
-      if Product.manageable_by(current_user).count.zero?
-        html << t('products.no_listings_home', :link => new_listing_path).html_safe
-      # If no published listing
-      elsif not current_user.products.published.any?
-        html << t('products.no_published_listings', :link => edit_listing_path(current_user.products.first)).html_safe
+      unless controller_name == "listings"
+        if resource_class.manageable_by(current_user).count.zero?
+          html << t('products.no_listings_home', :link => new_listing_path).html_safe
+          # If no published listing
+        elsif not resource_class.manageable_by(current_user).published.any?
+          html << t('products.no_published_listings', :link => edit_listing_path(resource_class.manageable_by(current_user).first)).html_safe
+        end
       end
-      notification_box html
     end
+    notification_box html if html.present?
   end
 
   module_function :static_asset

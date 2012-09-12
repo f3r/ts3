@@ -1,5 +1,5 @@
 class CustomField < ActiveRecord::Base
-  as_enum :type, [:string, :integer, :dropdown, :checkbox, :yes_no, :yes_no_text]
+  as_enum :type, [:string, :integer, :dropdown, :checkbox, :yes_no, :yes_no_text, :date]
 
   validates_presence_of :label, :name
 
@@ -24,4 +24,9 @@ class CustomField < ActiveRecord::Base
     #Let's give 'No' preference ;)
   {"No" => "no", "Yes" => "yes"}
   end
+
+  def self.DATE_FORMATS
+    ['yy-mm-dd', 'dd-mm-yy', 'dd/mm/yy']
+  end
+
 end

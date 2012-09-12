@@ -42,12 +42,19 @@ ActiveAdmin.register User do
         respond_with @user
       end
     end
+
+    def update
+      user = resource
+      # We need to bypass the attr-accessor to set the role
+      user.update_attribute(:role, params[:user][:role])
+      update!
+    end
   end
 
   scope :all, :default => true
-  scope :consumer
-  scope :agent
-  scope :admin
+  scope I18n.t('users.role_user'),  :consumer
+  scope I18n.t('users.role_agent'), :agent
+  scope I18n.t('users.role_admin'), :admin
 
   filter :email
   filter :first_name
@@ -58,7 +65,7 @@ ActiveAdmin.register User do
     id_column
     column :email
     column :full_name
-    column(:role)         {|user| status_tag(user.role) }
+    column(:role)         {|user| status_tag(I18n.t("users.role_#{user.role}"), user.role) }
     column :created_at
     column :confirmed_at
     column :last_sign_in_at
@@ -84,43 +91,19 @@ ActiveAdmin.register User do
         f.input field
       end
       if f.object.new_record?
-        f.input :role, :as => :select, :collection => [['Consumer', 'user'], ['Agent', 'agent']]
         f.input :send_invitation, :as => :boolean
         f.input :invitation_text, :as => :text
       end
+      f.input :role, :as => :select, :collection => [[I18n.t('users.role_user'), 'user'], [I18n.t('users.role_agent'), 'agent'], [I18n.t('users.role_admin'), 'admin']], :include_blank => false
 
       if !f.object.new_record?
         f.input :gender, :as => :select, :collection => [[t("users.gender_male"), 'male'], [t("users.gender_female"), 'female']]
-        [:birthdate, :timezone, :phone_mobile, :avatar, :passport_number].each do |field|
+        [:birthdate, :timezone, :phone_mobile, :avatar, :passport_number, :paypal_email].each do |field|
           f.input field
         end
       end
       f.buttons
     end
-  end
-  
-  # Make Agent
-  action_item :only => :show do
-    link_to('Make Agent', make_agent_admin_user_path(user), :method => :put,
-      :confirm => 'Are you sure you want to turn the user into an agent?') if user.consumer?
-  end
-
-  member_action :make_agent, :method => :put do
-    user = User.find(params[:id])
-    user.update_attribute(:role, 'agent')
-    redirect_to({:action => :show}, :notice => "The user is now an agent")
-  end
-
-  # Make Admin
-  action_item :only => :show do
-    link_to('Make Admin', make_admin_admin_user_path(user), :method => :put,
-      :confirm => 'Are you sure you want to turn the user into an admin?') if !user.admin?
-  end
-
-  member_action :make_admin, :method => :put do
-    user = User.find(params[:id])
-    user.update_attribute(:role, 'admin')
-    redirect_to({:action => :show}, :notice => "The user is now an admin")
   end
 
   #Disable User
@@ -148,7 +131,7 @@ ActiveAdmin.register User do
       sign_in_and_redirect current_admin_user.user
     end
   end
-  
+
   # Send Password Reset Reminder
   action_item :only => :show do
     if !user.has_reset_password
@@ -156,7 +139,7 @@ ActiveAdmin.register User do
         :confirm => 'Are you sure you want to send password reset reminder?')
     end
   end
-  
+
   member_action :send_reset_password_reminder, :method => :post do
     user = User.find(params[:id])
     UserMailer.password_reset_reminder(user).deliver if user

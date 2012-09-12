@@ -11,8 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912113913) do
-
+ActiveRecord::Schema.define(:version => 20120912162633) do
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -170,9 +169,9 @@ ActiveRecord::Schema.define(:version => 20120912113913) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -184,7 +183,7 @@ ActiveRecord::Schema.define(:version => 20120912113913) do
 
   create_table "cmspages", :force => true do |t|
     t.string  "page_title"
-    t.string  "page_url",         :default => "",     :null => false
+    t.string  "page_url",                             :null => false
     t.text    "description"
     t.boolean "active",           :default => false
     t.boolean "mandatory",        :default => false
@@ -198,9 +197,9 @@ ActiveRecord::Schema.define(:version => 20120912113913) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -684,6 +683,7 @@ ActiveRecord::Schema.define(:version => 20120912113913) do
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "color_scheme",                 :default => "default"
     t.string   "static_assets_path"
     t.string   "color_scheme",                 :default => "default"
     t.text     "head_tag"
@@ -696,6 +696,9 @@ ActiveRecord::Schema.define(:version => 20120912113913) do
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
     t.text     "sidebar_widget"
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"
@@ -711,6 +714,7 @@ ActiveRecord::Schema.define(:version => 20120912113913) do
     t.boolean  "enable_message_masking",       :default => true
     t.integer  "fixed_radius"
     t.boolean  "show_contact",                 :default => true
+    t.integer  "listing_photos_count",         :default => 0
   end
 
   create_table "transaction_logs", :force => true do |t|

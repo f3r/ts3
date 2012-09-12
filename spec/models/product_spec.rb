@@ -113,4 +113,35 @@ describe Product do
       @product.completed_steps.should == 2
     end
   end
+
+  context "Photos" do
+    before(:each) do
+      @product = create(:product)
+    end
+
+    it "publishes with no photos in config" do
+      @product.published = true
+      @product.save
+      @product.published.should be_true
+    end
+
+    it "doesnot publishes without atleast n num photos in config" do
+      site_config = SiteConfig.create!(:id => 1, :site_name => 'SquareStays', :listing_photos_count => 1)
+      SiteConfig.stub(:instance).and_return(site_config)
+      @product.published = true
+      @product.save
+      @product.published.should be_false
+    end
+
+    it "does publishes with atleast n num photos in config" do
+      site_config = SiteConfig.create!(:id => 1, :site_name => 'SquareStays', :listing_photos_count => 1)
+      SiteConfig.stub(:instance).and_return(site_config)
+      @product.published = true
+      @product.photos = SiteConfig.listing_photos_count.times.collect{p = Photo.new; p.save(:validate => false); p}
+      @product.save
+      @product.published.should be_true
+    end
+
+  end
+
 end

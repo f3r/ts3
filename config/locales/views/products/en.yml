@@ -53,6 +53,7 @@ en:
       listing_unpublished:    Your listing is now invisible
       listing_deleted:        Listing successfully deleted
       listing_deletion_error: Listing deletion error
+      listing_photos_count_error: You need at least %{photo_count} photos
     search:
       sort_by: Sort by
       results:

@@ -6,10 +6,10 @@
       .controls
         = f.select :city_id, cities_options, {}, { :class => "validate[required] autosave input-xlarge"}
 
-    .control-group.required
+    .control-group
       = f.label :address_1, t("addresses.address_1"), :class => 'control-label'
       .controls
-        = f.text_field :address_1, :class => "input-xlarge validate[required] autosave"
+        = f.text_field :address_1, :class => "input-xlarge autosave"
         %p.help-block
           = t("addresses.address_1_help")
     .control-group
@@ -18,15 +18,15 @@
         = f.text_field :address_2, :class => "input-xlarge autosave"
         %p.help-block
           = t("addresses.address_2_help")
-    .control-group.required#zip_input
+    .control-group#zip_input
       = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
       .controls
-        = f.text_field :zip, :class => "input-xlarge validate[required] span3 autosave"
+        = f.text_field :zip, :class => "input-xlarge span3 autosave"
     - if SiteConfig.fixed_radius
       = f.hidden_field :radius, :value => SiteConfig.fixed_radius
     - else
-      .control-group.required
+      .control-group
         = f.label :radius, t("services.wizard.radius"), :class => 'control-label'
         .controls
-          = f.text_field :radius, :class => "input-small validate[required] autosave"
+          = f.text_field :radius, :class => "input-small autosave"
           = 'km'

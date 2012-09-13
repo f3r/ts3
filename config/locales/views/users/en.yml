@@ -42,7 +42,9 @@ en:
     profile_required_message:   "Please click Edit on your profile to enter additional information needed to make reservations on %{site_name}."
     required_fields:            Required fields
     role_user:                  Consumer
+    role_user_plural:           Consumers
     role_agent:                 Agent
+    role_agent_plural:          Agents
     role_admin:                 Admin
     role_superadmin:            SuperAdmin
 

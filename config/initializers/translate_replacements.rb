@@ -7,7 +7,15 @@ def options_with_replacements(options)
     :support_email => SiteConfig.support_email,
     :support_email_link => "<a href='mailto:#{SiteConfig.support_email}'>#{SiteConfig.support_email}</a>".html_safe,
     :product_name => SiteConfig.product_name,
-    :product_plural => SiteConfig.product_plural
+    :product_plural => SiteConfig.product_plural,
+    :role_agent => I18n.t('users.role_agent'),
+    :role_agent_lower => I18n.t('users.role_agent').downcase,
+    :role_agent_plural => I18n.t('users.role_agent_plural'),
+    :role_agent_plural_lower => I18n.t('users.role_agent_plural').downcase,
+    :role_user => I18n.t('users.role_user'),
+    :role_user_lower => I18n.t('users.role_user').downcase,
+    :role_user_plural => I18n.t('users.role_user_plural'),
+    :role_user_plural_lower => I18n.t('users.role_user_plural').downcase
   })
 end
 

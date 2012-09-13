@@ -125,7 +125,7 @@ describe Product do
       @product.published.should be_true
     end
 
-    it "doesnot publishes without atleast n num photos in config" do
+    it "doesn't publish if product doesn't have enough photos" do
       site_config = SiteConfig.create!(:id => 1, :site_name => 'SquareStays', :listing_photos_count => 1)
       SiteConfig.stub(:instance).and_return(site_config)
       @product.published = true
@@ -133,7 +133,7 @@ describe Product do
       @product.published.should be_false
     end
 
-    it "does publishes with atleast n num photos in config" do
+    it "publishes if the product has enough photos" do
       site_config = SiteConfig.create!(:id => 1, :site_name => 'SquareStays', :listing_photos_count => 1)
       SiteConfig.stub(:instance).and_return(site_config)
       @product.published = true

@@ -183,12 +183,9 @@ protected
 
   def validate_photo_count
     return true unless SiteConfig.listing_photos_count.present?
-    if self.published_changed? && self.published
-      if self.photos.count < SiteConfig.listing_photos_count
-        errors.add(:photos, I18n.t('products.messages.listing_photos_count_error', :photo_count => SiteConfig.listing_photos_count))
-        self.published = false
-      end
+    if self.published_changed? && self.published && (self.photos.count < SiteConfig.listing_photos_count)
+      errors.add(:photos, I18n.t('products.messages.listing_photos_count_error', :photo_count => SiteConfig.listing_photos_count))
+      self.published = false
     end
   end
-
 end

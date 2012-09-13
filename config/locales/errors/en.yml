@@ -47,4 +47,4 @@ en:
    "141": minimum stay not met
    "142": over maximum stay
    translations:
-     "placeholders_not_allowed": Not permitted to use placeholders other than default and current one's.
+     "placeholders_not_allowed": You are not permitted to use %{placeholders} other than default and current one's.

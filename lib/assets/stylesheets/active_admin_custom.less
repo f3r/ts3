@@ -73,3 +73,56 @@
   width: 0;
   height: 0;
 }
+/*********************************************************************************************************
+ * ADMIN FAQ
+ *********************************************************************************************************/
+
+#admin_faq {
+  h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  .inner {
+    margin-top: 20px;
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+  }
+
+  .well.expandable.collapsed {
+    cursor: pointer;
+
+    &:hover {
+	  background-color: #bfe0f2;
+    }
+  }
+
+  .well {
+    background-color: #F5F5F5;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 4px 4px 4px 4px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05) inset;
+  }
+
+  .expandable {
+    position: relative;
+    padding: 5px 20px;
+    overflow: hidden;
+    margin-bottom: 10px;
+
+    .read-more {
+      position: absolute;
+      right: 20px;
+      top: 15px;
+    }
+
+    img {
+      float: right;
+      width: 400px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+    }
+  }
+}

@@ -67,32 +67,67 @@ describe Translation do
 
   context "versioning" do
     before(:each) do
-      @translation = Translation.create(:locale => "en", :key => "TEST", :value => "TEST");
+      @translation = Translation.create!(:key => 'cities.singapore', :locale => 'en', :value => 'Singapore')
     end
 
     it "stores a version" do
       #intially no version
       @translation.versions.count.should == 0
-      @translation.value = "TEST_CHANGE"
+      @translation.value = "Singapore1"
       @translation.save
       @translation.versions.count.should == 1
     end
 
     it "check the version content" do
       old_val = @translation.value
-      @translation.value = "TEST_CHANGE"
+      @translation.value = "Singapore1"
       @translation.save
       @translation.versions.first.value.should == old_val
     end
 
     it "deletion should remove the versions" do
-      @translation.value = "TEST_CHANGE"
+      @translation.value = "Singapore1"
       @translation.save
 
       @translation.versions.count.should == 1
 
       @translation.destroy
       @translation.versions.first.should be_nil
+    end
+  end
+  
+  context "safeguard placeholders" do
+    
+    before(:each) do
+      @translation = Translation.create!(:key => 'cities.singapore', :locale => 'en', :value => 'Singapore')
+    end
+    
+    it "accept default placeholders" do
+      @translation.value = "Singapore %{site_name}"
+      @translation.save
+
+      I18n.t('cities.singapore').should == "Singapore %{site_name}"
+    end
+    
+    it "will not accept wrong placeholders" do
+      @translation.value = "Singapore %{site_name1}"
+      @translation.save
+      
+      I18n.t('cities.singapore').should == "Singapore"
+    end
+    
+    it "will not accept wrong placeholders" do
+      @translation.value = "Singapore %{link}"
+      @translation.save
+      
+      I18n.t('cities.singapore').should == "Singapore"
+    end
+    
+     it "accept correct placeholders" do
+      @translation.value = "Singapore %{site_name} %{site_url}"
+      @translation.save
+      
+      I18n.t('cities.singapore').should == "Singapore %{site_name} %{site_url}"
     end
   end
 end

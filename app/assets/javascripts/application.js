@@ -92,6 +92,15 @@ function add_datepicker() {
   });
 }
 
+function getAmenityCheckBoxes(select_id) {
+  ag_checkboxes = null;
+  if( select_id != null && select_id != '' && select_id != 'undefined') {
+    fieldset_id = select_id.substr(select_id.indexOf('_')+1,select_id.length);
+    ag_checkboxes = $("#" + fieldset_id +" label").find("input[type=checkbox]");
+  }
+  return ag_checkboxes;
+}
+
 $(document).ready(function() {
   $("#registerForm").submit(function(e) {
     var isChecked = $('#terms_and_conditions').is(':checked');
@@ -163,4 +172,47 @@ $(document).ready(function() {
     $('.navbar').toggleClass('navbar-fixed-top', direction === "down");
     event.stopPropagation();
   });
+
+  $('[id^=all_amenity_group_]').click(function(event) {
+  	event.preventDefault();
+    select_id = $(this)[0].id;
+    ag_checkboxes = getAmenityCheckBoxes(select_id);
+
+    if(ag_checkboxes != null) {
+      ag_checkboxes.attr('checked', 'checked');
+    }
+  });
+
+  $('[id^=none_amenity_group_]').click(function(event) {
+  	event.preventDefault();
+    select_id = $(this)[0].id;
+    ag_checkboxes = getAmenityCheckBoxes(select_id);
+    if(ag_checkboxes != null) {
+      ag_checkboxes.attr('checked', false);
+    }
+  });
 });
+
+var Expandable = {
+  initialize: function(selector){
+  var container = $(selector);
+  container.find('.expandable').each(function(){
+    var section = $(this);
+    section.find('.inner').hide();
+    section.addClass('collapsed');
+    section.click(function(){
+    if(section.hasClass('collapsed')){
+      section.find('a').hide();
+      section.find('.inner').slideDown('slow');
+      section.removeClass('collapsed');
+      return false;
+    } else {
+      section.find('a').show();
+      section.find('.inner').slideUp('slow', function(){
+        section.addClass('collapsed');
+      });
+    }
+    })
+  })
+  }
+}

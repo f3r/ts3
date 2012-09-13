@@ -1,7 +1,7 @@
 class AmenityGroup < ActiveRecord::Base
   has_many :amenities
 
-  attr_accessible :name
+  attr_accessible :name,:prompt_text
   
   #For active admin
   def display_name

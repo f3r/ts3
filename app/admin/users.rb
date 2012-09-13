@@ -5,6 +5,19 @@ ActiveAdmin.register User do
   controller do
     helper 'admin/users'
 
+    def index
+      # Why scopes defined here?
+      # Because the scope lables has to be translated, if we use the scope block, the translation won't happen
+      # as active admin gets initialized before the translations get into action
+      # So I am just delaying the scope creation, until the index page is requested
+      active_admin_config.scopes.clear
+      active_admin_config.scope :all, :default => true
+      active_admin_config.scope I18n.t('users.role_user'), :consumer
+      active_admin_config.scope I18n.t('users.role_agent'), :agent
+      active_admin_config.scope I18n.t('users.role_admin'), :admin
+      index!
+    end
+
     def new
       @user = User.new
 
@@ -50,11 +63,6 @@ ActiveAdmin.register User do
       update!
     end
   end
-
-  scope :all, :default => true
-  scope I18n.t('users.role_user'),  :consumer
-  scope I18n.t('users.role_agent'), :agent
-  scope I18n.t('users.role_admin'), :admin
 
   filter :email
   filter :first_name

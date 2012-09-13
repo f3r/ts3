@@ -45,6 +45,7 @@ class TransactionMailer < BaseMailer
   # ==Description
   # Email sent to the renter when the owner clicks "Approve Rental Request"
   def approve_renter(inquiry)
+    @inquiry   = inquiry
     @user      = inquiry.user
     recipients = "#{@user.full_name} <#{@user.email}>"
     subject    = t("mailers.transaction_approve_renter.subject")

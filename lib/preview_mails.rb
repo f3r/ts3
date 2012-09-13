@@ -1,5 +1,5 @@
 class PreviewMails < MailView
-  
+
   ###############################################################
   # REGISTRATION_MAILER
   ###############################################################
@@ -7,7 +7,7 @@ class PreviewMails < MailView
     user = getUser()
     RegistrationMailer.welcome_instructions(user)
   end
-  
+
   def welcome_agent
     user = getUser()
     user.role = 'agent'
@@ -18,7 +18,7 @@ class PreviewMails < MailView
     user = getUser()
     RegistrationMailer.reset_password_instructions(user)
   end
-  
+
   def reset_password_reminder
     user = getUser()
     UserMailer.password_reset_reminder(user)
@@ -95,13 +95,13 @@ class PreviewMails < MailView
   def transaction_pay_owner
     TransactionMailer.pay_owner(an_inquiry)
   end
-  
+
   def search_alert
     alert = getAlert()
     user = getUser()
     alert.search = getSearch()
     city = getCity()
-    
+
     if Alert.last.present?
       new_results = alert.search.resource_class.limit(2).all
       recently_added = alert.search.resource_class.limit(2).offset(2).all
@@ -127,8 +127,12 @@ class PreviewMails < MailView
         :email => 'consumer@email.com'
       }
     )
+    conversation = Conversation.new( {:id => 1}, :without_protection => true )
+    conversation = mark_it_saved(conversation)
+    inquiry.define_singleton_method(:conversation, proc { conversation })
+    inquiry
   end
-  
+
   def getUser
     user = User.new(
       :email => "preview@heypal.com",
@@ -138,24 +142,24 @@ class PreviewMails < MailView
       :password => "heypal_preview",
       :password_confirmation => "heypal_preview",
       :confirmed_at  => 1.day.ago ,
-      :role => "user") 
+      :role => "user")
   end
-  
+
   def getComment
     product, property = setup_property_product
     comment = Comment.new({
       :id => -1,
       :user => getUser(),
       :comment => "Mail preview comments",
-      :product => product}, :without_protection => true) 
+      :product => product}, :without_protection => true)
     comment = mark_it_saved(comment)
     comment
   end
-  
+
   def getSearch
-    search = Property.searcher.new(:city_id => getCity()) 
+    search = Property.searcher.new(:city_id => getCity())
   end
-  
+
   def setup_property_product
     product = Product.new({
       :id => -1,
@@ -170,28 +174,28 @@ class PreviewMails < MailView
       :currency => getCurrency(),
       :city => getCity(),
       :price_per_month => 1000},:without_protection => true)
-     
+
      product = mark_it_saved(product)
-     
+
      property = Property.new({
       :id => -1,
       :title => "Mail preview test property title",
       :currency => getCurrency(),
       :city => getCity()
       },:without_protection => true)
-      
+
      property = mark_it_saved(property)
-     
+
      product.as_product = property
-     
+
      [product, property]
   end
-  
+
   def mark_it_saved(record)
     record.instance_variable_set '@new_record', false
     record
   end
-  
+
   def getProduct
     property = Property.new({
       :id => 1,
@@ -206,33 +210,33 @@ class PreviewMails < MailView
       :currency => getCurrency(),
       :city => getCity(),
       :price_per_month => 1000},:without_protection => true)
-      
+
       property = mark_it_saved(property)
       product = property.product
       product = mark_it_saved(product)
       product
   end
-  
+
   def getMessage
     message = Message.new(:body => "Mail Preview message body", :from => getUser())
   end
-  
+
   def getCity
-    
+
     return City.active.first if City.active.first.present?
-    
+
     city = City.new(
       :name => 'Singapore',
       :country => 'Singapore',
       :slug => 'singapore',
       :cached_complete_name => 'Singapore,Singapore',
-      :active  => true) 
+      :active  => true)
   end
-  
+
   def getCurrency
-    
+
     return Currency.active.first if Currency.active.first.present?
-    
+
     currency = Currency.new(
       :name   => 'Dollar',
       :symbol => '$' ,
@@ -242,33 +246,33 @@ class PreviewMails < MailView
       :currency_abbreviation => 'USD'
     )
   end
-  
+
   def getAlert
     return Alert.last if Alert.last.present?
-    
+
     alert = Alert.new({
       :id => -1,
-      :user => getUser(), 
+      :user => getUser(),
       :query => {'currency' => 'USD', 'guests' => "1"} ,
-      :alert_type => 'Property', 
-      :active => 1, 
+      :alert_type => 'Property',
+      :active => 1,
       :role => 'user',
       :delivery_method => 'email',
-      :schedule => 'monthly', 
+      :schedule => 'monthly',
       :search_code => '120429MQ0F3A'
     },:without_protection => true)
-    
+
     alert = mark_it_saved(alert)
     alert
   end
-  
+
   def getNewProducts
     newProductArray = Array.new
     newProductArray << getProduct()
     newProductArray << getProduct()
     newProductArray
   end
-  
+
   def getRecentProducts
     recentArray = Array.new
     recentArray << getProduct()

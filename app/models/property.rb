@@ -58,10 +58,11 @@ class Property <  ActiveRecord::Base
       unpublish_place = false
 
       # Place must have 3 pictures
-      if self.photos.count < 3
-        unpublish_place = true
-        errors.add(:photos, "You need at least 3 pictures")
-      end
+      # Moved to product
+      #if self.photos.count < 3
+      #  unpublish_place = true
+      #  errors.add(:photos, "You need at least 3 pictures")
+      #end
 
       # # Place must have at least 1 amenity
       # if self.amenities_list.blank? || self.amenities_list.count < 1

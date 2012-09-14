@@ -19,6 +19,6 @@ class SystemMailer < BaseMailer
 
   def time_to_pay(payment)
     @payment = payment
-    mail(:subject => "Time to pay")
+    mail(:subject => "Time to pay", :to => SiteConfig.mail_sysadmins)
   end
 end

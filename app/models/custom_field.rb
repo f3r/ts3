@@ -1,6 +1,8 @@
 class CustomField < ActiveRecord::Base
   as_enum :type, [:string, :integer, :dropdown, :checkbox, :yes_no, :yes_no_text, :date]
 
+  default_scope order("position ASC")
+
   validates_presence_of :label, :name
 
   def options

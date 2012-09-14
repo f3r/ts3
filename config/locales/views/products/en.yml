@@ -47,6 +47,9 @@ en:
       furnishings_title: Conveniences
       miscellaneous_title: Miscellaneous
       sports_and_recreation_title: "Sports & Recreation"
+      photos:
+        upload_photo_hint_min: We support jpg and png images. You must upload a minimum of %{min_photos_count} images.
+        upload_photo_hint_no_min: We support jpg and png images.
     messages:
       listing_published:      Your listing is now published!
       listing_publish_error:  "Sorry, we can not publish your listing because of missing information."

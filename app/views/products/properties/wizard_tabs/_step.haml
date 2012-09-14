@@ -6,11 +6,11 @@
 
     - if @wizard.last_step?
       - if @resource.published?
-        = f.submit t(:save).html_safe, :class => 'btn btn-primary pull-right'
+        = f.submit t(:save).html_safe, :class => 'btn btn-primary pull-right', :id => "wizard_submit"
       - else
-        = f.submit t(:save_and_publish).html_safe, :class => 'btn btn-primary pull-right'
+        = f.submit t(:save_and_publish).html_safe, :class => 'btn btn-primary pull-right', :id => "wizard_submit"
     - else
-      = f.submit t(:save_and_continue).html_safe, :class => 'btn btn-primary pull-right'
+      = f.submit t(:save_and_continue).html_safe, :class => 'btn btn-primary pull-right', :id => "wizard_submit"
 - if false
   .arrows.clearfix
     .float-left

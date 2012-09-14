@@ -1,9 +1,11 @@
 //= require jquery.inlineedit
 
 PhotoManager = {
-  initialize: function(sortUrl){
+  initialize: function(sortUrl, min_photo_count){
+    this.min_photo_count = min_photo_count;
     this.initializePhotoSortable(sortUrl);
   },
+
   initializePhotoSortable: function(sortUrl){
     self = this;
     $('#photos_list').sortable({
@@ -19,7 +21,6 @@ PhotoManager = {
             url: sortUrl,
             data: $('#photos_list').sortable('serialize'),
             success: function() {
-              validatePanels();
             }
           });
         }
@@ -36,6 +37,7 @@ PhotoManager = {
     });
   },
   afterSort: function(event, ui){
+    $('#wizard_submit').attr('disabled', true);
     if($('#photos_list li').size() > 0) {
       $('.photos_wrapper').show();
     } else {
@@ -50,13 +52,16 @@ PhotoManager = {
     }, function() {
       $(this).find(".photo_action").hide();
     });
+    if($('#photos_list li').size() >= this.min_photo_count) {
+        $('#wizard_submit').attr('disabled', false);
+    }
   },
   deletePhoto: function(photo){
     self = this;
     photo.fadeOut('slow', function(){
       photo.parent().remove();
+      self.afterSort();
       self.showLatestPhoto();
-      validatePanels();
     });
   },
   showLatestPhoto: function() {
@@ -71,7 +76,6 @@ PhotoManager = {
     $('#photos_list').html(newList);
     this.afterSort();
     this.showLatestPhoto();
-    validatePanels();
   },
   adjustScroll: function() {
     $('html').animate({scrollTop: $('.photo_wrapper').offset()['top'] - 60}, "slow");

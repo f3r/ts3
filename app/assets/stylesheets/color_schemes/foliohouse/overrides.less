@@ -1,171 +1,161 @@
 body {
-	background-image: url("/assets/foliohouse/background.png");
+  background-image: url("/assets/foliohouse/background.png");
 }
+
 header.header {
-	background-color:transparent;
+  background-color:transparent;
 }
 
-.navbar .nav li.dropdown .dropdown-toggle .caret, 
+.navbar .nav li.dropdown .dropdown-toggle .caret,
 .navbar .nav li.dropdown.open .caret {
-	border-bottom-color: @black;
-	border-top-color: @black;
+  border-bottom-color: @black;
+  border-top-color: @black;
 }
 
-.nav li.dropdown.open .caret, 
-.nav li.dropdown.open.active .caret, 
+.nav li.dropdown.open .caret,
+.nav li.dropdown.open.active .caret,
 .nav li.dropdown.open a:hover .caret {
-	border-bottom-color: @gray;
-	border-top-color: @gray;
+  border-bottom-color: @gray;
+  border-top-color: @gray;
 }
 
 .navbar .navbar-inner .nav-collapse .nav li.active a {
-	background-color:transparent;
-	color:@btnPrimaryBackground;
+  background-color:transparent;
+  color:@btnPrimaryBackground;
 }
 
 .container {
-	.content {
-		background-color:transparent;
-		.start {
-			.hub {
-				#search_in, #country-select {
-					display:none;
-				}
-				#search_button {
-					margin: 256px 0 0 153px;
-			    position: absolute;
-			    text-align: center;
-				}
-				#description {
-			    color: #5B5B5B;
-			    margin: 30px 0 20px 30px;
-			    padding: 0;
-			    position: absolute;
-			    width: 880px;
-					.description_one {
-						font-size:20px;
-						line-height:120%;
-						font-weight:bold;
-						strong {
-							color:@linkColor;
-						}
-					}
-					.description_two {
-						color:@linkColor;
-						font-size: 18px;
-				    margin: 35px 0 17px;
-						padding-right:480px;
-					}
-					.description_three {
-						padding-right:480px;
-						font-size:14px;
-					}
-					.description_four {}
-				}
-			}
-			background-image: url("/assets/foliohouse/box1.png");
-			background-repeat:no-repeat;
-			background-position: left top;
-			height:390px;
-			#teaser-pics{
-				margin:116px 0 0 60px;
-			  height: 216px;  
-			  .thumbnail{      
-			    width: 317px;
-			    height: 211px;
-					background:none;
-					border:0;
-					border-radius:0;
-					box-shadow:none;
-			    img{
-			      width: 317px;
-			      height: 211px;        
-			    }    
-			    .description{
-						display:none;
-			    }
-			  }    
-			}
-			#nav {
-				display:none;
-			}
-		}
-		#frontpage_boxes {
-			padding:10px 0 0 4px;
-			color: @gray;
-			.box {
-				width:312px;
-				height:231px;
-				float:left;
-				display:block;
-				background-image: url("/assets/foliohouse/box2.png");
-				h3 {
-					padding: 20px 0 10px 30px;
-					font-size:12px;
-					font-family: 'Arial Black', Arial
-				}
-				.text {
-			    float: left;
-			    font-size: 13px;
-			    margin-left: 20px;
-			    margin-right: 35px;
-			    width: 155px;
-				}
-				.image {
-					float:left;
-					margin-left:30px;
-					width:72px;
-					height:72px;
-				}
-			}
-			.box_1 {
-				.image {
-					background-image: url("/assets/foliohouse/front1.png");
-				}
-			}
-			.box_2 {
-				.image {
-					background-image: url("/assets/foliohouse/front2.png");
-				}
-			}
-			.box_3 {
-				.image {
-					background-image: url("/assets/foliohouse/front3.png");
-				}
-			}
-		}
-	}
+  .content {
+    background-color:transparent;
+    .start {
+      .hub {
+        #search_in, #country-select {
+          display:none;
+        }
+        #button_homepage {
+          margin: 227px 0 0 153px;
+          position: absolute;
+          text-align: center;
+        }
+        #description {
+          color: #5B5B5B;
+          margin: 30px 0 20px 30px;
+          padding: 0;
+          position: absolute;
+          width: 880px;
+          .first_description {
+            font-size:20px;
+            line-height:120%;
+            font-weight:bold;
+            text-align: left;
+            strong {
+              color:@linkColor;
+            }
+          }
+          .second_description {
+            text-align: left;
+            color:@linkColor;
+            padding-right:480px;
+            position: absolute;
+            margin: 98px 0px 0px 120px;
+            font-size: 22px;
+            text-shadow: 1px 0px #B00;
+          }
+        }
+      }
+      background-image: url("/assets/foliohouse/box1.png");
+      background-repeat:no-repeat;
+      background-position: left top;
+      height:390px;
+      .gallery-pics{
+        margin:116px 0 0 530px;
+        height: 216px;
+        .thumbnail{
+          width: 317px;
+          height: 211px;
+          background:none;
+          border:0;
+          border-radius:0;
+          box-shadow:none;
+          img{
+            width: 317px;
+            height: 211px;
+          }
+          .description{
+            display:none;
+          }
+        }
+      }
+      .gallery-nav {
+        display:none;
+      }
+    }
+
+    #frontpage_boxes {
+      padding:10px 0 0 4px;
+      color: @gray;
+      .box {
+        width:312px;
+        height:231px;
+        float:left;
+        display:block;
+        background-image: url("/assets/foliohouse/box2.png");
+        h3 {
+          padding: 20px 0 10px 30px;
+          font-size:12px;
+          font-family: 'Arial Black', Arial
+        }
+        .text {
+          float: left;
+          font-size: 13px;
+          margin-left: 20px;
+          margin-right: 35px;
+          width: 155px;
+        }
+        .image {
+          float:left;
+          margin-left:30px;
+          width:72px;
+          height:72px;
+        }
+      }
+
+      .box_1 { .image { background-image: url("/assets/foliohouse/front1.png"); }}
+      .box_2 { .image { background-image: url("/assets/foliohouse/front2.png"); }}
+      .box_3 { .image { background-image: url("/assets/foliohouse/front3.png"); }}
+    }
+  }
 }
 .navbar-wrapper {
-	.navbar-fixed-top {
-		background-color:@grayLighter;
-	}
-	.navbar {
-		.navbar-inner {
-		    background-image: none;
-				background-color: transparent;
-		    border: 0;
-		    border-radius: 0;
-				box-shadow: none;
-		}
-		.nav > li > a {
-			text-shadow: none;
-			color: @navbarText;
-			font-size:12px;
-			font-family: "Arial Black", Arial
-		}
-	}
+  .navbar-fixed-top {
+    background-color:@grayLighter;
+  }
+  .navbar {
+    .navbar-inner {
+        background-image: none;
+        background-color: transparent;
+        border: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    .nav > li > a {
+      text-shadow: none;
+      color: @navbarText;
+      font-size:12px;
+      font-family: "Arial Black", Arial
+    }
+  }
 }
 
 .search-bar-container.sticky {
-	background-image: url("/assets/foliohouse/bg.spillover.png");
+  background-image: url("/assets/foliohouse/bg.spillover.png");
 }
 
 div.accomodation-wrapper div.tabbed-panel {
-	background-color:@white;
+  background-color:@white;
 }
 div.accomodation-wrapper div.tabbed-panel ul.nav {
-	background-color:@grayLighter;
+  background-color:@grayLighter;
 }
 
 .accomodation-wrapper .header .focal .price {
@@ -183,35 +173,35 @@ div.accomodation-wrapper div.tabbed-panel ul.nav {
   background: #f5f5f5;
   color: @grayDarker;
   overflow:hidden;
-	border:1px solid #ddd;
+  border:1px solid #ddd;
   .border-radius(4px);
 }
 
 .navbar ul.nav li.add-item {
-	background-color:transparent;
+  background-color:transparent;
 }
 
 .navbar ul.nav .read-message {
-  background-image: url('/assets/foliohouse/msgicon_read.png');	
+  background-image: url('/assets/foliohouse/msgicon_read.png');
 }
 .navbar ul.nav .unread-message {
   background-image: url('/assets/foliohouse/msgicon_unread.png');
-	a {
-		color:#fe0;
-		box-shadow:none;
-		border:none;
-		background-color:#fc0;
-		width:auto;
+  a {
+    color:#fe0;
+    box-shadow:none;
+    border:none;
+    background-color:#fc0;
+    width:auto;
     padding: 2px 2px 4px 4px;
     right: 2px;
     text-align: center;
-		margin-bottom:4px;
-	}
+    margin-bottom:4px;
+  }
 }
 
 
 .preference-wrapper #toggle-preferences .dropdown-toggle {
-	background-image:	url("/assets/foliohouse/blue-arrow-down.png");
+  background-image: url("/assets/foliohouse/blue-arrow-down.png");
 }
 
 

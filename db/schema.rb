@@ -11,8 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912162633) do
-
+ActiveRecord::Schema.define(:version => 20120912113913) do
+  
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
     t.string   "resource_type", :null => false
@@ -391,6 +391,13 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.string  "swf_file_name"
   end
 
+  create_table "payment_logs", :force => true do |t|
+    t.integer "payment_id"
+    t.string "state"
+    t.string "previous_state"
+    t.text "additional_data"
+  end
+  
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -401,6 +408,17 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "payments", :force => true do |t|
+    t.integer "amount"
+    t.text "note"
+    t.integer "recipient_id"
+    t.integer "transaction_id"
+    t.string "state"
+    t.datetime "added_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
   create_table "photos", :force => true do |t|
     t.integer  "place_id"
     t.string   "name"
@@ -682,20 +700,20 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
+    t.string   "static_assets_path"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
-    t.string   "static_assets_path"
-    t.string   "color_scheme",                 :default => "default"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
+    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
-    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
+    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
@@ -710,6 +728,9 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.integer  "fee_amount",                   :default => 300
     t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "enable_message_masking",       :default => true
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.integer  "fixed_radius"
     t.boolean  "show_contact",                 :default => true
     t.integer  "listing_photos_count",         :default => 0

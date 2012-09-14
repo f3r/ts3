@@ -9,7 +9,7 @@ class Payment < ActiveRecord::Base
   workflow_column :state
 
   workflow do
-    state :ready do
+    state :scheduled do
       event :pay, :transitions_to => :paid
       event :fail, :transitions_to => :failed
     end
@@ -21,7 +21,7 @@ class Payment < ActiveRecord::Base
     end
   end
 
-  def do_payment
+  def do_payment!
     gateway = self.class.init_paypal_gateway
     #TODO: Formulate the correct subject and note - Need discussion
     response = gateway.transfer(self.amount, self.recipient.email,
@@ -38,15 +38,15 @@ class Payment < ActiveRecord::Base
   def self.send_payments
     payments = self.pending
     payments.each do |payment|
-      payment.do_payment
+      payment.do_payment!
     end
   end
 
   def self.init_paypal_gateway
     @paypal_gateway ||= ActiveMerchant::Billing::PaypalGateway.new({
-                                                                     :login => PAYPAL_API_USERNAME,
-                                                                     :password => PAYPAL_API_PASS,
-                                                                     :signature => PAYPAL_API_SIGN
+                                                                     :login => ::PAYPAL_API_USERNAME,
+                                                                     :password => ::PAYPAL_API_PASS,
+                                                                     :signature => ::PAYPAL_API_SIGN
     })
   end
 

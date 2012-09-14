@@ -11,9 +11,12 @@ class SystemMailer < BaseMailer
 
     mail(:subject => "User Feedback (#{type})")
   end
-  
+
   def user_contact(contact)
     @contact = contact
     mail(:subject => "Contact request from (#{@contact[:name]})")
+  end
+
+  def time_to_pay
   end
 end

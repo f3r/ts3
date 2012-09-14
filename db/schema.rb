@@ -244,6 +244,7 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.boolean "active",                :default => false
     t.integer "position"
     t.string  "currency_abbreviation"
+    t.boolean "default",               :default => false
   end
 
   create_table "custom_fields", :force => true do |t|

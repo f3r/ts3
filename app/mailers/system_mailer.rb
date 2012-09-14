@@ -17,6 +17,8 @@ class SystemMailer < BaseMailer
     mail(:subject => "Contact request from (#{@contact[:name]})")
   end
 
-  def time_to_pay
+  def time_to_pay(payment)
+    @payment = payment
+    mail(:subject => "Time to pay")
   end
 end

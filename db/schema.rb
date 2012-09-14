@@ -220,6 +220,7 @@ ActiveRecord::Schema.define(:version => 20120912052840) do
   create_table "contact_requests", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "subject"
     t.text     "message"
     t.boolean  "active",     :default => true
     t.datetime "created_at",                   :null => false

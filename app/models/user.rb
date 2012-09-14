@@ -98,7 +98,7 @@ class User < ActiveRecord::Base
       count += 1 if user.persisted?
       user.phone_mobile = user_hash[:phone] if user_hash[:phone]
       user.created_at = user_hash[:created_at] if user_hash[:created_at]
-      user
+      user.save
     end
     count
   end

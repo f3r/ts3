@@ -119,6 +119,9 @@ en:
       authentication_fail:                          We are unable to authenticate you at the moment. Please try again.
       connected_with_account:                       "%{oauth_provider} is connected in your account."
       successfully_updated_billing:                 You successfully updated your billing address
+    invitation_preview:
+      back_to_edit: Back to edit
+      send_email_and_create_user: Send email and create user
 
   take_control_bar_message: "You are now administering the account of %{full_name} (%{email})."
   release_control: "Release Control"

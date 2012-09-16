@@ -20,16 +20,24 @@ ActiveAdmin.register User do
 
     def new
       @user = User.new
-
-      # Transport some extra data in the form
       @user.class_eval do
         attr_accessor :send_invitation
         attr_accessor :invitation_text
       end
-      @user.invitation_text = I18n.t('mailers.auto_welcome.content')
+      
+      if !session[:preview_user].present?
+        # Transport some extra data in the form
+        @user.invitation_text = I18n.t('mailers.auto_welcome.content')
+      else
+        user_params = Rack::Utils.parse_query(session[:preview_user])
+        @user.attributes = user_params
+        @user.send_invitation = user_params["send_invitation"]
+        @user.invitation_text = user_params["invitation_text"]
+        session[:preview_user] = nil
+      end
       new!
     end
-
+    
     def create
       @user = User.new
       @user.class_eval do
@@ -41,18 +49,18 @@ ActiveAdmin.register User do
 
       @user.send_invitation = params[:user][:send_invitation]
       @user.invitation_text = params[:user][:invitation_text]
-
-      if @user.save_without_password
-        if @user.send_invitation == '1'
-          UserMailer.auto_welcome(@user, @user.invitation_text).deliver
-          flash[:success] = "User created."
-        else
-          flash[:success] = "User created and invitation sent."
-        end
-
-        redirect_to admin_user_path(@user)
+      
+      if @user.send_invitation == '1' 
+        @user_query = Rack::Utils.build_query(params[:user])
+        @mail_template = UserMailer.auto_welcome(@user, @user.invitation_text)
+        render(:action => "show_email_preview", :layout => "active_admin")
       else
-        respond_with @user
+        if @user.save_without_password
+          flash[:success] = "User created."
+          redirect_to admin_user_path(@user)
+        else
+          respond_with @user
+        end
       end
     end
 
@@ -92,7 +100,7 @@ ActiveAdmin.register User do
       }
     end
   end
-
+  
   form do |f|
     f.inputs do
       [:first_name, :last_name, :email].each do |field|
@@ -113,7 +121,35 @@ ActiveAdmin.register User do
       f.buttons
     end
   end
-
+  
+  collection_action :show_email_preview, :method => :post do
+    user_params = Rack::Utils.parse_query(params[:user][:user_query])
+    @user = User.new
+    @user.attributes = user_params
+     
+    @user.class_eval do
+      attr_accessor :send_invitation
+      attr_accessor :invitation_text
+    end
+     
+    @user.send_invitation = user_params["send_invitation"]
+    @user.invitation_text = user_params["invitation_text"]
+      
+    if params[:commit].present? && params[:commit] == I18n.t('users.invitation_preview.back_to_edit')
+      session[:preview_user] = params[:user][:user_query]
+      redirect_to new_admin_user_path
+    else
+      if @user.save_without_password
+        UserMailer.auto_welcome(@user, user_params["invitation_text"]).deliver
+        flash[:success] = "User created and invitation sent."
+        redirect_to admin_user_path(@user)
+      else
+        session[:preview_user] = params[:user][:user_query]
+        redirect_to new_admin_user_path
+      end
+    end
+  end
+  
   #Disable User
   action_item :only => :show do
     link_to('Disable User', disable_admin_user_path(user), :method => :put,

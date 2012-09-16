@@ -83,7 +83,6 @@ ActiveAdmin.register User do
     column :full_name
     column(:role)         {|user| status_tag(I18n.t("users.role_#{user.role}"), user.role) }
     column :created_at
-    column :confirmed_at
     column :last_sign_in_at
     column ("Set_Password") { |user| reminder_status(user.has_reset_password)}
     column("Actions")     {|user| user_links_column(user) }

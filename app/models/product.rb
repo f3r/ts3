@@ -45,6 +45,11 @@ class Product < ActiveRecord::Base
     SiteConfig.price_unit
   end
 
+  def self.min_photo_count
+    return 0 unless SiteConfig.listing_photos_count.present?
+    SiteConfig.listing_photos_count
+  end
+
   def primary_photo
     if self.photos.first
       self.photos.first.photo(:medsmall)
@@ -182,8 +187,7 @@ protected
   end
 
   def validate_photo_count
-    return true unless SiteConfig.listing_photos_count.present?
-    if self.published_changed? && self.published && (self.photos.count < SiteConfig.listing_photos_count)
+    if self.published_changed? && self.published && (self.photos.count < self.class.min_photo_count)
       errors.add(:photos, I18n.t('products.messages.listing_photos_count_error', :photo_count => SiteConfig.listing_photos_count))
       self.published = false
     end

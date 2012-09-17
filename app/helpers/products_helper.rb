@@ -133,7 +133,7 @@ module ProductsHelper
 
   def custom_field_value(cf, resource)
     field_value = resource.custom_fields[cf.name]
-    case cf.type
+    val = case cf.type
     when :dropdown
       field_value
     when :checkbox
@@ -149,7 +149,8 @@ module ProductsHelper
       value
     else
       field_value
-    end || '-'
+    end
+    val.present? ? val : '-'
   end
 
   def wizard_step_class(wizard, step)

@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20120917110241) do
     t.string   "user_email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.string   "ip_address"
   end
 
   create_table "authentications", :force => true do |t|

@@ -391,6 +391,13 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.string  "swf_file_name"
   end
 
+  create_table "payment_logs", :force => true do |t|
+    t.integer "payment_id"
+    t.string "state"
+    t.string "previous_state"
+    t.text "additional_data"
+  end
+  
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -401,6 +408,17 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.datetime "updated_at",     :null => false
   end
 
+  create_table "payments", :force => true do |t|
+    t.integer "amount"
+    t.text "note"
+    t.integer "recipient_id"
+    t.integer "transaction_id"
+    t.string "state"
+    t.datetime "added_at"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+  
   create_table "photos", :force => true do |t|
     t.integer  "place_id"
     t.string   "name"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917093527) do
+ActiveRecord::Schema.define(:version => 20120917110241) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -85,7 +85,6 @@ ActiveRecord::Schema.define(:version => 20120917093527) do
     t.string   "user_email"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "ip_address"
   end
 
   create_table "authentications", :force => true do |t|
@@ -733,6 +732,7 @@ ActiveRecord::Schema.define(:version => 20120917093527) do
     t.integer  "fixed_radius"
     t.boolean  "show_contact",                 :default => true
     t.integer  "listing_photos_count",         :default => 0
+    t.boolean  "show_powered",                 :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|

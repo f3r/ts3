@@ -23,7 +23,9 @@ ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
   	  f.input :fee_is_fixed, :hint => '(Is the fee fixed or a percentage?)'
       f.input :charge_total, :hint => '(Charge the transaction total)'
   	  f.input :calendar, :hint => '(Show calendar tab and availability management)'
+      f.input :show_powered, :label => 'Powered by TSE', :hint => '(Show powered by TSE in footer)'
       f.input :listing_photos_count, :hint => '(The minimum number of photos the listings should have)'
+      
     end
     f.inputs "Pricing Units" do
       f.input :enable_price_sale

@@ -8,7 +8,7 @@ class CustomField < ActiveRecord::Base
     when :yes_no, :yes_no_text
       self.class.YES_NO_HASH
     else
-      self.values.split(',')
+      self.values.split(/[ ]*,[ ]*/) # Separated by commas, ignore spaces
     end
   end
 

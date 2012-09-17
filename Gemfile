@@ -62,6 +62,7 @@ group :development do
   gem 'translate-rails3', :require => 'translate'
   gem 'colorize'
   gem 'curb'
+  gem 'thin'
   #gem 'pry'
 end
 

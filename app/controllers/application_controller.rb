@@ -112,6 +112,8 @@ class ApplicationController < ActionController::Base
       :user_email => user_email
     }
 
+    entry[:ip_address] = request.remote_ip
+    
     if request.get?
       filtered_params = params.except(:controller, :action)
       entry[:params] = filtered_params if filtered_params.present?

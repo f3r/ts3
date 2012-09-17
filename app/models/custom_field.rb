@@ -4,13 +4,12 @@ class CustomField < ActiveRecord::Base
   validates_presence_of :label, :name
 
   def options
-    opt = case self.type
-            when :yes_no, :yes_no_text
-              self.class.YES_NO_HASH
-            else
-              self.values.split(',').collect { |opt| [opt.humanize, opt] }
-          end
-    opt
+    case self.type
+    when :yes_no, :yes_no_text
+      self.class.YES_NO_HASH
+    else
+      self.values.split(',')
+    end
   end
 
   def name_extra
@@ -22,7 +21,7 @@ class CustomField < ActiveRecord::Base
   def self.YES_NO_HASH
     #TODO have the no and yes labels translated?
     #Let's give 'No' preference ;)
-  {"No" => "no", "Yes" => "yes"}
+    {"No" => "no", "Yes" => "yes"}
   end
 
   def self.DATE_FORMATS

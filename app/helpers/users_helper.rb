@@ -41,6 +41,11 @@ module UsersHelper
     image_tag src, :style => "width:60px; height:60px;"
   end
 
+  def user_gender(user)
+    return unless user.gender
+    t("users.gender_#{user.gender}")
+  end
+
   def avatar_image_by_id(user_id)
     user = User.find(user_id)
     avatar_image(user)

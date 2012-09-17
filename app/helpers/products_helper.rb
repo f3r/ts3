@@ -73,6 +73,9 @@ module ProductsHelper
              select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses}
            when :checkbox
              check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
+           when :checkbox_group
+              render 'products/custom_fields/checkbox_group', {:cf => cf, :resource => resource, :options => cf.options,
+                  :field_name => field_name, :field_id => field_id, :field_value => field_value}
            else
              text_field_tag field_name, field_value, :id => field_id, :class => klasses
            end
@@ -114,7 +117,6 @@ module ProductsHelper
           });
 
         }.html_safe
-
       end
     end
 
@@ -138,6 +140,8 @@ module ProductsHelper
       field_value
     when :checkbox
       field_value ? 'Yes' : 'No'
+    when :checkbox_group
+      field_value.join(', ') if field_value
     when :yes_no
       CustomField.YES_NO_HASH.invert[field_value]
     when :yes_no_text

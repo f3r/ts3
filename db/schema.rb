@@ -222,6 +222,7 @@ ActiveRecord::Schema.define(:version => 20120917110241) do
   create_table "contact_requests", :force => true do |t|
     t.string   "name"
     t.string   "email"
+    t.string   "subject"
     t.text     "message"
     t.boolean  "active",     :default => true
     t.datetime "created_at",                   :null => false
@@ -392,12 +393,32 @@ ActiveRecord::Schema.define(:version => 20120917110241) do
     t.string  "swf_file_name"
   end
 
+  create_table "payment_logs", :force => true do |t|
+    t.integer "payment_id"
+    t.string  "state"
+    t.string  "previous_state"
+    t.text    "additional_data"
+  end
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
     t.string   "status"
     t.string   "txn_id"
     t.integer  "transaction_id"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  create_table "payments", :force => true do |t|
+    t.integer  "amount"
+    t.text     "note"
+    t.integer  "recipient_id"
+    t.integer  "transaction_id"
+    t.integer  "currency_id"
+    t.datetime "pay_at"
+    t.string   "state"
+    t.datetime "added_at"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end

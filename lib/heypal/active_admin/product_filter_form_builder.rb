@@ -1,9 +1,9 @@
 module Heypal
   module ActiveAdmin
-    class ProductFilterFormBuilder < ::ActiveAdmin::FilterFormBuilder
-      
+    class ProductFilterFormBuilder < ::ActiveAdmin::Filters::FormBuilder
+
       protected
-      
+
       def custom_input_class_name(as)
         if as == :select
           "Heypal::ActiveAdmin::SelectInput"
@@ -11,7 +11,7 @@ module Heypal
           super
         end
       end
-      
+
       def default_input_type(method, options = {})
         di = super
         if method.to_s.starts_with? "product_"
@@ -23,7 +23,7 @@ module Heypal
         end
         di
       end
-      
+
       def column_for(method)
         col = super
         if col.nil?

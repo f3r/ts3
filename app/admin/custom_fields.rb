@@ -3,6 +3,20 @@ ActiveAdmin.register CustomField  do
 
   config.clear_sidebar_sections!
 
+  index do
+    id_column
+    column :name
+    column :required
+    column :type
+    column :label
+    column :hint
+    column("Values") {|cf| truncate(cf.values)}
+    column :more_info_label
+    column :validations
+    column("Date format") {|cf| cf.date? ? cf.date_format : ""}
+    default_actions({:name => "Actions"})
+  end
+
   form do |f|
     f.inputs do
       f.input :name
@@ -17,4 +31,12 @@ ActiveAdmin.register CustomField  do
     end
     f.buttons
   end
+
+  collection_action :sort, :method => :post do
+    params[:custom_field].each_with_index do |id, index|
+      CustomField.update_all(['position=?', index+1], ['id=?', id])
+    end
+    render :nothing => true
+  end
+
 end

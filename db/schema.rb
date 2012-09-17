@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120912162633) do
+ActiveRecord::Schema.define(:version => 20120914065810) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -255,10 +255,11 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.text     "values"
     t.string   "validations"
     t.boolean  "required"
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
     t.string   "more_info_label"
     t.string   "date_format",     :limit => 20
+    t.integer  "position",                      :default => 999999
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -397,7 +398,7 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.string "previous_state"
     t.text "additional_data"
   end
-  
+
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
@@ -418,7 +419,7 @@ ActiveRecord::Schema.define(:version => 20120912162633) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
-  
+
   create_table "photos", :force => true do |t|
     t.integer  "place_id"
     t.string   "name"

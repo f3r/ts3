@@ -1,4 +1,8 @@
 module ApplicationHelper
+  def product_class_name
+    SiteConfig.product_class.name.underscore
+  end
+
   def placehold(width = 60, height = 60, url = false)
     if url
       "http://placehold.it/#{width}x#{height}"

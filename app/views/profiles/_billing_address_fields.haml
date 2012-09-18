@@ -10,7 +10,7 @@
       = af.label :city_id, "#{t(:city)}*", :class => 'control-label'
       .controls
         = icon_tooltip(:public)
-        = af.select :city_id, cities_options, {}, { :class => "validate[required]", :style => "width: 220px;"}
+        = af.select :city_id, cities_options, {:include_blank => true}, { :class => "validate[required]", :style => "width: 220px;" }
 
     .control-group
       = af.label :zip, "#{t(:zip)}*", :class => 'control-label'

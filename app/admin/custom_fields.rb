@@ -1,19 +1,22 @@
 ActiveAdmin.register CustomField  do
   menu :label => "Custom Fields", :parent => 'Settings', :if => lambda { |tabs| current_active_admin_user.super_admin? }
 
+  controller do
+    actions :all, :except => [:show]
+  end
+
   config.clear_sidebar_sections!
 
   index do
-    id_column
     column :name
     column :required
     column :type
     column :label
-    column :hint
+    #column :hint
     column("Values") {|cf| truncate(cf.values)}
-    column :more_info_label
-    column :validations
-    column("Date format") {|cf| cf.date? ? cf.date_format : ""}
+    #column :more_info_label
+    #column :validations
+    #column("Date format") {|cf| cf.date? ? cf.date_format : ""}
     default_actions({:name => "Actions"})
   end
 

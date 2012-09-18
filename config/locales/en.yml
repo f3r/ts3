@@ -356,7 +356,6 @@ en:
   inquiry_sent_msg2:  "You can check on your inquiries in the %{link}"
   comments_questions: Comments / Questions
   Staying:            Staying
-  inquiry_questions:  "Please add any other questions here. You can ask questions about this property, your needs or any other listing from the listing"
   no_messages:        No messages
   mark_read:          Mark read
   mark_unread:        Mark as unread

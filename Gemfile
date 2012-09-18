@@ -24,6 +24,7 @@ gem 'rakismet'
 gem 'newrelic_rpm'
 gem 'exception_notification'
 gem 'activeadmin'
+gem 'formtastic', '~> 2.1.0'
 gem "meta_search", '>= 1.1.0.pre'
 gem 'money'                             # Currency management
 gem 'google_currency'                   # Currency Exchange conversion

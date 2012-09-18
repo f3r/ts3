@@ -1,5 +1,4 @@
 require_dependency 'ar_stats'
-require_dependency 'active_admin_ext'
 require_dependency 'google_funnel_chart'
 require_dependency 'google_visualization'
 

@@ -7,6 +7,7 @@ describe TransactionsController do
     @agent   = create(:user, :role => "agent")
     @place   = create(:published_place, :user => @agent)
     @inquiry = create(:inquiry, :product => @place.product, :user => @guest)
+    @conversation = create(:conversation, :target => @inquiry, :sender => @guest)
     @transaction = @inquiry.transaction
   end
 

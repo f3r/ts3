@@ -16,10 +16,10 @@
             .span6
               .row-fluid
                 .span6
-                  .details_label= t("services.speaks")
+                  .details_label= t("users.gender")
                 .span6
                   .details_value
-                    = @resource.spoken_languages || '-'
+                    = user_gender(@resource.user) || '-'
       = render 'products/custom_values'
 
       .row-fluid.about

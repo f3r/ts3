@@ -1,5 +1,5 @@
 class CustomField < ActiveRecord::Base
-  as_enum :type, [:string, :integer, :dropdown, :checkbox, :yes_no, :yes_no_text, :date]
+  as_enum :type, [:string, :integer, :dropdown, :checkbox, :yes_no, :yes_no_text, :date, :checkbox_group]
 
   default_scope order("position ASC")
 

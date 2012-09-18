@@ -6,13 +6,6 @@
         = f.text_field :title, :class => "input-xlarge validate[required] autosave"
     = render 'products/price_fields', :f => f
     .control-group
-      = f.label :languages_ids, t("services.wizard.languages"), :class => 'control-label'
-      .controls.languages
-        - Service.language_1s.each do |key, id|
-          = label_tag "language_#{id}" do
-            = check_box_tag 'listing[language_ids][]', id, @resource.language_ids.include?(id), :id => "language_#{id}"
-            = key.capitalize
-    .control-group
       = f.label :description, t("services.description"), :class => 'control-label'
       .controls
         = f.text_area :description, :class => "span8 autosave", :rows => 5, :style => "width: 440px;"

@@ -1,9 +1,5 @@
 class Service < ActiveRecord::Base
 
-  as_enum :language_1, [:english, :french, :spanish]
-  as_enum :language_2, [:english, :french, :spanish]
-  as_enum :language_3, [:english, :french, :spanish]
-
   before_save :fill_in_address
 
   if Product.table_exists?
@@ -91,25 +87,5 @@ class Service < ActiveRecord::Base
 
   def display_name
     self.title
-  end
-
-  def language_ids=(ids)
-    self.language_1_cd, self.language_2_cd, self.language_3_cd = ids
-  end
-
-  def language_ids
-    ids = []
-    ids << self.language_1_cd if self.language_1_cd
-    ids << self.language_2_cd if self.language_2_cd
-    ids << self.language_3_cd if self.language_3_cd
-    ids
-  end
-
-  def spoken_languages
-    langs = []
-    langs << self.language_1.capitalize if self.language_1
-    langs << self.language_2.capitalize if self.language_2
-    langs << self.language_3.capitalize if self.language_3
-    langs.join(', ') if langs.any?
   end
 end

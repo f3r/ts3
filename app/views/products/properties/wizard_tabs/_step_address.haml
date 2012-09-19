@@ -18,7 +18,7 @@
         = f.text_field :address_2, :class => "input-xlarge autosave"
         %p.help-block
           = t("addresses.address_2_help")
-    .control-group.#zip_input
+    .control-group#zip_input
       = f.label :zip, t("addresses.zip_code"), :class => 'control-label'
       .controls
         = f.text_field :zip, :class => "input-xlarge span3 autosave"

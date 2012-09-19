@@ -19,7 +19,9 @@
     = f.label :email, "#{t("users.email")}*", :class => 'control-label'
     .controls
       = icon_tooltip(:private)
-      = f.text_field :email, :class => "validate[required,custom[email]]"
+      = f.text_field :email, :class => "validate[required,custom[email]]",:disabled => "disabled"
+      %br
+      %a{:href => "#contact_request",:style => "padding-left:20px;",:data => {:toggle => "modal", :show => "true", :keyboard => "true", :backdrop => "true"}} Request email change
   
   - if false && !@user['unconfirmed_email'].blank?
     .control-group

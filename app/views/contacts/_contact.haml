@@ -1,4 +1,4 @@
-#contact_request.modal.hide.fade
+#contact_request.modal.hide.fade{:style => 'height: 248px; overflow: hidden'}
   = form_for(:contact_request, :url => '/contacthp', :html => {:method => :post, :remote => true, :id => "contact_form"}) do |f|
     .modal-header
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
@@ -21,8 +21,7 @@
           .controls
             = f.text_area :message, :rows => 5, :placeholder => t("contact_requests.contact_request_message"), :class => 'validate[required]'
 
-    .clearfix
-    .modal-footer
+    .modal-footer{:style => 'padding: 7px 15px 7px;'}
       .contact-actions
         %button.btn.btn-large.btn-primary{'data-loading-text' => t("submitting"), 'id' => 'contact_button', 'autocomplete' => 'off'}=t("contact_requests.button_contact")
 

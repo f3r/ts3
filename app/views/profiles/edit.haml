@@ -10,7 +10,7 @@
 
     .form-horizontal.accounts
       .section-header=t(:linked_accounts)
-      = render "users/linked_accounts", :user => @user
+      = render "linked_accounts_self", :user => @user
 
 
 - if @user.address

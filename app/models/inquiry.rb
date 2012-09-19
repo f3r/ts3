@@ -82,6 +82,22 @@ class Inquiry < ActiveRecord::Base
     end
   end
 
+  # A little bit ashamed of this, will refactor SOON!
+  def length_unit
+    return unless self.length_stay_type
+
+    case self.length_stay_type.to_sym
+    when :hours
+      :per_hour
+    when :days
+      :per_day
+    when :weeks
+      :per_week
+    when :months
+      :per_month
+    end
+  end
+
   def length_in_words
     return unless self.length_stay && self.length_stay_type
     if self.length_stay == 1
@@ -93,6 +109,15 @@ class Inquiry < ActiveRecord::Base
 
   # ==Description
   # Email sent when the user sends feedback
+  def price
+    self.product.money_price * self.length_stay
+  end
+
+  def rate
+    rate = self.product.money_price(self.length_unit)
+    [rate, self.length_unit]
+  end
+
   def start_conversation(message)
     self.message = message
     # Check if there is a previous inquiry

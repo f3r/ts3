@@ -90,6 +90,7 @@
     }
   }
   .target {
+    position: relative;
     border: 1px solid #C0C0C0;
     border-radius: 5px;
     margin: 10px 0 30px;
@@ -97,11 +98,33 @@
     background-color: #B5E0A8;
     .inquiry {
       .title {
-        font-size: 18px;
+        font-size: 22px;
+        line-height: 22px;
         font-weight: bold;
       }
       .value {
         font-weight: bold;
+      }
+      .price-popover {
+        position: absolute;
+        top: 10px;
+        right: 20px;
+        font-size: 22px;
+        border-bottom: 1px dashed;
+        color: black;
+        text-decoration: none;
+      }
+      .price-details {
+        font-size: 20px;
+        .line {
+          display: table-row;
+          .concept {
+            display: table-cell;
+          }
+          .figure {
+            display: table-cell;
+          }
+        }
       }
     }
   }

@@ -3,17 +3,47 @@
     .span2.photo
       = image_tag listing.inquiry_photo, :alt => listing.title
   .span8.details
-    %span.title= link_to listing.title, seo_product_url(listing)
+    .title= link_to listing.title, seo_product_url(listing)
     - if target.guests.present?
       .guests
         %span.value= t("inquiries.inquiry_guests", :count => target.guests)
     - if target.check_in.present?
       .arriving
-        %span.key= t("products.inquiries.start_date")
+        %span.key
+          %i.icon-calendar{:title => t("products.inquiries.start_date")}
         %span.value= I18n.l(target.check_in, :format => :long)
       .stay
-        %span.key= t("products.inquiries.duration")
+        %span.key
+          %i.icon-time{:title => t("products.inquiries.duration")}
         %span.value= target.length_in_words
-  .span2.price
-    %span.key= t("products.inquiries.price")
-    %span.value= target.transaction.total_amount_display
+    .edit
+      = link_to '(change)', '#'
+  .price
+    %span.key=# t("products.inquiries.price")
+    %span.value
+      = link_to '#', :class => 'price-popover', :title => 'Price Details' do
+        = target.transaction.total_amount_display
+  .popover-content{:style => 'display: none'}
+    .price-details
+      .line
+        %span.concept= "#{target.length_in_words} x #{target.transaction.rate_display}"
+        %span.equal= "="
+        %span.figure= "#{target.transaction.product_amount_display}"
+      .line
+        %span.concept= target.transaction.fee_description
+        %span.equal= "="
+        %span.figure= "#{target.transaction.fee_amount_display}"
+
+      .line=# "<b>Total</b>: #{target.transaction.total_amount_display}".html_safe
+      .line
+        %span.concept.total= "Total"
+        %span.equal= "="
+        %span.figure= "#{target.transaction.total_amount_display}"
+:javascript
+  $(document).ready(function(){
+    $('.price-popover').popover({
+      html: true,
+      content: $('.popover-content').html(),
+      placement: 'bottom'
+    });
+  });

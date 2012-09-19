@@ -14,12 +14,6 @@
           .controls
             = f.text_field :title, :class => "validate[required] span6", :placeholder => t('products.wizard.step1_title')
         = render_overridable_partial('new_fields', :resource => @resource, :f => f)
-        .control-group
-          .controls
-            %label.checkbox
-              = f.check_box :terms, :class => "validate[required]"
-              = t("places.wizard.i_agree_to_the")
-              = link_to t("terms_and_conditions"), terms_path, :target => :blank
       %br
         %button.btn.btn-primary.offset7{:type => "submit", :id => "submit_button", :style => "width:200px;"}=raw t("places.wizard.save_and_continue")
 
@@ -27,14 +21,6 @@
   $(document).ready(function() {
 
     $('#wizard_form').validationEngine();
-    $("#wizard_form").submit(function(e) {
-      var isChecked = $('#listing_terms').is(':checked');
-      if(!isChecked) {
-        alert("Please check '#{t("terms_and_conditions")}' to continue");
-        e.preventDefault();
-       }
-      });
-
     // Character count
     $('#listing_title').charCounter(40, {container: "<em></em>",classname: "counter", format: "(%1)"});
   });

@@ -28,7 +28,7 @@ module UsersHelper
 
   def avatar_image(user)
     # TODO: Remove backward compatibility
-    src = "https://s3.amazonaws.com/squarestays-static/missing_userpic.png"
+    src = asset_path "missing_userpic.png"
     if user
       if user.kind_of?(User)
         src = user.avatar.url(:thumb) if user.avatar?

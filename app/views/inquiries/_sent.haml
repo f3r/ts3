@@ -3,3 +3,20 @@
 
 %p= t("inquiries.inquiry_sent_msg")
 %p= t("inquiries.inquiry_sent_check_link", :link => link_to(t("inquiries.inquiry_center"), messages_path)).html_safe
+%a{:href => "#", :style => "float:right;", :class => "btn btn-large btn-primary", :id => "close_modal", :data => { :dismiss => "modal"}} Ok
+
+:javascript
+  
+  $(document).ready(function() {
+    $('#inquiry_sent').attr('data-backdrop','static');
+    $('#inquiry_sent').attr('data-keyboard', 'false');
+    $('#inquiry_sent .close').text('');
+    $('#inquiry_sent .close').attr('data-dismiss', 'false');
+  });
+
+  $('#close_modal').click(function() {
+    $('#inquiry_sent').attr('data-backdrop','true');
+    location.reload();
+  });
+
+  

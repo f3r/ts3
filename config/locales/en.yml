@@ -352,7 +352,7 @@ en:
   inquiry_center:     Inquiry Center
   inquiry_on:         Inquiry on
   inquiry_sent:       Inquiry sent
-  inquiry_sent_msg:   "The listing owner has been notified of your inquiry. Normally, you should expect a response within 24-48 hours. We have created automatically an account for you in %{site_name}, Thank you!"
+  inquiry_sent_msg:   "The listing owner will be notified of your inquiry. Normally, you should expect a response within 24-48 hours. If, by chance, you don't hear back, we encourage you to inquire on other properties."
   inquiry_sent_msg2:  "You can check on your inquiries in the %{link}"
   comments_questions: Comments / Questions
   Staying:            Staying

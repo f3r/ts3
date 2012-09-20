@@ -391,7 +391,6 @@ DEPENDENCIES
   rails (= 3.2.8)
   rakismet
   rspec-rails
-  sass
   sass-rails (~> 3.2.3)
   simple_enum
   therubyracer

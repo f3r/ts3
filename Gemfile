@@ -13,7 +13,8 @@ gem 'omniauth-twitter'
 
 gem "haml", ">= 3.0.0"
 gem "haml-rails"
-gem "sass"
+gem 'sass-rails',   '~> 3.2.3'
+
 gem 'jquery-rails',  '~>1.0.18'
 gem 'jquery_mobile_rails'
 gem 'activemerchant'
@@ -57,7 +58,6 @@ gem 'valid_email'
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"
-  gem 'sass-rails',   '~> 3.2.3'
 end
 
 group :development do

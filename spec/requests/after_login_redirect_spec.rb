@@ -33,7 +33,7 @@ describe "AfterLoginRedirect" do
       visit '/admin/login'
       fill_in 'admin_user[email]',    :with => @admin.email
       fill_in 'admin_user[password]', :with => @admin.password
-      click_button 'admin_user_submit'
+      click_button 'Login'
       current_path.should == "/admin"
     end
   end

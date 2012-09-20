@@ -14,6 +14,7 @@ en:
         two: connects you with
         three: "trusted, professional, short-term"
         four: accomodations
+        full: "%{site_name} connects %{role_user_plural} with %{role_agent_plural}"
       carousel:
         one: "The Clift - an elegant Singapore downtown loft"
         two: "Cavenagh - perfect for families coming to Singapore"

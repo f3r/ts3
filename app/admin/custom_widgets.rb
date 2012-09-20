@@ -1,5 +1,5 @@
 ActiveAdmin.register SiteConfig, :as => 'CustomWidgets' do
-  menu :label => "CustomWidgets", :parent => 'Settings'
+  menu :label => "Custom Widgets", :parent => 'Settings'
 
   controller do
     actions :index, :edit, :update
@@ -30,6 +30,6 @@ ActiveAdmin.register SiteConfig, :as => 'CustomWidgets' do
         :hint => "Code will be inserted just after the search filters",
         :input_html => { :class => 'autogrow', :rows => 4, :cols => 20}
     end
-    f.buttons 
+    f.buttons
   end
 end

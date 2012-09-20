@@ -1,16 +1,19 @@
 source :rubygems
 
-gem 'rails', '3.2.0'
+gem 'rails', '3.2.8'
 gem 'mysql2'
 
-gem 'paperclip', "~> 2.4"          # Attachments
+gem 'paperclip', "~> 3.0"          # Attachments
 gem 'aws-sdk'
 gem 'devise'
 gem 'dynamic_form'
 gem 'omniauth'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem 'haml',          '~>3.1.4'
+
+gem "haml", ">= 3.0.0"
+gem "haml-rails"
+gem "sass"
 gem 'jquery-rails',  '~>1.0.18'
 gem 'jquery_mobile_rails'
 gem 'activemerchant'
@@ -21,7 +24,7 @@ gem 'rakismet'
 gem 'newrelic_rpm'
 gem 'exception_notification'
 gem 'activeadmin'
-gem 'sass-rails'
+gem 'formtastic', '~> 2.1.0'
 gem "meta_search", '>= 1.1.0.pre'
 gem 'money'                             # Currency management
 gem 'google_currency'                   # Currency Exchange conversion
@@ -54,6 +57,7 @@ gem 'valid_email'
 group :assets do
   gem 'coffee-rails', "~> 3.2.1"
   gem 'uglifier',     ">= 1.0.3"
+  gem 'sass-rails',   '~> 3.2.3'
 end
 
 group :development do

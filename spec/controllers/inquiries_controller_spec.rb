@@ -5,42 +5,33 @@ describe InquiriesController do
     @place = create(:published_place)
     SiteConfig.stub(:product_class).and_return(Property)
   end
+  context "Create" do
+    it "sends an inquiry for a registered user" do
+      @user = create(:user)
+      login_as @user
 
-  it "sends an inquiry for a registered user" do
-    @user = create(:user)
-    login_as @user
+      Inquiry.any_instance.stub(:spam?).and_return(false)
+      expect {
+        xhr :post, :create, inquiry_params.merge(:id => @place.id)
+      }.should change(Inquiry, :count).by(1)
+    end
 
-    Inquiry.any_instance.stub(:spam?).and_return(false)
-    expect {
-      xhr :post, :create, inquiry_params.merge(:id => @place.id)
-    }.should change(Inquiry, :count).by(1)
+    it "sends an inquiry and creates a new user" do
+      Inquiry.any_instance.stub(:spam?).and_return(false)
+      expect {
+        xhr :post, :create, inquiry_params.merge(:id => @place.id, :name => 'michelle', :email => 'michelle@mail.com')
+      }.should change(Inquiry, :count).by(1)
+
+      user = User.last
+      user.full_name.should == 'michelle'
+      user.email.should == 'michelle@mail.com'
+    end
   end
 
-  it "amend multiple inquries for a registered user" do
-    @user = create(:user)
-    login_as @user
-
-    Inquiry.any_instance.stub(:spam?).and_return(false)
-    expect {
-      xhr :post, :create, inquiry_params.merge(:id => @place.id)
-    }.should change(Inquiry, :count).by(1)
-    
-    Inquiry.any_instance.stub(:spam?).and_return(false)
-    expect {
-      xhr :post, :create, inquiry_params.merge(:id => @place.id)
-    }.should_not change(Inquiry, :count)
-    
-  end
-  
-  it "sends an inquiry and creates a new user" do
-    Inquiry.any_instance.stub(:spam?).and_return(false)
-    expect {
-      xhr :post, :create, inquiry_params.merge(:id => @place.id, :name => 'michelle', :email => 'michelle@mail.com')
-    }.should change(Inquiry, :count).by(1)
-
-    user = User.last
-    user.full_name.should == 'michelle'
-    user.email.should == 'michelle@mail.com'
+  context "Edit" do
+    it "edits an inquiry" do
+      xhr :edit
+    end
   end
 
   def inquiry_params(params = {})

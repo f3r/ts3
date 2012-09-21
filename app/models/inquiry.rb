@@ -10,14 +10,14 @@ class Inquiry < ActiveRecord::Base
 
   # ==Description
   # Email sent when the user sends feedback
-  def self.create_and_notify(resource, user, params)
+  def self.create_and_notify(product, user, params)
     inquiry = self.new(
-      :product => resource.product,
-      :user    => user,
-      :extra   => params[:extra],
-      :guests  => params[:guests]
+      :product => product,
+      :user => user,
+      :extra => params[:extra],
+      :guests => params[:guests]
     )
-    inquiry.check_in = params[:date_start]
+    inquiry.check_in = params[:check_in]
     inquiry.length   = [params[:length_stay], params[:length_stay_type]]
 
     return inquiry unless inquiry.save

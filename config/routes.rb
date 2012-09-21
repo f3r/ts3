@@ -78,7 +78,7 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-  resources :inquiries, :only => [:create]
+  resources :inquiries, :only => [:new, :create, :edit, :update]
   resources :transactions, :only => [:update]
   post 'paypal_callback', :to => 'payment_notifications#create', :as => :paypal_callback
 
@@ -105,9 +105,9 @@ HeyPalFrontEnd::Application.routes.draw do
 
   match '/connect'         => 'users#connect'
   match '/cities'          => 'places#get_cities'
-  
+
   resources :feedbacks, :only => [:new, :create]
-  
+
   resources :contacts, :only => [:create]
   match '/:city'           => 'search#index', :city => City.routes_regexp
 

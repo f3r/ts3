@@ -17,28 +17,27 @@
           %i.icon-time{:title => t("products.inquiries.duration")}
         %span.value= target.length_in_words
     .edit
-      = link_to '(change)', '#'
+      = link_to '(change)', edit_inquiry_path(target), :remote => true
   .price
-    %span.key=# t("products.inquiries.price")
-    %span.value
-      = link_to '#', :class => 'price-popover', :title => 'Price Details' do
-        = target.transaction.total_amount_display
+    = target.transaction.total_amount_display
+    = link_to '#', :class => 'price-popover', :title => 'Price Details' do
+      %i.icon-question-sign
   .popover-content{:style => 'display: none'}
     .price-details
       .line
-        %span.concept= "#{target.length_in_words} x #{target.transaction.rate_display}"
+        %span.concept= "#{target.length_in_words} x #{target.transaction.rate_display}".html_safe
         %span.equal= "="
-        %span.figure= "#{target.transaction.product_amount_display}"
+        %span.figure= target.transaction.product_amount_display
       .line
         %span.concept= target.transaction.fee_description
         %span.equal= "="
-        %span.figure= "#{target.transaction.fee_amount_display}"
+        %span.figure= target.transaction.fee_amount_display
 
       .line=# "<b>Total</b>: #{target.transaction.total_amount_display}".html_safe
       .line
         %span.concept.total= "Total"
         %span.equal= "="
-        %span.figure= "#{target.transaction.total_amount_display}"
+        %span.figure= target.transaction.total_amount_display
 :javascript
   $(document).ready(function(){
     $('.price-popover').popover({

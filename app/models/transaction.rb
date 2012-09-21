@@ -82,7 +82,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def amount_display(amount)
-    "#{amount.currency.iso_code} #{amount.currency.symbol}#{amount.to_f}"
+    "<span class='iso-code'>#{amount.currency.iso_code}</span> #{amount.currency.symbol}#{amount.to_f}".html_safe
   end
 
   # Total amount string with the currency symbol

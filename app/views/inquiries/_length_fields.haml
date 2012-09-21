@@ -1,0 +1,10 @@
+.control-group
+  = f.label :date_start_label, t("inquiries.arriving"), {:class => 'control-label'}
+  .controls
+    = text_field_tag "date_start_display", nil, :placeholder => t("date_select"), :class => 'validate[required] textbox medium datepicker', :id => 'inquiry_date_start_display'
+    = f.hidden_field :check_in
+.control-group
+  = f.label :length_stay, t("inquiries.staying"), {:class => 'control-label'}
+  .controls
+    = f.text_field :length_stay, :class => 'input-small validate[required,integer]'
+    = f.select :length_stay_type, transaction_length_options, :class => 'small'

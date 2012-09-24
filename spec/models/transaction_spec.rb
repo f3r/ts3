@@ -60,19 +60,19 @@ describe Transaction do
     end
 
     it "#rate_display" do
-      @transaction.rate_display.should == 'USD $20.0 per hour'
+      @transaction.rate_display.should == "<span class='iso-code'>USD</span> $20.0 per hour"
     end
 
     it "#total_amount_display" do
-      @transaction.total_amount_display.should == 'USD $88.0'
+      @transaction.total_amount_display.should == "<span class='iso-code'>USD</span> $88.0"
     end
 
     it "#product_amount_display" do
-      @transaction.product_amount_display.should == 'USD $80.0'
+      @transaction.product_amount_display.should == "<span class='iso-code'>USD</span> $80.0"
     end
 
     it "#fee_amount_display" do
-      @transaction.fee_amount_display.should == 'USD $8.0'
+      @transaction.fee_amount_display.should == "<span class='iso-code'>USD</span> $8.0"
     end
 
     it "#fee_description %" do

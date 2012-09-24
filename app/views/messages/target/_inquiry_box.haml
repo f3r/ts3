@@ -17,7 +17,7 @@
           %i.icon-time{:title => t("products.inquiries.duration")}
         %span.value= target.length_in_words
     .edit
-      = link_to '(change)', edit_inquiry_path(target), :remote => true
+      = link_to '(change)', edit_inquiry_path(target, :conversation_id => @conversation.id), :remote => true
   .price
     = target.transaction.total_amount_display
     = link_to '#', :class => 'price-popover', :title => 'Price Details' do

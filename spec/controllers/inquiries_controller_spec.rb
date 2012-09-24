@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe InquiriesController do
   before(:each) do
-    @place = create(:published_place)
+    @product = create(:published_product)
     SiteConfig.stub(:product_class).and_return(Property)
   end
   context "Create" do
@@ -12,14 +12,14 @@ describe InquiriesController do
 
       Inquiry.any_instance.stub(:spam?).and_return(false)
       expect {
-        xhr :post, :create, inquiry_params.merge(:id => @place.id)
+        xhr :post, :create, inquiry_params.merge(:product_id => @product.id)
       }.should change(Inquiry, :count).by(1)
     end
 
     it "sends an inquiry and creates a new user" do
       Inquiry.any_instance.stub(:spam?).and_return(false)
       expect {
-        xhr :post, :create, inquiry_params.merge(:id => @place.id, :name => 'michelle', :email => 'michelle@mail.com')
+        xhr :post, :create, inquiry_params.merge(:product_id => @product.id, :name => 'michelle', :email => 'michelle@mail.com')
       }.should change(Inquiry, :count).by(1)
 
       user = User.last
@@ -29,8 +29,22 @@ describe InquiriesController do
   end
 
   context "Edit" do
+    before(:each) do
+      @user = create(:user)
+      login_as @user
+      @inquiry = create(:inquiry, :user => @user)
+    end
+
     it "edits an inquiry" do
-      xhr :edit
+      xhr :get, :edit, :id => @inquiry.id
+      response.should be_success
+    end
+
+    it "updates an inquiry" do
+      xhr :put, :update, :id => @inquiry.id, :inquiry => {:check_in => 1.week.from_now.to_s}, :conversation_id => 1
+      response.should be_redirect
+      @inquiry.reload
+      @inquiry.check_in.should == 1.week.from_now.to_date
     end
   end
 

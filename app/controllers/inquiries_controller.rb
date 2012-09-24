@@ -44,6 +44,9 @@ class InquiriesController < ApplicationController
   end
 
   def update
+    @inquiry = current_user.inquiries.find(params[:id])
+    @inquiry.update_attributes(params[:inquiry])
+    redirect_to message_path(:id => params[:conversation_id])
   end
 
   protected

@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
   def set_ref
     respond_to do |format|
-      session[:user_return_to] = params[s:ref] if params[:ref] && !params[:ref].blank?
+      session[:user_return_to] = params[:ref] if params[:ref] && !params[:ref].blank?
       format.json { render :inline => "ok" }
     end
   end

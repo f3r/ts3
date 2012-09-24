@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925075257) do
+ActiveRecord::Schema.define(:version => 20120924094046) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -171,9 +171,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -199,9 +199,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -392,32 +392,12 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.string  "swf_file_name"
   end
 
-  create_table "payment_logs", :force => true do |t|
-    t.integer "payment_id"
-    t.string  "state"
-    t.string  "previous_state"
-    t.text    "additional_data"
-  end
-
   create_table "payment_notifications", :force => true do |t|
     t.integer  "user_id"
     t.text     "params"
     t.string   "status"
     t.string   "txn_id"
     t.integer  "transaction_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
-  end
-
-  create_table "payments", :force => true do |t|
-    t.integer  "amount"
-    t.text     "note"
-    t.integer  "recipient_id"
-    t.integer  "transaction_id"
-    t.integer  "currency_id"
-    t.datetime "pay_at"
-    t.string   "state"
-    t.datetime "added_at"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
   end
@@ -718,6 +698,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
     t.text     "sidebar_widget"
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"
@@ -736,6 +719,7 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.integer  "listing_photos_count",         :default => 0
     t.boolean  "show_powered",                 :default => true
     t.string   "gae_tracking_code_tse"
+    t.integer  "search_default_view_type_cd",  :default => 0
   end
 
   create_table "transaction_logs", :force => true do |t|

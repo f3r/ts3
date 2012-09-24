@@ -47,6 +47,9 @@ class SearchController < ApplicationController
     @resource = resource_class.published.find(params[:id])
     @product = @resource.product
     @owner = @resource.user
+    if current_user
+      @curr_inquiry = Inquiry.where(:user_id => current_user.id, :product_id => @product.id).first
+    end
   end
 
   def favorites

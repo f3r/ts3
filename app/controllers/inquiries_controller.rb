@@ -14,7 +14,11 @@ class InquiriesController < ApplicationController
     end
 
     if @user.persisted?
-      @inquiry = Inquiry.create_and_notify(@resource, @user, params[:inquiry])
+      @inquiry = Inquiry.where(:user_id => @user.id, :product_id => @resource.product.id).first
+      
+      unless @inquiry
+        @inquiry = Inquiry.create_and_notify(@resource, @user, params[:inquiry])
+      end
     end
 
     # Quick hack to get status from mobile version

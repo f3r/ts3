@@ -16,6 +16,22 @@ describe InquiriesController do
     }.should change(Inquiry, :count).by(1)
   end
 
+  it "amend multiple inquries for a registered user" do
+    @user = create(:user)
+    login_as @user
+
+    Inquiry.any_instance.stub(:spam?).and_return(false)
+    expect {
+      xhr :post, :create, inquiry_params.merge(:id => @place.id)
+    }.should change(Inquiry, :count).by(1)
+    
+    Inquiry.any_instance.stub(:spam?).and_return(false)
+    expect {
+      xhr :post, :create, inquiry_params.merge(:id => @place.id)
+    }.should_not change(Inquiry, :count)
+    
+  end
+  
   it "sends an inquiry and creates a new user" do
     Inquiry.any_instance.stub(:spam?).and_return(false)
     expect {

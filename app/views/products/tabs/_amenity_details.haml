@@ -14,4 +14,8 @@
             - ag.amenities.each do |a|
               .row-fluid
                 - checked = @resource.amenities.include?(a)
-                .w-left-icon{:class => checked ? 'check' : 'ekis'}= a.name
+                - if SiteConfig.show_all_amenities
+                  .w-left-icon{:class => checked ? 'check' : 'ekis'}= a.name
+                - else
+                  - if checked
+                    .w-left-icon{:class => 'check'}= a.name

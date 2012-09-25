@@ -1,8 +1,3 @@
-- # Make ActiveAdmin helpers available
-- self.class.send :include, Arbre::Builder
-- self.class.send :include, ActiveAdmin::ViewHelpers
-- @_helpers = self
-
 .table_tools
   .panel
     %h3 City Search
@@ -13,11 +8,18 @@
         = f.submit 'Search'
 
 - if @results
-  = table_for(@results, :class => 'index_table') do |t|
-    - t.column :name
-    - t.column :country
-    - t.column('Actions') do |city|
-      - link_to 'Add', admin_cities_path(:city => city.attributes.except(:slug, :cached_completed_name)), :method => :post
+  %table
+    %thead
+      %th= 'Name'
+      %th= 'Country'
+      %th= 'Map'
+      %th= 'Actions'
+    - @results.each do |city|
+      %tr
+        %td= city.name
+        %td= city.country
+        %td= static_image_map(city, 5, true)
+        %td= link_to('Add', admin_cities_path(:city => city.attributes.except(:slug, :cached_completed_name)), :method => :post)
 - else
   .blank_slate_container
     %span.blank_slate Search for a city by name

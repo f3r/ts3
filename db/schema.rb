@@ -420,7 +420,7 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.datetime "added_at"
     t.datetime "created_at",     :null => false
     t.datetime "updated_at",     :null => false
-  end
+  end 
 
   create_table "photos", :force => true do |t|
     t.integer  "place_id"

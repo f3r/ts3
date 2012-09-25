@@ -19,6 +19,8 @@
       $('#inquiry_sent .close').text("");
       $('#inquiry_sent .close').attr('data-dismiss', 'false');
     }
+    $('#inquire_place_link').attr('data-toggle', 'false');
+    $('#inquire_place_link').attr('conversation', "#{@inquiry.conversation.id}");
   });
 
   $('#close_modal').click(function() {

@@ -2,15 +2,9 @@ class SiteConfig < ActiveRecord::Base
 
   after_save :reset_cache, :refresh_devise_omniauth
 
-  has_attached_file :fav_icon,
-    :path => "static/favicon.ico"
-
-  has_attached_file :logo,
-    :path => "static/logo.png"
-
-  has_attached_file :photo_watermark, {
-    :path => "watermarks/photowatermark.jpg"
-  }
+  has_attached_file :fav_icon,        :path => "static/favicon.ico"
+  has_attached_file :logo,            :path => "static/logo.png"
+  has_attached_file :photo_watermark, :path => "watermarks/photowatermark.jpg"
 
   def self.instance
     @instance = @instance || SiteConfig.first || SiteConfig.new
@@ -26,7 +20,7 @@ class SiteConfig < ActiveRecord::Base
     end
     if self.instance.respond_to?(name.to_s)
       val = self.instance.send(name.to_s) if self.instance
-      
+
       if !val.nil?
         val
       else
@@ -44,7 +38,7 @@ class SiteConfig < ActiveRecord::Base
 
   def self.default_to_constant(name)
     name.to_s.upcase.safe_constantize
-  end 
+  end
 
   # get a list of color_schemes the directory, get name from the first line
   def self.color_schemes
@@ -79,12 +73,12 @@ class SiteConfig < ActiveRecord::Base
       self.product_class.product_name
     end
   end
-  
+
   def site_name
     return read_attribute(:site_name) if read_attribute(:site_name).present?
     I18n.t!("default_site_title")
   end
-  
+
   def site_tagline
     return read_attribute(:site_tagline) if read_attribute(:site_tagline).present?
     I18n.t!("default_site_tagline")
@@ -127,13 +121,13 @@ class SiteConfig < ActiveRecord::Base
   def reset_cache
     self.class.reset_cache
   end
-  
+
   def refresh_devise_omniauth
     if self.fb_app_id_changed? || self.fb_app_secret_changed?
       Devise.omniauth_configs[:facebook].instance_variable_get("@strategy").client_id = self.fb_app_id
       Devise.omniauth_configs[:facebook].instance_variable_get("@strategy").client_secret = self.fb_app_secret
     end
-    
+
     if self.tw_app_id_changed? || self.tw_app_secret_changed?
       Devise.omniauth_configs[:twitter].instance_variable_get("@strategy").consumer_key = self.tw_app_id
       Devise.omniauth_configs[:twitter].instance_variable_get("@strategy").consumer_secret  = self.tw_app_secret

@@ -25,8 +25,9 @@ ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
   	  f.input :calendar, :hint => '(Show calendar tab and availability management)'
       f.input :show_powered, :label => 'Powered by TSE', :hint => '(Show powered by TSE in footer)'
       f.input :listing_photos_count, :hint => '(The minimum number of photos the listings should have)'
-      
+      f.input :gae_tracking_code_tse, :hint => 'TSE Google Analytics tracking code (independent of client)'
     end
+
     f.inputs "Pricing Units" do
       f.input :enable_price_sale
       f.input :enable_price_per_month

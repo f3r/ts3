@@ -9,7 +9,7 @@
                 = t("template.header.menu.find")
                 %b.caret
               %ul.dropdown-menu{:style => 'width:200px'}
-                - City.active.each do |city|
+                - City.active_and_have_a_listing.each do |city|
                   %li{:class => (@city && @city.id == city.id)? "active" : ""}= link_to city.name, "/#{city.slug}"
 
             - if user_signed_in?

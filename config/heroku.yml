@@ -122,17 +122,17 @@ services-tse:
     SECRET_TOKEN:         f9393af9c01f5545187ee4df652f1b533f99e512dee04b8f019125f0b6b6d0dc90ff603d0cc8e1703e495082130d54ed1cb7023cc11cb3a9b1210f2e0cf9feb5
 
 ########################################################################################################################################
-interns-tse:
-  app:   interns-tse
-  config:
-    <<: *default_config
-    SITE_URL:             http://interns-tse.herokuapp.com
-    PRODUCT_CLASS_NAME:   Service
-    # Database and CDN
-    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/interns-tse
-    S3_BUCKET:            interns-tse
-    # Security
-    SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
+# interns-tse:
+#   app:   interns-tse
+#   config:
+#     <<: *default_config
+#     SITE_URL:             http://interns-tse.herokuapp.com
+#     PRODUCT_CLASS_NAME:   Service
+#     # Database and CDN
+#     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/interns-tse
+#     S3_BUCKET:            interns-tse
+#     # Security
+#     SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
 
 ########################################################################################################################################
 # models-tse:

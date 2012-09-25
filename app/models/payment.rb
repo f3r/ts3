@@ -33,9 +33,10 @@ class Payment < ActiveRecord::Base
 
   def do_payment!
     gateway = self.class.init_paypal_gateway
-    #TODO: Formulate the correct subject and note - Need discussion
-    response = gateway.transfer(self.amount, self.recipient.email,
-                                :subject => "Remaining amount", :note => self.note)
+    response = gateway.transfer(self.amount,
+                                self.recipient.email,
+                                :subject => "Remaining amount",
+                                :note => self.note)
     if response.success?
       self.pay!(response)
     else
@@ -54,9 +55,9 @@ class Payment < ActiveRecord::Base
 
   def self.init_paypal_gateway
     @paypal_gateway ||= ActiveMerchant::Billing::PaypalGateway.new({
-                                                                     :login => ::PAYPAL_API_USERNAME,
-                                                                     :password => ::PAYPAL_API_PASS,
-                                                                     :signature => ::PAYPAL_API_SIGN
+      :login => ::PAYPAL_API_USERNAME,
+      :password => ::PAYPAL_API_PASS,
+      :signature => ::PAYPAL_API_SIGN
     })
   end
 

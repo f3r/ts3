@@ -81,21 +81,37 @@ class Transaction < ActiveRecord::Base
     self.product_amount + self.fee_amount
   end
 
+  def amount_display(amount)
+    "<span class='iso-code'>#{amount.currency.iso_code}</span> #{amount.currency.symbol}#{amount.to_f}".html_safe
+  end
+
   # Total amount string with the currency symbol
   def total_amount_display
-    amount = self.total_amount
-    "#{amount.currency.iso_code} #{amount.currency.symbol}#{amount.to_f}"
+    amount_display(self.total_amount)
+  end
+
+  def product_amount_display
+    amount_display(self.product_amount)
+  end
+
+  def fee_amount_display
+    amount_display(self.fee_amount)
+  end
+
+  def rate_display
+    amount, unit = self.inquiry.rate
+    "#{amount_display(amount)} #{I18n.t(unit).downcase}"
   end
 
   def product_amount
-    SiteConfig.charge_total ? self.price : zero_with_currency
+    SiteConfig.charge_total ? self.inquiry.price : zero_with_currency
   end
 
   def fee_amount
     if SiteConfig.fee_is_fixed
       SiteConfig.fee_amount.to_money(Currency.default.currency_code)
     else
-      self.price * SiteConfig.fee_amount / 100.0
+      self.inquiry.price * SiteConfig.fee_amount / 100.0
     end
   end
 
@@ -114,6 +130,9 @@ class Transaction < ActiveRecord::Base
     self.product.money_price(unit, a_currency) * self.inquiry.length_stay
   end
 
+  def fee_description
+    SiteConfig.fee_is_fixed ? "Service fee" : "#{SiteConfig.fee_amount}% service fee"
+  end
 
 private
 

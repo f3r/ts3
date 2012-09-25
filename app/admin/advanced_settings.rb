@@ -20,7 +20,8 @@ ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
   	  f.input :color_scheme, :as => :select, :collection => SiteConfig.color_schemes, :include_blank => false
       f.input :mail_bcc
   	  f.input :fee_amount, :hint => '(Amount as total or percentage of the transaction amount)'
-  	  f.input :fee_is_fixed, :hint => '(Is the fee fixed or a percentage?)'
+  	  f.input :fee_is_fixed, :as => :select, :collection => [['Fixed', true], ['Percentage', false]],
+        :label => 'Fee type', :hint => '(Is the fee a fixed amount or a percentage of the transaction?)'
       f.input :charge_total, :hint => '(Charge the transaction total)'
   	  f.input :calendar, :hint => '(Show calendar tab and availability management)'
       f.input :show_powered, :label => 'Powered by TSE', :hint => '(Show powered by TSE in footer)'

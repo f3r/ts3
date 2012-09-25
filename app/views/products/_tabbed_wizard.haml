@@ -1,6 +1,3 @@
-- content_for :javascripts do
-  =# javascript_include_tag "wizard"
-
 = render "products/properties/wizard_tabs/step", :tab_name => @wizard.current_step_name, :tab_number => @wizard.current_step
 
 :javascript

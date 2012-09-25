@@ -3,8 +3,8 @@ require 'spec_helper'
 describe Inquiry do
   before(:each) do
     @user = create(:user)
-    @place = create(:published_place)
-    @product = @place.product
+    @currency = create(:currency, :currency_code =>'USD')
+    @product = create(:published_product, :currency => @currency)
     Inquiry.any_instance.stub(:spam?).and_return(false)
     @emails = ActionMailer::Base.deliveries = []
   end
@@ -45,25 +45,25 @@ describe Inquiry do
   context "Submit" do
     it "creates and notifies" do
       expect {
-        Inquiry.create_and_notify(@place, @user, inquiry_params)
+        Inquiry.create_and_notify(@product, @user, inquiry_params)
       }.to change(Inquiry, :count).by(1)
 
       @emails.size.should == 2
       inquiry = Inquiry.last
       inquiry.user.should == @user
-      inquiry.product.should == @place.product
+      inquiry.product.should == @product
       inquiry.length_stay.should == 2
       inquiry.length_stay_type.should == 'months'
     end
 
     it "creates or ammends a conversation" do
       expect {
-        Inquiry.create_and_notify(@place, @user, inquiry_params)
+        Inquiry.create_and_notify(@product, @user, inquiry_params)
       }.to change(Conversation, :count).by(1)
 
       expect {
         expect {
-          Inquiry.create_and_notify(@place, @user, inquiry_params)
+          Inquiry.create_and_notify(@product, @user, inquiry_params)
         }.to change(Message, :count).by(1)
       }.to_not change(Conversation, :count)
     end

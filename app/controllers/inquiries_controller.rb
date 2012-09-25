@@ -1,8 +1,15 @@
 class InquiriesController < ApplicationController
   respond_to :js, :html
 
+  before_filter :find_product, :only => [:new, :create]
+
+  def new
+    respond_to do |format|
+      format.js { render :layout => false, :template => "inquiries/new" }
+    end
+  end
+
   def create
-    @resource = resource_class.published.find(params[:id])
     @user = current_user
 
     # If the user is not logged in, we signed them up
@@ -15,11 +22,7 @@ class InquiriesController < ApplicationController
     end
 
     if @user.persisted?
-      @inquiry = Inquiry.where(:user_id => @user.id, :product_id => @resource.product.id).first
-      
-      unless @inquiry
-        @inquiry = Inquiry.create_and_notify(@resource, @user, params[:inquiry])
-      end
+      @inquiry = Inquiry.create_and_notify(@product, @user, params[:inquiry])
     end
 
     # Quick hack to get status from mobile version
@@ -31,5 +34,24 @@ class InquiriesController < ApplicationController
         format.js { render :layout => false, :template => "inquiries/create" }
       end
     end
+  end
+
+  def edit
+    @inquiry = current_user.inquiries.find(params[:id])
+    respond_to do |format|
+      format.js { render :layout => false, :template => "inquiries/edit" }
+    end
+  end
+
+  def update
+    @inquiry = current_user.inquiries.find(params[:id])
+    @inquiry.update_attributes(params[:inquiry])
+    redirect_to message_path(:id => params[:conversation_id])
+  end
+
+  protected
+
+  def find_product
+    @product = Product.find(params[:product_id])
   end
 end

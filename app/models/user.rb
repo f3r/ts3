@@ -29,6 +29,7 @@ class User < ActiveRecord::Base
   has_many :comments,         :dependent => :destroy
   has_many :favorites,        :dependent => :destroy
   has_many :alerts,           :dependent => :destroy
+  has_many :inquiries,        :dependent => :destroy
 
   has_attached_file :avatar,
      :styles => {

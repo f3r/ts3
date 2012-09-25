@@ -7,7 +7,6 @@ PlaceShow =
     @.initializePanoramas()
     @.initializeSlider()
     @.initializeSharePlace(opts.share_title, opts.share_url, opts.share_id)
-    @.inquireModal()
 
     # Lazy Initialize Map and calendar
     $('a[data-toggle="tab"]').on('shown', (e) ->
@@ -190,32 +189,4 @@ PlaceShow =
       hint: 'Share this!',
       url: url
     })
-
-  #*******************************************************************************************
-  # Inquiry modal window
-  #*******************************************************************************************
-  inquireModal: ->
-    $('#inquire_place').on('shown', ->
-      add_datepicker()
-
-      $('#inquiry_date_start_label').datepicker('destroy').datepicker({
-        # dateFormat: 'dd/mm/yy',
-        dateFormat: 'd M yy',
-        minDate: +1,
-        altField: "#inquiry_date_start",
-        altFormat: 'yy-mm-dd'
-      })
-
-      $('.alert-message').remove()
-      $("#inquire_form").validationEngine({
-        promptPosition : "bottomRight:-10,-10",
-        relative : true,
-        onValidationComplete : (form, status) ->
-          if status
-            $("#inquire_button").button('loading')
-            form.validationEngine('detach')
-            form.submit()
-      })
-    )
-
 window.PlaceShow = PlaceShow

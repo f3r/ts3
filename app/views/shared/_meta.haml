@@ -17,17 +17,24 @@
   = javascript_include_tag 'http://html5shim.googlecode.com/svn/trunk/html5.js'
 / Le styles
 
-- if SiteConfig.gae_tracking_code.present?
+- # We can have 2 different google analytic tracking codes,
+- # one for the client and one for us to track
+- if SiteConfig.gae_tracking_code.present? || SiteConfig.gae_tracking_code_tse.present?
   %script{:type=>"text/javascript"}
     var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', '#{SiteConfig.gae_tracking_code}']);
-    _gaq.push(['_trackPageview']);
+
+    - if SiteConfig.gae_tracking_code.present?
+      _gaq.push(['_setAccount', '#{SiteConfig.gae_tracking_code}'], ['_trackPageview']);
+
+    - if SiteConfig.gae_tracking_code_tse.present?
+      _gaq.push(['b._setAccount', '#{SiteConfig.gae_tracking_code_tse}'], ['b._trackPageview']);
 
     (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
     var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
     })();
+
 
 %script{:type=>"text/javascript"}
   var switchTo5x=true;

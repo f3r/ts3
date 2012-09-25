@@ -1,8 +1,7 @@
 USERS = [
   ['Jeremy Snyder',       'jeremy.a.snyder@gmail.com'],
   ['Fer Santana',         'fernandomartinsantana@gmail.com'],
-  ['Nicolas Gaivironsky', 'nico@heypal.com'],
-  ['Konstantin Schutte', 'konstantin@thesharingengine.com']
+  ['Nicolas Gaivironsky', 'nico@heypal.com']
 ]
 
 ###############################################################################

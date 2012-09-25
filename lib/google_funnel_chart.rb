@@ -15,8 +15,18 @@ module GoogleFunnelChart
       g_p << "x,x,y".to_query("chxt")
       
       # We create a stacked horizontal chart - with one axis as same as the background color - White for now
-      bar_color = options[:bar_color].nil? ? "FF9900" : options[:bar_color]
-      g_p << "ffffff,#{bar_color}".to_query("chco")
+      default_bar_color = options[:bar_color].nil? ? "FF9900" : options[:bar_color]
+      bar_colors = []
+      
+      for f_val in data.values
+        bar_color = f_val.fetch(:bar_color, default_bar_color)
+        bar_colors << "#{bar_color}"
+      end      
+      
+      chco = "FFFFFF,"
+      chco << bar_colors.join("|")
+      
+      g_p << chco.to_query("chco")
       
       x_axis_label = options[:x_label].nil? ? "" : options[:x_label]
       show_x_axis_points = options[:show_x_points].nil? ? false : true
@@ -34,13 +44,13 @@ module GoogleFunnelChart
       end
       
       max_val = axis1.max
-      
+            
       axis1 = axis1.reverse
       
       axis2 = []
       
-      for v in axis1
-        axis2 << (max_val - v) / 2
+      for v in axis1        
+        axis2 << (v > 0 ? (max_val - v) / 2.0 : 0)
       end
       
       chxl << labels.join("|") << "|"

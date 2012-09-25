@@ -9,11 +9,11 @@ class AdminDashboard
 
   def self.transaction_funnel
     stats = {}
-    stats[:inquiry_count] = {:label => "Inquiries", :value => Inquiry.count}
-    stats[:transaction_initial_state] = {:label => "Transaction Stage - Initial", :value => Transaction.where(:state => 'initial').count}
-    stats[:transaction_requested_state] = {:label => "Transaction Stage - Requested", :value => Transaction.where(:state => 'requested').count}
-    stats[:transaction_ready_to_pay_state] = {:label => "Transaction Stage - Ready to Pay", :value => Transaction.where(:state => 'ready_to_pay').count}
-    stats[:transaction_paid_state] = {:label => "Transaction Stage - Paid", :value => Transaction.where(:state => 'paid').count}
+    stats[:inquiry_count] = {:label => "Inquiries", :value => Inquiry.count, :bar_color => "DB3026"}
+    stats[:transaction_initial_state] = {:label => "Transaction Stage - Initial", :value => Transaction.where(:state => 'initial').count, :bar_color => "E88A25"}
+    stats[:transaction_requested_state] = {:label => "Transaction Stage - Requested", :value => Transaction.where(:state => 'requested').count, :bar_color => "F9E14B"}
+    stats[:transaction_ready_to_pay_state] = {:label => "Transaction Stage - Ready to Pay", :value => Transaction.where(:state => 'ready_to_pay').count, :bar_color => "EFED89"}
+    stats[:transaction_paid_state] = {:label => "Transaction Stage - Paid", :value => Transaction.where(:state => 'paid').count, :bar_color => "7ABF66"}
     stats
   end
 

@@ -32,5 +32,5 @@
               = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'
             - if overridable_partial_defined?('grid')
               .toggle
-                = link_to '', '#', :class => 'disp-list current', :id => 'disp-list'
-                = link_to '', '#', :class => 'disp-gallery',      :id => 'disp-gallery'
+                = link_to '', '#', :class => "disp-list #{SiteConfig.search_default_view_type == :list ? 'current': ''}", :id => 'disp-list'
+                = link_to '', '#', :class => "disp-gallery #{SiteConfig.search_default_view_type == :grid ? 'current': ''}",      :id => 'disp-gallery'

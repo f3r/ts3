@@ -736,6 +736,7 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.integer  "listing_photos_count",         :default => 0
     t.boolean  "show_powered",                 :default => true
     t.string   "gae_tracking_code_tse"
+    t.integer  "search_default_view_type_cd",  :default => 0
   end
 
   create_table "transaction_logs", :force => true do |t|

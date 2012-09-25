@@ -6,6 +6,8 @@ class SiteConfig < ActiveRecord::Base
   has_attached_file :logo,            :path => "static/logo.png"
   has_attached_file :photo_watermark, :path => "watermarks/photowatermark.jpg"
 
+  as_enum :search_default_view_type, [:list, :grid]
+
   def self.instance
     @instance = @instance || SiteConfig.first || SiteConfig.new
   end

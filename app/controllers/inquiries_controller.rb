@@ -5,6 +5,7 @@ class InquiriesController < ApplicationController
     @resource = resource_class.published.find(params[:id])
     @user = current_user
 
+    # If the user is not logged in, we signed them up
     unless @user
       @user = User.auto_signup(params[:name], params[:email])
       if @user.persisted?

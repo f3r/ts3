@@ -106,12 +106,13 @@ class Product < ActiveRecord::Base
     self.send("price_#{unit}")
   end
 
-  def money_price(unit = nil)
+  def money_price(unit = nil, currency = nil)
     unit ||= self.class.price_unit
+    currency ||= self.currency
 
     amount = self.send("price_#{unit}")
     if amount
-      amount.to_money(self.currency.currency_code)
+      amount.to_money(currency.currency_code)
     end
   end
 

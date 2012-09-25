@@ -11,7 +11,7 @@ class SiteConfig < ActiveRecord::Base
   end
 
   def self.mail_sysadmins
-    %w(fer@heypal.com nico@heypal.com).join(', ')
+    %w(jeremy@thesharingengine.com fer@thesharingengine.com nico@thesharingengine.com).join(', ')
   end
 
   def self.method_missing(name, *args)

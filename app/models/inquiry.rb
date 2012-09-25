@@ -1,24 +1,21 @@
 class Inquiry < ActiveRecord::Base
   belongs_to :user
   belongs_to :product
-
   has_one :conversation, :as => :target
-
   serialize :extra
-
   validates_presence_of :user, :product
-
   attr_accessor :message
 
-  # Include the Rakismet model
   include Rakismet::Model
 
+  # ==Description
+  # Email sent when the user sends feedback
   def self.create_and_notify(resource, user, params)
     inquiry = self.new(
       :product => resource.product,
-      :user => user,
-      :extra => params[:extra],
-      :guests => params[:guests]
+      :user    => user,
+      :extra   => params[:extra],
+      :guests  => params[:guests]
     )
     inquiry.check_in = params[:date_start]
     inquiry.length   = [params[:length_stay], params[:length_stay_type]]
@@ -94,10 +91,8 @@ class Inquiry < ActiveRecord::Base
     end
   end
 
-  def price
-    self.product.money_price * self.length_stay
-  end
-
+  # ==Description
+  # Email sent when the user sends feedback
   def start_conversation(message)
     self.message = message
     # Check if there is a previous inquiry
@@ -115,19 +110,22 @@ class Inquiry < ActiveRecord::Base
     end
   end
 
+  # ==Description
   # For empty messages about this inquiry
   def add_default_message
     self.transaction.add_system_message(:send)
   end
 
+  # ==Description
+  # Email sent when the user sends feedback
   def transaction
     t = Transaction.where(:inquiry_id => self.id).first
     unless t
       t = Transaction.create(
         :inquiry_id => self.id,
-        :user_id => self.user_id,
-        :check_in => self.check_in,
-        :check_out => self.check_out
+        :user_id    => self.user_id,
+        :check_in   => self.check_in,
+        :check_out  => self.check_out
       )
     end
     t
@@ -141,6 +139,7 @@ class Inquiry < ActiveRecord::Base
     self.product.user if self.product
   end
 
+  # TODO: Check if anyone is using this method, implement or delete
   def send_reminder
     InquiryMailer.inquiry_reminder_owner(self).deliver
   end

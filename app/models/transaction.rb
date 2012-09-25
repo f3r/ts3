@@ -2,22 +2,21 @@ class Transaction < ActiveRecord::Base
   include Workflow
 
   belongs_to :user
-  #belongs_to :place
-  has_many :transaction_logs, :dependent => :destroy
   belongs_to :inquiry
+  has_many :transaction_logs, :dependent => :destroy
 
   before_create :set_transaction_code
 
   validates_presence_of :check_in, :check_out, :user_id, :state, :message => "101"
   validates_date :check_in,  :after => :today,          :invalid_date_message => "113", :after_message => "119"
   validates_date :check_out, :on_or_after => :check_in, :invalid_date_message => "113", :on_or_after_message => "120"
-  validate :check_min_max_stay
+  #validate :check_min_max_stay
 
   workflow_column :state
 
   workflow do
     state :initial do
-      event :request, :transitions_to => :requested
+      event :request,         :transitions_to => :requested
     end
     state :requested do
       event :pre_approve,     :transitions_to => :ready_to_pay
@@ -66,6 +65,10 @@ class Transaction < ActiveRecord::Base
     self.inquiry.product
   end
 
+  def name
+    "##{self.id}"
+  end
+
   def code
     self.transaction_code
   end
@@ -75,11 +78,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def total_amount
-    amount = self.product_amount
-
-    amount += self.fee_amount
-
-    amount
+    self.product_amount + self.fee_amount
   end
 
   # Total amount string with the currency symbol
@@ -89,20 +88,32 @@ class Transaction < ActiveRecord::Base
   end
 
   def product_amount
-    if SiteConfig.charge_total
-      self.inquiry.price
-    else
-      zero_with_currency
-    end
+    SiteConfig.charge_total ? self.price : zero_with_currency
   end
 
   def fee_amount
     if SiteConfig.fee_is_fixed
-      fee = SiteConfig.fee_amount.to_money(Currency.default.currency_code)
+      SiteConfig.fee_amount.to_money(Currency.default.currency_code)
     else
-      fee = self.inquiry.price * SiteConfig.fee_amount / 100.0
+      self.price * SiteConfig.fee_amount / 100.0
     end
   end
+
+  def price(a_currency = nil)
+    a_currency ||= Currency.default
+    unit = case self.inquiry.length_stay_type.to_sym
+      when :hours
+        :per_hour
+      when :days
+        :per_day
+      when :weeks
+        :per_week
+      when :months
+        :per_month
+      end
+    self.product.money_price(unit, a_currency) * self.inquiry.length_stay
+  end
+
 
 private
 
@@ -130,24 +141,24 @@ private
     log.save
   end
 
-  def check_min_max_stay
-    return true
-    check_in = self.check_in.to_date
-    check_out = self.check_out.to_date
-    total_days = (check_in..check_out).to_a.count
+  # def check_min_max_stay
+  #   return true
+  #   check_in = self.check_in.to_date
+  #   check_out = self.check_out.to_date
+  #   total_days = (check_in..check_out).to_a.count
 
-    if self.place && !self.place.stay_unit.blank?
-      min_stay = self.place.minimum_stay.send(self.place.stay_unit)
-      max_stay = self.place.maximum_stay.send(self.place.stay_unit)
-      days = total_days.days
+  #   if self.place && !self.place.stay_unit.blank?
+  #     min_stay = self.place.minimum_stay.send(self.place.stay_unit)
+  #     max_stay = self.place.maximum_stay.send(self.place.stay_unit)
+  #     days = total_days.days
 
-      unless days >= min_stay or min_stay == 0
-        errors.add(:check_out, "141") # minimum stay not met
-      end
+  #     unless days >= min_stay or min_stay == 0
+  #       errors.add(:check_out, "141") # minimum stay not met
+  #     end
 
-      unless days <= max_stay or max_stay == 0
-        errors.add(:check_out, "142") # over maximum stay
-      end
-    end
-  end
+  #     unless days <= max_stay or max_stay == 0
+  #       errors.add(:check_out, "142") # over maximum stay
+  #     end
+  #   end
+  # end
 end

@@ -16,7 +16,7 @@
   # PayPal will POST a callback here when the payment is done
   service.notify_url paypal_callback_url
   # PayPal will take your user here with a POST after he pays
-  service.return_url root_url
+  service.return_url paypal_callback_url
 
   # PayPal will redirect your user here if he cancels the payment
   service.cancel_return_url root_url %>

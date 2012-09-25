@@ -16,6 +16,12 @@ class Preferences < ActiveRecord::Base
     current_city = City.active.first if not current_city.present?
     current_city
   end
+  
+  def self.current_city_from_user_pref_or_cookie(current_user, cookies)
+    current_city = current_user.prefered_city if current_user.present? && current_user.prefered_city.present?
+    current_city = self.get_city_from_cookie(cookies) if not current_city.present?
+    current_city
+  end
 
   def self.current_language(current_user, cookies)
     current_language = current_user.prefered_language.code if current_user.present? && current_user.prefered_language.present?

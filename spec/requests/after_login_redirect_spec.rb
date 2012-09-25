@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "AfterLoginRedirect" do
   before(:each) do
-    create(:city, :name => "Singapore")
+    @city = create(:city, :name => "Singapore")
     create(:currency)
   end
 
@@ -21,6 +21,16 @@ describe "AfterLoginRedirect" do
       prop = create(:property, :user => @agent)
       login_as @agent
       current_path.should == "/"
+    end
+    
+    it "user with a prefered city should be redirected to that city" do
+      SiteConfig.stub(:product_class).and_return(Property)
+      prop = create(:property, :user => @agent)
+      @agent.preferences.city = @city
+      @agent.preferences.save
+      login_as @agent
+      current_path.should == "/"
+      find("#button_homepage button").text.should == @city.name
     end
   end
 

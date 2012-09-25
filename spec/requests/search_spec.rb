@@ -46,6 +46,17 @@ describe "Search" do
       page.should have_content(place2.title)
       page.should have_content(place3.title)
     end
+    
+    it "redirects to the prefered city" do
+      # First visit a city page
+      city = create(:city, :name => "Happy Land")
+      visit "/#{city.slug}"
+      # then visit /
+      visit '/'
+      # the button should have the city as selected
+      find("#button_homepage button").text.should == city.name
+
+    end
   end
 
   context "meta description" do

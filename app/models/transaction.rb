@@ -104,14 +104,14 @@ class Transaction < ActiveRecord::Base
   end
 
   def product_amount
-    SiteConfig.charge_total ? self.price : zero_with_currency
+    SiteConfig.charge_total ? self.inquiry.price : zero_with_currency
   end
 
   def fee_amount
     if SiteConfig.fee_is_fixed
       SiteConfig.fee_amount.to_money(Currency.default.currency_code)
     else
-      self.price * SiteConfig.fee_amount / 100.0
+      self.inquiry.price * SiteConfig.fee_amount / 100.0
     end
   end
 
@@ -131,11 +131,7 @@ class Transaction < ActiveRecord::Base
   end
 
   def fee_description
-    if SiteConfig.fee_is_fixed
-      "Service fee"
-    else
-      "#{SiteConfig.fee_amount}% service fee"
-    end
+    SiteConfig.fee_is_fixed ? "Service fee" : "#{SiteConfig.fee_amount}% service fee"
   end
 
 private

@@ -24,7 +24,7 @@
     - if SiteConfig.photos?
       = render 'products/properties/tabs/photos', :resource => resource
     - if AmenityGroup.any?
-      = render 'products/services/tabs/work_profile', :resource => resource
+      = render 'products/tabs/amenity_details', :resource => resource
     = render 'products/services/tabs/map',          :resource => resource
     - if SiteConfig.calendar?
       = render 'products/services/tabs/calendar',     :resource => resource

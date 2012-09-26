@@ -7,7 +7,7 @@ class Translation < ActiveRecord::Base
   scope :messages,   where("`translations`.`key` LIKE ?", 'messages.%')
   scope :mailers,    where("`translations`.`key` LIKE ?", 'mailers.%')
 
-  validate      :validate_placeholders 
+  validate      :validate_placeholders
   after_save    :delete_cache
   after_destroy :delete_cache
 
@@ -37,30 +37,30 @@ class Translation < ActiveRecord::Base
     logger.debug "Cleaning cache"
     I18n.cache_store.clear
   end
-  
+
   def validate_placeholders
     new_placeholders = Array.new
     current_value = self.value
     key = self.key
-    
+
     # Translation from YML files
     yml_backend = I18n::Backend::Simple.new
     yml_translation = yml_backend.translate(:en, key)
 
     # Default placeholders
     allowed_placeholders = options_with_replacements({}).keys
-    
+
     # Existing placeholders
     existing_placeholders = interpolation_keys (yml_translation) if yml_translation.present?
-    
+
     # Newly added placeholders
     new_placeholders = interpolation_keys(current_value) if current_value.present?
-      
+
     if existing_placeholders.present?
       allowed_placeholders += existing_placeholders
       allowed_placeholders.uniq!
     end
-    
+
     if new_placeholders.present?
       non_allowed = new_placeholders - allowed_placeholders
       if non_allowed.present?
@@ -70,15 +70,17 @@ class Translation < ActiveRecord::Base
     end
     return true
   end
-  
+
   def interpolation_keys( string )
-     keys = Array.new
-     values = string.scan(/\%{(.*?)\}/)
-     if values.present?
-       values.each do |key|
-         keys << key[0].to_sym
-       end
-     end
-     keys
+    keys = Array.new
+    if string.kind_of?(String)
+      values = string.scan(/\%{(.*?)\}/)
+      if values.present?
+        values.each do |key|
+          keys << key[0].to_sym
+        end
+      end
+    end
+    keys
   end
 end

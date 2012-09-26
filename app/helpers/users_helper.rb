@@ -42,7 +42,7 @@ module UsersHelper
   end
 
   def user_gender(user)
-    return unless user.gender
+    return if user.gender.blank?
     t("users.gender_#{user.gender}")
   end
 

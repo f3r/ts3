@@ -27,3 +27,25 @@ production:
   database: db/production.sqlite3
   pool: 5
   timeout: 5000
+  
+tse_admin_faq_production:
+  adapter: sqlite3
+  database: db/admin_faq_production.sqlite3
+  pool: 5
+  timeout: 5000 
+    
+tse_admin_faq_development:
+  adapter: mysql2
+  host: 127.0.0.1
+  encoding: utf8
+  database: heypal_develop_faq
+  username: root
+  password: 
+    
+tse_admin_faq_test:
+  adapter: mysql2
+  host: 127.0.0.1
+  encoding: utf8
+  database: heypal_test_faq
+  username: root
+  password: 

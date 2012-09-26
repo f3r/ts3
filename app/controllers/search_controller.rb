@@ -14,7 +14,10 @@ class SearchController < ApplicationController
 
     @search = searcher.new(params[:search])
 
+    set_price_unit(params[:search][:price_unit]) if params[:search].present?
+
     @search.currency ||= current_currency
+    @search.price_unit ||= current_price_unit
     @search.city_id = @city.id if @city
     @results = @search.results
 

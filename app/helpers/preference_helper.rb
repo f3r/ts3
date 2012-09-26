@@ -24,6 +24,18 @@ module PreferenceHelper
     Preferences.current_speed_unit(current_user, cookies)
   end
 
+  def current_price_unit
+    Preferences.current_price_unit(current_user, session)
+  end
+
+  def set_price_unit(new_unit)
+    session[:pref_price_unit] = new_unit
+    if logged_in?
+      current_user.preferences.price_unit = new_unit
+      current_user.preferences.save
+    end
+  end
+
   #TODO Remove this
   #Used in the Properties.new
   def get_size_unit_backend_compatible

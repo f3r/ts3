@@ -58,6 +58,13 @@ class Preferences < ActiveRecord::Base
     current_speed_unit
   end
 
+  def self.current_price_unit(current_user, session)
+    current_price_unit = current_user.prefered_price_unit if current_user.present?
+    current_price_unit = session[:pref_price_unit] if current_price_unit.blank? and session[:pref_price_unit].present?
+    current_price_unit = SiteConfig.price_unit if current_price_unit.blank?
+    current_price_unit
+  end
+
   def self.get_city_from_cookie(cookies)
     City.find(cookies[:pref_city_id]) if cookies[:pref_city_id].present?
   end

@@ -27,6 +27,8 @@ module Search
     # This is used to find the recently added results
     attr_accessor :date_from
 
+    attr_accessor :price_unit
+
 
     def order
       self.sort_by ||= 'price_lowest'
@@ -119,10 +121,6 @@ module Search
 
     def category_filters_title
       I18n.t("products.search.category_filters_title")
-    end
-
-    def price_unit
-      resource_class.price_unit
     end
 
     def price_field

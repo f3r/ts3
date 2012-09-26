@@ -38,13 +38,13 @@ describe Currency do
   end
 
   context "Conversion" do
-    it "converts from usd", :backend => true do
+    it "converts from usd", :external => true do
       currency = create(:currency, :currency_code => 'INR')
       amount_inr = currency.from_usd(1000)
       amount_inr.should_not be_nil
     end
 
-    it "converts to usd", :backend => true do
+    it "converts to usd", :external => true do
       currency = create(:currency, :currency_code => 'AUD')
       amount = currency.to_usd(1000)
       amount.should_not be_nil

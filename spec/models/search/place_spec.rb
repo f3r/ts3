@@ -44,15 +44,14 @@ describe Search::Property do
 
     it "calculates price filters" do
       @search.currency = create(:currency,:currency_code => 'USD')
-      min, max = @search.price_range_bounds
-
+      min, max = @search.price_filter
       min.should == 1000
-      max.should == 4990
+      max.should == 5000
 
       @search.category_ids = [@pt1.id]
-      min, max = @search.price_range_bounds
+      min, max = @search.price_filter
       min.should == 1000
-      max.should == 4990
+      max.should == 5000
     end
     it "accepts and excludes an id" do
       @search.category_ids = [@pt1.id]

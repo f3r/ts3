@@ -148,25 +148,42 @@ module Search
       min = self.calculate(:minimum, price_field)
       max = self.calculate(:maximum, price_field)
 
-      unless min && max
+      unless min && max && min != max
         return [nil, nil]
       end
       # Convert currency
-      max = self.round_up(self.convert_from_usd(max))
-      min = self.round_down(self.convert_from_usd(min))
+      max = self.convert_from_usd(max)
 
-      if min == max
-        max = min + 100
-      end
+      min = self.convert_from_usd(min)
 
       # Restore the filter
       self.min_price, self.max_price = current_prices
       self.category_ids = current_category_ids
       self.amenity_ids  = current_amenity_ids
 
-      @price_step = self.calculate_price_step(min,max)
-
       [min,max]
+    end
+
+    def price_filter
+      max_steps = 20
+      min, max = self.price_range_bounds
+      return unless min && max
+
+      distance = max - min
+
+      if distance < 10
+        step = 1
+      else
+        step = 10 ** (Math.log10(distance).floor - 1)
+        if distance/step > max_steps
+          step *= 5
+        end
+      end
+
+      max = self.round_up(max, step)
+      min = self.round_down(min, step)
+
+      [min, max, step]
     end
 
     def convert_from_usd(amount)
@@ -188,31 +205,14 @@ module Search
       add_like_condition(field, str_search)
     end
 
-    def calculate_price_step(min, max)
-      @price_step = (max - min) / PRICE_SLIDER_STEPS
-      case @price_step
-      when 0..10
-        @price_step = self.round_down(@price_step, 5)
-      when 11..100
-        @price_step = self.round_down(@price_step, 10)
-      else
-        @price_step = 100
-      end
-
-      if @price_step <= 0
-        @price_step = 1
-      end
-      @price_step
-    end
 
     #We could add this as an extension to the numeric class
     def round_up(the_num, nearest = 10)
-      the_num % nearest == 0 ? the_num : (the_num + nearest - (the_num % nearest))
+      (the_num / nearest.to_f).ceil * nearest
     end
 
     def round_down(the_num, nearest = 10)
-      the_num % nearest == 0 ? the_num : (the_num - (the_num % nearest))
+      (the_num / nearest.to_f).floor * nearest
     end
-
   end
 end

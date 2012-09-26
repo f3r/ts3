@@ -3,10 +3,7 @@ class HeypalAdminHeader < ActiveAdmin::Views::Header
 
   def build(namespace, menu)
     unless menu['help_menu']
-      new_item = ActiveAdmin::MenuItem.new(id: 'help_menu',
-                                             label: 'Help',
-                                             url: ADMIN_FAQ_URL,
-                                             priority: 11)
+      new_item = ActiveAdmin::MenuItem.new(id: 'help_menu', label: 'Help', url: 'https://tse.uservoice.com', priority: 11)
       menu.add new_item
     end
     super(namespace, menu)
@@ -143,7 +140,7 @@ ActiveAdmin.setup do |config|
   #   config.register_javascript 'my_javascript.js'
   # Register for text editor
   config.register_javascript '/assets/active_admin_custom.js'
-  
+
   # Admin FAQ
   # Add Help menu link to Active Admin Header
   config.view_factory.header = HeypalAdminHeader

@@ -47,6 +47,9 @@ class Translation < ActiveRecord::Base
     yml_backend = I18n::Backend::Simple.new
     yml_translation = yml_backend.translate(:en, key)
 
+    # Dont validate pluralized translations
+    return true if !yml_translation.kind_of?(String)
+
     # Default placeholders
     allowed_placeholders = options_with_replacements({}).keys
 

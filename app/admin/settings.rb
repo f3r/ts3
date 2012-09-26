@@ -27,9 +27,9 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Credentials for external services" do
       f.input :gae_tracking_code ,:label=>"Google Analytics Tracking Code"
       f.input :fb_app_id , :label=>"Facebook App ID"
-      f.input :fb_app_secret, :label=>"Facebook Secret",:hint => (f.template.link_to('How to connect to Facebook?', admin_admin_faq_path+"#facebook_faq"))
+      f.input :fb_app_secret, :label=>"Facebook Secret",:hint => (f.template.link_to('How to connect to Facebook?', admin_admin_faq_path))
       f.input :tw_app_id, :label=>"Twitter App ID"
-      f.input :tw_app_secret, :label=>"Twitter Secret",:hint => (f.template.link_to('How to connect to Twitter?', admin_admin_faq_path+"#twitter_faq"))
+      f.input :tw_app_secret, :label=>"Twitter Secret",:hint => (f.template.link_to('How to connect to Twitter?', admin_admin_faq_path))
     end
 
     f.inputs "Storage" do

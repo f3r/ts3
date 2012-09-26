@@ -829,6 +829,7 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.string   "paypal_email"
     t.integer  "controls_user_id"
     t.boolean  "disabled",                              :default => false
+    t.boolean  "subscribe_to_email",                    :default => true
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

@@ -25,6 +25,7 @@ defaults: &defaults
   PAYPAL_API_SIGN:      AfFVH5KGuTqC6Ah83zaYyBQ9xWPpAwZADVB.UWIDY7lf4hCQbGvZq.CC
 
   COOKIE_STORE_KEY:     _TSE_Session
+  ADMIN_FAQ_URL:        https://tse.uservoice.com
 
 development:
   <<: *defaults

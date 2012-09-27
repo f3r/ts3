@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925075257) do
+ActiveRecord::Schema.define(:version => 20120927055041) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -152,6 +152,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.integer "position"
     t.string  "slug"
     t.integer "geoname_id"
+    t.text    "meta_description"
+    t.text    "meta_keywords"
+    t.text    "footer_seo_text"
   end
 
   add_index "cities", ["country"], :name => "index_cities_on_country"
@@ -171,9 +174,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -199,9 +202,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -222,7 +225,6 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "contact_requests", :force => true do |t|
     t.string   "name"
     t.string   "email"
-    t.string   "subject"
     t.text     "message"
     t.boolean  "active",     :default => true
     t.datetime "created_at",                   :null => false
@@ -572,6 +574,7 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.integer  "city_id"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false
+    t.string   "price_unit"
   end
 
   create_table "product_amenities", :force => true do |t|
@@ -704,21 +707,24 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.datetime "created_at",                                          :null => false
     t.datetime "updated_at",                                          :null => false
     t.string   "site_tagline"
-    t.string   "static_assets_path"
     t.text     "custom_meta"
     t.text     "meta_description"
     t.text     "meta_keywords"
+    t.string   "color_scheme",                 :default => "default"
+    t.string   "static_assets_path"
     t.text     "head_tag"
     t.text     "after_body_tag_start"
     t.text     "before_body_tag_end"
-    t.string   "color_scheme",                 :default => "default"
     t.string   "logo_file_name"
+    t.string   "fav_icon_file_name"
     t.string   "photo_watermark_file_name"
     t.string   "photo_watermark_content_type"
     t.integer  "photo_watermark_file_size"
     t.datetime "photo_watermark_updated_at"
-    t.string   "fav_icon_file_name"
     t.text     "sidebar_widget"
+    t.boolean  "charge_total",                 :default => false
+    t.integer  "fee_amount",                   :default => 300
+    t.boolean  "fee_is_fixed",                 :default => true
     t.boolean  "calendar",                     :default => true
     t.boolean  "enable_price_per_hour"
     t.boolean  "enable_price_per_day"
@@ -729,16 +735,13 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
     t.boolean  "panoramas",                    :default => false
     t.boolean  "photos",                       :default => true
     t.boolean  "enable_message_masking",       :default => true
-    t.boolean  "charge_total",                 :default => false
-    t.integer  "fee_amount",                   :default => 300
-    t.boolean  "fee_is_fixed",                 :default => true
     t.integer  "fixed_radius"
     t.boolean  "show_contact",                 :default => true
     t.integer  "listing_photos_count",         :default => 0
     t.boolean  "show_powered",                 :default => true
-    t.boolean  "show_all_amenities",           :default => true
     t.integer  "search_default_view_type_cd",  :default => 0
     t.string   "gae_tracking_code_tse"
+    t.boolean  "show_all_amenities",           :default => true
   end
 
   create_table "transaction_logs", :force => true do |t|

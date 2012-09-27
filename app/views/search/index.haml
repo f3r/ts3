@@ -2,8 +2,13 @@
   - @city.name
   
 - content_for(:meta_description) do
-  - "#{@city.name} - #{SiteConfig.meta_description}"
+  - @city.meta_description.present? ? @city.meta_description : "#{@city.name} - #{SiteConfig.meta_description}"
 
+- content_for(:meta_keywords) do
+  - @city.meta_keywords
+
+- content_for(:footer_seo_text) do
+  - raw(@city.footer_seo_text)
 
 %section.clearfix
   .row

@@ -7,7 +7,7 @@ class Translation < ActiveRecord::Base
   scope :messages,   where("`translations`.`key` LIKE ?", 'messages.%')
   scope :mailers,    where("`translations`.`key` LIKE ?", 'mailers.%')
 
-  validate      :validate_placeholders
+  validate(:on => :update) { validate_placeholders }
   after_save    :delete_cache
   after_destroy :delete_cache
 
@@ -28,6 +28,9 @@ class Translation < ActiveRecord::Base
     translation = Translation.where(:key => self.key, :locale => locale).first
   end
 
+  def display_name
+    self.id
+  end
   private
   # TODO: get cache_key name
   def delete_cache

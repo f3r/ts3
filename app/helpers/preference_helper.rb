@@ -28,11 +28,12 @@ module PreferenceHelper
     Preferences.current_price_unit(current_user, session)
   end
 
-  def set_price_unit(new_unit)
+  def set_price_unit(new_unit = nil)
+    new_unit = params[:price_unit] if new_unit.nil?
+    return unless new_unit.present? and SiteConfig.price_units.include? new_unit.to_sym
     session[:pref_price_unit] = new_unit
     if logged_in?
-      current_user.preferences.price_unit = new_unit
-      current_user.preferences.save
+      session['current_user'] = current_user.change_preference(:price_unit, new_unit)
     end
   end
 

@@ -26,7 +26,7 @@
             = f.hidden_field :total_pages
             = render_overridable_partial('search_fields', :f => f)
           .views
-            - if SiteConfig.price_units.count
+            - if SiteConfig.price_units.count > 1
               .price-units
                 = t("products.search.price_unit")
                 = f.select :price_unit, product_price_units

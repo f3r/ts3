@@ -41,7 +41,19 @@
           %h1.price
             %span.figure
               %span.autosize= product_price(@resource)
-            %span.sub= product_price_unit(@resource)
+            %span.sub
+              - if SiteConfig.price_units.count > 1
+                %div.dropdown
+                  %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
+                    = product_price_unit(@resource)
+                    %b.caret
+                  %ul.dropdown-menu
+                    - SiteConfig.price_units.each do |p_u|
+                      %li= link_to t(p_u), "?price_unit=#{p_u}"
+              - else
+                = product_price_unit(@resource)
+
+
           - if false
             %a{:href => '#inquire', :class => 'btn btn-large btn-info', 'data-toggle' => 'modal', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true'}= t("places.inquire")
           = link_to t("places.inquire"), new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-info', :remote => true

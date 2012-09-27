@@ -16,7 +16,7 @@ module InquiriesHelper
   # end
   def transaction_length_options
     opts = SiteConfig.transaction_length_options
-    options_for_select(opts)
+    options_for_select(opts, current_price_unit.to_s.gsub("per_", "").pluralize)
   end
 
   def show_inquiry_length_fields?

@@ -159,3 +159,16 @@ cosigners-tse:
     S3_BUCKET:            cosigners-tse
     # Security
     SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
+
+########################################################################################################################################
+djconnect-tse:
+  app:   djconnect-tse
+  config:
+    <<: *default_config
+    SITE_URL:             http://djconnect-tse.herokuapp.com
+    PRODUCT_CLASS_NAME:   Service
+    # Database and CDN
+    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/djconnect-tse
+    S3_BUCKET:            djconnect-tse
+    # Security
+    SECRET_TOKEN:         6e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7a3f71a0e469f5

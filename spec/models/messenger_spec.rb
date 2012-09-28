@@ -197,4 +197,28 @@ describe Messenger do
       Messenger.get_conversations(@agent, :target => inquiry)
     end
   end
+  
+  context "archive / un-archive conversations" do
+    before(:each) do 
+      @conversation = Conversation.new
+      @conversation.recipient = @agent
+      @conversation.body = 'I am interested in your apartment'
+    end
+    
+    it "archive a conversation" do
+      Messenger.start_conversation(@consumer, @conversation)
+      conversation = Messenger.get_conversations(@agent).first
+      Messenger.archive(@agent, conversation.id)
+      archived_messages = Messenger.get_archived_conversations(@agent).first
+      archived_messages.should_not be_nil
+    end
+    
+    it "un-archive a conversation" do
+      Messenger.start_conversation(@consumer, @conversation)
+      conversation = Messenger.get_conversations(@agent).first
+      Messenger.un_archive(@agent, conversation.id)
+      archived_messages = Messenger.get_archived_conversations(@agent).first
+      archived_messages.should be_nil
+    end
+  end
 end

@@ -19,6 +19,14 @@ en:
     conversation_with_deleted:  "Conversation with %{name} deleted."
     archive:                    Archive
     archive_message:            Are you sure you want to archive it?
+    
+  archives:
+    archives_title:             Archived Messages
+    no_messages:                You don't have any archived messages
+    un_archive:                 Un-archive
+    un_archive_message:         Are you sure you want to un-archive it?
+    marked_as_un_archive:       Message is active now!
+    failed_un_archive:          Failed to un-archive the message
 
   inquiries:
     inquiries_title: Inquiries

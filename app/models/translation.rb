@@ -7,7 +7,8 @@ class Translation < ActiveRecord::Base
   scope :messages,   where("`translations`.`key` LIKE ?", 'messages.%')
   scope :mailers,    where("`translations`.`key` LIKE ?", 'mailers.%')
 
-  validate      :validate_placeholders
+# TODO: revert this back asap!!
+#  validate      :validate_placeholders
   after_save    :delete_cache
   after_destroy :delete_cache
 

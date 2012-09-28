@@ -1,11 +1,14 @@
 ActiveAdmin.register CustomField  do
   menu :label => "Custom Fields", :parent => 'Settings', :if => lambda { |tabs| current_active_admin_user.super_admin? }
 
+
   controller do
     actions :all, :except => [:show]
   end
 
   config.clear_sidebar_sections!
+
+  config.sort_order = "position_asc"
 
   index do
     column :name

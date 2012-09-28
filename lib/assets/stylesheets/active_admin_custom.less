@@ -1,3 +1,8 @@
+/*
+ *= require plupload.css
+ *= require redactor/redactor.css
+*/
+
 // Copied from Twitter bootstrap tooltip
 .tooltip {
   position: absolute;
@@ -152,4 +157,88 @@ body.active_admin {
     padding: 20px;
     border: 1px solid #DDD;
   }
+
+    .status_tag.active, .status_tag.user, .status_tag.yes, .status_tag.translated {
+        background: #8DAA92;
+    }
+
+    .status_tag.agent {
+        background: #0066BB;
+    }
+
+    .status_tag.admin {
+        background: #BB1111;
+    }
+}
+
+body.admin_settings {
+    .breadcrumb {
+        display: none;
+    }
+
+    .buttons .cancel {
+        display: none;
+    }
+}
+
+body.admin_advanced_settings {
+    .breadcrumb {
+        display: none;
+    }
+}
+
+
+.dashboard .stats div {
+    margin: 10px auto 30px;
+}
+
+#place_published_input {
+    display: none;
+}
+
+.dashboard .stats div {
+    margin: 10px auto 30px;
+}
+
+#place_published_input {
+    display: none;
+}
+
+.admin_questions .table_tools {
+    display: none;
+}
+
+.admin_translations .action_item:first-child {
+    display: none;
+}
+
+.translations {
+    display:block; float:left; width: 80%;
+    li{
+        margin-bottom:15px;
+        h3 {
+            font-size:13px;
+            margin:0;
+            font-weight:bold
+        }
+    }
+}
+
+.other_translation_text {
+    background-color:#fff;
+    border:1px solid #ccc;
+    padding:10px;
+    margin:10px 20px 10px 0;
+    overflow: auto;
+    white-space: normal;
+}
+
+#header ul#tabs > li ul li {
+    a {color: #DDDDDD;}
+}
+
+body.admin_cmspages {
+    .redactor_box {
+        margin-bottom: 17px;
+    }
 }

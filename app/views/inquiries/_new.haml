@@ -30,6 +30,9 @@
     .modal-footer
       .inquiry-actions
         %button.btn.btn-large.btn-primary{'data-loading-text' => t("submitting"), 'id' => 'inquire_button', 'autocomplete' => 'off'}=t("inquiries.button_inquire")
+        -if saved_inquiry_params?
+          = link_to t('inquiries.clear_form'), clear_form_inquiries_path, :id => "inquiry_form_clear", :class => "btn btn-large btn-primary", :remote => true
+
       %div.inquiry-sent-msg.btn.btn-large.btn-primary.disabled= t("inquiries.inquiry_sent")
 
 - if false

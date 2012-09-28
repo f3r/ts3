@@ -78,7 +78,11 @@ HeyPalFrontEnd::Application.routes.draw do
     end
   end
 
-  resources :inquiries, :only => [:new, :create, :edit, :update]
+  resources :inquiries, :only => [:new, :create, :edit, :update] do
+    collection do
+      get :clear_form
+    end
+  end
   resources :transactions, :only => [:update]
 
   get 'paypal_callback', :to => 'payment_notifications#show'

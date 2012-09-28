@@ -27,4 +27,20 @@ module InquiriesHelper
   def payment_notification_url(inquiry)
     paypal_callback_url
   end
+
+  def save_inquiry_params(inquiry)
+    session[:inq] = inquiry.attributes.select{ |k| k.in? ['check_in', 'guests', 'check_out', 'length_stay', 'length_stay_type'] }.merge({"message" => @inquiry.message})
+  end
+
+  def saved_inquiry_params?
+    session[:inq].present?
+  end
+
+  def saved_inquiry_params
+    session[:inq]
+  end
+
+  def clear_saved_inquiry_params
+    session[:inq] = nil
+  end
 end

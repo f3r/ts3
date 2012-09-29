@@ -25,11 +25,14 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     end
 
     f.inputs "Credentials for external services" do
-      f.input :gae_tracking_code ,:label=>"Google Analytics Tracking Code"
-      f.input :fb_app_id , :label=>"Facebook App ID"
-      f.input :fb_app_secret, :label=>"Facebook Secret",:hint => (f.template.link_to('How to connect to Facebook?', "https://tse.uservoice.com/knowledgebase/articles/119406-facebook-sign-in-and-registration", :target => "_blank"))
-      f.input :tw_app_id, :label=>"Twitter App ID"
-      f.input :tw_app_secret, :label=>"Twitter Secret",:hint => (f.template.link_to('How to connect to Twitter?', "https://tse.uservoice.com/knowledgebase/articles/119412-twitter-sign-in-and-registration", :target => "_blank"))
+      f.input :gae_tracking_code , :label=>"Google Analytics Tracking Code",
+        :hint => (f.template.link_to('How to Integrate Google Analytics?', "https://tse.uservoice.com/knowledgebase/articles/119803-adding-google-analytics-to-your-site-on-the-sharin", :target => "_blank"))
+      f.input :fb_app_id,          :label=>"Facebook App ID"
+      f.input :fb_app_secret,      :label=>"Facebook Secret",
+        :hint => (f.template.link_to('How to connect to Facebook?', "https://tse.uservoice.com/knowledgebase/articles/119406-facebook-sign-in-and-registration", :target => "_blank"))
+      f.input :tw_app_id,         :label=>"Twitter App ID"
+      f.input :tw_app_secret,     :label=>"Twitter Secret",
+        :hint => (f.template.link_to('How to connect to Twitter?', "https://tse.uservoice.com/knowledgebase/articles/119412-twitter-sign-in-and-registration", :target => "_blank"))
     end
 
     f.inputs "Storage" do
@@ -39,12 +42,12 @@ ActiveAdmin.register SiteConfig, :as => 'Settings' do
     f.inputs "Agent Approval" do
       f.input :agent_need_approval, :label=>"Agent need approval for Registration"
     end
-    
+
     # We need to show the view selection only if the listing has both views defined
     if overridable_partial_defined?('grid')
       f.inputs "Search View" do
         f.input :search_default_view_type_cd, :label=>"Default search view type", :as => "select", :collection => SiteConfig.search_default_view_types, :include_blank => false
-      end    
+      end
     end
 
     f.inputs "Message Masking" do

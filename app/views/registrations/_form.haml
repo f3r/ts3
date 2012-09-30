@@ -5,8 +5,6 @@
   %br
   = form_for(@user, :url => user_registration_path, :html => {:id => 'registerForm'})  do |f|
     = render 'registrations/oauth_fields', :f => f
-    .input= f.text_field     :first_name, :placeholder => t("users.first_name"),                  :class => "validate[required]"
-    .input= f.text_field     :last_name,  :placeholder => t("users.last_name"),                   :class => "validate[required]"
     .input= f.text_field     :email,      :placeholder => t("users.email_address"),               :class => "validate[required,custom[email]]"
     .input= f.password_field :password,   :placeholder => t("users.password"),                    :class => "validate[required,custom[onlyLetterNumber]]"
     .input= f.password_field :password_confirmation, :placeholder => t("users.confirm_password"), :class => "validate[required, equals[user_password]]"

@@ -4,12 +4,13 @@
     = render 'shared/meta'
 
   %body{:id => @body_id}
-    = render 'shared/header'
-    = render 'shared/contact'
-    .container
-      .content
-        = flash_messages
-        = yield
-    .container
-      .content
-        = render 'shared/footer'
+    .site_wrapper
+      = render 'shared/header'
+      = render 'shared/contact'
+      .container
+        .content
+          = flash_messages
+          = yield
+      .container
+        .content
+          = render 'shared/footer'

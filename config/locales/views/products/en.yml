@@ -23,7 +23,7 @@ en:
     review_average_label: 'Review average'
     panoramas:          'Panoramas'
     wizard:
-      step1_title:  'ie. "Caregiver experienced in housekeeping with basic nursing qualification"'
+      step1_title:  'ie. "DJ Tiësto'
       step1_description: "Enter more information about yourself here, such as general availability, qualifications and specific tasks that you are experienced with. Example: I'm able to work weekdays and weekend evenings. I have my own car."
       panoramas_link:   'Use Pano2VR to generate the panoramas'
       upload_panoramas_hint: 'We support Flash and HTML5 panoramas.'
@@ -37,7 +37,7 @@ en:
       photos_title: Photos
       panoramas_title: Panoramas
       amenities_title: Amenities
-      traits_title: Amenities
+      traits_title: Genres
       calendar_title: Calendar
       price_and_conditions_title: Price and Conditions
       pricing_title: Pricing

@@ -63,28 +63,29 @@ module HomeHelper
   end
 
   def help_menu
-    content_tag(:li, {:class => 'dropdown'}) do
-      html1 = ""
-      html1 << content_tag(:a, {:class => "dropdown-toggle", 'data-toggle' => "dropdown", :href => "#"}) do
-        html = "Help"
-        html << content_tag(:b, "", {:class => 'caret'})
-        html.html_safe
-      end
+    # Once we have the help menu ready, we put this back again
+    # content_tag(:li, {:class => 'dropdown'}) do
+    #   html1 = ""
+    #   html1 << content_tag(:a, {:class => "dropdown-toggle", 'data-toggle' => "dropdown", :href => "#"}) do
+    #     html = "Help"
+    #     html << content_tag(:b, "", {:class => 'caret'})
+    #     html.html_safe
+    #   end
 
-      html1 << content_tag(:ul, {:class => 'dropdown-menu', :style => 'width:200px'}) do
-        html = ""
-        menu = MenuSection.help
-        if menu
-          menu.cmspages.all.each do |p|
-            html << content_tag(:li,{}) do
-              link_to p.page_title, p.link
-            end
-          end
-        end
-        html.html_safe
-      end
-      html1.html_safe
-    end
+    #   html1 << content_tag(:ul, {:class => 'dropdown-menu'}) do
+    #     html = ""
+    #     menu = MenuSection.help
+    #     if menu
+    #       menu.cmspages.all.each do |p|
+    #         html << content_tag(:li,{}) do
+    #           link_to p.page_title, p.link
+    #         end
+    #       end
+    #     end
+    #     html.html_safe
+    #   end
+    #   html1.html_safe
+    # end
   end
 
   def footer_menu

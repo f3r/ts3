@@ -11,14 +11,9 @@ en:
   cancel:     Cancel
   save:       Save
   update:     Update
-  app_domain: Squarestays.com
-  main_page_title: Squarestays.com
-  footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
-  contact: Contact
-  facebook_url: 'https://www.facebook.com/squarestays'
-  twitter_url:  'https://twitter.com/Squarestays'
-  product_name: 'Place'
-  product_name_plural: 'Places'
+  contact:    Contact
+  product_name: 'DJ'
+  product_name_plural: 'DJs'
 
   ####################################################################################
   # App Menus
@@ -45,7 +40,6 @@ en:
   ####################################################################################
   create_new_account:         Create New Account
   create_an_account_using:    Create an Account using
-  connecting_your_account_allows_you:   This will allow you to log in to %{site_name} using your existing accounts!
   user_confirmed:             Your account has been successfully confirmed!
   email_confirmed:            Your email address has been successfully confirmed!
   user_created:               Your account has been successfully created!

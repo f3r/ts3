@@ -1,7 +1,6 @@
 .panel-wrapper.amenities.well
   .alert.alert-info
     = "#{t("places.wizard.amenities.select_one")}"
-
   - AmenityGroup.all.each do |ag|
     .amenity_group_header
       %h3= ag.name

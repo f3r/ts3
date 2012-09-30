@@ -25,20 +25,11 @@
               .small
                 = link_to t("users.sign_out"), destroy_user_session_path
       - else
-        .user_box
+        .user_box.not-logged-in
           .row
             .links
-              = link_to t("users.sign_in"), login_path_with_ref
-              %span.separator /
-              = link_to t("users.register"), signup_path_with_ref
-          - if social_enabled
-            .row.other_signups
-              -if facebook_enabled
-                = link_to user_omniauth_authorize_path(:facebook) do
-                  = image_tag 'signin_facebook.png', :alt => t("users.registration.sign_in_with", :provider => "Facebook")
-              -if twitter_enabled
-                = link_to user_omniauth_authorize_path(:twitter) do
-                  = image_tag 'sign-in-with-twitter-l.png', :alt => t("users.registration.sign_in_with", :provider => "Twitter")
+              = link_to user_omniauth_authorize_path(:facebook) do
+                = image_tag 'signin_facebook.png', :alt => t("users.registration.sign_in_with", :provider => "Facebook")
 
       = render 'shared/preferences'
   = render 'shared/menu'

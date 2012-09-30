@@ -6,7 +6,7 @@ class Product < ActiveRecord::Base
   belongs_to :currency
   belongs_to :category
   belongs_to :city
-  has_many   :photos, :dependent => :destroy, :order => :position
+  has_many   :photos,    :dependent => :destroy, :order => :position
   has_many   :panoramas, :dependent => :destroy
   has_many   :favorites, :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
@@ -18,8 +18,7 @@ class Product < ActiveRecord::Base
 
   attr_accessor :terms
 
-  validates_presence_of :currency, :city, :title
-  validates_presence_of :price_field, :if => :published?
+  validates_presence_of :city, :title
 
   validates_numericality_of :price_per_day, :price_per_hour, :price_per_week, :price_per_month, :price_sale, :allow_nil => true
 

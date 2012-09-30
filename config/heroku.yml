@@ -9,7 +9,7 @@
 
 default_config: &default_config
   BUNDLE_WITHOUT:       "development:test"
-  PRODUCT_CLASS_NAME:   Property
+  PRODUCT_CLASS_NAME:   Service
   S3_ACCESS_KEY_ID:     AKIAJOJEIAZ6LOVHDFDA
   S3_SECRET_ACCESS_KEY: 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
   RECAPTCHA_PUB_KEY:    6Lcoo9ASAAAAALmNU_4LUOy4W11qRueZ9C3FXu3h
@@ -19,156 +19,19 @@ default_config: &default_config
   PAYPAL_ACCOUNT:       nico_1334303615_biz@heypal.com
   PAYPAL_MODE:          test
 
-########################################################################################################################################
-# squarestays:
-#   app:   squarestays
-#   config:
-#     <<: *default_config
-#     SITE_URL:             http://www.squarestays.com
-#     PRODUCT_CLASS_NAME:   Property
-#     # Database and CDN
-#     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/SquareStays_production
-#     S3_BUCKET:            squarestays-img-production
-#     # Social Networks
-#     FB_APP_ID:            201854953233705
-#     FB_APP_SECRET:        5a773c1f43daaaefb0a169fc388ba1e0
-#     TW_APP_ID:            KkHFOnyPPPFjUYcjVpyLA
-#     TW_APP_SECRET:        rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA
-#     # Security
-#     SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
-#     # Paypal
-#     PAYPAL_ACCOUNT:       sales@heypal.com
-#     PAYPAL_MODE:          production
-
-
-########################################################################################################################################
-tse-demo:
-  app:   tse-demo
-  config:
-    <<: *default_config
-    SITE_URL:             http://demo.thesharingengine.com
-    PRODUCT_CLASS_NAME:   Property
-    # Database and CDN
-    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/tsedemo
-    S3_BUCKET:            tsedemo
-    # Social Networks
-    FB_APP_ID:            150030298466716
-    FB_APP_SECRET:        c3ee9ccfd1d9abf2a60b2804078d3421
-    TW_APP_ID:            8pFl2HlRVMjj5iKin962w
-    TW_APP_SECRET:        8BPpQn2VSqtkMWNYw7CpkY2ZYeyCENaTktRORJjW8
-    # Security
-    SECRET_TOKEN:         b6e5e9e331352b88ed6b14704160ee6e7aeee1989d00bc416d34428c213518d9d4d3d6b1dee34587d7a1c02bbd69754212b2815f9e8c2ac3915c54ac18ac7771
-
-########################################################################################################################################
-siltroopers:
-  app:   siltroopers
-  config:
-    <<: *default_config
-    SITE_URL:             http://siltroopers.herokuapp.com
-    PRODUCT_CLASS_NAME:   Service
-    # Database and CDN
-    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/siltroopers
-    S3_BUCKET:            siltroopers
-    S3_ACCESS_KEY_ID:     AKIAJOJEIAZ6LOVHDFDA
-    S3_SECRET_ACCESS_KEY: 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
-    # Social Networks
-    FB_APP_ID:            201854953233705
-    FB_APP_SECRET:        5a773c1f43daaaefb0a169fc388ba1e0
-    TW_APP_ID:            KkHFOnyPPPFjUYcjVpyLA
-    TW_APP_SECRET:        rbNU7xVyPGD6zr3QD36pFaZO6bIo32qRygcfOwgjPA
-    # Security
-    SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
-    # Paypal
-    PAYPAL_ACCOUNT:       sales@heypal.com
-    PAYPAL_MODE:          production
-
-########################################################################################################################################
-brandedbabes:
-  app:   brandedbabes
-  config:
-    <<: *default_config
-    SITE_URL:             http://brandedbabes.herokuapp.com
-    PRODUCT_CLASS_NAME:   Service
-    # Database and CDN
-    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/brandedbabes
-    S3_BUCKET:            brandedbabes
-    # Security
-    SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
-
-########################################################################################################################################
-# foliohouse:
-#   app:   foliohouse
-#   config:
-#     <<: *default_config
-#     SITE_URL:             http://foliohouse.herokuapp.com
-#     PRODUCT_CLASS_NAME:   Property
-#     # Database and CDN
-#     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/foliohouse
-#     S3_BUCKET:            foliohouse
-#     # Security
-#     SECRET_TOKEN:         f1b533f99af9c01f554510b6b6d0dc90ff603d0cc8e1703e4950887ee1210f2e0cf9feb5f9393f6524de512dee04b8f019125f2130d54ed1cb7023cc11cb3a9b
-
-########################################################################################################################################
-services-tse:
-  app:   services-tse
-  config:
-    <<: *default_config
-    SITE_URL:             http://services-tse.herokuapp.com
-    PRODUCT_CLASS_NAME:   Service
-    # Database and CDN
-    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/services-tse
-    S3_BUCKET:            services-tse
-    # Security
-    SECRET_TOKEN:         f9393af9c01f5545187ee4df652f1b533f99e512dee04b8f019125f0b6b6d0dc90ff603d0cc8e1703e495082130d54ed1cb7023cc11cb3a9b1210f2e0cf9feb5
-
-########################################################################################################################################
-# interns-tse:
-#   app:   interns-tse
-#   config:
-#     <<: *default_config
-#     SITE_URL:             http://interns-tse.herokuapp.com
-#     PRODUCT_CLASS_NAME:   Service
-#     # Database and CDN
-#     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/interns-tse
-#     S3_BUCKET:            interns-tse
-#     # Security
-#     SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
-
-########################################################################################################################################
-# models-tse:
-#   app:   models-tse
-#   config:
-#     <<: *default_config
-#     SITE_URL:             http://models-tse.herokuapp.com
-#     PRODUCT_CLASS_NAME:   Service
-#     # Database and CDN
-#     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/models-tse
-#     S3_BUCKET:            models-tse
-#     # Security
-#     SECRET_TOKEN:         0cccfec4900baddee971501f9af3e70a3f71a0e469f56e64338f1744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
-
-########################################################################################################################################
-cosigners-tse:
-  app:   cosigners-tse
-  config:
-    <<: *default_config
-    SITE_URL:             http://cosigners-tse.herokuapp.com
-    PRODUCT_CLASS_NAME:   Service
-    # Database and CDN
-    DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/cosigners-tse
-    S3_BUCKET:            cosigners-tse
-    # Security
-    SECRET_TOKEN:         a3f71a0e469f56e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7
-
-########################################################################################################################################
 djconnect-tse:
   app:   djconnect-tse
   config:
     <<: *default_config
-    SITE_URL:             http://djconnect-tse.herokuapp.com
-    PRODUCT_CLASS_NAME:   Service
+    SITE_URL:             http://globalclubconnect.com
     # Database and CDN
     DATABASE_URL:         mysql2://heypaladmin:HYpl99db@heypal-useast-1.c7xsjolvk9oh.us-east-1.rds.amazonaws.com/djconnect-tse
     S3_BUCKET:            djconnect-tse
+    # Social Networks
+    FB_APP_ID:            440491242660057
+    FB_APP_SECRET:        9c052b96e9fc736bb2f3b8f916b0c9b8
     # Security
     SECRET_TOKEN:         6e64338f0cccfec4900baddee971501f9af3e701744698b9610a3eb14b42d40cc223b536337e50e5f2f139f85337d5ace1c350e33730afed4d7a3f71a0e469f5
+    # Paypal (production, to change to test: comment out next two lines)
+    PAYPAL_ACCOUNT:       sales@heypal.com
+    PAYPAL_MODE:          production

@@ -5,23 +5,6 @@
     .span9
       .alert.alert-info= t("places.search.no_result")
 - else
-  - case SiteConfig.search_default_view_type
-    - when :list
-      %ul.list-display
-        #search_result_list
-          = render 'results_list_view', :my_products => my_products
-      .show-grid.hide
-        %ul
-          #search_result_grid
-            = render 'results_grid_view'
-            
-    - when :grid
-      .show-grid
-        %ul
-          #search_result_grid
-            = render 'results_grid_view'
-      %ul.list-display.hide
-        #search_result_list
-          = render 'results_list_view', :my_products => my_products
-
-    
+  %ul.list-display
+    #search_result_list
+      = render 'results_list_view', :my_products => my_products

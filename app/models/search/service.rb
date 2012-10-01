@@ -23,5 +23,15 @@ module Search
     def amenity_filters_title
       I18n.t('services.search.amenity_filter_title')
     end
+
+    def order
+      self.sort_by ||= 'points'
+      sort_map = {
+        "points"             => "points desc",
+        "name"               => "title asc",
+        "most_recent"        => "updated_at desc"
+      }
+      sort_map[self.sort_by]
+    end
   end
 end

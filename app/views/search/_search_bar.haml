@@ -2,11 +2,10 @@
   .search-bar-container
     .search-bar#search_bar
       .float-left
-        %h2{:style => 'display:inline; '}
-          = @city.name
-        #num_search_results= search_results_count(@results)
-
-        = #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
+        %h2{:style => 'padding-bottom: 9px'}
+          = "#{@city.name}'s Best DJs"
+        - # --> WARNING: don't delete the '#' here --> #num_search_results= search_results_count(@results)
+        - #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 
       .float-right
         = form_for @search, :url => search_index_path, :as => :search, :html => {:remote => true, :autocomplete => 'off', :method => :get} do |f|
@@ -26,11 +25,7 @@
             = f.hidden_field :total_pages
             = render_overridable_partial('search_fields', :f => f)
 
-          .views
-            .sorting
-              = t("products.search.sort_by")
-              = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'
-            - if overridable_partial_defined?('grid')
-              .toggle
-                = link_to '', '#', :class => "disp-list #{SiteConfig.search_default_view_type == :list ? 'current': ''}", :id => 'disp-list'
-                = link_to '', '#', :class => "disp-gallery #{SiteConfig.search_default_view_type == :grid ? 'current': ''}",      :id => 'disp-gallery'
+          / .views
+          /   .sorting
+          /     = t("products.search.sort_by")
+          /     = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'

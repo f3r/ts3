@@ -6,17 +6,18 @@ class Product < ActiveRecord::Base
   belongs_to :currency
   belongs_to :category
   belongs_to :city
-  has_many   :photos,    :dependent => :destroy, :order => :position
-  has_many   :panoramas, :dependent => :destroy
-  has_many   :favorites, :dependent => :destroy, :as => :favorable
+  has_many   :photos,            :dependent => :destroy, :order => :position
+  has_many   :panoramas,         :dependent => :destroy
+  has_many   :favorites,         :dependent => :destroy, :as => :favorable
   has_many   :product_amenities, :dependent => :destroy
-  has_many   :amenities, :through => :product_amenities
-  has_many   :reviews, :dependent => :destroy
-  has_many   :q_and_a, :class_name => 'Comment', :dependent => :destroy
+  has_many   :reviews,           :dependent => :destroy
+  has_many   :q_and_a,           :dependent => :destroy, :class_name => 'Comment'
+  has_many   :amenities,         :through => :product_amenities
 
   serialize :custom_values
 
   attr_accessor :terms
+  attr_accessible :points
 
   validates_presence_of :city, :title
 

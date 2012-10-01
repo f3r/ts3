@@ -19,9 +19,8 @@
         .user_box.logged-in
           .row
             .thumb
-              = avatar_image(current_user)
+              = link_to avatar_image(current_user), profile_path
             .user_name
-              = link_to full_name(current_user), profile_path
               .small
                 = link_to t("users.sign_out"), destroy_user_session_path
       - else

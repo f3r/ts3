@@ -43,8 +43,6 @@
         = render 'products/services/tabs/main',       :resource => @resource
       .well
         = render 'products/properties/tabs/photos',   :resource => @resource
-      .well
-        = render 'products/tabs/amenity_details',     :resource => @resource
 
       /******************************************************************************************
       / Tabbed Panel: Photos, Map, Calendar, Details, Amenities, Directions, House Rules, Questions
@@ -52,4 +50,4 @@
       =# render_overridable_partial('tabbed_panel', :resource => @resource)
 
 :javascript
-  PlaceShow.initializeSharePlace(opts.share_title, opts.share_url, opts.share_id)
+  PlaceShow.initializeSharePlace("#{h(@resource.title)}", '#{seo_product_url(@resource)}', '#{@resource.id}')

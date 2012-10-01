@@ -36,7 +36,7 @@ class City < ActiveRecord::Base
     criteria.name = name unless name.blank?
     criteria.country_code = country_code unless country_code.blank?
     criteria.max_rows = '10'
-    criteria.feature_codes = ['PPL', 'PPL?']
+    #criteria.feature_codes = ['PPL', 'PPL?']
     Geonames::WebService.search(criteria).toponyms.collect{|t| self.new_from_geonames(t)}
   end
 

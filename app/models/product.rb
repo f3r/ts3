@@ -19,7 +19,8 @@ class Product < ActiveRecord::Base
   attr_accessor :terms
   attr_accessible :points
 
-  validates_presence_of :city, :title
+  validates_presence_of :currency, :city, :title
+#  validates_presence_of :price_field, :if => :published?
 
   validates_numericality_of :price_per_day, :price_per_hour, :price_per_week, :price_per_month, :price_sale, :allow_nil => true
 

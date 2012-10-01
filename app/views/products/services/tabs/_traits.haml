@@ -1,0 +1,19 @@
+- if false
+  .traits
+    .tag.grey-dark
+      %span.larr &nbsp;
+      %span.strip
+        %a.tagsection Genres
+      %span.rarr
+    .tag.grey-light
+      %span.larr &nbsp;
+      %span.strip
+        %a.tagsection Trip-hop
+      %span.rarr
+
+.row-fluid
+  .span12
+    .row-fluid
+      - @resource.amenities.all.each do |a|
+        .span2
+          %h4= a.name

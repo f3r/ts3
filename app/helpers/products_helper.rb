@@ -133,6 +133,16 @@ module ProductsHelper
     html
   end
 
+  def custom_field_image(resource, cf_name, img_src)
+    field_value = resource.custom_fields[cf_name.to_s]
+    icon = image_tag(img_src)
+    if field_value.present?
+      link_to(icon, field_value, :target => '_blank')
+    else
+      icon
+    end
+  end
+
   def custom_field_value(cf, resource)
     field_value = resource.custom_fields[cf.name]
     val = case cf.type

@@ -13,15 +13,17 @@ namespace :dj_club do
         end
     end
     fd.close
+    count =  club_links.count
+    puts "There are #{count} links to scrap!!!"
 
-    puts "There are #{club_links.count}"
+    i = 1
 
     club_links.each do |link|
       link = "#{base_url}#{link}"
-      puts "Scrapping #{link}"
+      puts "#{i}/#{count}  -  #{link}"
       fd = open(link)
       club_page = Nokogiri::HTML(fd)
-      location = club_page.css("meta[name=icbm]").attr("content")
+      location = club_page.css("meta[name=icbm]").attr("content").text
       name = club_page.css("div.title").first.text
       description = club_page.css("#dvPage > p").text
       details = club_page.css("#NeedToKnowDetails .detail")
@@ -66,7 +68,8 @@ namespace :dj_club do
       dj_club.save
 
       fd.close
-      #break
+
+      i = i + 1
     end
 
   end

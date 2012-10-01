@@ -382,6 +382,7 @@ DEPENDENCIES
   money
   mysql2
   newrelic_rpm
+  nokogiri
   omniauth
   omniauth-facebook
   omniauth-twitter

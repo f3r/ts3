@@ -1,9 +1,23 @@
 .well
   %h2{:style => 'display:inline; color: #000000 '}
     = "Singapore"
-
-.row
-  .span6
-    We are
-  .span6
-    loading them up
+  %hr
+  .row
+    - @clubs.each do |club|
+      .span6.club
+        .well
+          %h2
+            = club.name
+          %ul
+            %li
+              = club.phone
+            %li
+              %a{:href => "#{club.website}"}
+                = club.website
+            %li
+              = club.email
+          %h3
+            = club.address
+          %img{:src => "#{club.photo1(:medium)}"}
+          %p
+            = club.description

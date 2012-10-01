@@ -8,12 +8,12 @@
 
 .row
   - if @my_products
-    .span10
+    .span8.offset1
       = breadcrumb [[t('products.my_listings'), listings_path]], @resource.title
     .span2.listing-actions
       = render 'listings/actions'
   - else
-    .span12
+    .span10.offset1
       = breadcrumb [['Search Results', seo_city_path(@resource.city)]],  @resource.title
 
 .row.product_info{:id => dom_id(@resource)}
@@ -25,14 +25,15 @@
     .accomodation-wrapper
       .header
         .title
-          = render 'search/button_favorite', :favorable => @resource
+          / comment out for now
+          / = render 'search/button_favorite', :favorable => @resource
           %h1
             = @resource.title
             -if @resource.product.has_review?
               .review_average{:style => "text-align: right;"}
                 = stars(@resource.product.review_avg)
             .inquire
-              = link_to "Hire Me", new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-info', :remote => true
+              = link_to "Hire Me!", new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-info', :remote => true
           .meta
             %p= "#{@resource.city.name}, #{@resource.city.country}"
             .share

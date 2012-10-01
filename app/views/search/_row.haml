@@ -17,8 +17,8 @@
   .data-block.last-child
     .price
       .figure
-        %span.autosize= "##{index}"
-      .micro= "#{resource.points} super dj points"
+        %span= "##{index}"
+      .micro= "#{resource.points} DJ Points"
       -if resource.product.has_review?
         .reviews
           = stars(resource.product.review_avg)

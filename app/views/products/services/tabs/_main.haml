@@ -2,11 +2,11 @@
   .row
     .span3.profile_pic
       = image_tag @resource.primary_photo, :width => '200'
-    .span8
+    .span7
       =# render 'products/custom_values'
       .row-fluid.about
         .span12
-          %p= resource.description
+          %p= resource.description.html_safe
       .row-fluid
         .span12
           = custom_field_image @resource, :facebook_url, 'social/facebook.png'

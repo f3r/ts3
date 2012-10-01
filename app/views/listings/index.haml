@@ -1,5 +1,5 @@
 .row
-  .span12
+  .span10.offset1
     = breadcrumb [['Home', root_path]], t('products.my_listings')
   .span10.offset1
     .results.my_places
@@ -9,7 +9,3 @@
         %ul.list-display
           #search_result_list
             = render :partial => 'search/row', :collection => @collection, :as => :resource, :locals => {:my_products => true}
-
-
-:javascript
-  $('.price .figure').textfill({ maxFontPixels: 26 });

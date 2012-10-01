@@ -1,4 +1,6 @@
 HeyPalFrontEnd::Application.routes.draw do
+  get "dj_clubs/list"
+
   get 'sitemap.xml' => 'cached_sitemaps#sitemap'
 
   ActiveAdmin.routes(self)

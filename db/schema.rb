@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120925075257) do
+ActiveRecord::Schema.define(:version => 20121001103653) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -171,9 +171,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -199,9 +199,9 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -277,6 +277,19 @@ ActiveRecord::Schema.define(:version => 20120925075257) do
   end
 
   add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
+  create_table "dj_clubs", :force => true do |t|
+    t.string   "name"
+    t.string   "email"
+    t.text     "description"
+    t.text     "location"
+    t.string   "website"
+    t.string   "phone"
+    t.integer  "points"
+    t.boolean  "active",      :default => true
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
 
   create_table "favorites", :force => true do |t|
     t.integer  "favorable_id"

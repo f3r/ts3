@@ -12,6 +12,14 @@
                 - City.active_and_have_a_listing.each do |city|
                   %li{:class => (@city && @city.id == city.id)? "active" : ""}= link_to city.name, "/#{city.slug}"
 
+            %li.dropdown
+              %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}
+                = "Find a Club"
+                %b.caret
+              %ul.dropdown-menu{:style => 'width:200px'}
+                %li= link_to "Singapore", "/dj_clubs/list"
+
+
             - if user_signed_in?
               %li.dropdown
                 %a.dropdown-toggle{'data-toggle' => "dropdown", :href => '#'}

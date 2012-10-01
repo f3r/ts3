@@ -31,48 +31,25 @@
             -if @resource.product.has_review?
               .review_average{:style => "text-align: right;"}
                 = stars(@resource.product.review_avg)
-
+            .inquire
+              = link_to "Hire Me", new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-info', :remote => true
           .meta
             %p= "#{@resource.city.name}, #{@resource.city.country}"
             .share
               %label= t("share_via")
               .sharePlace
-        .focal
-          %h1.price
-            %span.figure
-              %span.autosize= product_price(@resource)
-            %span.sub= product_price_unit(@resource)
-          - if false
-            %a{:href => '#inquire', :class => 'btn btn-large btn-info', 'data-toggle' => 'modal', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true'}= t("places.inquire")
-          = link_to t("places.inquire"), new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-info', :remote => true
-          %p{:style => "font-size: 9px; font-variant: small-caps; color: #5B5848; margin-top: -3px;"}= t("places.no_obligation")
+
+      .well
+        = render 'products/services/tabs/main',       :resource => @resource
+      .well
+        = render 'products/properties/tabs/photos',   :resource => @resource
+      .well
+        = render 'products/tabs/amenity_details',     :resource => @resource
 
       /******************************************************************************************
       / Tabbed Panel: Photos, Map, Calendar, Details, Amenities, Directions, House Rules, Questions
       /******************************************************************************************
-      = render_overridable_partial('tabbed_panel', :resource => @resource)
+      =# render_overridable_partial('tabbed_panel', :resource => @resource)
 
 :javascript
-  PlaceShow.initialize({
-    cal_lastVisibleDay : #{DateTime.now.end_of_month.to_date},
-    cal_events         : #{@availabilities.to_json},
-    cal_month          : #{Date.today.month},
-    map_lat            : #{@resource.lat || 'null'},
-    map_lon            : #{@resource.lon || 'null'},
-    map_cityName       : '#{@resource.city.name}',
-    map_countryName    : '#{@resource.city.country}',
-    map_radius         : #{@resource.radius || 0},
-    share_title        : "#{h(@resource.title)}",
-    share_url          : '#{seo_product_url(@resource)}',
-    share_id           : '#{@resource.id}'
-  });
-  $('.price .figure').textfill({ maxFontPixels: 26 });
-
-  $('#inquire_place_link').click(function() {
-    if( $('#inquire_place_link').attr('data-toggle') == "false") {
-      conversation = $('#inquire_place_link').attr('conversation')
-      if ( conversation !== null ) {
-        window.location.href = "#{messages_path}/"+conversation
-      }
-    }
-  });
+  PlaceShow.initializeSharePlace(opts.share_title, opts.share_url, opts.share_id)

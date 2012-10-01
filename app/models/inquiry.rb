@@ -18,7 +18,7 @@ class Inquiry < ActiveRecord::Base
       :guests => params[:guests]
     )
     inquiry.check_in = params[:check_in]
-    inquiry.length   = [params[:length_stay], params[:length_stay_type]]
+    inquiry.budget   = params[:budget]
 
     return inquiry unless inquiry.save
 
@@ -110,7 +110,7 @@ class Inquiry < ActiveRecord::Base
   # ==Description
   # Email sent when the user sends feedback
   def price
-    self.product.money_price * self.length_stay
+    (self.budget || 10000).to_money(Currency.default.currency_code)
   end
 
   def rate

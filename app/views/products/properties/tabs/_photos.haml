@@ -8,6 +8,7 @@
             - if p1.name.present?
               .caption= p1.name
             = image_tag(p1.photo.url(:large))
+        - if false
           .small
             - if p2.present?
               %a{:href => "#", :class => "extra-paginator", "data-page" => photos.index(p2) + 1}

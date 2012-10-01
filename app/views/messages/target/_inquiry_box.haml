@@ -12,6 +12,7 @@
         %span.key
           %i.icon-calendar{:title => t("products.inquiries.start_date")}
         %span.value= I18n.l(target.check_in, :format => :long)
+    - if false
       .stay
         %span.key
           %i.icon-time{:title => t("products.inquiries.duration")}
@@ -25,7 +26,7 @@
   .popover-content{:style => 'display: none'}
     .price-details
       .line
-        %span.concept= "#{target.length_in_words} x #{target.transaction.rate_display}".html_safe
+        %span.concept= "Payment"
         %span.equal= "="
         %span.figure= target.transaction.product_amount_display
       .line

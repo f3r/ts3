@@ -22,15 +22,16 @@ en:
 
   inquiries:
     inquiries_title: Inquiries
-    inquiry_modal_title: Tell us about your stay
+    inquiry_modal_title: Hire this DJ
     update_inquiry_title: Update inquiry
     inquiry: Inquiry
     button_inquire: Inquire
-    arriving: Arriving
+    arriving: Event Date
     arriving_on: Arriving on
     staying: Staying
+    budget: Budget
     comments_questions: Comments / Questions
-    inquiry_questions: "Please add any other questions here. You can ask questions about this listing, your needs or any other listing"
+    inquiry_questions: "Please add any other questions to the DJ here"
     re_captcha: Humans only
     inquiry_sent: Inquiry sent
     inquiry_success_title: "Your inquiry has been sent!"

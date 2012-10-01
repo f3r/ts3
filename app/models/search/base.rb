@@ -37,7 +37,7 @@ module Search
 
 
     def per_page
-      @per_page || 10
+      @per_page || 100
     end
 
     def collection

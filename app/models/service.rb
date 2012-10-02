@@ -32,8 +32,7 @@ class Service < ActiveRecord::Base
   end
 
   def self.user_reached_limit?(user)
-    #self.manageable_by(user).count >= 1
-    false
+    self.manageable_by(user).count >= 1
   end
 
   def price_unit

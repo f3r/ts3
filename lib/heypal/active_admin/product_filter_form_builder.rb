@@ -6,7 +6,7 @@ module Heypal
 
       def custom_input_class_name(as)
         if as == :select
-          "Heypal::ActiveAdmin::SelectInput"
+          "HeyPalFrontEnd::ActiveAdmin::SelectInput"
         else
           super
         end

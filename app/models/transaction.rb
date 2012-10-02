@@ -15,9 +15,6 @@ class Transaction < ActiveRecord::Base
   workflow_column :state
 
   workflow do
-    state :initial do
-      event :request,         :transitions_to => :requested
-    end
     state :requested do
       event :pre_approve,     :transitions_to => :ready_to_pay
       event :decline,         :transitions_to => :declined

@@ -21,5 +21,5 @@
   # PayPal will redirect your user here if he cancels the payment
   service.cancel_return_url root_url %>
 
-  <%= link_to_function t("workflow.readypay_guest_button", :amount => transaction.total_amount_display), "$('#payment_form').submit()", {:class => "btn btn-primary btn-large" } %>
+  <%= link_to_function t("workflow.readypay_guest_button", :amount => transaction.total_amount_display).html_safe, "$('#payment_form').submit()", {:class => "btn btn-primary btn-large" } %>
 <% end %>

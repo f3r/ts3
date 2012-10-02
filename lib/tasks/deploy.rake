@@ -51,8 +51,8 @@ namespace :deploy do
   end
 
   task :load_translations do
-    header 'Loading new translations ...'
-    cmd "heroku run rake i18n:populate:from_rails #{app_setup}"
+    #header 'Loading new translations ...'
+    #cmd "heroku run rake i18n:populate:from_rails #{app_setup}"
   end
 
   task :off do

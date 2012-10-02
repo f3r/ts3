@@ -4,7 +4,7 @@ class SiteConfig < ActiveRecord::Base
 
   has_attached_file :fav_icon,        :path => "static/favicon.ico"
   has_attached_file :logo,            :path => "static/logo.png"
-  has_attached_file :photo_watermark, :path => "watermarks/photowatermark.jpg"
+  # has_attached_file :photo_watermark, :path => "watermarks/photowatermark.jpg"
 
   as_enum :search_default_view_type, [:list, :grid]
 

@@ -7,8 +7,8 @@ class Photo < ActiveRecord::Base
   has_attached_file :photo, {
      :styles => {
        :large => {
-         :geometry => "602x401>",
-         :watermark_path => lambda {|instance| SiteConfig.photo_watermark.url if SiteConfig.photo_watermark?}
+         :geometry => "602x401>"
+         # :watermark_path => lambda {|instance| SiteConfig.photo_watermark.url if SiteConfig.photo_watermark?}
        },
        :medium => "309x200#",
        :medsmall => "150x100#",
@@ -59,7 +59,7 @@ class Photo < ActiveRecord::Base
       self.product.update_attribute(:published, false)
     end
   end
-  
+
   def set_initial_position
     #Place it to the laaaast :)
     self.position = 9999999

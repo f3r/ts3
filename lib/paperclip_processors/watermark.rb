@@ -39,13 +39,13 @@ module Paperclip
         dst.binmode
 
         if watermark_path.present?
-          
-          watemark_tmp_file = Tempfile.new([@basename, @format].compact.join(".")) 
+
+          watemark_tmp_file = Tempfile.new([@basename, @format].compact.join("."))
           watemark_tmp_file.binmode
           watemark_tmp_file.write(open(watermark_path).read())
           watemark_tmp_file.flush
           watemark_tmp_file.close()
-          
+
           command = "composite"
           @position = if @current_geometry.horizontal?
             "NorthEast"
@@ -83,9 +83,5 @@ module Paperclip
         trans << " #{convert_options}" if convert_options?
         trans
       end
-
-
   end
-
 end
-

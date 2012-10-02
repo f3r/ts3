@@ -1,9 +1,9 @@
 class GalleryItem < ActiveRecord::Base
-  
+
   belongs_to :gallery
-  
+
   scope :active, where(:active => true).order("position ASC")
-  
+
   has_attached_file :photo, {
      :styles => {
        :large => {
@@ -11,18 +11,20 @@ class GalleryItem < ActiveRecord::Base
        },
        :tiny => "40x40#"
      },
-     :convert_options => { 
+     :convert_options => {
         :all => "-quality 70"
       },
      :path => "front/photos/:id/:style.:extension",
-     :processors => [:rationize, :watermark]
+     # :processors => [:rationize, :watermark]
+     :processors => [:rationize]
+
    }
-   
-   
+
+
    #Easy accessor to get the imageurl
    def image_url
      self.photo.url('large')
    end
-   
-  
+
+
 end

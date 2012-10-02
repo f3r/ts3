@@ -12,16 +12,10 @@
     .title
       %h3
         = link_to resource.title, url
-    = render_overridable_partial('row_details', :resource => resource)
+    .social_icons
+      = render :partial => 'shared/social_icons', :locals => { :resource => resource }
 
   .data-block.last-child
-    .price
-      .figure
-        %span= "##{index}"
-      .micro= "#{resource.points} DJ Points"
-      -if resource.product.has_review?
-        .reviews
-          = stars(resource.product.review_avg)
     - if my_products
       .manage
         %span.edit_delete_buttons
@@ -32,7 +26,11 @@
           %span.label.place_status.label-success=  t("products.listed")
         - else
           %span.label.place_status=  t("products.invisible")
-    - elsif false && my_favorites
-      .manage
-        %span.edit_delete_buttons
-          = link_to t("favorites.remove_favorite"), favorite_path(:id => resource.id, :remove_item => true), :remote => true, :method => :delete, :class => 'btn large small button_remove_favorite', :confirm => t("are_you_sure")
+    - else
+      .price
+        .figure
+          %span= "##{ranking}"
+        .micro= "#{resource.points} DJ Points"
+        -if resource.product.has_review?
+          .reviews
+            = stars(resource.product.review_avg)

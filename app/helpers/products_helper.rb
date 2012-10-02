@@ -139,7 +139,7 @@ module ProductsHelper
     if field_value.present?
       link_to(icon, field_value, :target => '_blank')
     else
-      icon
+      ''
     end
   end
 

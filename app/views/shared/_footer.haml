@@ -1,10 +1,10 @@
-%footer
+%footer#footer
   .seo.center
     = footer_menu
   .seo.center
     = raw(SiteConfig.before_body_tag_end) if SiteConfig.before_body_tag_end.present?
 
--unless logged_in?
+- unless logged_in?
   - unless controller_name.eql?('users') && (action_name.eql?('new') || action_name.eql?('connect'))
     #popup-registration.modal.hide{:style => 'margin-left: -362px; width: 725px'}
       .modal-body.registration
@@ -29,7 +29,7 @@
         return false;
       });
     });
-    
+
 :javascript
   $(function(){
     var hash = window.location.hash;
@@ -40,6 +40,6 @@
       });
     }
   });
-  
+
 - if SiteConfig.show_powered?
   = render 'shared/powered'

@@ -10,10 +10,10 @@ class Photo < ActiveRecord::Base
          :geometry => "602x401>"
          # :watermark_path => lambda {|instance| SiteConfig.photo_watermark.url if SiteConfig.photo_watermark?}
        },
-       :medium => "309x200#",
-       :medsmall => "150x100#",
-       :small => "105x70#",
-       :tiny => "40x40#"
+       :medium => "309x200",
+       :medsmall => "150x150",
+       :small => "70x70",
+       :tiny => "40x40"
      },
      :convert_options => {
         :all => "-quality 70"

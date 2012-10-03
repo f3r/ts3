@@ -5,15 +5,15 @@ require_dependency 'google_visualization'
 klass = SiteConfig.product_class
 
 ActiveAdmin.register_page "Dashboard" do
-  
+
   controller do
     helper 'admin/dashboards'
   end
-  
+
   action_item do
     link_to "Switch histograms to #{histogram_switch_text} view", admin_dashboard_path(:_type => histogram_view)
   end
-   
+
   menu :label => "Dashboard", :priority => 0
   content do
     table do

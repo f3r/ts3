@@ -1,14 +1,9 @@
 module Admin::DashboardsHelper
   def histogram_view
-    if params[:_type].present? && params[:_type] == "false"
-      cummulative = true
-    else
-      cummulative = false
-    end
-    cummulative
+    params[:_type].present? && params[:_type] == "false"
   end
-  
+
   def histogram_switch_text
-    histogram_view == true ? "Absolute" : "Cumulative"
+    histogram_view ? "Absolute" : "Cumulative"
   end
 end

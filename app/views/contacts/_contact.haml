@@ -1,4 +1,4 @@
-#contact_request.modal.hide.fade{:style => 'height: 248px; overflow: hidden'}
+#contact_request.modal.hide.fade{:style => 'overflow: hidden'}
   = form_for(:contact_request, :url => '/contacthp', :html => {:method => :post, :remote => true, :id => "contact_form"}) do |f|
     .modal-header
       %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x

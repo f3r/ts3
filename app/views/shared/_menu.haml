@@ -21,9 +21,6 @@
                   - if is_agent? or is_admin?
                     %li{:class => @current_controller == "listings" && @current_action == "index" ? "active" : ""}
                       = link_to t("template.header.menu.my_profile"), listings_path
-                  - if is_agent? or is_admin?
-                    %li{:class => @current_controller == "listings" && @current_action == "index" ? "active" : ""}
-                      = link_to t('products.my_listings'), listings_path
                   %li{:class => @current_controller == "places" && @current_action == "favorite_places" ? "active" : ""}
                     = link_to t("products.my_favorites"), favorites_search_index_path
                   %li{:class => @current_controller == "alerts" && @current_action == "index" ? "active" : ""}

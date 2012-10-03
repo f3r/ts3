@@ -18,9 +18,16 @@ ActiveAdmin.register City do
 
   filter :name
   filter :state
-  filter :country, :as => :select, :collection => proc { City.select(["country as name"]).find(:all, :group => "country_code") }
+  filter :country, :as => :select, :collection => proc { City.select(["country as name"]).all(:group => "country_code") }
 
-  form :partial => "new"
+  form do |f|
+    f.inputs do
+      f.input :meta_description
+      f.input :meta_keywords
+      f.input :footer_seo_text, :hint => "This appears at the bottom of the page"
+    end
+    f.actions
+  end
 
   index do
     id_column

@@ -11,7 +11,8 @@ class City < ActiveRecord::Base
   scope :active,    where("active")
   scope :inactive,  where("not active")
 
-  attr_accessible :name, :lat, :lon, :state, :country, :country_code, :cached_complete_name, :active, :position, :slug, :geoname_id
+  attr_accessible :name, :lat, :lon, :state, :country, :country_code, :cached_complete_name, :active, :position, :slug, :geoname_id,
+                  :meta_description, :meta_keywords, :footer_seo_text
 
   def self.active_and_have_a_listing
     self.active.joins(:products).uniq.all

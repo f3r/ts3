@@ -30,6 +30,7 @@ ActiveAdmin.register CustomField  do
       f.input :required
       f.input :label
       f.input :hint
+      f.input :prefix, :hint => "[Optional] This value will be prefixed with the value the user inputs"
       f.input :validations, :hint => "Don't include validate[]! For validations reference: <a href = 'http://posabsolute.github.com/jQuery-Validation-Engine/#validators', target = '_blank'> link </a>".html_safe
       f.input :date_format, :as => :select, :collection => CustomField.DATE_FORMATS, :hint => "Only valid with date fields", :include_blank => false
       f.input :values

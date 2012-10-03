@@ -69,15 +69,19 @@ module ProductsHelper
     klasses = "validate[#{validation_klasses.join(',')}] "
 
     html = case cf.type
-           when :dropdown, :yes_no, :yes_no_text
-             select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses}
-           when :checkbox
-             check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
-           when :checkbox_group
-              render 'products/custom_fields/checkbox_group', {:cf => cf, :resource => resource, :options => cf.options,
-                  :field_name => field_name, :field_id => field_id, :field_value => field_value}
-           else
-             text_field_tag field_name, field_value, :id => field_id, :class => klasses
+             when :dropdown, :yes_no, :yes_no_text
+               select_tag field_name, options_for_select(cf.options, field_value), {:include_blank => true, :id => field_id, :class => klasses}
+             when :checkbox
+               check_box_tag field_name, true, field_value, :id => field_id, :class => klasses
+             when :checkbox_group
+               render 'products/custom_fields/checkbox_group', {:cf => cf, :resource => resource, :options => cf.options,
+                                                                :field_name => field_name, :field_id => field_id, :field_value => field_value}
+             else
+               if cf.prefix.present?
+                 content_tag(:span, cf.prefix) + "#{text_field_tag(field_name, field_value, :id => field_id, :class => klasses, "data-validation-placeholder" => "sdsd")}".html_safe
+               else
+                 text_field_tag(field_name, field_value, :id => field_id, :class => klasses)
+               end
            end
 
     if cf.yes_no_text? && cf.more_info_label.present?
@@ -134,9 +138,11 @@ module ProductsHelper
   end
 
   def custom_field_image(resource, cf_name, img_src)
+    cf = CustomField.find_by_name(cf_name)
     field_value = resource.custom_fields[cf_name.to_s]
     icon = image_tag(img_src)
     if field_value.present?
+      field_value = "#{cf.prefix}" + field_value if cf and cf.prefix
       link_to(icon, field_value, :target => '_blank')
     else
       ''

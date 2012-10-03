@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121001140901) do
+ActiveRecord::Schema.define(:version => 20121003111242) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -171,9 +171,9 @@ ActiveRecord::Schema.define(:version => 20121001140901) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -199,9 +199,9 @@ ActiveRecord::Schema.define(:version => 20121001140901) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -261,6 +261,7 @@ ActiveRecord::Schema.define(:version => 20121001140901) do
     t.string   "more_info_label"
     t.string   "date_format",     :limit => 20
     t.integer  "position",                      :default => 999999
+    t.string   "prefix"
   end
 
   create_table "delayed_jobs", :force => true do |t|
@@ -366,6 +367,7 @@ ActiveRecord::Schema.define(:version => 20121001140901) do
     t.integer  "target_id"
     t.string   "target_type"
     t.integer  "product_id"
+    t.integer  "budget"
   end
 
   add_index "inquiries", ["place_id"], :name => "index_inquiries_on_place_id"

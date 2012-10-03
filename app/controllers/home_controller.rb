@@ -29,4 +29,5 @@ class HomeController < ApplicationController
   def alive
     head :ok
   end
+  
 end

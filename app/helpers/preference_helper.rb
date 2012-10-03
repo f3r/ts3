@@ -3,6 +3,10 @@ module PreferenceHelper
   def current_city
     Preferences.current_city(current_user, cookies)
   end
+  
+  def current_city_from_user_pref_or_cookie
+    Preferences.current_city_from_user_pref_or_cookie(current_user, cookies)
+  end
 
   def current_currency
     Preferences.current_currency(current_user, cookies)

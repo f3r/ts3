@@ -6,20 +6,6 @@
       .row-fluid
         .span12
           %h2= @resource.user.anonymized_name
-          .row-fluid
-            .span6
-              .row-fluid
-                .span6
-                  .details_label= t("services.age")
-                .span6
-                  .details_value= @resource.user.age || '-'
-            .span6
-              .row-fluid
-                .span6
-                  .details_label= t("users.gender")
-                .span6
-                  .details_value
-                    = user_gender(@resource.user) || '-'
       = render 'products/custom_values'
 
       .row-fluid.about

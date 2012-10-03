@@ -5,14 +5,22 @@ require_dependency 'google_visualization'
 klass = SiteConfig.product_class
 
 ActiveAdmin.register_page "Dashboard" do
-  menu :label => "Dashboard", :priority => 0
 
+  controller do
+    helper 'admin/dashboards'
+  end
+
+  action_item do
+    link_to "Switch histograms to #{histogram_switch_text} view", admin_dashboard_path(:_type => histogram_view)
+  end
+
+  menu :label => "Dashboard", :priority => 0
   content do
     table do
       tr do
         td do
           panel "Users" do
-            stats = User.histo_counts(:cummulative => false)
+            stats = User.histo_counts(:cummulative => histogram_view)
 
             render('/admin/chart', :title => 'Users', :stats => stats)
           end
@@ -20,7 +28,7 @@ ActiveAdmin.register_page "Dashboard" do
 
         td do
           panel klass.name.pluralize do
-            stats = klass.histo_counts(:cummulative => false)
+            stats = klass.histo_counts(:cummulative => histogram_view)
 
             render('/admin/chart', :title => klass.name.pluralize, :stats => stats)
           end

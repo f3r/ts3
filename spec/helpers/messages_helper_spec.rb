@@ -159,6 +159,13 @@ describe MessagesHelper do
 
       altrd_meg.should == "Testing message helper method with phone number  [hidden phone number] "
     end
+    
+    it "returns number if phone number count less than six" do
+      msg = "Testing message helper method with phone number 22222"
+      altrd_meg = suspicious_message?(msg)
+
+      altrd_meg.should == "Testing message helper method with phone number 22222"
+    end
 
     it "returns phone number and email text" do
       msg = "Testing message helper method with phone number 22 2222 2222 and email addess test@gmail.com"

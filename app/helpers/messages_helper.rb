@@ -61,7 +61,7 @@ module MessagesHelper
 
           if name == 'phone'
             @data.each do |value|
-              msg.sub!(value, ' [hidden phone number] ')
+              msg.sub!(value, ' [hidden phone number] ') if value.length >= 6
             end
 
           end
@@ -71,7 +71,7 @@ module MessagesHelper
             @data.each do |value|
               phone_number << value
             end
-            msg.sub!(phone_number, ' [hidden phone number] ') if phone_number.length > 0
+            msg.sub!(phone_number, ' [hidden phone number] ') if phone_number.length >= 6
           end
 
           if name == 'email'

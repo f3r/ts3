@@ -4,6 +4,7 @@ class InquiriesController < ApplicationController
   before_filter :find_product, :only => [:new, :create]
 
   def new
+    @inquiry = Inquiry.new
     respond_to do |format|
       format.js { render :layout => false, :template => "inquiries/new" }
     end

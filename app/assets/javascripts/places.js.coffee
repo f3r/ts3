@@ -2,7 +2,7 @@ PlaceFilters =
   initialize : (containerId) ->
     container = $(containerId)
 
-    $("#new_search").bind('ajax:complete', PlaceFilters.loadingIndicatorOff)
+    $("#search_form").bind('ajax:complete', PlaceFilters.loadingIndicatorOff)
 
     # Top filters
     $("#search_guests, #search_sort_by, #search_price_unit").change(PlaceFilters.search)
@@ -51,14 +51,14 @@ PlaceFilters =
     PlaceFilters.loadingIndicatorOn()
     $('#submitted_action').val('filter')
     $('#search_current_page').val(1)
-    $('#new_search').submit()
+    $('#search_form').submit()
 
   seeMore: ->
     $('#submitted_action').val('see_more');
     page = parseInt($('#search_current_page').val())
     $('#search_current_page').val(page + 1)
     $('#see_more_load_indicator').show()
-    $('#new_search').submit()
+    $('#search_form').submit()
 
   initializeViews: ->
     $("#disp-gallery").click ->

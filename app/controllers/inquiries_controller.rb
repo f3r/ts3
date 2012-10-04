@@ -1,10 +1,12 @@
 class InquiriesController < ApplicationController
   respond_to :js, :html
 
+  include InquiriesHelper
+
   before_filter :find_product, :only => [:new, :create]
 
   def new
-    @inquiry = Inquiry.new
+    @inquiry = Inquiry.new(saved_inquiry_params) if saved_inquiry_params?
     respond_to do |format|
       format.js { render :layout => false, :template => "inquiries/new" }
     end
@@ -24,6 +26,8 @@ class InquiriesController < ApplicationController
 
     if @user.persisted?
       @inquiry = Inquiry.create_and_notify(@product, @user, params[:inquiry])
+      # Storing the current inquiry params so it can be shown to user in other inquiry forms
+      save_inquiry_params(@inquiry)
     end
 
     # Quick hack to get status from mobile version
@@ -41,6 +45,13 @@ class InquiriesController < ApplicationController
     @inquiry = current_user.inquiries.find(params[:id])
     respond_to do |format|
       format.js { render :layout => false, :template => "inquiries/edit" }
+    end
+  end
+
+  def clear_form
+    clear_saved_inquiry_params
+    respond_to do |format|
+      format.js { render :layout => false, :template => "inquiries/clear_form" }
     end
   end
 

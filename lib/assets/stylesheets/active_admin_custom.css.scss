@@ -1,7 +1,4 @@
-/*
- *= require plupload.css
- *= require redactor/redactor.css
-*/
+@import "redactor/redactor";
 
 // Copied from Twitter bootstrap tooltip
 .tooltip {
@@ -241,4 +238,8 @@ body.admin_cmspages {
     .redactor_box {
         margin-bottom: 17px;
     }
+}
+
+body.add_photos {
+    @import "plupload";
 }

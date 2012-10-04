@@ -59,6 +59,7 @@ en:
       listing_photos_count_error: You need at least %{photo_count} photos
     search:
       sort_by: Sort by
+      price_unit: Price unit
       results:
         zero: No results
         one: "1 result"

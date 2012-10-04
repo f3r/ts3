@@ -25,8 +25,11 @@
             = f.hidden_field :current_page
             = f.hidden_field :total_pages
             = render_overridable_partial('search_fields', :f => f)
-
           .views
+            - if SiteConfig.price_units.count > 1
+              .price-units
+                = t("products.search.price_unit")
+                = f.select :price_unit, product_price_units
             .sorting
               = t("products.search.sort_by")
               = f.select :sort_by, sort_options, :class => 'medium', :autocomplete => 'off'

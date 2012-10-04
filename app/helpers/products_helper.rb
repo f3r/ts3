@@ -20,12 +20,16 @@ module ProductsHelper
   end
 
   def product_price(product)
-    symbol, amount = product.price(current_currency, product.price_unit)
+    symbol, amount = product.price(current_currency, current_price_unit)
     "#{current_currency.label}#{amount}"
   end
 
   def product_price_unit(product)
-    t(SiteConfig.price_unit)
+    t(current_price_unit)
+  end
+
+  def product_price_units
+    SiteConfig.price_units.collect{|p_u| [t(p_u), p_u]}
   end
 
   def product_status_badge(product)

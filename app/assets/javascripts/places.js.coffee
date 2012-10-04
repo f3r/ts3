@@ -5,7 +5,7 @@ PlaceFilters =
     $("#new_search").bind('ajax:complete', PlaceFilters.loadingIndicatorOff)
 
     # Top filters
-    $("#search_guests, #search_sort_by").change(PlaceFilters.search)
+    $("#search_guests, #search_sort_by, #search_price_unit").change(PlaceFilters.search)
 
     # Initialize the date pickers
     $('.check-in-picker, .check-out-picker').datepicker('destroy').datepicker

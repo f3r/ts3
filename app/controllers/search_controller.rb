@@ -1,7 +1,9 @@
 class SearchController < ApplicationController
   layout 'plain'
-  before_filter :authenticate_user!, :only => [:favorites, :alert]
-  after_filter :set_city_pref_cookie, :only => [:index]
+
+  before_filter :authenticate_user!,   :only => [:favorites, :alert]
+  before_filter :set_price_unit,       :only => [:show]
+  after_filter  :set_city_pref_cookie, :only => [:index]
 
   def index
     if !request.xhr?
@@ -14,7 +16,10 @@ class SearchController < ApplicationController
 
     @search = searcher.new(params[:search])
 
+    set_price_unit(params[:search][:price_unit]) if params[:search].present?
+
     @search.currency ||= current_currency
+    @search.price_unit ||= current_price_unit
     @search.city_id = @city.id if @city
     @results = @search.results
 
@@ -76,11 +81,11 @@ class SearchController < ApplicationController
     end
     render 'search/index'
   end
-  
+
   def set_city_pref_cookie
     cookies[:pref_city_id] = { :value => @city.id, :expires => Time.now + 1.month } if @city.present?
     if logged_in?
-      current_user.preferences.city = @city; current_user.preferences.save 
+      current_user.preferences.city = @city; current_user.preferences.save
     end
   end
 end

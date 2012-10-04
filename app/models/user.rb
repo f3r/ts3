@@ -173,6 +173,10 @@ class User < ActiveRecord::Base
     self.preferences.size_unit_id if self.preferences
   end
 
+  def prefered_price_unit
+    self.preferences.price_unit if self.preferences
+  end
+
   # Overrides active_for_authentication? from Devise::Models::Activatable for disabling from admin
   # by verifying whether a user is disabled
   def active_for_authentication?

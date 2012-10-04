@@ -434,7 +434,27 @@ aside .section-header, .aside .section-header {
           font-weight: normal;
           display: block;
           text-transform: uppercase;
-
+          .dropdown{
+            a{
+              vertical-align: sub;
+              color: white;
+            }
+            a:hover{
+                text-decoration: none;
+            }
+          }
+          .dropdown-menu{
+              left: 39px;
+              min-width: 101px;
+              text-shadow: none;
+              text-align: left;
+              a{
+                  color: #000000;
+              }
+              a:hover{
+                  color: white;
+              }
+          }
         }
       }
     }
@@ -604,6 +624,7 @@ ul.references{
       float: right;
     }
     .sorting { float: left; }
+    .price-units { float: left; padding-right: 10px;}
     .toggle  { float: right;}
     a.current{ opacity: 1;}
 

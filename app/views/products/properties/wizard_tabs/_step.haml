@@ -11,11 +11,3 @@
         = f.submit t(:save_and_publish).html_safe, :class => 'btn btn-primary pull-right', :id => "wizard_submit"
     - else
       = f.submit t(:save_and_continue).html_safe, :class => 'btn btn-primary pull-right', :id => "wizard_submit"
-- if false
-  .arrows.clearfix
-    .float-left
-      - if @wizard.previous_step
-        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{@wizard.previous_step}')"}=raw t("places.wizard.previous_step")
-    .float-right
-      - if @wizard.next_step
-        %a.btn.primary{:href => "javascript:switchToPanel('#tab_#{@wizard.next_step}')"}=raw t("places.wizard.next_step")

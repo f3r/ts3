@@ -45,6 +45,8 @@ HeyPalFrontEnd::Application.routes.draw do
     resources :reviews, :only => [:create]
   end
 
+  resources :image_cropper, :controller => :image_cropper, :only => [:new, :update, :create]
+
   ###########################################################################################
   # Inquiries
   ###########################################################################################

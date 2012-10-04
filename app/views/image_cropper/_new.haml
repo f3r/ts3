@@ -1,0 +1,38 @@
+.popUp.offerForm
+  .popUpHeader
+    %h2= t('upload_image')
+    %ul.popUpHeaderMenu
+      %li= link_to_function t(:label_cancel), "$('#file_uploader_popup').dialog('close');"
+      %li= link_to_function image_tag("icons/close1.png"),"$('#file_uploader_popup').dialog('close');"
+  .popUpContent.addForm
+    = form_for [:private, @image_cropper], :url => {:action=>"create", :controller=>"private/image_cropper"},  :html => { :remote => true, :multipart => true, :id => "image_cropper_upload" } do |f|
+      .errorsBlock{:id => 'resourceErrorsBlock'}
+      = f.hidden_field :id_field
+      .formRow
+        = field_label(f, :url, t(:paste_url), :required => false)
+        .formInput.textfield
+          = f.text_field :remote_image_url
+      .formRow
+        = field_label(f, :file, t(:upload_file), :required => false)
+        .formInput.textfield
+          = f.file_field :image
+      .centerButton.popUpFoot
+        = f.submit 'Upload', :class => 'button'
+:javascript
+
+  $('form#image_cropper_upload').submit(function(){
+    var remote_image_url = $('input#image_cropper_remote_image_url').val();
+    if (remote_image_url) {
+      if (!WallPost.is_valid_url(remote_image_url)) {
+        $('input#image_cropper_remote_image_url').val('Invalid URL');
+        return false;
+      }
+    }
+  });
+
+  $('input#image_cropper_image').change(function(){
+    $('input#image_cropper_remote_image_url').val('');
+    $('form#image_cropper_upload').submit();
+  });
+
+

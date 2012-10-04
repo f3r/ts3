@@ -1,0 +1,5 @@
+$('#<%= @image_cropper.id_field %>').val('<%= image_cropper_image_url(@image_cropper.image.cropped) %>');
+$('<%= @image_cropper.id_field %>_check_box').attr('checked', false);
+$("img#<%= @image_cropper.id_field %>_image").attr('src', '<%= image_cropper_image_url(@image_cropper.image.thumb_75) %>');
+$('a#<%= @image_cropper.id_field %>_delete_link').show();
+$("#file_uploader_popup").dialog('close');

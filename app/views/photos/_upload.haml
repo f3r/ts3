@@ -1,5 +1,6 @@
 .panel-wrapper
   .well
+    %h3= 'Gallery'
     - if false
       .alert.alert-info
         = link_to t("places.wizard.photos.read_photo_faq"), home_photo_faq_path
@@ -8,19 +9,19 @@
         %img{:src => asset_path('upload-photos.png')}
       %p.hint= Product.min_photo_count > 0 ? t("products.wizard.photos.upload_photo_hint_min", :min_photos_count => Product.min_photo_count) : t("products.wizard.photos.upload_photo_hint_no_min")
 
-  .clearfix
-  .photo_wrapper
+    .clearfix
+    .photo_wrapper
 
-  .clearfix
-  .photos_wrapper.well
-    %p= t("places.wizard.photos.tip")
+    .clearfix
+    .photos_wrapper
+      %p= t("places.wizard.photos.tip")
 
-    .primary_marker
-      = t("places.wizard.photos.primary")
-    .row
-      .span8
-        %ul.gallery#photos_list
-          = render 'photos/list'
+      .primary_marker
+        = t("places.wizard.photos.primary")
+      .row
+        .span8
+          %ul.gallery#photos_list
+            = render 'photos/list'
 
 :javascript
   /* TODO: Finish moving this to wizard.js */

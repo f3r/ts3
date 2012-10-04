@@ -1,0 +1,11 @@
+.panel-wrapper
+  .well
+    %h3= 'Profile picture'
+    .row-fluid
+      = form_for :user, :url => profile_path, :method => :put, :html => {:id => "update_avatar"} do |f|
+        .avatar-box.span3
+          = image_tag(large_avatar(current_user), :class => "avatar_placeholder", :width => 100)
+        .span7
+          = f.file_field :avatar, :onchanges => "UserEdit.readURL(this);", :autocomplete => 'off'
+          %br
+          = f.button t(:save), :class => 'btn primary',  "data-loading-text" => "#{t(:saving_photo)}...", :id => "save-btn"

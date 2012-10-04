@@ -14,4 +14,9 @@ class PaymentNotificationsController < ApplicationController
     flash[:notice] = "Payment Processed Successfuly!"
     redirect_to root_url
   end
+
+  def show
+    flash[:notice] = "Payment Processed Successfuly!"
+    redirect_to messages_url
+  end
 end

@@ -80,6 +80,8 @@ HeyPalFrontEnd::Application.routes.draw do
 
   resources :inquiries, :only => [:new, :create, :edit, :update]
   resources :transactions, :only => [:update]
+
+  get 'paypal_callback', :to => 'payment_notifications#show'
   post 'paypal_callback', :to => 'payment_notifications#create', :as => :paypal_callback
 
   ###########################################################################################

@@ -3,9 +3,10 @@ class SearchController < ApplicationController
   before_filter :authenticate_user!, :only => [:favorites, :alert]
 
   def index
+    @global = params[:global]
     if !request.xhr?
       @city = City.find(params[:city]) if params[:city]
-      unless @city
+      !@global.present? && unless @city
         redirect_to "/#{current_city.slug}"
         return
       end
@@ -14,7 +15,7 @@ class SearchController < ApplicationController
     @search = searcher.new(params[:search])
 
     @search.currency ||= current_currency
-    @search.city_id = @city.id if @city
+    @search.city_id = @city.id if @city && !@global.present?
     @results = @search.results
 
     @alert = Alert.new

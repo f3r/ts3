@@ -1,8 +1,8 @@
 - content_for(:title) do
-  - @city.name
+  - @city.present? ? @city.name : "All DJs"
 
 - content_for(:meta_description) do
-  - "#{@city.name} - #{SiteConfig.meta_description}"
+  - "#{@city.present? ? @city.name : 'All DJs'} - #{SiteConfig.meta_description}"
 
 %section.clearfix
   .row

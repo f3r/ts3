@@ -3,7 +3,7 @@
     .search-bar#search_bar
       .float-left
         %h2{:style => 'padding-bottom: 9px'}
-          = "#{@city.name}'s Best DJs"
+          = "#{@city.present? ? @city.name : 'World'}'s Best DJs"
         - # --> WARNING: don't delete the '#' here --> #num_search_results= search_results_count(@results)
         - #link_to "Not going to #{@city.name}?", root_path, {:style => 'color: #ccc; display:inline; font-size: 12px'}
 

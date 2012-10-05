@@ -156,6 +156,11 @@ module ApplicationHelper
     end
     notification_box html if html.present?
   end
+  
+  def genres_style
+    style = [['subtle-magenta','#E7D0E7'],['grey-light','#BFBFBF'],['subtle-dkgreen','#D0E7DB'],['subtle-red','#E7D0D0'],['subtle-ltblue','#D0DBE7'],['subtle-ltgreen','#D0E7D0'],['subtle-cyan','#D0E7E7'],['subtle-fuscia','#E7D0DB']]
+    style.shuffle.first
+  end
 
   module_function :static_asset
 end

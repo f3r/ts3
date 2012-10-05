@@ -12,6 +12,9 @@
     .title
       %h3
         = link_to resource.title, url
+    .dj_genres
+      = render :partial => 'shared/genres', :locals => { :resource => resource }
+ 
     .social_icons
       = render :partial => 'shared/social_icons', :locals => { :resource => resource }
 

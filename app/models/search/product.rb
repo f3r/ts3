@@ -41,6 +41,10 @@ module Search
       sort_map[self.sort_by]
     end
 
+    def price_unit
+      @price_unit || SiteConfig.price_unit
+    end
+
     def sort_options
       [[I18n.t("products.search.price_lowest"), 'price_lowest'],
        [I18n.t("products.search.price_highest"), 'price_highest']]

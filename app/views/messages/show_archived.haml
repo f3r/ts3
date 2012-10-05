@@ -1,5 +1,5 @@
 .conversation
-  = breadcrumb [[t("archives.archives_title"), archived_messages_url]], breadcrumb_conversation_title do
+  = breadcrumb [[t("inquiries.inquiries_title"), messages_path],[t("archives.archives_title"), archived_messages_url]], breadcrumb_conversation_title do
     .actions.pull-right
       = link_to t("archives.un_archive"), un_archive_message_path(@conversation.id), :method => :put, :confirm => t("archives.un_archive_message")
 

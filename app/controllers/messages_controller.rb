@@ -65,7 +65,7 @@ class MessagesController < PrivateController
     else
       flash[:error] = t("archives.failed_un_archive")
     end
-    redirect_to archived_messages_url
+    redirect_to messages_path
   end
   
 end

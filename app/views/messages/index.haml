@@ -1,4 +1,6 @@
-= breadcrumb [], t("inquiries.inquiries_title")
+= breadcrumb [], t("inquiries.inquiries_title") do
+  .actions.pull-right
+    = link_to t("archives.archives_title"), archived_messages_url
 .inbox
   - if @conversations.blank?
     .alert.alert-info
@@ -6,4 +8,4 @@
   - else
     - @conversations.each do |c|
       .row
-        = render 'conversation', :conversation => c
+        = render 'normal_view', :conversation => c

@@ -1,0 +1,14 @@
+.conversation
+  = breadcrumb [[t("inquiries.inquiries_title"), messages_path],[t("archives.archives_title"), archived_messages_url]], breadcrumb_conversation_title do
+    .actions.pull-right
+      = link_to t("archives.un_archive"), un_archive_message_path(@conversation.id), :method => :put, :confirm => t("archives.un_archive_message")
+
+  - if @conversation.target
+    .row.target
+      = render_target(@conversation.target, :box)
+
+  - if @messages.present?
+    - @messages.each do |m|
+      = render 'message', :m => m
+  - else
+    =t("messages.no_messages")

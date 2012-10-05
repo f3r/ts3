@@ -1,0 +1,12 @@
+= breadcrumb [[t("inquiries.inquiries_title"), messages_path]], t("archives.archives_title") do
+  .actions.pull-right
+    = link_to t("inquiries.inquiries_title"), messages_path
+
+.inbox
+  - if @archived_conversations.blank?
+    .alert.alert-info
+      = t("archives.no_messages")
+  - else
+    - @archived_conversations.each do |c|
+      .row
+        = render 'archive_view', :conversation => c

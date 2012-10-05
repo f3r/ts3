@@ -75,8 +75,12 @@ HeyPalFrontEnd::Application.routes.draw do
   resources :messages do
     member do
       put :mark_as_unread
+      put :un_archive
     end
   end
+  
+  match '/archived_messages'  => 'messages#archived_messages', :as => :archived_messages
+  match '/archived_messages/:id'  => 'messages#show_archived', :as => :archived_message
 
   resources :inquiries, :only => [:new, :create, :edit, :update] do
     collection do

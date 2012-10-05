@@ -8,15 +8,19 @@ class Messenger
     end
 
     inbox_entries = InboxEntry.where(conditions).order('inbox_entries.created_at DESC').all(:include => [:conversation])
-    conversations = []
-    inbox_entries.each do |inbox_entry|
-      conversation = inbox_entry.conversation
-      conversation.from = conversation.other_party(user)
-      conversation.body = conversation.last_message.summary
-      conversation.read = inbox_entry.read
-      conversations << conversation
+    conversation_list(inbox_entries,user)
+  end
+  
+  def self.get_archived_conversations(user, filters = {})
+    conditions = {:user_id => user.id}
+
+    if filters[:target]
+      target = filters[:target]
+      conditions['conversations'] = {:target_id => target.id, :target_type => target.class}
     end
-    conversations
+    
+    inbox_entries = InboxEntry.where(conditions).where("deleted_at IS NOT NULL").order('inbox_entries.created_at DESC').all(:include => [:conversation])
+    conversation_list(inbox_entries,user)
   end
 
   def self.get_conversation_messages(user, conversation_id)
@@ -104,5 +108,23 @@ class Messenger
     inbox_entry = InboxEntry.where(:user_id => user.id, :conversation_id => conversation_id).first!
     inbox_entry.delete
     inbox_entry.save!
+  end
+  
+  def self.un_archive(user,conversation_id)
+    inbox_entry = InboxEntry.where(:user_id => user.id, :conversation_id => conversation_id).first!
+    inbox_entry.undelete
+    inbox_entry.save!    
+  end
+  
+  def self.conversation_list(inbox_entries,user)
+    conversations = []
+    inbox_entries.each do |inbox_entry|
+      conversation = inbox_entry.conversation
+      conversation.from = conversation.other_party(user)
+      conversation.body = conversation.last_message.summary
+      conversation.read = inbox_entry.read
+      conversations << conversation
+    end
+    conversations
   end
 end

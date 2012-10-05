@@ -56,7 +56,7 @@
 
           - if false
             %a{:href => '#inquire', :class => 'btn btn-large btn-info', 'data-toggle' => 'modal', 'data-backdrop' => 'true', 'data-keyboard' => 'true', 'data-show' => 'true'}= t("places.inquire")
-          = link_to t("places.inquire"), new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-info', :remote => true
+          = link_to t("places.inquire"), new_inquiry_path(:product_id => @product.id), :class => 'btn btn-large btn-primary', :remote => true
           %p{:style => "font-size: 9px; font-variant: small-caps; color: #5B5848; margin-top: -3px;"}= t("places.no_obligation")
 
       /******************************************************************************************

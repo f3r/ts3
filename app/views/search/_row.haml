@@ -34,6 +34,12 @@
         .figure
           %span= "##{ranking}"
         .micro= "#{resource.points} DJ Points"
+        /FB likes count
+        - fb_cf_url = facebook_url_custom_field(resource)
+        - count = fb_likes_count(fb_cf_url) if fb_cf_url.present?
+        .micro
+          = "#{count} FB likes" if count.present?
+              
         -if resource.product.has_review?
           .reviews
             = stars(resource.product.review_avg)

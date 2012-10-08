@@ -161,6 +161,28 @@ module ApplicationHelper
     style = [['subtle-magenta','#E7D0E7'],['grey-light','#BFBFBF'],['subtle-dkgreen','#D0E7DB'],['subtle-red','#E7D0D0'],['subtle-ltblue','#D0DBE7'],['subtle-ltgreen','#D0E7D0'],['subtle-cyan','#D0E7E7'],['subtle-fuscia','#E7D0DB']]
     style.shuffle.first
   end
+  
+  def fb_likes_count( url )
+    facebook_graph_url = "http://graph.facebook.com/"
+    if url.present?
+      regex = /(?:http:\/\/)?(?:www\.)?facebook\.com\/(?:(?:\w)*#!\/)?(?:pages\/)?(?:[\w\-.]*\/)*([\w\-.]*)/
+      fanpage = url.scan(regex)
+      if fanpage.present?
+        response = nil
+        begin
+          facebook_graph_url << fanpage[0][0]
+          open(facebook_graph_url) do |f|
+            response = f.read
+          end
+        rescue=> ex
+          logger.error "Cannot fetch #{url} - Exception : #{ex.message}"
+        end
+        json_response = JSON.parse(response) if response.present?
+        return json_response['likes'] if json_response.present?
+      end
+    end
+    nil
+  end
 
   module_function :static_asset
 end

@@ -184,4 +184,9 @@ module ProductsHelper
       'disabled'
     end
   end
+  
+  def facebook_url_custom_field(resource)
+    cf = CustomField.find_by_name(:facebook_url)
+    custom_field_value(cf,resource)
+  end
 end

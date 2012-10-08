@@ -17,6 +17,7 @@ gem 'sass-rails',   '~> 3.2.3'
 
 gem 'jquery-rails',  '~>1.0.18'
 gem 'jquery_mobile_rails'
+gem 'remotipart', '~> 1.0'
 gem 'activemerchant'
 gem 'less-rails-bootstrap'
 gem 'therubyracer'

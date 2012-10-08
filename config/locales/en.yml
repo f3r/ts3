@@ -14,6 +14,14 @@ en:
   contact:    Contact
   product_name: 'DJ'
   product_name_plural: 'DJs'
+  upload:     Upload
+  uploading:  Uploading...
+  app_domain: Squarestays.com
+  main_page_title: Squarestays.com
+  footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"
+  contact: Contact
+  facebook_url: 'https://www.facebook.com/squarestays'
+  twitter_url:  'https://twitter.com/Squarestays'
 
   ####################################################################################
   # App Menus

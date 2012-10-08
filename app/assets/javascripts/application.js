@@ -6,6 +6,7 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.remotipart
 //= require jquery-ui
 //= require jquery.ui.touch.punch.min
 //= require jquery.tinycarousel.min
@@ -17,6 +18,7 @@
 //= require jquery.bootstrap.confirm.popover
 //= require jquery.bookmark
 //= require jquery.textfill
+//= require jquery.Jcrop
 //= require modernizr
 //= require fullcalendar.min
 //= require twitter/bootstrap

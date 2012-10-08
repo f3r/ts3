@@ -1,4 +1,5 @@
 - no_sections ||= false
+- callback ||= false
 
 .modal.fade{:id => modal_id}
   - if no_sections
@@ -14,6 +15,12 @@
     - if content_for?(:modal_footer)
       .modal-footer
         = content_for :modal_footer
+
+- if callback
+  :javascript
+    $('##{modal_id}').on('shown', function(){
+      #{callback}();
+    });
 
 :javascript
   $('##{modal_id}').modal('show');

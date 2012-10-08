@@ -28,8 +28,8 @@ class ProfilesController < ApplicationController
   end
 
   def update_avatar
+    @user = current_user
     if params[:user] && params[:user][:original_avatar]
-      @user = current_user
       @user.original_avatar = params[:user][:original_avatar]
       @user.save
     end

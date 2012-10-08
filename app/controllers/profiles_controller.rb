@@ -26,4 +26,25 @@ class ProfilesController < ApplicationController
       render :action => :edit
     end
   end
+
+  def update_avatar
+    if params[:user] && params[:user][:original_avatar]
+      @user = current_user
+      @user.original_avatar = params[:user][:original_avatar]
+      @user.save
+    end
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
+
+  def crop_avatar
+    @user = current_user
+    @user.attributes = params[:user]
+    @user.avatar_url = @user.original_avatar(:croppable)
+    @user.save
+    respond_to do |format|
+      format.js { render :layout => false }
+    end
+  end
 end

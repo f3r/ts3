@@ -1,6 +1,0 @@
-<% if @image_cropper.valid? %>
-  $("#file_uploader_popup").html("<%= escape_javascript(render :partial => 'private/image_cropper/edit') %>");
-  $("#file_uploader_popup").dialog({ 'modal': true,  width: 450, top: 10 });
-<% else %>
-  $("#resourceErrorsBlock").html("<%= escape_javascript(render :partial => 'shared/validation_errors', :object => @image_cropper) %>");
-<% end %>

@@ -97,7 +97,12 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Profiles
   ###########################################################################################
-  resource :profile
+  resource :profile do
+    member do
+      post :update_avatar
+      post :crop_avatar
+    end
+  end
 
   resources :users, :only => [:show]
 

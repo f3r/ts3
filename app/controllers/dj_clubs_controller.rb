@@ -1,5 +1,8 @@
 class DjClubsController < ApplicationController
+  layout 'plain'
+
   def list
-    @clubs = DjClub.all
+    @clubs = DjClub.with_points
   end
+
 end

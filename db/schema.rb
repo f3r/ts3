@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121003111242) do
+ActiveRecord::Schema.define(:version => 20121005085515) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -171,9 +171,9 @@ ActiveRecord::Schema.define(:version => 20121003111242) do
   create_table "cmspage_menu_sections", :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "cmspage_versions", :force => true do |t|
@@ -199,9 +199,9 @@ ActiveRecord::Schema.define(:version => 20121003111242) do
   create_table "cmspages_menu_sections", :id => false, :force => true do |t|
     t.integer  "cmspage_id"
     t.integer  "menu_section_id"
-    t.datetime "created_at",                                  :null => false
-    t.datetime "updated_at",                                  :null => false
-    t.integer  "position",        :limit => 2, :default => 0
+    t.datetime "created_at",                     :null => false
+    t.datetime "updated_at",                     :null => false
+    t.integer  "position",        :default => 0
   end
 
   create_table "comments", :force => true do |t|
@@ -817,12 +817,12 @@ ActiveRecord::Schema.define(:version => 20121003111242) do
   add_index "translations", ["locale", "key"], :name => "index_translations_on_locale_and_key", :unique => true
 
   create_table "users", :force => true do |t|
-    t.string   "email",                                                     :null => false
-    t.string   "encrypted_password",     :limit => 128,                     :null => false
+    t.string   "email",                                                        :null => false
+    t.string   "encrypted_password",        :limit => 128,                     :null => false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                         :default => 0
+    t.integer  "sign_in_count",                            :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -844,12 +844,13 @@ ActiveRecord::Schema.define(:version => 20121003111242) do
     t.datetime "avatar_updated_at"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "role",                                  :default => "user"
+    t.string   "role",                                     :default => "user"
     t.string   "passport_number"
     t.string   "unconfirmed_email"
     t.string   "paypal_email"
     t.integer  "controls_user_id"
-    t.boolean  "disabled",                              :default => false
+    t.boolean  "disabled",                                 :default => false
+    t.string   "original_avatar_file_name"
   end
 
   add_index "users", ["authentication_token"], :name => "index_users_on_authentication_token", :unique => true

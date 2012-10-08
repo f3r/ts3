@@ -1,23 +1,15 @@
-.well
-  %h2{:style => 'display:inline; color: #000000 '}
-    = "Singapore"
-  %hr
+%section.clearfix
   .row
-    - @clubs.each do |club|
-      .span6.club
-        .well
-          %h2
-            = club.name
-          %ul
-            %li
-              = club.phone
-            %li
-              %a{:href => "#{club.website}"}
-                = club.website
-            %li
-              = club.email
-          %h3
-            = club.address
-          %img{:src => "#{club.photo1(:medium)}"}
-          %p
-            = club.description
+    .span10.offset1
+      .search-bar-wrapper
+        .search-bar-container
+          .search-bar
+            .float-left
+              %h2{:style => "padding-bottom:9px"} Best Clubs
+
+      .results{:style => "padding-top: 10px;"}
+        #search_results
+          %ul.list-display
+            #search_result_list
+              - @clubs.each_with_index do |club, idx|
+                = render 'row', :club => club, :ranking => (idx + 1)

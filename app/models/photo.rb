@@ -16,7 +16,7 @@ class Photo < ActiveRecord::Base
        :tiny => "40x40"
      },
      :convert_options => {
-        :all => "-quality 70"
+        :all => "-quality 90"
       },
      :path => "places/:parent_id/photos/:id/:style.:extension",
      :processors => [:rationize, :watermark]

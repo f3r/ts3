@@ -40,9 +40,9 @@ class User < ActiveRecord::Base
      :path => "/avatars/:id/:style.:extension",
      :default_url => "none",
      :convert_options => {
-       :large => "-quality 80",
-       :medium => "-quality 80",
-       :thumb => "-quality 80" }
+       :large => "-quality 90",
+       :medium => "-quality 90",
+       :thumb => "-quality 90" }
 
   attr_accessor :delete_avatar, :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true

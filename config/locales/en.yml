@@ -18,19 +18,8 @@ en:
   ####################################################################################
   # App Menus
   ####################################################################################
-  find_places:       Find a Place
-  my_places:         My Properties
   profile:           Profile
   notifications:     Notifications
-  add_a_place:       Add a Property
-  why_squarestays:   Why SquareStays?
-  how_it_works:      How it works
-  photography_faq:   Photography FAQ
-  community_support: Community Support
-  find_place_in:     Find a Place in
-  cityguide_sg:      "City Guide: Singapore"
-  cityguide_hk:      "City Guide: Hong Kong"
-  cityguide_kl:      "City Guide: Kuala Lumpur"
   my_account:        My Account
   my_profile:        My Profile
   my_favorite_places: My Favorites
@@ -39,7 +28,6 @@ en:
   # Account creation & management
   ####################################################################################
   create_new_account:         Create New Account
-  create_an_account_using:    Create an Account using
   user_confirmed:             Your account has been successfully confirmed!
   email_confirmed:            Your email address has been successfully confirmed!
   user_created:               Your account has been successfully created!
@@ -53,7 +41,7 @@ en:
   confirmation_code:          Confirmation code
   confirmation_email_sent:    Confirmation email sent
   register:                   Register
-  login:                      Login to Squarestays
+  login:                      Global Club Connect Login
   login_using:                Login using
   sign_in:                    Sign In
   sign_out:                   Sign Out
@@ -72,20 +60,10 @@ en:
   facebook_connected:         You have successfully connected your facebook account!
   twitter_connected:          You have successfully connected your twitter account!
   authentication_fail:        We are unable to authenticate you at the moment. Please try again.
-  signup_needed_to_connect:   "We need to connect the details to your SquareStays account, please provide us the following."
-  i_have_an_account:          Already a SquareStays member?
+  signup_needed_to_connect:   "We need to connect the details to your GCC account, please provide us the following."
+  i_have_an_account:          Already a GCC member?
   choose_language:            Choose language
   choose_currency:            Choose currency
-  choose_unit:                Choose unit
-  square_meters:              Square meters
-  square_feet:                Square feet
-  square_meters_short:        "m²"
-  square_feet_short:          "ft²"
-  kilometer_per_hour:         Kilometer per Hour
-  meter_per_hour:             Meter per Hour
-  kilometer_per_hour_short:   "kmh"
-  meter_per_hour_short:       "mph"
-
 
 
   ####################################################################################
@@ -98,7 +76,7 @@ en:
   password:             Password
   confirm_password:     Confirm Password
   terms_and_conditions: Terms and Conditions
-  registration_warning: SquareStays won't publish anything without your prior consent
+  registration_warning: GCC won't publish anything without your prior consent
   cancel_email_change:  Cancel email change
 
   ####################################################################################
@@ -136,7 +114,7 @@ en:
   saving_photo:         Saving photo
   delete_photo:         Delete photo
   private_field:        Private. Only visible to those that have an active transaction with you
-  fully_private_field:  Private. Only visible to SquareStays
+  fully_private_field:  Private. Only visible to GCC
   public_field:         Public. Anyone can see this information
   linked_accounts:      Linked Accounts
   holder_name:          Holder Name
@@ -542,29 +520,6 @@ en:
   homepage_facebook: Join us on Facebook
   homepage_twitter:  Follow us on Twitter
   homepage_blog:     Read our Blog
-  singapore:         Singapore
-  hongkong:          Hong Kong
-
-  fp_one:   "SquareStays"
-  fp_two_a: "connects you with"
-  fp_two_b: "trusted, professional, short-term"
-  fp_three: "accomodations"
-
-  car_one:   "The Clift - an elegant Singapore downtown loft"
-  car_two:   "Cavenagh - perfect for families coming to Singapore"
-  car_three: "Kuala Lumpur - now featured on SquareStays!"
-  car_four:  "Singapore - a rising global business powerhouse"
-  car_five:  "Hong Kong - business gateway to China"
-
-  ####################################################################################
-  # How it works page
-  ####################################################################################
-  how_list_your_properties_1st: "If you would like to list a property on SquareStays, please contact us at %{places_email}. The SquareStays team will then work with you to ensure that you understand the requirements for listings on SquareStays."
-  how_list_your_properties_2nd: "In general, all properties on SquareStays should be fully-furnished, full units with all utilities turned on. We encourage you to provide as much information as possible about the short-term availability terms, for instance, if your units have a minimum stay of one month, two months or more. Also, please be clear with any other conditions you may have, such as security deposit or clean-up fees. Finally, providing as many high-quality photos as possible is extremely valuable for potential tenants."
-  how_list_your_properties_3rd: "Once you have emailed us, we will enable your account to create listings, usually within 2 business days. Please watch your email for any incoming messages and inquiries from interested tenants, and email us at any time at %{support_email} with any questions you may have."
-  how_payments_1st: "SquareStays listings are designed to have full disclosure and no hidden fees! When you make an inquiry or a reservation, you should know exactly how much it will cost. When you are ready to guarantee your stay, please pay the reservation fee on the site. This will cover all SquareStays fees and guarantee your stay. You will then pay all remaining payments for your stay directly to the listing owner."
-  how_payments_2nd: "SquareStays offers payments by credit card, PayPal and bank transfer. Please contact us at %{support_email} with any questions."
-  how_travelers_4th: "Of course, you can always send general messages or questions to any other member on the site using the “Send Message” link on the member’s profile page or when viewing the details of any place. If you ever have any problems or questions in communicating with other members, please contact us at %{support_email}"
 
   ####################################################################################
   # Error codes

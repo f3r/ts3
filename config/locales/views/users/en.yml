@@ -50,13 +50,13 @@ en:
 
     registration:
       login:                      Login
-      login_to_site:              "Login to %{site_name}"
+      login_to_site:              "%{site_name} Login"
       login_using:                Login using
-      forgot_password:            Forgot Password
+      forgot_password:            Forgot your Password?
       resend_confirmation:        Resend Confirmation
       signup_for_an_account:      Signup for a new account
       sign_in_with:               "Sign in with %{provider}"
-      sign_in_provider_info:      "This will allow you to log in to %{site_name} using your existing accounts!"
+      sign_in_provider_info:      "This will allow you to log in to %{site_name} using your existing Facebook account"
       create_new_account:         Create New Account
       create_account:             Create account
       sign_up_as_user:            Sign up as a Senior
@@ -65,7 +65,7 @@ en:
       i_accept_the:               I accept the
       switch_to_login:            Already have an account? Sign in
       here:                       Here
-      create_an_account_using:    Create an Account using
+      create_an_account_using:    Signup with Facebook
       reset_password:             Reset Password
       enter_your_email:           Enter your Email
       enter_confirmation_code:    Enter Confirmation Code

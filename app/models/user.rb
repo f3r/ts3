@@ -16,6 +16,7 @@ class User < ActiveRecord::Base
 
   include User::Social
   include User::Roles
+  include User::Avatar
 
   attr_accessible :first_name, :last_name, :email, :gender, :birthdate, :timezone, :phone_mobile, :avatar, :avatar_url, :password, :password_confirmation,
                   :remember_me, :passport_number, :signup_role, :address_attributes, :delete_avatar, :paypal_email
@@ -31,20 +32,7 @@ class User < ActiveRecord::Base
   has_many :alerts,           :dependent => :destroy
   has_many :inquiries,        :dependent => :destroy
 
-  has_attached_file :avatar,
-     :styles => {
-       :thumb  => "100x100#",
-       :medium => "300x300#",
-       :large  => "600x600>"
-      },
-     :path => "/avatars/:id/:style.:extension",
-     :default_url => "none",
-     :convert_options => {
-       :large => "-quality 80",
-       :medium => "-quality 80",
-       :thumb => "-quality 80" }
-
-  attr_accessor :delete_avatar, :terms, :skip_welcome
+  attr_accessor :terms, :skip_welcome
   accepts_nested_attributes_for :address, :update_only => true
 
   validates :paypal_email, :email => true, :if => Proc.new {|user| user.paypal_email.present?}

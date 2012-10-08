@@ -56,6 +56,8 @@ HeyPalFrontEnd::Application.routes.draw do
     resources :reviews, :only => [:create]
   end
 
+  resources :image_cropper, :controller => :image_cropper, :only => [:new, :update, :create]
+
   ###########################################################################################
   # Saved searches
   ###########################################################################################
@@ -95,7 +97,12 @@ HeyPalFrontEnd::Application.routes.draw do
   ###########################################################################################
   # Profiles
   ###########################################################################################
-  resource :profile
+  resource :profile do
+    member do
+      post :update_avatar
+      post :crop_avatar
+    end
+  end
 
   resources :users, :only => [:show]
 

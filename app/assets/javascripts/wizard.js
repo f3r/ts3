@@ -117,6 +117,32 @@ PhotoManager = {
     });
 
     $('.photo_wrapper').append(img_wrapper);
-    this.adjustScroll();
+    //this.adjustScroll();
   }
 }
+
+Cropper = {
+  load: function(){
+    $('#jcrop_target').Jcrop({
+      bgOpacity: .3,
+      aspectRatio: 1,
+      allowMove: true,
+      onChange: Cropper.updateDimensions,
+      onSelect: Cropper.updateDimensions
+      //setSelect: [ 100, 100, 50, 50 ]
+    }, function(){
+      var h = $('img#jcrop_target').height();
+      var w = $('img#jcrop_target').width();
+      $('#user_image_h').val(h);
+      $('#user_image_w').val(w);
+    });
+  },
+  updateDimensions: function(c){
+    if (parseInt(c.w) > 0) {
+      $('#user_crop_x').val(c.x);
+      $('#user_crop_y').val(c.y);
+      $('#user_crop_w').val(c.w);
+      $('#user_crop_h').val(c.h);
+    }
+  }
+};

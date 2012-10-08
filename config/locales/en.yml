@@ -11,6 +11,8 @@ en:
   cancel:     Cancel
   save:       Save
   update:     Update
+  upload:     Upload
+  uploading:  Uploading...
   app_domain: Squarestays.com
   main_page_title: Squarestays.com
   footer_text: "&copy; <a href='/'>SquareStays.com</a> 2012"

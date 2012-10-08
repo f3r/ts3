@@ -1,6 +1,5 @@
 = form_for :user, :url => crop_avatar_profile_path, :method => :post, :remote => true, :html => {:id => "crop_avatar"} do |f|
   .modal-header
-    %a{:href => '#', :class => 'close', 'data-dismiss' => 'modal'}x
     %h3= "Choose avatar area"
   .modal-body
 
@@ -15,7 +14,7 @@
     = f.hidden_field :image_w
 
     %p
-      %i= "Chose section"
+      %i= "Click and drag to make a selection"
 
   .modal-footer
     = f.button t(:submit), :class => 'btn primary', "data-loading-text" => t(:submitting), :onclick => "$(this).button('loading')"

@@ -14,6 +14,7 @@ class AdminDashboard
     stats[:transaction_requested_state] = {:label => "Transaction Stage - Requested", :value => Transaction.where(:state => 'requested').count, :bar_color => "F9E14B"}
     stats[:transaction_ready_to_pay_state] = {:label => "Transaction Stage - Ready to Pay", :value => Transaction.where(:state => 'ready_to_pay').count, :bar_color => "EFED89"}
     stats[:transaction_paid_state] = {:label => "Transaction Stage - Paid", :value => Transaction.where(:state => 'paid').count, :bar_color => "7ABF66"}
+    stats[:transaction_declined_state] = {:label => "Transaction Stage - Declined", :value => Transaction.where(:state => 'declined').count, :bar_color => "AD400A"}
     stats
   end
 

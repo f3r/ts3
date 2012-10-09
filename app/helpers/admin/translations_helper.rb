@@ -7,9 +7,9 @@ module Admin::TranslationsHelper
   end
 
   def translatable_workflow
-    [:initial_guest, :initial_guest_button, :initial_agent, :requested_guest, :requested_agent, :requested_agent_button,
+    [:initial_guest, :initial_guest_button, :initial_agent, :requested_guest, :requested_agent, :requested_agent_button, :reject_offer_agent_button,
      :readypay_guest, :readypay_guest_button, :readypay_agent, :paid_guest, :paid_agent, :system_msg_send, :system_msg_request,
-     :system_msg_pre_approve, :system_msg_pay, :error_in_transaction].collect{|k| "workflow.#{k}"}
+     :system_msg_pre_approve,:system_msg_decline, :system_msg_pay, :error_in_transaction].collect{|k| "workflow.#{k}"}
   end
 
   def translatable_verbs

@@ -16,6 +16,10 @@
       = render 'messages/target/payment_button', :target => target
       %p.hint= t("workflow.readypay_guest")
       %p= image_tag "paypal-verified.gif"
+      
+  - when :declined
+    .span5.offset1
+      %p.hint= t("workflow.reject_offer_guest")
   
   - else
     .span5.offset1

@@ -8,12 +8,12 @@ ActiveAdmin.register klass do
   scope :unpublished
 
   #We clear out the default search sidebar
-  config.clear_sidebar_sections!
+  #config.clear_sidebar_sections!
 
   # These are fixed
-  filter :product_title
-  filter :product_user_id, {:collection => Proc.new {User.all}}
-  filter :product_city_id, {:collection => Proc.new {City.all}}
+  filter :title
+  filter :user_id, {:collection => Proc.new {User.all}}
+  filter :city_id, {:collection => Proc.new {City.all}}
 
   #Extra filtered added here
   if klass.respond_to?('admin_filters')
@@ -50,8 +50,8 @@ ActiveAdmin.register klass do
 
   form :partial => "form"
 
-  sidebar :filters, :only => :index do
-    active_admin_filters_form_for assigns[:search], active_admin_config.filters, {:builder => Heypal::ActiveAdmin::ProductFilterFormBuilder}
-  end
+  # sidebar :filters, :only => :index do
+  #   active_admin_filters_form_for assigns[:search], active_admin_config.filters, {:builder => Heypal::ActiveAdmin::ProductFilterFormBuilder}
+  # end
 
 end

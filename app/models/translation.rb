@@ -48,7 +48,7 @@ class Translation < ActiveRecord::Base
 
     # Translation from YML files
     yml_backend = I18n::Backend::Simple.new
-    yml_translation = yml_backend.translate(:en, key)
+    yml_translation = yml_backend.translate(:en, key) rescue nil
 
     # Dont validate pluralized translations
     return true if !yml_translation.kind_of?(String)

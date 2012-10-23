@@ -6,11 +6,14 @@ class PhotosController < ApplicationController
 
   def create
     @resource = resource_class.find(params[:listing_id])
-    @photo = @resource.photos.new(:photo => params[:file])
-    @photo.save
-    @photos = @resource.photos
-
-    render :partial => 'photos/list', :layout => false
+    @product = @resource.product
+    @photo = Photo.new(:photo => params[:file], :product_id => @product.id)
+    if @photo.save
+      @photos = @product.photos
+      render :partial => 'photos/list', :layout => false
+    else
+      render :text => 'file error', :status => 500
+    end
   end
 
   def destroy

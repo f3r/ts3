@@ -72,6 +72,10 @@
         $('.active-label input[type=text]').attr('placeholder',"Caption");
         $('.active-label input[type=text]').focus();
         PhotoManager.adjustScroll();
+      },
+      Error: function(up, args) {
+        // Called when a error has occured
+        alert('There was an error processing the uploaded image file');
       }
     }
     });

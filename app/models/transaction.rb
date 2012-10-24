@@ -7,9 +7,8 @@ class Transaction < ActiveRecord::Base
 
   before_create :set_transaction_code
 
-  validates_presence_of :check_in, :check_out, :user_id, :state, :message => "101"
-  validates_date :check_in,  :after => :today,          :invalid_date_message => "113", :after_message => "119"
-  validates_date :check_out, :on_or_after => :check_in, :invalid_date_message => "113", :on_or_after_message => "120"
+  validates_presence_of :check_in, :check_out, :user_id, :state
+  validates_date :check_out, :on_or_after => :check_in
   #validate :check_min_max_stay
 
   workflow_column :state

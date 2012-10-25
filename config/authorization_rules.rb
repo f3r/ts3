@@ -40,9 +40,6 @@ authorization do
     has_permission_on :alerts, :to => [:manage] do
       if_attribute :user => is { user }
     end
-    has_permission_on :transactions,  :to => [:update, :request, :pay] do
-      if_attribute :user_id => is { user.id }
-    end
   end
 
   role :default do
@@ -58,6 +55,9 @@ authorization do
     end
     has_permission_on :comments, :to => :read do
       if_attribute :user => is { user }
+    end
+    has_permission_on :transactions,  :to => [:update, :request, :pay] do
+      if_attribute :user_id => is { user.id }
     end
   end
 

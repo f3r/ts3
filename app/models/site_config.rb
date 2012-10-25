@@ -110,7 +110,7 @@ class SiteConfig < ActiveRecord::Base
     if units.blank?
       raise "Must enable a price unit"
     else
-      units.first
+      units.last
     end
   end
 

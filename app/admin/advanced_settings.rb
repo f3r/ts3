@@ -36,6 +36,7 @@ ActiveAdmin.register SiteConfig, :as => 'Advanced Settings' do
       f.input :enable_price_per_week
       f.input :enable_price_per_day
       f.input :enable_price_per_hour
+      f.input :min_price
     end
     f.buttons
   end

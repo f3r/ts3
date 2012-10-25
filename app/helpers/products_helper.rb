@@ -19,6 +19,14 @@ module ProductsHelper
     File.exists?("#{views_path}/#{specific_path}/_#{partial}.haml")
   end
 
+  def min_price_validation
+    if SiteConfig.min_price.present?
+      SiteConfig.min_price
+    else
+      1
+    end
+  end
+
   def product_price(product)
     symbol, amount = product.price(current_currency, current_price_unit)
     "#{current_currency.label}#{amount}"

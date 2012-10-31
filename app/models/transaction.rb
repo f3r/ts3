@@ -50,6 +50,16 @@ class Transaction < ActiveRecord::Base
   # Special method for handling paypal payment, in the future in can log more details about the transfer
   def received_payment!(params)
     self.pay!(params)
+    # Now post a new scheduled payment
+    p = Payment.new
+    p.amount = self.product_amount.to_d
+    p.currency =  Currency.find_by_currency_code self.product_amount.currency.iso_code
+    p.recipient = self.inquiry.product.user
+    p.transaction = self
+    p.state = :scheduled
+    p.pay_at = self.inquiry.check_in + self.inquiry.length_stay.send(self.inquiry.length_stay_type.to_sym)
+    p.added_at = Time.now
+    p.save
   end
 
   def add_system_message(msg_id)

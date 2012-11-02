@@ -12,8 +12,8 @@ describe TransactionsController do
   end
 
   context 'workflow' do
-    it "starts with a transaction on initial state" do
-      @transaction.state.should == "initial"
+    it "starts with a transaction on requested state" do
+      @transaction.state.should == "requested"
     end
 
     it 'transitions to requested' do
@@ -28,10 +28,10 @@ describe TransactionsController do
     end
 
     it 'sends email notifications' do
-      login_as @guest
-      TransactionMailer.should_receive(:request_renter).and_return(double('Mailer', :deliver! => true))
-      TransactionMailer.should_receive(:request_owner).and_return(double('Mailer', :deliver! => true))
-      xhr :put, :update, :id => @transaction.id, :event => 'request'
+      login_as @agent
+      TransactionMailer.should_receive(:approve_renter).and_return(double('Mailer', :deliver! => true))
+      TransactionMailer.should_receive(:approve_owner).and_return(double('Mailer', :deliver! => true))
+      xhr :put, :update, :id => @transaction.id, :event => 'pre_approve'
     end
 
     it 'transitions to ready_to_pay' do
@@ -54,16 +54,7 @@ describe TransactionsController do
       @transaction.state.should == 'paid'
     end
 
-    it 'doesnt allow a user to request a transaction from another user' do
-      @guest2 = create(:user, :role => "user")
-      login_as @guest2
-
-      assert_raise Workflow::TransitionHalted  do
-        xhr :put, :update, :id => @transaction.id, :event => 'request'
-      end
-    end
-
-    it 'doenst allow agent to pre-approve a transaction from another user' do
+    it 'does not allow agent to pre-approve a transaction from another user' do
       @transaction.update_attribute(:state, 'requested')
       @agent2 = create(:user, :role => "agent")
       login_as @agent2
